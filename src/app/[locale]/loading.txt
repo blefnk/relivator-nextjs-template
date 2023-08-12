@@ -1,0 +1,24 @@
+import { CardSkeleton } from "~/islands/skeletons/skeleton-card";
+
+export default function Loading() {
+  return (
+    <main className="min-h-screen overflow-hidden bg-background px-4 pt-20 text-foreground md:px-8 lg:px-20">
+      <section className="flex flex-col items-center justify-center">
+        <div className="divide-border-200 divide-y rounded-md border">
+          <div className="flex space-x-4">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+          <div className="flex space-x-4">
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+            <CardSkeleton />
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}

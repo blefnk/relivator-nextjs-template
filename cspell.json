@@ -1,0 +1,28 @@
+{
+  "import": ["@cspell/dict-uk-ua/cspell-ext.json"],
+  "version": "0.2",
+  "language": "en,uk",
+  "ignorePaths": ["dist", "out", "build", ".next"],
+  "words": [
+    "bleverse",
+    "caesar",
+    "cmdk",
+    "commitlint",
+    "community",
+    "esnext",
+    "gykh",
+    "hookform",
+    "Kornienko",
+    "lightningcss",
+    "lucide",
+    "monaco",
+    "morsee",
+    "Nazar",
+    "nextjs",
+    "qrcode",
+    "shadcn",
+    "tailwindcss",
+    "tanstack",
+    "whatsapp"
+  ]
+}

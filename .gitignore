@@ -1,0 +1,73 @@
+# dependencies
+/node_modules
+.pnp.js
+/.pnp
+
+# testing
+/coverage
+
+# database
+/prisma/db.sqlite
+/prisma/db.sqlite-journal
+
+# next.js
+/out/
+/.next/
+next-env.d.ts
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env.temporary
+.env*.local
+.env
+
+# vercel
+.vercel
+.turbo
+
+# typescript
+*.tsbuildinfo
+
+# postbuild
+robots.txt
+sitemap.xml
+sitemap-*.xml
+
+# supabase
+.branches
+.temp
+
+# PWA files
+**/public/sw.js
+**/public/workbox-*.js
+**/public/worker-*.js
+**/public/sw.js.map
+**/public/workbox-*.js.map
+**/public/worker-*.js.map
+
+# other
+.firebase
+*.tw.*
+
+# another
+.contentlayer
+/pb_data
+/playwright-report/
+/playwright/.cache/
+/test-results/
+pb_migrations
+pocketbase.exe
+pocketbase/pb_data
+/drizzle.config.json
