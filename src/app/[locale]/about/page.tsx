@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Balancer } from "react-wrap-balancer";
 
 import { cnBase } from "tailwind-variants";

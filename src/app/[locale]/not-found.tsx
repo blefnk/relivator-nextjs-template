@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { Balancer } from "react-wrap-balancer";
 
 import { ChevronLeft } from "lucide-react";

@@ -125,12 +125,12 @@ export function UnifiedItemGeneral() {
 export function UnifiedItemUtils() {
   return (
     <MenubarMenu>
-      <MenubarTrigger className="relative">Utils</MenubarTrigger>
+      <MenubarTrigger className="relative">Tools</MenubarTrigger>
       <MenubarContent forceMount>
         <MenubarLink href="/">
           <span className="flex items-baseline">
             <Home className="mr-1 h-3 w-3" />
-            Utils Home {"->"}
+            Bleverse Utils {"->"}
           </span>
         </MenubarLink>
         <MenubarSeparator />

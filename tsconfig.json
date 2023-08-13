@@ -25,15 +25,24 @@
     "strictNullChecks": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "lib": ["dom", "dom.iterable", "esnext", "es2019"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2019"
+    ],
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./public/*"]
+      "~/*": [
+        "./src/*"
+      ],
+      "@/*": [
+        "./public/*"
+      ]
     }
   },
   "include": [
@@ -45,5 +54,7 @@
     "next-env.d.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

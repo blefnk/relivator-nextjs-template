@@ -1,3 +1,5 @@
+import { Network } from "~/utils/server/app/socials";
+
 export type Config = {
   social: Network[];
   name: string;

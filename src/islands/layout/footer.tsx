@@ -1,6 +1,6 @@
 import { Github, Twitter } from "lucide-react";
 
-import { REPOSITORY_URL } from "~/constants/repository-info";
+import { REPOSITORY_URL } from "~/app";
 import { getScopedI18n } from "~/utils/server/i18n";
 import { typography } from "~/utils/server/text";
 

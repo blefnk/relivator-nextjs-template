@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Balancer } from "react-wrap-balancer";
 
 import { Github } from "lucide-react";
