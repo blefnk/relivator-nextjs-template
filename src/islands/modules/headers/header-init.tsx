@@ -1,6 +1,6 @@
 // import { getI18n, getScopedI18n } from "~/utils/server/i18n";
 
-export default async function Header() {
+export default function Header() {
   // const t = await getI18n();
   // const scopedT = await getScopedI18n("hello");
 

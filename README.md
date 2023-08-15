@@ -1,6 +1,6 @@
 # Bleverse Relivator: Next.js Starter & Website Builder
 
-**Crafting the world's most powerful Next.js starter and website builder.**
+**Crafting the world's most powerful Next.js starter.**
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/blefnk/relivator?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/blefnk/relivator?style=for-the-badge)
@@ -8,13 +8,28 @@
 
 ## 🚀 About the Project
 
-Step into the future with the ultimate Next.js starter. Everything has been set up for you. It's more than just code; it's a journey. You're not on this journey alone. Move faster than ever. We've laid the groundwork; now, grab it, dive in and accelerate your development.
+**The Bleverse Framework for the Next.js**
 
-This is our experimental space where we tinkered with the new Next.js app directory. So, while it's all fun and exploration, there might be a few quirks here and there. Stumbled upon something odd or just feeling generous? Reach out to us on Twitter [@bleverse_com](https://x.com/bleverse_com) or raise an issue right here. If you've got some coding magic up your sleeve, contributions are always celebrated! 🎉
+Step into the future with the ultimate Next.js starter. Everything has been set up for you. It's more than just code; it's a journey. You're not on this journey alone. Move faster than ever. It can be proudly called a website builder, although it certainly isn't, at least for now 😏. We've laid the groundwork; now, grab it, dive in and accelerate your development.
 
-## 🤌 Features
+This is our experimental space where we tinkered with the new Next.js app directory. So, while it's all fun and exploration, there might be a few quirks here and there. Stumbled upon something odd or just feeling generous? DM us on Twitter, sorry, on X [@bleverse_com](https://x.com/bleverse_com) or raise an issue right here. If you've got some coding magic up your sleeve, contributions are always celebrated! 🎉
 
-Please visit [the corresponding page](/repo/roadmap.md) to see the full list of features.
+## 🔥 TO-DO Features
+
+**Copy. Paste. Ship.**
+
+This roadmap outlines the key features and improvements to be implemented in this web project.
+
+- 🌐 Comprehensive offerings of the Next.js app directory.
+- 📊 Dive deep into SQL with TypeScript ORM via [**Drizzle ORM**](https://github.com/drizzle-team/drizzle-orm).
+- 🔒 Keep it tight with Authentication using [**Auth.js**](https://authjs.dev) and [**Lucia**](https://github.com/pilcrowOnPaper/lucia).
+- 🌍 Centralized Database magic at [**PlanetScale**](https://planetscale.com).
+- ✨ Stunning UI components, all thanks to [**shadcn/ui**](https://github.com/shadcn/ui).
+- 📝 Share insights with Blogs powered by **MDX**.
+- 💲 Seamless Subscriptions via **Stripe** & [**LemonSqueezy**](https://www.lemonsqueezy.com/).
+- 🎨 Styled to impress with **Tailwind CSS**.
+- 📡 Data-fetching streamlined with RSCs & [**tRPC**](https://github.com/trpc/trpc).
+- 📧 Email verification and a lot more features to enhance your application!
 
 ## Configure Your App
 
@@ -24,20 +39,7 @@ The `app.ts` file contains essential configuration used to modify the contents a
 - Customize various settings, such as disabling theme toggle.
 - Manage general site-wide information.
 
-## 🔥 TO-DO Features
-
-- 🌐 Comprehensive offerings of the Next.js app directory.
-- 📊 Dive deep into SQL with TypeScript ORM via [**Drizzle ORM**](https://github.com/drizzle-team/drizzle-orm).
-- 🔒 Keep it tight with Authentication using [**Auth.js**](https://authjs.dev) and [**Lucia**](https://github.com/pilcrowOnPaper/lucia).
-- 🌍 Centralized Database magic at [**PlanetScale**](https://planetscale.com).
-- ✨ Stunning UI components, all thanks to [**shadcn/ui**](https://github.com/shadcn/ui).
-- 📝 Share insights with Blogs powered by **MDX** & [**Contentlayer**](https://github.com/contentlayerdev/contentlayer).
-- 💲 Seamless Subscriptions via [**LemonSqueezy**](https://www.lemonsqueezy.com/).
-- 🎨 Styled to impress with **Tailwind CSS**.
-- 📡 Data-fetching streamlined with RSCs & [**tRPC**](https://github.com/trpc/trpc).
-- 📧 Email verification and a lot more features to enhance your application!
-
-## ⚠️ Known Issues
+<!-- ## ⚠️ Known Issues
 
 A quick snapshot of the roadblocks or nuances as of now:
 
@@ -45,7 +47,7 @@ A quick snapshot of the roadblocks or nuances as of now:
 2. Pricing plans are playing hard-to-get with the database sync.
 3. The RBAC feature is still on probation; thorough testing pending.
 4. Jury's out on tRPC's performance in RSCs.
-5. An [issue with MJML](https://github.com/vercel/next.js/issues/50042) compelled us to house the email functions within the `/pages` directory.
+5. An [issue with MJML](https://github.com/vercel/next.js/issues/50042) compelled us to house the email functions within the `/pages` directory. -->
 
 ## 🏃‍♂️ Getting Started Locally
 
@@ -143,7 +145,7 @@ Or, see the GitHub docs on [how to create a pull request](https://help.github.co
 
 ## 🙌 Kudos to Collaborators
 
-We thank everyone for their contributions to this repository. Please visit [the corresponding page](/repo/contributing/contributors.md) to see the full list of contributors.
+We thank everyone for their contributions to this repository. Please visit [the release page](/releases) to see the full list of contributors and their authors.
 
 ## License
 

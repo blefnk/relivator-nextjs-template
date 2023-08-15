@@ -1,6 +1,5 @@
-import ky from "ky";
-
 import { REPOSITORY_NAME, REPOSITORY_OWNER } from "~/app";
+import ky from "ky";
 
 type ApiResponse = {
   stargazers_count: number;
@@ -12,9 +11,9 @@ export async function getGitHubStars() {
       `https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`,
       {
         next: {
-          revalidate: 60, // 1 minute
-        },
-      },
+          revalidate: 60 // 1 minute
+        }
+      }
     );
 
     const { stargazers_count } = await response.json<ApiResponse>();

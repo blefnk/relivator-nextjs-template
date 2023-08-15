@@ -10,7 +10,7 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "~/islands",
-    "utils": "~/utils"
+    "components": "~/islands/common",
+    "utils": "~/utils/global"
   }
 }

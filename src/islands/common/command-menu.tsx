@@ -1,16 +1,16 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Circle, File, Laptop, Moon, Search, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
 
-import { navItems } from "~/utils/server/links";
 import { useHotkeys } from "~/hooks/use-hotkeys";
 import { useI18n, useScopedI18n } from "~/utils/client/i18n";
+import { navItems } from "~/utils/server/links";
 
-import { Button } from "../ui/button";
+import { Button } from "~/islands/primitives/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -18,8 +18,8 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-} from "../ui/command";
+  CommandSeparator
+} from "~/islands/primitives/command";
 
 type RouteHref = never;
 
@@ -32,7 +32,7 @@ export function CommandMenu() {
 
   useHotkeys([
     ["ctrl+K", () => setIsOpen((open) => !open)],
-    ["meta+K", () => setIsOpen((open) => !open)],
+    ["meta+K", () => setIsOpen((open) => !open)]
   ]);
 
   const runCommand = useCallback(
@@ -40,7 +40,7 @@ export function CommandMenu() {
       setIsOpen(false);
       command();
     },
-    [],
+    []
   );
 
   return (
@@ -70,7 +70,7 @@ export function CommandMenu() {
                   key={item.href}
                   value={scopedT(`navbar.main.${item.id}`)}
                   onSelect={runCommand(() =>
-                    router.push(item.href as RouteHref),
+                    router.push(item.href as RouteHref)
                   )}
                   className="capitalize"
                 >
@@ -90,7 +90,7 @@ export function CommandMenu() {
                   key={item.id}
                   value={t(`pages.tools.${item.id}.title`)}
                   onSelect={runCommand(() =>
-                    router.push(item.href as RouteHref),
+                    router.push(item.href as RouteHref)
                   )}
                 >
                   <div className="mr-2 flex h-4 w-4 items-center justify-center">

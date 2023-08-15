@@ -25,12 +25,12 @@ const ToastStyles = {
         success: "before:block before:bg-green-400",
         error: "before:block before:bg-destructive",
         warning: "before:block before:bg-amber-400",
-        default: "before:hidden",
-      },
+        default: "before:hidden"
+      }
     },
     defaultVariants: {
-      status: "default",
-    },
+      status: "default"
+    }
   }),
   Status: tv({
     base: "rounded-full p-1 text-white",
@@ -38,19 +38,19 @@ const ToastStyles = {
       status: {
         success: "bg-green-400",
         error: "bg-destructive",
-        warning: "bg-amber-400",
-      },
-    },
+        warning: "bg-amber-400"
+      }
+    }
   }),
   Viewport: tv({
-    base: "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+    base: "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"
   }),
   Action: tv({
-    base: "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
+    base: "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive"
   }),
   Close: tv({
-    base: "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
-  }),
+    base: "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600"
+  })
 };
 
 const ToastViewport = forwardRef<
@@ -152,5 +152,5 @@ export {
   ToastTitle,
   ToastDescription,
   ToastClose,
-  ToastAction,
+  ToastAction
 };

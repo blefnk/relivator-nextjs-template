@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function useURLState(query: string): [string, (value: string) => void] {

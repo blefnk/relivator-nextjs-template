@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { GenerateMetadata } from "~/utils/types/metadata";
+
 import { getScopedI18n } from "~/utils/server/i18n";
 import { typography } from "~/utils/server/text";
 
@@ -13,17 +14,17 @@ const tools = [
         description:
           "Manage your tasks and to-dos efficiently using a comprehensive task list.",
         href: "/features/todo",
-        releasedAt: new Date(),
-      },
-    ],
-  },
+        releasedAt: new Date()
+      }
+    ]
+  }
 ];
 
 function ToolCard({
   title,
   description,
   href,
-  releasedAt,
+  releasedAt
 }: (typeof tools)[number]["tools"][number]) {
   if (!releasedAt) {
     return (
@@ -58,7 +59,7 @@ export const generateMetadata: GenerateMetadata = async () => {
     title: t("title"),
     metadataBase: new URL("https://utils.bleverse.com"),
     description: "The best React 18 & Next.js 13 Relivator just for you.",
-    keywords: "nextjs, Relivator, react, tools, bleverse, blefonix",
+    keywords: "nextjs, Relivator, react, tools, bleverse, blefonix"
   };
 };
 

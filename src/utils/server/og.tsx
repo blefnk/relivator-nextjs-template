@@ -1,10 +1,11 @@
-import { BRAND_NAME } from "~/app";
 import { ImageResponse } from "next/server";
+
+import { BRAND_NAME } from "~/app";
 
 export const alt = BRAND_NAME;
 export const size = {
   width: 1200,
-  height: 630,
+  height: 630
 };
 export const contentType = "image/png";
 export const runtime = "edge";
@@ -20,14 +21,14 @@ export default function og() {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "center"
         }}
       >
         {BRAND_NAME}
       </div>
     ),
     {
-      ...size,
-    },
+      ...size
+    }
   );
 }

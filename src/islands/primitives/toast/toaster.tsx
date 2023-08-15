@@ -6,7 +6,7 @@ import {
   ToastDescription,
   ToastProvider,
   ToastTitle,
-  ToastViewport,
+  ToastViewport
 } from "~/islands/primitives/toast/toast";
 import { useToast } from "~/islands/primitives/toast/use-toast";
 

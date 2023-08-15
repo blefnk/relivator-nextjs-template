@@ -1,4 +1,5 @@
 import type { GenerateMetadata } from "~/utils/types/metadata";
+
 import { getScopedI18n } from "~/utils/server/i18n";
 import { typography } from "~/utils/server/text";
 
@@ -11,7 +12,7 @@ export const generateMetadata: GenerateMetadata = async () => {
     title: t("title"),
     metadataBase: new URL("https://relivator.bleverse.com"),
     description: "The best Next.js 13 and React 18 starter just for you.",
-    keywords: "relivator, bleverse, blefonix, nextjs, utils, react, tools",
+    keywords: "relivator, bleverse, blefonix, nextjs, utils, react, tools"
   };
 };
 

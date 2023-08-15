@@ -1,17 +1,25 @@
-await import("./src/utils/server/app/env.mjs");
+await import("./src/utils/appts/env.mjs");
 
 /** @type {import('next').NextConfig} */
-const config = {
-  reactStrictMode: true,
+const nextConfig = {
   swcMinify: true,
+  typescript: {
+    // ?? Dangerously allow builds to successfully complete even if your project has type errors.
+    // !! Turn Back on When Things are Stable !!
+    ignoreBuildErrors: true
+  },
   experimental: {
-    serverActions: true,
     serverComponentsExternalPackages: ["mysql2"],
+    serverActions: true
+    // ==========================================
+    // ?? https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links
+    // typedRoutes: true
   },
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false };
-    return config;
-  },
+  reactStrictMode: true
+  // webpack: (config) => {
+  //   config.resolve.fallback = { fs: false };
+  //   return config;
+  // }
 };
 
-export default config;
+export default nextConfig;

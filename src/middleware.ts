@@ -1,10 +1,11 @@
-import { createI18nMiddleware } from "next-international/middleware";
 import { NextRequest } from "next/server";
+
+import { createI18nMiddleware } from "next-international/middleware";
 
 import { defaultLocale, localeList } from "~/data/i18n";
 
 const I18nMiddleware = createI18nMiddleware(localeList, defaultLocale, {
-  urlMappingStrategy: "redirect",
+  urlMappingStrategy: "redirect"
 });
 
 export function middleware(request: NextRequest) {
@@ -13,6 +14,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|logo.png|logo.svg|og-image.png).*)",
-  ],
+    "/((?!api|_next/static|_next/image|favicon.ico|logo.png|logo.svg|og-image.png).*)"
+  ]
 };

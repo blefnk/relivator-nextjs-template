@@ -1,20 +1,25 @@
-// @ts-nocheck
-import { Balancer } from "react-wrap-balancer";
-
-import { Github } from "lucide-react";
-import { Clock, Code, DollarSign, Files, QrCode, Text } from "lucide-react";
 import Link from "next/link";
+
+import { REPOSITORY_URL } from "~/app";
+import {
+  Clock,
+  Code,
+  DollarSign,
+  Files,
+  Github,
+  QrCode,
+  Text
+} from "lucide-react";
+import { Balancer } from "react-wrap-balancer";
 import { cnBase } from "tailwind-variants";
 
-import { Button } from "~/islands/ui/button";
-import { REPOSITORY_URL } from "~/app";
 import { getI18n, getScopedI18n } from "~/utils/server/i18n";
-import { typography } from "~/utils/server/text";
 import { getGitHubStars } from "~/utils/server/stars";
+import { typography } from "~/utils/server/text";
 
-import Hero from "~/islands/sections/pages/hero";
-import FeatureCards from "~/islands/sections/pages/feature-cards";
-import Features from "~/islands/sections/pages/features";
+import { Button } from "~/islands/primitives/button";
+import FeatureCards from "~/islands/sections/feature-cards";
+import Hero from "~/islands/sections/hero";
 
 type FeatureCardProps = {
   title: string;
@@ -44,7 +49,7 @@ export default async function Page() {
   const scopedT = await getScopedI18n("pages.home");
 
   return (
-    <main className="container grid items-center animate-in fade-in slide-in-from-bottom-8 duration-really-slow">
+    <main className="duration-really-slow container grid items-center animate-in fade-in slide-in-from-bottom-8">
       <Hero />
       <FeatureCards />
       {/* <Features /> */}
@@ -56,7 +61,7 @@ export default async function Page() {
         <h2
           className={cnBase(
             typography.h2,
-            "text-3xl leading-[1.1] sm:text-3xl md:text-6xl",
+            "text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
           )}
         >
           {scopedT("features.title")}
@@ -103,7 +108,7 @@ export default async function Page() {
           as="h1"
           className={cnBase(
             typography.h1,
-            "text-3xl sm:text-5xl md:text-6xl lg:text-7xl",
+            "text-3xl sm:text-5xl md:text-6xl lg:text-7xl"
           )}
         >
           {scopedT("title", {
@@ -111,7 +116,7 @@ export default async function Page() {
               <span className="bg-gradient-to-r from-primary to-pink-600 bg-clip-text text-transparent">
                 {t("general.tools")}
               </span>
-            ),
+            )
           })}
         </Balancer>
         <Balancer
@@ -140,7 +145,7 @@ export default async function Page() {
         <h2
           className={cnBase(
             typography.h2,
-            "text-3xl leading-[1.1] sm:text-3xl md:text-6xl",
+            "text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
           )}
         >
           {scopedT("open-source.title")}

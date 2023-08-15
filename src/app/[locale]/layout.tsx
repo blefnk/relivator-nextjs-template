@@ -1,12 +1,16 @@
 import { Inter } from "next/font/google";
+
 import { siteConfig } from "~/app";
-import type { GenerateMetadata } from "~/utils/types/metadata";
-import { Providers } from "~/islands/contexts/providers";
+
+import { GenerateMetadata } from "~/utils/types/metadata";
 import { defaultLocale, localeList } from "~/data/i18n";
 
+import { Providers } from "~/islands/common/providers";
+
 import "~/styles/globals.css";
-import { UnifiedBleverseFooter } from "~/islands/bleverse/unified-bleverse-footer";
-import { UnifiedBleverseHeader } from "~/islands/bleverse/unified-bleverse-header";
+
+import { UnifiedBleverseFooter } from "~/utils/appts/islands/unified-bleverse-footer";
+import { UnifiedBleverseHeader } from "~/utils/appts/islands/unified-bleverse-header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +19,7 @@ export const generateMetadata: GenerateMetadata = () => {
     metadataBase: new URL(siteConfig.url.base),
     title: {
       default: siteConfig.name,
-      template: `%s | ${siteConfig.name}`,
+      template: `%s | ${siteConfig.name}`
     },
     description: siteConfig.description,
     keywords: siteConfig.keywords,
@@ -25,27 +29,27 @@ export const generateMetadata: GenerateMetadata = () => {
     authors: [
       {
         name: siteConfig.author,
-        url: siteConfig.url.author,
-      },
+        url: siteConfig.url.author
+      }
     ],
     robots: "index, follow",
     themeColor: [
       { media: "(prefers-color-scheme: light)", color: "white" },
-      { media: "(prefers-color-scheme: dark)", color: "black" },
+      { media: "(prefers-color-scheme: dark)", color: "black" }
     ],
     applicationName: "Bleverse Relivator",
     alternates: {
-      canonical: "https://relivator.bleverse.com",
+      canonical: "https://relivator.bleverse.com"
     },
     twitter: {
       card: "summary_large_image",
       title: siteConfig.name,
       description: siteConfig.description,
       images: [`${siteConfig.url.base}/og.jpg`],
-      creator: siteConfig.author,
+      creator: siteConfig.author
     },
     icons: {
-      icon: "/favicon.ico",
+      icon: "/favicon.ico"
     },
     openGraph: {
       type: "website",
@@ -60,16 +64,16 @@ export const generateMetadata: GenerateMetadata = () => {
           url: "/og-image.png",
           width: 1280,
           height: 640,
-          alt: "Bleverse Relivator",
-        },
-      ],
-    },
+          alt: "Bleverse Relivator"
+        }
+      ]
+    }
   };
 };
 
 export default function RootLayout({
   children,
-  params,
+  params
 }: WithChildren<PageParams>) {
   return (
     <html

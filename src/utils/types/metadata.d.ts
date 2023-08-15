@@ -1,5 +1,5 @@
 import { Metadata } from "next";
 
 export type GenerateMetadata = (
-  params: PageParams,
+  params: PageParams
 ) => Metadata | Promise<Metadata>;

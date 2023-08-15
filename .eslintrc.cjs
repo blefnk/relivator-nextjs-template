@@ -1,97 +1,54 @@
-// @ts-expect-error
-/** @type {import("eslint").Linter.Config} */
-module.exports = {
+// @ts-check
+const { defineConfig } = require("eslint-define-config");
+
+module.exports = defineConfig({
+  env: { es2023: true, browser: true, node: true },
   settings: {
-    "import/resolver": {
-      typescript: { project: ["./tsconfig.json"] },
-    },
-    tailwindcss: {
-      callees: ["cn"],
-      config: "tailwind.config.ts",
-    },
-  },
-  env: {
-    node: true,
-    es2022: true,
-    browser: true,
+    "import/resolver": { typescript: { project: ["./tsconfig.json"] } },
+    tailwindcss: { callees: ["cn"], config: "tailwind.config.ts" }
   },
   overrides: [
+    //! ========================================
+    //! | TypeScript EsLint Configuration File |
+    //! ========================================
     {
-      // =================================================================
-      // TypeScript EsLint (Configuration File)
-      // =================================================================
       files: ["*.ts", "*.tsx", "*.mts", "*.cts"],
       parser: "@typescript-eslint/parser",
       parserOptions: {
         project: ["./tsconfig.json"],
         ecmaVersion: "latest",
-        sourceType: "module",
+        sourceType: "module"
       },
-      extends: ["next/core-web-vitals"],
+      plugins: ["@tanstack/query"],
+      extends: [
+        "next/core-web-vitals",
+        "plugin:@tanstack/eslint-plugin-query/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
       rules: {
+        // !! Turn Back on When Things are Stable !!
         "@next/next/no-html-link-for-pages": "off",
-        "react/no-unescaped-entities": "off",
-        "@next/next/no-img-element": "off",
+        "@tanstack/query/exhaustive-deps": "error",
+        "@tanstack/query/prefer-query-object-syntax": "error",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-unnecessary-type-assertion": "off",
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/require-await": "off",
+        "react-hooks/exhaustive-deps": "off",
         "react/display-name": "off",
-      },
+        "react/no-unescaped-entities": "off"
+      }
     },
+    //! ========================================
+    //! | JavaScript EsLint Configuration File |
+    //! ========================================
     {
-      // =================================================================
-      // JavaScript EsLint (Configuration File)
-      // =================================================================
       files: ["*.js", "*.jsx", "*.mjs", "*.cjs"],
-      extends: ["next/core-web-vitals"],
-    },
-  ],
-};
-
-//! {
-//!   "$schema": "https://json.schemastore.org/eslintrc",
-//!   "extends": [
-//!     "eslint:recommended",
-//!     "plugin:@typescript-eslint/recommended",
-//!     "prettier",
-//!     "next/core-web-vitals",
-//!     "plugin:jsx-a11y/recommended"
-//!   ],
-//!   "parser": "@typescript-eslint/parser",
-//!   "plugins": [
-//!     "@typescript-eslint",
-//!     "import-helpers",
-//!     "unused-imports",
-//!     "jsx-a11y"
-//!   ],
-//!   "rules": {
-//!     "quotes": ["warn", "double"],
-//!     "semi": ["warn", "always"],
-//!     "arrow-parens": ["warn", "always"],
-//!     "@typescript-eslint/no-unused-vars": "off",
-//!     "unused-imports/no-unused-imports-ts": "warn",
-//!     "unused-imports/no-unused-vars": "warn",
-//!     "@typescript-eslint/array-type": "error",
-//!     "prefer-const": "error",
-//!     "no-console": [
-//!       "warn",
-//!       {
-//!         "allow": ["warn", "error"]
-//!       }
-//!     ],
-//!     "import-helpers/order-imports": [
-//!       "warn",
-//!       {
-//!         "newlinesBetween": "always",
-//!         "groups": [
-//!           "/^react/",
-//!           "module",
-//!           "/^~/",
-//!           ["parent", "sibling", "index"]
-//!         ],
-//!         "alphabetize": {
-//!           "order": "asc",
-//!           "ignoreCase": true
-//!         }
-//!       }
-//!     ],
-//!     "@next/next/no-html-link-for-pages": "off"
-//!   }
-//! }
+      extends: ["next/core-web-vitals"]
+    }
+  ]
+});

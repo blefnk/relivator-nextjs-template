@@ -1,8 +1,8 @@
-import ContactForm from "~/islands/sections/pages/contact-form";
+import ContactForm from "~/islands/sections/contact-form";
 import HeadingText from "~/islands/sections/heading-text";
 
 export const metadata = {
-  title: "Contact",
+  title: "Contact"
 };
 
 export default function Contact() {

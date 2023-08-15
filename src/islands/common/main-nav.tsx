@@ -3,9 +3,10 @@
 import Link from "next/link";
 
 import { REPOSITORY_URL } from "~/app";
+
 import { useI18n } from "~/utils/client/i18n";
 
-import { useToast } from "../ui/toast/use-toast";
+import { useToast } from "~/islands/primitives/toast/use-toast";
 
 export function MainNav() {
   const { toast } = useToast();
@@ -23,7 +24,7 @@ export function MainNav() {
         onClick={() =>
           toast({
             title: t("islands.navbar.pricing.toast.title"),
-            description: t("islands.navbar.pricing.toast.description"),
+            description: t("islands.navbar.pricing.toast.description")
           })
         }
         className="capitalize transition-colors hover:text-foreground/80"
@@ -36,9 +37,9 @@ export function MainNav() {
       >
         {t("general.about")}
       </Link>
-      <a href={REPOSITORY_URL} target="_blank" rel="noreferrer">
+      <Link href={REPOSITORY_URL} target="_blank" rel="noreferrer">
         GitHub
-      </a>
+      </Link>
     </div>
   );
 }

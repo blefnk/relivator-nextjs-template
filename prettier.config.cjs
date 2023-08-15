@@ -14,8 +14,10 @@ const config = {
   bracketSameLine: false,
   // ====================
   importOrder: [
-    "^(react/(.*)$)|^(react$)",
+    "^~/app.ts",
+    "^~/styles/(.*)$",
     "",
+    "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "",
     "<TYPES>",
@@ -23,31 +25,26 @@ const config = {
     "<THIRD_PARTY_MODULES>",
     "",
     "^types$",
-    "^~/env(.*)$",
     "^~/types/(.*)$",
-    "^~/utils/(.*)$",
     "",
-    "^~/server/config/(.*)$",
-    "^~/server/(.*)$",
+    "^~/hooks/(.*)$",
+    "^~/utils/(.*)$",
     "^~/data/(.*)$",
     "",
-    "^~/layout/ui/(.*)$",
-    "^~/layout/(.*)$",
-    "^~/styles/(.*)$",
-    "^~/tests/(.*)$",
+    "^~/islands/(.*)$",
     "^~/app/(.*)$",
     "",
     "^[./]",
-    "",
+    ""
   ],
   importOrderTypeScriptVersion: "5.1.6",
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
-  // ==================================================================
+  // =======
   plugins: [
     require.resolve("@ianvs/prettier-plugin-sort-imports"),
     require.resolve("prettier-plugin-packagejson"),
-    require.resolve("prettier-plugin-tailwindcss"),
-  ],
+    require.resolve("prettier-plugin-tailwindcss")
+  ]
 };
 
 module.exports = config;

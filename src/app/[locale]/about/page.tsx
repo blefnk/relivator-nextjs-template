@@ -1,10 +1,8 @@
-// @ts-nocheck
-import { Balancer } from "react-wrap-balancer";
-
-import { cnBase } from "tailwind-variants";
-
 import type { GenerateMetadata } from "~/utils/types/metadata";
 import { REPOSITORY_URL } from "~/app";
+import { Balancer } from "react-wrap-balancer";
+import { cnBase } from "tailwind-variants";
+
 import { getScopedI18n } from "~/utils/server/i18n";
 import { typography } from "~/utils/server/text";
 
@@ -15,7 +13,7 @@ export const generateMetadata: GenerateMetadata = async () => {
     title: t("title"),
     metadataBase: new URL("https://utils.bleverse.com"),
     description: "The best React 18 & Next.js 13 Relivator just for you.",
-    keywords: "nextjs, Relivator, react, tools, bleverse, blefonix",
+    keywords: "nextjs, Relivator, react, tools, bleverse, blefonix"
   };
 };
 
@@ -24,7 +22,7 @@ export default async function Page() {
 
   return (
     <div className="grid content-center border-b">
-      <main className="container py-10 animate-in fade-in slide-in-from-bottom-8 duration-really-slow">
+      <main className="duration-really-slow container py-10 animate-in fade-in slide-in-from-bottom-8">
         <div className="space-y-2">
           <h1 className={cnBase(typography.h1, "lg:text-4xl")}>{t("title")}</h1>
           <Balancer as="p" className="text-lg text-muted-foreground">
@@ -38,7 +36,7 @@ export default async function Page() {
                 >
                   {t("subtitle.link")}
                 </a>
-              ),
+              )
             })}
           </Balancer>
         </div>

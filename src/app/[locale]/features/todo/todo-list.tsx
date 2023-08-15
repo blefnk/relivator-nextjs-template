@@ -2,8 +2,8 @@
 
 import { Trash } from "lucide-react";
 
-import { Button } from "~/islands/ui/button";
-import { Checkbox } from "~/islands/ui/checkbox";
+import { Button } from "~/islands/primitives/button";
+import { Checkbox } from "~/islands/primitives/checkbox";
 
 import { TodoListStyles } from "./styles";
 import { type Todo } from "./todo";
@@ -21,9 +21,9 @@ export function TodoList({ todos, setTodos }: TodoListProps) {
           ? todo
           : {
               ...todo,
-              completedAt: todo.completedAt ? null : new Date().toISOString(),
-            },
-      ),
+              completedAt: todo.completedAt ? null : new Date().toISOString()
+            }
+      )
     );
   }
 
@@ -40,7 +40,7 @@ export function TodoList({ todos, setTodos }: TodoListProps) {
         >
           <h3
             className={TodoListStyles.Title({
-              isCompleted: !!todo.completedAt,
+              isCompleted: !!todo.completedAt
             })}
           >
             {todo.title}

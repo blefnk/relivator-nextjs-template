@@ -8,6 +8,6 @@ declare module "translate" {
       engine?: string;
       key?: string;
       url?: string;
-    },
+    }
   ): string;
 }

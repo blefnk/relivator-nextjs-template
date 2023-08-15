@@ -1,14 +1,13 @@
-// @ts-nocheck
-
-import { Balancer } from "react-wrap-balancer";
-
-import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "~/islands/ui/button";
-import { ThemeProvider } from "~/islands/contexts/providers";
+import { ChevronLeft } from "lucide-react";
+import { Balancer } from "react-wrap-balancer";
+
 import { getScopedI18n } from "~/utils/server/i18n";
 import { typography } from "~/utils/server/text";
+
+import { ThemeProvider } from "~/islands/common/providers";
+import { Button } from "~/islands/primitives/button";
 
 export default async function NotFound() {
   const t = await getScopedI18n("pages.not-found");
@@ -16,7 +15,7 @@ export default async function NotFound() {
   return (
     <ThemeProvider>
       <div className="bg-background text-foreground antialiased">
-        <main className="container grid min-h-screen place-content-center text-center animate-in fade-in duration-really-slow">
+        <main className="duration-really-slow container grid min-h-screen place-content-center text-center animate-in fade-in">
           <h3 className={typography.h1}>{t("title")}</h3>
           <Balancer
             as="p"

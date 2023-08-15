@@ -4,5 +4,5 @@ export const typography = {
   h3: "scroll-m-20 text-2xl font-semibold tracking-tight",
   h4: "scroll-m-20 text-xl font-semibold tracking-tight",
   link: "text-sm text-primary inline-block after:content-[''] after:w-0 after:h-[1px] after:block after:bg-current after:transition-all hover:after:w-full",
-  p: "leading-7 [&:not(:first-child)]:mt-6",
+  p: "leading-7 [&:not(:first-child)]:mt-6"
 };

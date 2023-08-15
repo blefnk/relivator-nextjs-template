@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import { REPOSITORY_URL } from "~/app";
 
 export const navItems = {
@@ -5,27 +6,27 @@ export const navItems = {
     {
       id: "tools",
       title: "Features",
-      href: "/features",
-      external: false,
+      href: `/` as Route,
+      external: false
     },
     {
       id: "about",
       title: "About",
       href: "/about",
-      external: false,
+      external: false
     },
     {
       id: "github",
       title: "Github",
       href: REPOSITORY_URL,
-      external: true,
+      external: true
     },
     {
       id: "twitter",
       title: "X",
       href: "https://x.com/bleverse_com",
-      external: true,
-    },
+      external: true
+    }
   ],
   sidebarNav: [
     {
@@ -36,28 +37,28 @@ export const navItems = {
           id: "todo",
           title: "Todo List",
           href: "/features/todo",
-          items: [],
-        },
-      ],
-    },
-  ],
+          items: []
+        }
+      ]
+    }
+  ]
 } as const;
 
 export const navLinks = [
   {
     route: "Home",
-    path: "/",
+    path: `/` as Route
   },
   {
     route: "Features",
-    path: "/#features",
+    path: "/#features"
   },
   {
     route: "Contact",
-    path: "/contact",
+    path: "/contact"
   },
   {
     route: "Github",
-    path: "https://github.com/blefnk/relivator",
-  },
+    path: "https://github.com/blefnk/relivator"
+  }
 ];

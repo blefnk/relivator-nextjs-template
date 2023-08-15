@@ -7,8 +7,8 @@ export const TodoListStyles = {
     base: typography.h4,
     variants: {
       isCompleted: {
-        true: "line-through",
-      },
-    },
-  }),
+        true: "line-through"
+      }
+    }
+  })
 };

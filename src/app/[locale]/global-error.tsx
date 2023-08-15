@@ -4,7 +4,7 @@ import * as React from "react";
 
 export default function GlobalError({
   error,
-  reset,
+  reset
 }: {
   error: Error;
   reset: () => void;

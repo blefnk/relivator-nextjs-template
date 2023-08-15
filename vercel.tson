@@ -1,0 +1,17 @@
+//? ======= [ vercel.tson ] ==================
+//? https://vercel.com/docs/concepts/projects/project-configuration
+//? https://github.com/jetpack-io/tyson
+//? ------------------------------------------
+//? 1) -> tyson eval vercel.tson
+//? 2) copy-paste to vercel.json
+//? ==========================================
+
+type Config = {
+  buildCommand: string;
+  installCommand?: string;
+};
+
+export default {
+  buildCommand: "pnpm turbo build",
+  installCommand: "pnpm install"
+} satisfies Config;

@@ -1,16 +1,17 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import dynamic from "next/dynamic";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader, PlusIcon } from "lucide-react";
-import dynamic from "next/dynamic";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "~/islands/ui/button";
-import { Input } from "~/islands/ui/input";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 import { useScopedI18n } from "~/utils/client/i18n";
+
+import { Button } from "~/islands/primitives/button";
+import { Input } from "~/islands/primitives/input";
 
 const TodoList = dynamic(
   async () => {
@@ -19,12 +20,12 @@ const TodoList = dynamic(
   },
   {
     ssr: false,
-    loading: () => <Loader className="mt-8 h-6 w-6 animate-spin" />,
-  },
+    loading: () => <Loader className="mt-8 h-6 w-6 animate-spin" />
+  }
 );
 
 const formSchema = z.object({
-  title: z.string().nonempty(),
+  title: z.string().nonempty()
 });
 
 type FormSchema = z.output<typeof formSchema>;
@@ -39,8 +40,9 @@ export type Todo = {
 export function Todo() {
   const [todos, setTodos] = useLocalStorage<Todo[]>("@useful-tools/todos", []);
   const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema)
   });
+  // @ts-expect-error unstable implementation
   const scopedT = useScopedI18n("pages.tools.todo");
 
   const handleAddTodo = form.handleSubmit((data) => {
@@ -48,10 +50,11 @@ export function Todo() {
       ...todos,
       {
         id: Date.now().toString(),
+        // @ts-expect-error unstable implementation
         title: data.title,
         createdAt: new Date().toISOString(),
-        completedAt: null,
-      },
+        completedAt: null
+      }
     ]);
   });
 
@@ -60,8 +63,10 @@ export function Todo() {
       <form className="flex items-center gap-4" onSubmit={handleAddTodo}>
         <Input
           {...form.register("title")}
+          // @ts-expect-error unstable implementation
           placeholder={scopedT("placeholder")}
         />
+        {/* @ts-expect-error unstable implementation */}
         <Button type="submit" aria-label={scopedT("actions.create")}>
           <PlusIcon />
         </Button>

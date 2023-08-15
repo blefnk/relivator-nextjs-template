@@ -27,7 +27,7 @@ function parseHotkey(hotkey: string): Hotkey {
     ctrl: keys.includes("ctrl"),
     meta: keys.includes("meta"),
     mod: keys.includes("mod"),
-    shift: keys.includes("shift"),
+    shift: keys.includes("shift")
   };
 
   const reservedKeys = ["alt", "ctrl", "meta", "shift", "mod"];
@@ -36,7 +36,7 @@ function parseHotkey(hotkey: string): Hotkey {
 
   return {
     ...modifiers,
-    key: freeKey,
+    key: freeKey
   };
 }
 
@@ -86,7 +86,7 @@ type HotkeyItemOptions = {
 export type HotkeyItem = [
   string,
   (event: KeyboardEvent) => void,
-  HotkeyItemOptions?,
+  HotkeyItemOptions?
 ];
 
 export function useHotkeys(hotkeys: HotkeyItem[]) {
@@ -101,7 +101,7 @@ export function useHotkeys(hotkeys: HotkeyItem[]) {
 
             handler(event);
           }
-        },
+        }
       );
     }
 

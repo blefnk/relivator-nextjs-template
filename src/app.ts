@@ -1,10 +1,10 @@
-//? To reduce the number of config files, we aim to combine everything into a single file.
-//? Materials about @satisfies: https://youtu.be/49gHWuepxxE, https://youtu.be/G1RtAmI0-vc
+// ?? To reduce the number of config files, we aim to combine everything into a single file.
+// ?? Materials about @satisfies: https://youtu.be/49gHWuepxxE, https://youtu.be/G1RtAmI0-vc
 
-import { networks } from "~/utils/server/app/socials";
-import { Config, HeroHeader, ContentSection } from "~/utils/types/appts";
+import { networks } from "~/utils/appts/socials";
+import { ContentSection, HeroHeader } from "~/utils/types/appts";
 
-// ===================================================================================== //
+// ========================================================
 
 export const appts = {
   name: "Relivator",
@@ -13,24 +13,24 @@ export const appts = {
     discord: "Pb8uKbwpsJ",
     facebook: "groups/bleverse",
     twitter: "bleverse_com",
-    github: "blefnk",
-  }),
+    github: "blefnk"
+  })
   // providers: {
   //   database: "Drizzle", // Prisma | ...
   // },
-} satisfies Config;
+  // } satisfies Config;
+};
 
 export default appts;
 
-export const baseUrl = "https://relivator.bleverse.com";
-
-// ===================================================================================== //
+// ========================================================
 
 export const REPOSITORY_OWNER = "blefnk";
 export const REPOSITORY_NAME = "relivator";
 export const REPOSITORY_URL = `https://github.com/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`;
+export const baseUrl = "https://relivator.bleverse.com";
 
-// ===================================================================================== //
+// ========================================================
 
 export const BASE_URL =
   process.env["NODE_ENV"] === "production" ? baseUrl : "http://localhost:3000";
@@ -43,13 +43,12 @@ export const ADMIN_ROLE = "admin";
 export const MEMBER_ROLE = "member";
 
 export const TRIAL_LENGTH_IN_DAYS = 7;
-
 export const ROLES = [OWNER_ROLE, ADMIN_ROLE, MEMBER_ROLE] as const;
 
-// ===================================================================================== //
+// ========================================================
 
 export const settings = {
-  themeToggleEnabled: true,
+  themeToggleEnabled: true
 };
 
 export const siteConfig = {
@@ -84,25 +83,24 @@ export const siteConfig = {
     "lemon squeezy",
     "stripe",
     "planetscale",
-    "blefonix",
+    "blefonix"
   ],
   url: {
     base: baseUrl,
-    author: "https://github.com/blefnk",
+    author: "https://github.com/blefnk"
   },
-  ogImage: `${baseUrl}/og-image.png`,
+  ogImage: `${baseUrl}/og-image.png`
 };
 
 export const contactConfig = {
-  email: "blefnk@gmail.com",
+  email: "blefnk@gmail.com"
 };
 
-// ===================================================================================== //
+// ========================================================
 
 export const heroHeader: HeroHeader = {
   header: `Next.js Apps Made Easy`,
-  subheader: `Easy to setup. Customizable. Quick. Responsive.`,
-  // image: `/hero-img.webp`,
+  subheader: `Easy to setup. Customizable. Quick. Responsive.`
 };
 
 export const featureCards: ContentSection = {
@@ -111,41 +109,34 @@ export const featureCards: ContentSection = {
   content: [
     {
       text: `Next.js`,
-      subtext: `The React Framework`,
-      // image: `/next.svg`,
+      subtext: `The React Framework`
     },
     {
       text: `shadcn/ui`,
-      subtext: `Beautifully Designed Components`,
-      // image: `/shadcn.svg`,
+      subtext: `Beautifully Designed Components`
     },
     {
       text: `Vercel`,
-      subtext: `Develop. Preview. Ship.`,
-      // image: `/vercel.svg`,
-    },
-  ],
+      subtext: `Develop. Preview. Ship.`
+    }
+  ]
 };
 
 export const features: ContentSection = {
   header: `Features`,
   subheader: `Why You Need to Download Relivator`,
-  // image: `/features-img.webp`,
   content: [
     {
       text: `SEO Optimized`,
-      subtext: `Improved website visibility on search engines`,
-      image: `/seo.svg`,
+      subtext: `Improved website visibility on search engines`
     },
     {
       text: `Highly Performant`,
-      subtext: `Fast loading times and smooth performance`,
-      image: `/performant.svg`,
+      subtext: `Fast loading times and smooth performance`
     },
     {
-      text: `Easy Customizability`,
-      subtext: `Change your content and layout with little effort`,
-      image: `/customize.svg`,
-    },
-  ],
+      text: `Easy Customization`,
+      subtext: `Change your content and layout with little effort`
+    }
+  ]
 };

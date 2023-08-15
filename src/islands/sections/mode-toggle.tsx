@@ -1,18 +1,19 @@
 "use client";
 
 import * as React from "react";
+import { useState } from "react";
+
+import { settings } from "~/app";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useState } from "react";
-import { settings } from "~/app";
 
-import { Button } from "~/islands/sections/ui/button";
+import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "~/islands/sections/ui/dropdown-menu";
+  DropdownMenuTrigger
+} from "~/islands/primitives/dropdown-menu";
 
 export function ModeToggle() {
   const [isClient, setIsClient] = useState(false);

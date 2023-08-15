@@ -1,17 +1,17 @@
 "use client";
 
-import { Sun, Moon, Laptop } from "lucide-react";
+import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { useIsClient } from "~/hooks/use-is-client";
 
-import { Button } from "../ui/button";
+import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+  DropdownMenuTrigger
+} from "~/islands/primitives/dropdown-menu";
 
 export function ThemeToggler() {
   const { setTheme } = useTheme();
