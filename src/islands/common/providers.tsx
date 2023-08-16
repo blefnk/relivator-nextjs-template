@@ -1,14 +1,15 @@
 "use client";
 
 import type { ComponentProps } from "react";
+
 import { QueryClientProvider } from "@tanstack/react-query";
 import { settings } from "~/app";
 import { ThemeProvider as NextThemeProvider } from "next-themes";
 
+import en from "~/data/i18n/en";
 import { I18nProviderClient } from "~/utils/client/i18n";
 import { queryClient } from "~/utils/server/query";
 import { WithChildren } from "~/utils/types/with-children";
-import en from "~/data/i18n/en";
 
 import { Toaster } from "~/islands/primitives/toast/toaster";
 

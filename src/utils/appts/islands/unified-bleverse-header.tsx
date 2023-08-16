@@ -436,7 +436,9 @@ export function BleverseIcon() {
       aria-hidden="true"
       className="relative mr-1 h-5 w-4 rounded-sm border-2 border-current opacity-90"
     >
-      <span className="absolute left-1/2 top-1/2 border p-4">B</span>
+      <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+        B
+      </span>
     </div>
   );
 }

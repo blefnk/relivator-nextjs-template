@@ -1,8 +1,9 @@
 "use client";
 
+import type { VariantProps } from "tailwind-variants";
+
 import { forwardRef } from "react";
 
-import type { VariantProps } from "tailwind-variants";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { AlertTriangle, Check, X } from "lucide-react";
 import { cnBase, tv } from "tailwind-variants";

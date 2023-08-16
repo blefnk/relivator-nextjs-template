@@ -17,7 +17,7 @@ env.NODE_ENV === "development" &&
     .then((res) => res)
     .catch((err) =>
       console.log(
-        "[error] Migration failed. The file ~/data/db/index.ts said:",
+        "[error] Migration failed. The file ~/data/db/drizzle.ts error:",
         err
       )
     );

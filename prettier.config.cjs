@@ -3,48 +3,47 @@
 
 /** @type {PrettierConfig | SortImportsConfig} */
 const config = {
-  semi: true,
-  tabWidth: 2,
   printWidth: 80,
+  tabWidth: 2,
+  semi: true,
   useTabs: false,
-  endOfLine: "lf",
   singleQuote: false,
+  bracketSameLine: false,
   trailingComma: "none",
   arrowParens: "always",
-  bracketSameLine: false,
-  // ====================
+  endOfLine: "lf",
   importOrder: [
-    "^~/app.ts",
     "^~/styles/(.*)$",
+    "^~/app.ts",
+    "",
+    "<TYPES>",
+    "^types$",
+    "<TYPES>^[./]",
+    "^~/types/(.*)$",
     "",
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",
     "",
-    "<TYPES>",
-    "<TYPES>^[./]",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^types$",
-    "^~/types/(.*)$",
-    "",
+    "^~/data/(.*)$",
     "^~/hooks/(.*)$",
     "^~/utils/(.*)$",
-    "^~/data/(.*)$",
     "",
     "^~/islands/(.*)$",
     "^~/app/(.*)$",
+    "^~/schema/(.*)$",
     "",
     "^[./]",
     ""
   ],
-  importOrderTypeScriptVersion: "5.1.6",
-  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
-  // =======
   plugins: [
-    require.resolve("@ianvs/prettier-plugin-sort-imports"),
+    require.resolve("prettier-plugin-tailwindcss"),
     require.resolve("prettier-plugin-packagejson"),
-    require.resolve("prettier-plugin-tailwindcss")
-  ]
+    require.resolve("@ianvs/prettier-plugin-sort-imports")
+  ],
+  importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
+  importOrderTypeScriptVersion: "5.1.6"
 };
 
 module.exports = config;

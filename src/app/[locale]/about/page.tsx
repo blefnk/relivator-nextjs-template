@@ -1,4 +1,5 @@
 import type { GenerateMetadata } from "~/utils/types/metadata";
+
 import { REPOSITORY_URL } from "~/app";
 import { Balancer } from "react-wrap-balancer";
 import { cnBase } from "tailwind-variants";

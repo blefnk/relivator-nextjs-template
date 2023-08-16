@@ -1,10 +1,10 @@
-# Bleverse Relivator: The Powerful Starter for Next.js 13
-
-**Crafting the world's most iconic Next.js starter.**
+# Bleverse Relivator: i18n Store & Landing Starter for Next.js 13
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/blefnk/relivator?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/blefnk/relivator?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/blefnk/relivator?style=for-the-badge)
+
+**Crafting the world's most iconic Next.js starter.**
 
 ## 🚀 About the Project
 
@@ -20,7 +20,7 @@ This is our experimental space where we tinkered with the new Next.js app direct
 > The README.md is not yet finished and may or may not represent features that have not been implemented yet.
 > Please check back soon for more features, which are currently in production.
 
-## 🔥 TO-DO Features
+## 🔥 App Features
 
 This roadmap outlines the key features and improvements to be implemented in this web project.
 
@@ -36,13 +36,28 @@ This roadmap outlines the key features and improvements to be implemented in thi
 - 📡 Data-fetching streamlined with [**tRPC**](https://github.com/trpc/trpc).
 - 📧 Email verification and a lot more features to enhance the application.
 
+## 🌟 Project Roadmap
+
+- [ ] Authentication with **Clerk**
+- [ ] File uploads with **uploadthing**
+- [ ] Newsletter subscription with **React Email** and **Resend**
+- [ ] Blog using **MDX** with, maybe, **Contentlayer**
+- [ ] ORM using **Drizzle ORM** and **Prisma**
+- [ ] Database on **PlanetScale**
+- [ ] Validation with **Validabot** and **Zod**
+- [ ] Storefront with products, categories, and subcategories
+- [ ] Seller and customer workflows
+- [ ] User subscriptions with **Stripe**
+- [ ] Checkout with **Stripe Checkout**
+- [ ] Admin dashboard with stores, products, orders, subscriptions, and payments
+
 ## 🌍 i18n: Internationalization
 
 At Bleverse, the approach to multilingualism is a separate holy grail. We love talking about this topic. In the future, we'll be writing a lot of interesting things about internationalization with Next.js 13 App Router. Stay tuned for updates!
 
-## Configure The App
+## 👋 Project Configuration
 
-The `app.ts` file contains essential configuration used to modify the contents and settings of the website.
+The `src/app.ts` file contains essential configuration used to modify the contents and settings of the website.
 
 - Manage the content displayed on the website.
 - Customize various settings, such as disabling theme toggle.
@@ -126,7 +141,7 @@ Because the project is still in active development, sometimes we need to deviate
 
 A quick snapshot of the roadblocks or nuances as of now:
 
-1. There is a possibility that `.d.ts` files do not work correctly in VS Code. They have been temporarily renamed to `.ts`.
+1. There is a possibility that `.d.ts` files do not work correctly in VS Code. Temporarily renamed to `.ts`.
 2. Occasionally, MySQL throws a tantrum about excessive connections. A quick restart of your Next.js app should soothe it.
 3. Pricing plans are playing hard-to-get with the database sync.
 4. The RBAC feature is still on probation; thorough testing pending.

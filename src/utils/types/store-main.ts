@@ -1,11 +1,12 @@
 import type { cartItemSchema, checkoutItemSchema } from "~/schema/zod/cart";
-import { type userPrivateMetadataSchema } from "~/schema/zod/auth";
+
 import { type FileWithPath } from "react-dropzone";
 import { type z } from "zod";
 
 import { type Product } from "~/data/db/schema";
 
 import { type Icons } from "~/islands/wrappers/icons";
+import { type userPrivateMetadataSchema } from "~/schema/zod/auth";
 
 export interface NavItem {
   title: string;

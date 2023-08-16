@@ -2,8 +2,8 @@ import { Inter } from "next/font/google";
 
 import { siteConfig } from "~/app";
 
-import { GenerateMetadata } from "~/utils/types/metadata";
 import { defaultLocale, localeList } from "~/data/i18n";
+import { GenerateMetadata } from "~/utils/types/metadata";
 
 import { Providers } from "~/islands/common/providers";
 

@@ -1,9 +1,10 @@
 // import type { Route } from "next";
 // import TLink from "~/islands/wrappers/typed-link";
 
+import type { VariantProps } from "tailwind-variants";
+
 import Link from "next/link";
 
-import type { VariantProps } from "tailwind-variants";
 import { ActivitySquare, Github, Twitter } from "lucide-react";
 import { tv } from "tailwind-variants";
 
