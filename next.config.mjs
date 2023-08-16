@@ -1,25 +1,24 @@
-await import("./src/utils/appts/env.mjs");
+// ==============================
+// ! Next.js Configuration File !
+// ===========================================================================
+// ?? @see https://nextjs.org/docs/app/building-your-application/configuring |
+// ===========================================================================
+
+await import("./src/env.mjs");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   swcMinify: true,
-  typescript: {
-    // ?? Dangerously allow builds to successfully complete even if your project has type errors.
-    // !! Turn Back on When Things are Stable !!
-    ignoreBuildErrors: true
-  },
   experimental: {
-    serverComponentsExternalPackages: ["mysql2"],
-    serverActions: true
-    // ==========================================
-    // ?? https://nextjs.org/docs/app/building-your-application/configuring/typescript#statically-typed-links
-    // typedRoutes: true
+    serverActions: true,
+    serverComponentsExternalPackages: ["mysql2"]
   },
-  reactStrictMode: true
-  // webpack: (config) => {
-  //   config.resolve.fallback = { fs: false };
-  //   return config;
-  // }
+  reactStrictMode: true,
+  images: { domains: ["uploadthing.com"] }
+  // ?? Dangerously allow builds to successfully complete
+  // ?? even if your project has type or eslint errors.
+  // typescript: { ignoreBuildErrors: true },
+  // eslint: { ignoreDuringBuilds: true },
 };
 
 export default nextConfig;

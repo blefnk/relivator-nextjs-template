@@ -70,6 +70,7 @@
     "postgres": "^3.3.5",
     "react": "18.3.0-canary-0fb5b61ac-20230814",
     "react-dom": "18.3.0-canary-0fb5b61ac-20230814",
+    "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.45.4",
     "react-icons": "^4.10.1",
     "react-wrap-balancer": "^1.1.0",
@@ -98,6 +99,7 @@
     "eslint-config-next": "13.4.16",
     "eslint-config-prettier": "^9.0.0",
     "eslint-define-config": "^1.23.0",
+    "knip": "^2.19.4",
     "lint-staged": "^14.0.0",
     "postcss": "8.4.28",
     "prettier": "^3.0.2",
@@ -105,6 +107,6 @@
     "prettier-plugin-tailwindcss": "^0.5.3",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.1.6"
+    "typescript": "5.2.0-beta"
   }
 }

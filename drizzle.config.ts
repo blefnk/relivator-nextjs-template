@@ -1,9 +1,10 @@
 import type { Config } from "drizzle-kit";
+import * as dotenv from "dotenv";
 
-import "dotenv/config";
+dotenv.config();
 
-if (!process.env.NEXT_SECRET_URL_PSCALE) {
-  throw new Error("NEXT_SECRET_URL_PSCALE is missing");
+if (!process.env.NEXT_SECRET_URL_ORM_DRIZZLE) {
+  throw new Error("NEXT_SECRET_URL_ORM_DRIZZLE is missing");
 }
 
 export default {
@@ -11,6 +12,6 @@ export default {
   out: "./src/data/db/dm",
   driver: "mysql2",
   dbCredentials: {
-    connectionString: process.env.NEXT_SECRET_URL_PSCALE
+    connectionString: process.env.NEXT_SECRET_URL_ORM_DRIZZLE ?? ""
   }
 } satisfies Config;

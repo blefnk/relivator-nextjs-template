@@ -61,7 +61,7 @@ export const networks = (
   const invalidKeys: string[] = [];
 
   // Construct the networks array by matching input with our default settings.
-  const networks = Object.entries(input)
+  const networks: any = Object.entries(input) // !?!
     .map(([key, value]) => {
       const networkConfig = networkDefaults[key as NetworkKey];
 

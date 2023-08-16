@@ -42,7 +42,6 @@ export function Todo() {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema)
   });
-  // @ts-expect-error unstable implementation
   const scopedT = useScopedI18n("pages.tools.todo");
 
   const handleAddTodo = form.handleSubmit((data) => {
@@ -50,7 +49,6 @@ export function Todo() {
       ...todos,
       {
         id: Date.now().toString(),
-        // @ts-expect-error unstable implementation
         title: data.title,
         createdAt: new Date().toISOString(),
         completedAt: null
@@ -63,10 +61,8 @@ export function Todo() {
       <form className="flex items-center gap-4" onSubmit={handleAddTodo}>
         <Input
           {...form.register("title")}
-          // @ts-expect-error unstable implementation
           placeholder={scopedT("placeholder")}
         />
-        {/* @ts-expect-error unstable implementation */}
         <Button type="submit" aria-label={scopedT("actions.create")}>
           <PlusIcon />
         </Button>

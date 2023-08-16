@@ -1,6 +1,6 @@
-# Bleverse Relivator: Next.js Starter & Website Builder
+# Bleverse Relivator: The Powerful Starter for Next.js 13
 
-**Crafting the world's most powerful Next.js starter.**
+**Crafting the world's most iconic Next.js starter.**
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/blefnk/relivator?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/blefnk/relivator?style=for-the-badge)
@@ -8,19 +8,24 @@
 
 ## 🚀 About the Project
 
-**The Bleverse Framework for the Next.js**
+**The Bleverse Framework for the Next.js!**
 
 Step into the future with the ultimate Next.js starter. Everything has been set up for you. It's more than just code; it's a journey. You're not on this journey alone. Move faster than ever. It can be proudly called a website builder, although it certainly isn't, at least for now 😏. We've laid the groundwork; now, grab it, dive in and accelerate your development.
 
 This is our experimental space where we tinkered with the new Next.js app directory. So, while it's all fun and exploration, there might be a few quirks here and there. Stumbled upon something odd or just feeling generous? DM us on Twitter, sorry, on X [@bleverse_com](https://x.com/bleverse_com) or raise an issue right here. If you've got some coding magic up your sleeve, contributions are always celebrated! 🎉
 
-## 🔥 TO-DO Features
+> **Warning**
+> This project is still in development and is not ready for production use.
+> It uses new technologies (server actions, drizzle ORM) which are subject to change and may break your application.
+> The README.md is not yet finished and may or may not represent features that have not been implemented yet.
+> Please check back soon for more features, which are currently in production.
 
-**Copy. Paste. Ship.**
+## 🔥 TO-DO Features
 
 This roadmap outlines the key features and improvements to be implemented in this web project.
 
-- 🌐 Comprehensive offerings of the Next.js app directory.
+- 🌐 Comprehensive offerings of the Next.js App Router with the RSCs and everything all new.
+- 🅰️ Ultimate type-safety using TypeScript, Zod, Validabot, typedRoutes, etc.
 - 📊 Dive deep into SQL with TypeScript ORM via [**Drizzle ORM**](https://github.com/drizzle-team/drizzle-orm).
 - 🔒 Keep it tight with Authentication using [**Auth.js**](https://authjs.dev) and [**Lucia**](https://github.com/pilcrowOnPaper/lucia).
 - 🌍 Centralized Database magic at [**PlanetScale**](https://planetscale.com).
@@ -28,10 +33,14 @@ This roadmap outlines the key features and improvements to be implemented in thi
 - 📝 Share insights with Blogs powered by **MDX**.
 - 💲 Seamless Subscriptions via **Stripe** & [**LemonSqueezy**](https://www.lemonsqueezy.com/).
 - 🎨 Styled to impress with **Tailwind CSS**.
-- 📡 Data-fetching streamlined with RSCs & [**tRPC**](https://github.com/trpc/trpc).
-- 📧 Email verification and a lot more features to enhance your application!
+- 📡 Data-fetching streamlined with [**tRPC**](https://github.com/trpc/trpc).
+- 📧 Email verification and a lot more features to enhance the application.
 
-## Configure Your App
+## 🌍 i18n: Internationalization
+
+At Bleverse, the approach to multilingualism is a separate holy grail. We love talking about this topic. In the future, we'll be writing a lot of interesting things about internationalization with Next.js 13 App Router. Stay tuned for updates!
+
+## Configure The App
 
 The `app.ts` file contains essential configuration used to modify the contents and settings of the website.
 
@@ -39,63 +48,49 @@ The `app.ts` file contains essential configuration used to modify the contents a
 - Customize various settings, such as disabling theme toggle.
 - Manage general site-wide information.
 
-<!-- ## ⚠️ Known Issues
-
-A quick snapshot of the roadblocks or nuances as of now:
-
-1. Occasionally, MySQL throws a tantrum about excessive connections. A quick restart of your Next.js app should soothe it.
-2. Pricing plans are playing hard-to-get with the database sync.
-3. The RBAC feature is still on probation; thorough testing pending.
-4. Jury's out on tRPC's performance in RSCs.
-5. An [issue with MJML](https://github.com/vercel/next.js/issues/50042) compelled us to house the email functions within the `/pages` directory. -->
-
 ## 🏃‍♂️ Getting Started Locally
 
-Get all dependencies sorted:
+Clone the repository
 
-```sh
-pnpm install
+```bash
+git clone https://github.com/blefnk/relivator.git
 ```
 
-Get your environment variables in check:
+Get your environment variables in check and update the variables.
 
 ```sh
 cp .env.example .env
 ```
 
-Let the server magic begin:
+Get all dependencies sorted.
+
+```sh
+pnpm install
+```
+
+Bring your database to life with pushing the database schema.
+
+```bash
+pnpm db:push
+```
+
+Let the server magic begin!
 
 ```sh
 pnpm dev
 ```
 
-### 📚 Setting Up the Database
-
-#### On Your Machine
-
-Hop into MySQL:
+Finally start the Stripe webhook listener for Stripe to work.
 
 ```bash
-mysql -u root
+pnpm stripe:listen
 ```
 
-Bring your database to life:
+## How do I deploy this?
 
-```bash
-CREATE DATABASE template;
-```
+Follow the deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
 
-Push your DB schema:
-
-```bash
-npx drizzle-kit mysql:push
-```
-
-#### 🌐 PlanetScale
-
-Thinking of ditching local? Feel free to fully commit to PlanetScale as your primary database!
-
-### 🔐 Authentication
+## 🔐 Authentication
 
 Setting up GitHub OAuth is a breeze:
 
@@ -103,7 +98,7 @@ Setting up GitHub OAuth is a breeze:
 2. Hit "New OAuth App".
 3. Register your callback URL: `http://localhost:3000/api/oauth/github`
 
-### 💌 Email
+## 💌 Email (...soon)
 
 Want a sneak peek of your email in dev mode without sending it out? Run:
 
@@ -113,27 +108,36 @@ npx mailing
 
 For the real deal in production, you'll be working with [Resend](resend.com). Grab your API key and verify your domain there.
 
-### 💲 Payments
+## 💲 Payments (...soon)
 
-LemonSqueezy powers payments, with subscription syncs via webhooks (`lemonsqueezy/route.ts`). Fancy a local test? Expose the webhook with:
+Stripe and LemonSqueezy powers payments, with subscription syncs via webhooks (`stripe/route.ts`) and (`lemonsqueezy/route.ts`). Fancy a local test? Expose the webhook with:
 
 ```bash
 npx ngrok http 3000
 ```
 
-Then, register the webhook URL, like `https://abc.eu.ngrok.io/api/lemonsqueezy`, in [LemonSqueezy's webhook settings](https://app.lemonsqueezy.com/settings/webhooks).
+Then, register the webhook for Stripe (see `.env.example`) and for lemonsqueezy URL, like `https://abc.eu.ngrok.io/api/lemonsqueezy`, in [LemonSqueezy's webhook settings](https://app.lemonsqueezy.com/settings/webhooks).
 
-### 🖼️ Asset Generation
+## 🅰️ Notes
 
-For a fresh splash of branding, swap `logo-mark.svg` with your logo. Then, run:
+Because the project is still in active development, sometimes we need to deviate from our own principles. This means that, yeah, there are times when we disable certain TypeScript features, use `any`, `// @ts-expect-error`, and so on. That's the way we love to live on the cutting edge, embracing the newest technologies in web development. So if you come across something like `// !?!`, it indicates that this issue will be resolved in future versions of Relivator. Thank you for your understanding.
 
-```bash
-npm run asset-generator
-```
+## ⚠️ Possible Issues
+
+A quick snapshot of the roadblocks or nuances as of now:
+
+1. There is a possibility that `.d.ts` files do not work correctly in VS Code. They have been temporarily renamed to `.ts`.
+2. Occasionally, MySQL throws a tantrum about excessive connections. A quick restart of your Next.js app should soothe it.
+3. Pricing plans are playing hard-to-get with the database sync.
+4. The RBAC feature is still on probation; thorough testing pending.
+5. Jury's out on tRPC's performance in RSCs.
+6. An [issue with MJML](https://github.com/vercel/next.js/issues/50042) compelled us to house the email functions within the /pages directory.
 
 ## 📫 Contributing to Bleverse Relivator
 
-To contribute to Bleverse Relivator, follow these steps:
+Contributions are welcome! Please open an issue if you have any questions or suggestions. Your contributions will be acknowledged. See the [contributing guide](./CONTRIBUTING.md) for more information.
+
+**To contribute to Bleverse Relivator, follow these steps:**
 
 1. Fork this repository.
 2. Create a branch: `git checkout -b <branch_name>`.
@@ -145,11 +149,11 @@ Or, see the GitHub docs on [how to create a pull request](https://help.github.co
 
 ## 🙌 Kudos to Collaborators
 
-We thank everyone for their contributions to this repository. Please visit [the release page](/releases) to see the full list of contributors and their authors.
+We thank everyone for their contributions to this repository. Please visit [the releases](/releases) page to see the full list of contributors and their authors.
 
-## License
+## 📄 License
 
-Released under the [MIT license](https://github.com/amosbastian/template/blob/main/LICENSE.md).
+Licensed under the MIT License. Check the [LICENSE](./LICENSE) file for details.
 
 ---
 

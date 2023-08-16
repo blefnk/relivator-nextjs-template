@@ -7,6 +7,7 @@ import { ThemeProvider as NextThemeProvider } from "next-themes";
 
 import { I18nProviderClient } from "~/utils/client/i18n";
 import { queryClient } from "~/utils/server/query";
+import { WithChildren } from "~/utils/types/with-children";
 import en from "~/data/i18n/en";
 
 import { Toaster } from "~/islands/primitives/toast/toaster";

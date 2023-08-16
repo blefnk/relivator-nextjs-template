@@ -8,7 +8,6 @@ import { getScopedI18n } from "~/utils/server/i18n";
 import { Button } from "~/islands/primitives/button";
 
 export default async function HeroHeader() {
-  // @ts-expect-error unstable implementation
   const scopedT = await getScopedI18n("pages.home");
 
   return (
@@ -25,7 +24,6 @@ export default async function HeroHeader() {
         <div className="mt-4 flex w-full items-center justify-center gap-4">
           <div className="mt-4 flex w-full items-center justify-center gap-4">
             <Button className="h-11 px-8" asChild>
-              {/* @ts-expect-error unstable implementation */}
               <Link href="/features">{scopedT("get-started")}</Link>
             </Button>
             <Button className="h-11 px-8" variant="outline" asChild>

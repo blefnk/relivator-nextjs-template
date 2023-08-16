@@ -2,7 +2,7 @@
 // ?? Materials about @satisfies: https://youtu.be/49gHWuepxxE, https://youtu.be/G1RtAmI0-vc
 
 import { networks } from "~/utils/appts/socials";
-import { ContentSection, HeroHeader } from "~/utils/types/appts";
+import { ContentSection, HeroHeader } from "~/utils/appts/types";
 
 // ========================================================
 

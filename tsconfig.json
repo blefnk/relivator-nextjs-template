@@ -1,28 +1,27 @@
 {
   "compilerOptions": {
-    "target": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "moduleResolution": "bundler",
+    "target": "esnext",
+    "module": "esnext",
+    "jsx": "preserve",
+    "allowJs": true,
     "strict": true,
     "noEmit": true,
-    "allowJs": true,
-    "jsx": "preserve",
-    "module": "esnext",
     "incremental": true,
     "skipLibCheck": true,
+    "removeComments": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "moduleResolution": "bundler",
-    // !! Turn Back on When Things are Stable !!
-    "strictPropertyInitialization": false, // !!
+    "strictPropertyInitialization": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "noUncheckedIndexedAccess": true,
     "downlevelIteration": true,
-    "strictNullChecks": false, // !!
-    "removeComments": true,
-    "noImplicitAny": false, // !!
-    "alwaysStrict": false, // !!
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "alwaysStrict": true,
     "sourceMap": true,
     "checkJs": true,
     "baseUrl": ".",
@@ -39,6 +38,7 @@
   "include": [
     ".next/types/**/*.ts",
     "next-env.d.ts",
+    "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.cjs",

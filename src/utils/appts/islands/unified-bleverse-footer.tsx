@@ -185,7 +185,13 @@ export function SocialIconsBar() {
   );
 }
 
-const SocialLink = ({ url, IconComponent, label }) =>
+type SocialLinkProps = {
+  url: string;
+  IconComponent: any; // !?!
+  label?: string;
+};
+
+const SocialLink = ({ url, IconComponent, label }: SocialLinkProps) =>
   url && (
     <Link href={url} rel="noopener noreferrer" target="_blank">
       <span className="sr-only">{label}</span>

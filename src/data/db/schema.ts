@@ -1,96 +1,134 @@
-import { InferModel } from "drizzle-orm";
+import type {
+  CartItem,
+  CheckoutItem,
+  StoredFile
+} from "~/utils/types/store-main";
+import type { InferModel } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import {
   boolean,
   decimal,
   int,
   json,
+  mysqlEnum,
   mysqlTable,
   serial,
   text,
-  uniqueIndex,
+  timestamp,
   varchar
 } from "drizzle-orm/mysql-core";
 
-export const stores = mysqlTable(
-  "stores",
-  {
-    id: serial("id").primaryKey(),
-    name: varchar("store_name", { length: 40 }),
-    industry: text("industry"),
-    description: text("description"),
-    slug: varchar("slug", { length: 50 })
-  },
-  (table) => {
-    return {
-      storeNameIndex: uniqueIndex("store_name_index").on(table.name),
-      storeSlugIndex: uniqueIndex("store_slug_index").on(table.slug)
-    };
-  }
-);
+export const stores = mysqlTable("stores", {
+  id: serial("id").primaryKey(),
+  userId: varchar("userId", { length: 191 }).notNull(),
+  name: varchar("name", { length: 191 }).notNull(),
+  description: text("description"),
+  slug: text("slug"),
+  active: boolean("active").notNull().default(true),
+  stripeAccountId: varchar("stripeAccountId", { length: 191 }),
+  createdAt: timestamp("createdAt").defaultNow()
+});
+
 export type Store = InferModel<typeof stores>;
+
+export const storesRelations = relations(stores, ({ many }) => ({
+  products: many(products)
+}));
 
 export const products = mysqlTable("products", {
   id: serial("id").primaryKey(),
-  name: text("name"),
-  price: decimal("price", { precision: 10, scale: 2 }).default("0"),
+  name: varchar("name", { length: 191 }).notNull(),
   description: text("description"),
-  inventory: decimal("inventory").default("0"),
-  images: json("images"),
-  storeId: int("store_id")
+  images: json("images").$type<StoredFile[] | null>().default(null),
+  category: mysqlEnum("category", [
+    "skateboards",
+    "clothing",
+    "shoes",
+    "accessories"
+  ])
+    .notNull()
+    .default("skateboards"),
+  subcategory: varchar("subcategory", { length: 191 }),
+  price: decimal("price", { precision: 10, scale: 2 }).notNull().default("0"),
+  inventory: int("inventory").notNull().default(0),
+  rating: int("rating").notNull().default(0),
+  tags: json("tags").$type<string[] | null>().default(null),
+  storeId: int("storeId").notNull(),
+  createdAt: timestamp("createdAt").defaultNow()
 });
+
 export type Product = InferModel<typeof products>;
+
+export const productsRelations = relations(products, ({ one }) => ({
+  store: one(stores, { fields: [products.storeId], references: [stores.id] })
+}));
 
 export const carts = mysqlTable("carts", {
   id: serial("id").primaryKey(),
-  items: json("items"),
-  paymentIntentId: text("payment_intent_id"),
-  clientSecret: text("client_secret"),
-  isClosed: boolean("is_closed").default(false)
+  userId: varchar("userId", { length: 191 }),
+  paymentIntentId: varchar("paymentIntentId", { length: 191 }),
+  clientSecret: varchar("clientSecret", { length: 191 }),
+  items: json("items").$type<CartItem[] | null>().default(null),
+  createdAt: timestamp("createdAt").defaultNow()
 });
+
 export type Cart = InferModel<typeof carts>;
+
+export const emailPreferences = mysqlTable("email_preferences", {
+  id: serial("id").primaryKey(),
+  userId: varchar("userId", { length: 191 }),
+  email: varchar("email", { length: 191 }).notNull(),
+  token: varchar("token", { length: 191 }).notNull(),
+  newsletter: boolean("newsletter").notNull().default(false),
+  marketing: boolean("marketing").notNull().default(false),
+  transactional: boolean("transactional").notNull().default(false),
+  createdAt: timestamp("createdAt").defaultNow()
+});
+
+export type EmailPreference = InferModel<typeof emailPreferences>;
 
 export const payments = mysqlTable("payments", {
   id: serial("id").primaryKey(),
-  storeId: int("store_id"),
-  stripeAccountId: text("stripe_account_id"),
-  stripeAccountCreatedAt: int("stripe_account_created_at"),
-  stripeAccountExpiresAt: int("stripe_account_expires_at"),
-  details_submitted: boolean("details_submitted").default(false)
+  userId: varchar("userId", { length: 191 }),
+  storeId: int("storeId").notNull(),
+  stripeAccountId: varchar("stripeAccountId", { length: 191 }).notNull(),
+  stripeAccountCreatedAt: int("stripeAccountCreatedAt").notNull(),
+  stripeAccountExpiresAt: int("stripeAccountExpiresAt").notNull(),
+  detailsSubmitted: boolean("detailsSubmitted").notNull().default(false),
+  createdAt: timestamp("createdAt").defaultNow()
 });
+
 export type Payment = InferModel<typeof payments>;
 
-export const orders = mysqlTable(
-  "orders",
-  {
-    id: serial("id").primaryKey(),
-    prettyOrderId: int("pretty_order_id"),
-    storeId: int("store_id"),
-    items: json("items"),
-    total: decimal("total", { precision: 10, scale: 2 }).default("0"),
-    stripePaymentIntentId: varchar("stripe_payment_intent_id", { length: 256 }), // text field is valid for uniqueIndex in MySQL
-    stripePaymentIntentStatus: text("stripe_payment_intent_status"),
-    name: text("name"),
-    email: text("email"),
-    createdAt: int("created_at"),
-    addressId: int("address")
-  },
-  (table) => {
-    return {
-      stripePaymentIntentIdIndex: uniqueIndex(
-        "stripe_payment_intent_id_index"
-      ).on(table.stripePaymentIntentId)
-    };
-  }
-);
+export const orders = mysqlTable("orders", {
+  id: serial("id").primaryKey(),
+  userId: varchar("userId", { length: 191 }),
+  storeId: int("storeId").notNull(),
+  items: json("items").$type<CheckoutItem[] | null>().default(null),
+  total: decimal("total", { precision: 10, scale: 2 }).notNull().default("0"),
+  stripePaymentIntentId: varchar("stripePaymentIntentId", {
+    length: 191
+  }).notNull(),
+  stripePaymentIntentStatus: varchar("stripePaymentIntentStatus", {
+    length: 191
+  }).notNull(),
+  name: varchar("name", { length: 191 }),
+  email: varchar("email", { length: 191 }),
+  addressId: int("addressId"),
+  createdAt: timestamp("createdAt").defaultNow()
+});
+
 export type Order = InferModel<typeof orders>;
 
 export const addresses = mysqlTable("addresses", {
   id: serial("id").primaryKey(),
-  line1: text("line1"),
-  line2: text("line2"),
-  city: text("city"),
-  state: text("state"),
-  postal_code: text("postal_code"),
-  country: text("country")
+  line1: varchar("line1", { length: 191 }),
+  line2: varchar("line2", { length: 191 }),
+  city: varchar("city", { length: 191 }),
+  state: varchar("state", { length: 191 }),
+  postalCode: varchar("postalCode", { length: 191 }),
+  country: varchar("country", { length: 191 }),
+  createdAt: timestamp("createdAt").defaultNow()
 });
+
 export type Address = InferModel<typeof addresses>;

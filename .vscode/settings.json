@@ -1,10 +1,15 @@
 {
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
-  "editor.formatOnType": true,
-  "files.associations": {
-    "*.tson": "typescript",
-    "*.txt": "plaintext"
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "tailwindCSS.includeLanguages": { "plaintext": "html" },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["tw=\"([^\"]*)\""]
+  ],
+  "markdownlint.config": {
+    "MD033": {
+      "allowed_elements": ["img", "p", "a"]
+    }
   }
 }

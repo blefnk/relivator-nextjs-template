@@ -1,4 +1,4 @@
-import { Network } from "~/utils/server/app/socials";
+import { Network } from "./socials";
 
 export type Config = {
   social: Network[];

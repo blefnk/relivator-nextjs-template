@@ -11,6 +11,8 @@ import "~/styles/globals.css";
 
 import { UnifiedBleverseFooter } from "~/utils/appts/islands/unified-bleverse-footer";
 import { UnifiedBleverseHeader } from "~/utils/appts/islands/unified-bleverse-header";
+import { PageParams } from "~/utils/types/page-params";
+import { WithChildren } from "~/utils/types/with-children";
 
 const inter = Inter({ subsets: ["latin"] });
 
