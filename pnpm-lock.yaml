@@ -8,6 +8,9 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.2.0
     version: 3.2.0(react-hook-form@7.45.4)
+  '@planetscale/database':
+    specifier: ^1.10.0
+    version: 1.10.0
   '@radix-ui/react-checkbox':
     specifier: ^1.0.4
     version: 1.0.4(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.3.0-canary-0fb5b61ac-20230814)(react@18.3.0-canary-0fb5b61ac-20230814)
@@ -62,9 +65,12 @@ dependencies:
   cmdk:
     specifier: ^0.2.0
     version: 0.2.0(@types/react@18.2.20)(react-dom@18.3.0-canary-0fb5b61ac-20230814)(react@18.3.0-canary-0fb5b61ac-20230814)
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.3.1
   drizzle-orm:
     specifier: ^0.28.2
-    version: 0.28.2(postgres@3.3.5)
+    version: 0.28.2(@planetscale/database@1.10.0)(postgres@3.3.5)
   ky:
     specifier: ^0.33.3
     version: 0.33.3
@@ -1528,6 +1534,11 @@ packages:
       picocolors: 1.0.0
       tslib: 2.6.1
     dev: true
+
+  /@planetscale/database@1.10.0:
+    resolution: {integrity: sha512-XMfNRjIPgGTga6g1YpGr7E21CcnHZcHZdyhRUIiZ/AlpD+ts65UF2B3wKjcu7MKMynmmcOGs6R9kAT6D1OTlZQ==}
+    engines: {node: '>=16'}
+    dev: false
 
   /@radix-ui/number@1.0.1:
     resolution: {integrity: sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==}
@@ -3707,6 +3718,11 @@ packages:
       is-obj: 2.0.0
     dev: true
 
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
+    dev: false
+
   /dreamopt@0.8.0:
     resolution: {integrity: sha512-vyJTp8+mC+G+5dfgsY+r3ckxlz+QMX40VjPQsZc5gxVAxLmi64TBoVkP54A/pRAXMXsbu2GMMBrZPxNv23waMg==}
     engines: {node: '>=0.4.0'}
@@ -3734,7 +3750,7 @@ packages:
       - supports-color
     dev: true
 
-  /drizzle-orm@0.28.2(postgres@3.3.5):
+  /drizzle-orm@0.28.2(@planetscale/database@1.10.0)(postgres@3.3.5):
     resolution: {integrity: sha512-QRyuzvpJr7GE6LpvZ/sg2nAKNg2if1uGGkgFTiXn4auuYId//vVJe6HBsDTktfKfcaDGzIYos+/f+PS5EkBmrg==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
@@ -3796,6 +3812,7 @@ packages:
       sqlite3:
         optional: true
     dependencies:
+      '@planetscale/database': 1.10.0
       postgres: 3.3.5
     dev: false
 
