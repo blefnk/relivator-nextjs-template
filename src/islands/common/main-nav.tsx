@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { REPOSITORY_URL } from "~/app";
 
-import { useI18n } from "~/utils/client/i18n";
+import { useI18n } from "~/data/i18n/i18n";
 
 import { useToast } from "~/islands/primitives/toast/use-toast";
 

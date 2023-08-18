@@ -8,7 +8,7 @@ import Link from "next/link";
 import { ActivitySquare, Github, Twitter } from "lucide-react";
 import { tv } from "tailwind-variants";
 
-import { getScopedI18n } from "~/utils/server/i18n";
+import { getScopedI18n } from "~/data/i18n/server";
 
 import { CommandMenu } from "~/islands/common/command-menu";
 import { MainNav } from "~/islands/common/main-nav";

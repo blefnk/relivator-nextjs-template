@@ -13,7 +13,7 @@ import {
 import { Balancer } from "react-wrap-balancer";
 import { cnBase } from "tailwind-variants";
 
-import { getI18n, getScopedI18n } from "~/utils/server/i18n";
+import { getI18n, getScopedI18n } from "~/data/i18n/server";
 import { getGitHubStars } from "~/utils/server/stars";
 import { typography } from "~/utils/server/text";
 

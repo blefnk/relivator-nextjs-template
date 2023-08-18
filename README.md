@@ -1,10 +1,8 @@
-# Bleverse Relivator: i18n Store & Landing Starter for Next.js 13
-
-![GitHub repo size](https://img.shields.io/github/repo-size/blefnk/relivator?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/blefnk/relivator?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/blefnk/relivator?style=for-the-badge)
+# Bleverse Relivator: Next.js 13 Starter (2023)
 
 **Crafting the world's most iconic Next.js starter.**
+
+The ultimate Next.js 13 app router TypeScript starter! i18n, Server Actions, T3, Shadcn, Tailwind, Drizzle, Prisma, Zod, RSC, SWC, tRPC, NextAuth, Auth.js, Lucia, Lucide Icons, & More. Get it and enjoy!
 
 ## 🚀 About the Project
 

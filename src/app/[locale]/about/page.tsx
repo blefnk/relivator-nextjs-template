@@ -4,7 +4,7 @@ import { REPOSITORY_URL } from "~/app";
 import { Balancer } from "react-wrap-balancer";
 import { cnBase } from "tailwind-variants";
 
-import { getScopedI18n } from "~/utils/server/i18n";
+import { getScopedI18n } from "~/data/i18n/server";
 import { typography } from "~/utils/server/text";
 
 export const generateMetadata: GenerateMetadata = async () => {

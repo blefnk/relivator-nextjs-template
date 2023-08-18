@@ -3,7 +3,7 @@ import Link from "next/link";
 import { heroHeader, REPOSITORY_URL } from "~/app";
 import { Github } from "lucide-react";
 
-import { getScopedI18n } from "~/utils/server/i18n";
+import { getScopedI18n } from "~/data/i18n/server";
 
 import { Button } from "~/islands/primitives/button";
 

@@ -1,6 +1,6 @@
 "use client";
 
-// import { useI18n, useScopedI18n } from "~/utils/client/i18n";
+// import { useI18n, useScopedI18n } from "~/utils/appts/config/i18n";
 
 export default function Footer() {
   // const t = useI18n();

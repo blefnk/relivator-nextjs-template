@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { Circle, File, Laptop, Moon, Search, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { useI18n, useScopedI18n } from "~/data/i18n/i18n";
 import { useHotkeys } from "~/hooks/use-hotkeys";
-import { useI18n, useScopedI18n } from "~/utils/client/i18n";
 import { navItems } from "~/utils/server/links";
 
 import { Button } from "~/islands/primitives/button";

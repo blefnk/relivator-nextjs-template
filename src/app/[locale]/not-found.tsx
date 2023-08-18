@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Balancer } from "react-wrap-balancer";
 
-import { getScopedI18n } from "~/utils/server/i18n";
+import { getScopedI18n } from "~/data/i18n/server";
 import { typography } from "~/utils/server/text";
 
 import { ThemeProvider } from "~/islands/common/providers";
