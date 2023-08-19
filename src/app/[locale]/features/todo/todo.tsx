@@ -7,7 +7,7 @@ import { Loader, PlusIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { useScopedI18n } from "~/data/i18n/i18n";
+import { useScopedI18n } from "~/data/i18n/client";
 import { useLocalStorage } from "~/hooks/use-local-storage";
 
 import { Button } from "~/islands/primitives/button";

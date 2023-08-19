@@ -1,11 +1,12 @@
 import { Inter } from "next/font/google";
 
+import { ClerkProvider } from "@clerk/nextjs";
 import { siteConfig } from "~/app";
 
-import { defaultLocale, localeList } from "~/data/i18n";
+import { defaultLocale, localeList, locales } from "~/data/i18n";
 import { GenerateMetadata } from "~/utils/types/metadata";
 
-import { Providers } from "~/islands/common/providers";
+import { ClientProviders } from "~/islands/common/client-providers";
 
 import "~/styles/globals.css";
 
@@ -73,27 +74,32 @@ export const generateMetadata: GenerateMetadata = () => {
   };
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params
 }: WithChildren<PageParams>) {
+  const clerkLocale = (await import(`~/data/i18n/dicts/${params.locale}`))
+    .default;
+
   return (
-    <html
-      lang={params.locale}
-      className="dark"
-      style={{ colorScheme: "dark" }}
-      suppressHydrationWarning
-    >
-      <body
-        className="grid min-h-screen grid-rows-[4rem,1fr,min-content] bg-background text-foreground antialiased"
-        style={inter.style}
+    <ClerkProvider localization={clerkLocale}>
+      <html
+        lang={params.locale}
+        className="dark"
+        style={{ colorScheme: "dark" }}
+        suppressHydrationWarning
       >
-        <Providers locale={params.locale}>
-          <UnifiedBleverseHeader />
-          {children}
-          <UnifiedBleverseFooter />
-        </Providers>
-      </body>
-    </html>
+        <body
+          className="grid min-h-screen grid-rows-[4rem,1fr,min-content] bg-background text-foreground antialiased"
+          style={inter.style}
+        >
+          <ClientProviders locale={params.locale}>
+            <UnifiedBleverseHeader />
+            {children}
+            <UnifiedBleverseFooter />
+          </ClientProviders>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

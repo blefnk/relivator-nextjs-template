@@ -15,10 +15,6 @@ export const appts = {
     twitter: "bleverse_com",
     github: "blefnk"
   })
-  // providers: {
-  //   database: "Drizzle", // Prisma | ...
-  // },
-  // } satisfies Config;
 };
 
 export default appts;
@@ -76,7 +72,6 @@ export const siteConfig = {
     "t3 stack",
     "tailwind css",
     "drizzle orm",
-    "prisma",
     "shadcn/ui",
     "shadcn ui",
     "radix ui",

@@ -19,8 +19,20 @@ import {
   MenubarSubTrigger,
   MenubarTrigger
 } from "./menubar";
+import { UserAccountNav } from "./user-account-nav";
 
-export function UnifiedBleverseHeader() {
+interface UnifiedBleverseHeaderProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  isLoggedIn?: boolean;
+  ItemsInCart?: number;
+  WalletDollars?: number;
+}
+
+export async function UnifiedBleverseHeader({
+  isLoggedIn = false,
+  ItemsInCart = 0,
+  WalletDollars = 0
+}: UnifiedBleverseHeaderProps) {
   return (
     <header className="justify-baseline container sticky top-0 z-40 flex h-9 items-center justify-between border-b border-slate-200 bg-background shadow-none dark:border-slate-800">
       <Menubar className="-ml-4 rounded-none border-b border-none bg-transparent shadow-none md:-ml-2">
@@ -29,6 +41,103 @@ export function UnifiedBleverseHeader() {
         <UnifiedItemGithub />
         <UnifiedItemGeneral />
         <UnifiedItemPreferences />
+      </Menubar>
+
+      <Menubar className="flex border-none lg:-ml-0">
+        {/* {isLoggedIn && (
+    <MenubarMenu>
+      <MenubarTrigger className="-mr-4">
+        <span className="flex items-center">
+          <Mail className="mr-1 h-4 w-4" />
+          {UserNewMails}
+        </span>
+      </MenubarTrigger>
+      <MenubarContent>
+        <MenubarLabel>Mailbox Is Empty</MenubarLabel>
+        <MenubarLink href="https://bleverse.com/space/chat">
+          Open Chat Page
+        </MenubarLink>
+      </MenubarContent>
+    </MenubarMenu>
+  )} */}
+        <MenubarMenu>
+          <MenubarTrigger className="flex">
+            {/* <ShoppingCart className="mr-1 h-4 w-4" />
+      {ItemsInCart} */}
+          </MenubarTrigger>
+          <MenubarContent>
+            <MenubarLabel>Cart Is Empty</MenubarLabel>
+            <MenubarLink href="https://bleverse.com/space/billing">
+              Buy Space Pro
+            </MenubarLink>
+            <MenubarLink href="/studio/store">Buy Piano Sheets</MenubarLink>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          {/* {isLoggedIn && (
+      <MenubarMenu>
+        <MenubarTrigger className="flex">
+          <Wallet className="mr-1 h-4 w-4" />
+          <span>Vault</span>
+        </MenubarTrigger>
+        <MenubarContent>
+          <MenubarLabel>Your Vault</MenubarLabel>
+          <MenubarItem className="flex" disabled>
+            <DollarSign className="mr-1 h-4 w-4" />
+            <span>{WalletDollars}</span>
+            <span className="pl-1"> Dollars</span>
+          </MenubarItem>
+          <MenubarItem className="flex" disabled>
+            <Coins className="mr-1 h-4 w-4" />
+            <span>{WalletCredits}</span>
+            <span className="pl-1"> Credits</span>
+          </MenubarItem>
+          <MenubarItem className="flex" disabled>
+            <BringToFront className="mr-1 h-4 w-4" />
+            <span>{WalletBlefcoins}</span>
+            <span className="pl-1"> Blefcoins</span>
+          </MenubarItem>
+          <MenubarItem className="flex" disabled>
+            <Atom className="mr-1 h-4 w-4" />
+            <span>{WalletBlethonas}</span>
+            <span className="pl-1"> Blethonas</span>
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    )} */}
+          <div className="justify-baseline flex items-center">
+            <UserAccountNav
+              isLoggedIn={isLoggedIn}
+              // userName={userName}
+              // userImage={userImage}
+              // userEmail={userEmail}
+            />
+            {/* {isLoggedIn && (
+        <>
+          <TeamSwitcher
+            userName={userName}
+            userImage={userImage}
+            className="-ml-2 border-none hover:text-white active:text-white"
+          />
+          <div className="-mr-1 md:-mr-0" />
+        </>
+      )} */}
+            {/* {!isLoggedIn && <div className="md:ml-2" />}
+      <div className="-mr-2">
+        <MenubarMenu>
+          <MenubarTrigger className="flex text-lg">
+            {CurrentLocale}
+          </MenubarTrigger>
+          <MenubarContent>
+            <MenubarLabel>Language</MenubarLabel>
+            <LocSwitcher />
+          </MenubarContent>
+          <div className="-mr-6 sm:mr-2 lg:-mr-1" />
+        </MenubarMenu>
+      </div>
+      <ModeToggle /> */}
+          </div>
+        </MenubarMenu>
       </Menubar>
     </header>
   );

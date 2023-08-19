@@ -39,9 +39,11 @@
     "x:dev": "pnpm build && pnpm start"
   },
   "dependencies": {
+    "@clerk/localizations": "^1.24.1",
     "@clerk/nextjs": "^4.23.2",
     "@hookform/resolvers": "^3.2.0",
     "@planetscale/database": "^1.10.0",
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.4",
     "@radix-ui/react-dropdown-menu": "^2.0.5",
@@ -70,8 +72,8 @@
     "next-international": "^0.9.2",
     "next-themes": "^0.2.1",
     "postgres": "^3.3.5",
-    "react": "18.3.0-canary-98f3f14d2-20230818",
-    "react-dom": "18.3.0-canary-98f3f14d2-20230818",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.45.4",
     "react-icons": "^4.10.1",
@@ -84,13 +86,14 @@
     "zod": "^3.22.1"
   },
   "devDependencies": {
+    "@clerk/types": "^3.49.0",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@cspell/dict-uk-ua": "^3.0.0",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@t3-oss/env-nextjs": "^0.6.1",
     "@tanstack/eslint-plugin-query": "^4.32.5",
-    "@types/node": "20.5.0",
+    "@types/node": "20.5.1",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
@@ -110,6 +113,6 @@
     "prettier-plugin-tailwindcss": "^0.5.3",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
-    "typescript": "5.2.0-beta"
+    "typescript": "5.1.6"
   }
 }

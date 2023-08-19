@@ -1,20 +1,13 @@
 {
   "version": "0.2",
-  "import": [
-    "@cspell/dict-uk-ua/cspell-ext.json"
-  ],
+  "import": ["@cspell/dict-uk-ua/cspell-ext.json"],
   "dictionaryDefinitions": [],
   "language": "en,uk",
   "dictionaries": [],
   "ignoreWords": [],
-  "ignorePaths": [
-    "**/*.txt",
-    ".next",
-    "build",
-    "dist",
-    "out"
-  ],
+  "ignorePaths": ["**/*.txt", ".next", "build", "dist", "out"],
   "words": [
+    "abcabcabc",
     "appts",
     "AUTHJS",
     "blefnk",
@@ -23,7 +16,9 @@
     "callees",
     "clsx",
     "cmdk",
+    "codelist",
     "commitlint",
+    "conection",
     "Contentlayer",
     "Gtkq",
     "hookform",
@@ -47,12 +42,17 @@
     "squeezy",
     "tailwindcss",
     "tanstack",
+    "titleize",
+    "TOTP",
+    "trpc",
     "tson",
     "typecheck",
     "UPLOADTHING",
     "valibot",
     "VALIDABOT",
     "vercel",
-    "xicon"
+    "xicon",
+    "zxcvbn",
+    "деплой"
   ]
 }

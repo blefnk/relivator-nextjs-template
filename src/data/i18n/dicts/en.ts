@@ -1,3 +1,4 @@
+import type { LocalizationResource } from "@clerk/types";
 import type { DeepStringify } from "~/utils/server/string";
 
 const dictionary = {
@@ -73,7 +74,7 @@ const dictionary = {
         clock: {
           title: "Database",
           description:
-            "Stay on track with ORM using Drizzle or Prisma on your choice. Deployed on Vercel, Railway, PlanetScale, etc."
+            "Stay on track with Drizzle ORM. Deployed on Vercel, Railway, PlanetScale, etc."
         },
         currency: {
           title: "Components",
@@ -83,7 +84,7 @@ const dictionary = {
         files: {
           title: "Authentication",
           description:
-            "Middlewares authentication using Clerk, Auth.js, or Lucia."
+            "Middleware authentication using Clerk, Auth.js, or Lucia."
         },
         devtools: {
           title: "Subscriptions",
@@ -119,7 +120,7 @@ const dictionary = {
           vercel: "For deploying all my projects."
         }
       },
-      author: "Licence"
+      author: "License"
     },
     tools: {
       title: "Utils",
@@ -190,7 +191,7 @@ const dictionary = {
       "password-generator": {
         title: "Password Generator",
         placeholder: "Password",
-        length: "Number of caracteres: {length}",
+        length: "Length: {length}",
         actions: {
           generate: "Generate"
         }
@@ -293,6 +294,13 @@ const dictionary = {
   }
 } as const;
 
-export type Dictionary = DeepStringify<typeof dictionary>;
+const LocalizationResource = {
+  locale: "en-US",
+  socialButtonsBlockButton: "Continue with {{provider|titleize}}"
+} as const;
+
+export type Dictionary = DeepStringify<
+  typeof dictionary & LocalizationResource
+>;
 
 export default dictionary;

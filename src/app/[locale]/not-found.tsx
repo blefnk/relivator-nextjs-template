@@ -6,7 +6,7 @@ import { Balancer } from "react-wrap-balancer";
 import { getScopedI18n } from "~/data/i18n/server";
 import { typography } from "~/utils/server/text";
 
-import { ThemeProvider } from "~/islands/common/providers";
+import { ThemeProvider } from "~/islands/common/client-providers";
 import { Button } from "~/islands/primitives/button";
 
 export default async function NotFound() {

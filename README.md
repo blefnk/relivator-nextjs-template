@@ -2,7 +2,9 @@
 
 **Crafting the world's most iconic Next.js starter.**
 
-The ultimate Next.js 13 app router TypeScript starter! i18n, Server Actions, T3, Shadcn, Tailwind, Drizzle, Prisma, Zod, RSC, SWC, tRPC, NextAuth, Auth.js, Lucia, Lucide Icons, & More. Get it and enjoy!
+🔥 The ultimate Next.js 13 app router TypeScript starter. i18n, T3, Shadcn/ui, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons, & More. Get it and enjoy!
+
+_You can also check [our another free Next.js 13 starter](https://github.com/blefnk/reliverse). This one starter offers you tech used in the current starter plus also: Prisma, Lucia, Auth.js, and more. It means there we're very experimentally trying to implement all of the important and most used tech together._
 
 ## 🚀 About the Project
 
@@ -40,7 +42,7 @@ This roadmap outlines the key features and improvements to be implemented in thi
 - [ ] File uploads with **uploadthing**
 - [ ] Newsletter subscription with **React Email** and **Resend**
 - [ ] Blog using **MDX** with, maybe, **Contentlayer**
-- [ ] ORM using **Drizzle ORM** and **Prisma**
+- [ ] ORM using **Drizzle ORM**
 - [ ] Database on **PlanetScale**
 - [ ] Validation with **Validabot** and **Zod**
 - [ ] Storefront with products, categories, and subcategories

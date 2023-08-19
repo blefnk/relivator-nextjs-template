@@ -5,7 +5,7 @@ import { type z } from "zod";
 
 import { type Product } from "~/data/db/schema";
 
-import { type Icons } from "~/islands/wrappers/icons";
+import { type Icons } from "~/islands/primitives/icons";
 import { type userPrivateMetadataSchema } from "~/schema/zod/auth";
 
 export interface NavItem {

@@ -1,3 +1,5 @@
+"use client";
+
 import { createI18nClient } from "next-international/client";
 
 import { locales } from "~/data/i18n";

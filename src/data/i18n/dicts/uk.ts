@@ -74,7 +74,7 @@ const dictionary = {
         clock: {
           title: "База даних",
           description:
-            "Слідкуйте за своїм прогресом з ORM, використовуючи Drizzle або Prisma на ваш вибір. Розгортання на Vercel, Railway, PlanetScale тощо."
+            "Слідкуйте за своїм прогресом використовуючи Drizzle ORM. Розгортуйте на Vercel, Railway, PlanetScale тощо."
         },
         currency: {
           title: "Компоненти",
@@ -84,7 +84,7 @@ const dictionary = {
         files: {
           title: "Аутентифікація",
           description:
-            "Проміжне програмне забезпечення для аутентифікації за допомогою Clerk, Auth.js або Lucia."
+            "Проміжне програмне забезпечення для аутентифікації за допомогою Clerk та NextAuth."
         },
         devtools: {
           title: "Підписки",

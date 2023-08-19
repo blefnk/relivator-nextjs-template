@@ -31,6 +31,7 @@ module.exports = defineConfig({
         "@next/next/no-html-link-for-pages": "off",
         "@tanstack/query/exhaustive-deps": "error",
         "@tanstack/query/prefer-query-object-syntax": "error",
+        "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
         "@typescript-eslint/no-redundant-type-constituents": "off",
