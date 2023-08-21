@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef } from "react";
-
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { tv } from "tailwind-variants";
 

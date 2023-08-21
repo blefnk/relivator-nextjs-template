@@ -1,8 +1,8 @@
-# Bleverse Relivator: Next.js 13 Starter (2023)
+# Bleverse Relivator: Next.js 13 Store Starter 2023
 
 **Crafting the world's most iconic Next.js starter.**
 
-🔥 The ultimate Next.js 13 app router TypeScript starter. i18n, T3, Shadcn/ui, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons, & More. Get it and enjoy!
+🔥 Next.js 13 Store Starter. App Router, TypeScript, shadcn/ui, i18n, T3, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons, & More. Download it and enjoy!
 
 _You can also check [our another free Next.js 13 starter](https://github.com/blefnk/reliverse). This one starter offers you tech used in the current starter plus also: Prisma, Lucia, Auth.js, and more. It means there we're very experimentally trying to implement all of the important and most used tech together._
 
@@ -20,40 +20,36 @@ This is our experimental space where we tinkered with the new Next.js app direct
 > The README.md is not yet finished and may or may not represent features that have not been implemented yet.
 > Please check back soon for more features, which are currently in production.
 
-## 🔥 App Features
+## 🔥 Project Features Roadmap
 
-This roadmap outlines the key features and improvements to be implemented in this web project.
+This roadmap outlines the key features and improvements to be implemented in this Next.js starter.
 
-- 🌐 Comprehensive offerings of the Next.js App Router with the RSCs and everything all new.
-- 🅰️ Ultimate type-safety using TypeScript, Zod, Validabot, typedRoutes, etc.
-- 📊 Dive deep into SQL with TypeScript ORM via [**Drizzle ORM**](https://github.com/drizzle-team/drizzle-orm).
-- 🔒 Keep it tight with Authentication using [**Auth.js**](https://authjs.dev) and [**Lucia**](https://github.com/pilcrowOnPaper/lucia).
-- 🌍 Centralized Database magic at [**PlanetScale**](https://planetscale.com).
-- ✨ Stunning UI components, all thanks to [**shadcn/ui**](https://github.com/shadcn/ui).
-- 📝 Share insights with Blogs powered by **MDX**.
-- 💲 Seamless Subscriptions via **Stripe** & [**LemonSqueezy**](https://www.lemonsqueezy.com/).
-- 🎨 Styled to impress with **Tailwind CSS**.
-- 📡 Data-fetching streamlined with [**tRPC**](https://github.com/trpc/trpc).
-- 📧 Email verification and a lot more features to enhance the application.
-
-## 🌟 Project Roadmap
-
-- [ ] Authentication with **Clerk**
-- [ ] File uploads with **uploadthing**
-- [ ] Newsletter subscription with **React Email** and **Resend**
-- [ ] Blog using **MDX** with, maybe, **Contentlayer**
-- [ ] ORM using **Drizzle ORM**
-- [ ] Database on **PlanetScale**
-- [ ] Validation with **Validabot** and **Zod**
-- [ ] Storefront with products, categories, and subcategories
-- [ ] Seller and customer workflows
-- [ ] User subscriptions with **Stripe**
-- [ ] Checkout with **Stripe Checkout**
-- [ ] Admin dashboard with stores, products, orders, subscriptions, and payments
+- [ ] ✨ Admin dashboard with stores, products, orders, subscriptions, and payments.
+- [ ] ⬆️ File uploads with **uploadthing**.
+- [ ] 🌍 Authentication with **Clerk**.
+- [ ] 🌐 Blog using **MDX**.
+- [ ] 🎨 Centralized Database magic at [**PlanetScale**](https://planetscale.com).
+- [ ] 🏬 Storefront with products, categories, and subcategories.
+- [ ] 🐧 The most beginner-friendly starter (will be in the feature, maybe, how its possible 😁).
+- [ ] 💲 Comprehensive offerings of the Next.js App Router with the RSCs and everything all new.
+- [ ] 📊 Data-fetching streamlined with [**tRPC**](https://github.com/trpc/trpc).
+- [ ] 📖 Share insights with Blogs powered by **MDX**.
+- [ ] 📝 Database on **PlanetScale**.
+- [ ] 📡 Dive deep into SQL with TypeScript ORM via [**Drizzle ORM**](https://github.com/drizzle-team/drizzle-orm).
+- [ ] 📧 Email verification and a lot more features to enhance the application.
+- [ ] 📰 Newsletter subscription with **React Email** and **Resend**.
+- [ ] 🔐 Keep it tight with Authentication using [**NextAuth.js**](https://authjs.dev).
+- [ ] 🕶️ Stunning UI components, all thanks to [**shadcn/ui**](https://github.com/shadcn/ui).
+- [ ] 🤖 Ultimate type-safety using TypeScript, Zod, Valibot, typedRoutes, etc.
+- [ ] 🤝 Seller and customer workflows.
+- [ ] 🤩 Styled to impress with **Tailwind CSS**.
+- [ ] 🦫 ORM using **Drizzle ORM**.
+- [ ] 🧧 User checkout and seamless subscriptions via **Stripe**.
+- [ ] 🅰️ Validation with **Valibot** and **Zod**.
 
 ## 🌍 i18n: Internationalization
 
-At Bleverse, the approach to multilingualism is a separate holy grail. We love talking about this topic. In the future, we'll be writing a lot of interesting things about internationalization with Next.js 13 App Router. Stay tuned for updates!
+At Bleverse, the approach to multilingualism is a separate holy grail. We love talking about this topic. In the future, we'll be writing a lot of interesting things about internationalization with Next.js 13 App Router. Stay tuned!
 
 ## 👋 Project Configuration
 
@@ -63,9 +59,43 @@ The `src/app.ts` file contains essential configuration used to modify the conten
 - Customize various settings, such as disabling theme toggle.
 - Manage general site-wide information.
 
+## 🔐 Authentication
+
+Setting up auth is a breeze:
+
+1. Visit: `https://dashboard.clerk.com/apps`
+2. Create a New Application there.
+3. Fill out the `.api` file (just duplicate and rename `.env.example`).
+
 ## 🏃‍♂️ Getting Started Locally
 
-Clone the repository
+Install Git.
+
+```bash
+https://git-scm.com
+```
+
+Install Node.js.
+
+_Windows:_
+
+```bash
+https://github.com/coreybutler/nvm-windows/releases/download/latest/nvm-setup.exe
+```
+
+_Linux:_
+
+```bash
+https://github.com/nvm-sh/nvm#installing-and-updating
+```
+
+Install PNPM.
+
+```bash
+corepack enable
+```
+
+Clone the repository.
 
 ```bash
 git clone https://github.com/blefnk/relivator.git
@@ -101,19 +131,11 @@ Finally start the Stripe webhook listener for Stripe to work.
 pnpm stripe:listen
 ```
 
-## How do I deploy this?
+## 🐧 How do I deploy this?
 
 Follow the deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
 
-## 🔐 Authentication
-
-Setting up GitHub OAuth is a breeze:
-
-1. Visit: `https://github.com/settings/developers`
-2. Hit "New OAuth App".
-3. Register your callback URL: `http://localhost:3000/api/oauth/github`
-
-## 💌 Email (...soon)
+<!-- ## 💌 Email (...soon)
 
 Want a sneak peek of your email in dev mode without sending it out? Run:
 
@@ -121,9 +143,9 @@ Want a sneak peek of your email in dev mode without sending it out? Run:
 npx mailing
 ```
 
-For the real deal in production, you'll be working with [Resend](resend.com). Grab your API key and verify your domain there.
+For the real deal in production, you'll be working with [Resend](resend.com). Grab your API key and verify your domain there. -->
 
-## 💲 Payments (...soon)
+<!-- ## 💲 Payments (...soon)
 
 Stripe and LemonSqueezy powers payments, with subscription syncs via webhooks (`stripe/route.ts`) and (`lemonsqueezy/route.ts`). Fancy a local test? Expose the webhook with:
 
@@ -131,13 +153,13 @@ Stripe and LemonSqueezy powers payments, with subscription syncs via webhooks (`
 npx ngrok http 3000
 ```
 
-Then, register the webhook for Stripe (see `.env.example`) and for lemonsqueezy URL, like `https://abc.eu.ngrok.io/api/lemonsqueezy`, in [LemonSqueezy's webhook settings](https://app.lemonsqueezy.com/settings/webhooks).
+Then, register the webhook for Stripe (see `.env.example`) and for lemonsqueezy URL, like `https://abc.eu.ngrok.io/api/lemonsqueezy`, in [LemonSqueezy's webhook settings](https://app.lemonsqueezy.com/settings/webhooks). -->
 
 ## 🅰️ Notes
 
 Because the project is still in active development, sometimes we need to deviate from our own principles. This means that, yeah, there are times when we disable certain TypeScript features, use `any`, `// @ts-expect-error`, and so on. That's the way we love to live on the cutting edge, embracing the newest technologies in web development. So if you come across something like `// !?!`, it indicates that this issue will be resolved in future versions of Relivator. Thank you for your understanding.
 
-## ⚠️ Possible Issues
+<!-- ## ⚠️ Possible Issues
 
 A quick snapshot of the roadblocks or nuances as of now:
 
@@ -146,7 +168,23 @@ A quick snapshot of the roadblocks or nuances as of now:
 3. Pricing plans are playing hard-to-get with the database sync.
 4. The RBAC feature is still on probation; thorough testing pending.
 5. Jury's out on tRPC's performance in RSCs.
-6. An [issue with MJML](https://github.com/vercel/next.js/issues/50042) compelled us to house the email functions within the /pages directory.
+6. An [issue with MJML](https://github.com/vercel/next.js/issues/50042) compelled us to house the email functions within the /pages directory. -->
+
+## 🔃 Migration From Similiar Starter
+
+Know how to migrate your project to the current starter. Migration guides are both for app and pages directories. Your old starter may use Prisma, Zod, and other things.
+
+### Original Next.js 13
+
+The content of this section is not yet ready. Check back in a few days.
+
+### Original T3 Stack
+
+The content of this section is not yet ready. Check back in a few days.
+
+### Shadcn Taxonomy
+
+The content of this section is not yet ready. Check back in a few days.
 
 ## 📫 Contributing to Bleverse Relivator
 

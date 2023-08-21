@@ -4,7 +4,6 @@ import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { useIsClient } from "~/hooks/use-is-client";
-
 import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,

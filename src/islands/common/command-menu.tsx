@@ -2,14 +2,11 @@
 
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-
 import { Circle, File, Laptop, Moon, Search, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { useI18n, useScopedI18n } from "~/data/i18n/client";
 import { useHotkeys } from "~/hooks/use-hotkeys";
-import { navItems } from "~/utils/server/links";
-
 import { Button } from "~/islands/primitives/button";
 import {
   CommandDialog,
@@ -20,6 +17,7 @@ import {
   CommandList,
   CommandSeparator
 } from "~/islands/primitives/command";
+import { navItems } from "~/utils/server/links";
 
 type RouteHref = never;
 

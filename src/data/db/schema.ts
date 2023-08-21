@@ -1,10 +1,4 @@
-import type {
-  CartItem,
-  CheckoutItem,
-  StoredFile
-} from "~/utils/types/store-main";
 import type { InferModel } from "drizzle-orm";
-
 import { relations } from "drizzle-orm";
 import {
   boolean,
@@ -19,13 +13,19 @@ import {
   varchar
 } from "drizzle-orm/mysql-core";
 
+import type {
+  CartItem,
+  CheckoutItem,
+  StoredFile
+} from "~/utils/types/store-main";
+
 export const stores = mysqlTable("stores", {
   id: serial("id").primaryKey(),
   userId: varchar("userId", { length: 191 }).notNull(),
   name: varchar("name", { length: 191 }).notNull(),
   description: text("description"),
   slug: text("slug"),
-  active: boolean("active").notNull().default(true),
+  active: boolean("active").notNull().default(false),
   stripeAccountId: varchar("stripeAccountId", { length: 191 }),
   createdAt: timestamp("createdAt").defaultNow()
 });
@@ -42,13 +42,13 @@ export const products = mysqlTable("products", {
   description: text("description"),
   images: json("images").$type<StoredFile[] | null>().default(null),
   category: mysqlEnum("category", [
-    "apparel",
+    "skateboards",
     "clothing",
     "shoes",
     "accessories"
   ])
     .notNull()
-    .default("apparel"),
+    .default("skateboards"),
   subcategory: varchar("subcategory", { length: 191 }),
   price: decimal("price", { precision: 10, scale: 2 }).notNull().default("0"),
   inventory: int("inventory").notNull().default(0),
@@ -93,8 +93,8 @@ export const payments = mysqlTable("payments", {
   userId: varchar("userId", { length: 191 }),
   storeId: int("storeId").notNull(),
   stripeAccountId: varchar("stripeAccountId", { length: 191 }).notNull(),
-  stripeAccountCreatedAt: int("stripeAccountCreatedAt").notNull(),
-  stripeAccountExpiresAt: int("stripeAccountExpiresAt").notNull(),
+  stripeAccountCreatedAt: int("stripeAccountCreatedAt"),
+  stripeAccountExpiresAt: int("stripeAccountExpiresAt"),
   detailsSubmitted: boolean("detailsSubmitted").notNull().default(false),
   createdAt: timestamp("createdAt").defaultNow()
 });

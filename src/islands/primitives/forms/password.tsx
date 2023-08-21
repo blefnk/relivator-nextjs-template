@@ -1,14 +1,12 @@
 "use client";
 
-import type { InputProps } from "~/islands/primitives/forms/input";
-
 import * as React from "react";
 
-import { cn } from "~/utils/server/fmt";
-
 import { Button } from "~/islands/primitives/button";
+import type { InputProps } from "~/islands/primitives/forms/input";
 import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
+import { cn } from "~/utils/server/fmt";
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {

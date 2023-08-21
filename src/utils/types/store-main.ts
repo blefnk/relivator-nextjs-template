@@ -1,12 +1,10 @@
-import type { cartItemSchema, checkoutItemSchema } from "~/schema/zod/cart";
-
 import { type FileWithPath } from "react-dropzone";
 import { type z } from "zod";
 
-import { type Product } from "~/data/db/schema";
-
+import type { Product, Store } from "~/data/db/schema";
+import { type userPrivateMetadataSchema } from "~/data/zod/auth";
+import type { cartItemSchema, checkoutItemSchema } from "~/data/zod/cart";
 import { type Icons } from "~/islands/primitives/icons";
-import { type userPrivateMetadataSchema } from "~/schema/zod/auth";
 
 export interface NavItem {
   title: string;
@@ -67,6 +65,14 @@ export interface DataTableFilterableColumn<TData>
   options: Option[];
 }
 
+export interface CuratedStore {
+  id: Store["id"];
+  name: Store["name"];
+  description?: Store["description"];
+  stripeAccountId?: Store["stripeAccountId"];
+  productCount?: number;
+}
+
 export type CartItem = z.infer<typeof cartItemSchema>;
 
 export type CheckoutItem = z.infer<typeof checkoutItemSchema>;
@@ -94,5 +100,13 @@ export interface SubscriptionPlan {
   features: string[];
   stripePriceId: string;
   price: number;
-  isCanceled?: boolean;
+}
+
+export interface UserSubscriptionPlan extends SubscriptionPlan {
+  stripeSubscriptionId?: string | null;
+  stripeCurrentPeriodEnd?: string | null;
+  stripeCustomerId?: string | null;
+  isSubscribed: boolean;
+  isCanceled: boolean;
+  isActive: boolean;
 }

@@ -1,7 +1,7 @@
-import type { ClassValue } from "clsx";
-
+import os from "os";
 import { isClerkAPIResponseError } from "@clerk/nextjs";
 import { env } from "~/env.mjs";
+import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 import dayjs from "dayjs";
 import { toast } from "sonner";
@@ -24,7 +24,7 @@ export function formatPrice(
   }).format(Number(price));
 }
 
-export function formatDate(date: Date | string) {
+export function formatDate(date: Date | string | number) {
   return dayjs(date).format("MMMM D, YYYY");
 }
 
@@ -78,7 +78,7 @@ export function isArrayOfFile(files: unknown): files is File[] {
 }
 
 export function absoluteUrl(path: string) {
-  return `${env.NEXT_PUBLIC_URL_AUTHJS}${path}`;
+  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
 
 export function catchError(err: unknown) {
@@ -107,8 +107,4 @@ export function catchClerkError(err: unknown) {
   } else {
     return toast.error(unknownErr);
   }
-}
-
-export function isMacOs() {
-  return window.navigator.userAgent.includes("Mac");
 }

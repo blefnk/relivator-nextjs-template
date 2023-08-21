@@ -1,5 +1,4 @@
 import { ImageResponse } from "next/server";
-
 import { BRAND_NAME } from "~/app";
 
 export const alt = BRAND_NAME;

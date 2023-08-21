@@ -4,11 +4,12 @@
 /node_modules
 
 # next.js
-/.next/
-/out/
+/.next
+/out
 
 # production
 /build
+/dist
 
 # typescript
 next-env.d.ts

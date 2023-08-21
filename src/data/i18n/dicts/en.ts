@@ -1,4 +1,5 @@
 import type { LocalizationResource } from "@clerk/types";
+
 import type { DeepStringify } from "~/utils/server/string";
 
 const dictionary = {
@@ -83,8 +84,7 @@ const dictionary = {
         },
         files: {
           title: "Authentication",
-          description:
-            "Middleware authentication using Clerk, Auth.js, or Lucia."
+          description: "Middleware authentication using Clerk."
         },
         devtools: {
           title: "Subscriptions",
@@ -99,8 +99,9 @@ const dictionary = {
           second: "Explore our codebase on"
         },
         "stars#one": "[GitHub]: This project has only one star... 😢",
-        "stars#few": "[GitHub]: This project already has {count} stars! 😍",
-        "stars#other": "[GitHub]: This project already has {count} stars! 😍"
+        "stars#few": "[GitHub]: This project has {count} stars! 😍",
+        "stars#many": "[GitHub]: This project has {count} stars! 😍",
+        "stars#other": "[GitHub]: This project has {count} stars! 😍"
       }
     },
     about: {

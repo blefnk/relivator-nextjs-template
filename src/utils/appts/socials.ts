@@ -1,6 +1,6 @@
 import { FaDiscord, FaFacebook, FaGithub, FaYoutube } from "react-icons/fa";
 
-import { XTwitterIcon } from "./islands/twitter-x-icon";
+import { XTwitterIcon } from "~/islands/primitives/icons";
 
 // Define the keys (or network names) we will use to identify each platform.
 export type NetworkKey = keyof typeof networkDefaults;

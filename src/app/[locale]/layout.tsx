@@ -1,17 +1,13 @@
 import { Inter } from "next/font/google";
-
 import { ClerkProvider } from "@clerk/nextjs";
 import { siteConfig } from "~/app";
 
 import { defaultLocale, localeList, locales } from "~/data/i18n";
-import { GenerateMetadata } from "~/utils/types/metadata";
-
 import { ClientProviders } from "~/islands/common/client-providers";
+import { GenerateMetadata } from "~/utils/types/metadata";
 
 import "~/styles/globals.css";
 
-import { UnifiedBleverseFooter } from "~/utils/appts/islands/unified-bleverse-footer";
-import { UnifiedBleverseHeader } from "~/utils/appts/islands/unified-bleverse-header";
 import { PageParams } from "~/utils/types/page-params";
 import { WithChildren } from "~/utils/types/with-children";
 
@@ -93,11 +89,7 @@ export default async function RootLayout({
           className="grid min-h-screen grid-rows-[4rem,1fr,min-content] bg-background text-foreground antialiased"
           style={inter.style}
         >
-          <ClientProviders locale={params.locale}>
-            <UnifiedBleverseHeader />
-            {children}
-            <UnifiedBleverseFooter />
-          </ClientProviders>
+          <ClientProviders locale={params.locale}>{children}</ClientProviders>
         </body>
       </html>
     </ClerkProvider>

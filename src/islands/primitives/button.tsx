@@ -1,8 +1,6 @@
-import type { VariantProps } from "tailwind-variants";
-
 import { forwardRef } from "react";
-
 import { Slot } from "@radix-ui/react-slot";
+import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
 
 export const ButtonStyles = tv({

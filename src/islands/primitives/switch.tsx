@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef } from "react";
-
 import * as SwitchPrimitives from "@radix-ui/react-switch";
 import { tv } from "tailwind-variants";
 

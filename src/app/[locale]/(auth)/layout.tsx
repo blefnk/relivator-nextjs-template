@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { siteConfig } from "~/utils/appts/config/site";
+import { siteConfig } from "~/utils/appts/site";
 
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
 import { Icons } from "~/islands/primitives/icons";
@@ -16,7 +16,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
       <AspectRatio ratio={16 / 9}>
         {/* <Image
           src="/images/auth-layout.webp"
-          alt="A skateboarder doing a high drop"
+          alt="Image"
           fill
           className="absolute inset-0 object-cover"
           priority
@@ -27,7 +27,6 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           href="/"
           className="absolute left-8 top-6 z-20 flex items-center text-lg font-bold tracking-tight"
         >
-          <Icons.logo className="mr-2 h-6 w-6" aria-hidden="true" />
           <span>{siteConfig.name}</span>
         </Link>
         <div className="absolute bottom-6 left-8 z-20 line-clamp-1 text-base">

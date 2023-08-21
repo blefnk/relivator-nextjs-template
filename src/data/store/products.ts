@@ -1,6 +1,5 @@
-import type { Option } from "~/utils/types/store-main";
-
 import { type Product } from "~/data/db/schema";
+import type { Option } from "~/utils/types/store-main";
 
 export const sortOptions = [
   { label: "Date: Old to new", value: "createdAt.asc" },
@@ -22,7 +21,55 @@ export const sortOptions = [
 
 export const productCategories = [
   {
-    title: "apparel",
+    title: "skateboards",
+    image: "/images/skateboard-one.webp",
+    subcategories: [
+      {
+        title: "Decks",
+        description: "The board itself.",
+        image: "/images/deck-one.webp",
+        slug: "decks"
+      },
+      {
+        title: "Wheels",
+        description: "The wheels that go on the board.",
+        image: "/images/wheel-one.webp",
+        slug: "wheels"
+      },
+      {
+        title: "Trucks",
+        description: "The trucks that go on the board.",
+        image: "/images/truck-one.webp",
+        slug: "trucks"
+      },
+      {
+        title: "Bearings",
+        description: "The bearings that go in the wheels.",
+        image: "/images/bearing-one.webp",
+        slug: "bearings"
+      },
+      {
+        title: "Griptape",
+        description: "The griptape that goes on the board.",
+        image: "/images/griptape-one.webp",
+        slug: "griptape"
+      },
+      {
+        title: "Hardware",
+        description: "The hardware that goes on the board.",
+        image: "/images/hardware-one.webp",
+        slug: "hardware"
+      },
+      {
+        title: "Tools",
+        description: "The tools that go with the board.",
+        image: "/images/tool-one.webp",
+        slug: "tools"
+      }
+    ]
+  },
+  {
+    title: "clothing",
     image: "/images/clothing-one.webp",
     subcategories: [
       {
@@ -49,11 +96,6 @@ export const productCategories = [
         title: "Hats",
         description: "Top off your look with stylish and laid-back hats.",
         slug: "hats"
-      },
-      {
-        title: "Socks",
-        description: "Keep your feet comfy and stylish with our rad socks.",
-        slug: "socks"
       }
     ]
   },
@@ -77,50 +119,58 @@ export const productCategories = [
         slug: "slip-ons"
       },
       {
-        title: "Performance",
+        title: "Pros",
         description: "Performance-driven rad shoes for the pros.",
-        slug: "performance-shoes"
+        slug: "pros"
       },
       {
         title: "Classics",
         description: "Timeless style with rad classic shoes.",
-        slug: "classic-shoes"
+        slug: "classics"
       }
     ]
   },
   {
     title: "accessories",
-    image: "/images/accessories-one.webp",
+    image: "/images/backpack-one.webp",
     subcategories: [
       {
-        title: "Belts",
-        description: "Complete your look with stylish belts.",
-        slug: "belts"
+        title: "Skate Tools",
+        description:
+          "Essential tools for maintaining your skateboard, all rad.",
+        slug: "skate-tools"
       },
       {
-        title: "Jewelry",
-        description: "Elevate your style with trendy jewelry.",
-        slug: "jewelry"
+        title: "Bushings",
+        description: "Upgrade your ride with our rad selection of bushings.",
+        slug: "bushings"
       },
       {
-        title: "Bags",
-        description: "Carry your essentials in style with our bags.",
-        slug: "bags"
+        title: "Shock & Riser Pads",
+        description:
+          "Enhance your skateboard's performance with rad shock and riser pads.",
+        slug: "shock-riser-pads"
       },
       {
-        title: "Hats",
-        description: "Top off your look with stylish and laid-back hats.",
-        slug: "hats"
+        title: "Skate Rails",
+        description:
+          "Add creativity and style to your tricks with our rad skate rails.",
+        slug: "skate-rails"
       },
       {
-        title: "Sunglasses",
-        description: "Protect your eyes in style with rad sunglasses.",
-        slug: "sunglasses"
+        title: "Wax",
+        description: "Keep your board gliding smoothly with our rad skate wax.",
+        slug: "wax"
       },
       {
-        title: "Scarves",
-        description: "Stay warm and stylish with our rad scarves.",
-        slug: "scarves"
+        title: "Socks",
+        description: "Keep your feet comfy and stylish with our rad socks.",
+        slug: "socks"
+      },
+      {
+        title: "Backpacks",
+        description: "Carry your gear in style with our rad backpacks.",
+        slug: "backpacks"
       }
     ]
   }

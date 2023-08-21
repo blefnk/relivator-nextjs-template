@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
+  "style": "new-york",
   "rsc": true,
   "tsx": true,
   "tailwind": {
@@ -10,7 +10,7 @@
     "cssVariables": true
   },
   "aliases": {
-    "components": "~/islands/common",
-    "utils": "~/utils/global"
+    "components": "~/islands",
+    "utils": "~/utils/server"
   }
 }

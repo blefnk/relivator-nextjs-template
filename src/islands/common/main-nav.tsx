@@ -1,45 +1,143 @@
 "use client";
 
+import type { MainNavItem } from "~/utils/types/store-main";
+
+import * as React from "react";
 import Link from "next/link";
 
-import { REPOSITORY_URL } from "~/app";
+import { siteConfig } from "~/utils/appts/site";
+import { cn } from "~/utils/server/fmt";
 
-import { useI18n } from "~/data/i18n/client";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle
+} from "~/islands/common/nav-menu";
+import { Icons } from "~/islands/primitives/icons";
 
-import { useToast } from "~/islands/primitives/toast/use-toast";
+interface MainNavProps {
+  items?: MainNavItem[];
+}
 
-export function MainNav() {
-  const { toast } = useToast();
-  const t = useI18n();
-
+export function MainNav({ items }: MainNavProps) {
   return (
-    <div className="flex items-center space-x-6 text-sm font-medium capitalize text-foreground/60">
+    <div className="hidden gap-6 lg:flex">
       <Link
-        className="transition-colors hover:text-foreground/80"
-        href="/features"
+        aria-label="Home"
+        href="/"
+        className="hidden items-center space-x-2 lg:flex"
       >
-        {t("general.tools")}
+        <span className="hidden font-bold lg:inline-block">
+          {siteConfig.name}
+        </span>
       </Link>
-      <button
-        onClick={() =>
-          toast({
-            title: t("islands.navbar.pricing.toast.title"),
-            description: t("islands.navbar.pricing.toast.description")
-          })
-        }
-        className="capitalize transition-colors hover:text-foreground/80"
-      >
-        {t("general.pricing")}
-      </button>
-      <Link
-        className="transition-colors hover:text-foreground/80"
-        href="/about"
-      >
-        {t("general.about")}
-      </Link>
-      <Link href={REPOSITORY_URL} target="_blank" rel="noreferrer">
-        GitHub
-      </Link>
+      <NavigationMenu>
+        <NavigationMenuList>
+          {items?.[0]?.items ? (
+            <NavigationMenuItem>
+              <NavigationMenuTrigger className="h-auto">
+                {items[0].title}
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <a
+                        aria-label="Home"
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                        href="/"
+                      >
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          {siteConfig.name}
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          {siteConfig.description}
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  {items[0].items.map((item) => (
+                    <ListItem
+                      key={item.title}
+                      title={item.title}
+                      href={item.href}
+                    >
+                      {item.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ) : null}
+          {items
+            ?.filter((item) => item.title !== items[0]?.title)
+            .map((item) =>
+              item?.items ? (
+                <NavigationMenuItem key={item.title}>
+                  <NavigationMenuTrigger className="h-auto capitalize">
+                    {item.title}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {item.items.map((item) => (
+                        <ListItem
+                          key={item.title}
+                          title={item.title}
+                          href={item.href}
+                        >
+                          {item.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ) : (
+                item.href && (
+                  <NavigationMenuItem key={item.title}>
+                    <Link href={item.href} legacyBehavior passHref>
+                      <NavigationMenuLink
+                        className={cn(navigationMenuTriggerStyle(), "h-auto")}
+                      >
+                        {item.title}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                )
+              )
+            )}
+        </NavigationMenuList>
+      </NavigationMenu>
     </div>
   );
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, href, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <Link
+          ref={ref}
+          href={String(href)}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </Link>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";

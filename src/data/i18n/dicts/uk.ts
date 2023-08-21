@@ -84,7 +84,7 @@ const dictionary = {
         files: {
           title: "Аутентифікація",
           description:
-            "Проміжне програмне забезпечення для аутентифікації за допомогою Clerk та NextAuth."
+            "Проміжне програмне забезпечення для аутентифікації за допомогою Clerk."
         },
         devtools: {
           title: "Підписки",
@@ -99,8 +99,9 @@ const dictionary = {
           second: "Досліджуйте наш код на"
         },
         "stars#one": "[GitHub]: Цей проєкт має лише одну зіроньку... 😢",
-        "stars#few": "[GitHub]: Цей проєкт вже має аж {count} зіроньки! 😍",
-        "stars#other": "[GitHub]: Цей проєкт вже має аж {count} зіроньки! 😍"
+        "stars#few": "[GitHub]: Цей проєкт вже має аж {count} зірочки! 😍",
+        "stars#many": "[GitHub]: Цей проєкт вже має аж {count} зірочки! 😍",
+        "stars#other": "[GitHub]: Цей проєкт вже має аж {count} зірочки! 😍"
       }
     },
     about: {

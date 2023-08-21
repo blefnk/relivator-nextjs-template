@@ -1,12 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
-
 // import { authMiddleware, clerkClient } from "@clerk/nextjs";
-import { clerkClient } from "@clerk/nextjs";
+// import { type UserRole } from "~/utils/types/store-main";
+
+import { NextRequest, NextResponse } from "next/server";
 import { authMiddleware } from "@clerk/nextjs/server";
 import { createI18nMiddleware } from "next-international/middleware";
 
 import { defaultLocale, localeList } from "~/data/i18n";
-import { type UserRole } from "~/utils/types/store-main";
 
 // Set the available locales here. These values should match a .json file in /messages.
 // The const `locales` cannot be set dynamically based on files in /messages,
@@ -45,8 +44,10 @@ export default authMiddleware({
     // this can be used to set the active menu/tab item.
     // See issue: https://github.com/vercel/next.js/issues/43704
     request.headers.set("x-pathname", request.nextUrl.pathname);
+
     // ...
     const response = handleI18nRouting(request);
+
     // ...
     return response;
   },
@@ -58,28 +59,35 @@ export default authMiddleware({
       //  For public routes, we don't need to do anything
       return NextResponse.next();
     }
+
     // ...
     const url = new URL(req.nextUrl.origin);
+
+    // ...
     if (!auth.userId) {
       //  If user tries to access a private route without being authenticated,
       //  redirect them to the sign in page
       url.pathname = "/sign-in";
       return NextResponse.redirect(url);
     }
+
+    // !! FIX: CLERK BUILD ERRORS
+    // !! if you want to uncomment:
+    // !! remove .next folder first
     // Set the user's role to user if it doesn't exist
-    // !?! It costs too many middleware size for app bundling
-    const user = await clerkClient.users.getUser(auth.userId);
-    if (!user) {
+    // It costs too many middleware size for app bundling
+    // const user = await clerkClient.users.getUser(auth.userId);
+    /* if (!user) {
       throw new Error("User not found.");
-    }
+    } */
     // If the user doesn't have a role, set it to user
-    if (!user.privateMetadata.role) {
+    /* if (!user.privateMetadata.role) {
       await clerkClient.users.updateUserMetadata(auth.userId, {
         privateMetadata: {
           role: "user" satisfies UserRole
         }
       });
-    }
+    } */
   },
 
   // !! Public routes are routes that

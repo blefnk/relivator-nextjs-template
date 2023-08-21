@@ -7,7 +7,7 @@ export const env = createEnv({
      * Specify your server-side environment variables schema here. This way you can ensure the app
      * isn't built with invalid env vars.
      */
-    NEXT_SECRET_URL_ORM_DRIZZLE: z.string(),
+    DATABASE_URL: z.string(),
     NODE_ENV: z.enum(["development", "test", "production"]),
     CLERK_SECRET_KEY: z.string(),
     RESEND_API_KEY: z.string(),
@@ -26,7 +26,7 @@ export const env = createEnv({
      * isn't built with invalid env vars. To expose them to the client, prefix them with
      * `NEXT_PUBLIC_`.
      */
-    NEXT_PUBLIC_URL_AUTHJS: z.string().min(1),
+    NEXT_PUBLIC_APP_URL: z.string().min(1),
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string()
   },
   // !! ===========================================================================================
@@ -35,8 +35,8 @@ export const env = createEnv({
      * You can't destruct `process.env` as a regular object during the Next.js edge runtime (e.g.
      * with middleware) or client-side, so we need to destruct it manually.
      */
-    NEXT_SECRET_URL_ORM_DRIZZLE: process.env.NEXT_SECRET_URL_ORM_DRIZZLE,
-    NEXT_PUBLIC_URL_AUTHJS: process.env.NEXT_PUBLIC_URL_AUTHJS,
+    DATABASE_URL: process.env.DATABASE_URL,
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NODE_ENV: process.env.NODE_ENV,
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
       process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
@@ -58,7 +58,7 @@ export const env = createEnv({
   skipValidation: !!process.env.SKIP_ENV_VALIDATION
 });
 
-/* // ?? [ TODO: CONVERT ZOD TO VALIDABOT ] =======================================================
+/* // ?? [ TODO: CONVERT ZOD TO VALIBOT ] =======================================================
 
 import { object, string, url, minLength } from "valibot";
 
@@ -66,11 +66,11 @@ const msg = "error -> Please check your env.";
 
 export const createEnv = object({
   server: object({
-    NEXT_SECRET_URL_ORM_DRIZZLE: string([minLength(1, msg), url(msg)]),
+    DATABASE_URL: string([minLength(1, msg), url(msg)]),
   }),
 
   client: object({
-    NEXT_PUBLIC_URL_AUTHJS: string([minLength(1, msg), url(msg)]),
+    NEXT_PUBLIC_APP_URL: string([minLength(1, msg), url(msg)]),
   }),
 
   runtimeEnv: object({}),

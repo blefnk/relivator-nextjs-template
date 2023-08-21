@@ -1,5 +1,4 @@
 import type { Route } from "next";
-
 import { REPOSITORY_URL } from "~/app";
 
 export const navItems = {

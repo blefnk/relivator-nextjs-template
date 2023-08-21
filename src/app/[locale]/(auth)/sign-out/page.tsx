@@ -1,11 +1,10 @@
 import { type Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 import { currentUser } from "@clerk/nextjs";
 import { env } from "~/env.mjs";
 
-import { SignInForm } from "~/islands/account/sign-in-form";
+import { SignInForm } from "~/forms/account/sign-in";
 import { OAuthSignIn } from "~/islands/account/sign-in-oauth";
 import {
   Card,
@@ -18,7 +17,7 @@ import {
 import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_URL_AUTHJS),
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Sign In",
   description: "Sign in to your account"
 };
@@ -34,6 +33,9 @@ export default async function SignInPage() {
           <CardTitle className="text-2xl">Sign in</CardTitle>
           <CardDescription>
             Choose your preferred sign in method
+            <br />
+            <span className="text-red">(!)</span> Facebook is currently
+            unavailable
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">

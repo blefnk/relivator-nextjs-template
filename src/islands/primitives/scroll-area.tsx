@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef } from "react";
-
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import { tv } from "tailwind-variants";
 

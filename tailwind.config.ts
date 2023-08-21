@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
@@ -10,10 +9,16 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px"
+        "2xl": "1700px"
       }
     },
     extend: {
+      screens: {
+        xs: "380px"
+      },
+      flex: {
+        full: "0 0 100%"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -75,5 +80,5 @@ export default {
       }
     }
   },
-  plugins: [require("tailwindcss-animate")]
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")]
 } satisfies Config;

@@ -32,7 +32,7 @@ export const BASE_URL =
   process.env["NODE_ENV"] === "production" ? baseUrl : "http://localhost:3000";
 export const BRAND_NAME = "Relivator";
 export const BRAND_DESCRIPTION =
-  "A Next.js 13 app with auth and payments, built with PlanetScale, Drizzle ORM, Lucia and Tailwind";
+  "A Next.js 13 app with auth and payments, built with Shadcn/ui, PlanetScale, Drizzle ORM, Tailwind, and more";
 
 export const OWNER_ROLE = "owner";
 export const ADMIN_ROLE = "admin";
