@@ -1,13 +1,9 @@
 "use client";
 
-import type { MainNavItem, SidebarNavItem } from "~/utils/types/store-main";
-
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { siteConfig } from "~/utils/appts/site";
-import { cn } from "~/utils/server/fmt";
+import { siteConfig } from "~/app";
 
 import {
   Accordion,
@@ -19,6 +15,8 @@ import { Button } from "~/islands/primitives/button";
 import { Icons } from "~/islands/primitives/icons";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "~/islands/primitives/sheet";
+import { cn } from "~/utils/server/fmt";
+import type { MainNavItem, SidebarNavItem } from "~/utils/types/store-main";
 
 interface MobileNavProps {
   mainNavItems?: MainNavItem[];
@@ -38,6 +36,7 @@ export function MobileNav({ mainNavItems, sidebarNavItems }: MobileNavProps) {
         >
           <Icons.menu className="h-6 w-6" />
           <span className="sr-only">Toggle Menu</span>
+          <span className="ml-2 font-semibold tracking-wide">Relivator</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pl-1 pr-0">

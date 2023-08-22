@@ -2,7 +2,7 @@
 
 **Crafting the world's most iconic Next.js starter.**
 
-🔥 Next.js 13 Store Starter. App Router, TypeScript, shadcn/ui, i18n, T3, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons, & More. Download it and enjoy!
+🔥 Next.js 13 Starter. App Router, TypeScript, shadcn/ui, i18n, T3, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons, & More. Get it now and enjoy!
 
 _You can also check [our another free Next.js 13 starter](https://github.com/blefnk/reliverse). This one starter offers you tech used in the current starter plus also: Prisma, Lucia, Auth.js, and more. It means there we're very experimentally trying to implement all of the important and most used tech together._
 
@@ -10,7 +10,7 @@ _You can also check [our another free Next.js 13 starter](https://github.com/ble
 
 **The Bleverse Framework for the Next.js!**
 
-Step into the future with the ultimate Next.js starter. Everything has been set up for you. It's more than just code; it's a journey. You're not on this journey alone. Move faster than ever. It can be proudly called a website builder, although it certainly isn't, at least for now 😏. We've laid the groundwork; now, grab it, dive in and accelerate your development.
+Step into the future with the ultimate Next.js starter. Everything has been set up for you. It's more than just code; it's a journey. You're not on this journey alone. Move faster than ever. We've laid the groundwork; now, grab it, dive in and accelerate your development.
 
 This is our experimental space where we tinkered with the new Next.js app directory. So, while it's all fun and exploration, there might be a few quirks here and there. Stumbled upon something odd or just feeling generous? DM us on Twitter, sorry, on X [@bleverse_com](https://x.com/bleverse_com) or raise an issue right here. If you've got some coding magic up your sleeve, contributions are always celebrated! 🎉
 
@@ -176,19 +176,21 @@ Know how to migrate your project to the current starter. Migration guides are bo
 
 ### Original Next.js 13
 
-The content of this section is not yet ready. Check back in a few days.
+The content of this section is not yet ready. Check back in a few days. Possible will be moved to [the project wiki](/blefnk/relivator/wiki).
 
 ### Original T3 Stack
 
-The content of this section is not yet ready. Check back in a few days.
+The content of this section is not yet ready. Check back in a few days. Possible will be moved to [the project wiki](/blefnk/relivator/wiki).
 
 ### Shadcn Taxonomy
 
-The content of this section is not yet ready. Check back in a few days.
+The content of this section is not yet ready. Check back in a few days. Possible will be moved to [the project wiki](/blefnk/relivator/wiki).
 
-## 📫 Contributing to Bleverse Relivator
+## 🙌 Contributing & Credits
 
-Contributions are welcome! Please open an issue if you have any questions or suggestions. Your contributions will be acknowledged. See the [contributing guide](./CONTRIBUTING.md) for more information.
+Contributions are welcome! We thank everyone for their contributions to this repository. Your contributions will be acknowledged. Please open an issue if you have any questions or suggestions. See the [contributing guide](./CONTRIBUTING.md) for more information.
+
+Please visit [this special wiki page](/blefnk/relivator/wiki/Credits-&-Collaborators) to see the full list of credits and contributors.
 
 **To contribute to Bleverse Relivator, follow these steps:**
 
@@ -199,10 +201,6 @@ Contributions are welcome! Please open an issue if you have any questions or sug
 5. Create the pull request.
 
 Or, see the GitHub docs on [how to create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
-
-## 🙌 Kudos to Collaborators
-
-We thank everyone for their contributions to this repository. Please visit [the releases](/releases) page to see the full list of contributors and their authors.
 
 ## 📄 License
 

@@ -1,7 +1,8 @@
 import { type Metadata } from "next";
 import { env } from "~/env.mjs";
 
-// import { ResetPasswordStep2Form } from "~/islands/account/reset/password-step-two"
+import { ResetPasswordSecondForm } from "~/forms/reset-password-form-two";
+import { Shell } from "~/islands/common/shells/shell";
 import {
   Card,
   CardContent,
@@ -9,7 +10,6 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: "Enter your email to reset your password"
 };
 
-export default function ResetPasswordStep2Page() {
+export default function ResetPasswordSecondPage() {
   return (
     <Shell className="max-w-lg">
       <Card>
@@ -27,7 +27,9 @@ export default function ResetPasswordStep2Page() {
             Enter your email address and we will send you a verification code
           </CardDescription>
         </CardHeader>
-        <CardContent>{/* <ResetPasswordStep2Form /> */}</CardContent>
+        <CardContent>
+          <ResetPasswordSecondForm />
+        </CardContent>
       </Card>
     </Shell>
   );

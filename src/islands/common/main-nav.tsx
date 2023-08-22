@@ -1,12 +1,9 @@
 "use client";
 
-import type { MainNavItem } from "~/utils/types/store-main";
-
 import * as React from "react";
 import Link from "next/link";
-
-import { siteConfig } from "~/utils/appts/site";
-import { cn } from "~/utils/server/fmt";
+import { siteConfig } from "~/app";
+import { ActivitySquare } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -17,7 +14,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from "~/islands/common/nav-menu";
-import { Icons } from "~/islands/primitives/icons";
+import { cn } from "~/utils/server/fmt";
+import type { MainNavItem } from "~/utils/types/store-main";
 
 interface MainNavProps {
   items?: MainNavItem[];
@@ -31,6 +29,7 @@ export function MainNav({ items }: MainNavProps) {
         href="/"
         className="hidden items-center space-x-2 lg:flex"
       >
+        <ActivitySquare className="h-6 w-6" />
         <span className="hidden font-bold lg:inline-block">
           {siteConfig.name}
         </span>

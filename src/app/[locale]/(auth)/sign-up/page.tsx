@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { env } from "~/env.mjs";
 
-import { SignInForm } from "~/forms/account/sign-in";
-import { OAuthSignIn } from "~/islands/account/sign-in-oauth";
+import { SignUpForm } from "~/forms/signup-form";
+import { OAuthSignIn } from "~/islands/account/oauth-signin";
+import { Shell } from "~/islands/common/shells/shell";
 import {
   Card,
   CardContent,
@@ -14,15 +15,14 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: "Sign In",
-  description: "Sign in to your account"
+  title: "Sign Up",
+  description: "Sign up for an account"
 };
 
-export default async function SignInPage() {
+export default async function SignUpPage() {
   const user = await currentUser();
   if (user) redirect("/");
 
@@ -30,12 +30,9 @@ export default async function SignInPage() {
     <Shell className="max-w-lg">
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Sign in</CardTitle>
+          <CardTitle className="text-2xl">Sign up</CardTitle>
           <CardDescription>
-            Choose your preferred sign in method
-            <br />
-            <span className="text-red">(!)</span> Facebook is currently
-            unavailable
+            Choose your preferred sign up method
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -50,28 +47,19 @@ export default async function SignInPage() {
               </span>
             </div>
           </div>
-          <SignInForm />
+          <SignUpForm />
         </CardContent>
-        <CardFooter className="flex flex-wrap items-center justify-between gap-2">
+        <CardFooter>
           <div className="text-sm text-muted-foreground">
-            <span className="mr-1 hidden sm:inline-block">
-              Don&apos;t have an account?
-            </span>
+            Already have an account?{" "}
             <Link
-              aria-label="Sign up"
-              href="/sign-up"
+              aria-label="Sign in"
+              href="/sign-in"
               className="text-primary underline-offset-4 transition-colors hover:underline"
             >
-              Sign up
+              Sign in
             </Link>
           </div>
-          <Link
-            aria-label="Reset password"
-            href="/account/reset/password/step-one"
-            className="text-sm text-primary underline-offset-4 transition-colors hover:underline"
-          >
-            Reset password
-          </Link>
         </CardFooter>
       </Card>
     </Shell>

@@ -1,13 +1,13 @@
 import * as React from "react";
-import * as LabelPrimitive from "@radix-ui/react-label";
+import type * as LabelPrimitive from "@radix-ui/react-label";
 import { Slot } from "@radix-ui/react-slot";
 import {
   Controller,
-  ControllerProps,
-  FieldPath,
-  FieldValues,
   FormProvider,
-  useFormContext
+  useFormContext,
+  type ControllerProps,
+  type FieldPath,
+  type FieldValues
 } from "react-hook-form";
 
 import { Label } from "~/islands/primitives/label";
@@ -134,7 +134,7 @@ const FormDescription = React.forwardRef<
     <p
       ref={ref}
       id={formDescriptionId}
-      className={cn("text-sm text-muted-foreground", className)}
+      className={cn("text-[0.8rem] text-muted-foreground", className)}
       {...props}
     />
   );
@@ -156,7 +156,7 @@ const FormMessage = React.forwardRef<
     <p
       ref={ref}
       id={formMessageId}
-      className={cn("text-sm font-medium text-destructive", className)}
+      className={cn("text-[0.8rem] font-medium text-destructive", className)}
       {...props}
     >
       {body}
@@ -164,6 +164,32 @@ const FormMessage = React.forwardRef<
   );
 });
 FormMessage.displayName = "FormMessage";
+
+const UncontrolledFormMessage = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement> & {
+    message?: string;
+  }
+>(({ className, children, message, ...props }, ref) => {
+  const { formMessageId } = useFormField();
+  const body = message ? String(message) : children;
+
+  if (!body) {
+    return null;
+  }
+
+  return (
+    <p
+      ref={ref}
+      id={formMessageId}
+      className={cn("text-sm font-medium text-destructive", className)}
+      {...props}
+    >
+      {body}
+    </p>
+  );
+});
+UncontrolledFormMessage.displayName = "UncontrolledFormMessage";
 
 export {
   useFormField,
@@ -173,5 +199,6 @@ export {
   FormControl,
   FormDescription,
   FormMessage,
+  UncontrolledFormMessage,
   FormField
 };

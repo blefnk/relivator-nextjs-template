@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import { Button, buttonVariants } from "~/islands/primitives/button2";
+import { Button, buttonVariants } from "~/islands/primitives/button";
 import {
   DropdownMenu,
   DropdownMenuContent,

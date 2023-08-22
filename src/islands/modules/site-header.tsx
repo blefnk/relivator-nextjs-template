@@ -1,12 +1,18 @@
 import Link from "next/link";
 import type { User } from "@clerk/nextjs/server";
+import { settings, siteConfig } from "~/app";
+import { ActivitySquare, Github, Twitter } from "lucide-react";
+import type { VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
 
+import { getScopedI18n } from "~/data/i18n/server";
 import { Avatar, AvatarFallback, AvatarImage } from "~/islands/account/avatar";
 import { CartSheet } from "~/islands/account/cart/cart-sheet";
 import { MainNav } from "~/islands/common/main-nav";
 import { MobileNav } from "~/islands/common/mobile-nav";
 import { Combobox } from "~/islands/modules/combobox";
-import { Button, buttonVariants } from "~/islands/primitives/button2";
+import { ModeToggle } from "~/islands/modules/mode-toggle";
+import { Button, buttonVariants } from "~/islands/primitives/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,14 +24,27 @@ import {
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
 import { Icons } from "~/islands/primitives/icons";
-import { dashboardConfig } from "~/utils/appts/nav";
-import { siteConfig } from "~/utils/appts/site";
+import { dashboardConfig } from "~/utils/appts/dashboard";
 
-interface SiteHeaderProps {
+const NavbarStyles = tv({
+  base: "w-full border-b border-transparent bg-background/95 backdrop-blur-sm animate-in fade-in slide-in-from-top-full duration-slow",
+  variants: {
+    border: {
+      true: "border-border"
+    },
+    sticky: {
+      true: "sticky top-0 z-40"
+    }
+  }
+});
+
+export type SiteHeaderProps = {
   user: User | null;
-}
+} & VariantProps<typeof NavbarStyles>;
 
-export function SiteHeader({ user }: SiteHeaderProps) {
+export async function SiteHeader({ user, border, sticky }: SiteHeaderProps) {
+  const t = await getScopedI18n("islands");
+
   const initials = `${user?.firstName?.charAt(0) ?? ""} ${
     user?.lastName?.charAt(0) ?? ""
   }`;
@@ -34,8 +53,8 @@ export function SiteHeader({ user }: SiteHeaderProps) {
       ?.emailAddress ?? "";
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="container flex h-16 items-center">
+    <header className={NavbarStyles({ border, sticky })}>
+      <nav className="container flex h-16 items-center">
         <MainNav items={siteConfig.mainNav} />
         <MobileNav
           mainNavItems={siteConfig.mainNav}
@@ -44,6 +63,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
             <Combobox />
+            {settings.themeToggleEnabled && <ModeToggle />}
             <CartSheet />
             {user ? (
               <DropdownMenu>
@@ -107,7 +127,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/signout">
+                    <Link href="/sign-out">
                       <Icons.logout
                         className="mr-2 h-4 w-4"
                         aria-hidden="true"
@@ -120,7 +140,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
               </DropdownMenu>
             ) : (
               <Link
-                href="/signin"
+                href="/sign-in"
                 className={buttonVariants({
                   size: "sm"
                 })}
@@ -131,7 +151,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             )}
           </nav>
         </div>
-      </div>
+      </nav>
     </header>
   );
 }

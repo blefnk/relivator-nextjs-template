@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { env } from "~/env.mjs";
 
-import { SignInForm } from "~/forms/account/sign-in";
-import { OAuthSignIn } from "~/islands/account/sign-in-oauth";
+import { SignInForm } from "~/forms/signin-form";
+import { OAuthSignIn } from "~/islands/account/oauth-signin";
+import { Shell } from "~/islands/common/shells/shell";
 import {
   Card,
   CardContent,
@@ -14,7 +15,6 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -33,9 +33,6 @@ export default async function SignInPage() {
           <CardTitle className="text-2xl">Sign in</CardTitle>
           <CardDescription>
             Choose your preferred sign in method
-            <br />
-            <span className="text-red">(!)</span> Facebook is currently
-            unavailable
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
@@ -59,7 +56,7 @@ export default async function SignInPage() {
             </span>
             <Link
               aria-label="Sign up"
-              href="/sign-up"
+              href="/signup"
               className="text-primary underline-offset-4 transition-colors hover:underline"
             >
               Sign up
@@ -67,7 +64,7 @@ export default async function SignInPage() {
           </div>
           <Link
             aria-label="Reset password"
-            href="/account/reset/password/step-one"
+            href="/sign-in/reset-password"
             className="text-sm text-primary underline-offset-4 transition-colors hover:underline"
           >
             Reset password

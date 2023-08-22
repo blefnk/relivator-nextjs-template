@@ -17,8 +17,8 @@ const dictionary = {
         github: "Мій профіль на GitHub",
         twitter: "Мій профіль у Twitter"
       },
-      search: "Пошук...",
-      "search.placeholder": "Введіть команду або пошук",
+      search: "Пошук продуктів...",
+      "search.placeholder": "Спробуйте знайти продукт чи сторінку...",
       main: {
         tools: "функції",
         about: "про нас",
