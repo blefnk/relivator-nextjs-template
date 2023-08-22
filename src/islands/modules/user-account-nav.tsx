@@ -14,7 +14,7 @@ import { Icons } from "~/islands/primitives/icons";
 // import { UserAvatar } from "~/layout/user-avatar";
 // import { signOut } from "next-auth/react";
 
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   userName?: string;

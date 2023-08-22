@@ -13,7 +13,7 @@ import {
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
 import { Icons } from "~/islands/primitives/icons";
 import { Separator } from "~/islands/primitives/separator";
-import { formatDate } from "~/utils/server/fmt";
+import { formatDate } from "~/utils/server/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

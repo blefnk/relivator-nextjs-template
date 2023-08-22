@@ -14,7 +14,7 @@ import {
   PageHeaderHeading
 } from "~/islands/page-header";
 import { Separator } from "~/islands/primitives/separator";
-import { absoluteUrl } from "~/utils/server/fmt";
+import { absoluteUrl } from "~/utils/server/utils";
 
 interface PageProps {
   params: {

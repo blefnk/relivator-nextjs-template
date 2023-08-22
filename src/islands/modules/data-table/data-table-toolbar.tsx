@@ -9,7 +9,7 @@ import { DataTableFacetedFilter } from "~/islands/modules/data-table/data-table-
 import { DataTableViewOptions } from "~/islands/modules/data-table/data-table-view-options";
 import { Button, buttonVariants } from "~/islands/primitives/button";
 import { Input } from "~/islands/primitives/input";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn
@@ -77,7 +77,7 @@ export function DataTableToolbar<TData>({
             onClick={() => table.resetColumnFilters()}
           >
             Reset
-            <Cross2Icon className="ml-2 h-4 w-4" />
+            <Cross2Icon className="ml-2 h-4 w-4" aria-hidden="true" />
           </Button>
         )}
       </div>

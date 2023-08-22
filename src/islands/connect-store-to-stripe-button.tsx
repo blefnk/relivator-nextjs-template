@@ -5,7 +5,7 @@ import * as React from "react";
 import { Button } from "~/islands/primitives/button";
 import { Icons } from "~/islands/primitives/icons";
 import { createAccountLinkAction } from "~/utils/server/actions/stripe";
-import { catchError } from "~/utils/server/fmt";
+import { catchError } from "~/utils/server/utils";
 
 interface ConnectToStripeButtonProps {
   storeId: number;

@@ -9,7 +9,7 @@ import {
   AlertTitle
 } from "~/islands/primitives/alert";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 // These types are required to make the related components work with `useMDXComponent`
 // They used to work without these types, but now they don't for some reason

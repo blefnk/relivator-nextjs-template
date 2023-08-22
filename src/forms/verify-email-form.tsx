@@ -19,7 +19,7 @@ import {
 } from "~/islands/primitives/form";
 import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
-import { catchClerkError } from "~/utils/server/fmt";
+import { catchClerkError } from "~/utils/server/utils";
 
 type Inputs = z.infer<typeof verfifyEmailSchema>;
 

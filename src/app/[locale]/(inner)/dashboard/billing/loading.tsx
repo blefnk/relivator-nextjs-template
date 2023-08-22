@@ -11,7 +11,7 @@ import {
   CardHeader
 } from "~/islands/primitives/card";
 import { Skeleton } from "~/islands/primitives/skeleton";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 export default function BillingLoading() {
   return (

@@ -11,7 +11,7 @@ import {
   CardTitle
 } from "~/islands/primitives/card";
 import { Icons } from "~/islands/primitives/icons";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 interface ErrorCardProps extends React.ComponentPropsWithoutRef<typeof Card> {
   icon?: keyof typeof Icons;

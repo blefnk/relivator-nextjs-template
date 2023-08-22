@@ -33,7 +33,7 @@ import {
 import { Slider } from "~/islands/primitives/slider";
 import { ProductCard } from "~/islands/product-card";
 import { getSubcategories, sortOptions } from "~/utils/appts/products";
-import { cn, toTitleCase, truncate } from "~/utils/server/fmt";
+import { cn, toTitleCase, truncate } from "~/utils/server/utils";
 import type { Option } from "~/utils/types/store-main";
 
 interface ProductsProps extends React.HTMLAttributes<HTMLDivElement> {

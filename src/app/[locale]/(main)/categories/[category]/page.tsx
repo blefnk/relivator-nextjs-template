@@ -8,7 +8,7 @@ import {
 import { Products } from "~/islands/products";
 import { getProductsAction } from "~/utils/server/actions/product";
 import { getStoresAction } from "~/utils/server/actions/store";
-import { toTitleCase } from "~/utils/server/fmt";
+import { toTitleCase } from "~/utils/server/utils";
 
 interface CategoryPageProps {
   params: {

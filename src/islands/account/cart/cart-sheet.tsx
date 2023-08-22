@@ -15,7 +15,7 @@ import {
   SheetTrigger
 } from "~/islands/primitives/sheet";
 import { getCartAction } from "~/utils/server/actions/cart";
-import { formatPrice } from "~/utils/server/fmt";
+import { formatPrice } from "~/utils/server/utils";
 
 export async function CartSheet() {
   const cartLineItems = await getCartAction();

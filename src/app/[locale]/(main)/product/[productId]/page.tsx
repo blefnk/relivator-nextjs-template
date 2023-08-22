@@ -18,7 +18,7 @@ import {
 import { Separator } from "~/islands/primitives/separator";
 import { ProductCard } from "~/islands/product-card";
 import { ProductImageCarousel } from "~/islands/product-image-carousel";
-import { formatPrice, toTitleCase } from "~/utils/server/fmt";
+import { formatPrice, toTitleCase } from "~/utils/server/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

@@ -22,8 +22,8 @@ import {
 } from "~/islands/primitives/card";
 import { Icons } from "~/islands/primitives/icons";
 import { storeSubscriptionPlans } from "~/utils/appts/subs";
-import { cn, formatDate, formatPrice } from "~/utils/server/fmt";
 import { getUserSubscriptionPlan } from "~/utils/server/subs";
+import { cn, formatDate, formatPrice } from "~/utils/server/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

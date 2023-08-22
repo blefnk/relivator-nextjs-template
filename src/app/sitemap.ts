@@ -3,7 +3,7 @@ import { type MetadataRoute } from "next";
 import { productCategories } from "~/utils/appts/products";
 import { getProductsAction } from "~/utils/server/actions/product";
 import { getStoresAction } from "~/utils/server/actions/store";
-import { absoluteUrl } from "~/utils/server/fmt";
+import { absoluteUrl } from "~/utils/server/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const storesTransaction = await getStoresAction({

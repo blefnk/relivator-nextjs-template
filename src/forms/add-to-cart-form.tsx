@@ -19,7 +19,7 @@ import {
 import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
 import { addToCartAction } from "~/utils/server/actions/cart";
-import { catchError } from "~/utils/server/fmt";
+import { catchError } from "~/utils/server/utils";
 
 interface AddToCartFromProps {
   productId: number;

@@ -20,7 +20,7 @@ import {
 } from "~/islands/primitives/form";
 import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
-import { catchClerkError } from "~/utils/server/fmt";
+import { catchClerkError } from "~/utils/server/utils";
 
 type Inputs = z.infer<typeof checkEmailSchema>;
 
@@ -72,7 +72,7 @@ export function ResetPasswordForm() {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="rodneymullen180@gmail.com" {...field} />
+                <Input placeholder="email@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

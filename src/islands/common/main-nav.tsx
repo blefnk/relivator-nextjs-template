@@ -14,7 +14,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from "~/islands/common/nav-menu";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 import type { MainNavItem } from "~/utils/types/store-main";
 
 interface MainNavProps {

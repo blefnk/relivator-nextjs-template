@@ -32,8 +32,8 @@ import { Icons } from "~/islands/primitives/icons";
 import { ProductCard } from "~/islands/product-card";
 import { StoreCard } from "~/islands/store-card";
 import { productCategories } from "~/utils/appts/products";
-import { cn } from "~/utils/server/fmt";
 import { typography } from "~/utils/server/text";
+import { cn } from "~/utils/server/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -58,7 +58,7 @@ export default async function IndexPage() {
     .limit(4)
     .leftJoin(products, eq(products.storeId, stores.id))
     .groupBy(stores.id)
-    .orderBy(desc(sql<number>`count(*)`), desc(stores.stripeAccountId));
+    .orderBy(desc(stores.stripeAccountId), desc(sql<number>`count(*)`));
 
   async function getGithubStars(): Promise<number | null> {
     try {
@@ -82,6 +82,7 @@ export default async function IndexPage() {
 
       return data.stargazers_count;
     } catch (err) {
+      console.error(err);
       return null;
     }
   }

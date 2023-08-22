@@ -1,6 +1,5 @@
 import * as React from "react";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
-import { type Column } from "@tanstack/react-table";
 
 import { Badge } from "~/islands/primitives/badge";
 import { Button } from "~/islands/primitives/button";
@@ -22,24 +21,29 @@ import { Separator } from "~/islands/primitives/separator";
 import { cn } from "~/utils/server/utils";
 import { type Option } from "~/utils/types/store-main";
 
-interface DataTableFacetedFilter<TData, TValue> {
-  column?: Column<TData, TValue>;
+interface FacetedFilterProps {
   title?: string;
+  filterValues: string[];
+  setFilterValues: React.Dispatch<React.SetStateAction<string[]>>;
   options: Option[];
 }
 
-export function DataTableFacetedFilter<TData, TValue>({
-  column,
+export function FacetedFilter({
   title,
+  filterValues,
+  setFilterValues,
   options
-}: DataTableFacetedFilter<TData, TValue>) {
-  const selectedValues = new Set(column?.getFilterValue() as string[]);
+}: FacetedFilterProps) {
+  const selectedValues = React.useMemo(
+    () => new Set(filterValues),
+    [filterValues]
+  );
 
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          aria-label="Filter rows"
+          aria-label="Filter data"
           variant="outline"
           size="sm"
           className="h-8 border-dashed"
@@ -99,8 +103,8 @@ export function DataTableFacetedFilter<TData, TValue>({
                         selectedValues.add(option.value);
                       }
                       const filterValues = Array.from(selectedValues);
-                      column?.setFilterValue(
-                        filterValues.length ? filterValues : undefined
+                      setFilterValues(
+                        filterValues.length > 0 ? filterValues : []
                       );
                     }}
                   >
@@ -130,7 +134,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                 <CommandSeparator />
                 <CommandGroup>
                   <CommandItem
-                    onSelect={() => column?.setFilterValue(undefined)}
+                    onSelect={() => setFilterValues([])}
                     className="justify-center text-center"
                   >
                     Clear filters

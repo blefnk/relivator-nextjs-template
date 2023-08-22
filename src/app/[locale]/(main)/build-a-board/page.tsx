@@ -14,7 +14,7 @@ import { Icons } from "~/islands/primitives/icons";
 import { productCategories } from "~/utils/appts/products";
 import { getCartItemsAction } from "~/utils/server/actions/cart";
 import { getProductsAction } from "~/utils/server/actions/product";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

@@ -8,7 +8,7 @@ import {
 } from "@radix-ui/react-icons";
 
 import { Button } from "~/islands/primitives/button";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 interface PaginationButtonProps
   extends React.DetailedHTMLProps<

@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import * as z from "zod";
 
+import type { CheckoutItem } from "~/utils/types/store-main";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -107,4 +109,21 @@ export function catchClerkError(err: unknown) {
   } else {
     return toast.error(unknownErr);
   }
+}
+
+export function isMacOs() {
+  if (typeof window === "undefined") return false;
+  return window.navigator.userAgent.includes("Mac");
+}
+
+export function calculatePaymentAmount(items: CheckoutItem[]) {
+  const total = items.reduce(
+    (acc, item) => acc + Number(item.price) * item.quantity,
+    0
+  );
+  const fee = total * 0.1;
+  return {
+    total: Number((total * 100).toFixed(0)),
+    fee: Number((fee * 100).toFixed(0))
+  };
 }

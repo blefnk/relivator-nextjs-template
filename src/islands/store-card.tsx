@@ -8,8 +8,8 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { cn } from "~/utils/server/fmt";
 import { getRandomPatternStyle } from "~/utils/server/pattern";
+import { cn } from "~/utils/server/utils";
 import { type CuratedStore } from "~/utils/types/store-main";
 
 interface StoreCardProps {
@@ -25,11 +25,11 @@ export function StoreCard({ store, href }: StoreCardProps) {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950/20" />
           <Badge
             className={cn(
-              "pointer-events-none absolute right-2 top-2 text-foreground",
+              "pointer-events-none absolute right-2 top-2 text-white",
               store.stripeAccountId ? "bg-green-600" : "bg-red-600"
             )}
           >
-            {store.stripeAccountId ? "Connected" : "Disconnected"}
+            {store.stripeAccountId ? "Active" : "Inactive"}
           </Badge>
           <div
             className="h-full rounded-t-md"

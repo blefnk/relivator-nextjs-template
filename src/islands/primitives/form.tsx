@@ -11,7 +11,7 @@ import {
 } from "react-hook-form";
 
 import { Label } from "~/islands/primitives/label";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 const Form = FormProvider;
 

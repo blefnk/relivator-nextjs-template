@@ -11,7 +11,7 @@ import {
 } from "~/islands/primitives/button";
 import { Icons } from "~/islands/primitives/icons";
 import { Skeleton } from "~/islands/primitives/skeleton";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 const LoadingButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {

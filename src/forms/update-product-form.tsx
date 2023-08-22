@@ -41,7 +41,7 @@ import {
   deleteProductAction,
   updateProductAction
 } from "~/utils/server/actions/product";
-import { catchError, isArrayOfFile } from "~/utils/server/fmt";
+import { catchError, isArrayOfFile } from "~/utils/server/utils";
 import type { FileWithPreview } from "~/utils/types/store-main";
 
 interface UpdateProductFormProps {

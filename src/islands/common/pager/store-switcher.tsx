@@ -25,8 +25,8 @@ import {
   PopoverContent,
   PopoverTrigger
 } from "~/islands/primitives/popover";
-import { cn } from "~/utils/server/fmt";
 import { getRandomPatternStyle } from "~/utils/server/pattern";
+import { cn } from "~/utils/server/utils";
 
 interface StoreSwitcherProps
   extends React.ComponentPropsWithoutRef<typeof PopoverTrigger> {

@@ -34,7 +34,7 @@ import {
   addToCartAction,
   deleteCartItemAction
 } from "~/utils/server/actions/cart";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 import type { CartItem } from "~/utils/types/store-main";
 
 interface BoardBuilderProps extends React.HTMLAttributes<HTMLDivElement> {

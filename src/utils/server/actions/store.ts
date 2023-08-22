@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { and, asc, desc, eq, gt, lt, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gt, isNull, lt, not, sql } from "drizzle-orm";
 import { type z } from "zod";
 
 import { db } from "~/data/db/drizzle";
@@ -11,7 +11,7 @@ import type {
   getStoresSchema,
   storeSchema
 } from "~/data/zod/store";
-import { slugify } from "~/utils/server/fmt";
+import { slugify } from "~/utils/server/utils";
 
 export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
   const limit = input.limit ?? 10;
@@ -21,6 +21,7 @@ export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
       keyof Store | undefined,
       "asc" | "desc" | undefined
     ]) ?? [];
+  const statuses = input.statuses?.split(".") ?? [];
 
   const { items, total } = await db.transaction(async (tx) => {
     const items = await tx
@@ -28,16 +29,26 @@ export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
         id: stores.id,
         name: stores.name,
         description: stores.description,
-        stripeAccountId: stores.stripeAccountId,
-        productCount: sql<number>`count(*)`
+        stripeAccountId: stores.stripeAccountId
       })
       .from(stores)
       .limit(limit)
       .offset(offset)
       .leftJoin(products, eq(stores.id, products.storeId))
-      .where(input.userId ? eq(stores.userId, input.userId) : undefined)
+      .where(
+        and(
+          input.userId ? eq(stores.userId, input.userId) : undefined,
+          statuses.includes("active") && !statuses.includes("inactive")
+            ? not(isNull(stores.stripeAccountId))
+            : undefined,
+          statuses.includes("inactive") && !statuses.includes("active")
+            ? isNull(stores.stripeAccountId)
+            : undefined
+        )
+      )
       .groupBy(stores.id)
       .orderBy(
+        desc(stores.stripeAccountId),
         input.sort === "productCount.asc"
           ? asc(sql<number>`count(*)`)
           : input.sort === "productCount.desc"
@@ -53,7 +64,8 @@ export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
       .select({
         count: sql<number>`count(*)`
       })
-      .from(stores);
+      .from(stores)
+      .where(input.userId ? eq(stores.userId, input.userId) : undefined);
 
     return {
       items,

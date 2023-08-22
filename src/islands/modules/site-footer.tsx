@@ -7,8 +7,8 @@ import { SubscribeToNewsletterForm } from "~/forms/newsletter-subscribe";
 import { ModeToggle } from "~/islands/modules/mode-toggle";
 import { Shell } from "~/islands/modules/shell";
 import { buttonVariants } from "~/islands/primitives/button";
-import { cn } from "~/utils/server/fmt";
 import { typography } from "~/utils/server/text";
+import { cn } from "~/utils/server/utils";
 
 export async function SiteFooter() {
   const t = await getScopedI18n("islands");

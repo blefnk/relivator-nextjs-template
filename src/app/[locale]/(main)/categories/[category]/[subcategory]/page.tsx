@@ -8,7 +8,7 @@ import {
 import { Products } from "~/islands/products";
 import { getProductsAction } from "~/utils/server/actions/product";
 import { getStoresAction } from "~/utils/server/actions/store";
-import { toTitleCase, unslugify } from "~/utils/server/fmt";
+import { toTitleCase, unslugify } from "~/utils/server/utils";
 
 // Running out of edge function execution units on vercel free plan
 // export const runtime = "edge"

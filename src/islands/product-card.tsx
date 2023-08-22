@@ -18,7 +18,7 @@ import {
 } from "~/islands/primitives/card";
 import { Icons } from "~/islands/primitives/icons";
 import { addToCartAction } from "~/utils/server/actions/cart";
-import { cn, formatPrice } from "~/utils/server/fmt";
+import { cn, formatPrice } from "~/utils/server/utils";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;

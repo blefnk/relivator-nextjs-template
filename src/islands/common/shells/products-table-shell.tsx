@@ -21,7 +21,7 @@ import {
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
 import { deleteProductAction } from "~/utils/server/actions/product";
-import { catchError, formatDate, formatPrice } from "~/utils/server/fmt";
+import { catchError, formatDate, formatPrice } from "~/utils/server/utils";
 
 interface ProductsTableShellProps {
   data: Product[];

@@ -21,7 +21,7 @@ import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
 import { Textarea } from "~/islands/primitives/textarea";
 import { addStoreAction } from "~/utils/server/actions/store";
-import { catchError } from "~/utils/server/fmt";
+import { catchError } from "~/utils/server/utils";
 
 interface AddStoreFormProps {
   userId: string;

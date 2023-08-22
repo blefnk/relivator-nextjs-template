@@ -14,7 +14,7 @@ import { Shell } from "~/islands/common/shells/shell";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Icons } from "~/islands/primitives/icons";
 import { Separator } from "~/islands/primitives/separator";
-import { absoluteUrl, cn, formatDate } from "~/utils/server/fmt";
+import { absoluteUrl, cn, formatDate } from "~/utils/server/utils";
 
 interface PostPageProps {
   params: {

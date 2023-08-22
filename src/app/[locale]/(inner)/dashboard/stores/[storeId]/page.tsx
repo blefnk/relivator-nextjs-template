@@ -22,7 +22,7 @@ import { Input } from "~/islands/primitives/input";
 import { Label } from "~/islands/primitives/label";
 import { Textarea } from "~/islands/primitives/textarea";
 import { getStripeAccountAction } from "~/utils/server/actions/stripe";
-import { cn, formatDate } from "~/utils/server/fmt";
+import { cn, formatDate } from "~/utils/server/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

@@ -6,7 +6,7 @@ import { Button } from "~/islands/primitives/button";
 import type { InputProps } from "~/islands/primitives/forms/input";
 import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, ...props }, ref) => {

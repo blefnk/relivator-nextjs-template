@@ -21,12 +21,12 @@ import {
 } from "~/islands/primitives/alert";
 import { buttonVariants } from "~/islands/primitives/button";
 import { StoreCard } from "~/islands/store-card";
-import { cn } from "~/utils/server/fmt";
 import {
   getDashboardRedirectPath,
   getPlanFeatures,
   getUserSubscriptionPlan
 } from "~/utils/server/subs";
+import { cn } from "~/utils/server/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -49,10 +49,9 @@ export default async function StoresPage() {
       stripeAccountId: stores.stripeAccountId
     })
     .from(stores)
-
     .leftJoin(products, eq(products.storeId, stores.id))
     .groupBy(stores.id)
-    .orderBy(desc(sql<number>`count(*)`))
+    .orderBy(desc(stores.stripeAccountId), desc(sql<number>`count(*)`))
     .where(eq(stores.userId, user.id));
 
   const subscriptionPlan = await getUserSubscriptionPlan(user.id);

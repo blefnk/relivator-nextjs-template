@@ -1,8 +1,9 @@
-// !! Next.js 13 Configuration File !!
-// ==========================================================
-// ?? @see https://nextjs.org/docs/app/building-your-application/configuring
-// ==========================================================
+/** @see https://nextjs.org/docs/app/building-your-application/configuring */
 
+/**
+ * If you need, you can run `build` or `dev` with `SKIP_ENV_VALIDATION`.
+ * It skips env validation. This is especially useful for Docker builds.
+ */
 await import("./src/env.mjs");
 
 /** @type {import('next').NextConfig} */
@@ -12,15 +13,9 @@ const nextConfig = {
     serverActions: true,
     serverComponentsExternalPackages: ["mysql2"]
   },
-  reactStrictMode: true,
-  images: { domains: ["uploadthing.com"] }
-
-  // ?? Dangerously allow builds to successfully complete
-  // ?? even if the project has type or eslint errors.
-  // ?? Linting and typechecking are also can be disabled
-  // ?? when we have separate tasks in the CI pipeline.
-  // typescript: { ignoreBuildErrors: true },
-  // eslint: { ignoreDuringBuilds: true },
+  images: {
+    domains: ["uploadthing.com"]
+  }
 };
 
 export default nextConfig;

@@ -7,7 +7,7 @@ import { type manageSubscriptionSchema } from "~/data/zod/stripe";
 import { Button } from "~/islands/primitives/button";
 import { Icons } from "~/islands/primitives/icons";
 import { manageSubscriptionAction } from "~/utils/server/actions/stripe";
-import { catchError } from "~/utils/server/fmt";
+import { catchError } from "~/utils/server/utils";
 
 type ManageSubscriptionFormProps = z.infer<typeof manageSubscriptionSchema>;
 

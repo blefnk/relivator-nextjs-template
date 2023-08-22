@@ -23,8 +23,8 @@ import {
 import { Icons } from "~/islands/primitives/icons";
 import { Skeleton } from "~/islands/primitives/skeleton";
 import { filterProductsAction } from "~/utils/server/actions/product";
-import { cn } from "~/utils/server/fmt";
 import { navItems } from "~/utils/server/links";
+import { cn } from "~/utils/server/utils";
 
 type RouteHref = never;
 

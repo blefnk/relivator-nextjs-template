@@ -15,7 +15,7 @@ import { Button } from "~/islands/primitives/button";
 import { Icons } from "~/islands/primitives/icons";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "~/islands/primitives/sheet";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 import type { MainNavItem, SidebarNavItem } from "~/utils/types/store-main";
 
 interface MobileNavProps {

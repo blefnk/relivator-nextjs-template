@@ -10,7 +10,7 @@ import useEmblaCarousel, {
 
 import { Button } from "~/islands/primitives/button";
 import { Icons } from "~/islands/primitives/icons";
-import { cn } from "~/utils/server/fmt";
+import { cn } from "~/utils/server/utils";
 import { type StoredFile } from "~/utils/types/store-main";
 
 interface ProductImageCarouselProps

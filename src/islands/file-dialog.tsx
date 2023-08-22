@@ -28,7 +28,7 @@ import {
   DialogTrigger
 } from "~/islands/primitives/dialog";
 import { Icons } from "~/islands/primitives/icons";
-import { cn, formatBytes } from "~/utils/server/fmt";
+import { cn, formatBytes } from "~/utils/server/utils";
 
 // FIXME Your proposed upload exceeds the maximum allowed size, this should trigger toast.error too
 

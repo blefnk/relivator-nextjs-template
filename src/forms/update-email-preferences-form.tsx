@@ -21,7 +21,7 @@ import {
 import { Icons } from "~/islands/primitives/icons";
 import { Switch } from "~/islands/primitives/switch";
 import { updateEmailPreferencesAction } from "~/utils/server/actions/email";
-import { catchClerkError } from "~/utils/server/fmt";
+import { catchClerkError } from "~/utils/server/utils";
 
 interface UpdateEmailPreferencesFormProps {
   emailPreference: EmailPreference;

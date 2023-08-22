@@ -11,8 +11,8 @@ import type { Metadata } from "next";
 import { env } from "~/env.mjs";
 
 import { Providers } from "~/islands/common/providers";
-import { cn } from "~/utils/server/fmt";
 import { fontMono, fontSans } from "~/utils/server/fonts";
+import { cn } from "~/utils/server/utils";
 import { PageParams } from "~/utils/types/page-params";
 import { WithChildren } from "~/utils/types/with-children";
 
