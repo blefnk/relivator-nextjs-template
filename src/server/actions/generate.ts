@@ -6,7 +6,7 @@ import {
   getSubcategories,
   productCategories,
   productTags
-} from "~/utils/appts/products";
+} from "~/server/config/products";
 import { db } from "~/data/db";
 import { products, type Product } from "~/data/db/schema";
 

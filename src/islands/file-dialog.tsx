@@ -1,4 +1,5 @@
 import * as React from "react";
+import type { FileWithPreview } from "~/types";
 import Cropper, { type ReactCropperElement } from "react-cropper";
 import {
   useDropzone,
@@ -15,13 +16,11 @@ import type {
 } from "react-hook-form";
 import { toast } from "sonner";
 
-import type { FileWithPreview } from "~/utils/types";
-
 import "cropperjs/dist/cropper.css";
 
 import Image from "next/image";
 
-import { cn, formatBytes } from "~/utils/server/utils";
+import { cn, formatBytes } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {

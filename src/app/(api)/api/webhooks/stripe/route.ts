@@ -1,10 +1,10 @@
 import { headers } from "next/headers";
 import { clerkClient } from "@clerk/nextjs";
+import type { CheckoutItem } from "~/types";
 import { eq } from "drizzle-orm";
 import type Stripe from "stripe";
 
-import { stripe } from "~/utils/server/stripe";
-import type { CheckoutItem } from "~/utils/types";
+import { stripe } from "~/server/stripe";
 import { db } from "~/data/db";
 import { addresses, carts, orders, payments } from "~/data/db/schema";
 import { userPrivateMetadataSchema } from "~/data/zod/auth";
@@ -94,6 +94,7 @@ export async function POST(req: Request) {
       break;
     case "payment_intent.succeeded":
       // Handle the payment_intent.succeeded event
+
       const stripeObject = event?.data?.object as Stripe.PaymentIntent;
 
       const paymentIntentId = stripeObject?.id;
@@ -152,7 +153,7 @@ export async function POST(req: Request) {
           .update(carts)
           .set({
             closed: true,
-            items: null
+            items: []
           })
           .where(eq(carts.paymentIntentId, paymentIntentId));
       } catch (err) {

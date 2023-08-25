@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
+import type { Option } from "~/types";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
 
-import type { Option } from "~/utils/types";
 import { Badge } from "~/islands/primitives/badge";
 import { Button } from "~/islands/primitives/button";
 import {

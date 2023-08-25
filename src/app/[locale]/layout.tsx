@@ -9,10 +9,10 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 
-import { PageParams } from "~/utils/types/page-params";
-import { WithChildren } from "~/utils/types/with-children";
-import { fontMono, fontSans } from "~/utils/server/fonts";
-import { cn } from "~/utils/server/utils";
+import { PageParams } from "~/types/page-params";
+import { WithChildren } from "~/types/with-children";
+import { fontMono, fontSans } from "~/server/fonts";
+import { cn } from "~/server/utils";
 import { Providers } from "~/islands/common/providers";
 import { env } from "~/env.mjs";
 

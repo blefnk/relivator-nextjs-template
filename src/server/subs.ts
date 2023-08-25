@@ -1,10 +1,10 @@
 import { clerkClient } from "@clerk/nextjs";
+import type { SubscriptionPlan, UserSubscriptionPlan } from "~/types";
 import dayjs from "dayjs";
 import Stripe from "stripe";
 
-import { storeSubscriptionPlans } from "~/utils/appts/subs";
-import { stripe } from "~/utils/server/stripe";
-import type { SubscriptionPlan, UserSubscriptionPlan } from "~/utils/types";
+import { storeSubscriptionPlans } from "~/server/config/subs";
+import { stripe } from "~/server/stripe";
 import { userPrivateMetadataSchema } from "~/data/zod/auth";
 
 export async function getUserSubscriptionPlan(

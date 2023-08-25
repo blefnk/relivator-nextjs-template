@@ -5,18 +5,18 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
+import type { FileWithPreview } from "~/types";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { type z } from "zod";
 
-import { getSubcategories } from "~/utils/appts/products";
 import {
   checkProductAction,
   deleteProductAction,
   updateProductAction
-} from "~/utils/server/actions/product";
-import { catchError, isArrayOfFile } from "~/utils/server/utils";
-import type { FileWithPreview } from "~/utils/types";
+} from "~/server/actions/product";
+import { getSubcategories } from "~/server/config/products";
+import { catchError, isArrayOfFile } from "~/server/utils";
 import { products, type Product } from "~/data/db/schema";
 import { productSchema } from "~/data/zod/product";
 import { FileDialog } from "~/islands/file-dialog";

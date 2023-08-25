@@ -2,15 +2,12 @@
 
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import type { CartItem } from "~/types";
 import { toast } from "sonner";
 
-import { sortOptions } from "~/utils/appts/products";
-import {
-  addToCartAction,
-  deleteCartItemAction
-} from "~/utils/server/actions/cart";
-import { cn } from "~/utils/server/utils";
-import type { CartItem } from "~/utils/types";
+import { addToCartAction, deleteCartItemAction } from "~/server/actions/cart";
+import { sortOptions } from "~/server/config/products";
+import { cn } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { ProductCard } from "~/islands/cards/product-card";

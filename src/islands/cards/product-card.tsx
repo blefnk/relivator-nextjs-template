@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 
-import { addToCartAction } from "~/utils/server/actions/cart";
-import { cn, formatPrice } from "~/utils/server/utils";
+import { addToCartAction } from "~/server/actions/cart";
+import { cn, formatPrice } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import { Icons } from "~/islands/icons";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";

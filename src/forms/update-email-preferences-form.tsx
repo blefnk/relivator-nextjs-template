@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { type z } from "zod";
 
-import { updateEmailPreferencesAction } from "~/utils/server/actions/email";
-import { catchClerkError } from "~/utils/server/utils";
+import { updateEmailPreferencesAction } from "~/server/actions/email";
+import { catchClerkError } from "~/server/utils";
 import { type EmailPreference } from "~/data/db/schema";
 import { updateEmailPreferencesSchema } from "~/data/zod/email";
 import { Icons } from "~/islands/icons";

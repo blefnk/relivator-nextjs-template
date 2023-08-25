@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { and, asc, desc, eq, gt, isNull, lt, not, sql } from "drizzle-orm";
 import { type z } from "zod";
 
-import { slugify } from "~/utils/server/utils";
+import { slugify } from "~/server/utils";
 import { db } from "~/data/db";
 import { products, stores, type Store } from "~/data/db/schema";
 import type {

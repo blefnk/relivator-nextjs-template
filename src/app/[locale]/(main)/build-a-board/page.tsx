@@ -2,10 +2,10 @@ import { type Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
 
-import { productCategories } from "~/utils/appts/products";
-import { getCartItemsAction } from "~/utils/server/actions/cart";
-import { getProductsAction } from "~/utils/server/actions/product";
-import { cn } from "~/utils/server/utils";
+import { getCartItemsAction } from "~/server/actions/cart";
+import { getProductsAction } from "~/server/actions/product";
+import { productCategories } from "~/server/config/products";
+import { cn } from "~/server/utils";
 import { BoardBuilder } from "~/islands/board-builder";
 import { Icons } from "~/islands/icons";
 import {

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 
 import { SignUpForm } from "~/forms/signup-form";
-import { OAuthSignIn } from "~/islands/account/oauth-signin";
+import { OAuthSignIn } from "~/islands/auth/oauth-signin";
 import {
   Card,
   CardContent,

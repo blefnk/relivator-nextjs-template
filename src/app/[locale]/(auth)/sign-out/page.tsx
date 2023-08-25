@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { LogOutButtons } from "~/islands/account/logout-buttons";
+import { LogOutButtons } from "~/islands/auth/logout-buttons";
 import {
   PageHeader,
   PageHeaderDescription,

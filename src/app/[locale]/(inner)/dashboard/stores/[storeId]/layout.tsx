@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 import {
   getDashboardRedirectPath,
   getUserSubscriptionPlan
-} from "~/utils/server/subs";
+} from "~/server/subs";
 import { db } from "~/data/db";
 import { stores } from "~/data/db/schema";
 import { PageHeaderHeading } from "~/islands/page-header";

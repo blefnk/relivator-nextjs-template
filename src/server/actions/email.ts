@@ -5,7 +5,7 @@ import { currentUser } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
 import { type z } from "zod";
 
-import { resend } from "~/utils/server/resend";
+import { resend } from "~/server/resend";
 import { db } from "~/data/db";
 import { emailPreferences } from "~/data/db/schema";
 import NewsletterWelcomeEmail from "~/data/mail/newsletter-welcome-email";

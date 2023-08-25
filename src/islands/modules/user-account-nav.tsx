@@ -5,7 +5,7 @@ import Link from "next/link";
 // import { UserAvatar } from "~/layout/user-avatar";
 // import { signOut } from "next-auth/react";
 
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button, buttonVariants } from "~/islands/primitives/button";
 import {

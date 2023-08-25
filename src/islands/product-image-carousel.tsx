@@ -3,13 +3,13 @@
 import * as React from "react";
 import Image from "next/image";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
+import { type StoredFile } from "~/types";
 import useEmblaCarousel, {
   type EmblaCarouselType,
   type EmblaOptionsType
 } from "embla-carousel-react";
 
-import { cn } from "~/utils/server/utils";
-import { type StoredFile } from "~/utils/types";
+import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 

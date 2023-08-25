@@ -7,7 +7,7 @@ import {
   DoubleArrowRightIcon
 } from "@radix-ui/react-icons";
 
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 import { Button } from "~/islands/primitives/button";
 
 interface PaginationButtonProps

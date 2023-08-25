@@ -2,10 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { asc, desc, eq, inArray } from "drizzle-orm";
+import type { CartLineItem } from "~/types";
+import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
 import { type z } from "zod";
 
-import type { CartLineItem } from "~/utils/types";
 import { db } from "~/data/db";
 import { carts, products, stores } from "~/data/db/schema";
 import type {
@@ -14,12 +14,15 @@ import type {
   deleteCartItemsSchema
 } from "~/data/zod/cart";
 
-export async function getCartAction(): Promise<CartLineItem[]> {
+export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
   const cartId = cookies().get("cartId")?.value;
 
   if (!cartId || isNaN(Number(cartId))) return [];
 
   const cart = await db.query.carts.findFirst({
+    columns: {
+      items: true
+    },
     where: eq(carts.id, Number(cartId))
   });
 
@@ -45,7 +48,12 @@ export async function getCartAction(): Promise<CartLineItem[]> {
     .from(products)
     .leftJoin(stores, eq(stores.id, products.storeId))
     .groupBy(products.id)
-    .where(inArray(products.id, uniqueProductIds))
+    .where(
+      and(
+        inArray(products.id, uniqueProductIds),
+        storeId ? eq(products.storeId, storeId) : undefined
+      )
+    )
     .orderBy(desc(stores.stripeAccountId), asc(products.createdAt));
 
   const allCartLineItems = cartLineItems.map((item) => {
@@ -55,11 +63,33 @@ export async function getCartAction(): Promise<CartLineItem[]> {
 
     return {
       ...item,
-      quantity: Number(quantity)
+      quantity: quantity ?? 0
     };
   });
 
   return allCartLineItems;
+}
+
+export async function getUniqueStoreIds() {
+  const cartId = cookies().get("cartId")?.value;
+
+  if (!cartId || isNaN(Number(cartId))) return [];
+
+  const cart = await db
+    .select({ storeId: products.storeId })
+    .from(carts)
+    .leftJoin(
+      products,
+      sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`
+    )
+    .groupBy(products.storeId)
+    .where(eq(carts.id, Number(cartId)));
+
+  const storeIds = cart.map((item) => Number(item.storeId));
+
+  const uniqueStoreIds = [...new Set(storeIds)];
+
+  return uniqueStoreIds;
 }
 
 export async function getCartItemsAction(input: { cartId?: number }) {

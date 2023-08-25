@@ -1,6 +1,6 @@
 import type { LocalizationResource } from "@clerk/types";
 
-import type { DeepStringify } from "~/utils/server/string";
+import type { DeepStringify } from "~/server/string";
 
 const dictionary = {
   general: {

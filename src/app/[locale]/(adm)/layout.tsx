@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 
-import { dashboardConfig } from "~/utils/appts/dashboard";
+import { dashboardConfig } from "~/server/config/dashboard";
 import { SidebarNav } from "~/islands/common/sidebar-nav";
 import { SiteFooter } from "~/islands/modules/site-footer";
 import { SiteHeader } from "~/islands/modules/site-header";

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import dayjs from "dayjs";
 
-import { formatDate } from "~/utils/server/utils";
+import { formatDate } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import {
   PageHeader,

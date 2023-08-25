@@ -15,11 +15,11 @@ import {
   type SortingState,
   type VisibilityState
 } from "@tanstack/react-table";
-
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn
-} from "~/utils/types";
+} from "~/types";
+
 import { useDebounce } from "~/hooks/use-debounce";
 import { DataTablePagination } from "~/islands/modules/data-table/data-table-pagination";
 import { DataTableToolbar } from "~/islands/modules/data-table/data-table-toolbar";

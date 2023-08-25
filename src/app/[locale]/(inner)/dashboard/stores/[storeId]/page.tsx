@@ -4,8 +4,8 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { and, eq, not } from "drizzle-orm";
 
-import { getStripeAccountAction } from "~/utils/server/actions/stripe";
-import { cn, formatDate } from "~/utils/server/utils";
+import { getStripeAccountAction } from "~/server/actions/stripe";
+import { cn, formatDate } from "~/server/utils";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { ConnectStoreToStripeButton } from "~/islands/connect-store-to-stripe-button";

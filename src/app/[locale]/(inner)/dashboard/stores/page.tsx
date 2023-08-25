@@ -9,8 +9,8 @@ import {
   getDashboardRedirectPath,
   getPlanFeatures,
   getUserSubscriptionPlan
-} from "~/utils/server/subs";
-import { cn } from "~/utils/server/utils";
+} from "~/server/subs";
+import { cn } from "~/server/utils";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { StoreCard } from "~/islands/cards/store-card";

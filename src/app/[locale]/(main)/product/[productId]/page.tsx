@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { and, desc, eq, not } from "drizzle-orm";
 
-import { formatPrice, toTitleCase } from "~/utils/server/utils";
+import { formatPrice, toTitleCase } from "~/server/utils";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { AddToCartForm } from "~/forms/add-to-cart-form";

@@ -3,10 +3,10 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import type { CuratedStore } from "~/types";
 
-import { storeSortOptions, storeStatusOptions } from "~/utils/appts/stores";
-import { cn } from "~/utils/server/utils";
-import type { CuratedStore } from "~/utils/types";
+import { storeSortOptions, storeStatusOptions } from "~/server/config/stores";
+import { cn } from "~/server/utils";
 import { StoreCard } from "~/islands/cards/store-card";
 import { Icons } from "~/islands/icons";
 import { PaginationButton } from "~/islands/pagers/pagination-button";

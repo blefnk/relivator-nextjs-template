@@ -7,8 +7,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
 
-import { addStoreAction } from "~/utils/server/actions/store";
-import { catchError } from "~/utils/server/utils";
+import { addStoreAction } from "~/server/actions/store";
+import { catchError } from "~/server/utils";
 import { storeSchema } from "~/data/zod/store";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";

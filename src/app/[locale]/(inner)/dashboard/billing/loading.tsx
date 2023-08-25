@@ -1,4 +1,4 @@
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 import {
   PageHeader,
   PageHeaderDescription,

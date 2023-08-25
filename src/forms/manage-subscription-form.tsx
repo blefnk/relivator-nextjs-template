@@ -3,8 +3,8 @@
 import * as React from "react";
 import { type z } from "zod";
 
-import { manageSubscriptionAction } from "~/utils/server/actions/stripe";
-import { catchError } from "~/utils/server/utils";
+import { manageSubscriptionAction } from "~/server/actions/stripe";
+import { catchError } from "~/server/utils";
 import { type manageSubscriptionSchema } from "~/data/zod/stripe";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";

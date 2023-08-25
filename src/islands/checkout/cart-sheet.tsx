@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { getCartAction } from "~/utils/server/actions/cart";
-import { cn, formatPrice } from "~/utils/server/utils";
+import { getCartAction } from "~/server/actions/cart";
+import { cn, formatPrice } from "~/server/utils";
 import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { Icons } from "~/islands/icons";
 import { Badge } from "~/islands/primitives/badge";

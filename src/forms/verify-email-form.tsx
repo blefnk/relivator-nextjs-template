@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import { catchClerkError } from "~/utils/server/utils";
+import { catchClerkError } from "~/server/utils";
 import { verfifyEmailSchema } from "~/data/zod/auth";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";

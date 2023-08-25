@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import { Circle, File, Laptop, Moon, Search, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-import { filterProductsAction } from "~/utils/server/actions/product";
-import { navItems } from "~/utils/server/links";
-import { cn } from "~/utils/server/utils";
+import { filterProductsAction } from "~/server/actions/product";
+import { navItems } from "~/server/links";
+import { cn } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import { useI18n, useScopedI18n } from "~/data/i18n/client";
 import { useDebounce } from "~/hooks/use-debounce";

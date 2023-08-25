@@ -1,6 +1,6 @@
 import { isClerkAPIResponseError } from "@clerk/nextjs";
-import type { ClassValue } from "clsx";
-import { clsx } from "clsx";
+import type { CartLineItem } from "~/types";
+import { clsx, type ClassValue } from "clsx";
 import dayjs from "dayjs";
 import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
@@ -111,5 +111,21 @@ export function catchClerkError(err: unknown) {
 
 export function isMacOs() {
   if (typeof window === "undefined") return false;
+
   return window.navigator.userAgent.includes("Mac");
+}
+
+export function calculateTotalAndFeeInCents(items: CartLineItem[]) {
+  const total = items.reduce((acc, item) => {
+    return acc + Number(item.price) * item.quantity;
+  }, 0);
+  const fee = Math.round(total * 0.1);
+
+  const totalInCents = Math.round(total * 100);
+  const feeInCents = Math.round(fee * 100);
+
+  return {
+    total: totalInCents, // Converts to cents which stripe charges in
+    fee: feeInCents
+  };
 }

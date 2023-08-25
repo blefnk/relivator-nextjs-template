@@ -1,7 +1,7 @@
 import { type Metadata } from "next";
 
-import { getProductsAction } from "~/utils/server/actions/product";
-import { getStoresAction } from "~/utils/server/actions/store";
+import { getProductsAction } from "~/server/actions/product";
+import { getStoresAction } from "~/server/actions/store";
 import { products } from "~/data/db/schema";
 import {
   PageHeader,

@@ -8,7 +8,7 @@ import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import { absoluteUrl, cn, formatDate } from "~/utils/server/utils";
+import { absoluteUrl, cn, formatDate } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { MdxPager } from "~/islands/pagers/mdx-pager";
 import { buttonVariants } from "~/islands/primitives/button";

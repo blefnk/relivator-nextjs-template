@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 import { MdxCard } from "~/islands/cards/mdx-card";
 import { Callout } from "~/islands/modules/markdown/callout";
 import { CodeBlock } from "~/islands/modules/markdown/code-block";

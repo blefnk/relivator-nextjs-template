@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { UserProfile } from "~/islands/account/user-profile";
+import { UserProfile } from "~/islands/auth/user-profile";
 import {
   PageHeader,
   PageHeaderDescription,

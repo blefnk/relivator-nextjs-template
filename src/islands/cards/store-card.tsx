@@ -1,8 +1,8 @@
 import Link from "next/link";
+import { type CuratedStore } from "~/types";
 
-import { getRandomPatternStyle } from "~/utils/server/pattern";
-import { cn } from "~/utils/server/utils";
-import { type CuratedStore } from "~/utils/types";
+import { getRandomPatternStyle } from "~/server/pattern";
+import { cn } from "~/server/utils";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
 import { Badge } from "~/islands/primitives/badge";
 import {

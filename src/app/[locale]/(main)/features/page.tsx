@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import type { GenerateMetadata } from "~/utils/types/metadata";
-import { typography } from "~/utils/server/text";
+import type { GenerateMetadata } from "~/types/metadata";
+import { typography } from "~/server/text";
 import { getScopedI18n } from "~/data/i18n/server";
 
 const tools = [
@@ -57,8 +57,8 @@ export const generateMetadata: GenerateMetadata = async () => {
   return {
     title: t("title"),
     metadataBase: new URL("https://utils.bleverse.com"),
-    description: "The best React 18 & Next.js 13 Relivator just for you.",
-    keywords: "nextjs, Relivator, react, tools, bleverse, blefonix"
+    description: "The best React 18 & Next.js 13 starter just for you.",
+    keywords: "nextjs, starter, react, tools, bleverse, blefonix"
   };
 };
 

@@ -4,9 +4,9 @@ import { settings, siteConfig } from "~/app";
 import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
 
-import { dashboardConfig } from "~/utils/appts/dashboard";
+import { dashboardConfig } from "~/server/config/dashboard";
 import { getScopedI18n } from "~/data/i18n/server";
-import { Avatar, AvatarFallback, AvatarImage } from "~/islands/account/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "~/islands/auth/avatar";
 import { CartSheet } from "~/islands/checkout/cart-sheet";
 import { MainNav } from "~/islands/common/main-nav";
 import { MobileNav } from "~/islands/common/mobile-nav";

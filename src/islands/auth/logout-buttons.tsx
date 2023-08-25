@@ -4,7 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { SignOutButton } from "@clerk/nextjs";
 
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 import { useMounted } from "~/hooks/use-mounted";
 import { Icons } from "~/islands/icons";
 import { Button, buttonVariants } from "~/islands/primitives/button";

@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
 
-import { addToCartAction } from "~/utils/server/actions/cart";
-import { catchError } from "~/utils/server/utils";
+import { addToCartAction } from "~/server/actions/cart";
+import { catchError } from "~/server/utils";
 import { updateCartItemSchema } from "~/data/zod/cart";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";

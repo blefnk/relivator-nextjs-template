@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import {
   getNextStoreIdAction,
   getPreviousStoreIdAction
-} from "~/utils/server/actions/store";
+} from "~/server/actions/store";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 

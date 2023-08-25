@@ -20,9 +20,9 @@ import {
 import { Balancer } from "react-wrap-balancer";
 import { cnBase } from "tailwind-variants";
 
-import { productCategories } from "~/utils/appts/products";
-import { typography } from "~/utils/server/text";
-import { cn } from "~/utils/server/utils";
+import { productCategories } from "~/server/config/products";
+import { typography } from "~/server/text";
+import { cn } from "~/server/utils";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { getI18n, getScopedI18n } from "~/data/i18n/server";

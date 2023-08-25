@@ -3,9 +3,9 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 
-import { storeSubscriptionPlans } from "~/utils/appts/subs";
-import { getUserSubscriptionPlan } from "~/utils/server/subs";
-import { cn, formatDate, formatPrice } from "~/utils/server/utils";
+import { storeSubscriptionPlans } from "~/server/config/subs";
+import { getUserSubscriptionPlan } from "~/server/subs";
+import { cn, formatDate, formatPrice } from "~/server/utils";
 import { ManageSubscriptionForm } from "~/forms/manage-subscription-form";
 import { Icons } from "~/islands/icons";
 import {

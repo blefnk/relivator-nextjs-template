@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
+import type { CartLineItem } from "~/types";
 
 import {
   deleteCartItemAction,
   updateCartItemAction
-} from "~/utils/server/actions/cart";
-import { catchError } from "~/utils/server/utils";
-import type { CartLineItem } from "~/utils/types";
+} from "~/server/actions/cart";
+import { catchError } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import { Input } from "~/islands/primitives/input";

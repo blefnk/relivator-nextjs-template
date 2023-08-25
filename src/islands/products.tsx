@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import type { Option } from "~/types";
 
-import { getSubcategories, sortOptions } from "~/utils/appts/products";
-import { cn, toTitleCase, truncate } from "~/utils/server/utils";
-import type { Option } from "~/utils/types";
+import { getSubcategories, sortOptions } from "~/server/config/products";
+import { cn, toTitleCase, truncate } from "~/server/utils";
 import { type Product, type Store } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { ProductCard } from "~/islands/cards/product-card";

@@ -4,9 +4,9 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "~/app";
+import type { MainNavItem, SidebarNavItem } from "~/types";
 
-import { cn } from "~/utils/server/utils";
-import type { MainNavItem, SidebarNavItem } from "~/utils/types";
+import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import {
   Accordion,

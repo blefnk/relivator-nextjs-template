@@ -4,12 +4,12 @@ import * as React from "react";
 import Link from "next/link";
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons";
 import type { Table } from "@tanstack/react-table";
-
-import { cn } from "~/utils/server/utils";
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn
-} from "~/utils/types";
+} from "~/types";
+
+import { cn } from "~/server/utils";
 import { DataTableFacetedFilter } from "~/islands/modules/data-table/data-table-faceted-filter";
 import { DataTableViewOptions } from "~/islands/modules/data-table/data-table-view-options";
 import { Button, buttonVariants } from "~/islands/primitives/button";

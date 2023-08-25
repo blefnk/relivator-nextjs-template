@@ -1,3 +1,4 @@
+import type { CartItem, CheckoutItem, StoredFile } from "~/types";
 import { relations, type InferModel } from "drizzle-orm";
 import {
   boolean,
@@ -11,8 +12,6 @@ import {
   timestamp,
   varchar
 } from "drizzle-orm/mysql-core";
-
-import type { CartItem, CheckoutItem, StoredFile } from "~/utils/types";
 
 export const stores = mysqlTable("stores", {
   id: serial("id").primaryKey(),

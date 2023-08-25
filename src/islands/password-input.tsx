@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import { Input, type InputProps } from "~/islands/primitives/input";

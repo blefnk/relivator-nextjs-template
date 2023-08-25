@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { cn, truncate } from "~/utils/server/utils";
+import { cn, truncate } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { buttonVariants } from "~/islands/primitives/button";
 

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { REPOSITORY_URL, settings, siteConfig } from "~/app";
 import { Github, Twitter } from "lucide-react";
 
-import { typography } from "~/utils/server/text";
-import { cn } from "~/utils/server/utils";
+import { typography } from "~/server/text";
+import { cn } from "~/server/utils";
 import { getScopedI18n } from "~/data/i18n/server";
 import { SubscribeToNewsletterForm } from "~/forms/newsletter-subscribe";
 import { ModeToggle } from "~/islands/modules/mode-toggle";

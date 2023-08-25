@@ -1,11 +1,12 @@
 // ?? To reduce the number of config files, we aim to combine everything into a single file.
 // ?? Materials about @satisfies: https://youtu.be/49gHWuepxxE, https://youtu.be/G1RtAmI0-vc
 
-import { ContentSection, HeroHeader } from "~/utils/appts/appts";
-import { productCategories } from "~/utils/appts/products";
-import { networks } from "~/utils/appts/socials";
-import { slugify } from "~/utils/server/utils";
-import type { FooterItem, MainNavItem } from "~/utils/types";
+import type { FooterItem, MainNavItem } from "~/types";
+
+import { ContentSection, HeroHeader } from "~/server/config/appts";
+import { productCategories } from "~/server/config/products";
+import { networks } from "~/server/config/socials";
+import { slugify } from "~/server/utils";
 
 // ========================================================
 

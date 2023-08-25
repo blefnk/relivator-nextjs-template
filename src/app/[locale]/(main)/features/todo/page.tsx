@@ -1,5 +1,5 @@
-import type { GenerateMetadata } from "~/utils/types/metadata";
-import { typography } from "~/utils/server/text";
+import type { GenerateMetadata } from "~/types/metadata";
+import { typography } from "~/server/text";
 import { getScopedI18n } from "~/data/i18n/server";
 
 import { Todo } from "./todo";

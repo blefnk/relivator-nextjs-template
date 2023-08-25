@@ -3,10 +3,10 @@
 import * as React from "react";
 import Link from "next/link";
 import { siteConfig } from "~/app";
+import type { MainNavItem } from "~/types";
 import { ActivitySquare } from "lucide-react";
 
-import { cn } from "~/utils/server/utils";
-import type { MainNavItem } from "~/utils/types";
+import { cn } from "~/server/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,

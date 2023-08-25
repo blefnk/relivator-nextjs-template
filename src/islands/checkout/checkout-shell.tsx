@@ -5,7 +5,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { type StripeElementsOptions } from "@stripe/stripe-js";
 import { useTheme } from "next-themes";
 
-import { getStripe } from "~/utils/server/addons/get-stripe";
+import { getStripe } from "~/server/striper";
 
 interface CheckoutShellProps {
   children: React.ReactNode;

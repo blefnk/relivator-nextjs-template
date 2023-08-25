@@ -3,15 +3,16 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 
-import { getCartAction } from "~/utils/server/actions/cart";
+import { getCartAction } from "~/server/actions/cart";
 import {
   createPaymentIntentAction,
   getStripeAccountAction
-} from "~/utils/server/actions/stripe";
-import { cn } from "~/utils/server/utils";
+} from "~/server/actions/stripe";
+import { cn } from "~/server/utils";
 import { db } from "~/data/db";
 import { stores } from "~/data/db/schema";
-import CheckoutForm from "~/islands/checkout/checkout-form";
+import CheckoutForm from "~/forms/checkout-form";
+import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { CheckoutShell } from "~/islands/checkout/checkout-shell";
 import {
   PageHeader,
@@ -57,7 +58,7 @@ export default async function StoreCheckoutPage({
     storeId
   });
 
-  const cartLineItems = await getCartAction();
+  const cartLineItems = await getCartAction(storeId);
 
   const paymentIntent = createPaymentIntentAction({
     storeId: store.id,
@@ -78,6 +79,7 @@ export default async function StoreCheckoutPage({
           storeStripeAccountId={store.stripeAccountId}
         >
           <CheckoutForm storeId={store.id} />
+          <CartLineItems cartLineItems={cartLineItems} />
         </CheckoutShell>
       ) : (
         <div className="flex flex-col items-center justify-center gap-2 pt-20">

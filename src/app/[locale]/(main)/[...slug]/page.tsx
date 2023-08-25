@@ -5,7 +5,7 @@ import "~/styles/mdx.css";
 import { type Metadata } from "next";
 import { siteConfig } from "~/app";
 
-import { absoluteUrl } from "~/utils/server/utils";
+import { absoluteUrl } from "~/server/utils";
 import { Mdx } from "~/islands/modules/markdown/mdx-components";
 import {
   PageHeader,

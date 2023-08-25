@@ -2,7 +2,7 @@ import * as React from "react";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
 
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 
 const shellVariants = cva("grid items-center gap-8 pb-8 pt-6 md:py-8", {
   variants: {

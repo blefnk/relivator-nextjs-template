@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { siteConfig } from "~/app";
 
-import { navLinks } from "~/utils/server/links";
+import { navLinks } from "~/server/links";
 
 export default function Footer() {
   return (

@@ -1,7 +1,7 @@
 import Image from "next/image";
+import type { CartLineItem } from "~/types";
 
-import { cn, formatPrice } from "~/utils/server/utils";
-import type { CartLineItem } from "~/utils/types";
+import { cn, formatPrice } from "~/server/utils";
 import { UpdateCart } from "~/islands/checkout/update-cart";
 import { Icons } from "~/islands/icons";
 import { Separator } from "~/islands/primitives/separator";

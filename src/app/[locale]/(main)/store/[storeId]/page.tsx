@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 
-import { getProductsAction } from "~/utils/server/actions/product";
-import { getStoresAction } from "~/utils/server/actions/store";
+import { getProductsAction } from "~/server/actions/product";
+import { getStoresAction } from "~/server/actions/store";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { Breadcrumbs } from "~/islands/pagers/breadcrumbs";

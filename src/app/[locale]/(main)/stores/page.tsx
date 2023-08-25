@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 
-import { getStoresAction } from "~/utils/server/actions/store";
+import { getStoresAction } from "~/server/actions/store";
 import {
   PageHeader,
   PageHeaderDescription,

@@ -1,4 +1,4 @@
-import ContactForm from "~/islands/modules/contact-form";
+import ContactForm from "~/forms/contact-form";
 import HeadingText from "~/islands/modules/heading-text";
 
 export const metadata = {

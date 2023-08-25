@@ -2,12 +2,12 @@
 
 import { cookies } from "next/headers";
 import { currentUser } from "@clerk/nextjs";
+import type { CheckoutItem } from "~/types";
 import { eq } from "drizzle-orm";
 import { type z } from "zod";
 
-import { stripe } from "~/utils/server/stripe";
-import { absoluteUrl } from "~/utils/server/utils";
-import type { CheckoutItem } from "~/utils/types";
+import { stripe } from "~/server/stripe";
+import { absoluteUrl, calculateTotalAndFeeInCents } from "~/server/utils";
 import { db } from "~/data/db";
 import { carts, payments, stores } from "~/data/db/schema";
 import type {
@@ -188,7 +188,6 @@ export async function createAccountLinkAction(
   }
 }
 
-// Modified from: https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
 // Creating a payment intent for a store
 export async function createPaymentIntentAction(
   input: z.infer<typeof createPaymentIntentSchema>
@@ -206,10 +205,6 @@ export async function createPaymentIntentAction(
 
     const cartId = Number(cookies().get("cartId")?.value);
 
-    if (isNaN(cartId)) {
-      throw new Error("Invalid cartId, please try again.");
-    }
-
     const checkoutItems: CheckoutItem[] = input.items.map((item) => ({
       productId: item.id,
       price: Number(item.price),
@@ -222,12 +217,9 @@ export async function createPaymentIntentAction(
       items: JSON.stringify(checkoutItems)
     };
 
-    const total = input.items.reduce((acc, item) => {
-      return acc + Number(item.price) * item.quantity;
-    }, 0);
-    const fee = Math.round(total * 0.1);
+    const { total, fee } = calculateTotalAndFeeInCents(input.items);
 
-    if (cartId) {
+    if (!isNaN(cartId)) {
       const cart = await db.query.carts.findFirst({
         columns: {
           paymentIntentId: true,
@@ -236,12 +228,8 @@ export async function createPaymentIntentAction(
         where: eq(carts.id, cartId)
       });
 
-      if (!cart) {
-        throw new Error("Cart not found.");
-      }
-
-      if (cart.paymentIntentId && cart.clientSecret) {
-        const paymentIntent = await stripe.paymentIntents.update(
+      if (cart?.paymentIntentId && cart?.clientSecret) {
+        await stripe.paymentIntents.update(
           cart.paymentIntentId,
           {
             amount: total,
@@ -254,47 +242,45 @@ export async function createPaymentIntentAction(
         );
 
         return {
-          clientSecret: paymentIntent.client_secret
+          clientSecret: cart.clientSecret
         };
       }
-
-      const paymentIntent = await stripe.paymentIntents.create(
-        {
-          amount: total,
-          application_fee_amount: fee,
-          metadata,
-          currency: "usd",
-          automatic_payment_methods: {
-            enabled: true
-          }
-        },
-        {
-          stripeAccount: payment.stripeAccountId
-        }
-      );
-
-      await db.update(carts).set({
-        paymentIntentId: paymentIntent.id,
-        clientSecret: paymentIntent.client_secret
-      });
-
-      return {
-        clientSecret: paymentIntent.client_secret
-      };
     }
 
+    const paymentIntent = await stripe.paymentIntents.create(
+      {
+        amount: total,
+        application_fee_amount: fee,
+        metadata,
+        currency: "usd",
+        automatic_payment_methods: {
+          enabled: true
+        }
+      },
+      {
+        stripeAccount: payment.stripeAccountId
+      }
+    );
+
+    await db
+      .update(carts)
+      .set({
+        paymentIntentId: paymentIntent.id,
+        clientSecret: paymentIntent.client_secret
+      })
+      .where(eq(carts.id, cartId));
+
     return {
-      clientSecret: null
+      clientSecret: paymentIntent.client_secret
     };
   } catch (err) {
-    console.error(err);
+    // console.error(err)
     return {
       clientSecret: null
     };
   }
 }
 
-// Modified from: https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
 // Getting payment intents for a store
 export async function getPaymentIntentsAction(
   input: z.infer<typeof getPaymentIntentsSchema>
@@ -336,7 +322,6 @@ export async function getPaymentIntentsAction(
   }
 }
 
-// Modified from: https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
 // Getting a payment intent for a store
 export async function getPaymentIntentAction(
   input: z.infer<typeof getPaymentIntentSchema>

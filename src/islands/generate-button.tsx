@@ -3,8 +3,8 @@
 import * as React from "react";
 import { toast } from "sonner";
 
-import { generateProducts } from "~/utils/server/actions/generate";
-import { catchError } from "~/utils/server/utils";
+import { generateProducts } from "~/server/actions/generate";
+import { catchError } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 

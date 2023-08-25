@@ -3,7 +3,7 @@
 import * as React from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
-import { cn } from "~/utils/server/utils";
+import { cn } from "~/server/utils";
 import { useMounted } from "~/hooks/use-mounted";
 import { Icons } from "~/islands/icons";
 import {

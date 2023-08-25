@@ -1,6 +1,6 @@
-import { getProductsAction } from "~/utils/server/actions/product";
-import { getStoresAction } from "~/utils/server/actions/store";
-import { toTitleCase } from "~/utils/server/utils";
+import { getProductsAction } from "~/server/actions/product";
+import { getStoresAction } from "~/server/actions/store";
+import { toTitleCase } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import {
   PageHeader,

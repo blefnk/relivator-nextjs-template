@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import type { StoredFile } from "~/types";
 import {
   and,
   asc,
@@ -17,7 +18,6 @@ import {
 } from "drizzle-orm";
 import { type z } from "zod";
 
-import type { StoredFile } from "~/utils/types";
 import { db } from "~/data/db";
 import { products, type Product } from "~/data/db/schema";
 import type {

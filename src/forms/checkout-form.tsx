@@ -8,8 +8,9 @@ import {
   useElements,
   useStripe
 } from "@stripe/react-stripe-js";
+import { toast } from "sonner";
 
-import { absoluteUrl } from "~/utils/server/utils";
+import { absoluteUrl } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 
@@ -83,7 +84,8 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
         setMessage(
           result.error.message ?? "Something went wrong, please try again."
         );
-        console.log(result.error.message);
+        console.error(result.error.message);
+        toast.error(result.error.message);
       } else {
         // Your customer will be redirected to your `return_url`. For some payment
         // methods like iDEAL, your customer will be redirected to an intermediate
@@ -136,7 +138,10 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
         disabled={!stripe || !elements || isPending}
       >
         {isPending && (
-          <Icons.spinner className="h-4 w-4 animate-spin" aria-hidden="true" />
+          <Icons.spinner
+            className="mr-2 h-4 w-4 animate-spin"
+            aria-hidden="true"
+          />
         )}
         Pay
       </Button>
