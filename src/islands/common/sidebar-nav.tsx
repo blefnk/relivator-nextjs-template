@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Icons } from "~/islands/primitives/icons";
 import { cn } from "~/utils/server/utils";
-import type { SidebarNavItem } from "~/utils/types/store-main";
+import type { SidebarNavItem } from "~/utils/types";
+import { Icons } from "~/islands/icons";
 
 export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
   items: SidebarNavItem[];

@@ -1,5 +1,5 @@
+import type { Option } from "~/utils/types";
 import { type Product } from "~/data/db/schema";
-import type { Option } from "~/utils/types/store-main";
 
 export const sortOptions = [
   { label: "Date: Old to new", value: "createdAt.asc" },

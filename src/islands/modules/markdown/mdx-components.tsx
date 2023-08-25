@@ -1,15 +1,15 @@
 import Image from "next/image";
 
+import { cn } from "~/utils/server/utils";
+import { MdxCard } from "~/islands/cards/mdx-card";
 import { Callout } from "~/islands/modules/markdown/callout";
 import { CodeBlock } from "~/islands/modules/markdown/code-block";
-import { MdxCard } from "~/islands/modules/markdown/mdx-card";
 import {
   Alert,
   AlertDescription,
   AlertTitle
 } from "~/islands/primitives/alert";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
-import { cn } from "~/utils/server/utils";
 
 // These types are required to make the related components work with `useMDXComponent`
 // They used to work without these types, but now they don't for some reason

@@ -1,19 +1,19 @@
 import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { env } from "~/env.mjs";
 import dayjs from "dayjs";
 
-import { Shell } from "~/islands/common/shells/shell";
+import { formatDate } from "~/utils/server/utils";
+import { Icons } from "~/islands/icons";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
-import { Icons } from "~/islands/primitives/icons";
 import { Separator } from "~/islands/primitives/separator";
-import { formatDate } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

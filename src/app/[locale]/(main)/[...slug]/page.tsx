@@ -5,16 +5,16 @@ import "~/styles/mdx.css";
 import { type Metadata } from "next";
 import { siteConfig } from "~/app";
 
-import { MdxPager } from "~/islands/common/pager/mdx-pager";
-import { Shell } from "~/islands/common/shells/shell";
+import { absoluteUrl } from "~/utils/server/utils";
 import { Mdx } from "~/islands/modules/markdown/mdx-components";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
+import { MdxPager } from "~/islands/pagers/mdx-pager";
 import { Separator } from "~/islands/primitives/separator";
-import { absoluteUrl } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
 
 interface PageProps {
   params: {

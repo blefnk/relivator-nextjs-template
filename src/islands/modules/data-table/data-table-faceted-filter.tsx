@@ -2,6 +2,8 @@ import * as React from "react";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
 import { type Column } from "@tanstack/react-table";
 
+import { cn } from "~/utils/server/utils";
+import { type Option } from "~/utils/types";
 import { Badge } from "~/islands/primitives/badge";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -19,8 +21,6 @@ import {
   PopoverTrigger
 } from "~/islands/primitives/popover";
 import { Separator } from "~/islands/primitives/separator";
-import { cn } from "~/utils/server/utils";
-import { type Option } from "~/utils/types/store-main";
 
 interface DataTableFacetedFilter<TData, TValue> {
   column?: Column<TData, TValue>;

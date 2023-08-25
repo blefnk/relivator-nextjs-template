@@ -5,7 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
 
+import { addToCartAction } from "~/utils/server/actions/cart";
+import { cn, formatPrice } from "~/utils/server/utils";
 import { type Product } from "~/data/db/schema";
+import { Icons } from "~/islands/icons";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
 import { Button, buttonVariants } from "~/islands/primitives/button";
 import {
@@ -16,9 +19,6 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Icons } from "~/islands/primitives/icons";
-import { addToCartAction } from "~/utils/server/actions/cart";
-import { cn, formatPrice } from "~/utils/server/utils";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product;

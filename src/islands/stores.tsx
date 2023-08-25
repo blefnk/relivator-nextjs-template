@@ -4,7 +4,12 @@ import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
-import { PaginationButton } from "~/islands/common/pager/pagination-button";
+import { storeSortOptions, storeStatusOptions } from "~/utils/appts/stores";
+import { cn } from "~/utils/server/utils";
+import type { CuratedStore } from "~/utils/types";
+import { StoreCard } from "~/islands/cards/store-card";
+import { Icons } from "~/islands/icons";
+import { PaginationButton } from "~/islands/pagers/pagination-button";
 import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,
@@ -14,11 +19,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
-import { Icons } from "~/islands/primitives/icons";
-import { StoreCard } from "~/islands/store-card";
-import { storeSortOptions, storeStatusOptions } from "~/utils/appts/stores";
-import { cn } from "~/utils/server/utils";
-import type { CuratedStore } from "~/utils/types/store-main";
 
 import { FacetedFilter } from "./faceted-filter";
 

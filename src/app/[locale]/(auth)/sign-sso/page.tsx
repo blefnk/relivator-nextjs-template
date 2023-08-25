@@ -1,7 +1,7 @@
 import { type HandleOAuthCallbackParams } from "@clerk/types";
 
 import SSOCallback from "~/islands/account/sso-callback";
-import { Shell } from "~/islands/common/shells/shell";
+import { Shell } from "~/islands/shells/shell";
 
 // Running out of edge function execution units on vercel free plan
 // export const runtime = "edge"

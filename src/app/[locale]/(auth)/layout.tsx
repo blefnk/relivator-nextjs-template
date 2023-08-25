@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "~/app";
 
+import { Icons } from "~/islands/icons";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
-import { Icons } from "~/islands/primitives/icons";
 
 interface AuthLayoutProps {
   children: React.ReactNode;

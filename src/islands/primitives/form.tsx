@@ -10,8 +10,8 @@ import {
   type FieldValues
 } from "react-hook-form";
 
-import { Label } from "~/islands/primitives/label";
 import { cn } from "~/utils/server/utils";
+import { Label } from "~/islands/primitives/label";
 
 const Form = FormProvider;
 

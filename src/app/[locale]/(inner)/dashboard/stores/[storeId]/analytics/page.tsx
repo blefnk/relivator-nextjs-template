@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { env } from "~/env.mjs";
 import { eq } from "drizzle-orm";
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 
-import { db } from "~/data/db/drizzle";
+import { db } from "~/data/db";
 import { stores } from "~/data/db/schema";
 import {
   Card,
@@ -12,6 +11,7 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

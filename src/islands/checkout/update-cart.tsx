@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { toast } from "sonner";
 
-import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
-import { Input } from "~/islands/primitives/input";
 import {
   deleteCartItemAction,
   updateCartItemAction
 } from "~/utils/server/actions/cart";
-import type { CartLineItem } from "~/utils/types/store-main";
+import { catchError } from "~/utils/server/utils";
+import type { CartLineItem } from "~/utils/types";
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
+import { Input } from "~/islands/primitives/input";
 
 interface UpdateCartProps {
   cartLineItem: CartLineItem;
@@ -20,7 +20,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
   const [isPending, startTransition] = React.useTransition();
 
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex w-full items-center justify-between space-x-1 xs:w-auto xs:justify-normal">
       <div className="flex items-center space-x-1">
         <Button
           variant="outline"
@@ -33,10 +33,8 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
                   productId: cartLineItem.id,
                   quantity: Number(cartLineItem.quantity) - 1
                 });
-              } catch (error) {
-                error instanceof Error
-                  ? toast.error(error.message)
-                  : toast.error("Something went wrong, please try again.");
+              } catch (err) {
+                catchError(err);
               }
             });
           }}
@@ -57,10 +55,8 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
                   productId: cartLineItem.id,
                   quantity: Number(e.target.value)
                 });
-              } catch (error) {
-                error instanceof Error
-                  ? toast.error(error.message)
-                  : toast.error("Something went wrong.");
+              } catch (err) {
+                catchError(err);
               }
             });
           }}
@@ -77,10 +73,8 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
                   productId: cartLineItem.id,
                   quantity: Number(cartLineItem.quantity) + 1
                 });
-              } catch (error) {
-                error instanceof Error
-                  ? toast.error(error.message)
-                  : toast.error("Something went wrong.");
+              } catch (err) {
+                catchError(err);
               }
             });
           }}
@@ -100,10 +94,8 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
               await deleteCartItemAction({
                 productId: cartLineItem.id
               });
-            } catch (error) {
-              error instanceof Error
-                ? toast.error(error.message)
-                : toast.error("Something went wrong.");
+            } catch (err) {
+              catchError(err);
             }
           });
         }}

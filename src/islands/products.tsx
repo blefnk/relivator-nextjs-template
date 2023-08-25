@@ -3,10 +3,15 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { getSubcategories, sortOptions } from "~/utils/appts/products";
+import { cn, toTitleCase, truncate } from "~/utils/server/utils";
+import type { Option } from "~/utils/types";
 import { type Product, type Store } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
-import { PaginationButton } from "~/islands/common/pager/pagination-button";
+import { ProductCard } from "~/islands/cards/product-card";
+import { Icons } from "~/islands/icons";
 import { MultiSelect } from "~/islands/multi-select";
+import { PaginationButton } from "~/islands/pagers/pagination-button";
 import { Button } from "~/islands/primitives/button";
 import { Checkbox } from "~/islands/primitives/checkbox";
 import {
@@ -17,7 +22,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
-import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
 import { Label } from "~/islands/primitives/label";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
@@ -31,10 +35,6 @@ import {
   SheetTrigger
 } from "~/islands/primitives/sheet";
 import { Slider } from "~/islands/primitives/slider";
-import { ProductCard } from "~/islands/product-card";
-import { getSubcategories, sortOptions } from "~/utils/appts/products";
-import { cn, toTitleCase, truncate } from "~/utils/server/utils";
-import type { Option } from "~/utils/types/store-main";
 
 interface ProductsProps extends React.HTMLAttributes<HTMLDivElement> {
   products: Product[];

@@ -2,8 +2,8 @@
 
 import * as React from "react";
 
+import { Icons } from "~/islands/icons";
 import { Button, type ButtonProps } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 
 export function CopyButton({ value, ...props }: ButtonProps) {
   const [isCopied, setIsCopied] = React.useState(false);

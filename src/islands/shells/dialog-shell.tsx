@@ -3,9 +3,9 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 import { cn } from "~/utils/server/utils";
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 
 interface DialogShellProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

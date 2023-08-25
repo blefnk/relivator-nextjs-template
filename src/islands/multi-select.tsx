@@ -4,6 +4,7 @@ import * as React from "react";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
 
+import type { Option } from "~/utils/types";
 import { Badge } from "~/islands/primitives/badge";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -11,7 +12,6 @@ import {
   CommandGroup,
   CommandItem
 } from "~/islands/primitives/command";
-import type { Option } from "~/utils/types/store-main";
 
 interface MultiSelectProps {
   selected: Option[] | null;

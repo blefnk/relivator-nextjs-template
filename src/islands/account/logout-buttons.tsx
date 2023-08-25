@@ -4,11 +4,11 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { SignOutButton } from "@clerk/nextjs";
 
-import { useMounted } from "~/hooks/use-mounted";
-import { Button, buttonVariants } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
-import { Skeleton } from "~/islands/primitives/skeleton";
 import { cn } from "~/utils/server/utils";
+import { useMounted } from "~/hooks/use-mounted";
+import { Icons } from "~/islands/icons";
+import { Button, buttonVariants } from "~/islands/primitives/button";
+import { Skeleton } from "~/islands/primitives/skeleton";
 
 export function LogOutButtons() {
   const router = useRouter();

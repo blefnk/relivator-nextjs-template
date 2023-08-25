@@ -6,6 +6,8 @@ import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
 import { toast } from "sonner";
 
+import { deleteProductAction } from "~/utils/server/actions/product";
+import { catchError, formatDate, formatPrice } from "~/utils/server/utils";
 import { products, type Product } from "~/data/db/schema";
 import { DataTable } from "~/islands/modules/data-table/data-table";
 import { DataTableColumnHeader } from "~/islands/modules/data-table/data-table-column-header";
@@ -20,8 +22,6 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
-import { deleteProductAction } from "~/utils/server/actions/product";
-import { catchError, formatDate, formatPrice } from "~/utils/server/utils";
 
 interface ProductsTableShellProps {
   data: Product[];

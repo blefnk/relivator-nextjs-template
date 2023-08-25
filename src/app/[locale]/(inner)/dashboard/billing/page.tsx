@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
-import { env } from "~/env.mjs";
 
+import { storeSubscriptionPlans } from "~/utils/appts/subs";
+import { getUserSubscriptionPlan } from "~/utils/server/subs";
+import { cn, formatDate, formatPrice } from "~/utils/server/utils";
 import { ManageSubscriptionForm } from "~/forms/manage-subscription-form";
-import { Shell } from "~/islands/common/shells/shell";
+import { Icons } from "~/islands/icons";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -20,10 +22,8 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Icons } from "~/islands/primitives/icons";
-import { storeSubscriptionPlans } from "~/utils/appts/subs";
-import { getUserSubscriptionPlan } from "~/utils/server/subs";
-import { cn, formatDate, formatPrice } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

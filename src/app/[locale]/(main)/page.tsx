@@ -20,20 +20,19 @@ import {
 import { Balancer } from "react-wrap-balancer";
 import { cnBase } from "tailwind-variants";
 
-import { db } from "~/data/db/drizzle";
-import { products, stores } from "~/data/db/schema";
-import { getI18n, getScopedI18n } from "~/data/i18n/server";
-import { Shell } from "~/islands/common/shells/shell";
-import FeatureCards from "~/islands/modules/feature-cards";
-import { AspectRatio } from "~/islands/primitives/aspect-ratio";
-import { Badge } from "~/islands/primitives/badge";
-import { Button, buttonVariants } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
-import { ProductCard } from "~/islands/product-card";
-import { StoreCard } from "~/islands/store-card";
 import { productCategories } from "~/utils/appts/products";
 import { typography } from "~/utils/server/text";
 import { cn } from "~/utils/server/utils";
+import { db } from "~/data/db";
+import { products, stores } from "~/data/db/schema";
+import { getI18n, getScopedI18n } from "~/data/i18n/server";
+import { ProductCard } from "~/islands/cards/product-card";
+import { StoreCard } from "~/islands/cards/store-card";
+import { Icons } from "~/islands/icons";
+import { AspectRatio } from "~/islands/primitives/aspect-ratio";
+import { Badge } from "~/islands/primitives/badge";
+import { Button, buttonVariants } from "~/islands/primitives/button";
+import { Shell } from "~/islands/shells/shell";
 
 export const dynamic = "force-dynamic";
 
@@ -41,7 +40,7 @@ export default async function IndexPage() {
   const t = await getI18n();
   const scopedT = await getScopedI18n("pages.home");
 
-  const allProducts = await db
+  const someProducts = await db
     .select()
     .from(products)
     .limit(8)
@@ -208,7 +207,7 @@ export default async function IndexPage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {allProducts.map((product) => (
+          {someProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -315,8 +314,6 @@ export default async function IndexPage() {
           />
         </div>
       </section>
-
-      <FeatureCards />
 
       <section className="py-10 text-center md:py-12 lg:py-22 xl:py-32">
         <Balancer

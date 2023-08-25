@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { env } from "~/env.mjs";
 import { eq } from "drizzle-orm";
 
-import { db } from "~/data/db/drizzle";
+import { db } from "~/data/db";
 import { emailPreferences } from "~/data/db/schema";
 import { UpdateEmailPreferencesForm } from "~/forms/update-email-preferences-form";
-import { Shell } from "~/islands/common/shells/shell";
 import { PageHeader } from "~/islands/page-header";
 import {
   Card,
@@ -15,6 +13,8 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

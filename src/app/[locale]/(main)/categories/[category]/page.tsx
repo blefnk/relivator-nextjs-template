@@ -1,14 +1,14 @@
+import { getProductsAction } from "~/utils/server/actions/product";
+import { getStoresAction } from "~/utils/server/actions/store";
+import { toTitleCase } from "~/utils/server/utils";
 import { type Product } from "~/data/db/schema";
-import { Shell } from "~/islands/common/shells/shell";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
 import { Products } from "~/islands/products";
-import { getProductsAction } from "~/utils/server/actions/product";
-import { getStoresAction } from "~/utils/server/actions/store";
-import { toTitleCase } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
 
 interface CategoryPageProps {
   params: {

@@ -2,10 +2,11 @@ import { type Metadata } from "next";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
-import { env } from "~/env.mjs";
 import { and, eq, not } from "drizzle-orm";
 
-import { db } from "~/data/db/drizzle";
+import { getStripeAccountAction } from "~/utils/server/actions/stripe";
+import { cn, formatDate } from "~/utils/server/utils";
+import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { ConnectStoreToStripeButton } from "~/islands/connect-store-to-stripe-button";
 import { LoadingButton } from "~/islands/loading-button";
@@ -21,8 +22,7 @@ import {
 import { Input } from "~/islands/primitives/input";
 import { Label } from "~/islands/primitives/label";
 import { Textarea } from "~/islands/primitives/textarea";
-import { getStripeAccountAction } from "~/utils/server/actions/stripe";
-import { cn, formatDate } from "~/utils/server/utils";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

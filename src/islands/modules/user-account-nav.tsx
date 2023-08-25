@@ -2,6 +2,11 @@
 
 import Link from "next/link";
 
+// import { UserAvatar } from "~/layout/user-avatar";
+// import { signOut } from "next-auth/react";
+
+import { cn } from "~/utils/server/utils";
+import { Icons } from "~/islands/icons";
 import { Button, buttonVariants } from "~/islands/primitives/button";
 import {
   DropdownMenu,
@@ -10,11 +15,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
-import { Icons } from "~/islands/primitives/icons";
-// import { UserAvatar } from "~/layout/user-avatar";
-// import { signOut } from "next-auth/react";
-
-import { cn } from "~/utils/server/utils";
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   userName?: string;

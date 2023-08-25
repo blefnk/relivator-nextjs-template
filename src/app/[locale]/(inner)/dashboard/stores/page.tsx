@@ -3,12 +3,17 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { RocketIcon } from "@radix-ui/react-icons";
-import { env } from "~/env.mjs";
 import { desc, eq, sql } from "drizzle-orm";
 
-import { db } from "~/data/db/drizzle";
+import {
+  getDashboardRedirectPath,
+  getPlanFeatures,
+  getUserSubscriptionPlan
+} from "~/utils/server/subs";
+import { cn } from "~/utils/server/utils";
+import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
-import { Shell } from "~/islands/common/shells/shell";
+import { StoreCard } from "~/islands/cards/store-card";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -20,13 +25,8 @@ import {
   AlertTitle
 } from "~/islands/primitives/alert";
 import { buttonVariants } from "~/islands/primitives/button";
-import { StoreCard } from "~/islands/store-card";
-import {
-  getDashboardRedirectPath,
-  getPlanFeatures,
-  getUserSubscriptionPlan
-} from "~/utils/server/subs";
-import { cn } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

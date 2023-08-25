@@ -2,13 +2,13 @@
 
 import { faker } from "@faker-js/faker";
 
-import { db } from "~/data/db/drizzle";
-import { products, type Product } from "~/data/db/schema";
 import {
   getSubcategories,
   productCategories,
   productTags
 } from "~/utils/appts/products";
+import { db } from "~/data/db";
+import { products, type Product } from "~/data/db/schema";
 
 export async function generateProducts({
   storeId,

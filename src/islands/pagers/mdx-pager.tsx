@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { buttonVariants } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 import { cn, truncate } from "~/utils/server/utils";
+import { Icons } from "~/islands/icons";
+import { buttonVariants } from "~/islands/primitives/button";
 
 interface MdxPagerItem {
   title: string;

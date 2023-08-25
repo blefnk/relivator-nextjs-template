@@ -1,6 +1,5 @@
+import { type SubscriptionPlan } from "~/utils/types";
 import { env } from "~/env.mjs";
-
-import { type SubscriptionPlan } from "~/utils/types/store-main";
 
 export const storeSubscriptionPlans: SubscriptionPlan[] = [
   {

@@ -1,4 +1,3 @@
-import { Shell } from "~/islands/common/shells/shell";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -7,6 +6,7 @@ import {
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
 import { Card, CardHeader } from "~/islands/primitives/card";
 import { Skeleton } from "~/islands/primitives/skeleton";
+import { Shell } from "~/islands/shells/shell";
 
 export default function StoresLoading() {
   return (

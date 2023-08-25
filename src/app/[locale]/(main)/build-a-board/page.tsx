@@ -1,20 +1,20 @@
 import { type Metadata } from "next";
 import { cookies } from "next/headers";
 import Link from "next/link";
-import { env } from "~/env.mjs";
 
+import { productCategories } from "~/utils/appts/products";
+import { getCartItemsAction } from "~/utils/server/actions/cart";
+import { getProductsAction } from "~/utils/server/actions/product";
+import { cn } from "~/utils/server/utils";
 import { BoardBuilder } from "~/islands/board-builder";
-import { Shell } from "~/islands/common/shells/shell";
+import { Icons } from "~/islands/icons";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
-import { Icons } from "~/islands/primitives/icons";
-import { productCategories } from "~/utils/appts/products";
-import { getCartItemsAction } from "~/utils/server/actions/cart";
-import { getProductsAction } from "~/utils/server/actions/product";
-import { cn } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -86,7 +86,7 @@ export default async function BuildABoardPage({
                   )}
                 >
                   {cartItems
-                    ?.map((item) => item.productSubcategory)
+                    ?.map((item) => item.subcategory)
                     ?.includes(subcategory.slug) ? (
                     <Icons.check className="mr-2 h-4 w-4" aria-hidden="true" />
                   ) : (

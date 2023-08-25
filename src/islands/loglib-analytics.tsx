@@ -1,4 +1,5 @@
 import Loglib from "@loglib/tracker/react";
+
 import { env } from "~/env.mjs";
 
 export const loglibSiteId = env.LOGLIB_SITE_ID || "";

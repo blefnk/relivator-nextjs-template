@@ -15,20 +15,20 @@ import type {
 } from "react-hook-form";
 import { toast } from "sonner";
 
-import type { FileWithPreview } from "~/utils/types/store-main";
+import type { FileWithPreview } from "~/utils/types";
 
 import "cropperjs/dist/cropper.css";
 
 import Image from "next/image";
 
+import { cn, formatBytes } from "~/utils/server/utils";
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
   Dialog,
   DialogContent,
   DialogTrigger
 } from "~/islands/primitives/dialog";
-import { Icons } from "~/islands/primitives/icons";
-import { cn, formatBytes } from "~/utils/server/utils";
 
 // FIXME Your proposed upload exceeds the maximum allowed size, this should trigger toast.error too
 

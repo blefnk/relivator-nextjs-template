@@ -1,10 +1,10 @@
-import { Shell } from "~/islands/common/shells/shell";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
 import { Skeleton } from "~/islands/primitives/skeleton";
+import { Shell } from "~/islands/shells/shell";
 
 export default function AccountLoading() {
   return (

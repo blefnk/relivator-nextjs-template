@@ -2,8 +2,8 @@
 
 import { useTheme } from "next-themes";
 
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 
 export function ThemeToggle() {
   const { setTheme, theme } = useTheme();

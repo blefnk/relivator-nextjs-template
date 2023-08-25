@@ -1,5 +1,5 @@
-import { Shell } from "~/islands/common/shells/shell";
-import { ErrorCard } from "~/islands/error-card";
+import { ErrorCard } from "~/islands/cards/error-card";
+import { Shell } from "~/islands/shells/shell";
 
 export default function PageNotFound() {
   return (

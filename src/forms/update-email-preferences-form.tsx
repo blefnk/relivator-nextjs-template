@@ -6,8 +6,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { type z } from "zod";
 
+import { updateEmailPreferencesAction } from "~/utils/server/actions/email";
+import { catchClerkError } from "~/utils/server/utils";
 import { type EmailPreference } from "~/data/db/schema";
 import { updateEmailPreferencesSchema } from "~/data/zod/email";
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
   Form,
@@ -18,10 +21,7 @@ import {
   FormLabel,
   FormMessage
 } from "~/islands/primitives/form";
-import { Icons } from "~/islands/primitives/icons";
 import { Switch } from "~/islands/primitives/switch";
-import { updateEmailPreferencesAction } from "~/utils/server/actions/email";
-import { catchClerkError } from "~/utils/server/utils";
 
 interface UpdateEmailPreferencesFormProps {
   emailPreference: EmailPreference;

@@ -1,15 +1,16 @@
 import Link from "next/link";
 import type { User } from "@clerk/nextjs/server";
 import { settings, siteConfig } from "~/app";
-import { ActivitySquare, Github, Twitter } from "lucide-react";
 import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
 
+import { dashboardConfig } from "~/utils/appts/dashboard";
 import { getScopedI18n } from "~/data/i18n/server";
 import { Avatar, AvatarFallback, AvatarImage } from "~/islands/account/avatar";
-import { CartSheet } from "~/islands/account/cart/cart-sheet";
+import { CartSheet } from "~/islands/checkout/cart-sheet";
 import { MainNav } from "~/islands/common/main-nav";
 import { MobileNav } from "~/islands/common/mobile-nav";
+import { Icons } from "~/islands/icons";
 import { Combobox } from "~/islands/modules/combobox";
 import { ModeToggle } from "~/islands/modules/mode-toggle";
 import { Button, buttonVariants } from "~/islands/primitives/button";
@@ -23,8 +24,6 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
-import { Icons } from "~/islands/primitives/icons";
-import { dashboardConfig } from "~/utils/appts/dashboard";
 
 const NavbarStyles = tv({
   base: "w-full border-b border-transparent bg-background/95 backdrop-blur-sm animate-in fade-in slide-in-from-top-full duration-slow",

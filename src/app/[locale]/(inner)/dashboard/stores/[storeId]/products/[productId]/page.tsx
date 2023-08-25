@@ -1,12 +1,11 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
-import { env } from "~/env.mjs";
 import { and, eq } from "drizzle-orm";
 
-import { db } from "~/data/db/drizzle";
+import { db } from "~/data/db";
 import { products } from "~/data/db/schema";
 import { UpdateProductForm } from "~/forms/update-product-form";
-import { ProductPager } from "~/islands/common/pager/product-pager";
+import { ProductPager } from "~/islands/pagers/product-pager";
 import {
   Card,
   CardContent,
@@ -14,6 +13,7 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

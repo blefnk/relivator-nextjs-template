@@ -7,8 +7,8 @@ import {
   DoubleArrowRightIcon
 } from "@radix-ui/react-icons";
 
-import { Button } from "~/islands/primitives/button";
 import { cn } from "~/utils/server/utils";
+import { Button } from "~/islands/primitives/button";
 
 interface PaginationButtonProps
   extends React.DetailedHTMLProps<

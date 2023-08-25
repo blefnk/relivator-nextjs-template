@@ -4,9 +4,18 @@ import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
+import { sortOptions } from "~/utils/appts/products";
+import {
+  addToCartAction,
+  deleteCartItemAction
+} from "~/utils/server/actions/cart";
+import { cn } from "~/utils/server/utils";
+import type { CartItem } from "~/utils/types";
 import { type Product } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
-import { PaginationButton } from "~/islands/common/pager/pagination-button";
+import { ProductCard } from "~/islands/cards/product-card";
+import { Icons } from "~/islands/icons";
+import { PaginationButton } from "~/islands/pagers/pagination-button";
 import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,
@@ -16,7 +25,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "~/islands/primitives/dropdown-menu";
-import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
 import { Separator } from "~/islands/primitives/separator";
 import {
@@ -28,14 +36,6 @@ import {
   SheetTrigger
 } from "~/islands/primitives/sheet";
 import { Slider } from "~/islands/primitives/slider";
-import { ProductCard } from "~/islands/product-card";
-import { sortOptions } from "~/utils/appts/products";
-import {
-  addToCartAction,
-  deleteCartItemAction
-} from "~/utils/server/actions/cart";
-import { cn } from "~/utils/server/utils";
-import type { CartItem } from "~/utils/types/store-main";
 
 interface BoardBuilderProps extends React.HTMLAttributes<HTMLDivElement> {
   products: Product[];
@@ -104,7 +104,7 @@ export function BoardBuilder({
         if (!cartItems.map((item) => item.productId).includes(product.id)) {
           // Only allow one product per subcategory in cart
           const productIdWithSameSubcategory = cartItems.find(
-            (item) => item.productSubcategory === product.subcategory
+            (item) => item.subcategory === product.subcategory
           )?.productId;
 
           if (productIdWithSameSubcategory) {
@@ -116,7 +116,7 @@ export function BoardBuilder({
           await addToCartAction({
             productId: product.id,
             quantity: 1,
-            productSubcategory: product.subcategory ?? subcategory
+            subcategory: product.subcategory ?? subcategory
           });
 
           toast.success("Added to cart.");

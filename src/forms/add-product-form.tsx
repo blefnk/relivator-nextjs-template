@@ -8,10 +8,17 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { type z } from "zod";
 
-import type { OurFileRouter } from "~/app/(api)/api/uploadthing/core";
+import { getSubcategories } from "~/utils/appts/products";
+import {
+  addProductAction,
+  checkProductAction
+} from "~/utils/server/actions/product";
+import { catchError, isArrayOfFile } from "~/utils/server/utils";
+import type { FileWithPreview } from "~/utils/types";
 import { products } from "~/data/db/schema";
 import { productSchema } from "~/data/zod/product";
 import { FileDialog } from "~/islands/file-dialog";
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
   Form,
@@ -22,7 +29,6 @@ import {
   FormMessage,
   UncontrolledFormMessage
 } from "~/islands/primitives/form";
-import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
 import {
   Select,
@@ -34,13 +40,7 @@ import {
 } from "~/islands/primitives/select";
 import { Textarea } from "~/islands/primitives/textarea";
 import { Zoom } from "~/islands/zoom-image";
-import { getSubcategories } from "~/utils/appts/products";
-import {
-  addProductAction,
-  checkProductAction
-} from "~/utils/server/actions/product";
-import { catchError, isArrayOfFile } from "~/utils/server/utils";
-import type { FileWithPreview } from "~/utils/types/store-main";
+import type { OurFileRouter } from "~/app/(api)/api/uploadthing/core";
 
 interface AddProductFormProps {
   storeId: number;

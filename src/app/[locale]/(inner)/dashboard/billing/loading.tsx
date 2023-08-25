@@ -1,4 +1,4 @@
-import { Shell } from "~/islands/common/shells/shell";
+import { cn } from "~/utils/server/utils";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -11,7 +11,7 @@ import {
   CardHeader
 } from "~/islands/primitives/card";
 import { Skeleton } from "~/islands/primitives/skeleton";
-import { cn } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
 
 export default function BillingLoading() {
   return (

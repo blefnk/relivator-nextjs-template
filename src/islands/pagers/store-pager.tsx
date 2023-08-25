@@ -4,12 +4,12 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 import {
   getNextStoreIdAction,
   getPreviousStoreIdAction
 } from "~/utils/server/actions/store";
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 
 interface StorePagerProps {
   storeId: number;

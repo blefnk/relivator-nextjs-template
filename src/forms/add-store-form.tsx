@@ -7,7 +7,10 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
 
+import { addStoreAction } from "~/utils/server/actions/store";
+import { catchError } from "~/utils/server/utils";
 import { storeSchema } from "~/data/zod/store";
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
   Form,
@@ -17,11 +20,8 @@ import {
   FormLabel,
   FormMessage
 } from "~/islands/primitives/form";
-import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
 import { Textarea } from "~/islands/primitives/textarea";
-import { addStoreAction } from "~/utils/server/actions/store";
-import { catchError } from "~/utils/server/utils";
 
 interface AddStoreFormProps {
   userId: string;

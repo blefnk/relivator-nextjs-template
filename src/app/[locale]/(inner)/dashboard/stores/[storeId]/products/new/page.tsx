@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
-import { env } from "~/env.mjs";
 
 import { AddProductForm } from "~/forms/add-product-form";
 import {
@@ -11,6 +10,7 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

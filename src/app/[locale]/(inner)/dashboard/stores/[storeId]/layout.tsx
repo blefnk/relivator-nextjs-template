@@ -2,16 +2,16 @@ import { notFound, redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
 
-import { db } from "~/data/db/drizzle";
-import { stores } from "~/data/db/schema";
-import { StoreSwitcher } from "~/islands/common/pager/store-switcher";
-import { StoreTabs } from "~/islands/common/pager/store-tabs";
-import { Shell } from "~/islands/common/shells/shell";
-import { PageHeaderHeading } from "~/islands/page-header";
 import {
   getDashboardRedirectPath,
   getUserSubscriptionPlan
 } from "~/utils/server/subs";
+import { db } from "~/data/db";
+import { stores } from "~/data/db/schema";
+import { PageHeaderHeading } from "~/islands/page-header";
+import { StoreSwitcher } from "~/islands/pagers/store-switcher";
+import { StoreTabs } from "~/islands/pagers/store-tabs";
+import { Shell } from "~/islands/shells/shell";
 
 interface StoreLayoutProps {
   children: React.ReactNode;

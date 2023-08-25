@@ -3,10 +3,10 @@
 import * as React from "react";
 import { toast } from "sonner";
 
-import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 import { generateProducts } from "~/utils/server/actions/generate";
 import { catchError } from "~/utils/server/utils";
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 
 interface GenerateButtonProps {
   storeId: number;

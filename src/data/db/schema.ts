@@ -1,5 +1,4 @@
-import type { InferModel } from "drizzle-orm";
-import { relations } from "drizzle-orm";
+import { relations, type InferModel } from "drizzle-orm";
 import {
   boolean,
   decimal,
@@ -13,11 +12,7 @@ import {
   varchar
 } from "drizzle-orm/mysql-core";
 
-import type {
-  CartItem,
-  CheckoutItem,
-  StoredFile
-} from "~/utils/types/store-main";
+import type { CartItem, CheckoutItem, StoredFile } from "~/utils/types";
 
 export const stores = mysqlTable("stores", {
   id: serial("id").primaryKey(),
@@ -33,7 +28,8 @@ export const stores = mysqlTable("stores", {
 export type Store = InferModel<typeof stores>;
 
 export const storesRelations = relations(stores, ({ many }) => ({
-  products: many(products)
+  products: many(products),
+  payments: many(payments)
 }));
 
 export const products = mysqlTable("products", {
@@ -70,6 +66,7 @@ export const carts = mysqlTable("carts", {
   paymentIntentId: varchar("paymentIntentId", { length: 191 }),
   clientSecret: varchar("clientSecret", { length: 191 }),
   items: json("items").$type<CartItem[] | null>().default(null),
+  closed: boolean("closed").notNull().default(false),
   createdAt: timestamp("createdAt").defaultNow()
 });
 
@@ -88,6 +85,7 @@ export const emailPreferences = mysqlTable("email_preferences", {
 
 export type EmailPreference = InferModel<typeof emailPreferences>;
 
+// Original source: https://github.com/jackblatch/OneStopShop/blob/main/db/schema.ts
 export const payments = mysqlTable("payments", {
   id: serial("id").primaryKey(),
   userId: varchar("userId", { length: 191 }),
@@ -101,6 +99,11 @@ export const payments = mysqlTable("payments", {
 
 export type Payment = InferModel<typeof payments>;
 
+export const paymentsRelations = relations(payments, ({ one }) => ({
+  store: one(stores, { fields: [payments.storeId], references: [stores.id] })
+}));
+
+// Original source: https://github.com/jackblatch/OneStopShop/blob/main/db/schema.ts
 export const orders = mysqlTable("orders", {
   id: serial("id").primaryKey(),
   userId: varchar("userId", { length: 191 }),
@@ -121,6 +124,7 @@ export const orders = mysqlTable("orders", {
 
 export type Order = InferModel<typeof orders>;
 
+// Original source: https://github.com/jackblatch/OneStopShop/blob/main/db/schema.ts
 export const addresses = mysqlTable("addresses", {
   id: serial("id").primaryKey(),
   line1: varchar("line1", { length: 191 }),

@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { getScopedI18n } from "~/data/i18n/server";
-import { typography } from "~/utils/server/text";
 import type { GenerateMetadata } from "~/utils/types/metadata";
+import { typography } from "~/utils/server/text";
+import { getScopedI18n } from "~/data/i18n/server";
 
 const tools = [
   {

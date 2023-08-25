@@ -8,13 +8,13 @@ import { TailwindIndicator } from "~/islands/tailwind-indicator";
 import "~/styles/globals.css";
 
 import type { Metadata } from "next";
-import { env } from "~/env.mjs";
 
-import { Providers } from "~/islands/common/providers";
-import { fontMono, fontSans } from "~/utils/server/fonts";
-import { cn } from "~/utils/server/utils";
 import { PageParams } from "~/utils/types/page-params";
 import { WithChildren } from "~/utils/types/with-children";
+import { fontMono, fontSans } from "~/utils/server/fonts";
+import { cn } from "~/utils/server/utils";
+import { Providers } from "~/islands/common/providers";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

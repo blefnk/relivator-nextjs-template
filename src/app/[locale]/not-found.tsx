@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { Balancer } from "react-wrap-balancer";
 
+import { typography } from "~/utils/server/text";
 import { getScopedI18n } from "~/data/i18n/server";
 import { ThemeProvider } from "~/islands/common/providers";
 import { Button } from "~/islands/primitives/button";
-import { typography } from "~/utils/server/text";
 
 export default async function NotFound() {
   const t = await getScopedI18n("pages.not-found");

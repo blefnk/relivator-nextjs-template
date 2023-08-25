@@ -4,13 +4,13 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { type Product } from "~/data/db/schema";
-import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 import {
   getNextProductIdAction,
   getPreviousProductIdAction
 } from "~/utils/server/actions/product";
+import { type Product } from "~/data/db/schema";
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 
 interface ProductPagerProps {
   product: Product;

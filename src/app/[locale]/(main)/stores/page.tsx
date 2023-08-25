@@ -1,14 +1,14 @@
 import { type Metadata } from "next";
-import { env } from "~/env.mjs";
 
-import { Shell } from "~/islands/common/shells/shell";
+import { getStoresAction } from "~/utils/server/actions/store";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
+import { Shell } from "~/islands/shells/shell";
 import { Stores } from "~/islands/stores";
-import { getStoresAction } from "~/utils/server/actions/store";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

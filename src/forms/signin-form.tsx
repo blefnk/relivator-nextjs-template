@@ -7,7 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
+import { catchClerkError } from "~/utils/server/utils";
 import { authSchema } from "~/data/zod/auth";
+import { Icons } from "~/islands/icons";
 import { PasswordInput } from "~/islands/password-input";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -18,9 +20,7 @@ import {
   FormLabel,
   FormMessage
 } from "~/islands/primitives/form";
-import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
-import { catchClerkError } from "~/utils/server/utils";
 
 type Inputs = z.infer<typeof authSchema>;
 

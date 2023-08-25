@@ -16,6 +16,10 @@ import {
   type VisibilityState
 } from "@tanstack/react-table";
 
+import type {
+  DataTableFilterableColumn,
+  DataTableSearchableColumn
+} from "~/utils/types";
 import { useDebounce } from "~/hooks/use-debounce";
 import { DataTablePagination } from "~/islands/modules/data-table/data-table-pagination";
 import { DataTableToolbar } from "~/islands/modules/data-table/data-table-toolbar";
@@ -27,10 +31,6 @@ import {
   TableHeader,
   TableRow
 } from "~/islands/primitives/table";
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn
-} from "~/utils/types/store-main";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];

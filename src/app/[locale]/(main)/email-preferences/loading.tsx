@@ -1,4 +1,3 @@
-import { Shell } from "~/islands/common/shells/shell";
 import { PageHeader } from "~/islands/page-header";
 import {
   Card,
@@ -8,6 +7,7 @@ import {
   CardTitle
 } from "~/islands/primitives/card";
 import { Skeleton } from "~/islands/primitives/skeleton";
+import { Shell } from "~/islands/shells/shell";
 
 export default function EmailPreferencesLoading() {
   return (

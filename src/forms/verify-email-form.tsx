@@ -7,7 +7,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
+import { catchClerkError } from "~/utils/server/utils";
 import { verfifyEmailSchema } from "~/data/zod/auth";
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
   Form,
@@ -17,9 +19,7 @@ import {
   FormLabel,
   FormMessage
 } from "~/islands/primitives/form";
-import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
-import { catchClerkError } from "~/utils/server/utils";
 
 type Inputs = z.infer<typeof verfifyEmailSchema>;
 

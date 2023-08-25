@@ -2,13 +2,13 @@ import Link from "next/link";
 import { REPOSITORY_URL, settings, siteConfig } from "~/app";
 import { Github, Twitter } from "lucide-react";
 
+import { typography } from "~/utils/server/text";
+import { cn } from "~/utils/server/utils";
 import { getScopedI18n } from "~/data/i18n/server";
 import { SubscribeToNewsletterForm } from "~/forms/newsletter-subscribe";
 import { ModeToggle } from "~/islands/modules/mode-toggle";
 import { Shell } from "~/islands/modules/shell";
 import { buttonVariants } from "~/islands/primitives/button";
-import { typography } from "~/utils/server/text";
-import { cn } from "~/utils/server/utils";
 
 export async function SiteFooter() {
   const t = await getScopedI18n("islands");
@@ -36,7 +36,7 @@ export async function SiteFooter() {
           <section
             id="footer-links"
             aria-labelledby="footer-links-heading"
-            className="grid flex-1 grid-cols-1 gap-10 xs:grid-cols-2 sm:grid-cols-4"
+            className="xxs:grid-cols-2 grid flex-1 grid-cols-1 gap-10 sm:grid-cols-4"
           >
             {siteConfig.footerNav.map((item) => (
               <div key={item.title} className="space-y-3">

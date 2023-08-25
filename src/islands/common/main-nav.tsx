@@ -5,6 +5,8 @@ import Link from "next/link";
 import { siteConfig } from "~/app";
 import { ActivitySquare } from "lucide-react";
 
+import { cn } from "~/utils/server/utils";
+import type { MainNavItem } from "~/utils/types";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,8 +16,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle
 } from "~/islands/common/nav-menu";
-import { cn } from "~/utils/server/utils";
-import type { MainNavItem } from "~/utils/types/store-main";
 
 interface MainNavProps {
   items?: MainNavItem[];

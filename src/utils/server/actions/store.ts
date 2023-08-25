@@ -4,14 +4,14 @@ import { revalidatePath } from "next/cache";
 import { and, asc, desc, eq, gt, isNull, lt, not, sql } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db/drizzle";
+import { slugify } from "~/utils/server/utils";
+import { db } from "~/data/db";
 import { products, stores, type Store } from "~/data/db/schema";
 import type {
   getStoreSchema,
   getStoresSchema,
   storeSchema
 } from "~/data/zod/store";
-import { slugify } from "~/utils/server/utils";
 
 export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
   const limit = input.limit ?? 10;
@@ -108,12 +108,18 @@ export async function getNextStoreIdAction(
   }
 
   const nextStore = await db.query.stores.findFirst({
+    columns: {
+      id: true
+    },
     where: and(eq(stores.userId, input.userId), gt(stores.id, input.id)),
     orderBy: asc(stores.id)
   });
 
   if (!nextStore) {
     const firstStore = await db.query.stores.findFirst({
+      columns: {
+        id: true
+      },
       where: eq(stores.userId, input.userId),
       orderBy: asc(stores.id)
     });
@@ -136,12 +142,18 @@ export async function getPreviousStoreIdAction(
   }
 
   const previousStore = await db.query.stores.findFirst({
+    columns: {
+      id: true
+    },
     where: and(eq(stores.userId, input.userId), lt(stores.id, input.id)),
     orderBy: desc(stores.id)
   });
 
   if (!previousStore) {
     const lastStore = await db.query.stores.findFirst({
+      columns: {
+        id: true
+      },
       where: eq(stores.userId, input.userId),
       orderBy: desc(stores.id)
     });

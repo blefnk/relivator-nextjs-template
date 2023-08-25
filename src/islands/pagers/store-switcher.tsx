@@ -8,6 +8,8 @@ import {
   PlusCircledIcon
 } from "@radix-ui/react-icons";
 
+import { getRandomPatternStyle } from "~/utils/server/pattern";
+import { cn } from "~/utils/server/utils";
 import { type Store } from "~/data/db/schema";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -25,8 +27,6 @@ import {
   PopoverContent,
   PopoverTrigger
 } from "~/islands/primitives/popover";
-import { getRandomPatternStyle } from "~/utils/server/pattern";
-import { cn } from "~/utils/server/utils";
 
 interface StoreSwitcherProps
   extends React.ComponentPropsWithoutRef<typeof PopoverTrigger> {

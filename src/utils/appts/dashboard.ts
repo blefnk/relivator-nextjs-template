@@ -1,4 +1,4 @@
-import { type SidebarNavItem } from "~/utils/types/store-main";
+import { type SidebarNavItem } from "~/utils/types";
 
 export interface DashboardConfig {
   sidebarNav: SidebarNavItem[];

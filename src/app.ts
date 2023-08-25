@@ -5,7 +5,7 @@ import { ContentSection, HeroHeader } from "~/utils/appts/appts";
 import { productCategories } from "~/utils/appts/products";
 import { networks } from "~/utils/appts/socials";
 import { slugify } from "~/utils/server/utils";
-import type { FooterItem, MainNavItem } from "~/utils/types/store-main";
+import type { FooterItem, MainNavItem } from "~/utils/types";
 
 // ========================================================
 

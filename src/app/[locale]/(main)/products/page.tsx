@@ -1,16 +1,16 @@
 import { type Metadata } from "next";
-import { env } from "~/env.mjs";
 
+import { getProductsAction } from "~/utils/server/actions/product";
+import { getStoresAction } from "~/utils/server/actions/store";
 import { products } from "~/data/db/schema";
-import { Shell } from "~/islands/common/shells/shell";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
 import { Products } from "~/islands/products";
-import { getProductsAction } from "~/utils/server/actions/product";
-import { getStoresAction } from "~/utils/server/actions/store";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

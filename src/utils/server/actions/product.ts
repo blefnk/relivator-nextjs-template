@@ -17,15 +17,14 @@ import {
 } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db/drizzle";
-import type { Product } from "~/data/db/schema";
-import { products } from "~/data/db/schema";
+import type { StoredFile } from "~/utils/types";
+import { db } from "~/data/db";
+import { products, type Product } from "~/data/db/schema";
 import type {
   getProductSchema,
   getProductsSchema,
   productSchema
 } from "~/data/zod/product";
-import type { StoredFile } from "~/utils/types/store-main";
 
 export async function filterProductsAction(query: string) {
   if (query.length === 0) return null;
@@ -144,6 +143,9 @@ export async function addProductAction(
   }
 ) {
   const productWithSameName = await db.query.products.findFirst({
+    columns: {
+      id: true
+    },
     where: eq(products.name, input.name)
   });
 
@@ -183,12 +185,18 @@ export async function updateProductAction(
 export async function deleteProductAction(
   input: z.infer<typeof getProductSchema>
 ) {
-  and(eq(products.id, input.id), eq(products.storeId, input.storeId)),
-    await db
-      .delete(products)
-      .where(
-        and(eq(products.id, input.id), eq(products.storeId, input.storeId))
-      );
+  const product = await db.query.products.findFirst({
+    columns: {
+      id: true
+    },
+    where: and(eq(products.id, input.id), eq(products.storeId, input.storeId))
+  });
+
+  if (!product) {
+    throw new Error("Product not found.");
+  }
+
+  await db.delete(products).where(eq(products.id, input.id));
 
   revalidatePath(`/dashboard/stores/${input.storeId}/products`);
 }
@@ -197,6 +205,9 @@ export async function getNextProductIdAction(
   input: z.infer<typeof getProductSchema>
 ) {
   const product = await db.query.products.findFirst({
+    columns: {
+      id: true
+    },
     where: and(eq(products.storeId, input.storeId), gt(products.id, input.id)),
     orderBy: asc(products.id)
   });
@@ -212,6 +223,9 @@ export async function getPreviousProductIdAction(
   input: z.infer<typeof getProductSchema>
 ) {
   const product = await db.query.products.findFirst({
+    columns: {
+      id: true
+    },
     where: and(eq(products.storeId, input.storeId), lt(products.id, input.id)),
     orderBy: desc(products.id)
   });

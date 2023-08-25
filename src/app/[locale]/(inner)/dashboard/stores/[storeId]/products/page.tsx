@@ -1,12 +1,12 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
-import { env } from "~/env.mjs";
 import { and, asc, desc, eq, inArray, like, sql } from "drizzle-orm";
 
-import { db } from "~/data/db/drizzle";
+import { db } from "~/data/db";
 import { products, stores, type Product } from "~/data/db/schema";
-import { ProductsTableShell } from "~/islands/common/shells/products-table-shell";
 import { GenerateButton } from "~/islands/generate-button";
+import { ProductsTableShell } from "~/islands/shells/products-table-shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

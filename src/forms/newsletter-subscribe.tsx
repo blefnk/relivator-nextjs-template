@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import type { z } from "zod";
 
 import { emailSchema } from "~/data/zod/email";
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
   Form,
@@ -16,7 +17,6 @@ import {
   FormLabel,
   FormMessage
 } from "~/islands/primitives/form";
-import { Icons } from "~/islands/primitives/icons";
 import { Input } from "~/islands/primitives/input";
 
 type Inputs = z.infer<typeof emailSchema>;

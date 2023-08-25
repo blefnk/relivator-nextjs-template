@@ -5,6 +5,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "~/app";
 
+import { cn } from "~/utils/server/utils";
+import type { MainNavItem, SidebarNavItem } from "~/utils/types";
+import { Icons } from "~/islands/icons";
 import {
   Accordion,
   AccordionContent,
@@ -12,11 +15,8 @@ import {
   AccordionTrigger
 } from "~/islands/primitives/accordion";
 import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "~/islands/primitives/sheet";
-import { cn } from "~/utils/server/utils";
-import type { MainNavItem, SidebarNavItem } from "~/utils/types/store-main";
 
 interface MobileNavProps {
   mainNavItems?: MainNavItem[];

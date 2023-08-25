@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { env } from "~/env.mjs";
 
-import { Shell } from "~/islands/common/shells/shell";
+import { UserProfile } from "~/islands/account/user-profile";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
 } from "~/islands/page-header";
-import { UserProfile } from "~/islands/user-profile";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

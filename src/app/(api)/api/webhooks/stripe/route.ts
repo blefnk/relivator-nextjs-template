@@ -1,10 +1,14 @@
 import { headers } from "next/headers";
 import { clerkClient } from "@clerk/nextjs";
-import { env } from "~/env.mjs";
+import { eq } from "drizzle-orm";
 import type Stripe from "stripe";
 
-import { userPrivateMetadataSchema } from "~/data/zod/auth";
 import { stripe } from "~/utils/server/stripe";
+import type { CheckoutItem } from "~/utils/types";
+import { db } from "~/data/db";
+import { addresses, carts, orders, payments } from "~/data/db/schema";
+import { userPrivateMetadataSchema } from "~/data/zod/auth";
+import { env } from "~/env.mjs";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -78,6 +82,87 @@ export async function POST(req: Request) {
         stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000)
       }
     });
+  }
+
+  // Handle payment intents
+  switch (event.type) {
+    case "payment_intent.payment_failed":
+      // Handle the payment_intent.payment_failed event
+      break;
+    case "payment_intent.processing":
+      // Handle the payment_intent.processing event
+      break;
+    case "payment_intent.succeeded":
+      // Handle the payment_intent.succeeded event
+      const stripeObject = event?.data?.object as Stripe.PaymentIntent;
+
+      const paymentIntentId = stripeObject?.id;
+      const orderTotal = stripeObject?.amount;
+      const cartItems = stripeObject?.metadata
+        ?.items as unknown as CheckoutItem[];
+
+      try {
+        if (!event.account) throw new Error("No account on event");
+
+        const payment = await db.query.payments.findFirst({
+          columns: {
+            storeId: true
+          },
+          where: eq(payments.stripeAccountId, event.account)
+        });
+
+        if (!payment?.storeId) {
+          return new Response("Store not found", { status: 404 });
+        }
+
+        // Create new address in DB
+        const stripeAddress = stripeObject?.shipping?.address;
+
+        const newAddress = await db.insert(addresses).values({
+          line1: stripeAddress?.line1,
+          line2: stripeAddress?.line2,
+          city: stripeAddress?.city,
+          state: stripeAddress?.state,
+          country: stripeAddress?.country,
+          postalCode: stripeAddress?.postal_code
+        });
+
+        if (!newAddress.insertId) throw new Error("No address created.");
+
+        // Create new order in DB
+        const newOrder = await db.insert(orders).values({
+          storeId: payment.storeId,
+          items: cartItems ?? [],
+          total: String(Number(orderTotal) / 100),
+          stripePaymentIntentId: paymentIntentId,
+          stripePaymentIntentStatus: stripeObject?.status,
+          name: stripeObject?.shipping?.name,
+          email: stripeObject?.receipt_email,
+          addressId: Number(newAddress.insertId)
+        });
+
+        console.log("Order created", newOrder);
+      } catch (err) {
+        console.log("Error creating order.", err);
+      }
+
+      try {
+        // Close cart and clear items
+        await db
+          .update(carts)
+          .set({
+            closed: true,
+            items: null
+          })
+          .where(eq(carts.paymentIntentId, paymentIntentId));
+      } catch (err) {
+        console.error(err);
+        return new Response("Error updating cart", { status: 500 });
+      }
+
+      break;
+    default:
+      console.log(`Unhandled event type ${event.type}`);
   }
 
   return new Response(null, { status: 200 });

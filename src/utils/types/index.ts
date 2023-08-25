@@ -1,10 +1,14 @@
 import { type FileWithPath } from "react-dropzone";
 import { type z } from "zod";
 
-import type { Product, Store } from "~/data/db/schema";
+import type { Store } from "~/data/db/schema";
 import { type userPrivateMetadataSchema } from "~/data/zod/auth";
-import type { cartItemSchema, checkoutItemSchema } from "~/data/zod/cart";
-import { type Icons } from "~/islands/primitives/icons";
+import type {
+  cartItemSchema,
+  cartLineItemSchema,
+  checkoutItemSchema
+} from "~/data/zod/cart";
+import { type Icons } from "~/islands/icons";
 
 export interface NavItem {
   title: string;
@@ -77,21 +81,7 @@ export type CartItem = z.infer<typeof cartItemSchema>;
 
 export type CheckoutItem = z.infer<typeof checkoutItemSchema>;
 
-export interface CartLineItem
-  extends Pick<
-    Product,
-    | "id"
-    | "name"
-    | "images"
-    | "category"
-    | "subcategory"
-    | "price"
-    | "inventory"
-    | "storeId"
-  > {
-  quantity: number;
-  storeName: string | null;
-}
+export type CartLineItem = z.infer<typeof cartLineItemSchema>;
 
 export interface SubscriptionPlan {
   id: "basic" | "standard" | "pro";

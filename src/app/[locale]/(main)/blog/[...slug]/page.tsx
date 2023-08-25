@@ -7,14 +7,14 @@ import "~/styles/mdx.css";
 import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { env } from "~/env.mjs";
 
-import { MdxPager } from "~/islands/common/pager/mdx-pager";
-import { Shell } from "~/islands/common/shells/shell";
-import { buttonVariants } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
-import { Separator } from "~/islands/primitives/separator";
 import { absoluteUrl, cn, formatDate } from "~/utils/server/utils";
+import { Icons } from "~/islands/icons";
+import { MdxPager } from "~/islands/pagers/mdx-pager";
+import { buttonVariants } from "~/islands/primitives/button";
+import { Separator } from "~/islands/primitives/separator";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 interface PostPageProps {
   params: {

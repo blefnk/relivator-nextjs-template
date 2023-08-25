@@ -2,17 +2,17 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { eq, inArray } from "drizzle-orm";
+import { asc, desc, eq, inArray } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db/drizzle";
+import type { CartLineItem } from "~/utils/types";
+import { db } from "~/data/db";
 import { carts, products, stores } from "~/data/db/schema";
 import type {
   cartItemSchema,
   deleteCartItemSchema,
   deleteCartItemsSchema
 } from "~/data/zod/cart";
-import type { CartLineItem } from "~/utils/types/store-main";
 
 export async function getCartAction(): Promise<CartLineItem[]> {
   const cartId = cookies().get("cartId")?.value;
@@ -39,12 +39,14 @@ export async function getCartAction(): Promise<CartLineItem[]> {
       price: products.price,
       inventory: products.inventory,
       storeId: products.storeId,
-      storeName: stores.name
+      storeName: stores.name,
+      storeStripeAccountId: stores.stripeAccountId
     })
     .from(products)
     .leftJoin(stores, eq(stores.id, products.storeId))
     .groupBy(products.id)
-    .where(inArray(products.id, uniqueProductIds));
+    .where(inArray(products.id, uniqueProductIds))
+    .orderBy(desc(stores.stripeAccountId), asc(products.createdAt));
 
   const allCartLineItems = cartLineItems.map((item) => {
     const quantity = cart?.items?.find(

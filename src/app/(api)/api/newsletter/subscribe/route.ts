@@ -1,14 +1,14 @@
 import { currentUser } from "@clerk/nextjs";
-import { env } from "~/env.mjs";
 import { eq } from "drizzle-orm";
 import { type ErrorResponse } from "resend";
 import { z } from "zod";
 
-import { db } from "~/data/db/drizzle";
+import { resend } from "~/utils/server/resend";
+import { db } from "~/data/db";
 import { emailPreferences } from "~/data/db/schema";
 import NewsletterWelcomeEmail from "~/data/mail/newsletter-welcome-email";
 import { subscribeToNewsletterSchema } from "~/data/zod/email";
-import { resend } from "~/utils/server/resend";
+import { env } from "~/env.mjs";
 
 export async function POST(req: Request) {
   const input = subscribeToNewsletterSchema.parse(await req.json());

@@ -5,8 +5,8 @@ import { isClerkAPIResponseError, useSignIn } from "@clerk/nextjs";
 import { type OAuthStrategy } from "@clerk/types";
 import { toast } from "sonner";
 
+import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 
 const oauthProviders = [
   { name: "Google", strategy: "oauth_google", icon: "google" },

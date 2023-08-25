@@ -8,10 +8,10 @@ import useEmblaCarousel, {
   type EmblaOptionsType
 } from "embla-carousel-react";
 
-import { Button } from "~/islands/primitives/button";
-import { Icons } from "~/islands/primitives/icons";
 import { cn } from "~/utils/server/utils";
-import { type StoredFile } from "~/utils/types/store-main";
+import { type StoredFile } from "~/utils/types";
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 
 interface ProductImageCarouselProps
   extends React.HTMLAttributes<HTMLDivElement> {

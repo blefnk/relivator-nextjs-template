@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+import { getRandomPatternStyle } from "~/utils/server/pattern";
+import { cn } from "~/utils/server/utils";
+import { type CuratedStore } from "~/utils/types";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
 import { Badge } from "~/islands/primitives/badge";
 import {
@@ -8,9 +11,6 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { getRandomPatternStyle } from "~/utils/server/pattern";
-import { cn } from "~/utils/server/utils";
-import { type CuratedStore } from "~/utils/types/store-main";
 
 interface StoreCardProps {
   store: CuratedStore;
@@ -20,9 +20,9 @@ interface StoreCardProps {
 export function StoreCard({ store, href }: StoreCardProps) {
   return (
     <Link aria-label={store.name} href={href}>
-      <Card className="h-full">
+      <Card className="h-full overflow-hidden">
         <AspectRatio ratio={21 / 9}>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-transparent to-zinc-950/20" />
           <Badge
             className={cn(
               "pointer-events-none absolute right-2 top-2 text-white",

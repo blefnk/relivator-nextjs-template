@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { env } from "~/env.mjs";
 import { and, desc, eq, not } from "drizzle-orm";
 
-import { db } from "~/data/db/drizzle";
+import { formatPrice, toTitleCase } from "~/utils/server/utils";
+import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { AddToCartForm } from "~/forms/add-to-cart-form";
-import { Breadcrumbs } from "~/islands/common/pager/breadcrumbs";
-import { Shell } from "~/islands/common/shells/shell";
+import { ProductCard } from "~/islands/cards/product-card";
+import { Breadcrumbs } from "~/islands/pagers/breadcrumbs";
 import {
   Accordion,
   AccordionContent,
@@ -16,9 +16,9 @@ import {
   AccordionTrigger
 } from "~/islands/primitives/accordion";
 import { Separator } from "~/islands/primitives/separator";
-import { ProductCard } from "~/islands/product-card";
 import { ProductImageCarousel } from "~/islands/product-image-carousel";
-import { formatPrice, toTitleCase } from "~/utils/server/utils";
+import { Shell } from "~/islands/shells/shell";
+import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),

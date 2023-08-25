@@ -9,12 +9,13 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1700px"
+        "2xl": "1640px"
       }
     },
     extend: {
       screens: {
-        xs: "380px"
+        xs: "480px",
+        xxs: "380px"
       },
       flex: {
         full: "0 0 100%"
