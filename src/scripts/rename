@@ -1,0 +1,40 @@
+#!/usr/bin/env zsh
+
+# This script is used to rename the project from "relivator" to whatever you want.
+# This script is still under development, experimental, and may not work as expected.
+# Please use with caution and make sure you understand what it does before running it.
+
+echo -n "What is your new project name (relivator)?: "
+read project_name
+
+snake_name=${project_name//-/_}
+upper_name=${(U)project_name}
+dash_name=${snake_name//_/-}
+words=(${(s:_:)snake_name})
+class_name=${(j::)${(C)words}}
+
+mappings=("s/relivator/$snake_name/g" "s/relivator_bleverse/$snake_name/g" "s/RELIVATOR/$upper_name/g" "s/Relivator/$class_name/g" "s/relivator-bleverse/$dash_name/g")
+
+# Rename git origin
+git remote rename origin relivator
+
+for mapping in $mappings
+do
+  echo "Renaming $mapping ..."
+  sed -i '' $mapping ".env"
+  sed -i '' $mapping "package.json"
+  sed -i '' $mapping "README.md"
+  sed -i '' $mapping ".gitignore"
+  sed -i '' $mapping "src/app/(main)/page.tsx"
+  sed -i '' $mapping "src/scripts/setup"
+  sed -i '' $mapping "src/config/site.ts"
+  sed -i '' $mapping "src/emails/signin-email.tsx"
+  sed -i '' $mapping "src/lib/auth/options.ts"
+done
+
+# Run the initial setup script
+./bin/setup
+
+# Done.
+echo "\n\n✨ Now you can delete this script:"
+echo "\n rm ./bin/rename\n"

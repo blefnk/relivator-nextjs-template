@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { getUniqueStoreIds } from "~/server/actions/cart";
 import { cn } from "~/server/utils";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { CheckoutCard } from "~/islands/cards/checkout-card";
 import { Icons } from "~/islands/icons";
 import {
@@ -12,10 +14,9 @@ import {
 } from "~/islands/page-header";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Checkout",
   description: "Checkout with your cart items"
 };

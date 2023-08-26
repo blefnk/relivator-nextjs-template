@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { cartLineItemSchema } from "~/data/zod/cart";
+import { cartLineItemSchema } from "~/data/valids/cart";
 
 export const manageSubscriptionSchema = z.object({
   stripePriceId: z.string(),

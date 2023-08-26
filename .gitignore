@@ -39,4 +39,5 @@ robots.txt
 sitemap.xml
 sitemap-*.xml
 
-/src/data/db/dm/
+# another files
+/src/data/db/drizzle/

@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import type { z } from "zod";
 
 import { catchClerkError } from "~/server/utils";
-import { checkEmailSchema } from "~/data/zod/auth";
+import { checkEmailSchema } from "~/data/valids/auth";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {

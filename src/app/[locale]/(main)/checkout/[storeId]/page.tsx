@@ -9,8 +9,10 @@ import {
   getStripeAccountAction
 } from "~/server/actions/stripe";
 import { cn } from "~/server/utils";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import CheckoutForm from "~/forms/checkout-form";
 import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { CheckoutShell } from "~/islands/checkout/checkout-shell";
@@ -21,10 +23,9 @@ import {
 } from "~/islands/page-header";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Checkout",
   description: "Checkout with store items"
 };

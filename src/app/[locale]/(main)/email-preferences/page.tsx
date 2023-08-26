@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { emailPreferences } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { UpdateEmailPreferencesForm } from "~/forms/update-email-preferences-form";
 import { PageHeader } from "~/islands/page-header";
 import {
@@ -14,10 +16,9 @@ import {
   CardTitle
 } from "~/islands/primitives/card";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Email Preferences",
   description: "Manage your email preferences"
 };

@@ -4,13 +4,13 @@
   "rsc": true,
   "tsx": true,
   "tailwind": {
-    "config": "tailwind.config.ts",
     "css": "./src/styles/globals.css",
+    "config": "tailwind.config.ts",
     "baseColor": "zinc",
     "cssVariables": true
   },
   "aliases": {
     "components": "~/islands",
-    "utils": "~/utils/server"
+    "utils": "~/server/utils"
   }
 }

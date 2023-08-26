@@ -47,7 +47,7 @@ export const baseUrl = "https://relivator.bleverse.com";
 // ========================================================
 
 export const BASE_URL =
-  process.env["NODE_ENV"] === "production" ? baseUrl : "http://localhost:3000";
+  process.env.NODE_ENV === "production" ? baseUrl : "http://localhost:3000";
 export const BRAND_NAME = "Relivator";
 export const BRAND_DESCRIPTION =
   "A Next.js 13 app with auth and payments, built with Shadcn/ui, PlanetScale, Drizzle ORM, Tailwind, and more";
@@ -66,10 +66,20 @@ export const settings = {
 };
 
 export const siteConfig = {
-  name: "Relivator",
+  name: "Bleverse Relivator",
+  shortName: "Relivator",
   author: "Bleverse",
   description:
-    "🔥 Next.js 13 Starter. App Router, TypeScript, shadcn/ui, i18n, T3, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons, & More. Get it now and enjoy!",
+    "Next.js 13 store and dashboard starter. shadcn/ui, i18n, App Router, TypeScript, T3, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, Server Actions, Lucide Icons, and more.",
+  company: {
+    name: "Bleverse",
+    link: "https://bleverse.com",
+    email: "blefnk@gmail.com",
+    twitter: "@bleverse_com"
+  },
+  handles: {
+    twitter: "@bleverse_com"
+  },
   keywords: [
     "open source",
     "react",

@@ -18,13 +18,13 @@ import {
 } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, type Product } from "~/data/db/schema";
 import type {
   getProductSchema,
   getProductsSchema,
   productSchema
-} from "~/data/zod/product";
+} from "~/data/valids/product";
 
 export async function filterProductsAction(query: string) {
   if (query.length === 0) return null;

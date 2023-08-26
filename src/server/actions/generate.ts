@@ -7,7 +7,7 @@ import {
   productCategories,
   productTags
 } from "~/server/config/products";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, type Product } from "~/data/db/schema";
 
 export async function generateProducts({

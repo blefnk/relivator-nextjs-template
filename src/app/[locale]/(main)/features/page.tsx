@@ -1,6 +1,6 @@
 import Link from "next/link";
+import type { GenerateMetadata } from "~/types";
 
-import type { GenerateMetadata } from "~/types/metadata";
 import { typography } from "~/server/text";
 import { getScopedI18n } from "~/data/i18n/server";
 

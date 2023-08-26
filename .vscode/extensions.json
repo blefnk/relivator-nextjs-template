@@ -12,6 +12,7 @@
     "streetsidesoftware.code-spell-checker",
     "yoavbls.pretty-ts-errors",
     "yzhang.markdown-all-in-one",
-    "davidanson.vscode-markdownlint"
+    "davidanson.vscode-markdownlint",
+    "unifiedjs.vscode-mdx"
   ]
 }

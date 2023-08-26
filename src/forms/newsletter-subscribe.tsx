@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import type { z } from "zod";
 
-import { emailSchema } from "~/data/zod/email";
+import { emailSchema } from "~/data/valids/email";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {

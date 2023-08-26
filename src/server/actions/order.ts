@@ -3,9 +3,9 @@
 import { desc, eq, inArray } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
-import type { getOrderedProductsSchema } from "~/data/zod/order";
+import type { getOrderedProductsSchema } from "~/data/valids/order";
 
 export async function getOrderedProducts(
   input: z.infer<typeof getOrderedProductsSchema>

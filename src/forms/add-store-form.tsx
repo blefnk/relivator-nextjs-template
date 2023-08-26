@@ -9,7 +9,7 @@ import type { z } from "zod";
 
 import { addStoreAction } from "~/server/actions/store";
 import { catchError } from "~/server/utils";
-import { storeSchema } from "~/data/zod/store";
+import { storeSchema } from "~/data/valids/store";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {

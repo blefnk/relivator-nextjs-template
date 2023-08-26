@@ -3,6 +3,8 @@ import { type Metadata } from "next";
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
 import { products } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -10,10 +12,9 @@ import {
 } from "~/islands/page-header";
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Products",
   description: "Buy products from our stores"
 };

@@ -1,8 +1,8 @@
 import { REPOSITORY_URL } from "~/app";
+import type { GenerateMetadata } from "~/types";
 import { Balancer } from "react-wrap-balancer";
 import { cnBase } from "tailwind-variants";
 
-import type { GenerateMetadata } from "~/types/metadata";
 import { typography } from "~/server/text";
 import { getScopedI18n } from "~/data/i18n/server";
 

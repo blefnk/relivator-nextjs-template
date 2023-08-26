@@ -1,15 +1,52 @@
 {
+  // TypeScript Config
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // VSCode Config
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+
+  // ESLint Config
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+
+  // Files Config
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+
+  // Filetype-specific Config
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "markdownlint.config": {
+    "MD033": {
+      "allowed_elements": ["img", "p", "a"]
+    }
+  },
+
+  // TailwindCSS Config
   "tailwindCSS.includeLanguages": { "plaintext": "html" },
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["tw=\"([^\"]*)\""]
-  ],
-  "markdownlint.config": {
-    "MD033": {
-      "allowed_elements": ["img", "p", "a"]
-    }
-  }
+  ]
 }

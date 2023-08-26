@@ -5,7 +5,7 @@ import { type z } from "zod";
 
 import { manageSubscriptionAction } from "~/server/actions/stripe";
 import { catchError } from "~/server/utils";
-import { type manageSubscriptionSchema } from "~/data/zod/stripe";
+import { type manageSubscriptionSchema } from "~/data/valids/stripe";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 

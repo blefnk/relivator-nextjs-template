@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
-import { env } from "~/env.mjs";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Orders",
   description: "Manage your orders"
 };

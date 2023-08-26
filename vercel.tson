@@ -1,17 +1,22 @@
-//? ======= [ vercel.tson ] ==================
-//? https://vercel.com/docs/concepts/projects/project-configuration
-//? https://github.com/jetpack-io/tyson
-//? ------------------------------------------
-//? 1) -> tyson eval vercel.tson
-//? 2) copy-paste to vercel.json
-//? ==========================================
+/* ~~~~~~~ [ vercel.tson ] ~~~~~~~~~~~~~~~~~~
+
+https://github.com/jetpack-io/tyson
+
+https://vercel.com/docs/concepts/projects/project-configuration
+
+1) $: tyson eval vercel.tson
+2) copy-paste to vercel.json
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 type Config = {
+  $schema: string;
   buildCommand: string;
-  installCommand?: string;
+  installCommand: string;
 };
 
 export default {
+  $schema: "https://openapi.vercel.sh/vercel.json",
   buildCommand: "pnpm turbo build",
   installCommand: "pnpm install"
 } satisfies Config;

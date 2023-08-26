@@ -8,16 +8,17 @@ import { TailwindIndicator } from "~/islands/tailwind-indicator";
 import "~/styles/globals.css";
 
 import type { Metadata } from "next";
+import { PageParams, WithChildren } from "~/types";
 
-import { PageParams } from "~/types/page-params";
-import { WithChildren } from "~/types/with-children";
 import { fontMono, fontSans } from "~/server/fonts";
 import { cn } from "~/server/utils";
+import { env } from "~/data/env";
+import { seo } from "~/data/meta";
+import { fullURL } from "~/data/meta/builder";
 import { Providers } from "~/islands/common/providers";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 
+import { fullURL } from "~/data/meta/builder";
 import { SignInForm } from "~/forms/signin-form";
 import { OAuthSignIn } from "~/islands/auth/oauth-signin";
 import {
@@ -14,10 +15,9 @@ import {
   CardTitle
 } from "~/islands/primitives/card";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Sign In",
   description: "Sign in to your account"
 };

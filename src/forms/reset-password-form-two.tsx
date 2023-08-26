@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import type { z } from "zod";
 
 import { catchClerkError } from "~/server/utils";
-import { resetPasswordSchema } from "~/data/zod/auth";
+import { resetPasswordSchema } from "~/data/valids/auth";
 import { Icons } from "~/islands/icons";
 import { PasswordInput } from "~/islands/password-input";
 import { Button } from "~/islands/primitives/button";

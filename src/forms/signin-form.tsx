@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
 import { catchClerkError } from "~/server/utils";
-import { authSchema } from "~/data/zod/auth";
+import { authSchema } from "~/data/valids/auth";
 import { Icons } from "~/islands/icons";
 import { PasswordInput } from "~/islands/password-input";
 import { Button } from "~/islands/primitives/button";

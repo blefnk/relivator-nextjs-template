@@ -1,5 +1,7 @@
 import { type Metadata } from "next";
 
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { ResetPasswordSecondForm } from "~/forms/reset-password-form-two";
 import {
   Card,
@@ -9,10 +11,9 @@ import {
   CardTitle
 } from "~/islands/primitives/card";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Reset Password",
   description: "Enter your email to reset your password"
 };

@@ -9,12 +9,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { absoluteUrl, cn, formatDate } from "~/server/utils";
+import { env } from "~/data/env";
 import { Icons } from "~/islands/icons";
 import { MdxPager } from "~/islands/pagers/mdx-pager";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Separator } from "~/islands/primitives/separator";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 interface PostPageProps {
   params: {

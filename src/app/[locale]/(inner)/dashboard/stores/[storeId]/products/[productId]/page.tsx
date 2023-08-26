@@ -2,8 +2,10 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { and, eq } from "drizzle-orm";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { UpdateProductForm } from "~/forms/update-product-form";
 import { ProductPager } from "~/islands/pagers/product-pager";
 import {
@@ -13,10 +15,9 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Manage Product",
   description: "Manage your product"
 };

@@ -11,8 +11,10 @@ import {
   getUserSubscriptionPlan
 } from "~/server/subs";
 import { cn } from "~/server/utils";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { StoreCard } from "~/islands/cards/store-card";
 import {
   PageHeader,
@@ -26,10 +28,9 @@ import {
 } from "~/islands/primitives/alert";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Stores",
   description: "Manage your stores"
 };

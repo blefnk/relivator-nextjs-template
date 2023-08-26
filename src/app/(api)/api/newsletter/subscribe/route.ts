@@ -4,11 +4,11 @@ import { type ErrorResponse } from "resend";
 import { z } from "zod";
 
 import { resend } from "~/server/resend";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { emailPreferences } from "~/data/db/schema";
-import NewsletterWelcomeEmail from "~/data/mail/newsletter-welcome-email";
-import { subscribeToNewsletterSchema } from "~/data/zod/email";
-import { env } from "~/env.mjs";
+import { env } from "~/data/env";
+import NewsletterWelcomeEmail from "~/data/mail/newsletter";
+import { subscribeToNewsletterSchema } from "~/data/valids/email";
 
 export async function POST(req: Request) {
   const input = subscribeToNewsletterSchema.parse(await req.json());
@@ -38,24 +38,24 @@ export async function POST(req: Request) {
         .where(eq(emailPreferences.email, input.email));
 
       await resend.emails.send({
-        from: env.EMAIL_FROM_ADDRESS,
+        from: env.EMAIL_FROM,
         to: input.email,
         subject,
         react: NewsletterWelcomeEmail({
           firstName: user?.firstName ?? undefined,
-          fromEmail: env.EMAIL_FROM_ADDRESS,
+          fromEmail: env.EMAIL_FROM,
           token: emailPreference.token
         })
       });
     } else {
       // If email preference does not exist, create it and send the email
       await resend.emails.send({
-        from: env.EMAIL_FROM_ADDRESS,
+        from: env.EMAIL_FROM,
         to: input.email,
         subject,
         react: NewsletterWelcomeEmail({
           firstName: user?.firstName ?? undefined,
-          fromEmail: env.EMAIL_FROM_ADDRESS,
+          fromEmail: env.EMAIL_FROM,
           token: input.token
         })
       });

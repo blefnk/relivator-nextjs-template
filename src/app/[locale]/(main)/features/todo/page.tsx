@@ -1,4 +1,5 @@
-import type { GenerateMetadata } from "~/types/metadata";
+import type { GenerateMetadata } from "~/types";
+
 import { typography } from "~/server/text";
 import { getScopedI18n } from "~/data/i18n/server";
 

@@ -4,16 +4,17 @@ import { eq } from "drizzle-orm";
 
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { Breadcrumbs } from "~/islands/pagers/breadcrumbs";
 import { Separator } from "~/islands/primitives/separator";
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Store",
   description: "Store description"
 };

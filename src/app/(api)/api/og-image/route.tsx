@@ -1,7 +1,7 @@
 import type { ServerRuntime } from "next";
 import { ImageResponse } from "@vercel/og";
 
-import { ogImageSchema } from "~/data/zod/og";
+import { ogImageSchema } from "~/data/valids/og";
 
 export const runtime: ServerRuntime = "edge";
 

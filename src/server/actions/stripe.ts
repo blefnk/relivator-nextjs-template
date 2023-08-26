@@ -8,7 +8,7 @@ import { type z } from "zod";
 
 import { stripe } from "~/server/stripe";
 import { absoluteUrl, calculateTotalAndFeeInCents } from "~/server/utils";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { carts, payments, stores } from "~/data/db/schema";
 import type {
   createPaymentIntentSchema,
@@ -16,7 +16,7 @@ import type {
   getPaymentIntentsSchema,
   getStripeAccountSchema,
   manageSubscriptionSchema
-} from "~/data/zod/stripe";
+} from "~/data/valids/stripe";
 
 // Managing stripe subscriptions for a user
 export async function manageSubscriptionAction(

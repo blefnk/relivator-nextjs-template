@@ -6,6 +6,8 @@ import { currentUser } from "@clerk/nextjs";
 import { storeSubscriptionPlans } from "~/server/config/subs";
 import { getUserSubscriptionPlan } from "~/server/subs";
 import { cn, formatDate, formatPrice } from "~/server/utils";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { ManageSubscriptionForm } from "~/forms/manage-subscription-form";
 import { Icons } from "~/islands/icons";
 import {
@@ -23,10 +25,9 @@ import {
   CardTitle
 } from "~/islands/primitives/card";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Billing",
   description: "Manage your billing and subscription"
 };

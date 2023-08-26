@@ -4,6 +4,8 @@ import Link from "next/link";
 import dayjs from "dayjs";
 
 import { formatDate } from "~/server/utils";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { Icons } from "~/islands/icons";
 import {
   PageHeader,
@@ -13,10 +15,9 @@ import {
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
 import { Separator } from "~/islands/primitives/separator";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Blog",
   description: "Explore the latest news and updates from the community"
 };

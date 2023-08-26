@@ -6,7 +6,7 @@ import {
   getDashboardRedirectPath,
   getUserSubscriptionPlan
 } from "~/server/subs";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
 import { PageHeaderHeading } from "~/islands/page-header";
 import { StoreSwitcher } from "~/islands/pagers/store-switcher";

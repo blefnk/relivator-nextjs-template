@@ -5,13 +5,13 @@ import { and, asc, desc, eq, gt, isNull, lt, not, sql } from "drizzle-orm";
 import { type z } from "zod";
 
 import { slugify } from "~/server/utils";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, stores, type Store } from "~/data/db/schema";
 import type {
   getStoreSchema,
   getStoresSchema,
   storeSchema
-} from "~/data/zod/store";
+} from "~/data/valids/store";
 
 export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
   const limit = input.limit ?? 10;

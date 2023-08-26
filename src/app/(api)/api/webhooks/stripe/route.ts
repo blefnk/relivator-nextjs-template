@@ -5,10 +5,10 @@ import { eq } from "drizzle-orm";
 import type Stripe from "stripe";
 
 import { stripe } from "~/server/stripe";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { addresses, carts, orders, payments } from "~/data/db/schema";
-import { userPrivateMetadataSchema } from "~/data/zod/auth";
-import { env } from "~/env.mjs";
+import { env } from "~/data/env";
+import { userPrivateMetadataSchema } from "~/data/valids/auth";
 
 export async function POST(req: Request) {
   const body = await req.text();

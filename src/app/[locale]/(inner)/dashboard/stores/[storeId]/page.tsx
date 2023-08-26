@@ -6,8 +6,10 @@ import { and, eq, not } from "drizzle-orm";
 
 import { getStripeAccountAction } from "~/server/actions/stripe";
 import { cn, formatDate } from "~/server/utils";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { ConnectStoreToStripeButton } from "~/islands/connect-store-to-stripe-button";
 import { LoadingButton } from "~/islands/loading-button";
 import { buttonVariants } from "~/islands/primitives/button";
@@ -22,10 +24,9 @@ import {
 import { Input } from "~/islands/primitives/input";
 import { Label } from "~/islands/primitives/label";
 import { Textarea } from "~/islands/primitives/textarea";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Manage Store",
   description: "Manage your store"
 };

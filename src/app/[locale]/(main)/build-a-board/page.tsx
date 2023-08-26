@@ -6,6 +6,8 @@ import { getCartItemsAction } from "~/server/actions/cart";
 import { getProductsAction } from "~/server/actions/product";
 import { productCategories } from "~/server/config/products";
 import { cn } from "~/server/utils";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { BoardBuilder } from "~/islands/board-builder";
 import { Icons } from "~/islands/icons";
 import {
@@ -14,10 +16,9 @@ import {
   PageHeaderHeading
 } from "~/islands/page-header";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Build a Board",
   description: "Select the components for your board"
 };

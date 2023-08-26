@@ -18,7 +18,7 @@ import {
 import { getSubcategories } from "~/server/config/products";
 import { catchError, isArrayOfFile } from "~/server/utils";
 import { products, type Product } from "~/data/db/schema";
-import { productSchema } from "~/data/zod/product";
+import { productSchema } from "~/data/valids/product";
 import { FileDialog } from "~/islands/file-dialog";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";

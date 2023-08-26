@@ -1,14 +1,53 @@
+import { Metadata } from "next";
+import type { DefaultSession } from "next-auth";
 import { type FileWithPath } from "react-dropzone";
 import { type z } from "zod";
 
 import type { Store } from "~/data/db/schema";
-import { type userPrivateMetadataSchema } from "~/data/zod/auth";
+import { type userPrivateMetadataSchema } from "~/data/valids/auth";
 import type {
   cartItemSchema,
   cartLineItemSchema,
   checkoutItemSchema
-} from "~/data/zod/cart";
+} from "~/data/valids/cart";
 import { type Icons } from "~/islands/icons";
+
+declare module "next-auth" {
+  interface Session {
+    user?: DefaultSession["user"] & {
+      id?: string | null;
+    };
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT {
+    userId?: string | null;
+    email?: string | null;
+  }
+}
+
+export type WithChildren<T = unknown> = T & { children: React.ReactNode };
+
+export type PageParams = { params: { locale: string } };
+
+export type GenerateMetadata = (
+  params: PageParams
+) => Metadata | Promise<Metadata>;
+
+declare module "translate" {
+  export default function translate(
+    text: string,
+    options: {
+      from: string;
+      to: string;
+      cache?: number;
+      engine?: string;
+      key?: string;
+      url?: string;
+    }
+  ): string;
+}
 
 export interface NavItem {
   title: string;

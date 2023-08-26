@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { LogOutButtons } from "~/islands/auth/logout-buttons";
 import {
   PageHeader,
@@ -7,10 +9,9 @@ import {
   PageHeaderHeading
 } from "~/islands/page-header";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Sign out",
   description: "Sign out of your account"
 };

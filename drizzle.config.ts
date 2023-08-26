@@ -3,15 +3,15 @@ import type { Config } from "drizzle-kit";
 
 dotenv.config();
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is missing");
+const connectionString = process.env.DATABASE_URL;
+
+if (!connectionString) {
+  throw new Error("DATABASE_URL is not set");
 }
 
 export default {
   driver: "mysql2",
-  out: "./src/data/db/dm",
+  out: "./src/data/db/drizzle",
   schema: "./src/data/db/schema.ts",
-  dbCredentials: {
-    connectionString: process.env.DATABASE_URL ?? ""
-  }
+  dbCredentials: { connectionString }
 } satisfies Config;

@@ -1,4 +1,4 @@
-import { WithChildren } from "~/types/with-children";
+import { WithChildren } from "~/types";
 
 export default function Layout({ children }: WithChildren) {
   return (

@@ -8,7 +8,7 @@ import type { z } from "zod";
 
 import { addToCartAction } from "~/server/actions/cart";
 import { catchError } from "~/server/utils";
-import { updateCartItemSchema } from "~/data/zod/cart";
+import { updateCartItemSchema } from "~/data/valids/cart";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {

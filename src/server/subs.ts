@@ -5,7 +5,7 @@ import Stripe from "stripe";
 
 import { storeSubscriptionPlans } from "~/server/config/subs";
 import { stripe } from "~/server/stripe";
-import { userPrivateMetadataSchema } from "~/data/zod/auth";
+import { userPrivateMetadataSchema } from "~/data/valids/auth";
 
 export async function getUserSubscriptionPlan(
   userId: string

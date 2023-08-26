@@ -6,11 +6,16 @@ import { toast } from "sonner";
 import { twMerge } from "tailwind-merge";
 import * as z from "zod";
 
-import { env } from "~/env.mjs";
+import { env } from "~/data/env";
 
+/**
+ * A small extension to `clsx` to make it TailwindCSS class-aware.
+ * @alias cls
+ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+export const cls = cn;
 
 export function formatPrice(
   price: number | string,

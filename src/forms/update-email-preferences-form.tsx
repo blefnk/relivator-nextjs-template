@@ -9,7 +9,7 @@ import { type z } from "zod";
 import { updateEmailPreferencesAction } from "~/server/actions/email";
 import { catchClerkError } from "~/server/utils";
 import { type EmailPreference } from "~/data/db/schema";
-import { updateEmailPreferencesSchema } from "~/data/zod/email";
+import { updateEmailPreferencesSchema } from "~/data/valids/email";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {

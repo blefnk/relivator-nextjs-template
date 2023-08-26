@@ -3,18 +3,19 @@ import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Analytics",
   description: "Analytics for your store"
 };

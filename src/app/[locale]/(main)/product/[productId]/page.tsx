@@ -4,8 +4,10 @@ import { notFound } from "next/navigation";
 import { and, desc, eq, not } from "drizzle-orm";
 
 import { formatPrice, toTitleCase } from "~/server/utils";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
+import { env } from "~/data/env";
+import { fullURL } from "~/data/meta/builder";
 import { AddToCartForm } from "~/forms/add-to-cart-form";
 import { ProductCard } from "~/islands/cards/product-card";
 import { Breadcrumbs } from "~/islands/pagers/breadcrumbs";
@@ -18,10 +20,9 @@ import {
 import { Separator } from "~/islands/primitives/separator";
 import { ProductImageCarousel } from "~/islands/product-image-carousel";
 import { Shell } from "~/islands/shells/shell";
-import { env } from "~/env.mjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: fullURL(),
   title: "Product",
   description: "Product description"
 };
