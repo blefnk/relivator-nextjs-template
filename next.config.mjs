@@ -21,6 +21,12 @@ const nextConfig = {
     mdxRs: true
   },
   /**
+   * Configuration for next/image
+   */
+  images: {
+    domains: ["uploadthing.com"]
+  },
+  /**
    * Set custom website headers
    */
   async headers() {
@@ -33,8 +39,7 @@ const nextConfig = {
         headers: createSecureHeaders()
       }
     ];
-  },
-  images: { domains: ["uploadthing.com"] }
+  }
 };
 
 const withMDX = nextMDX();

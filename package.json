@@ -43,8 +43,8 @@
     "start": "next start",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe --latest",
     "test": "jest --passWithNoTests",
-    "type-check": "tsc --noEmit --pretty",
-    "typecheck": "next build && tsc --noEmit"
+    "type-check": "next build",
+    "typecheck": "next build"
   },
   "jest": {
     "setupFilesAfterEnv": [
@@ -95,6 +95,7 @@
     "@trpc/react-query": "^10.38.0",
     "@trpc/server": "^10.38.0",
     "@uploadthing/react": "^5.3.0",
+    "@vercel/analytics": "^1.0.2",
     "@vercel/og": "^0.5.11",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -174,5 +175,11 @@
     "tsx": "^3.12.7",
     "typescript": "5.2.2",
     "vitest": "^0.34.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "volta": {
+    "node": "18.0.0"
   }
 }

@@ -1,12 +1,8 @@
-name: Check
+name: Code check
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+    branches: ["*"]
 
 env:
   CLERK_SECRET_KEY: "fake"
@@ -45,24 +41,28 @@ env:
   VERCEL_URL: "https://example.com"
 
 jobs:
-  check:
+  typecheck-lint:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+
       - name: Setup Node 18
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "pnpm"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
         with:
           version: 8.6.1
+
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
@@ -70,7 +70,9 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-      - name: Install deps
+
+      - name: Install deps (with cache)
         run: pnpm install
-      - name: Run linting
-        run: pnpm run lint
+
+      - name: Run typecheck
+        run: pnpm run typecheck

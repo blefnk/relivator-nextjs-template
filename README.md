@@ -4,6 +4,8 @@
 
 **Next.js 13 starter** beautifully created with ❤️ by [**@blefnk Nazarii Korniienko**](https://github.com/blefnk), [**Bleverse**](https://github.com/blefnk), and its entire OSS community. The starter has i18n, means internationalization, and built with `app router` and `server actions` using `TypeScript` programming language. Takes some inspirations from T3 and similar stacks. Our own stack beside other includes also: `Stripe`, `NextAuth.js`, `TailwindCSS`, `Drizzle`, `Zod`, `RSC`, `SWC`, `tRPC`, `Lucide Icons`, and many more other things. Just get it and enjoy! And remember, we love your feedback!
 
+![Bleverse Relivator Landing Page Screenshot](/public/og-image.png)
+
 _You can also check [our another free Next.js 13 starter](https://github.com/blefnk/reliverse). This one starter offers you tech used in the current starter plus also: Prisma, Valibot, Lucia, Clerk, and more. It means there we're very experimentally trying to implement all the important and most used tech together._
 
 ## 🚀 About the Project

@@ -1,4 +1,5 @@
 import { ClerkProvider } from "@clerk/nextjs";
+import { Analytics } from "@vercel/analytics/react";
 import { siteConfig } from "~/app";
 
 import { defaultLocale, localeList } from "~/data/i18n";
@@ -104,9 +105,11 @@ export default async function RootLayout({
       >
         <ClientProviders locale={params.locale}>
           <ClerkProvider localization={clerkLocale}>{children}</ClerkProvider>
-          <LoglibAnalytics />
-          <TailwindIndicator />
         </ClientProviders>
+
+        <TailwindIndicator />
+        <LoglibAnalytics />
+        <Analytics />
       </body>
     </html>
   );
