@@ -6,7 +6,7 @@ import type { CartLineItem } from "~/types";
 import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db/client";
+import { db } from "~/data/db";
 import { carts, products, stores } from "~/data/db/schema";
 import type {
   cartItemSchema,
@@ -47,27 +47,28 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
     })
     .from(products)
     .leftJoin(stores, eq(stores.id, products.storeId))
-    .groupBy(products.id)
     .where(
       and(
         inArray(products.id, uniqueProductIds),
         storeId ? eq(products.storeId, storeId) : undefined
       )
     )
-    .orderBy(desc(stores.stripeAccountId), asc(products.createdAt));
+    .groupBy(products.id)
+    .orderBy(desc(stores.stripeAccountId), asc(products.createdAt))
+    .then((items) => {
+      return items.map((item) => {
+        const quantity = cart?.items?.find(
+          (cartItem) => cartItem.productId === item.id
+        )?.quantity;
 
-  const allCartLineItems = cartLineItems.map((item) => {
-    const quantity = cart?.items?.find(
-      (cartItem) => cartItem.productId === item.id
-    )?.quantity;
+        return {
+          ...item,
+          quantity: quantity ?? 0
+        };
+      });
+    });
 
-    return {
-      ...item,
-      quantity: quantity ?? 0
-    };
-  });
-
-  return allCartLineItems;
+  return cartLineItems;
 }
 
 export async function getUniqueStoreIds() {
@@ -122,12 +123,16 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
     where: eq(carts.id, Number(cartId))
   });
 
+  // TODO: Find a better way to deal with expired carts
   if (!cart) {
     cookieStore.set({
       name: "cartId",
       value: "",
       expires: new Date(0)
     });
+
+    await db.delete(carts).where(eq(carts.id, Number(cartId)));
+
     throw new Error("Cart not found, please try again.");
   }
 

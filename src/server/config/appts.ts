@@ -35,7 +35,8 @@ export type Layout = {
 };
 
 export type HeroHeader = {
-  header: string;
+  header1: string;
+  header2: string;
   subheader: string;
   image?: string;
 };

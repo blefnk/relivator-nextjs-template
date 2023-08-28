@@ -8,14 +8,17 @@ import { TailwindIndicator } from "~/islands/tailwind-indicator";
 import "~/styles/globals.css";
 
 import type { Metadata } from "next";
+import {
+  Playfair_Display as FontHeading,
+  Inter as FontSans
+} from "next/font/google";
 import { PageParams, WithChildren } from "~/types";
 
-import { fontMono, fontSans } from "~/server/fonts";
 import { cn } from "~/server/utils";
 import { env } from "~/data/env";
 import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
-import { Providers } from "~/islands/common/providers";
+import { ClientProviders } from "~/islands/modules/client-providers";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
@@ -72,6 +75,17 @@ export const metadata: Metadata = {
   }
 };
 
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans"
+});
+
+const fontHeading = FontHeading({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  weight: "500"
+});
+
 export default async function RootLayout({
   children,
   params
@@ -80,28 +94,20 @@ export default async function RootLayout({
     .default;
 
   return (
-    <ClerkProvider localization={clerkLocale}>
-      <html
-        lang={params.locale}
-        className="dark"
-        style={{ colorScheme: "dark" }}
-        suppressHydrationWarning
+    <html lang={params.locale} suppressHydrationWarning>
+      <body
+        className={cn(
+          "debug-mode-enabled min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontHeading.variable
+        )}
       >
-        <head />
-        <body
-          className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable,
-            fontMono.variable
-          )}
-        >
-          <Providers locale={params.locale}>
-            {children}
-            <LoglibAnalytics />
-            <TailwindIndicator />
-          </Providers>
-        </body>
-      </html>
-    </ClerkProvider>
+        <ClientProviders locale={params.locale}>
+          <ClerkProvider localization={clerkLocale}>{children}</ClerkProvider>
+          <LoglibAnalytics />
+          <TailwindIndicator />
+        </ClientProviders>
+      </body>
+    </html>
   );
 }

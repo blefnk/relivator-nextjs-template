@@ -8,8 +8,8 @@ import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
-} from "~/islands/page-header";
-import { Shell } from "~/islands/shells/shell";
+} from "~/islands/navigation/page-header";
+import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),

@@ -2,9 +2,9 @@ import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 
 import { dashboardConfig } from "~/server/config/dashboard";
-import { SidebarNav } from "~/islands/common/sidebar-nav";
-import { SiteFooter } from "~/islands/modules/site-footer";
-import { SiteHeader } from "~/islands/modules/site-header";
+import { SidebarNav } from "~/islands/navigation/sidebar-nav";
+import { SiteFooter } from "~/islands/navigation/site-footer";
+import { SiteHeader } from "~/islands/navigation/site-header";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
 
 interface DashboardLayoutProps {

@@ -5,7 +5,7 @@ import { currentUser } from "@clerk/nextjs";
 
 import { fullURL } from "~/data/meta/builder";
 import { SignInForm } from "~/forms/signin-form";
-import { OAuthSignIn } from "~/islands/auth/oauth-signin";
+import { OAuthSignIn } from "~/islands/account/oauth-signin";
 import {
   Card,
   CardContent,
@@ -14,7 +14,7 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/shells/shell";
+import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
@@ -56,7 +56,7 @@ export default async function SignInPage() {
             </span>
             <Link
               aria-label="Sign up"
-              href="/signup"
+              href="/sign-up"
               className="text-primary underline-offset-4 transition-colors hover:underline"
             >
               Sign up

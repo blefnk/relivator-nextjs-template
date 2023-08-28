@@ -120,7 +120,7 @@ export function isMacOs() {
   return window.navigator.userAgent.includes("Mac");
 }
 
-export function calculateTotalAndFeeInCents(items: CartLineItem[]) {
+export function calculateOrderAmount(items: CartLineItem[]) {
   const total = items.reduce((acc, item) => {
     return acc + Number(item.price) * item.quantity;
   }, 0);

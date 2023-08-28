@@ -19,32 +19,34 @@ This is the space where we're playing with everything new in Next.js 13. Stumble
 This roadmap outlines the key features and improvements to be implemented in this Next.js starter.
 
 - [x] 🌀 Comprehensive offerings of the [**Next.js 13**](https://nextjs.org) App Router, API routes handled by Route Handlers, with the RSCs and everything all new.
+- [x] 🍭 Beautifully composed UI (User Interface), with UX (User Experience), usability and accessibility in the mind.
+- [ ] 🌐 Comprehensive implementations for i18n, means internationalization, using [**next-international**](https://github.com/QuiiBz/next-international), some things from [**next-intl**](https://next-intl-docs.vercel.app), and our very own solutions in the future.
 - [ ] ✨ Admin dashboard with stores, products, orders, subscriptions, and payments.
 - [x] ⬆️ File uploads with **uploadthing**.
-- [x] 🔐 Keep it tight with Authentication using **Clerk**.
+- [x] 🔐 Keep it tight with Authentication using **Auth.js** and, maybe, **Clerk**.
 - [x] 🏬 Storefront with products, categories, and subcategories.
-- [ ] 🐧 The most beginner-friendly starter (will be in the feature, maybe, how its possible 😁).
-- [ ] 📊 Client and server data/query fetching with [**tRPC**](https://github.com/trpc/trpc) & [**TanStack Query**](https://tanstack.com/query).
+- [ ] 🐧 The most beginner-friendly starter (will be in the feature, how it's possible 😁).
+- [ ] 📊 Data-query fetching, which works on server and client, using [**tRPC**](https://github.com/trpc/trpc) & [**TanStack Query**](https://tanstack.com/query).
 - [ ] 🌅 Using every usable [**TanStack**](https://tanstack.com) libraries.
 - [ ] 📖 Sharing insights with blogs powered by **MDX**.
 - [x] 🦫 [**Drizzle**](https://orm.drizzle.team) database ORM, configured for [**PlanetScale**](https://planetscale.com) and [**DrizzeKit**](https://orm.drizzle.team/kit-docs/overview).
 - [ ] 📧 Email verification and a lot more features to enhance the application.
 - [ ] 📰 Newsletter subscription with **React Email** and **Resend**.
-- [ ] 🤖 Ultimate type-safety using [**TypeScript**](https://www.typescriptlang.org/), typedRoutes, etc.
+- [ ] 🤖 Ultimate type-safety using strict-mode in [**TypeScript**](https://www.typescriptlang.org/), typedRoutes, etc.
 - [x] 🤝 Seller and customer workflows.
 - [x] 🤩 [**TailwindCSS**](https://tailwindcss.com/) for utility-first CSS.
 - [x] ✨ Gorgeous UI built with [**Radix**](https://www.radix-ui.com/) and stunning UI components, all thanks to [**shadcn/ui**](https://ui.shadcn.com/).
 - [x] 🧧 User subscriptions via **Stripe**.
 - [ ] 💎 Seamless checkout with **Stripe Checkout**.
 - [x] 🅰️ Validation with **Zod**.
-- [ ] 🦦 [**EsLint**](https://eslint.org/) with [**Prettier**](https://prettier.io/) for readable, safe code.
-- [ ] 🌿 Authentication via [**Next Auth**](https://next-auth.js.org/).
+- [x] 🦦 [**EsLint**](https://eslint.org/) with [**Prettier**](https://prettier.io/) for readable, safe code.
+- [ ] 🌿 Authentication via [**NextAuth**](https://next-auth.js.org/).
 - [ ] 📧 Email via [**Resend**](https://resend.com) and [**react email**](https://react.email/).
-- [ ] 🅱️ The beautiful [**Inter**](https://rsms.me/inter/) typeface.
+- [x] 🅱️ The beautiful [**Inter**](https://rsms.me/inter/) typeface.
 - [x] 💮 [**Next Metadata API**](https://nextjs.org/docs/api-reference/metadata) for SEO handling, with file-system handlers.
-- [ ] 🐳 [**Jest**](https://jestjs.io/) testing, optimized for Next.js
+- [ ] 🐳 [**Jest**](https://jestjs.io) and [**Vitest**](https://vitest.dev) testing, optimized for Next.js 13.
 - [x] 🍭 Dark Mode support (without bypassing Server Components).
-- [x] ✳️ Perfectly crafted VSCode settings and recommended extensions
+- [x] ✳️ Perfectly crafted VSCode settings and recommended extensions.
 
 ## 🌍 i18n: Internationalization
 

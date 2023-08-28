@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import { SignUpForm } from "~/forms/signup-form";
-import { OAuthSignIn } from "~/islands/auth/oauth-signin";
+import { OAuthSignIn } from "~/islands/account/oauth-signin";
 import {
   Card,
   CardContent,
@@ -15,7 +15,7 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/shells/shell";
+import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),

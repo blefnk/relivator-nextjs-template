@@ -10,7 +10,6 @@ import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
 import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
-import { ConnectStoreToStripeButton } from "~/islands/connect-store-to-stripe-button";
 import { LoadingButton } from "~/islands/loading-button";
 import { buttonVariants } from "~/islands/primitives/button";
 import {
@@ -24,6 +23,7 @@ import {
 import { Input } from "~/islands/primitives/input";
 import { Label } from "~/islands/primitives/label";
 import { Textarea } from "~/islands/primitives/textarea";
+import { ConnectStoreToStripeButton } from "~/islands/stripe-btn-connect";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
@@ -104,7 +104,9 @@ export default async function UpdateStorePage({
     notFound();
   }
 
-  const { account: stripeAccount } = await getStripeAccountAction({ storeId });
+  const { account: stripeAccount } = await getStripeAccountAction({
+    storeId
+  });
 
   return (
     <div className="space-y-6">

@@ -1,5 +1,5 @@
-import { ErrorCard } from "~/islands/cards/error-card";
-import { Shell } from "~/islands/shells/shell";
+import { ErrorCard } from "~/islands/modules/cards/error-card";
+import { Shell } from "~/islands/wrappers/shell";
 
 export default function StoreNotFound() {
   return (

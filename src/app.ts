@@ -50,7 +50,7 @@ export const BASE_URL =
   process.env.NODE_ENV === "production" ? baseUrl : "http://localhost:3000";
 export const BRAND_NAME = "Relivator";
 export const BRAND_DESCRIPTION =
-  "A Next.js 13 app with auth and payments, built with Shadcn/ui, PlanetScale, Drizzle ORM, Tailwind, and more";
+  "Next.js 13 free store and dashboard template. It helps you build great eCommerce and SaaS apps faster than ever. Get it now!";
 
 export const OWNER_ROLE = "owner";
 export const ADMIN_ROLE = "admin";
@@ -62,6 +62,7 @@ export const ROLES = [OWNER_ROLE, ADMIN_ROLE, MEMBER_ROLE] as const;
 // ========================================================
 
 export const settings = {
+  internationalizationEnabled: true,
   themeToggleEnabled: true
 };
 
@@ -70,7 +71,7 @@ export const siteConfig = {
   shortName: "Relivator",
   author: "Bleverse",
   description:
-    "Next.js 13 store and dashboard starter. shadcn/ui, i18n, App Router, TypeScript, T3, Stripe, Clerk, Tailwind, Drizzle, Zod, RSC, SWC, tRPC, Server Actions, Lucide Icons, and more.",
+    "NextJS 13 free starter: dashboard and store. It helps you build great eCommerce and SaaS apps faster than ever. Get it!",
   company: {
     name: "Bleverse",
     link: "https://bleverse.com",
@@ -125,7 +126,7 @@ export const siteConfig = {
         },
         {
           title: "Build a Look",
-          href: "/build-a-board",
+          href: "/custom/clothing",
           description: "Build your own custom clothes.",
           items: []
         },
@@ -263,9 +264,9 @@ export const siteConfig = {
 // ========================================================
 
 export const heroHeader: HeroHeader = {
-  header: `Next.js 13 Store & Dashboard Starter. Build Awesome eCommerce, SaaS
-  Apps, and more.`,
-  subheader: `App Router, TypeScript, shadcn/ui, i18n, T3, Stripe, Clerk, Tailwind,
+  header1: `Next.js 13 Template 2023: Store & Dashboard`,
+  header2: `Helps Build Great eCommerce & SaaS Faster`,
+  subheader: `shadcn/ui, Link, App Router, TypeScript, T3, Stripe, Clerk, Tailwind,
   Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons,
   etc.`
 };

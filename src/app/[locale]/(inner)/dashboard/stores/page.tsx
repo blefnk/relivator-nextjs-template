@@ -15,19 +15,19 @@ import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
 import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
-import { StoreCard } from "~/islands/cards/store-card";
+import { StoreCard } from "~/islands/modules/cards/store-card";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
-} from "~/islands/page-header";
+} from "~/islands/navigation/page-header";
 import {
   Alert,
   AlertDescription,
   AlertTitle
 } from "~/islands/primitives/alert";
 import { buttonVariants } from "~/islands/primitives/button";
-import { Shell } from "~/islands/shells/shell";
+import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),

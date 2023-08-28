@@ -57,6 +57,12 @@
   * {
     @apply border-border;
   }
+  /* * .debug-mode-enabled .is-client {
+    @apply border-border border-red-800;
+  } */
+  /* * .debug-mode-enabled .is-server {
+    @apply border-border border-green-800;
+  } */
   body {
     @apply bg-background text-foreground;
   }

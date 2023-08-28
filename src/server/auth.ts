@@ -71,23 +71,23 @@ export const authOptions: NextAuthOptions = {
     /**
      * A sign out confirmation page (optional)
      */
-    // signOut: '/auth/signout',
+    // signOut: '/sign-out',
 
     /**
      * The error page to display during auth errors.
      * Error code passed in query string as `?error=`
      */
-    // error: "/auth/error",
+    // error: "/error",
 
     /**
      * The "check your email" page displayed for magic links.
      */
-    // verifyRequest: "/auth/check-email"
+    // verifyRequest: "/check-email"
 
     /**
      * New users will be directed here on first sign in (optional)
      */
-    // newUser: '/auth/new-user'
+    // newUser: '/new-user'
   },
   /**
    * https://next-auth.js.org/configuration/options#secret

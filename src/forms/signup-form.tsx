@@ -54,7 +54,7 @@ export function SignUpForm() {
           strategy: "email_code"
         });
 
-        router.push("/signup/verify-email");
+        router.push("/sign-up/verify-email");
         toast.message("Check your email", {
           description: "We sent you a 6-digit verification code."
         });

@@ -14,7 +14,7 @@ import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
-} from "~/islands/page-header";
+} from "~/islands/navigation/page-header";
 import { buttonVariants } from "~/islands/primitives/button";
 import {
   Card,
@@ -24,7 +24,7 @@ import {
   CardHeader,
   CardTitle
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/shells/shell";
+import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),

@@ -7,7 +7,7 @@ import { products } from "~/data/db/schema";
 import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import { UpdateProductForm } from "~/forms/update-product-form";
-import { ProductPager } from "~/islands/pagers/product-pager";
+import { ProductPager } from "~/islands/navigation/pagination/product-pager";
 import {
   Card,
   CardContent,

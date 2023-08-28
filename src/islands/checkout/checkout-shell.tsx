@@ -3,11 +3,11 @@
 import * as React from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { type StripeElementsOptions } from "@stripe/stripe-js";
-import { useTheme } from "next-themes";
 
-import { getStripe } from "~/server/striper";
+import { getStripe } from "~/server/get-stripe";
+import { cn } from "~/server/utils";
 
-interface CheckoutShellProps {
+interface CheckoutShellProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   storeStripeAccountId: string;
   paymentIntent: Promise<{
@@ -18,22 +18,30 @@ interface CheckoutShellProps {
 export function CheckoutShell({
   children,
   storeStripeAccountId,
-  paymentIntent
+  paymentIntent,
+  className,
+  ...props
 }: CheckoutShellProps) {
-  const stripePromise = getStripe(storeStripeAccountId);
+  const stripePromise = React.useMemo(
+    () => getStripe(storeStripeAccountId),
+    [storeStripeAccountId]
+  );
   const { clientSecret } = React.use(paymentIntent);
-  const { theme } = useTheme();
+
+  if (!clientSecret) return null;
 
   const options: StripeElementsOptions = {
     appearance: {
-      theme: theme === "dark" ? "night" : "stripe"
+      theme: "stripe"
     },
-    clientSecret: clientSecret ?? undefined
+    clientSecret: clientSecret
   };
 
   return (
-    <Elements options={options} stripe={stripePromise}>
-      {children}
-    </Elements>
+    <section className={cn("h-full w-full", className)} {...props}>
+      <Elements options={options} stripe={stripePromise}>
+        {children}
+      </Elements>
+    </section>
   );
 }

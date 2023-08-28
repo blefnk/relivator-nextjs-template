@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
-import { LogOutButtons } from "~/islands/auth/logout-buttons";
+import { LogOutButtons } from "~/islands/account/logout-buttons";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading
-} from "~/islands/page-header";
-import { Shell } from "~/islands/shells/shell";
+} from "~/islands/navigation/page-header";
+import { Shell } from "~/islands/wrappers/shell";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),

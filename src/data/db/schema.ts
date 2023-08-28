@@ -1,6 +1,6 @@
 import type { AdapterAccount } from "@auth/core/adapters";
 import type { CartItem, CheckoutItem, StoredFile } from "~/types";
-import { relations, type InferModel } from "drizzle-orm";
+import { relations } from "drizzle-orm";
 import {
   boolean,
   customType,
@@ -17,16 +17,17 @@ import {
   varchar
 } from "drizzle-orm/mysql-core";
 
-export const citext = customType<{ data: string }>({
-  dataType() {
-    return "citext";
-  }
-});
-
 /**
- * Modify the default Auth.js tables to be snake case and plural.
+ * =======================================================================
+ * SCHEMA: ACCOUNT
+ * =======================================================================
  */
+
 export const pgTable = mysqlTableCreator((name) => {
+  /**
+   * Modify default Auth.js tables
+   * to have plural and snake case
+   */
   switch (name) {
     case "user":
       return "users";
@@ -42,51 +43,56 @@ export const pgTable = mysqlTableCreator((name) => {
 });
 
 export const users = mysqlTable("user", {
-  id: varchar("id", { length: 255 }).notNull().primaryKey(),
-  name: varchar("name", { length: 255 }),
-  email: varchar("email", { length: 255 }).notNull(),
+  id: varchar("id", { length: 191 }).notNull().primaryKey(),
+  name: varchar("name", { length: 191 }),
+  email: varchar("email", { length: 191 }).notNull(),
   emailVerified: timestamp("emailVerified", {
     mode: "date",
     fsp: 3
   }).defaultNow(),
-  image: varchar("image", { length: 255 })
+  image: varchar("image", { length: 191 })
 });
+
+export type User = typeof users.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
 
 export const accounts = mysqlTable(
   "account",
   {
-    userId: varchar("userId", { length: 255 }).notNull(),
-    type: varchar("type", { length: 255 })
+    userId: varchar("userId", { length: 191 }).notNull(),
+    type: varchar("type", { length: 191 })
       .$type<AdapterAccount["type"]>()
       .notNull(),
-    provider: varchar("provider", { length: 255 }).notNull(),
-    providerAccountId: varchar("providerAccountId", { length: 255 }).notNull(),
-    refresh_token: varchar("refresh_token", { length: 255 }),
-    access_token: varchar("access_token", { length: 255 }),
+    provider: varchar("provider", { length: 191 }).notNull(),
+    providerAccountId: varchar("providerAccountId", { length: 191 }).notNull(),
+    refresh_token: varchar("refresh_token", { length: 191 }),
+    access_token: varchar("access_token", { length: 191 }),
     expires_at: int("expires_at"),
-    token_type: varchar("token_type", { length: 255 }),
-    scope: varchar("scope", { length: 255 }),
-    id_token: varchar("id_token", { length: 255 }),
-    session_state: varchar("session_state", { length: 255 })
+    token_type: varchar("token_type", { length: 191 }),
+    scope: varchar("scope", { length: 191 }),
+    id_token: varchar("id_token", { length: 191 }),
+    session_state: varchar("session_state", { length: 191 })
   },
   (account) => ({
     compoundKey: primaryKey(account.provider, account.providerAccountId)
   })
 );
 
-export type Account = InferModel<typeof accounts>;
+export type Account = typeof accounts.$inferSelect;
+export type NewAccount = typeof accounts.$inferInsert;
 
 export const accountsRelations = relations(accounts, ({ one }) => ({
   user: one(users, { fields: [accounts.userId], references: [users.id] })
 }));
 
 export const sessions = mysqlTable("session", {
-  sessionToken: varchar("sessionToken", { length: 255 }).notNull().primaryKey(),
-  userId: varchar("userId", { length: 255 }).notNull(),
+  sessionToken: varchar("sessionToken", { length: 191 }).notNull().primaryKey(),
+  userId: varchar("userId", { length: 191 }).notNull(),
   expires: timestamp("expires", { mode: "date" }).notNull()
 });
 
-export type Session = InferModel<typeof sessions>;
+export type Session = typeof sessions.$inferSelect;
+export type NewSession = typeof sessions.$inferInsert;
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   user: one(users, { fields: [sessions.userId], references: [users.id] })
@@ -95,8 +101,8 @@ export const sessionsRelations = relations(sessions, ({ one }) => ({
 export const verificationTokens = mysqlTable(
   "verificationToken",
   {
-    identifier: varchar("identifier", { length: 255 }).notNull(),
-    token: varchar("token", { length: 255 }).notNull(),
+    identifier: varchar("identifier", { length: 191 }).notNull(),
+    token: varchar("token", { length: 191 }).notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull()
   },
   (vt) => ({
@@ -104,7 +110,14 @@ export const verificationTokens = mysqlTable(
   })
 );
 
-export type VerificationToken = InferModel<typeof verificationTokens>;
+export type VerificationToken = typeof verificationTokens.$inferSelect;
+export type NewVerificationToken = typeof verificationTokens.$inferInsert;
+
+/**
+ * =======================================================================
+ * SCHEMA: STORE
+ * =======================================================================
+ */
 
 export const stores = mysqlTable("stores", {
   id: serial("id").primaryKey(),
@@ -117,7 +130,8 @@ export const stores = mysqlTable("stores", {
   createdAt: timestamp("createdAt").defaultNow()
 });
 
-export type Store = InferModel<typeof stores>;
+export type Store = typeof stores.$inferSelect;
+export type NewStore = typeof stores.$inferInsert;
 
 export const storesRelations = relations(stores, ({ many }) => ({
   products: many(products),
@@ -146,15 +160,17 @@ export const products = mysqlTable("products", {
   createdAt: timestamp("createdAt").defaultNow()
 });
 
-export type Product = InferModel<typeof products>;
+export type Product = typeof products.$inferSelect;
+export type NewProduct = typeof products.$inferInsert;
 
 export const productsRelations = relations(products, ({ one }) => ({
   store: one(stores, { fields: [products.storeId], references: [stores.id] })
 }));
 
+// Original source: https://github.com/jackblatch/OneStopShop/blob/main/db/schema.ts
 export const carts = mysqlTable("carts", {
   id: serial("id").primaryKey(),
-  userId: varchar("userId", { length: 191 }),
+  checkoutSessionId: varchar("checkoutSessionId", { length: 191 }),
   paymentIntentId: varchar("paymentIntentId", { length: 191 }),
   clientSecret: varchar("clientSecret", { length: 191 }),
   items: json("items").$type<CartItem[] | null>().default(null),
@@ -162,7 +178,8 @@ export const carts = mysqlTable("carts", {
   createdAt: timestamp("createdAt").defaultNow()
 });
 
-export type Cart = InferModel<typeof carts>;
+export type Cart = typeof carts.$inferSelect;
+export type NewCart = typeof carts.$inferInsert;
 
 export const emailPreferences = mysqlTable("email_preferences", {
   id: serial("id").primaryKey(),
@@ -175,7 +192,8 @@ export const emailPreferences = mysqlTable("email_preferences", {
   createdAt: timestamp("createdAt").defaultNow()
 });
 
-export type EmailPreference = InferModel<typeof emailPreferences>;
+export type EmailPreference = typeof emailPreferences.$inferSelect;
+export type NewEmailPreference = typeof emailPreferences.$inferInsert;
 
 // Original source: https://github.com/jackblatch/OneStopShop/blob/main/db/schema.ts
 export const payments = mysqlTable("payments", {
@@ -189,7 +207,8 @@ export const payments = mysqlTable("payments", {
   createdAt: timestamp("createdAt").defaultNow()
 });
 
-export type Payment = InferModel<typeof payments>;
+export type Payment = typeof payments.$inferSelect;
+export type NewPayment = typeof payments.$inferInsert;
 
 export const paymentsRelations = relations(payments, ({ one }) => ({
   store: one(stores, { fields: [payments.storeId], references: [stores.id] })
@@ -214,7 +233,8 @@ export const orders = mysqlTable("orders", {
   createdAt: timestamp("createdAt").defaultNow()
 });
 
-export type Order = InferModel<typeof orders>;
+export type Order = typeof orders.$inferSelect;
+export type NewOrder = typeof orders.$inferInsert;
 
 // Original source: https://github.com/jackblatch/OneStopShop/blob/main/db/schema.ts
 export const addresses = mysqlTable("addresses", {
@@ -228,4 +248,5 @@ export const addresses = mysqlTable("addresses", {
   createdAt: timestamp("createdAt").defaultNow()
 });
 
-export type Address = InferModel<typeof addresses>;
+export type Address = typeof addresses.$inferSelect;
+export type NewAddress = typeof addresses.$inferInsert;

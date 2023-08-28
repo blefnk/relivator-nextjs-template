@@ -7,9 +7,9 @@ import type { CuratedStore } from "~/types";
 
 import { storeSortOptions, storeStatusOptions } from "~/server/config/stores";
 import { cn } from "~/server/utils";
-import { StoreCard } from "~/islands/cards/store-card";
 import { Icons } from "~/islands/icons";
-import { PaginationButton } from "~/islands/pagers/pagination-button";
+import { StoreCard } from "~/islands/modules/cards/store-card";
+import { PaginationButton } from "~/islands/navigation/pagination/pagination-button";
 import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,

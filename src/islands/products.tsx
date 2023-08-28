@@ -8,10 +8,10 @@ import { getSubcategories, sortOptions } from "~/server/config/products";
 import { cn, toTitleCase, truncate } from "~/server/utils";
 import { type Product, type Store } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
-import { ProductCard } from "~/islands/cards/product-card";
 import { Icons } from "~/islands/icons";
+import { ProductCard } from "~/islands/modules/cards/product-card";
 import { MultiSelect } from "~/islands/multi-select";
-import { PaginationButton } from "~/islands/pagers/pagination-button";
+import { PaginationButton } from "~/islands/navigation/pagination/pagination-button";
 import { Button } from "~/islands/primitives/button";
 import { Checkbox } from "~/islands/primitives/checkbox";
 import {

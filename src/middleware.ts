@@ -12,7 +12,7 @@ const publicPaths = [
   "/:locale",
   "/:locale/about(.*)",
   "/:locale/blog(.*)",
-  "/:locale/build-a-board(.*)",
+  "/:locale/custom/clothing(.*)",
   "/:locale/categories(.*)",
   "/:locale/contact(.*)",
   "/:locale/email-preferences(.*)",

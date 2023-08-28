@@ -28,6 +28,7 @@ import {
   Footprints,
   HardHat,
   Image,
+  Laptop,
   Loader2,
   LogOut,
   Menu,
@@ -65,6 +66,7 @@ export type Icon = LucideIcon;
 export const Icons = {
   sun: SunMedium,
   moon: Moon,
+  laptop: Laptop,
   star: Star,
   twitter: Twitter,
   close: X,

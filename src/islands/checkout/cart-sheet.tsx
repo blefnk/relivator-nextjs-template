@@ -6,7 +6,6 @@ import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { Icons } from "~/islands/icons";
 import { Badge } from "~/islands/primitives/badge";
 import { Button, buttonVariants } from "~/islands/primitives/button";
-import { ScrollArea } from "~/islands/primitives/scroll-area";
 import { Separator } from "~/islands/primitives/separator";
 import {
   Sheet,
@@ -60,9 +59,7 @@ export async function CartSheet() {
         {itemCount > 0 ? (
           <>
             <div className="flex flex-1 flex-col gap-5 overflow-hidden">
-              <ScrollArea className="h-full">
-                <CartLineItems cartLineItems={cartLineItems} className="pr-6" />
-              </ScrollArea>
+              <CartLineItems cartLineItems={cartLineItems} />
             </div>
             <div className="grid gap-1.5 pr-6 text-sm">
               <Separator className="mb-2" />
@@ -86,14 +83,14 @@ export async function CartSheet() {
               <SheetFooter className="mt-1.5">
                 <SheetTrigger asChild>
                   <Link
-                    aria-label="Proceed to checkout"
-                    href="/checkout"
+                    aria-label="View your cart"
+                    href="/cart"
                     className={buttonVariants({
                       size: "sm",
                       className: "w-full"
                     })}
                   >
-                    Proceed to Checkout
+                    View your cart
                   </Link>
                 </SheetTrigger>
               </SheetFooter>

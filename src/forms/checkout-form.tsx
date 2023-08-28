@@ -8,7 +8,6 @@ import {
   useElements,
   useStripe
 } from "@stripe/react-stripe-js";
-import { toast } from "sonner";
 
 import { absoluteUrl } from "~/server/utils";
 import { Icons } from "~/islands/icons";
@@ -19,17 +18,15 @@ interface CheckoutFormProps {
 }
 
 export default function CheckoutForm({ storeId }: CheckoutFormProps) {
+  const id = React.useId();
   const stripe = useStripe();
   const elements = useElements();
-  const id = React.useId();
   const [email, setEmail] = React.useState("");
-  const [message, setMessage] = React.useState("");
+  const [message, setMessage] = React.useState<string | null>(null);
   const [isPending, startTransaction] = React.useTransition();
 
   React.useEffect(() => {
-    if (!stripe) {
-      return;
-    }
+    if (!stripe) return;
 
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
@@ -42,7 +39,7 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
       .then(({ paymentIntent }) => {
         switch (paymentIntent?.status) {
           case "succeeded":
-            setMessage("Your payment was successful!");
+            setMessage("Payment succeeded!");
             break;
           case "processing":
             setMessage("Your payment is processing.");
@@ -51,7 +48,7 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
             setMessage("Your payment was not successful, please try again.");
             break;
           default:
-            setMessage("Something went wrong, please try again.");
+            setMessage("Something went wrong.");
             break;
         }
       });
@@ -61,16 +58,13 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
     event.preventDefault();
 
     startTransaction(async () => {
-      // We don't want to let default form submission happen here,
-      // which would refresh the page.
-
       if (!stripe || !elements) {
         // Stripe.js hasn't yet loaded.
         // Make sure to disable form submission until Stripe.js has loaded.
         return;
       }
 
-      const result = await stripe.confirmPayment({
+      const { error } = await stripe.confirmPayment({
         //`Elements` instance that was used to create the Payment Element
         elements,
         confirmParams: {
@@ -79,37 +73,31 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
         }
       });
 
-      if (result.error) {
-        // Show error to your customer (for example, payment details incomplete)
-        setMessage(
-          result.error.message ?? "Something went wrong, please try again."
-        );
-        console.error(result.error.message);
-        toast.error(result.error.message);
+      // This point will only be reached if there is an immediate error when
+      // confirming the payment. Otherwise, your customer will be redirected to
+      // your `return_url`. For some payment methods like iDEAL, your customer will
+      // be redirected to an intermediate site first to authorize the payment, then
+      // redirected to the `return_url`.
+      if (error.type === "card_error" || error.type === "validation_error") {
+        setMessage(error.message ?? "Something went wrong, please try again.");
       } else {
-        // Your customer will be redirected to your `return_url`. For some payment
-        // methods like iDEAL, your customer will be redirected to an intermediate
-        // site first to authorize the payment, then redirected to the `return_url`.
+        setMessage("Something went wrong, please try again.");
       }
     });
   }
 
   return (
     <form
-      id={`checkout-form-${id}`}
-      aria-labelledby={`checkout-form-${id}-heading`}
+      id={`${id}-checkout-form`}
+      aria-labelledby={`${id}-checkout-form-heading`}
+      className="grid gap-4"
       onSubmit={onSubmit}
     >
-      {message && (
-        <div
-          id={`checkout-form-${id}-message`}
-          className="text-sm text-muted-foreground"
-        >
-          {message}
-        </div>
-      )}
+      <LinkAuthenticationElement
+        id={`payment-element-${id}`}
+        onChange={(e) => setEmail(e.value.email)}
+      />
       <AddressElement
-        id={`address-element-${id}`}
         options={{
           mode: "shipping"
         }}
@@ -119,22 +107,13 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
         options={{
           layout: "tabs"
         }}
-        onChange={(event) => {
-          console.log("PaymentElement onChange", event);
-        }}
-      />
-      <LinkAuthenticationElement
-        id={`link-authentication-element-${id}`}
-        onChange={(event) => {
-          console.log("LinkAuthenticationElement onChange", event);
-          setEmail(event.value.email);
-        }}
       />
       <Button
-        aria-label="Pay"
-        id={`checkout-form-${id}-submit`}
         type="submit"
-        className="mt-4 w-full"
+        aria-label="Pay"
+        id={`${id}-checkout-form-submit`}
+        variant="secondary"
+        className="w-full bg-blue-600 hover:bg-blue-500 hover:shadow-md"
         disabled={!stripe || !elements || isPending}
       >
         {isPending && (
@@ -145,6 +124,14 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
         )}
         Pay
       </Button>
+      {message && (
+        <div
+          id={`${id}-checkout-form-message`}
+          className="text-sm font-medium text-muted-foreground"
+        >
+          {message}
+        </div>
+      )}
     </form>
   );
 }

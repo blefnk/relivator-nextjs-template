@@ -8,10 +8,10 @@ import {
 } from "~/server/subs";
 import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
-import { PageHeaderHeading } from "~/islands/page-header";
-import { StoreSwitcher } from "~/islands/pagers/store-switcher";
-import { StoreTabs } from "~/islands/pagers/store-tabs";
-import { Shell } from "~/islands/shells/shell";
+import { PageHeaderHeading } from "~/islands/navigation/page-header";
+import { StoreSwitcher } from "~/islands/navigation/pagination/store-switcher";
+import { StoreTabs } from "~/islands/navigation/pagination/store-tabs";
+import { Shell } from "~/islands/wrappers/shell";
 
 interface StoreLayoutProps {
   children: React.ReactNode;

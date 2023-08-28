@@ -2,15 +2,14 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { and, asc, desc, eq, inArray, like, sql } from "drizzle-orm";
 
-import { db } from "~/data/db/client";
+import { db } from "~/data/db";
 import { products, stores, type Product } from "~/data/db/schema";
 import { env } from "~/data/env";
-import { fullURL } from "~/data/meta/builder";
-import { GenerateButton } from "~/islands/generate-button";
-import { ProductsTableShell } from "~/islands/shells/products-table-shell";
+import { GenerateButton } from "~/islands/generate";
+import { ProductsTableShell } from "~/islands/wrappers/products-table-shell";
 
 export const metadata: Metadata = {
-  metadataBase: fullURL(),
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Products",
   description: "Manage your products"
 };
@@ -68,8 +67,8 @@ export default async function ProductsPage({
       : [];
 
   // Transaction is used to ensure both queries are executed in a single transaction
-  const { storeProducts, totalProducts } = await db.transaction(async (tx) => {
-    const storeProducts = await tx
+  const { items, total } = await db.transaction(async (tx) => {
+    const items = await tx
       .select()
       .from(products)
       .limit(limit)
@@ -95,7 +94,7 @@ export default async function ProductsPage({
           : desc(products.createdAt)
       );
 
-    const totalProducts = await tx
+    const total = await tx
       .select({
         count: sql<number>`count(${products.id})`
       })
@@ -110,21 +109,22 @@ export default async function ProductsPage({
             ? inArray(products.category, categories)
             : undefined
         )
-      );
+      )
+      .then((res) => res[0]?.count ?? 0);
 
     return {
-      storeProducts,
-      totalProducts: Number(totalProducts[0]?.count) ?? 0
+      items,
+      total
     };
   });
 
-  const pageCount = Math.ceil(totalProducts / limit);
+  const pageCount = Math.ceil(total / limit);
 
   return (
     <div className="space-y-2.5">
       {env.NODE_ENV !== "production" && <GenerateButton storeId={storeId} />}
       <ProductsTableShell
-        data={storeProducts}
+        data={items}
         pageCount={pageCount}
         storeId={storeId}
       />
