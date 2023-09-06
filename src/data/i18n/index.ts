@@ -9,7 +9,7 @@ export const localeList = Object.keys(locales) as LocalesKeys[];
 
 const allLocales = {
   en: "en",
-  uk: "uk",
+  uk: "uk"
 } as const;
 
 export const LOCALES: typeof allLocales = allLocales;

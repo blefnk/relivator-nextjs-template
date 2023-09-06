@@ -3,6 +3,7 @@
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+
 import { useChangeLocale, useCurrentLocale } from "~/data/i18n/client";
 
 import "/node_modules/flag-icons/css/flag-icons.min.css";
@@ -27,10 +28,9 @@ export function LocaleSwitcher({
   className,
   ...props
 }: LocaleSwitcherProps) {
-
   const client = useIsClient();
-  const changeLocale = useChangeLocale()
-  const currentLocale = useCurrentLocale()
+  const changeLocale = useChangeLocale();
+  const currentLocale = useCurrentLocale();
 
   if (!client)
     return (
@@ -42,7 +42,9 @@ export function LocaleSwitcher({
         size="icon"
         {...props}
       >
-          <span className={`fi fi-${currentLocale === LOCALES.en ? 'gb' : 'ua'}`}></span>
+        <span
+          className={`fi fi-${currentLocale === LOCALES.en ? "gb" : "ua"}`}
+        ></span>
       </Button>
     );
 
@@ -56,7 +58,9 @@ export function LocaleSwitcher({
           size="icon"
           {...props}
         >
-            <span className={`fi fi-${currentLocale === LOCALES.en ? 'gb' : 'ua'}`}></span>
+          <span
+            className={`fi fi-${currentLocale === LOCALES.en ? "gb" : "ua"}`}
+          ></span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
