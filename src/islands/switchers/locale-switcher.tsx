@@ -1,8 +1,13 @@
 "use client";
 
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useChangeLocale, useCurrentLocale } from "~/data/i18n/client";
 
+import "/node_modules/flag-icons/css/flag-icons.min.css";
+
+import { LOCALES } from "~/data/i18n";
 import { useIsClient } from "~/hooks/use-is-client";
 import { Button, type ButtonProps } from "~/islands/primitives/button";
 import {
@@ -18,12 +23,14 @@ export type LocaleSwitcherProps = ButtonProps & {
 };
 
 export function LocaleSwitcher({
-  iconClassName = "mr-2 h-4 w-4",
+  iconClassName = "mr-2",
   className,
   ...props
 }: LocaleSwitcherProps) {
-  const { setTheme } = useTheme();
+
   const client = useIsClient();
+  const changeLocale = useChangeLocale()
+  const currentLocale = useCurrentLocale()
 
   if (!client)
     return (
@@ -35,12 +42,7 @@ export function LocaleSwitcher({
         size="icon"
         {...props}
       >
-        <span className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0">
-          🇬🇧
-        </span>
-        <span className="absolute h-4 w-4 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100">
-          🇺🇦
-        </span>
+          <span className={`fi fi-${currentLocale === LOCALES.en ? 'gb' : 'ua'}`}></span>
       </Button>
     );
 
@@ -54,27 +56,22 @@ export function LocaleSwitcher({
           size="icon"
           {...props}
         >
-          <span className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0">
-            🇬🇧
-          </span>
-          <span className="absolute h-4 w-4 rotate-90 scale-0 transition-transform dark:rotate-0 dark:scale-100">
-            🇺🇦
-          </span>
+            <span className={`fi fi-${currentLocale === LOCALES.en ? 'gb' : 'ua'}`}></span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem className="font-heading">Language</DropdownMenuItem>
         <DropdownMenuSeparator />
         {/* TODO: Use icons instead. Flags emoji are doen't play nice with Windows. */}
-        <DropdownMenuItem onClick={() => setTheme("light")}>
+        <DropdownMenuItem onClick={() => changeLocale(LOCALES.en)}>
           <span aria-hidden="true" className={iconClassName}>
-            🇬🇧
+            <span className="fi fi-gb"></span>
           </span>
           <span>English</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
+        <DropdownMenuItem onClick={() => changeLocale(LOCALES.uk)}>
           <span aria-hidden="true" className={iconClassName}>
-            🇺🇦
+            <span className="fi fi-ua"></span>
           </span>
           <span>Ukrainian</span>
         </DropdownMenuItem>

@@ -161,6 +161,9 @@ dependencies:
   embla-carousel-react:
     specifier: 8.0.0-rc12
     version: 8.0.0-rc12(react@18.2.0)
+  flag-icons:
+    specifier: ^6.11.0
+    version: 6.11.0
   lucide-react:
     specifier: ^0.269.0
     version: 0.269.0(react@18.2.0)
@@ -6737,6 +6740,10 @@ packages:
       locate-path: 7.2.0
       path-exists: 5.0.0
     dev: true
+
+  /flag-icons@6.11.0:
+    resolution: {integrity: sha512-oK+QhV5UMWq+lmyOnfXUfVhSgHy29gQ0gQpmORdNP6ucAsKzIGm39ncvyThJyvt76Au2qsepDTE9waHRuaYPUw==}
+    dev: false
 
   /flat-cache@3.1.0:
     resolution: {integrity: sha512-OHx4Qwrrt0E4jEIcI5/Xb+f+QmJYNj2rrK8wiIdQOIrB9WrrJL8cjZvXdXuBTkkEwEqLycb5BeZDV1o2i9bTew==}
