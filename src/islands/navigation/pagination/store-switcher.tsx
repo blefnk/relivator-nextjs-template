@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   CaretSortIcon,
   CheckIcon,
-  PlusCircledIcon
+  PlusCircledIcon,
 } from "@radix-ui/react-icons";
 
 import { getRandomPatternStyle } from "~/server/pattern";
@@ -19,13 +19,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator
+  CommandSeparator,
 } from "~/islands/primitives/command";
 import { Dialog, DialogTrigger } from "~/islands/primitives/dialog";
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger
+  PopoverTrigger,
 } from "~/islands/primitives/popover";
 
 interface StoreSwitcherProps
@@ -57,7 +57,7 @@ export function StoreSwitcher({
             aria-label="Select a store"
             className={cn(
               "w-[140px] justify-between px-3 sm:w-[180px]",
-              className
+              className,
             )}
             {...props}
           >
@@ -97,7 +97,7 @@ export function StoreSwitcher({
                         "ml-auto h-4 w-4",
                         currentStore.id === store.id
                           ? "opacity-100"
-                          : "opacity-0"
+                          : "opacity-0",
                       )}
                       aria-hidden="true"
                     />

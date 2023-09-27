@@ -2,7 +2,7 @@ import ContactForm from "~/forms/contact-form";
 import HeadingText from "~/islands/modules/heading-text";
 
 export const metadata = {
-  title: "Contact"
+  title: "Contact",
 };
 
 export default function Contact() {

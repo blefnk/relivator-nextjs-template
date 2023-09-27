@@ -1,20 +1,17 @@
-import { currentUser } from "@clerk/nextjs";
+import { getServerSession } from "next-auth";
 
-import { SiteFooter } from "~/islands/navigation/site-footer";
-import { SiteHeader } from "~/islands/navigation/site-header";
+import { authOptions } from "~/server/auth";
 
 interface LobbyLayoutProps {
   children: React.ReactNode;
 }
 
 export default async function LobbyLayout({ children }: LobbyLayoutProps) {
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
 
   return (
     <div className="relative flex min-h-screen flex-col">
-      <SiteHeader user={user} border sticky />
       <main className="flex-1">{children}</main>
-      <SiteFooter />
     </div>
   );
 }

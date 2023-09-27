@@ -1,19 +1,22 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import { type Metadata } from "next";
 import { redirect } from "next/navigation";
-import { currentUser } from "@clerk/nextjs";
+import { appts, siteConfig } from "~/app";
+import { getServerSession } from "next-auth";
+import Link from "next-intl/link";
 
-import { storeSubscriptionPlans } from "~/server/config/subs";
+import { authOptions } from "~/server/auth";
+import { storeSubscriptionPlans } from "~/server/config/subscriptions";
 import { getUserSubscriptionPlan } from "~/server/subs";
 import { cn, formatDate, formatPrice } from "~/server/utils";
-import { env } from "~/data/env";
+import { users } from "~/data/db/schema";
 import { fullURL } from "~/data/meta/builder";
+import { findUserById } from "~/data/routers/handlers/users";
 import { ManageSubscriptionForm } from "~/forms/manage-subscription-form";
 import { Icons } from "~/islands/icons";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { buttonVariants } from "~/islands/primitives/button";
 import {
@@ -22,24 +25,22 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Billing",
-  description: "Manage your billing and subscription"
+  description: "Manage your billing and subscription",
 };
 
 export default async function BillingPage() {
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
+  if (!session?.userId) redirect("/sign-in");
 
-  if (!user) {
-    redirect("/sign-in");
-  }
-
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id);
+  const user = await findUserById(session.userId);
+  const subscriptionPlan = await getUserSubscriptionPlan();
 
   return (
     <Shell variant="sidebar" as="div">
@@ -57,16 +58,16 @@ export default async function BillingPage() {
         <h2 className="text-xl font-semibold sm:text-2xl">Billing info</h2>
         <Card className="grid gap-4 p-6">
           <h3 className="text-lg font-semibold sm:text-xl">
-            {subscriptionPlan?.name ?? "Ollie"}
+            {user?.subscriptionPlan ?? "..."}
           </h3>
           <p className="text-sm text-muted-foreground">
-            {!subscriptionPlan?.isSubscribed
+            {!user?.isSubscribed
               ? "Upgrade to create more stores and products."
-              : subscriptionPlan.isCanceled
+              : user.isCanceled
               ? "Your plan will be canceled on "
               : "Your plan renews on "}
-            {subscriptionPlan?.stripeCurrentPeriodEnd
-              ? `${formatDate(subscriptionPlan.stripeCurrentPeriodEnd)}.`
+            {user?.stripeSubscriptionCurrentPeriodEnd
+              ? `${formatDate(user.stripeSubscriptionCurrentPeriodEnd)}.`
               : null}
           </p>
         </Card>
@@ -87,7 +88,7 @@ export default async function BillingPage() {
                 "flex flex-col",
                 i === storeSubscriptionPlans.length - 1 &&
                   "lg:col-span-2 xl:col-span-1",
-                i === 1 && "border-primary shadow-md"
+                i === 1 && "border-primary shadow-md",
               )}
             >
               <CardHeader>
@@ -118,23 +119,23 @@ export default async function BillingPage() {
                     href="/dashboard/stores"
                     className={cn(
                       buttonVariants({
-                        className: "w-full"
-                      })
+                        className: "w-full",
+                      }),
                     )}
                   >
                     Get started
                     <span className="sr-only">Get started</span>
                   </Link>
                 ) : (
-                  <ManageSubscriptionForm
-                    stripePriceId={plan.stripePriceId}
-                    stripeCustomerId={subscriptionPlan?.stripeCustomerId}
-                    stripeSubscriptionId={
-                      subscriptionPlan?.stripeSubscriptionId
-                    }
-                    isSubscribed={subscriptionPlan?.isSubscribed ?? false}
-                    isCurrentPlan={subscriptionPlan?.name === plan.name}
-                  />
+                  <>
+                    <ManageSubscriptionForm
+                      stripePriceId={plan.stripePriceId}
+                      stripeCustomerId={user?.stripeCustomerId}
+                      stripeSubscriptionId={user?.stripeSubscriptionId}
+                      isSubscribed={user?.isSubscribed ?? false}
+                      isCurrentPlan={user?.name === plan.name}
+                    />
+                  </>
                 )}
               </CardFooter>
             </Card>

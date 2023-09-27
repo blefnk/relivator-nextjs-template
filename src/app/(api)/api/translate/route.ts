@@ -5,7 +5,7 @@ import { z } from "zod";
 const bodySchema = z.object({
   from: z.string().optional(),
   to: z.string().optional(),
-  text: z.string()
+  text: z.string(),
 });
 
 export function POST(req: Request) {
@@ -14,7 +14,7 @@ export function POST(req: Request) {
   try {
     const translatedText = translate(text, {
       from: from || "en",
-      to: to || "en"
+      to: to || "en",
     });
     return NextResponse.json({ result: translatedText }, { status: 200 });
   } catch (err) {
@@ -24,7 +24,7 @@ export function POST(req: Request) {
       console.error(err);
       return NextResponse.json(
         { message: "An unexpected error occurred" },
-        { status: 500 }
+        { status: 500 },
       );
     }
   }

@@ -1,20 +1,20 @@
 "use server";
 
 import { cookies } from "next/headers";
-import type { CheckoutItem } from "~/types";
+import { type CheckoutItem } from "~/types";
 import { desc, eq, inArray } from "drizzle-orm";
 import { type z } from "zod";
 
-import { stripe } from "~/server/stripe";
-import { db } from "~/data/db";
-import { carts, orders, products } from "~/data/db/schema";
+import { db } from "~/data/db/client";
+import { carts, orders, products, type Cart } from "~/data/db/schema";
+import { stripe } from "~/data/routers/stripe";
 import type {
   getCheckoutSessionProductsSchema,
-  getOrderedProductsSchema
-} from "~/data/valids/order";
+  getOrderedProductsSchema,
+} from "~/data/validations/order";
 
 export async function getOrderedProducts(
-  input: z.infer<typeof getOrderedProductsSchema>
+  input: z.infer<typeof getOrderedProductsSchema>,
 ) {
   try {
     const orderedProducts = await db
@@ -23,26 +23,26 @@ export async function getOrderedProducts(
         name: products.name,
         price: products.price,
         images: products.images,
-        storeId: products.storeId
+        storeId: products.storeId,
       })
       .from(products)
       .where(
         inArray(
           products.id,
-          input.checkoutItems.map((item) => item.productId)
-        )
+          input.checkoutItems.map((item) => item.productId),
+        ),
       )
       .groupBy(products.id)
       .orderBy(desc(products.createdAt))
       .then((items) => {
         return items.map((item) => {
           const quantity = input.checkoutItems.find(
-            (checkoutItem) => checkoutItem.productId === item.id
+            (checkoutItem) => checkoutItem.productId === item.id,
           )?.quantity;
 
           return {
             ...item,
-            quantity: quantity ?? 0
+            quantity: quantity ?? 0,
           };
         });
       });
@@ -55,7 +55,7 @@ export async function getOrderedProducts(
 }
 
 export async function getCheckoutSessionProducts(
-  input: z.infer<typeof getCheckoutSessionProductsSchema>
+  input: z.infer<typeof getCheckoutSessionProductsSchema>,
 ) {
   try {
     if (!input.storeId) {
@@ -66,9 +66,9 @@ export async function getCheckoutSessionProducts(
 
     const cart = await db.query.carts.findFirst({
       columns: {
-        checkoutSessionId: true
+        checkoutSessionId: true,
       },
-      where: eq(carts.id, cartId)
+      where: eq(carts.id, cartId),
     });
 
     if (!cart || !cart.checkoutSessionId) {
@@ -84,12 +84,12 @@ export async function getCheckoutSessionProducts(
     // Retrieve the checkout session
     // checkout session is not found for some reason
     const checkoutSession = await stripe.checkout.sessions.retrieve(
-      cart.checkoutSessionId
+      cart.checkoutSessionId,
     );
 
     // Get checkout items from the checkout session metadata
     const checkoutItems = JSON.parse(
-      checkoutSession?.metadata?.items ?? ""
+      checkoutSession?.metadata?.items ?? "",
     ) as unknown as CheckoutItem[];
 
     // TODO: Create order on webhook instead
@@ -98,7 +98,7 @@ export async function getCheckoutSessionProducts(
     //   items: checkoutItems,
     //   stripePaymentIntentId: String(checkoutSession.payment_intent),
     //   stripePaymentIntentStatus: checkoutSession.payment_status,
-    // })
+    // });
 
     // Get products from the checkout items
     const orderedProducts = await db
@@ -107,25 +107,25 @@ export async function getCheckoutSessionProducts(
         name: products.name,
         price: products.price,
         images: products.images,
-        storeId: products.storeId
+        storeId: products.storeId,
       })
       .from(products)
       .where(
         inArray(
           products.id,
-          checkoutItems.map((item) => item.productId)
-        )
+          checkoutItems.map((item) => item.productId),
+        ),
       )
       .orderBy(desc(products.createdAt))
       .then((items) => {
         return items.map((item) => {
           const quantity = checkoutItems.find(
-            (checkoutItem) => checkoutItem.productId === item.id
+            (checkoutItem) => checkoutItem.productId === item.id,
           )?.quantity;
 
           return {
             ...item,
-            quantity: quantity ?? 0
+            quantity: quantity ?? 0,
           };
         });
       });

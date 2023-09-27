@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import type { CartLineItem } from "~/types";
+import { type CartLineItem } from "~/types";
 
 import {
   deleteCartItemAction,
-  updateCartItemAction
+  updateCartItemAction,
 } from "~/server/actions/cart";
 import { catchError } from "~/server/utils";
 import { Icons } from "~/islands/icons";
@@ -33,7 +33,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
               try {
                 await updateCartItemAction({
                   productId: cartLineItem.id,
-                  quantity: Number(cartLineItem.quantity) - 1
+                  quantity: Number(cartLineItem.quantity) - 1,
                 });
               } catch (err) {
                 catchError(err);
@@ -56,7 +56,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
               try {
                 await updateCartItemAction({
                   productId: cartLineItem.id,
-                  quantity: Number(e.target.value)
+                  quantity: Number(e.target.value),
                 });
               } catch (err) {
                 catchError(err);
@@ -75,7 +75,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
               try {
                 await updateCartItemAction({
                   productId: cartLineItem.id,
-                  quantity: Number(cartLineItem.quantity) + 1
+                  quantity: Number(cartLineItem.quantity) + 1,
                 });
               } catch (err) {
                 catchError(err);
@@ -97,7 +97,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           startTransition(async () => {
             try {
               await deleteCartItemAction({
-                productId: cartLineItem.id
+                productId: cartLineItem.id,
               });
             } catch (err) {
               catchError(err);

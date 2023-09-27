@@ -4,11 +4,11 @@
 import * as React from "react";
 
 import { ErrorCard } from "~/islands/modules/cards/error-card";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export default function StoreCheckoutError({
   error,
-  reset
+  reset,
 }: {
   error: Error;
   reset: () => void;

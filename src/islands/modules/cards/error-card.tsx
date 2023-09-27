@@ -11,7 +11,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
 
 interface ErrorCardProps extends React.ComponentPropsWithoutRef<typeof Card> {
@@ -59,8 +59,8 @@ export function ErrorCard({
             href={retryLink}
             className={cn(
               buttonVariants({
-                variant: "ghost"
-              })
+                variant: "ghost",
+              }),
             )}
           >
             {retryLinkText}

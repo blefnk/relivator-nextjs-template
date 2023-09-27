@@ -1,45 +1,47 @@
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 
-import { Mdx } from "~/islands/modules/markdown/mdx-components";
+// import { Mdx } from "~/islands/modules/markdown/mdx-components";
 
 import "~/styles/mdx.css";
 
 import { type Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+// import Image from "next/image";
+import Link from "next-intl/link";
 
-import { absoluteUrl, cn, formatDate } from "~/server/utils";
-import { env } from "~/data/env";
+import { cn } from "~/server/utils";
+// import { absoluteUrl, cn, formatDate } from "~/server/utils";
+import { env } from "~/data/env/env.mjs";
 import { Icons } from "~/islands/icons";
-import { MdxPager } from "~/islands/navigation/pagination/mdx-pager";
+// import { MdxPager } from "~/islands/navigation/pagination/mdx-pager";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Separator } from "~/islands/primitives/separator";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
-interface PostPageProps {
-  params: {
-    slug: string[];
-  };
-}
+// interface PostPageProps {
+//   params: {
+//     slug: string[];
+//   };
+// }
 
 // eslint-disable-next-line @typescript-eslint/require-await
-async function getPostFromParams(params: PostPageProps["params"]) {
-  const slug = params?.slug?.join("/");
-  // const post = allPosts.find((post) => post.slugAsParams === slug);
+// async function getPostFromParams(params: PostPageProps["params"]) {
+//   const slug = params?.slug?.join("/");
+//   const post = allPosts.find((post) => post.slugAsParams === slug);
 
-  // if (!post) {
-  //   null;
-  // }
+//   if (!post) {
+//     null;
+//   }
 
-  // return post;
+//   return post;
 
-  return null;
-}
+//   return null;
+// }
 
-export async function generateMetadata({
-  params
-}: PostPageProps): Promise<Metadata> {
-  const post = await getPostFromParams(params);
+// export async function generateMetadata({
+//   params,
+// }: PostPageProps): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
+  // const post = await getPostFromParams(params);
 
   // if (!post) {
   //   return {};
@@ -67,17 +69,17 @@ export async function generateMetadata({
         {
           url: ogUrl.toString(),
           width: 1200,
-          height: 630
+          height: 630,
           // alt: post.title
-        }
-      ]
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       // title: post.title,
       // description: post.description,
-      images: [ogUrl.toString()]
-    }
+      images: [ogUrl.toString()],
+    },
   };
 }
 
@@ -90,12 +92,12 @@ export async function generateMetadata({
   }));
 } */
 
-export default async function PostPage({ params }: PostPageProps) {
-  const post = await getPostFromParams(params);
+export default async function PostPage(/* { params }: PostPageProps */) {
+  // const post = await getPostFromParams(params);
 
-  if (!post) {
-    notFound();
-  }
+  // if (!post) {
+  //   notFound();
+  // }
 
   /* const authors = post.authors.map((author) =>
     allAuthors.find((a) => a.title === author?.replace(/\r$/, ""))
@@ -107,7 +109,7 @@ export default async function PostPage({ params }: PostPageProps) {
         href="/blog"
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "absolute left-[-200px] top-14 hidden xl:inline-flex"
+          "absolute left-[-200px] top-14 hidden xl:inline-flex",
         )}
       >
         <Icons.chevronLeft className="mr-2 h-4 w-4" />

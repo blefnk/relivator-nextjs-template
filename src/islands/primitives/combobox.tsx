@@ -10,7 +10,7 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandInput,
-  CommandItem
+  CommandItem,
 } from "./command";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
@@ -48,7 +48,7 @@ export type ComboboxContentProps = React.ComponentPropsWithoutRef<
 export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
   function ComboboxContent(
     { className, children, placeholder, notFound, ...props },
-    ref
+    ref,
   ) {
     return (
       <Command>
@@ -63,7 +63,7 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
         </PopoverContent>
       </Command>
     );
-  }
+  },
 );
 
 export type ComboboxListProps = Omit<
@@ -78,7 +78,7 @@ export type ComboboxListProps = Omit<
 export const ComboboxList = forwardRef<HTMLDivElement, ComboboxListProps>(
   function ComboboxContent(
     { className, value, items, onSelect, ...props },
-    ref
+    ref,
   ) {
     return (
       <CommandGroup
@@ -93,7 +93,7 @@ export const ComboboxList = forwardRef<HTMLDivElement, ComboboxListProps>(
                 "mr-2 h-4 w-4",
                 value.toUpperCase() === item.toUpperCase()
                   ? "animate-in fade-in"
-                  : "opacity-0 animate-out fade-out"
+                  : "opacity-0 animate-out fade-out",
               )}
             />
             {item}
@@ -101,5 +101,5 @@ export const ComboboxList = forwardRef<HTMLDivElement, ComboboxListProps>(
         ))}
       </CommandGroup>
     );
-  }
+  },
 );

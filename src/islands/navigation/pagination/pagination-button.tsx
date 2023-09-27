@@ -1,10 +1,10 @@
 import * as React from "react";
-import { type AppRouterInstance } from "next/dist/shared/lib/app-router-context";
+import { type AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
-  DoubleArrowRightIcon
+  DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
 
 import { cn } from "~/server/utils";
@@ -21,7 +21,7 @@ interface PaginationButtonProps
   sort: string;
   createQueryString: (params: Record<string, string | number | null>) => string;
   router: AppRouterInstance;
-  pathname: string;
+  pathname: string | null;
   isPending: boolean;
   startTransition: React.TransitionStartFunction;
   siblingCount?: number;
@@ -73,7 +73,7 @@ export function PaginationButton({
     <div
       className={cn(
         "flex flex-wrap items-center justify-center gap-2",
-        className
+        className,
       )}
       {...props}
     >
@@ -88,8 +88,8 @@ export function PaginationButton({
               `${pathname}?${createQueryString({
                 page: 1,
                 per_page: per_page ?? null,
-                sort
-              })}`
+                sort,
+              })}`,
             );
           });
         }}
@@ -108,8 +108,8 @@ export function PaginationButton({
               `${pathname}?${createQueryString({
                 page: Number(page) - 1,
                 per_page: per_page ?? null,
-                sort
-              })}`
+                sort,
+              })}`,
             );
           });
         }}
@@ -142,8 +142,8 @@ export function PaginationButton({
                   `${pathname}?${createQueryString({
                     page: pageNumber,
                     per_page: per_page ?? null,
-                    sort
-                  })}`
+                    sort,
+                  })}`,
                 );
               });
             }}
@@ -151,7 +151,7 @@ export function PaginationButton({
           >
             {pageNumber}
           </Button>
-        )
+        ),
       )}
       <Button
         aria-label="Go to next page"
@@ -164,8 +164,8 @@ export function PaginationButton({
               `${pathname}?${createQueryString({
                 page: Number(page) + 1,
                 per_page: per_page ?? null,
-                sort
-              })}`
+                sort,
+              })}`,
             );
           });
         }}
@@ -183,8 +183,8 @@ export function PaginationButton({
             `${pathname}?${createQueryString({
               page: pageCount ?? 10,
               per_page: per_page ?? null,
-              sort
-            })}`
+              sort,
+            })}`,
           );
         }}
         disabled={Number(page) === (pageCount ?? 10) || isPending}

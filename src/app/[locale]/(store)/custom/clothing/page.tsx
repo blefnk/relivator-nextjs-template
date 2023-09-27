@@ -1,37 +1,36 @@
 import { type Metadata } from "next";
 import { cookies } from "next/headers";
-import Link from "next/link";
+import Link from "next-intl/link";
 
 import { getCartItemsAction } from "~/server/actions/cart";
 import { getProductsAction } from "~/server/actions/product";
 import { productCategories } from "~/server/config/products";
 import { cn } from "~/server/utils";
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import { Icons } from "~/islands/icons";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { ProductBuilder } from "~/islands/product-building";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Build a Board",
-  description: "Select the components for your board"
+  description: "Select the components for your board",
 };
 
-interface BuildABoadPageProps {
+interface CustomClothesPageProps {
   searchParams: {
     [key: string]: string | string[] | undefined;
   };
 }
 
-export default async function BuildABoardPage({
-  searchParams
-}: BuildABoadPageProps) {
+export default async function CustomClothesPage({
+  searchParams,
+}: CustomClothesPageProps) {
   const { page, per_page, sort, subcategory, price_range } = searchParams;
 
   // Products transaction
@@ -45,7 +44,7 @@ export default async function BuildABoardPage({
     offset,
     sort: typeof sort === "string" ? sort : null,
     subcategories: activeSubcategory,
-    price_range: typeof price_range === "string" ? price_range : null
+    price_range: typeof price_range === "string" ? price_range : null,
   });
 
   const pageCount = Math.ceil(productsTransaction.total / limit);
@@ -83,7 +82,7 @@ export default async function BuildABoardPage({
                   className={cn(
                     "inline-flex items-center justify-center whitespace-nowrap rounded border-b-2 border-transparent px-3 py-1.5 text-sm font-medium ring-offset-background transition-all hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     subcategory.slug === activeSubcategory &&
-                      "rounded-none border-primary text-foreground hover:rounded-t"
+                      "rounded-none border-primary text-foreground hover:rounded-t",
                   )}
                 >
                   {cartItems

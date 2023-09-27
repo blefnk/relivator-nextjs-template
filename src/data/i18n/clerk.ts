@@ -1,6 +1,6 @@
 // ?? @see https://github.com/clerkinc/javascript/blob/main/packages/localizations/src/en-US.ts
 
-import type { LocalizationResource } from "@clerk/types";
+// import { type LocalizationResource } from "@clerk/types";
 
 const commonTexts = {
   signIn: {
@@ -9,9 +9,9 @@ const commonTexts = {
       subtitle: "to continue to {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your phone number",
-      resendButton: "Didn't receive a code? Resend"
-    }
-  }
+      resendButton: "Didn't receive a code? Resend",
+    },
+  },
 } as const;
 
 const LocalizationResource = {
@@ -84,7 +84,7 @@ const LocalizationResource = {
       title: "Create your account",
       subtitle: "to continue to {{applicationName}}",
       actionText: "Have an account?",
-      actionLink: "Sign in"
+      actionLink: "Sign in",
     },
     emailLink: {
       title: "Verify your email",
@@ -93,37 +93,37 @@ const LocalizationResource = {
       formSubtitle: "Use the verification link sent to your email address",
       resendButton: "Didn't receive a link? Resend",
       verified: {
-        title: "Successfully signed up"
+        title: "Successfully signed up",
       },
       loading: {
-        title: "Signing up..."
+        title: "Signing up...",
       },
       verifiedSwitchTab: {
         title: "Successfully verified email",
         subtitle: "Return to the newly opened tab to continue",
-        subtitleNewTab: "Return to previous tab to continue"
-      }
+        subtitleNewTab: "Return to previous tab to continue",
+      },
     },
     emailCode: {
       title: "Verify your email",
       subtitle: "to continue to {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your email address",
-      resendButton: "Didn't receive a code? Resend"
+      resendButton: "Didn't receive a code? Resend",
     },
     phoneCode: {
       title: "Verify your phone",
       subtitle: "to continue to {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your phone number",
-      resendButton: "Didn't receive a code? Resend"
+      resendButton: "Didn't receive a code? Resend",
     },
     continue: {
       title: "Fill in missing fields",
       subtitle: "to continue to {{applicationName}}",
       actionText: "Have an account?",
-      actionLink: "Sign in"
-    }
+      actionLink: "Sign in",
+    },
   },
   signIn: {
     start: {
@@ -134,17 +134,17 @@ const LocalizationResource = {
       actionLink__use_email: "Use email",
       actionLink__use_phone: "Use phone",
       actionLink__use_username: "Use username",
-      actionLink__use_email_username: "Use email or username"
+      actionLink__use_email_username: "Use email or username",
     },
     password: {
       title: "Enter your password",
       subtitle: "to continue to {{applicationName}}",
-      actionLink: "Use another method"
+      actionLink: "Use another method",
     },
     forgotPasswordAlternativeMethods: {
       title: "Forgot Password?",
       label__alternativeMethods: "Or, sign in with another method.",
-      blockButton__resetPassword: "Reset your password"
+      blockButton__resetPassword: "Reset your password",
     },
     forgotPassword: {
       title_email: "Check your email",
@@ -153,24 +153,24 @@ const LocalizationResource = {
       formTitle: "Reset password code",
       formSubtitle_email: "Enter the code sent to your email address",
       formSubtitle_phone: "Enter the code sent to your phone number",
-      resendButton: "Didn't receive a code? Resend"
+      resendButton: "Didn't receive a code? Resend",
     },
     resetPassword: {
       title: "Reset Password",
       formButtonPrimary: "Reset Password",
       successMessage:
-        "Your password was successfully changed. Signing you in, please wait a moment."
+        "Your password was successfully changed. Signing you in, please wait a moment.",
     },
     resetPasswordMfa: {
       detailsLabel:
-        "We need to verify your identity before resetting your password."
+        "We need to verify your identity before resetting your password.",
     },
     emailCode: {
       title: "Check your email",
       subtitle: "to continue to {{applicationName}}",
       formTitle: "Verification code",
       formSubtitle: "Enter the verification code sent to your email address",
-      resendButton: "Didn't receive a code? Resend"
+      resendButton: "Didn't receive a code? Resend",
     },
     emailLink: {
       title: "Check your email",
@@ -179,29 +179,29 @@ const LocalizationResource = {
       formSubtitle: "Use the verification link sent to your email",
       resendButton: "Didn't receive a link? Resend",
       unusedTab: {
-        title: "You may close this tab"
+        title: "You may close this tab",
       },
       verified: {
         title: "Successfully signed in",
-        subtitle: "You will be redirected soon"
+        subtitle: "You will be redirected soon",
       },
       verifiedSwitchTab: {
         subtitle: "Return to original tab to continue",
         titleNewTab: "Signed in on other tab",
-        subtitleNewTab: "Return to the newly opened tab to continue"
+        subtitleNewTab: "Return to the newly opened tab to continue",
       },
       loading: {
         title: "Signing in...",
-        subtitle: "You will be redirected soon"
+        subtitle: "You will be redirected soon",
       },
       failed: {
         title: "This verification link is invalid",
-        subtitle: "Return to the original tab to continue."
+        subtitle: "Return to the original tab to continue.",
       },
       expired: {
         title: "This verification link has expired",
-        subtitle: "Return to the original tab to continue."
-      }
+        subtitle: "Return to the original tab to continue.",
+      },
     },
     phoneCode: { ...commonTexts.signIn.phoneCode },
     phoneCodeMfa: { ...commonTexts.signIn.phoneCode, subtitle: "" },
@@ -210,13 +210,13 @@ const LocalizationResource = {
       subtitle: "",
       formTitle: "Verification code",
       formSubtitle:
-        "Enter the verification code generated by your authenticator app"
+        "Enter the verification code generated by your authenticator app",
     },
     backupCodeMfa: {
       title: "Enter a backup code",
       subtitle: "to continue to {{applicationName}}",
       formTitle: "",
-      formSubtitle: ""
+      formSubtitle: "",
     },
     alternativeMethods: {
       title: "Use another method",
@@ -231,15 +231,15 @@ const LocalizationResource = {
         title: "Get help",
         content:
           "If you’re experiencing difficulty signing into your account, email us and we will work with you to restore access as soon as possible.",
-        blockButton__emailSupport: "Email support"
-      }
+        blockButton__emailSupport: "Email support",
+      },
     },
     noAvailableMethods: {
       title: "Cannot sign in",
       subtitle: "An error occurred",
       message:
-        "Cannot proceed with sign in. There's no available authentication factor."
-    }
+        "Cannot proceed with sign in. There's no available authentication factor.",
+    },
   },
   userProfile: {
     mobileButton__menu: "Menu",
@@ -252,12 +252,12 @@ const LocalizationResource = {
       headerSubtitle__account: "Manage your account information",
       headerSubtitle__security: "Manage your security preferences",
       profileSection: {
-        title: "Profile"
+        title: "Profile",
       },
       usernameSection: {
         title: "Username",
         primaryButton__changeUsername: "Change username",
-        primaryButton__setUsername: "Set username"
+        primaryButton__setUsername: "Set username",
       },
       emailAddressesSection: {
         title: "Email addresses",
@@ -277,7 +277,7 @@ const LocalizationResource = {
         destructiveActionTitle: "Remove",
         destructiveActionSubtitle:
           "Delete this email address and remove it from your account",
-        destructiveAction: "Remove email address"
+        destructiveAction: "Remove email address",
       },
       phoneNumbersSection: {
         title: "Phone numbers",
@@ -297,7 +297,7 @@ const LocalizationResource = {
         destructiveActionTitle: "Remove",
         destructiveActionSubtitle:
           "Delete this phone number and remove it from your account",
-        destructiveAction: "Remove phone number"
+        destructiveAction: "Remove phone number",
       },
       connectedAccountsSection: {
         title: "Connected accounts",
@@ -313,15 +313,15 @@ const LocalizationResource = {
         destructiveActionTitle: "Remove",
         destructiveActionSubtitle:
           "Remove this connected account from your account",
-        destructiveActionAccordionSubtitle: "Remove connected account"
+        destructiveActionAccordionSubtitle: "Remove connected account",
       },
       enterpriseAccountsSection: {
-        title: "Enterprise accounts"
+        title: "Enterprise accounts",
       },
       passwordSection: {
         title: "Password",
         primaryButton__changePassword: "Change password",
-        primaryButton__setPassword: "Set password"
+        primaryButton__setPassword: "Set password",
       },
       mfaSection: {
         title: "Two-step verification",
@@ -337,14 +337,14 @@ const LocalizationResource = {
             "This factor will be used as the default two-step verification method when signing in.",
           subtitle__setDefault:
             "Set this factor as the default factor to use it as the default two-step verification method when signing in.",
-          actionLabel__setDefault: "Set as default"
+          actionLabel__setDefault: "Set as default",
         },
         backupCodes: {
           headerTitle: "Backup codes",
           title__regenerate: "Regenerate backup codes",
           subtitle__regenerate:
             "Get a fresh set of secure backup codes. Prior backup codes will be deleted and cannot be used.",
-          actionLabel__regenerate: "Regenerate codes"
+          actionLabel__regenerate: "Regenerate codes",
         },
         totp: {
           headerTitle: "Authenticator application",
@@ -354,8 +354,8 @@ const LocalizationResource = {
           destructiveActionTitle: "Remove",
           destructiveActionSubtitle:
             "Remove authenticator application from the two-step verification methods",
-          destructiveActionLabel: "Remove authenticator application"
-        }
+          destructiveActionLabel: "Remove authenticator application",
+        },
       },
       activeDevicesSection: {
         title: "Active devices",
@@ -364,22 +364,22 @@ const LocalizationResource = {
         detailsSubtitle: "This is the device you are currently using",
         destructiveActionTitle: "Sign out",
         destructiveActionSubtitle: "Sign out from your account on this device",
-        destructiveAction: "Sign out of device"
+        destructiveAction: "Sign out of device",
       },
       web3WalletsSection: {
         title: "Web3 wallets",
         primaryButton: "Web3 wallets",
         destructiveActionTitle: "Remove",
         destructiveActionSubtitle: "Remove this web3 wallet from your account",
-        destructiveAction: "Remove wallet"
+        destructiveAction: "Remove wallet",
       },
       dangerSection: {
         title: "Danger",
         deleteAccountButton: "Delete Account",
         deleteAccountTitle: "Delete Account",
         deleteAccountDescription:
-          "Delete your account and all its associated data"
-      }
+          "Delete your account and all its associated data",
+      },
     },
     profilePage: {
       title: "Update profile",
@@ -392,11 +392,11 @@ const LocalizationResource = {
         "Upload a JPG, PNG, GIF, or WEBP image smaller than 10 MB",
       readonly:
         "Your profile information has been provided by the enterprise connection and cannot be edited.",
-      successMessage: "Your profile has been updated."
+      successMessage: "Your profile has been updated.",
     },
     usernamePage: {
       title: "Update username",
-      successMessage: "Your username has been updated."
+      successMessage: "Your username has been updated.",
     },
     emailAddressPage: {
       title: "Add email address",
@@ -407,7 +407,7 @@ const LocalizationResource = {
         formSubtitle: "Enter the verification code sent to {{identifier}}",
         resendButton: "Didn't receive a code? Resend",
         successMessage:
-          "The email {{identifier}} has been added to your account."
+          "The email {{identifier}} has been added to your account.",
       },
       emailLink: {
         formHint:
@@ -417,15 +417,15 @@ const LocalizationResource = {
           "Click on the verification link in the email sent to {{identifier}}",
         resendButton: "Didn't receive a link? Resend",
         successMessage:
-          "The email {{identifier}} has been added to your account."
+          "The email {{identifier}} has been added to your account.",
       },
       removeResource: {
         title: "Remove email address",
         messageLine1: "{{identifier}} will be removed from this account.",
         messageLine2:
           "You will no longer be able to sign in using this email address.",
-        successMessage: "{{emailAddress}} has been removed from your account."
-      }
+        successMessage: "{{emailAddress}} has been removed from your account.",
+      },
     },
     phoneNumberPage: {
       title: "Add phone number",
@@ -438,8 +438,8 @@ const LocalizationResource = {
         messageLine1: "{{identifier}} will be removed from this account.",
         messageLine2:
           "You will no longer be able to sign in using this phone number.",
-        successMessage: "{{phoneNumber}} has been removed from your account."
-      }
+        successMessage: "{{phoneNumber}} has been removed from your account.",
+      },
     },
     connectedAccountPage: {
       title: "Add connected account",
@@ -454,8 +454,8 @@ const LocalizationResource = {
         messageLine2:
           "You will no longer be able to use this connected account and any dependent features will no longer work.",
         successMessage:
-          "{{connectedAccount}} has been removed from your account."
-      }
+          "{{connectedAccount}} has been removed from your account.",
+      },
     },
     web3WalletPage: {
       title: "Add web3 wallet",
@@ -468,8 +468,8 @@ const LocalizationResource = {
         messageLine1: "{{identifier}} will be removed from this account.",
         messageLine2:
           "You will no longer be able to sign in using this web3 wallet.",
-        successMessage: "{{web3Wallet}} has been removed from your account."
-      }
+        successMessage: "{{web3Wallet}} has been removed from your account.",
+      },
     },
     passwordPage: {
       title: "Set password",
@@ -478,11 +478,12 @@ const LocalizationResource = {
         "Your password can currently not be edited because you can sign in only via the enterprise connection.",
       successMessage: "Your password has been set.",
       changePasswordSuccessMessage: "Your password has been updated.",
-      sessionsSignedOutSuccessMessage: "All other devices have been signed out."
+      sessionsSignedOutSuccessMessage:
+        "All other devices have been signed out.",
     },
     mfaPage: {
       title: "Add two-step verification",
-      formHint: "Select a method to add."
+      formHint: "Select a method to add.",
     },
     mfaTOTPPage: {
       title: "Add authenticator application",
@@ -500,7 +501,7 @@ const LocalizationResource = {
         inputLabel__unableToScan2:
           "Alternatively, if your authenticator supports TOTP URIs, you can also copy the full URI.",
         buttonAbleToScan__nonPrimary: "Scan QR code instead",
-        buttonUnableToScan__nonPrimary: "Can’t scan QR code?"
+        buttonUnableToScan__nonPrimary: "Can’t scan QR code?",
       },
       removeResource: {
         title: "Remove two-step verification",
@@ -509,8 +510,8 @@ const LocalizationResource = {
         messageLine2:
           "Your account may not be as secure. Are you sure you want to continue?",
         successMessage:
-          "Two-step verification via authenticator application has been removed."
-      }
+          "Two-step verification via authenticator application has been removed.",
+      },
     },
     mfaPhoneCodePage: {
       title: "Add SMS code verification",
@@ -528,8 +529,8 @@ const LocalizationResource = {
         messageLine2:
           "Your account may not be as secure. Are you sure you want to continue?",
         successMessage:
-          "SMS code two-step verification has been removed for {{mfaPhoneCode}}"
-      }
+          "SMS code two-step verification has been removed for {{mfaPhoneCode}}",
+      },
     },
     backupCodePage: {
       title: "Add backup code verification",
@@ -545,37 +546,37 @@ const LocalizationResource = {
       actionLabel__copy: "Copy all",
       actionLabel__copied: "Copied!",
       actionLabel__download: "Download .txt",
-      actionLabel__print: "Print"
+      actionLabel__print: "Print",
     },
     deletePage: {
       title: "Delete account",
       description:
         "Are you sure you want to delete your account? This action is permanent and irreversible.",
-      confirm: "Delete account"
-    }
+      confirm: "Delete account",
+    },
   },
   userButton: {
     action__manageAccount: "Manage account",
     action__signOut: "Sign out",
     action__signOutAll: "Sign out of all accounts",
-    action__addAccount: "Add account"
+    action__addAccount: "Add account",
   },
   organizationSwitcher: {
     personalWorkspace: "Personal Workspace",
     notSelected: "No community selected",
     action__createOrganization: "Create Community",
-    action__manageOrganization: "Manage Community"
+    action__manageOrganization: "Manage Community",
   },
   impersonationFab: {
     title: "Signed in as {{identifier}}",
-    action__signOut: "Sign out"
+    action__signOut: "Sign out",
   },
   organizationProfile: {
     start: {
       headerTitle__members: "Members",
       headerTitle__settings: "Settings",
       headerSubtitle__members: "View and manage community members",
-      headerSubtitle__settings: "Manage community settings"
+      headerSubtitle__settings: "Manage community settings",
     },
     profilePage: {
       title: "Community Profile",
@@ -588,15 +589,15 @@ const LocalizationResource = {
           messageLine1:
             "Are you sure you want to leave this community? You will lose access to this community and its applications.",
           messageLine2: "This action is permanent and irreversible.",
-          successMessage: "You have left the community."
+          successMessage: "You have left the community.",
         },
         deleteOrganization: {
           title: "Delete community",
           messageLine1: "Are you sure you want to delete this community?",
           messageLine2: "This action is permanent and irreversible.",
-          successMessage: "You have deleted the community."
-        }
-      }
+          successMessage: "You have deleted the community.",
+        },
+      },
     },
     invitePage: {
       title: "Invite members",
@@ -604,35 +605,35 @@ const LocalizationResource = {
       successMessage: "Invitations successfully sent",
       detailsTitle__inviteFailed:
         "The invitations could not be sent. Fix the following and try again:",
-      formButtonPrimary__continue: "Send invitations"
+      formButtonPrimary__continue: "Send invitations",
     },
     membersPage: {
       detailsTitle__emptyRow: "No members to display",
       action__invite: "Invite",
       start: {
         headerTitle__active: "Active",
-        headerTitle__invited: "Invited"
+        headerTitle__invited: "Invited",
       },
       activeMembersTab: {
         tableHeader__user: "User",
         tableHeader__joined: "Joined",
         tableHeader__role: "Role",
         tableHeader__actions: "",
-        menuAction__remove: "Remove member"
+        menuAction__remove: "Remove member",
       },
       invitedMembersTab: {
         tableHeader__invited: "Invited",
-        menuAction__revoke: "Revoke invitation"
-      }
-    }
+        menuAction__revoke: "Revoke invitation",
+      },
+    },
   },
   createOrganization: {
     title: "Create Community",
     formButtonSubmit: "Create community",
     subtitle: "Set the community profile",
     invitePage: {
-      formButtonReset: "Skip"
-    }
+      formButtonReset: "Skip",
+    },
   },
   unstable__errors: {
     identification_deletion_failed:
@@ -664,7 +665,7 @@ const LocalizationResource = {
       requireNumbers: "a number",
       requireLowercase: "a lowercase letter",
       requireUppercase: "an uppercase letter",
-      requireSpecialCharacter: "a special character"
+      requireSpecialCharacter: "a special character",
     },
     zxcvbn: {
       notEnough: "Your password is not strong enough.",
@@ -689,7 +690,7 @@ const LocalizationResource = {
         namesByThemselves: "Single names or surnames are easy to guess.",
         commonNames: "Common names and surnames are easy to guess.",
         userInputs: "There should not be any personal or page related data.",
-        pwned: "Your password was exposed by a data breach on the Internet."
+        pwned: "Your password was exposed by a data breach on the Internet.",
       },
       suggestions: {
         l33t: "Avoid predictable letter substitutions like '@' for 'a'.",
@@ -707,9 +708,9 @@ const LocalizationResource = {
         useWords: "Use multiple words, but avoid common phrases.",
         noNeed:
           "You can create strong passwords without using symbols, numbers, or uppercase letters.",
-        pwned: "If you use this password elsewhere, you should change it."
-      }
-    }
+        pwned: "If you use this password elsewhere, you should change it.",
+      },
+    },
   },
   dates: {
     previous6Days:
@@ -719,8 +720,8 @@ const LocalizationResource = {
     nextDay: "Tomorrow at {{ date | timeString('en-US') }}",
     next6Days:
       "{{ date | weekday('en-US','long') }} at {{ date | timeString('en-US') }}",
-    numeric: "{{ date | numeric('en-US') }}"
-  }
+    numeric: "{{ date | numeric('en-US') }}",
+  },
 } as const;
 
 export default LocalizationResource;

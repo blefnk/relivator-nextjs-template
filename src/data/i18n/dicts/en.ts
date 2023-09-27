@@ -1,22 +1,32 @@
-import type { LocalizationResource } from "@clerk/types";
+// import { type LocalizationResource } from "@clerk/types";
 
-import type { DeepStringify } from "~/server/string";
+import { type DeepStringify } from "~/server/string";
 
 const dictionary = {
+  LocaleSwitcher: {
+    switchLocale:
+      "Switch to {locale, select, de {German} en {English} es {Spanish} uk {Ukrainian} other {Unknown}}",
+    selectLocale: "Language",
+    label: "Change language",
+    locale:
+      "{locale, select, uk {🇺🇦 } en {🇬🇧 } de {🇩🇪 } es {🇪🇸 } other {Unknown}}",
+  },
+  /* locale:
+    "{locale, select, uk {🇺🇦 } en {🇬🇧 } de {🇩🇪 } es {🇪🇸 } other {Unknown}}", */
   general: {
     tools: "utils",
     pricing: "pricing",
-    about: "about"
+    about: "about",
   },
   islands: {
     navbar: {
       pricing: {
         "toast.title": "It's free! 😜",
-        "toast.description": "This project is open source and free to use. 🥳"
+        "toast.description": "This project is open source and free to use. 🥳",
       },
       links: {
         github: "My GitHub profile",
-        twitter: "My Twitter profile"
+        twitter: "My Twitter profile",
       },
       search: "Search...",
       "search.placeholder": "Type a command or search",
@@ -24,33 +34,33 @@ const dictionary = {
         tools: "features",
         about: "about",
         github: "github",
-        twitter: "twitter"
+        twitter: "twitter",
       },
       command: {
         tools: "Features",
         theme: "Theme",
         light: "Light",
         dark: "Dark",
-        system: "System"
-      }
+        system: "System",
+      },
     },
     footer: "Developed by {author}. The source code is available on {github}.",
     toast: {
       success: "Success",
       error: "Error",
-      warning: "Warning"
+      warning: "Warning",
     },
     "copy-button": {
       copy: "Copy to clipboard",
-      copied: "Copied to clipboard!"
-    }
+      copied: "Copied to clipboard!",
+    },
   },
   pages: {
     "not-found": {
       title: "Page not found",
       description:
         "The resource you're seeking might have been relocated or is not a part of Bleverse Relivator. Double-check the URL or explore other sections.",
-      "go-home": "Return to home page"
+      "go-home": "Return to home page",
     },
     home: {
       title:
@@ -65,44 +75,44 @@ const dictionary = {
         cryptography: {
           title: "Next.js 13",
           description:
-            "Engage with App dir, Routing, Layouts, Loading UI, API routes, and beyond."
+            "Engage with App dir, Routing, Layouts, Loading UI, API routes, and beyond.",
         },
         text: {
           title: "React 18",
           description:
-            "Manipulate app effortlessly with Server and Client Components. Use hook. And more."
+            "Manipulate app effortlessly with Server and Client Components. Use hook. And more.",
         },
         clock: {
           title: "Database",
           description:
-            "Stay on track with Drizzle ORM. Deployed on Vercel, Railway, PlanetScale, etc."
+            "Build databases with Drizzle ORM. Deploy on Neon, Vercel Storage, Railway, etc.",
         },
         currency: {
           title: "Components",
           description:
-            "UI components built using Radix UI and styled with Tailwind CSS."
+            "UI components built using Radix UI and styled with Tailwind CSS.",
         },
         files: {
           title: "Authentication",
-          description: "Middleware authentication using Clerk."
+          description: "Middleware authentication using NextAuth.js.",
         },
         devtools: {
           title: "Subscriptions",
-          description: "Free and paid subscriptions using Stripe."
-        }
+          description: "Free and paid subscriptions using Stripe.",
+        },
       },
       "open-source": {
         title: "Embrace Open Source",
         subtitle: {
           first:
             "Bleverse Relivator champions open-source ethos and encourages collaborative code evolution.",
-          second: "Explore our codebase on"
+          second: "Explore our codebase on",
         },
         "stars#one": "[GitHub]: This project has only one star... 😢",
         "stars#few": "[GitHub]: This project has {count} stars! 😍",
         "stars#many": "[GitHub]: This project has {count} stars! 😍",
-        "stars#other": "[GitHub]: This project has {count} stars! 😍"
-      }
+        "stars#other": "[GitHub]: This project has {count} stars! 😍",
+      },
     },
     about: {
       title: "About",
@@ -118,33 +128,33 @@ const dictionary = {
           "radix-ui": "For the wonderful primitives.",
           "shadcn/ui": "For the chic components.",
           lucide: "For the cool icons.",
-          vercel: "For deploying all my projects."
-        }
+          vercel: "For deploying all my projects.",
+        },
       },
-      author: "License"
+      author: "License",
     },
     tools: {
       title: "Utils",
       clock: {
-        title: "Clock"
+        title: "Clock",
       },
       stopwatch: {
         title: "Stopwatch",
         start: "Start",
         stop: "Stop",
-        clear: "Clear"
+        clear: "Clear",
       },
       "color-picker": {
-        title: "Color Picker"
+        title: "Color Picker",
       },
       "random-color": {
         title: "Random Color",
-        generate: "New color"
+        generate: "New color",
       },
       "binary-code": {
         title: "Binary Code",
         encode: "Text to binary",
-        decode: "Binary to text"
+        decode: "Binary to text",
       },
       "caesar-cipher": {
         title: "Caesar Cipher",
@@ -153,11 +163,11 @@ const dictionary = {
         key: "Key",
         actions: {
           code: "Code",
-          decode: "Decode"
+          decode: "Decode",
         },
         toast: {
-          "invalid-key": "Please type a number between 0 - 25"
-        }
+          "invalid-key": "Please type a number between 0 - 25",
+        },
       },
       "hex-code": {
         title: "Hex Code",
@@ -165,8 +175,8 @@ const dictionary = {
         decode: "Hex to text",
         actions: {
           code: "Code",
-          decode: "Decode"
-        }
+          decode: "Decode",
+        },
       },
       "morse-code": {
         title: "Morse Code",
@@ -174,8 +184,8 @@ const dictionary = {
         decode: "Morse to text",
         actions: {
           code: "Code",
-          decode: "Decode"
-        }
+          decode: "Decode",
+        },
       },
       "qr-code": {
         title: "QR Code",
@@ -185,17 +195,17 @@ const dictionary = {
           download: "Download",
           share: {
             whatsapp: "Share on WhatsApp",
-            twitter: "Share on Twitter"
-          }
-        }
+            twitter: "Share on Twitter",
+          },
+        },
       },
       "password-generator": {
         title: "Password Generator",
         placeholder: "Password",
         length: "Length: {length}",
         actions: {
-          generate: "Generate"
-        }
+          generate: "Generate",
+        },
       },
       length: {
         title: "Length",
@@ -209,39 +219,39 @@ const dictionary = {
         yard: "Yard",
         foot: "Foot",
         inch: "Inch",
-        "nautical mile": "Nautical Mile"
+        "nautical mile": "Nautical Mile",
       },
       "css-minifier": {
         title: "CSS Minifier",
         actions: {
           minify: "Minify",
-          minifying: "Minifying"
+          minifying: "Minifying",
         },
         toast: {
           success: "CSS minified successfully",
-          required: "Please enter some CSS to minify"
-        }
+          required: "Please enter some CSS to minify",
+        },
       },
       "json-formatter": {
         title: "JSON Formatter",
         placeholder: "Number of spaces",
         actions: {
           format: "Format",
-          formatting: "Formatting"
+          formatting: "Formatting",
         },
         toast: {
           "invalid-json": "Invalid JSON",
           "invalid-number": "Please enter a valid number",
           success: "JSON formatted successfully",
-          required: "Please enter some JSON to format"
-        }
+          required: "Please enter some JSON to format",
+        },
       },
       "text-converter": {
         title: "Text Converter",
         "clear-input": "Clear input",
         placeholder: {
           input: "Type something here...",
-          output: "Result"
+          output: "Result",
         },
         actions: {
           uppercase: "Convert to uppercase",
@@ -256,7 +266,7 @@ const dictionary = {
           "camel-case": "Convert to Camel case",
           "snake-case": "Convert to Snake case",
           "kebab-case": "Convert to Kebab case",
-          "remove-special-characters": "Remove special characters"
+          "remove-special-characters": "Remove special characters",
         },
         toast: {
           "success-uppercase": "Converted to uppercase successfully",
@@ -273,35 +283,33 @@ const dictionary = {
           "success-kebab-case": "Converted to Kebab case successfully",
           "success-remove-special-characters":
             "Special characters removed successfully",
-          required: "Please enter some text to convert"
-        }
+          required: "Please enter some text to convert",
+        },
       },
       currency: {
         title: "Currency",
         source: "Source",
         result: "{from} equals to {to}",
         placeholder: "Search currency...",
-        "not-found": "No currency found."
+        "not-found": "No currency found.",
       },
       todo: {
         title: "Todo",
         placeholder: "Add new task",
         actions: {
           create: "Create new todo",
-          delete: "Delete task"
-        }
-      }
-    }
-  }
+          delete: "Delete task",
+        },
+      },
+    },
+  },
 } as const;
 
 const LocalizationResource = {
   locale: "en-US",
-  socialButtonsBlockButton: "Continue with {{provider|titleize}}"
+  socialButtonsBlockButton: "Continue with {{provider|titleize}}",
 } as const;
 
-export type Dictionary = DeepStringify<
-  typeof dictionary & LocalizationResource
->;
+export type Dictionary = DeepStringify<typeof dictionary>;
 
 export default dictionary;

@@ -3,14 +3,14 @@
 import * as React from "react";
 import { useTheme } from "next-themes";
 
-import { Button } from "~/islands/button";
 import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
-} from "~/islands/navigation/dropdown-menu";
+  DropdownMenuTrigger,
+} from "~/islands/primitives/dropdown";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();

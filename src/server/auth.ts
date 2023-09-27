@@ -1,156 +1,201 @@
-/** @see https://authjs.dev/reference/adapter/drizzle */
+/**
+ * @see https://authjs.dev/reference/adapter/drizzle
+ * @see https://github.com/jherr/app-router-auth-using-next-auth
+ * @see https://github.com/rexfordessilfie/next-auth-account-linking/tree/app-router
+ */
 
+import { NextRequest } from "next/server";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import type { NextAuthOptions } from "next-auth";
+import { defaultLocale } from "~/i18n/locales";
+import { and, eq, isNotNull } from "drizzle-orm";
+import NextAuth, {
+  getServerSession,
+  NextAuthOptions,
+  type AuthOptions,
+} from "next-auth";
+import DiscordProvider from "next-auth/providers/discord";
 import EmailProvider from "next-auth/providers/email";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import type { Provider } from "next-auth/providers/index";
+import { type Provider } from "next-auth/providers/index";
+import { Client } from "postmark";
 
+import { signInPagePath } from "~/server/utils";
 import { db } from "~/data/db/client";
-import { env } from "~/data/env";
+import { users } from "~/data/db/schema";
+import { env } from "~/data/env/env.mjs";
+// import { sendVerificationRequest } from "~/server/request";
+import {
+  createAccount,
+  createUser,
+  findAccount,
+} from "~/data/routers/handlers/users";
 
-import { sendVerificationRequest } from "./request";
+// const postmark = new Client(env.POSTMARK_API_TOKEN as string);
 
 /**
- * Configure authentication providers. To enable email, google, and github
- * authentication, you must provide the required environment variables in
- * your `.env` file or on your deploy/hosting provider.
- *
- * If the environment variables are not configured, the provider will not be
- * enabled.
+ * Returns a NextAuthOptions object with extended functionality that requires a request and response object
+ * In this specific case, the extended functionality allows for one user multiple accounts
+ * @param req A NextRequest
+ * @param res A NextResponse
+ * @returns A NextAuthOptions object with extended functionality that requires a request and response object
  */
-const providers = [
-  /**
-   * Email Provider (https://next-auth.js.org/providers/email)
-   */
-  env.EMAIL_FROM &&
-    env.RESEND_API_KEY &&
-    EmailProvider({
-      from: env.EMAIL_FROM,
-      sendVerificationRequest
-    }),
-  /**
-   * Google OAuth Provider (https://next-auth.js.org/providers/google)
-   */
-  env.GOOGLE_CLIENT_ID &&
-    env.GOOGLE_CLIENT_SECRET &&
-    GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET
-    }),
-  /**
-   * https://next-auth.js.org/providers/github
-   */
-  env.GITHUB_CLIENT_ID &&
-    env.GITHUB_CLIENT_SECRET &&
-    GithubProvider({
-      clientId: env.GITHUB_CLIENT_ID,
-      clientSecret: env.GITHUB_CLIENT_SECRET
-    })
-].filter(Boolean) as Provider[];
+export const authOptions = () => {
+  const extendedOptions: NextAuthOptions = {
+    // todo: fix errors when using:
+    // adapter: DrizzleAdapter(db),
 
-export const authOptions: NextAuthOptions = {
-  /**
-   * https://authjs.dev/reference/adapter/drizzle
-   */
-  adapter: DrizzleAdapter(db),
-  /**
-   * https://next-auth.js.org/providers/
-   */
-  providers,
-  /**
-   * https://next-auth.js.org/configuration/options#pages
-   */
-  pages: {
-    /**
-     * The sign in page
-     */
-    signIn: "/sign-in"
+    providers: [
+      GithubProvider({
+        clientId: env.GITHUB_CLIENT_ID!,
+        clientSecret: env.GITHUB_CLIENT_SECRET!,
+      }),
+      DiscordProvider({
+        clientId: env.DISCORD_CLIENT_ID!,
+        clientSecret: env.DISCORD_CLIENT_SECRET!,
+      }),
+      GoogleProvider({
+        clientId: env.GOOGLE_CLIENT_ID!,
+        clientSecret: env.GOOGLE_CLIENT_SECRET!,
+      }),
+      // todo: use drizzle auth adapter for this
+      /* EmailProvider({
+        from: process.env.SMTP_FROM,
+        sendVerificationRequest: async ({ identifier, url, provider }) => {
+          const [user] = await db
+            .select()
+            .from(users)
+            .where(
+              and(
+                eq(users.email, identifier),
+                isNotNull(users.emailVerified),
+              ),
+            );
 
-    /**
-     * A sign out confirmation page (optional)
-     */
-    // signOut: '/sign-out',
+          const templateId = user?.emailVerified
+            ? process.env.POSTMARK_SIGN_IN_TEMPLATE
+            : process.env.POSTMARK_ACTIVATION_TEMPLATE;
 
-    /**
-     * The error page to display during auth errors.
-     * Error code passed in query string as `?error=`
-     */
-    // error: "/error",
+          if (!templateId) {
+            throw new Error("Template ID is missing");
+          }
 
-    /**
-     * The "check your email" page displayed for magic links.
-     */
-    // verifyRequest: "/check-email"
+          const result = await postmark.sendEmailWithTemplate({
+            TemplateId: parseInt(templateId),
+            To: identifier,
+            From: provider.from,
+            TemplateModel: {
+              action_url: url,
+              product_name: "Relivator",
+            },
+            Headers: [
+              {
+                // Set this to prevent Gmail from threading emails.
+                // See https://stackoverflow.com/questions/23434110/force-emails-not-to-be-grouped-into-conversations/25435722.
+                Name: "X-Entity-Ref-ID",
+                Value: new Date().getTime() + "",
+              },
+            ],
+          });
 
-    /**
-     * New users will be directed here on first sign in (optional)
-     */
-    // newUser: '/new-user'
-  },
-  /**
-   * https://next-auth.js.org/configuration/options#secret
-   */
-  secret: env.NEXTAUTH_SECRET,
-  /**
-   * https://next-auth.js.org/configuration/options#session
-   */
-  session: {
-    strategy: "jwt"
-  },
-  /**
-   * https://next-auth.js.org/configuration/options#callbacks
-   */
-  callbacks: {
-    /**
-     * Use the signIn() callback to control if a user is allowed to sign in.
-     *
-     * https://next-auth.js.org/configuration/callbacks#sign-in-callback
-     */
-    async signIn(/* { user, account, profile, email, credentials } */) {
-      return Promise.resolve(true);
+          if (result.ErrorCode) {
+            throw new Error(result.Message);
+          }
+        },
+      }), */
+    ],
+
+    pages: {
+      signIn: "/",
+      error: "/",
+      signOut: "/",
     },
-    /**
-     * The redirect callback is called anytime the user is redirected to a
-     * callback URL (e.g. on signin or signout).
-     *
-     * https://next-auth.js.org/configuration/callbacks#redirect-callback
-     */
-    async redirect({ baseUrl /*, url */ }) {
-      return Promise.resolve(baseUrl);
-    },
-    /**
-     * The session callback is called whenever a session is checked. By
-     * default, only a subset of the token is returned for increased security.
-     * If you want to make something available you added to the token (like
-     * access_token and user.id from above) via the jwt() callback, you have
-     * to explicitly forward it here to make it available to the client.
-     *
-     * https://next-auth.js.org/configuration/callbacks#session-callback
-     */
-    async session({ session, token /*, user */ }) {
-      if (session.user) {
-        session.user.id = token.userId;
-      }
+    callbacks: {
+      async signIn(params) {
+        const { account, user } = params;
 
-      return Promise.resolve(session);
-    },
-    /**
-     * This callback is called whenever a JSON Web Token is created (i.e. at
-     * sign in) or updated (i.e whenever a session is accessed in the client).
-     * The returned value will be encrypted, and it is stored in a cookie.
-     *
-     * https://next-auth.js.org/configuration/callbacks#jwt-callback
-     */
-    async jwt({ token, user /*, account, profile, trigger */ }) {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (user) {
-        token.userId = user.id;
-        token.email = user.email;
-      }
+        const currentSession = await getServerSession(extendedOptions);
 
-      return Promise.resolve(token);
-    }
-  }
+        const currentUserId = currentSession?.userId;
+
+        // If there is a user logged in already that we recognize,
+        // and we have an account that is being signed in with
+        if (account && currentUserId) {
+          // Do the account linking
+          const existingAccount = await findAccount({
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
+          });
+
+          if (existingAccount) {
+            throw new Error("Account is already connected to another user!");
+          }
+
+          // Only link accounts that have not yet been linked
+          // Link the new account
+          await createAccount({
+            providerAccountId: account.providerAccountId,
+            provider: account.provider,
+            type: account?.type,
+            userId: currentUserId,
+            email: user.email!, // Email field not absolutely necessary, just for keeping record of user emails
+          });
+
+          // Redirect to the home page after linking is complete
+          return "/";
+        }
+
+        // Your Other logic to block sign-in's
+
+        return true;
+      },
+
+      async jwt(params) {
+        const { token, account, user } = params;
+
+        // If there is an account for which we are generating JWT for (e.g on sign in)
+        // then attach our userId to the token
+        if (account) {
+          const existingAppAccount = await findAccount({
+            provider: account.provider,
+            providerAccountId: account.providerAccountId,
+          });
+
+          // User account already exists so set user id on token to be added to session in the session callback
+          if (existingAppAccount) {
+            token.userId = existingAppAccount.userId;
+          }
+
+          // No account exists under this provider account id so probably new "user"
+          if (!existingAppAccount) {
+            const appUser = await createUser({
+              provider: account.provider, // Provider field not absolutely necessary, just for keeping record of provider the account was created with
+            } as any);
+
+            const newAppAccount = await createAccount({
+              providerAccountId: account.providerAccountId,
+              provider: account.provider,
+              userId: appUser?.id,
+              type: account?.type,
+              email: user.email!, // Email field not absolutely necessary, just for keeping record of user emails
+            });
+
+            token.userId = newAppAccount?.userId;
+          }
+        }
+
+        return token;
+      },
+
+      async session(params) {
+        const { session, token } = params;
+        // Attach the user id from our table to session to be able to link accounts later on sign in
+        // when we make the call to getServerSession
+        session.userId = token.userId;
+        return session;
+      },
+    },
+  };
+
+  return extendedOptions;
 };

@@ -5,10 +5,10 @@ import { type Product } from "~/data/db/schema";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Products } from "~/islands/products";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 // Running out of edge function execution units on vercel free plan
 // export const runtime = "edge"
@@ -28,13 +28,13 @@ export function generateMetadata({ params }: SubcategoryPageProps) {
 
   return {
     title: toTitleCase(subcategory),
-    description: `Buy the best ${subcategory}`
+    description: `Buy the best ${subcategory}`,
   };
 }
 
 export default async function SubcategoryPage({
   params,
-  searchParams
+  searchParams,
 }: SubcategoryPageProps) {
   const { category, subcategory } = params;
   const { page, per_page, sort, price_range, store_ids, store_page } =
@@ -51,7 +51,7 @@ export default async function SubcategoryPage({
     categories: category,
     subcategories: subcategory,
     price_range: typeof price_range === "string" ? price_range : null,
-    store_ids: typeof store_ids === "string" ? store_ids : null
+    store_ids: typeof store_ids === "string" ? store_ids : null,
   });
 
   const pageCount = Math.ceil(productsTransaction.total / limit);
@@ -66,7 +66,7 @@ export default async function SubcategoryPage({
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
     offset: storesOffset,
-    sort: "productCount.desc"
+    sort: "productCount.desc",
   });
 
   const storePageCount = Math.ceil(storesTransaction.total / storesLimit);

@@ -1,97 +1,132 @@
-# Contributing Guide <!-- omit in toc -->
+# Contributing
 
-Thank you for investing your time in contributing to our project! Any contribution you make will be reflected on [docs.github.com](https://docs.github.com/en) :sparkles:.
+[![Join the Bleverse Discord](https://discordapp.com/api/guilds/1075533942096150598/widget.png?style=banner2)][bleverse-discord]
 
-Read our [Code of Conduct](./CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
+Thank you for considering contributing to Bleverse Relivator.
+As an open sourced project we only exist by contributions from users like you.
 
-In this guide you will get an overview of the contribution workflow from opening an issue, creating a PR, reviewing, and merging the PR.
+To contribute you will first need to fork the repo. To get the repository up and
+running, please look at [README.md](/README.MD) for setup instructions.
 
-Use the table of contents icon <!-- <img src="/contributing/images/table-of-contents.png" width="25" height="25" /> --> on the top left corner of this document to get to a specific section of this guide quickly.
+## Code of Conduct
 
-## New contributor guide
+This project and everyone participating in it is governed by the
+[CONTRIBUTING.md Code of Conduct](blob/master/CODE_OF_CONDUCT.md).
+By participating you are expected to uphold this code.
+Please report unacceptable behavior to <blefnk@gmail.com>
 
-To get an overview of the project, read the [README](README.md). Here are some resources to help you get started with open source contributions:
+## I Want to Contribute
 
-- [Finding ways to contribute to open source on GitHub](https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github)
-- [Set up Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
-- [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-- [Collaborating with pull requests](https://docs.github.com/en/github/collaborating-with-pull-requests)
+> ### Legal Notice
+>
+> When contributing to this project, you must agree that you have authored 100%
+> of the content, that you have the necessary rights to the content and that the
+> content you contribute may be provided under the project's license.
 
-## Getting started
+**NOTE:** For UI-based pull requests please use the
+[UI Pull Request Template](.github/PULL_REQUEST_TEMPLATE/ui.md), and ensure that
+you attach some screen shots to show any reviewers your changes. Reviewers are
+not always able to pull down changes directly, and seeing the changes in
+screenshots can serve as a good starting point for a reviewer to determine
+whether or not the code needs to be pulled down and examined more closely.
 
-To navigate our codebase with confidence, see [the introduction to working in the docs repository](/contributing/working-in-docs-repository.md) :confetti_ball:. For more information on how we write our markdown files, see [the GitHub Markdown reference](contributing/content-markup-reference.md).
+For non-UI Pull Requests, please utilize the [Other](.github/PULL_REQUEST_TEMPLATE/other.md) template when creating your PR. Please be as thorough as possible.
 
-Check to see what [types of contributions](/contributing/types-of-contributions.md) we accept before making changes. Some of them don't even require writing a single line of code :sparkles:.
+### Reporting Bugs
 
-### Issues
+#### Before Submitting a Bug Report
 
-#### Create a new issue
+A good bug report shouldn't leave others needing to chase you up for more
+information. Therefore, we ask you to investigate carefully, collect
+information, and describe the issue in detail _in your report_. Following the
+bug issue template should prompt you for any information we may need, but feel
+free to include any information you feel is relevant to the bug.
 
-If you spot a problem with the docs, [search if an issue already exists](https://docs.github.com/en/github/searching-for-information-on-github/searching-on-github/searching-issues-and-pull-requests#search-by-the-title-body-or-comments). If a related issue doesn't exist, you can open a new issue using a relevant [issue form](https://github.com/github/docs/issues/new/choose).
+#### How do I Submit a Good Bug Report?
 
-#### Solve an issue
+> ### You must never report security related issues, vulnerabilities, or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead, sensitive bugs must be sent by email to [blefnk@gmail.com](mailto:blefnk@gmail.com)
 
-Scan through our [existing issues](https://github.com/github/docs/issues) to find one that interests you. You can narrow down the search using `labels` as filters. See [Labels](/contributing/how-to-use-labels.md) for more information. As a general rule, we don’t assign issues to anyone. If you find an issue to work on, you are welcome to open a PR with a fix.
+We use GitHub issues to track bugs and errors. If you run into an issue with the
+project:
 
-### Make Changes
+- Open an [Issue](/issues/new).
+- Explain the behavior you would expect and the actual behavior.
+- Please provide as much context as possible and describe the _reproduction
+  steps_ that someone else can follow to recreate the issue on their own. This
+  usually includes your code. For good bug reports you should isolate the
+  problem and create a reduced test case.
+- Provide the information you collected in the previous section.
 
-#### Make changes in the UI
+Once it is filed:
 
-Click **Make a contribution** at the bottom of any docs page to make small changes such as a typo, sentence fix, or a broken link. This takes you to the `.md` file where you can make your changes and [create a pull request](#pull-request) for a review.
+- The project team will label that issue accordingly.
+- A team member will try to reproduce the issue with your provided steps. If
+  there are no reproduction steps or no obvious way to reproduce the issue, the
+  team will ask you for those steps and mark the issue as `needs-repro`. Bugs
+  with the `needs-repro` tag will not be addressed until they are reproduced.
+- If the team is able to reproduce the issue, it will be marked as `needs-fix`,
+  as well as possibly other tags (such as `critical`), and the issue will be
+  left to be [implemented by someone](#your-first-code-contribution)
 
-<!-- <img src="/contributing/images/contribution_cta.png"> -->
+### Suggesting Enhancements
 
-#### Make changes in a codespace
+This section guides you through submitting an enhancement suggestion for
+CONTRIBUTING.md **including completely new features and minor improvements to
+existing functionality**. Following these guidelines will help maintainers and
+the community to understand your suggestion and find related suggestions.
 
-For more information about using a codespace for working on GitHub documentation, see "[Working in a codespace](https://github.com/github/docs/blob/main/contributing/codespace.md)."
+#### Before Submitting an Enhancement
 
-#### Make changes locally
+- Make sure that you are using the latest version.
+- Perform a search in [GitHub](/issues), or the
+  [Suggestions Channel](https://discord.com/channels/796594544980000808/1143947327892103188)
+  on Discord to see if the enhancement has already been suggested. If it has,
+  add a comment to the existing issue instead of opening a new one.
+- Find out whether your idea fits with the scope and aims of the project. It's
+  up to you to make a strong case to convince the project's developers of the
+  merits of this feature. Keep in mind that we want features that will be useful
+  to the majority of our users and not just a small subset.
 
-(1) Fork the repository.
+#### How Do I Submit a Good Enhancement Suggestion?
 
-- Using GitHub Desktop:
+Enhancement suggestions are tracked as [GitHub issues](/issues).
 
-  - [Getting started with GitHub Desktop](https://docs.github.com/en/desktop/installing-and-configuring-github-desktop/getting-started-with-github-desktop) will guide you through setting up Desktop.
-  - Once Desktop is set up, you can use it to [fork the repo](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/cloning-and-forking-repositories-from-github-desktop)!
+- Use a **clear and descriptive title** for the issue to identify the
+  suggestion.
+- Provide a **step-by-step description of the suggested enhancement** in as much
+  detail as possible.
+- **Describe the current behavior** and **explain which behavior you expected to
+  see instead** and why. At this point, you can also tell which alternatives do
+  not work for you.
+- You may want to include **screenshots** which help you demonstrate the steps
+  or point out the part which the suggestion is related to.
+- Explain why this enhancement would be useful to most CONTRIBUTING.md users.
+  You may also want to point out the other projects which have solved a similar
+  issues.
 
-- Using the command line:
-  - [Fork the repo](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo#fork-an-example-repository) so that you can make your changes without affecting the original project until you're ready to merge them.
+### Your First Code Contribution
 
-(2) Install or update to **Node.js**, at the version specified in `.node-version`. For more information, see [the development guide](contributing/development.md).
+1. Choose an issue from the [GitHub issues](/issues), ask a member of the team
+   to assign the issue to you.
+2. Fork the repository
+3. Create a branch on your fork. You should either add in the GitHub issue
+   number to the branch name, e.g. `382_adds-in-new-thing` or ensure that the
+   issue is referenced in the Pull Request or commit message.
+4. We do not enforce a commit style like
+   [Conventional Commits](https://conventionalcommits.org), but you are
+   welcome to use one so long as the summary line accurately describes the
+   overall purpose of the work and the ticket is referenced either in the PR or the
+   body of the commit message. See [Commits](#commit-examples) for example commits.
+5. When ready, put up a PR that links from your fork.
 
-(3) Create a working branch and start with your changes!
+## References
 
-### Commit your update
+### Commit Examples
 
-Commit the changes once you are happy with them. Don't forget to [self-review](/contributing/self-review.md) to speed up the review process:zap:.
+| ✅ Good                                               | ❌ Bad           |
+| :---------------------------------------------------- | :--------------- |
+| 🌐 add(i18n): add internationalization support to rsc | YOOOOOO          |
+| 🛒 fix(uiux): move the cart to right for user habits  | fixing the thing |
+| 📚 upd(docs): improve some typos in the readme file   | Trust me bro     |
 
-### Pull Request
-
-When you're finished with the changes, create a pull request, also known as a PR.
-
-- Fill the "Ready for review" template so that we can review your PR. This template helps reviewers understand your changes as well as the purpose of your pull request.
-- Don't forget to [link PR to issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue) if you are solving one.
-- Enable the checkbox to [allow maintainer edits](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/allowing-changes-to-a-pull-request-branch-created-from-a-fork) so the branch can be updated for a merge.
-  Once you submit your PR, a Docs team member will review your proposal. We may ask questions or request additional information.
-- We may ask for changes to be made before a PR can be merged, either using [suggested changes](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/incorporating-feedback-in-your-pull-request) or pull request comments. You can apply suggested changes directly through the UI. You can make any other changes in your fork, then commit them to your branch.
-- As you update your PR and apply changes, mark each conversation as [resolved](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/commenting-on-a-pull-request#resolving-conversations).
-- If you run into any merge issues, checkout this [git tutorial](https://github.com/skills/resolve-merge-conflicts) to help you resolve merge conflicts and other issues.
-
-### Your PR is merged
-
-Congratulations :tada::tada: The GitHub team thanks you :sparkles:.
-
-Once your PR is merged, your contributions will be publicly visible on the [GitHub docs](https://docs.github.com/en).
-
-Now that you are part of the GitHub docs community, see how else you can [contribute to the docs](/contributing/types-of-contributions.md).
-
-## Windows
-
-This site can be developed on Windows, however a few potential gotchas need to be kept in mind:
-
-1. Regular Expressions: Windows uses `\r\n` for line endings, while Unix-based systems use `\n`. Therefore, when working on Regular Expressions, use `\r?\n` instead of `\n` in order to support both environments. The Node.js [`os.EOL`](https://nodejs.org/api/os.html#os_os_eol) property can be used to get an OS-specific end-of-line marker.
-2. Paths: Windows systems use `\` for the path separator, which would be returned by `path.join` and others. You could use `path.posix`, `path.posix.join` etc and the [slash](https://ghub.io/slash) module, if you need forward slashes - like for constructing URLs - or ensure your code works with either.
-3. Bash: Not every Windows developer has a terminal that fully supports Bash, so it's generally preferred to write [scripts](/script) in JavaScript instead of Bash.
-4. Filename too long error: There is a 260 character limit for a filename when Git is compiled with `msys`. While the suggestions below are not guaranteed to work and could cause other issues, a few workarounds include:
-   - Update Git configuration: `git config --system core.longpaths true`
-   - Consider using a different Git client on Windows
+[bleverse-discord]: https://discord.gg/Pb8uKbwpsJ

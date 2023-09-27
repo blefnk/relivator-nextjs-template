@@ -1,48 +1,64 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { currentUser } from "@clerk/nextjs";
-import type { CheckoutItem } from "~/types";
+import { type CheckoutItem } from "~/types";
 import { eq } from "drizzle-orm";
-import { type z } from "zod";
+import { getServerSession } from "next-auth";
+import { z } from "zod";
 
-import { stripe } from "~/server/stripe";
-import { absoluteUrl, calculateOrderAmount } from "~/server/utils";
-import { db } from "~/data/db";
-import { carts, payments, stores } from "~/data/db/schema";
+import { authOptions } from "~/server/auth";
+import { absoluteUrl, calculateOrderAmount, ERR } from "~/server/utils";
+import { db } from "~/data/db/client";
+import {
+  accounts,
+  carts,
+  comments,
+  payments,
+  stores,
+  users,
+} from "~/data/db/schema";
+import { findAccount, findUserById } from "~/data/routers/handlers/users";
+import { stripe } from "~/data/routers/stripe";
 import type {
   createPaymentIntentSchema,
   getPaymentIntentSchema,
   getPaymentIntentsSchema,
   getStripeAccountSchema,
-  manageSubscriptionSchema
-} from "~/data/valids/stripe";
+  manageSubscriptionSchema,
+} from "~/data/validations/stripe";
 
 // Managing stripe subscriptions for a user
 export async function manageSubscriptionAction(
-  input: z.infer<typeof manageSubscriptionSchema>
+  input: z.infer<typeof manageSubscriptionSchema>,
 ) {
   const billingUrl = absoluteUrl("/dashboard/billing");
 
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
 
-  if (!user) {
+  if (!session?.userId) {
     throw new Error("User not found.");
   }
 
-  const email =
-    user.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
-      ?.emailAddress ?? "";
+  const user = await findUserById(session.userId);
+  // const account = await findAccount(userId);
+
+  // const email =
+  //   user.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
+  //     ?.emailAddress ?? "";
+
+  const email = `${session?.user?.email ?? ""}`;
+  // const email = user?.email;
+  // const email = account?.email;
 
   // If the user is already subscribed to a plan, we redirect them to the Stripe billing portal
   if (input.isSubscribed && input.stripeCustomerId && input.isCurrentPlan) {
     const stripeSession = await stripe.billingPortal.sessions.create({
       customer: input.stripeCustomerId,
-      return_url: billingUrl
+      return_url: billingUrl,
     });
 
     return {
-      url: stripeSession.url
+      url: stripeSession.url,
     };
   }
 
@@ -57,37 +73,37 @@ export async function manageSubscriptionAction(
     line_items: [
       {
         price: input.stripePriceId,
-        quantity: 1
-      }
+        quantity: 1,
+      },
     ],
     metadata: {
-      userId: user.id
-    }
+      userId: session.userId,
+    },
   });
 
   return {
-    url: stripeSession.url
+    url: stripeSession.url,
   };
 }
 
 // Getting the Stripe account for a store
 export async function getStripeAccountAction(
-  input: z.infer<typeof getStripeAccountSchema>
+  input: z.infer<typeof getStripeAccountSchema>,
 ) {
   const retrieveAccount = input.retrieveAccount ?? true;
 
   const falsyReturn = {
     isConnected: false,
     account: null,
-    payment: null
+    payment: null,
   };
 
   try {
     const store = await db.query.stores.findFirst({
       columns: {
-        stripeAccountId: true
+        stripeAccountId: true,
       },
-      where: eq(stores.id, input.storeId)
+      where: eq(stores.id, input.storeId),
     });
 
     if (!store) return falsyReturn;
@@ -95,9 +111,9 @@ export async function getStripeAccountAction(
     const payment = await db.query.payments.findFirst({
       columns: {
         stripeAccountId: true,
-        detailsSubmitted: true
+        detailsSubmitted: true,
       },
-      where: eq(payments.storeId, input.storeId)
+      where: eq(payments.storeId, input.storeId),
     });
 
     if (!payment || !payment.stripeAccountId) return falsyReturn;
@@ -106,7 +122,7 @@ export async function getStripeAccountAction(
       return {
         isConnected: true,
         account: null,
-        payment
+        payment,
       };
 
     const account = await stripe.accounts.retrieve(payment.stripeAccountId);
@@ -120,7 +136,7 @@ export async function getStripeAccountAction(
           .update(payments)
           .set({
             detailsSubmitted: account.details_submitted,
-            stripeAccountCreatedAt: account.created
+            stripeAccountCreatedAt: account.created,
           })
           .where(eq(payments.storeId, input.storeId));
 
@@ -128,7 +144,7 @@ export async function getStripeAccountAction(
           .update(stores)
           .set({
             stripeAccountId: account.id,
-            active: true
+            active: true,
           })
           .where(eq(stores.id, input.storeId));
       });
@@ -137,7 +153,7 @@ export async function getStripeAccountAction(
     return {
       isConnected: payment.detailsSubmitted,
       account: account.details_submitted ? account : null,
-      payment
+      payment,
     };
   } catch (err) {
     err instanceof Error && console.error(err.message);
@@ -147,7 +163,7 @@ export async function getStripeAccountAction(
 
 // Connecting a Stripe account to a store
 export async function createAccountLinkAction(
-  input: z.infer<typeof getStripeAccountSchema>
+  input: z.infer<typeof getStripeAccountSchema>,
 ) {
   const { isConnected, payment, account } = await getStripeAccountAction(input);
 
@@ -167,7 +183,7 @@ export async function createAccountLinkAction(
     account: stripeAccountId,
     refresh_url: absoluteUrl(`/dashboard/stores/${input.storeId}`),
     return_url: absoluteUrl(`/dashboard/stores/${input.storeId}`),
-    type: "account_onboarding"
+    type: "account_onboarding",
   });
 
   if (!accountLink?.url) {
@@ -186,12 +202,12 @@ export async function createAccountLinkAction(
     // If payment record exists, we update it with the new account id
     if (payment) {
       await db.update(payments).set({
-        stripeAccountId: account.id
+        stripeAccountId: account.id,
       });
     } else {
       await db.insert(payments).values({
         storeId: input.storeId,
-        stripeAccountId: account.id
+        stripeAccountId: account.id,
       });
     }
 
@@ -201,7 +217,7 @@ export async function createAccountLinkAction(
 
 // Creating checkout session for a store
 export async function createCheckoutSessionAction(
-  input: z.infer<typeof createPaymentIntentSchema>
+  input: z.infer<typeof createPaymentIntentSchema>,
 ) {
   const { isConnected, payment } = await getStripeAccountAction(input);
 
@@ -219,7 +235,7 @@ export async function createCheckoutSessionAction(
     productId: item.id,
     price: Number(item.price),
     quantity: item.quantity,
-    subcategory: item.subcategory
+    subcategory: item.subcategory,
   }));
 
   // Create a checkout session
@@ -233,20 +249,20 @@ export async function createCheckoutSessionAction(
         price_data: {
           currency: "usd",
           product_data: {
-            name: item.name
+            name: item.name,
           },
-          unit_amount: Number(item.price) * 100
+          unit_amount: Number(item.price) * 100,
         },
-        quantity: item.quantity
+        quantity: item.quantity,
       })),
       metadata: {
         cartId,
-        items: JSON.stringify(checkoutItems)
-      }
+        items: JSON.stringify(checkoutItems),
+      },
     },
     {
-      stripeAccount: payment.stripeAccountId
-    }
+      stripeAccount: payment.stripeAccountId,
+    },
   );
 
   // Update the cart with the checkout session id
@@ -254,20 +270,20 @@ export async function createCheckoutSessionAction(
     .update(carts)
     .set({
       checkoutSessionId: checkoutSession.id,
-      paymentIntentId: String(checkoutSession.payment_intent)
+      paymentIntentId: String(checkoutSession.payment_intent),
     })
     .where(eq(carts.id, cartId));
 
   return {
     id: checkoutSession.id,
-    url: checkoutSession.url ?? "/checkout"
+    url: checkoutSession.url ?? "/checkout",
   };
 }
 
 // Modified from: https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
 // Creating a payment intent for a store
 export async function createPaymentIntentAction(
-  input: z.infer<typeof createPaymentIntentSchema>
+  input: z.infer<typeof createPaymentIntentSchema>,
 ): Promise<{ clientSecret: string | null }> {
   try {
     const { isConnected, payment } = await getStripeAccountAction(input);
@@ -286,12 +302,12 @@ export async function createPaymentIntentAction(
       productId: item.id,
       price: Number(item.price),
       quantity: item.quantity,
-      subcategory: item.subcategory
+      subcategory: item.subcategory,
     }));
 
     const metadata = {
       cartId: isNaN(cartId) ? "" : cartId,
-      items: JSON.stringify(checkoutItems)
+      items: JSON.stringify(checkoutItems),
     };
 
     const { total, fee } = calculateOrderAmount(input.items);
@@ -331,29 +347,29 @@ export async function createPaymentIntentAction(
         metadata,
         currency: "usd",
         automatic_payment_methods: {
-          enabled: true
-        }
+          enabled: true,
+        },
       },
       {
-        stripeAccount: payment.stripeAccountId
-      }
+        stripeAccount: payment.stripeAccountId,
+      },
     );
 
     await db
       .update(carts)
       .set({
         paymentIntentId: paymentIntent.id,
-        clientSecret: paymentIntent.client_secret
+        clientSecret: paymentIntent.client_secret,
       })
       .where(eq(carts.id, cartId));
 
     return {
-      clientSecret: paymentIntent.client_secret
+      clientSecret: paymentIntent.client_secret,
     };
   } catch (err) {
     console.error(err);
     return {
-      clientSecret: null
+      clientSecret: null,
     };
   }
 }
@@ -361,12 +377,12 @@ export async function createPaymentIntentAction(
 // Modified from: https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
 // Getting payment intents for a store
 export async function getPaymentIntentsAction(
-  input: z.infer<typeof getPaymentIntentsSchema>
+  input: z.infer<typeof getPaymentIntentsSchema>,
 ) {
   try {
     const { isConnected, payment } = await getStripeAccountAction({
       storeId: input.storeId,
-      retrieveAccount: false
+      retrieveAccount: false,
     });
 
     if (!isConnected || !payment) {
@@ -379,7 +395,7 @@ export async function getPaymentIntentsAction(
 
     const paymentIntents = await stripe.paymentIntents.list({
       limit: input.limit ?? 10,
-      ...input
+      ...input,
     });
 
     return {
@@ -387,15 +403,15 @@ export async function getPaymentIntentsAction(
         id: item.id,
         amount: item.amount,
         created: item.created,
-        cartId: Number(item.metadata.cartId)
+        cartId: Number(item.metadata.cartId),
       })),
-      hasMore: paymentIntents.has_more
+      hasMore: paymentIntents.has_more,
     };
   } catch (err) {
     console.error(err);
     return {
       paymentIntents: [],
-      hasMore: false
+      hasMore: false,
     };
   }
 }
@@ -403,14 +419,14 @@ export async function getPaymentIntentsAction(
 // Modified from: https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
 // Getting a payment intent for a store
 export async function getPaymentIntentAction(
-  input: z.infer<typeof getPaymentIntentSchema>
+  input: z.infer<typeof getPaymentIntentSchema>,
 ) {
   try {
     const cartId = cookies().get("cartId")?.value;
 
     const { isConnected, payment } = await getStripeAccountAction({
       storeId: input.storeId,
-      retrieveAccount: false
+      retrieveAccount: false,
     });
 
     if (!isConnected || !payment) {
@@ -424,8 +440,8 @@ export async function getPaymentIntentAction(
     const paymentIntent = await stripe.paymentIntents.retrieve(
       input.paymentIntentId,
       {
-        stripeAccount: payment.stripeAccountId
-      }
+        stripeAccount: payment.stripeAccountId,
+      },
     );
 
     if (paymentIntent.status !== "succeeded") {
@@ -442,13 +458,13 @@ export async function getPaymentIntentAction(
 
     return {
       paymentIntent,
-      isVerified: true
+      isVerified: true,
     };
   } catch (err) {
     console.error(err);
     return {
       paymentIntent: null,
-      isVerified: false
+      isVerified: false,
     };
   }
 }

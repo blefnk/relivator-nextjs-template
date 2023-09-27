@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next-intl/link";
 
 import { cn, truncate } from "~/server/utils";
 import { Icons } from "~/islands/icons";
@@ -58,7 +58,7 @@ export function MdxPager({
 export function getPager(currentItem: MdxPagerItem, allItems: MdxPagerItem[]) {
   const flattenedLinks = allItems.flat();
   const activeIndex = flattenedLinks.findIndex(
-    (link) => currentItem.slug === link?.slug
+    (link) => currentItem.slug === link?.slug,
   );
   const prev = activeIndex !== 0 ? flattenedLinks[activeIndex - 1] : null;
   const next =
@@ -67,6 +67,6 @@ export function getPager(currentItem: MdxPagerItem, allItems: MdxPagerItem[]) {
       : null;
   return {
     prev,
-    next
+    next,
   };
 }

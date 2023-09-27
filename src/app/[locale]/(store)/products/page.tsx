@@ -3,20 +3,19 @@ import { type Metadata } from "next";
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
 import { products } from "~/data/db/schema";
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Products } from "~/islands/products";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Products",
-  description: "Buy products from our stores"
+  description: "Buy products from our stores",
 };
 
 interface ProductsPageProps {
@@ -26,7 +25,7 @@ interface ProductsPageProps {
 }
 
 export default async function ProductsPage({
-  searchParams
+  searchParams,
 }: ProductsPageProps) {
   const {
     page,
@@ -36,7 +35,7 @@ export default async function ProductsPage({
     subcategories,
     price_range,
     store_ids,
-    store_page
+    store_page,
   } = searchParams ?? {};
 
   // Products transaction
@@ -50,7 +49,7 @@ export default async function ProductsPage({
     categories: typeof categories === "string" ? categories : null,
     subcategories: typeof subcategories === "string" ? subcategories : null,
     price_range: typeof price_range === "string" ? price_range : null,
-    store_ids: typeof store_ids === "string" ? store_ids : null
+    store_ids: typeof store_ids === "string" ? store_ids : null,
   });
 
   const pageCount = Math.ceil(productsTransaction.total / limit);
@@ -65,7 +64,7 @@ export default async function ProductsPage({
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
     offset: storesOffset,
-    sort: "productCount.desc"
+    sort: "productCount.desc",
   });
 
   const storePageCount = Math.ceil(storesTransaction.total / storesLimit);

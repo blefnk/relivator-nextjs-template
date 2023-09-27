@@ -24,7 +24,7 @@ export function CheckoutShell({
 }: CheckoutShellProps) {
   const stripePromise = React.useMemo(
     () => getStripe(storeStripeAccountId),
-    [storeStripeAccountId]
+    [storeStripeAccountId],
   );
   const { clientSecret } = React.use(paymentIntent);
 
@@ -32,9 +32,9 @@ export function CheckoutShell({
 
   const options: StripeElementsOptions = {
     appearance: {
-      theme: "stripe"
+      theme: "stripe",
     },
-    clientSecret: clientSecret
+    clientSecret: clientSecret,
   };
 
   return (

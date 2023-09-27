@@ -11,7 +11,7 @@ import {
   Row,
   Section,
   Tailwind,
-  Text
+  Text,
 } from "@react-email/components";
 
 interface NewsletterWelcomeEmailProps {
@@ -31,7 +31,7 @@ const newsletterImages = [
     credit: "ALLAN FRANCA CARMO",
     creditUrl:
       "https://www.pexels.com/photo/time-lapse-photography-of-man-doing-skateboard-trick-3133685/",
-    description: `Skateboarding is a sport that has been around for decades. It's not just about the tricks, but also about the culture and community that surrounds it. So we decided to create a newsletter to share our passion with others who love skateboarding as much as we do!`
+    description: `Skateboarding is a sport that has been around for decades. It's not just about the tricks, but also about the culture and community that surrounds it. So we decided to create a newsletter to share our passion with others who love skateboarding as much as we do!`,
   },
   {
     src: `${baseUrl}/images/newsletter/skater-two.webp`,
@@ -39,14 +39,14 @@ const newsletterImages = [
     credit: "cottonbro studio",
     creditUrl:
       "https://www.pexels.com/photo/skateboarder-jumping-a-skateboard-5037502/",
-    description: `${`We'll`} be keeping you up to date with the latest skateboarding news, events, and more. Stay up to date with the latest trends and tricks. Stay tuned for more!`
-  }
+    description: `${`We'll`} be keeping you up to date with the latest skateboarding news, events, and more. Stay up to date with the latest trends and tricks. Stay tuned for more!`,
+  },
 ];
 
 export default function NewsletterWelcomeEmail({
   firstName = "there",
   fromEmail,
-  token
+  token,
 }: NewsletterWelcomeEmailProps) {
   const previewText = `Hi ${firstName}, welcome to Relivator!`;
 

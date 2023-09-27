@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next-intl/link";
 
 import { getCartAction } from "~/server/actions/cart";
 import { cn, formatPrice } from "~/server/utils";
@@ -9,7 +9,7 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
 import { Separator } from "~/islands/primitives/separator";
 
@@ -29,7 +29,7 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
       className={cn(
         cartLineItems[0]?.storeStripeAccountId
           ? "border-green-500"
-          : "border-destructive"
+          : "border-destructive",
       )}
     >
       <CardHeader className="flex flex-row items-center space-x-4 py-4">
@@ -41,8 +41,8 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
           href={`/checkout/${storeId}`}
           className={cn(
             buttonVariants({
-              size: "sm"
-            })
+              size: "sm",
+            }),
           )}
         >
           Checkout
@@ -65,8 +65,8 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
           {formatPrice(
             cartLineItems.reduce(
               (acc, item) => acc + Number(item.price) * Number(item.quantity),
-              0
-            )
+              0,
+            ),
           )}
         </span>
       </CardFooter>

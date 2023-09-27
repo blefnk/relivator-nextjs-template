@@ -7,7 +7,7 @@ interface HeadingProps {
 export default function HeadingText({
   children,
   subtext,
-  className
+  className,
 }: HeadingProps) {
   return (
     <div className={`space-y-2 ${className}`}>

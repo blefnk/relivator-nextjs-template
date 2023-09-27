@@ -7,7 +7,7 @@ interface ProductPreviewPageProps {
 }
 
 export default function ProductPreviewPage({
-  params
+  params,
 }: ProductPreviewPageProps) {
   const productId = Number(params.productId);
 

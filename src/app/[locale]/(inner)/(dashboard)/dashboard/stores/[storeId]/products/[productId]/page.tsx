@@ -4,7 +4,6 @@ import { and, eq } from "drizzle-orm";
 
 import { db } from "~/data/db/client";
 import { products } from "~/data/db/schema";
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import { UpdateProductForm } from "~/forms/update-product-form";
 import { ProductPager } from "~/islands/navigation/pagination/product-pager";
@@ -13,13 +12,13 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Manage Product",
-  description: "Manage your product"
+  description: "Manage your product",
 };
 
 interface UpdateProductPageProps {
@@ -30,13 +29,13 @@ interface UpdateProductPageProps {
 }
 
 export default async function UpdateProductPage({
-  params
+  params,
 }: UpdateProductPageProps) {
   const storeId = Number(params.storeId);
   const productId = Number(params.productId);
 
   const product = await db.query.products.findFirst({
-    where: and(eq(products.id, productId), eq(products.storeId, storeId))
+    where: and(eq(products.id, productId), eq(products.storeId, storeId)),
   });
 
   if (!product) {

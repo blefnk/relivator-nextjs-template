@@ -3,12 +3,52 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
 
-  // VSCode Config
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
+  // TailwindCSS Config
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["tw=\"([^\"]*)\""]
+  ],
+  "tailwindCSS.includeLanguages": { "plaintext": "html" },
+
+  // i18n-ally Config
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["src/i18n/messages"],
+
+  // Files Config
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.associations": {
+    "*.ignore": "plaintext",
+    "*.tson": "typescript",
+    "*.txt": "plaintext"
   },
-  "editor.formatOnSave": true,
+
+  // VSCode Config
   "editor.tabSize": 2,
+  "editor.codeActionsOnSave": { "source.fixAll": false },
+  "editor.formatOnSave": true,
+  "editor.unicodeHighlight.allowedCharacters": {
+    "a": true,
+    "а": true,
+    "А": true,
+    "б": true,
+    "В": true,
+    "е": true,
+    "Е": true,
+    "з": true,
+    "З": true,
+    "і": true,
+    "І": true,
+    "н": true,
+    "Н": true,
+    "о": true,
+    "р": true,
+    "Р": true,
+    "с": true,
+    "у": true,
+    "У": true
+  },
 
   // ESLint Config
   "eslint.format.enable": true,
@@ -18,10 +58,6 @@
     "typescript",
     "typescriptreact"
   ],
-
-  // Files Config
-  "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true,
 
   // Filetype-specific Config
   "[javascript]": {
@@ -41,12 +77,5 @@
       "allowed_elements": ["img", "p", "a"]
     }
   },
-
-  // TailwindCSS Config
-  "tailwindCSS.includeLanguages": { "plaintext": "html" },
-  "tailwindCSS.experimental.classRegex": [
-    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-    ["tw=\"([^\"]*)\""]
-  ]
+  "i18n-ally.sourceLanguage": "en"
 }

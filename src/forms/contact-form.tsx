@@ -13,18 +13,18 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "~/islands/primitives/form";
 import { Input } from "~/islands/primitives/input";
 import { Textarea } from "~/islands/primitives/textarea";
 
 const formSchema = z.object({
   subject: z.string().min(1, {
-    message: "Subject is required"
+    message: "Subject is required",
   }),
   msg: z.string().min(1, {
-    message: "Message is required"
-  })
+    message: "Message is required",
+  }),
 });
 
 export default function ContactForm() {
@@ -32,8 +32,8 @@ export default function ContactForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       subject: "",
-      msg: ""
-    }
+      msg: "",
+    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {

@@ -57,12 +57,6 @@
   * {
     @apply border-border;
   }
-  /* * .debug-mode-enabled .is-client {
-    @apply border-border border-red-800;
-  } */
-  /* * .debug-mode-enabled .is-server {
-    @apply border-border border-green-800;
-  } */
   body {
     @apply bg-background text-foreground;
   }
@@ -81,5 +75,27 @@
 @media (max-width: 640px) {
   .container {
     @apply px-4;
+  }
+}
+
+.radial-gradient {
+  background: radial-gradient(
+    128.88% 128.88% at 103.9% -10.39%,
+    #e84d70 0%,
+    #a337f6 53.09%,
+    #28a7ed 100%
+  );
+}
+
+.animate-opacity {
+  animation: opacityCycle 1s infinite alternate;
+}
+
+@keyframes opacityCycle {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
   }
 }

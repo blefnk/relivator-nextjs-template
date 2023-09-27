@@ -1,10 +1,10 @@
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Skeleton } from "~/islands/primitives/skeleton";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export default function PurchasesLoading() {
   return (

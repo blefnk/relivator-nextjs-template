@@ -11,8 +11,8 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger
-} from "~/islands/primitives/dropdown-menu";
+  DropdownMenuTrigger,
+} from "~/islands/primitives/dropdown";
 
 export function ModeToggle() {
   const [isClient, setIsClient] = useState(false);

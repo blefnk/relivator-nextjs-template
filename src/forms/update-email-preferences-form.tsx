@@ -1,15 +1,18 @@
 "use client";
 
 import * as React from "react";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { type z } from "zod";
 
 import { updateEmailPreferencesAction } from "~/server/actions/email";
-import { catchClerkError } from "~/server/utils";
+import { catchAuthError } from "~/server/utils";
 import { type EmailPreference } from "~/data/db/schema";
-import { updateEmailPreferencesSchema } from "~/data/valids/email";
+import { updateEmailPreferencesSchema } from "~/data/validations/email";
+import { useToast } from "~/hooks/use-toast-2";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -19,7 +22,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "~/islands/primitives/form";
 import { Switch } from "~/islands/primitives/switch";
 
@@ -30,9 +33,12 @@ interface UpdateEmailPreferencesFormProps {
 type Inputs = z.infer<typeof updateEmailPreferencesSchema>;
 
 export function UpdateEmailPreferencesForm({
-  emailPreference
+  emailPreference,
 }: UpdateEmailPreferencesFormProps) {
   const [isPending, startTransition] = React.useTransition();
+
+  // const searchParams = useSearchParams();
+  // const { toast } = useToast();
 
   // react-hook-form
   const form = useForm<Inputs>({
@@ -41,10 +47,26 @@ export function UpdateEmailPreferencesForm({
       token: emailPreference.token,
       newsletter: emailPreference.newsletter,
       transactional: emailPreference.transactional,
-      marketing: emailPreference.marketing
-    }
+      marketing: emailPreference.marketing,
+    },
   });
 
+  /**
+   * If this page loads with an error query
+   * parameter, display the error message.
+   */
+  // useEffect(() => {
+  //   if (searchParams?.get("error")) {
+  //     toast({
+  //       ...catchAuthError(searchParams?.get("error")),
+  //       variant: "destructive",
+  //     });
+  //   }
+  // }, [searchParams, toast]);
+
+  /**
+   * Handle the form submission.
+   */
   function onSubmit(data: Inputs) {
     console.log(data);
     startTransition(async () => {
@@ -53,11 +75,12 @@ export function UpdateEmailPreferencesForm({
           token: data.token,
           newsletter: data.newsletter,
           transactional: data.transactional,
-          marketing: data.marketing
+          marketing: data.marketing,
         });
         toast.success("Email preferences updated.");
       } catch (err) {
-        catchClerkError(err);
+        // catchAuthError(err);
+        console.error(err);
       }
     });
   }

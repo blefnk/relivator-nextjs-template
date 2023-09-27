@@ -5,7 +5,7 @@ import * as React from "react";
 import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
-import type { InputProps } from "~/islands/primitives/forms/input";
+import { type InputProps } from "~/islands/primitives/forms/input";
 import { Input } from "~/islands/primitives/input";
 
 const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
@@ -39,7 +39,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, InputProps>(
         </Button>
       </div>
     );
-  }
+  },
 );
 PasswordInput.displayName = "PasswordInput";
 

@@ -4,7 +4,7 @@ import { useOnMount } from "./use-on-mount";
 
 export const useLocalStorage = <T>(
   key: string,
-  initialValue: T
+  initialValue: T,
 ): [T, React.Dispatch<React.SetStateAction<T>>] => {
   const initialize = (key: string) => {
     try {

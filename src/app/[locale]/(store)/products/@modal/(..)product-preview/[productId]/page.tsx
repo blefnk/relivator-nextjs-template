@@ -7,7 +7,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger
+  AlertDialogTrigger,
 } from "~/islands/primitives/alert-dialog";
 import { Button } from "~/islands/primitives/button";
 

@@ -1,29 +1,29 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { eq } from "drizzle-orm";
+import Link from "next-intl/link";
 
 import { getCartAction } from "~/server/actions/cart";
 import {
   createPaymentIntentAction,
-  getStripeAccountAction
+  getStripeAccountAction,
 } from "~/server/actions/stripe";
 import { cn, formatPrice } from "~/server/utils";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
-import { env } from "~/data/env";
+import { env } from "~/data/env/env.mjs";
 import CheckoutForm from "~/forms/checkout-form";
 import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { CheckoutShell } from "~/islands/checkout/checkout-shell";
 import { Badge } from "~/islands/primitives/badge";
 import { buttonVariants } from "~/islands/primitives/button";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Checkout",
-  description: "Checkout with store items"
+  description: "Checkout with store items",
 };
 
 interface IndieCheckoutPageProps {
@@ -33,14 +33,14 @@ interface IndieCheckoutPageProps {
 }
 
 export default async function IndieCheckoutPage({
-  params
+  params,
 }: IndieCheckoutPageProps) {
   const storeId = Number(params.storeId);
 
   const store = await db
     .select({
       id: stores.id,
-      stripeAccountId: stores.stripeAccountId
+      stripeAccountId: stores.stripeAccountId,
     })
     .from(stores)
     .where(eq(stores.id, storeId))
@@ -52,19 +52,19 @@ export default async function IndieCheckoutPage({
   }
 
   const { isConnected } = await getStripeAccountAction({
-    storeId
+    storeId,
   });
 
   const cartLineItems = await getCartAction(storeId);
 
   const paymentIntent = createPaymentIntentAction({
     storeId: store.id,
-    items: cartLineItems
+    items: cartLineItems,
   });
 
   const total = cartLineItems.reduce(
     (total, item) => total + item.quantity * Number(item.price),
-    0
+    0,
   );
 
   if (!(isConnected && store.stripeAccountId)) {
@@ -87,8 +87,8 @@ export default async function IndieCheckoutPage({
             href="/checkout"
             className={cn(
               buttonVariants({
-                size: "sm"
-              })
+                size: "sm",
+              }),
             )}
           >
             Back to checkout

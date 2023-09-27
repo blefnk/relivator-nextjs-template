@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import {
   getNextProductIdAction,
-  getPreviousProductIdAction
+  getPreviousProductIdAction,
 } from "~/server/actions/product";
 import { type Product } from "~/data/db/schema";
 import { Icons } from "~/islands/icons";
@@ -30,10 +30,10 @@ export function ProductPager({ product }: ProductPagerProps) {
             try {
               const prevProductId = await getPreviousProductIdAction({
                 id: product.id,
-                storeId: product.storeId
+                storeId: product.storeId,
               });
               router.push(
-                `/dashboard/stores/${product.storeId}/products/${prevProductId}`
+                `/dashboard/stores/${product.storeId}/products/${prevProductId}`,
               );
             } catch (error) {
               error instanceof Error
@@ -55,10 +55,10 @@ export function ProductPager({ product }: ProductPagerProps) {
             try {
               const nextProductId = await getNextProductIdAction({
                 id: product.id,
-                storeId: product.storeId
+                storeId: product.storeId,
               });
               router.push(
-                `/dashboard/stores/${product.storeId}/products/${nextProductId}`
+                `/dashboard/stores/${product.storeId}/products/${nextProductId}`,
               );
             } catch (error) {
               error instanceof Error

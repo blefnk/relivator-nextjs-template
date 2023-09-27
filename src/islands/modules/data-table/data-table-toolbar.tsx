@@ -1,13 +1,13 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons";
-import type { Table } from "@tanstack/react-table";
+import { type Table } from "@tanstack/react-table";
 import type {
   DataTableFilterableColumn,
-  DataTableSearchableColumn
+  DataTableSearchableColumn,
 } from "~/types";
+import Link from "next-intl/link";
 
 import { cn } from "~/server/utils";
 import { DataTableFacetedFilter } from "~/islands/modules/data-table/data-table-faceted-filter";
@@ -28,7 +28,7 @@ export function DataTableToolbar<TData>({
   filterableColumns = [],
   searchableColumns = [],
   newRowLink,
-  deleteRowsAction
+  deleteRowsAction,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const [isPending, startTransition] = React.useTransition();
@@ -55,7 +55,7 @@ export function DataTableToolbar<TData>({
                   }
                   className="h-8 w-[150px] lg:w-[250px]"
                 />
-              )
+              ),
           )}
         {filterableColumns.length > 0 &&
           filterableColumns.map(
@@ -67,7 +67,7 @@ export function DataTableToolbar<TData>({
                   title={column.title}
                   options={column.options}
                 />
-              )
+              ),
           )}
         {isFiltered && (
           <Button
@@ -106,8 +106,8 @@ export function DataTableToolbar<TData>({
                 buttonVariants({
                   variant: "outline",
                   size: "sm",
-                  className: "h-8"
-                })
+                  className: "h-8",
+                }),
               )}
             >
               <PlusCircledIcon className="mr-2 h-4 w-4" aria-hidden="true" />

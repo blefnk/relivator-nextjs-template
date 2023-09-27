@@ -1,19 +1,13 @@
-import Link from "next/link";
-import { REPOSITORY_URL, settings, siteConfig } from "~/app";
+import { siteConfig } from "~/app";
 import { Github, Twitter } from "lucide-react";
+import Link from "next-intl/link";
 
-import { typography } from "~/server/text";
 import { cn } from "~/server/utils";
-import { getScopedI18n } from "~/data/i18n/server";
 import { SubscribeToNewsletterForm } from "~/forms/newsletter-subscribe";
-import { Shell } from "~/islands/modules/shell";
 import { buttonVariants } from "~/islands/primitives/button";
-import { LocaleSwitcher } from "~/islands/switchers/locale-switcher";
-import { ThemeSwitcher } from "~/islands/switchers/theme-switcher";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export async function SiteFooter() {
-  const t = await getScopedI18n("islands");
-
   return (
     <footer className="w-full border-t bg-background">
       <Shell as="div">
@@ -25,6 +19,7 @@ export async function SiteFooter() {
           <section
             id="footer-branding"
             aria-labelledby="footer-branding-heading"
+            className="space-y-4"
           >
             <Link
               aria-label="Home"
@@ -69,69 +64,54 @@ export async function SiteFooter() {
               Subscribe to our newsletter
             </h4>
             <SubscribeToNewsletterForm />
+            <div className="flex items-center space-x-1">
+              <Link
+                href={siteConfig.links.github}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(
+                  buttonVariants({
+                    size: "icon",
+                    variant: "ghost",
+                  }),
+                )}
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">GitHub</span>
+              </Link>
+              <Link
+                href={siteConfig.links.twitter}
+                target="_blank"
+                rel="noreferrer"
+                className={cn(
+                  buttonVariants({
+                    size: "icon",
+                    variant: "ghost",
+                  }),
+                )}
+              >
+                <Twitter className="h-4 w-4" aria-hidden="true" />
+                <span className="sr-only">X (known as Twitter)</span>
+              </Link>
+            </div>
+            <div
+              id="footer-copyright"
+              aria-labelledby="footer-copyright-text"
+              className="flex items-center space-x-4"
+            >
+              <div className="block text-sm text-muted-foreground sm:text-center">
+                © {new Date().getFullYear()}{" "}
+                <Link
+                  target="_blank"
+                  href="https://bleverse.com/"
+                  className="hover:underline"
+                >
+                  {siteConfig.company.name}
+                </Link>
+                . All Rights Reserved.
+              </div>
+            </div>
           </section>
-        </section>
-        <section
-          id="footer-bottom"
-          aria-labelledby="footer-bottom-heading"
-          className="flex items-center space-x-4"
-        >
-          <div className="flex-1 text-left text-sm leading-loose text-muted-foreground">
-            {t("footer", {
-              author: (
-                <Link
-                  href="https://x.com/blefnk"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-semibold transition-colors hover:text-foreground"
-                >
-                  Bleverse
-                </Link>
-              ),
-              github: (
-                <Link
-                  href={REPOSITORY_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={typography.link}
-                >
-                  GitHub
-                </Link>
-              )
-            })}
-          </div>
-          <div className="flex items-center space-x-1">
-            <Link
-              href={siteConfig.links.github}
-              target="_blank"
-              rel="noreferrer"
-              className={cn(
-                buttonVariants({
-                  size: "icon",
-                  variant: "ghost"
-                })
-              )}
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
-              <span className="sr-only">GitHub</span>
-            </Link>
-            <Link
-              href={siteConfig.links.twitter}
-              target="_blank"
-              rel="noreferrer"
-              className={cn(
-                buttonVariants({
-                  size: "icon",
-                  variant: "ghost"
-                })
-              )}
-            >
-              <Twitter className="h-4 w-4" aria-hidden="true" />
-              <span className="sr-only">X (known as Twitter)</span>
-            </Link>
-            {settings.themeToggleEnabled && <ThemeSwitcher />}
-            {settings.internationalizationEnabled && <LocaleSwitcher />}
-          </div>
         </section>
       </Shell>
     </footer>

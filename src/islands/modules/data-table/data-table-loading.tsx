@@ -5,7 +5,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "~/islands/primitives/table";
 
 interface DataTableLoadingProps {
@@ -19,7 +19,7 @@ export function DataTableLoading({
   columnCount,
   rowCount = 10,
   isNewRowCreatable = false,
-  isRowsDeletable = false
+  isRowsDeletable = false,
 }: DataTableLoadingProps) {
   return (
     <div className="w-full space-y-3 overflow-auto">

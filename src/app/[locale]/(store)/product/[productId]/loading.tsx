@@ -4,11 +4,11 @@ import {
   Card,
   CardContent,
   CardFooter,
-  CardHeader
+  CardHeader,
 } from "~/islands/primitives/card";
 import { Separator } from "~/islands/primitives/separator";
 import { Skeleton } from "~/islands/primitives/skeleton";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export default function ProductLoading() {
   return (

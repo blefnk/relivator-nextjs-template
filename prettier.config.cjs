@@ -9,8 +9,8 @@ const config = {
   useTabs: false,
   singleQuote: false,
   bracketSameLine: false,
-  trailingComma: "none",
   arrowParens: "always",
+  trailingComma: "all",
   endOfLine: "lf",
   importOrder: [
     "^~/styles/(.*)$",
@@ -26,18 +26,17 @@ const config = {
     "^~/forms/(.*)$",
     "^~/islands/(.*)$",
     "^~/app/(.*)$",
-    "^~/env.mjs",
     "^~/app.ts",
     "",
     "^[./]",
-    ""
+    "",
   ],
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   plugins: [
     require.resolve("prettier-plugin-tailwindcss"),
     require.resolve("prettier-plugin-packagejson"),
-    require.resolve("@ianvs/prettier-plugin-sort-imports")
-  ]
+    require.resolve("@ianvs/prettier-plugin-sort-imports"),
+  ],
 };
 
 module.exports = config;

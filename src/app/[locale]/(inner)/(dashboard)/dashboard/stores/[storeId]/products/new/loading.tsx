@@ -2,7 +2,7 @@ import {
   Card,
   CardContent,
   CardFooter,
-  CardHeader
+  CardHeader,
 } from "~/islands/primitives/card";
 import { Skeleton } from "~/islands/primitives/skeleton";
 

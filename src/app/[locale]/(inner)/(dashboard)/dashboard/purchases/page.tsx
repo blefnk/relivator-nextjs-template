@@ -1,26 +1,27 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { redirect } from "next/navigation";
-import { currentUser } from "@clerk/nextjs";
+import { getServerSession } from "next-auth";
 
-import { env } from "~/data/env";
+import { authOptions } from "~/server/auth";
+// import { env } from "~/data/env/env.mjs";
 import { fullURL } from "~/data/meta/builder";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Purchases",
-  description: "Manage your purchases"
+  description: "Manage your purchases",
 };
 
 export default async function PurchasesPage() {
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
 
-  if (!user) {
+  if (!session) {
     redirect("/sign-in");
   }
 

@@ -10,8 +10,8 @@ export function useIntersectionObserver(
     threshold = 0,
     root = null,
     rootMargin = "0%",
-    freezeOnceVisible = false
-  }: Args
+    freezeOnceVisible = false,
+  }: Args,
 ): IntersectionObserverEntry | undefined {
   const [entry, setEntry] = React.useState<IntersectionObserverEntry>();
 
@@ -40,7 +40,7 @@ export function useIntersectionObserver(
     JSON.stringify(threshold),
     root,
     rootMargin,
-    frozen
+    frozen,
   ]);
 
   return entry;

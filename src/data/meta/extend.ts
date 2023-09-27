@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
+import { LocaleLayoutParams } from "~/types";
 import merge from "ts-deepmerge";
 
 import { DEFAULT_METADATA } from "./default";
+
+/**
+ * todo: improve this type
+ */
+export type GenerateMetadata = (
+  params: LocaleLayoutParams,
+) => Metadata | Promise<Metadata>;
 
 /**
  * Extended metadata types
@@ -32,20 +40,20 @@ export function seo({ url, image, ...metadata }: SeoProps = {}): Metadata {
   metadata.openGraph = {
     title: title ?? undefined,
     description: description ?? undefined,
-    ...metadata.openGraph
+    ...metadata.openGraph,
   };
 
   metadata.twitter = {
     title: title ?? undefined,
     description: description ?? undefined,
-    ...metadata.twitter
+    ...metadata.twitter,
   };
 
   if (url) {
     metadata.openGraph.url = url;
     metadata.alternates = {
       canonical: url,
-      ...metadata.alternates
+      ...metadata.alternates,
     };
   }
 

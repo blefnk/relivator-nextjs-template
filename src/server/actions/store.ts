@@ -10,8 +10,8 @@ import { products, stores, type Store } from "~/data/db/schema";
 import type {
   getStoreSchema,
   getStoresSchema,
-  storeSchema
-} from "~/data/valids/store";
+  storeSchema,
+} from "~/data/validations/store";
 
 export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
   const limit = input.limit ?? 10;
@@ -19,7 +19,7 @@ export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
   const [column, order] =
     (input.sort?.split(".") as [
       keyof Store | undefined,
-      "asc" | "desc" | undefined
+      "asc" | "desc" | undefined,
     ]) ?? [];
   const statuses = input.statuses?.split(".") ?? [];
 
@@ -29,7 +29,7 @@ export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
         id: stores.id,
         name: stores.name,
         description: stores.description,
-        stripeAccountId: stores.stripeAccountId
+        stripeAccountId: stores.stripeAccountId,
       })
       .from(stores)
       .limit(limit)
@@ -43,8 +43,8 @@ export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
             : undefined,
           statuses.includes("inactive") && !statuses.includes("active")
             ? isNull(stores.stripeAccountId)
-            : undefined
-        )
+            : undefined,
+        ),
       )
       .groupBy(stores.id)
       .orderBy(
@@ -57,33 +57,33 @@ export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
           ? order === "asc"
             ? asc(stores[column])
             : desc(stores[column])
-          : desc(stores.createdAt)
+          : desc(stores.createdAt),
       );
 
     const total = await tx
       .select({
-        count: sql<number>`count(*)`
+        count: sql<number>`count(*)`,
       })
       .from(stores)
       .where(input.userId ? eq(stores.userId, input.userId) : undefined);
 
     return {
       items,
-      total: Number(total[0]?.count) ?? 0
+      total: Number(total[0]?.count) ?? 0,
     };
   });
 
   return {
     items,
-    total
+    total,
   };
 }
 
 export async function addStoreAction(
-  input: z.infer<typeof storeSchema> & { userId: string }
+  input: z.infer<typeof storeSchema> & { userId: string },
 ) {
   const storeWithSameName = await db.query.stores.findFirst({
-    where: eq(stores.name, input.name)
+    where: eq(stores.name, input.name),
   });
 
   if (storeWithSameName) {
@@ -94,14 +94,14 @@ export async function addStoreAction(
     name: input.name,
     description: input.description,
     userId: input.userId,
-    slug: slugify(input.name)
+    slug: slugify(input.name),
   });
 
   revalidatePath("/dashboard/stores");
 }
 
 export async function getNextStoreIdAction(
-  input: z.infer<typeof getStoreSchema>
+  input: z.infer<typeof getStoreSchema>,
 ) {
   if (typeof input.id !== "number" || typeof input.userId !== "string") {
     throw new Error("Invalid input.");
@@ -109,19 +109,19 @@ export async function getNextStoreIdAction(
 
   const nextStore = await db.query.stores.findFirst({
     columns: {
-      id: true
+      id: true,
     },
     where: and(eq(stores.userId, input.userId), gt(stores.id, input.id)),
-    orderBy: asc(stores.id)
+    orderBy: asc(stores.id),
   });
 
   if (!nextStore) {
     const firstStore = await db.query.stores.findFirst({
       columns: {
-        id: true
+        id: true,
       },
       where: eq(stores.userId, input.userId),
-      orderBy: asc(stores.id)
+      orderBy: asc(stores.id),
     });
 
     if (!firstStore) {
@@ -135,7 +135,7 @@ export async function getNextStoreIdAction(
 }
 
 export async function getPreviousStoreIdAction(
-  input: z.infer<typeof getStoreSchema>
+  input: z.infer<typeof getStoreSchema>,
 ) {
   if (typeof input.id !== "number" || typeof input.userId !== "string") {
     throw new Error("Invalid input.");
@@ -143,19 +143,19 @@ export async function getPreviousStoreIdAction(
 
   const previousStore = await db.query.stores.findFirst({
     columns: {
-      id: true
+      id: true,
     },
     where: and(eq(stores.userId, input.userId), lt(stores.id, input.id)),
-    orderBy: desc(stores.id)
+    orderBy: desc(stores.id),
   });
 
   if (!previousStore) {
     const lastStore = await db.query.stores.findFirst({
       columns: {
-        id: true
+        id: true,
       },
       where: eq(stores.userId, input.userId),
-      orderBy: desc(stores.id)
+      orderBy: desc(stores.id),
     });
 
     if (!lastStore) {

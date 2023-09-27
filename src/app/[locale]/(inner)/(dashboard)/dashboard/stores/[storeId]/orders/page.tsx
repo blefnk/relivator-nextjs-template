@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { and, asc, desc, eq, like, sql } from "drizzle-orm";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { orders, stores, type Order } from "~/data/db/schema";
-import { env } from "~/data/env";
+import { env } from "~/data/env/env.mjs";
 import { OrdersTableShell } from "~/islands/wrappers/orders-table-shell";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Orders",
-  description: "Manage your orders"
+  description: "Manage your orders",
 };
 
 interface OrdersPageProps {
@@ -24,7 +24,7 @@ interface OrdersPageProps {
 
 export default async function OrdersPage({
   params,
-  searchParams
+  searchParams,
 }: OrdersPageProps) {
   const storeId = Number(params.storeId);
 
@@ -34,8 +34,8 @@ export default async function OrdersPage({
     where: eq(stores.id, storeId),
     columns: {
       id: true,
-      name: true
-    }
+      name: true,
+    },
   });
 
   if (!store) {
@@ -56,7 +56,7 @@ export default async function OrdersPage({
     typeof sort === "string"
       ? (sort.split(".") as [
           keyof Order | undefined,
-          "asc" | "desc" | undefined
+          "asc" | "desc" | undefined,
         ])
       : [];
 
@@ -73,20 +73,20 @@ export default async function OrdersPage({
           // Filter by name
           typeof email === "string"
             ? like(orders.email, `%${email}%`)
-            : undefined
-        )
+            : undefined,
+        ),
       )
       .orderBy(
         column && column in orders
           ? order === "asc"
             ? asc(orders[column])
             : desc(orders[column])
-          : desc(orders.createdAt)
+          : desc(orders.createdAt),
       );
 
     const total = await tx
       .select({
-        count: sql<number>`count(${orders.id})`
+        count: sql<number>`count(${orders.id})`,
       })
       .from(orders)
       .where(
@@ -95,14 +95,14 @@ export default async function OrdersPage({
           // Filter by name
           typeof email === "string"
             ? like(orders.email, `%${email}%`)
-            : undefined
-        )
+            : undefined,
+        ),
       )
       .then((res) => res[0]?.count ?? 0);
 
     return {
       items,
-      total
+      total,
     };
   });
 

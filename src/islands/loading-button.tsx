@@ -4,26 +4,26 @@ import * as React from "react";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 
 import { cn } from "~/server/utils";
-import { useMounted } from "~/hooks/use-mounted";
+import { useIsClient } from "~/hooks/use-is-client";
 import { Icons } from "~/islands/icons";
 import {
   Button,
   buttonVariants,
-  type ButtonProps
+  type ButtonProps,
 } from "~/islands/primitives/button";
 import { Skeleton } from "~/islands/primitives/skeleton";
 
 const LoadingButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
     const { pending } = useFormStatus();
-    const mounted = useMounted();
+    const mounted = useIsClient();
 
     if (!mounted)
       return (
         <Skeleton
           className={cn(
             buttonVariants({ variant, size, className }),
-            "bg-muted text-muted-foreground"
+            "bg-muted text-muted-foreground",
           )}
         >
           {props.children}
@@ -45,7 +45,7 @@ const LoadingButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {props.children}
       </Button>
     );
-  }
+  },
 );
 LoadingButton.displayName = "LoadingButton";
 

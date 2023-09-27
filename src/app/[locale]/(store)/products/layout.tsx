@@ -5,7 +5,7 @@ interface ProductsLayoutProps {
 
 export default function ProductsLayout({
   children,
-  modal
+  modal,
 }: ProductsLayoutProps) {
   return (
     <>

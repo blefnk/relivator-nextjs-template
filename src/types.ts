@@ -1,39 +1,153 @@
 import { Metadata } from "next";
-import type { DefaultSession } from "next-auth";
+import { NextResponse, type NextRequest } from "next/server";
+import { type DefaultSession } from "next-auth";
 import { type FileWithPath } from "react-dropzone";
-import { type z } from "zod";
+import { type z, type ZodIssue } from "zod";
 
-import type { Store } from "~/data/db/schema";
-import { type userPrivateMetadataSchema } from "~/data/valids/auth";
+import type { storeSubscriptionPlans } from "~/server/config/subscriptions";
+import {
+  commentsTypeEnum,
+  type accounts,
+  type comments,
+  type Store,
+} from "~/data/db/schema";
+import { IUser } from "~/data/routers/handlers/users";
+import { type userPrivateMetadataSchema } from "~/data/validations/auth";
 import type {
   cartItemSchema,
   cartLineItemSchema,
-  checkoutItemSchema
-} from "~/data/valids/cart";
+  checkoutItemSchema,
+} from "~/data/validations/cart";
 import { type Icons } from "~/islands/icons";
 
+/**
+ * =======================================================================
+ * TYPES: MISCELLANEOUS
+ * =======================================================================
+ */
+
+export type Comment = typeof comments.$inferSelect;
+export const CommentTuple = commentsTypeEnum.enumValues;
+export type CommentType = (typeof CommentTuple)[number];
+export type Account = typeof accounts.$inferSelect;
+export type SubPlan = (typeof storeSubscriptionPlans)[number];
+export type PlanName = (typeof storeSubscriptionPlans)[number]["name"];
+
+/**
+ * =======================================================================
+ * TYPES: RESPONSE
+ * =======================================================================
+ */
+
+export type ApiResponseError = {
+  ok: false;
+  error: string;
+  issues?: ZodIssue[];
+};
+
+export type ApiResponseSuccess<T> = {
+  ok: true;
+  data: T;
+};
+
+export type ApiResponse<T> = ApiResponseSuccess<T> | ApiResponseError;
+
+export type NextRequestContext<T> = {
+  params: T;
+};
+
+/**
+ * The Context parameter for route handlers, which is currently optional `params` object.
+ * @see https://nextjs.org/docs/app/api-reference/file-conventions/route#context-optional
+ */
+export type NextRouteContext<T = undefined> = {
+  params: T;
+};
+
+/**
+ * @see https://nextjs.org/docs/app/api-reference/file-conventions/route
+ * @see https://nextjs.org/docs/app/api-reference/file-conventions/route#request-optional
+ */
+export type NextRouteHandler<T = void, U = NextRouteContext> = (
+  request: NextRequest,
+  context: U,
+) => NextResponse<T> | Promise<NextResponse<T>>;
+
+/**
+ * =======================================================================
+ * TYPES: NEXT-AUTH
+ * =======================================================================
+ */
+
+type JwtPayload = {
+  userId?: IUser["id"];
+};
+
 declare module "next-auth" {
+  /**
+   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
+   */
   interface Session {
-    user?: DefaultSession["user"] & {
-      id?: string | null;
-    };
+    userId?: IUser["id"];
   }
 }
 
+// declare module "next-auth" {
+//   /**
+//    * Returned by useSession, getSession and received
+//    * as a prop on the SessionProvider React Context
+//    */
+//   interface Session extends DefaultSession {
+//     user: {
+//       userId?: string | null;
+//       email?: string | null;
+//       image?: string | null;
+//       role: User["role"];
+//     } & DefaultSession["user"];
+//   }
+//   /**
+//    * Here we can specify the new custom types
+//    * for Session which extends DefaultSession
+//    */
+//   interface User {
+//     role: "admin" | "user";
+//   }
+// }
+
 declare module "next-auth/jwt" {
-  interface JWT {
-    userId?: string | null;
-    email?: string | null;
+  /**
+   * Returned by the jwt callback and
+   * getToken when using jwt sessions
+   */
+  // interface JWT {
+  //   userId?: string | null;
+  //   email?: string | null;
+  // }
+  interface JWT extends JwtPayload {
+    // @ts-expect-error
+    [k in JwtPayload]: JwtPayload[k];
   }
 }
+
+/**
+ * =======================================================================
+ * TYPES: PROPS
+ * =======================================================================
+ */
 
 export type WithChildren<T = unknown> = T & { children: React.ReactNode };
 
-export type PageParams = { params: { locale: string } };
+export type LocaleLayoutParams = { params: { locale: string } };
 
-export type GenerateMetadata = (
-  params: PageParams
-) => Metadata | Promise<Metadata>;
+export interface NullLayoutParams {}
+
+export type GeneralShellParams = { header?: React.ReactNode };
+
+/**
+ * =======================================================================
+ * TYPES: API
+ * =======================================================================
+ */
 
 declare module "translate" {
   export default function translate(
@@ -45,9 +159,15 @@ declare module "translate" {
       engine?: string;
       key?: string;
       url?: string;
-    }
+    },
   ): string;
 }
+
+/**
+ * =======================================================================
+ * TYPES: NAVIGATION
+ * =======================================================================
+ */
 
 export interface NavItem {
   title: string;
@@ -76,9 +196,15 @@ export interface FooterItem {
   }[];
 }
 
-export type MainNavItem = NavItemWithOptionalChildren;
+export type MainMenuItem = NavItemWithOptionalChildren;
 
 export type SidebarNavItem = NavItemWithChildren;
+
+/**
+ * =======================================================================
+ * TYPES: USER
+ * =======================================================================
+ */
 
 export type UserRole = z.infer<typeof userPrivateMetadataSchema.shape.role>;
 
@@ -108,6 +234,12 @@ export interface DataTableFilterableColumn<TData>
   options: Option[];
 }
 
+/**
+ * =======================================================================
+ * TYPES: STORE
+ * =======================================================================
+ */
+
 export interface CuratedStore {
   id: Store["id"];
   name: Store["name"];
@@ -123,7 +255,7 @@ export type CheckoutItem = z.infer<typeof checkoutItemSchema>;
 export type CartLineItem = z.infer<typeof cartLineItemSchema>;
 
 export interface SubscriptionPlan {
-  id: "basic" | "standard" | "pro";
+  id: "starter" | "basic" | "advanced" | "enterprise";
   name: string;
   description: string;
   features: string[];

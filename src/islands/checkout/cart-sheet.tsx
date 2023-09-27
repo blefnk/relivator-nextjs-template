@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next-intl/link";
 
 import { getCartAction } from "~/server/actions/cart";
 import { cn, formatPrice } from "~/server/utils";
@@ -13,7 +13,7 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
+  SheetTrigger,
 } from "~/islands/primitives/sheet";
 
 export async function CartSheet() {
@@ -21,12 +21,12 @@ export async function CartSheet() {
 
   const itemCount = cartLineItems.reduce(
     (total, item) => total + Number(item.quantity),
-    0
+    0,
   );
 
   const cartTotal = cartLineItems.reduce(
     (total, item) => total + Number(item.quantity) * Number(item.price),
-    0
+    0,
   );
 
   return (
@@ -87,7 +87,7 @@ export async function CartSheet() {
                     href="/cart"
                     className={buttonVariants({
                       size: "sm",
-                      className: "w-full"
+                      className: "w-full",
                     })}
                   >
                     View your cart
@@ -113,8 +113,8 @@ export async function CartSheet() {
                   buttonVariants({
                     variant: "link",
                     size: "sm",
-                    className: "text-sm text-muted-foreground"
-                  })
+                    className: "text-sm text-muted-foreground",
+                  }),
                 )}
               >
                 Add items to your cart to checkout

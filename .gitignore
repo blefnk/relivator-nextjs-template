@@ -39,5 +39,5 @@ robots.txt
 sitemap.xml
 sitemap-*.xml
 
-# another files
-/src/data/db/drizzle/
+# custom
+*.ignore

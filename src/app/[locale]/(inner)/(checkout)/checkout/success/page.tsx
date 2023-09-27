@@ -1,21 +1,21 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { eq } from "drizzle-orm";
 
 import { getCheckoutSessionProducts } from "~/server/actions/order";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
-import { env } from "~/data/env";
+import { env } from "~/data/env/env.mjs";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Order Summary",
-  description: "Order summary for your purchase"
+  description: "Order summary for your purchase",
 };
 
 interface OrderSummaryPageProps {
@@ -25,7 +25,7 @@ interface OrderSummaryPageProps {
 }
 
 export default async function OrderSuccessPage({
-  searchParams
+  searchParams,
 }: OrderSummaryPageProps) {
   const { store_id } = searchParams ?? {};
   const storeId = typeof store_id === "string" ? Number(store_id) : undefined;
@@ -34,13 +34,13 @@ export default async function OrderSuccessPage({
     columns: {
       id: true,
       name: true,
-      stripeAccountId: true
+      stripeAccountId: true,
     },
-    where: storeId ? eq(stores.id, storeId) : undefined
+    where: storeId ? eq(stores.id, storeId) : undefined,
   });
 
   const products = await getCheckoutSessionProducts({
-    storeId: store?.id
+    storeId: store?.id,
   });
 
   return (
@@ -55,10 +55,10 @@ export default async function OrderSuccessPage({
         {JSON.stringify(
           {
             storeId,
-            products
+            products,
           },
           null,
-          2
+          2,
         )}
       </pre>
       {/* <section>

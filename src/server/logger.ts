@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 
-import { env } from "~/data/env";
+import { env } from "~/data/env/env.mjs";
 
 /**
  * A basic logger, which does not output anything in test mode.
@@ -11,6 +11,6 @@ export const logger =
         log: () => {},
         info: () => {},
         warn: () => {},
-        error: () => {}
+        error: () => {},
       }
     : console;

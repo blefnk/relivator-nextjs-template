@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { and, desc, eq, not } from "drizzle-orm";
+import Link from "next-intl/link";
 
 import { formatPrice, toTitleCase } from "~/server/utils";
 import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import { AddToCartForm } from "~/forms/add-to-cart-form";
 import { ProductCard } from "~/islands/modules/cards/product-card";
@@ -15,16 +14,16 @@ import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger
+  AccordionTrigger,
 } from "~/islands/primitives/accordion";
 import { Separator } from "~/islands/primitives/separator";
 import { ProductImageCarousel } from "~/islands/product-carousel";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Product",
-  description: "Product description"
+  description: "Product description",
 };
 
 interface ProductPageProps {
@@ -37,7 +36,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const productId = Number(params.productId);
 
   const product = await db.query.products.findFirst({
-    where: eq(products.id, productId)
+    where: eq(products.id, productId),
   });
 
   if (!product) {
@@ -47,9 +46,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const store = await db.query.stores.findFirst({
     columns: {
       id: true,
-      name: true
+      name: true,
     },
-    where: eq(stores.id, product.storeId)
+    where: eq(stores.id, product.storeId),
   });
 
   const productsFromStore = store
@@ -60,15 +59,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
           price: products.price,
           images: products.images,
           category: products.category,
-          inventory: products.inventory
+          inventory: products.inventory,
         })
         .from(products)
         .limit(4)
         .where(
           and(
             eq(products.storeId, product.storeId),
-            not(eq(products.id, productId))
-          )
+            not(eq(products.id, productId)),
+          ),
         )
         .orderBy(desc(products.inventory))
     : [];
@@ -79,16 +78,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
         segments={[
           {
             title: "Products",
-            href: "/products"
+            href: "/products",
           },
           {
             title: toTitleCase(product.category),
-            href: `/products?category=${product.category}`
+            href: `/products?category=${product.category}`,
           },
           {
             title: product.name,
-            href: `/product/${product.id}`
-          }
+            href: `/product/${product.id}`,
+          },
         ]}
       />
       <div className="flex flex-col gap-8 md:flex-row md:gap-16">
@@ -96,7 +95,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           className="w-full md:w-1/2"
           images={product.images ?? []}
           options={{
-            loop: true
+            loop: true,
           }}
         />
         <Separator className="mt-4 md:hidden" />
@@ -131,8 +130,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </div>
       {store && productsFromStore.length > 0 ? (
         <div className="overflow-hidden md:pt-6">
-          <h2 className="line-clamp-1 flex-1 text-2xl font-bold">
-            More products from {store.name}
+          <h2 className="line-clamp-1 border-b pb-3 flex-1 text-2xl font-heading">
+            Other products published by{" "}
+            <Link
+              href={`/products?store_ids=${store.id}`}
+              className="font-bold hover:underline"
+            >
+              {store.name}
+            </Link>{" "}
+            store:
           </h2>
           <div className="overflow-x-auto pb-2 pt-6">
             <div className="flex w-fit gap-4">

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { type ColumnDef } from "@tanstack/react-table";
-import type { CheckoutItem } from "~/types";
+import { type CheckoutItem } from "~/types";
 
 import { cn, formatDate, formatPrice } from "~/server/utils";
 import { type Order } from "~/data/db/schema";
@@ -23,13 +23,13 @@ export function OrdersTableShell({ data, pageCount }: OrdersTableShellProps) {
         accessorKey: "id",
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Order ID" />
-        )
+        ),
       },
       {
         accessorKey: "email",
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Customer" />
-        )
+        ),
       },
       {
         accessorKey: "stripePaymentIntentStatus",
@@ -42,20 +42,20 @@ export function OrdersTableShell({ data, pageCount }: OrdersTableShellProps) {
               variant="outline"
               className={cn(
                 "pointer-events-none text-sm capitalize",
-                cell.getValue() === "paid" ? "bg-green-600" : "bg-red-600"
+                cell.getValue() === "paid" ? "bg-green-600" : "bg-red-600",
               )}
             >
               {String(cell.getValue())}
             </Badge>
           );
-        }
+        },
       },
       {
         accessorKey: "total",
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Total" />
         ),
-        cell: ({ cell }) => formatPrice(cell.getValue() as number)
+        cell: ({ cell }) => formatPrice(cell.getValue() as number),
       },
       {
         accessorKey: "items",
@@ -67,11 +67,11 @@ export function OrdersTableShell({ data, pageCount }: OrdersTableShellProps) {
 
           const totalItems = checkoutItems.reduce(
             (acc, item) => acc + item.quantity,
-            0
+            0,
           );
 
           return <span>{totalItems}</span>;
-        }
+        },
       },
       {
         accessorKey: "createdAt",
@@ -79,10 +79,10 @@ export function OrdersTableShell({ data, pageCount }: OrdersTableShellProps) {
           <DataTableColumnHeader column={column} title="Created At" />
         ),
         cell: ({ cell }) => formatDate(cell.getValue() as Date),
-        enableColumnFilter: false
-      }
+        enableColumnFilter: false,
+      },
     ],
-    []
+    [],
   );
 
   return (
@@ -93,8 +93,8 @@ export function OrdersTableShell({ data, pageCount }: OrdersTableShellProps) {
       searchableColumns={[
         {
           id: "email",
-          title: "customers"
-        }
+          title: "customers",
+        },
       ]}
     />
   );

@@ -4,7 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
-import type { FileWithPreview } from "~/types";
+import { type FileWithPreview } from "~/types";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { type z } from "zod";
@@ -13,7 +13,7 @@ import { addProductAction, checkProductAction } from "~/server/actions/product";
 import { getSubcategories } from "~/server/config/products";
 import { catchError, isArrayOfFile } from "~/server/utils";
 import { products } from "~/data/db/schema";
-import { productSchema } from "~/data/valids/product";
+import { productSchema } from "~/data/validations/product";
 import { FileDialog } from "~/islands/file-dialog";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -24,7 +24,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  UncontrolledFormMessage
+  UncontrolledFormMessage,
 } from "~/islands/primitives/form";
 import { Input } from "~/islands/primitives/input";
 import {
@@ -33,11 +33,11 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "~/islands/primitives/select";
 import { Textarea } from "~/islands/primitives/textarea";
 import { Zoom } from "~/islands/zoom-image";
-import type { OurFileRouter } from "~/app/(api)/api/uploadthing/core";
+import { type OurFileRouter } from "~/app/(api)/api/uploadthing/core";
 
 interface AddProductFormProps {
   storeId: number;
@@ -57,8 +57,8 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
   const form = useForm<Inputs>({
     resolver: zodResolver(productSchema),
     defaultValues: {
-      category: "skateboards"
-    }
+      category: "pants",
+    },
   });
 
   const subcategories = getSubcategories(form.watch("category"));
@@ -67,7 +67,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
     startTransition(async () => {
       try {
         await checkProductAction({
-          name: data.name
+          name: data.name,
         });
 
         const images = isArrayOfFile(data.images)
@@ -75,7 +75,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
               const formattedImages = res?.map((image) => ({
                 id: image.key,
                 name: image.key.split("_")[1] ?? image.key,
-                url: image.url
+                url: image.url,
               }));
               return formattedImages ?? null;
             })
@@ -84,7 +84,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
         await addProductAction({
           ...data,
           storeId,
-          images
+          images,
         });
 
         toast.success("Product added successfully.");
@@ -156,7 +156,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
                             >
                               {option}
                             </SelectItem>
-                          )
+                          ),
                         )}
                       </SelectGroup>
                     </SelectContent>
@@ -217,7 +217,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
                 inputMode="numeric"
                 placeholder="Type product inventory here."
                 {...form.register("inventory", {
-                  valueAsNumber: true
+                  valueAsNumber: true,
                 })}
               />
             </FormControl>

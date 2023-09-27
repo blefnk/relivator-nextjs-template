@@ -4,11 +4,11 @@ import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import type { z } from "zod";
+import { type z } from "zod";
 
 import { addToCartAction } from "~/server/actions/cart";
 import { catchError } from "~/server/utils";
-import { updateCartItemSchema } from "~/data/valids/cart";
+import { updateCartItemSchema } from "~/data/validations/cart";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -17,7 +17,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "~/islands/primitives/form";
 import { Input } from "~/islands/primitives/input";
 
@@ -35,8 +35,8 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
   const form = useForm<Inputs>({
     resolver: zodResolver(updateCartItemSchema),
     defaultValues: {
-      quantity: 1
-    }
+      quantity: 1,
+    },
   });
 
   function onSubmit(data: Inputs) {
@@ -44,7 +44,7 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
       try {
         await addToCartAction({
           productId,
-          quantity: data.quantity
+          quantity: data.quantity,
         });
         toast.success("Added to cart.");
       } catch (err) {
@@ -69,7 +69,7 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
             onClick={() =>
               form.setValue(
                 "quantity",
-                Math.max(0, form.getValues("quantity") - 1)
+                Math.max(0, form.getValues("quantity") - 1),
               )
             }
             disabled={isPending}

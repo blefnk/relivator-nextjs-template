@@ -1,16 +1,15 @@
 "use client";
 
-import * as React from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Circle, File, Laptop, Moon, Search, Sun } from "lucide-react";
+import { Circle, File, Laptop, Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 import { filterProductsAction } from "~/server/actions/product";
 import { navItems } from "~/server/links";
 import { cn } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
-import { useI18n, useScopedI18n } from "~/data/i18n/client";
 import { useDebounce } from "~/hooks/use-debounce";
 import { useHotkeys } from "~/hooks/use-hotkeys";
 import { Icons } from "~/islands/icons";
@@ -22,27 +21,29 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator
+  CommandSeparator,
 } from "~/islands/primitives/command";
 import { Skeleton } from "~/islands/primitives/skeleton";
 
 type RouteHref = never;
 
 export function Combobox() {
+  const t = useTranslations("islands");
+
   const router = useRouter();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [query, setQuery] = React.useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 300);
-  const [data, setData] = React.useState<
+  const [data, setData] = useState<
     | {
         category: Product["category"];
         products: Pick<Product, "id" | "name" | "category">[];
       }[]
     | null
   >(null);
-  const [isPending, startTransition] = React.useTransition();
+  const [isPending, startTransition] = useTransition();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (debouncedQuery.length === 0) setData(null);
 
     if (debouncedQuery.length > 0) {
@@ -53,7 +54,7 @@ export function Combobox() {
     }
   }, [debouncedQuery]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
@@ -64,12 +65,12 @@ export function Combobox() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const handleSelect = React.useCallback((callback: () => unknown) => {
+  const handleSelect = useCallback((callback: () => unknown) => {
     setIsOpen(false);
     callback();
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isOpen) {
       setQuery("");
     }
@@ -79,7 +80,7 @@ export function Combobox() {
 
   useHotkeys([
     ["ctrl+K", () => setIsOpen((open) => !open)],
-    ["meta+K", () => setIsOpen((open) => !open)]
+    ["meta+K", () => setIsOpen((open) => !open)],
   ]);
 
   const runCommand = useCallback(
@@ -87,11 +88,8 @@ export function Combobox() {
       setIsOpen(false);
       command();
     },
-    []
+    [],
   );
-
-  const t = useI18n();
-  const scopedT = useScopedI18n("islands");
 
   return (
     <>
@@ -101,9 +99,7 @@ export function Combobox() {
         onClick={() => setIsOpen(true)}
       >
         <Icons.search className="h-4 w-4 xl:mr-2" aria-hidden="true" />
-        <span className="hidden xl:inline-flex">
-          {scopedT("navbar.search")}
-        </span>
+        <span className="hidden xl:inline-flex">{t("search.title")}</span>
         <span className="sr-only">Search products</span>
         <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 xl:flex">
           <abbr title="Control">⌘</abbr>K
@@ -111,7 +107,7 @@ export function Combobox() {
       </Button>
       <CommandDialog position="top" open={isOpen} onOpenChange={setIsOpen}>
         <CommandInput
-          placeholder={scopedT("navbar.search.placeholder")}
+          placeholder={t("search.placeholder")}
           value={query}
           onValueChange={setQuery}
         />
@@ -151,16 +147,13 @@ export function Combobox() {
           )}
           <CommandSeparator />
           {navItems.sidebarNav.map((group) => (
-            <CommandGroup
-              key={group.title}
-              heading={scopedT(`navbar.command.${group.id}`)}
-            >
+            <CommandGroup key={group.title} heading={t(`command.${group.id}`)}>
               {group.items.map((item) => (
                 <CommandItem
                   key={item.id}
                   value={t(`pages.tools.${item.id}.title`)}
                   onSelect={runCommand(() =>
-                    router.push(item.href as RouteHref)
+                    router.push(item.href as RouteHref),
                   )}
                 >
                   <div className="mr-2 flex h-4 w-4 items-center justify-center">
@@ -178,30 +171,29 @@ export function Combobox() {
               .map((item) => (
                 <CommandItem
                   key={item.href}
-                  value={scopedT(`navbar.main.${item.id}`)}
+                  value={t(`main.${item.id}`)}
                   onSelect={runCommand(() =>
-                    router.push(item.href as RouteHref)
+                    router.push(item.href as RouteHref),
                   )}
                   className="capitalize"
                 >
                   <File className="mr-2 h-4 w-4" />
-                  {scopedT(`navbar.main.${item.id}`)}
+                  {t(`main.${item.id}`)}
                 </CommandItem>
               ))}
           </CommandGroup>
-          <CommandSeparator />
-          <CommandGroup heading={scopedT("navbar.command.theme")}>
+          <CommandGroup heading={t("command.theme")}>
             <CommandItem onSelect={runCommand(() => setTheme("light"))}>
               <Sun className="mr-2 h-4 w-4" />
-              <span>{scopedT("navbar.command.light")}</span>
+              <span>{t("command.light")}</span>
             </CommandItem>
             <CommandItem onSelect={runCommand(() => setTheme("dark"))}>
               <Moon className="mr-2 h-4 w-4" />
-              <span>{scopedT("navbar.command.dark")}</span>
+              <span>{t("command.dark")}</span>
             </CommandItem>
             <CommandItem onSelect={runCommand(() => setTheme("system"))}>
               <Laptop className="mr-2 h-4 w-4" />
-              <span>{scopedT("navbar.command.system")}</span>
+              <span>{t("command.system")}</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>

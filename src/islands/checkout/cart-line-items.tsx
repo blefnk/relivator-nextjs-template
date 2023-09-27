@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Slot } from "@radix-ui/react-slot";
-import type { CartLineItem } from "~/types";
+import { type CartLineItem } from "~/types";
 
 import { cn, formatPrice } from "~/server/utils";
 import { UpdateCart } from "~/islands/checkout/update-cart";
@@ -60,7 +60,7 @@ export function CartLineItems({
                   <span className="line-clamp-1 text-muted-foreground">
                     {formatPrice(item.price)} x {item.quantity} ={" "}
                     {formatPrice(
-                      (Number(item.price) * Number(item.quantity)).toFixed(2)
+                      (Number(item.price) * Number(item.quantity)).toFixed(2),
                     )}
                   </span>
                   <span className="line-clamp-1 text-xs capitalize text-muted-foreground">

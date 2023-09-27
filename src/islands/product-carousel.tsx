@@ -6,7 +6,7 @@ import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { type StoredFile } from "~/types";
 import useEmblaCarousel, {
   type EmblaCarouselType,
-  type EmblaOptionsType
+  type EmblaOptionsType,
 } from "embla-carousel-react";
 
 import { cn } from "~/server/utils";
@@ -33,16 +33,16 @@ export function ProductImageCarousel({
 
   const scrollPrev = React.useCallback(
     () => emblaApi && emblaApi.scrollPrev(),
-    [emblaApi]
+    [emblaApi],
   );
   const scrollNext = React.useCallback(
     () => emblaApi && emblaApi.scrollNext(),
-    [emblaApi]
+    [emblaApi],
   );
 
   const scrollTo = React.useCallback(
     (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
+    [emblaApi],
   );
 
   const handleKeyDown = React.useCallback(
@@ -53,7 +53,7 @@ export function ProductImageCarousel({
         scrollNext();
       }
     },
-    [scrollNext, scrollPrev]
+    [scrollNext, scrollPrev],
   );
 
   const onSelect = React.useCallback((emblaApi: EmblaCarouselType) => {
@@ -96,7 +96,7 @@ export function ProductImageCarousel({
         <div
           className="-ml-4 flex touch-pan-y"
           style={{
-            backfaceVisibility: "hidden"
+            backfaceVisibility: "hidden",
           }}
         >
           {images.map((image, index) => (
@@ -141,7 +141,7 @@ export function ProductImageCarousel({
               size="icon"
               className={cn(
                 "group relative aspect-square h-full w-full max-w-[100px] rounded-none shadow-sm hover:bg-transparent focus-visible:ring-foreground",
-                i === selectedIndex && "ring-1 ring-foreground"
+                i === selectedIndex && "ring-1 ring-foreground",
               )}
               onClick={() => scrollTo(i)}
               onKeyDown={handleKeyDown}

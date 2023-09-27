@@ -4,9 +4,9 @@ import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import type { z } from "zod";
+import { type z } from "zod";
 
-import { emailSchema } from "~/data/valids/email";
+import { emailSchema } from "~/data/validations/email";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -15,7 +15,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "~/islands/primitives/form";
 import { Input } from "~/islands/primitives/input";
 
@@ -28,22 +28,22 @@ export function SubscribeToNewsletterForm() {
   const form = useForm<Inputs>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
-      email: ""
-    }
+      email: "",
+    },
   });
 
   function onSubmit(data: Inputs) {
     console.log(data);
 
     startTransition(async () => {
-      const response = await fetch("/api/newsletter/subscribe", {
+      const response = await fetch("/api/mail/subscribe", {
         method: "POST",
         body: JSON.stringify({
           email: data.email,
           // This token is used as a search param in the email preferences page to identify the subscriber.
           token: crypto.randomUUID(),
-          subject: "Welcome to Relivator"
-        })
+          subject: "Welcome to Relivator",
+        }),
       });
 
       if (response.status === 409) {

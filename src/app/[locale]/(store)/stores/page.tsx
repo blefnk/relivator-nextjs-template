@@ -1,20 +1,20 @@
 import { type Metadata } from "next";
 
 import { getStoresAction } from "~/server/actions/store";
-import { env } from "~/data/env";
+// import { env } from "~/data/env/env.mjs";
 import { fullURL } from "~/data/meta/builder";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Stores } from "~/islands/stores";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Stores",
-  description: "Buy stores from our stores"
+  description: "Buy stores from our stores",
 };
 
 interface StoresPageProps {
@@ -34,7 +34,7 @@ export default async function StoresPage({ searchParams }: StoresPageProps) {
     limit: limit,
     offset: offset,
     sort: typeof sort === "string" ? sort : "productCount.desc",
-    statuses: typeof statuses === "string" ? statuses : null
+    statuses: typeof statuses === "string" ? statuses : null,
   });
 
   const pageCount = Math.ceil(storesTransaction.total / limit);

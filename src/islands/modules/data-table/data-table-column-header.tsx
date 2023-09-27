@@ -2,7 +2,7 @@ import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
-  EyeNoneIcon
+  EyeNoneIcon,
 } from "@radix-ui/react-icons";
 import { type Column } from "@tanstack/react-table";
 
@@ -13,8 +13,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "~/islands/primitives/dropdown-menu";
+  DropdownMenuTrigger,
+} from "~/islands/primitives/dropdown";
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -25,7 +25,7 @@ interface DataTableColumnHeaderProps<TData, TValue>
 export function DataTableColumnHeader<TData, TValue>({
   column,
   title,
-  className
+  className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>;

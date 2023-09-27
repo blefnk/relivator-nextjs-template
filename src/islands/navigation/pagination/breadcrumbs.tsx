@@ -1,6 +1,6 @@
 import * as React from "react";
-import Link from "next/link";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
+import Link from "next-intl/link";
 
 import { cn, truncate } from "~/server/utils";
 
@@ -27,7 +27,7 @@ export function Breadcrumbs({
       aria-label="breadcrumbs"
       className={cn(
         "flex w-full items-center overflow-auto text-sm font-medium text-muted-foreground",
-        className
+        className,
       )}
       {...props}
     >
@@ -41,7 +41,7 @@ export function Breadcrumbs({
               href={segment.href}
               className={cn(
                 "truncate transition-colors hover:text-foreground",
-                isLastSegment ? "text-foreground" : "text-muted-foreground"
+                isLastSegment ? "text-foreground" : "text-muted-foreground",
               )}
             >
               {truncationLength > 0 && segment.title

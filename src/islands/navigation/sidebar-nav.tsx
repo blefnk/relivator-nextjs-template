@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { SidebarNavItem } from "~/types";
+import { type SidebarNavItem } from "~/types";
+import Link from "next-intl/link";
 
 import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
@@ -35,7 +35,7 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
                 pathname === item.href
                   ? "bg-muted font-medium text-foreground"
                   : "text-muted-foreground",
-                item.disabled && "pointer-events-none opacity-60"
+                item.disabled && "pointer-events-none opacity-60",
               )}
             >
               <Icon className="mr-2 h-4 w-4" aria-hidden="true" />

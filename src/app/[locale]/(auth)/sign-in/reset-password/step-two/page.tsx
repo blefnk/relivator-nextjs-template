@@ -1,21 +1,20 @@
 import { type Metadata } from "next";
 
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
-import { ResetPasswordSecondForm } from "~/forms/reset-password-form-two";
+// import { ResetPasswordSecondForm } from "~/forms/reset-password-form-two";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Reset Password",
-  description: "Enter your email to reset your password"
+  description: "Enter your email to reset your password",
 };
 
 export default function ResetPasswordSecondPage() {
@@ -28,9 +27,7 @@ export default function ResetPasswordSecondPage() {
             Enter your email address and we will send you a verification code
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <ResetPasswordSecondForm />
-        </CardContent>
+        <CardContent>{/* <ResetPasswordSecondForm /> */}</CardContent>
       </Card>
     </Shell>
   );

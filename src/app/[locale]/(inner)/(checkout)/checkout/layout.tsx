@@ -1,16 +1,18 @@
 import { redirect } from "next/navigation";
-import { currentUser } from "@clerk/nextjs";
+import { getServerSession } from "next-auth";
+
+import { authOptions } from "~/server/auth";
 
 interface CheckoutLayoutProps {
   children: React.ReactNode;
 }
 
 export default async function CheckoutLayout({
-  children
+  children,
 }: CheckoutLayoutProps) {
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
 
-  if (!user) {
+  if (!session?.user) {
     redirect("/sign-in");
   }
 

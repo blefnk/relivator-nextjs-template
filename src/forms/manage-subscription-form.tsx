@@ -5,7 +5,7 @@ import { type z } from "zod";
 
 import { manageSubscriptionAction } from "~/server/actions/stripe";
 import { catchError } from "~/server/utils";
-import { type manageSubscriptionSchema } from "~/data/valids/stripe";
+import { type manageSubscriptionSchema } from "~/data/validations/stripe";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 
@@ -16,7 +16,7 @@ export function ManageSubscriptionForm({
   isSubscribed,
   stripeCustomerId,
   stripeSubscriptionId,
-  stripePriceId
+  stripePriceId,
 }: ManageSubscriptionFormProps) {
   const [isPending, startTransition] = React.useTransition();
 
@@ -30,7 +30,7 @@ export function ManageSubscriptionForm({
           isCurrentPlan,
           stripeCustomerId,
           stripeSubscriptionId,
-          stripePriceId
+          stripePriceId,
         });
         if (session) {
           window.location.href = session.url ?? "/dashboard/billing";

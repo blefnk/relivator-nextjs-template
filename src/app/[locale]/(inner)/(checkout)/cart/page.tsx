@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
-import Link from "next/link";
+import { type Metadata } from "next";
+import Link from "next-intl/link";
 
 import { getUniqueStoreIds } from "~/server/actions/cart";
 import { cn } from "~/server/utils";
-import { env } from "~/data/env";
+import { env } from "~/data/env/env.mjs";
 import { Icons } from "~/islands/icons";
 import { CheckoutCard } from "~/islands/modules/cards/checkout-card";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { buttonVariants } from "~/islands/primitives/button";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Cart",
-  description: "Checkout with your cart items"
+  description: "Checkout with your cart items",
 };
 
 export default async function CartPage() {
@@ -58,8 +58,8 @@ export default async function CartPage() {
               buttonVariants({
                 variant: "link",
                 size: "sm",
-                className: "text-sm text-muted-foreground"
-              })
+                className: "text-sm text-muted-foreground",
+              }),
             )}
           >
             Add items to your cart to checkout

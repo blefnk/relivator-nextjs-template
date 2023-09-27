@@ -13,11 +13,11 @@ import {
   type ColumnFiltersState,
   type PaginationState,
   type SortingState,
-  type VisibilityState
+  type VisibilityState,
 } from "@tanstack/react-table";
 import type {
   DataTableFilterableColumn,
-  DataTableSearchableColumn
+  DataTableSearchableColumn,
 } from "~/types";
 
 import { useDebounce } from "~/hooks/use-debounce";
@@ -29,7 +29,7 @@ import {
   TableCell,
   TableHead,
   TableHeader,
-  TableRow
+  TableRow,
 } from "~/islands/primitives/table";
 
 interface DataTableProps<TData, TValue> {
@@ -49,7 +49,7 @@ export function DataTable<TData, TValue>({
   filterableColumns = [],
   searchableColumns = [],
   newRowLink,
-  deleteRowsAction
+  deleteRowsAction,
 }: DataTableProps<TData, TValue>) {
   const router = useRouter();
   const pathname = usePathname();
@@ -76,7 +76,7 @@ export function DataTable<TData, TValue>({
 
       return newSearchParams.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   // Table states
@@ -84,28 +84,28 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
 
   // Handle server-side pagination
   const [{ pageIndex, pageSize }, setPagination] =
     React.useState<PaginationState>({
       pageIndex: Number(page) - 1,
-      pageSize: Number(per_page)
+      pageSize: Number(per_page),
     });
 
   const pagination = React.useMemo(
     () => ({
       pageIndex,
-      pageSize
+      pageSize,
     }),
-    [pageIndex, pageSize]
+    [pageIndex, pageSize],
   );
 
   React.useEffect(() => {
     setPagination({
       pageIndex: Number(page) - 1,
-      pageSize: Number(per_page)
+      pageSize: Number(per_page),
     });
   }, [page, per_page]);
 
@@ -113,11 +113,11 @@ export function DataTable<TData, TValue>({
     router.push(
       `${pathname}?${createQueryString({
         page: pageIndex + 1,
-        per_page: pageSize
+        per_page: pageSize,
       })}`,
       {
-        scroll: false
-      }
+        scroll: false,
+      },
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -127,8 +127,8 @@ export function DataTable<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([
     {
       id: column ?? "",
-      desc: order === "desc"
-    }
+      desc: order === "desc",
+    },
   ]);
 
   React.useEffect(() => {
@@ -137,11 +137,11 @@ export function DataTable<TData, TValue>({
         page,
         sort: sorting[0]?.id
           ? `${sorting[0]?.id}.${sorting[0]?.desc ? "desc" : "asc"}`
-          : null
+          : null,
       })}`,
       {
-        scroll: false
-      }
+        scroll: false,
+      },
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -153,10 +153,10 @@ export function DataTable<TData, TValue>({
       JSON.stringify(
         columnFilters.filter((filter) => {
           return searchableColumns.find((column) => column.id === filter.id);
-        })
+        }),
       ),
-      500
-    )
+      500,
+    ),
   ) as ColumnFiltersState;
 
   const filterableColumnFilters = columnFilters.filter((filter) => {
@@ -169,16 +169,16 @@ export function DataTable<TData, TValue>({
         router.push(
           `${pathname}?${createQueryString({
             page: 1,
-            [column.id]: typeof column.value === "string" ? column.value : null
+            [column.id]: typeof column.value === "string" ? column.value : null,
           })}`,
           {
-            scroll: false
-          }
+            scroll: false,
+          },
         );
       }
     }
 
-    for (const key of searchParams.keys()) {
+    for (const key of searchParams?.keys() || "") {
       if (
         searchableColumns.find((column) => column.id === key) &&
         !debouncedSearchableColumnFilters.find((column) => column.id === key)
@@ -186,11 +186,11 @@ export function DataTable<TData, TValue>({
         router.push(
           `${pathname}?${createQueryString({
             page: 1,
-            [key]: null
+            [key]: null,
           })}`,
           {
-            scroll: false
-          }
+            scroll: false,
+          },
         );
       }
     }
@@ -203,16 +203,16 @@ export function DataTable<TData, TValue>({
         router.push(
           `${pathname}?${createQueryString({
             page: 1,
-            [column.id]: column.value.join(".")
+            [column.id]: column.value.join("."),
           })}`,
           {
-            scroll: false
-          }
+            scroll: false,
+          },
         );
       }
     }
 
-    for (const key of searchParams.keys()) {
+    for (const key of searchParams?.keys() || "") {
       if (
         filterableColumns.find((column) => column.id === key) &&
         !filterableColumnFilters.find((column) => column.id === key)
@@ -220,11 +220,11 @@ export function DataTable<TData, TValue>({
         router.push(
           `${pathname}?${createQueryString({
             page: 1,
-            [key]: null
+            [key]: null,
           })}`,
           {
-            scroll: false
-          }
+            scroll: false,
+          },
         );
       }
     }
@@ -240,7 +240,7 @@ export function DataTable<TData, TValue>({
       sorting,
       columnVisibility,
       rowSelection,
-      columnFilters
+      columnFilters,
     },
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
@@ -256,7 +256,7 @@ export function DataTable<TData, TValue>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
     manualPagination: true,
     manualSorting: true,
-    manualFiltering: true
+    manualFiltering: true,
   });
 
   return (
@@ -280,7 +280,7 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </TableHead>
                   );
@@ -299,7 +299,7 @@ export function DataTable<TData, TValue>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}

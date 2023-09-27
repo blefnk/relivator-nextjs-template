@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
-import type { FileWithPreview } from "~/types";
+import { type FileWithPreview } from "~/types";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { type z } from "zod";
@@ -13,12 +13,12 @@ import { type z } from "zod";
 import {
   checkProductAction,
   deleteProductAction,
-  updateProductAction
+  updateProductAction,
 } from "~/server/actions/product";
 import { getSubcategories } from "~/server/config/products";
 import { catchError, isArrayOfFile } from "~/server/utils";
 import { products, type Product } from "~/data/db/schema";
-import { productSchema } from "~/data/valids/product";
+import { productSchema } from "~/data/validations/product";
 import { FileDialog } from "~/islands/file-dialog";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -29,7 +29,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  UncontrolledFormMessage
+  UncontrolledFormMessage,
 } from "~/islands/primitives/form";
 import { Input } from "~/islands/primitives/input";
 import {
@@ -38,11 +38,11 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "~/islands/primitives/select";
 import { Textarea } from "~/islands/primitives/textarea";
 import { Zoom } from "~/islands/zoom-image";
-import type { OurFileRouter } from "~/app/(api)/api/uploadthing/core";
+import { type OurFileRouter } from "~/app/(api)/api/uploadthing/core";
 
 interface UpdateProductFormProps {
   product: Product;
@@ -62,14 +62,14 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
       setFiles(
         product.images.map((image) => {
           const file = new File([], image.name, {
-            type: "image"
+            type: "image",
           });
           const fileWithPreview = Object.assign(file, {
-            preview: image.url
+            preview: image.url,
           });
 
           return fileWithPreview;
-        })
+        }),
       );
     }
   }, [product]);
@@ -80,8 +80,8 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
     resolver: zodResolver(productSchema),
     defaultValues: {
       category: product.category,
-      subcategory: product.subcategory
-    }
+      subcategory: product.subcategory,
+    },
   });
 
   const subcategories = getSubcategories(form.watch("category"));
@@ -91,7 +91,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
       try {
         await checkProductAction({
           name: data.name,
-          id: product.id
+          id: product.id,
         });
 
         const images = isArrayOfFile(data.images)
@@ -99,7 +99,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
               const formattedImages = res?.map((image) => ({
                 id: image.key,
                 name: image.key.split("_")[1] ?? image.key,
-                url: image.url
+                url: image.url,
               }));
               return formattedImages ?? null;
             })
@@ -109,7 +109,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
           ...data,
           storeId: product.storeId,
           id: product.id,
-          images: images ?? product.images
+          images: images ?? product.images,
         });
 
         toast.success("Product updated successfully.");
@@ -182,7 +182,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
                             >
                               {option}
                             </SelectItem>
-                          )
+                          ),
                         )}
                       </SelectGroup>
                     </SelectContent>
@@ -246,7 +246,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
                 inputMode="numeric"
                 placeholder="Type product inventory here."
                 {...form.register("inventory", {
-                  valueAsNumber: true
+                  valueAsNumber: true,
                 })}
                 defaultValue={product.inventory}
               />
@@ -306,7 +306,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
               startTransition(async () => {
                 await deleteProductAction({
                   storeId: product.storeId,
-                  id: product.id
+                  id: product.id,
                 });
                 router.push(`/dashboard/stores/${product.storeId}/products`);
               });

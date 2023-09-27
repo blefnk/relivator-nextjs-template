@@ -12,12 +12,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator
+  CommandSeparator,
 } from "~/islands/primitives/command";
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger
+  PopoverTrigger,
 } from "~/islands/primitives/popover";
 import { Separator } from "~/islands/primitives/separator";
 
@@ -32,11 +32,11 @@ export function FacetedFilter({
   title,
   filterValues,
   setFilterValues,
-  options
+  options,
 }: FacetedFilterProps) {
   const selectedValues = React.useMemo(
     () => new Set(filterValues),
-    [filterValues]
+    [filterValues],
   );
 
   return (
@@ -104,7 +104,7 @@ export function FacetedFilter({
                       }
                       const filterValues = Array.from(selectedValues);
                       setFilterValues(
-                        filterValues.length > 0 ? filterValues : []
+                        filterValues.length > 0 ? filterValues : [],
                       );
                     }}
                   >
@@ -113,7 +113,7 @@ export function FacetedFilter({
                         "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
                         isSelected
                           ? "bg-primary text-primary-foreground"
-                          : "opacity-50 [&_svg]:invisible"
+                          : "opacity-50 [&_svg]:invisible",
                       )}
                     >
                       <CheckIcon className={cn("h-4 w-4")} aria-hidden="true" />

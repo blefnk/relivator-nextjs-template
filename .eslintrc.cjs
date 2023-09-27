@@ -11,24 +11,25 @@ const config = defineConfig({
   env: {
     es2023: true,
     browser: true,
-    node: true
+    node: true,
   },
   settings: {
     "import/resolver": {
       typescript: {
-        project: ["./tsconfig.json"]
-      }
+        project: ["./tsconfig.json"],
+      },
     },
     tailwindcss: {
       callees: ["classNames", "clsx", "cls", "cva", "cn"],
-      config: "./tailwind.config.ts"
-    }
+      config: "./tailwind.config.ts",
+    },
   },
   extends: [
     "plugin:tailwindcss/recommended",
+    "plugin:i18n-json/recommended",
     "next/core-web-vitals",
     "eslint:recommended",
-    "prettier"
+    "prettier",
   ],
 
   overrides: [
@@ -43,19 +44,40 @@ const config = defineConfig({
         tsconfigRootDir: __dirname,
         project: ["./tsconfig.json"],
         ecmaVersion: "latest",
-        sourceType: "module"
+        sourceType: "module",
       },
       plugins: ["@tanstack/query"],
       extends: [
         "plugin:@tanstack/eslint-plugin-query/recommended",
         "plugin:@typescript-eslint/stylistic-type-checked",
-        "plugin:@typescript-eslint/strict-type-checked"
+        "plugin:@typescript-eslint/strict-type-checked",
       ],
       rules: {
         // !! We are incrementally moving towards full and strict type safety.
         // !! Accordingly, disabled rules will be eliminated in the future.
+        /**
+         * @see https://github.com/godaddy/eslint-plugin-i18n-json#readme
+         */
+        "i18n-json/valid-message-syntax": [
+          2,
+          {
+            syntax: "icu",
+          },
+        ],
+        "i18n-json/valid-json": 2,
+        "i18n-json/sorted-keys": [
+          2,
+          {
+            order: "asc",
+            indentSpaces: 2,
+          },
+        ],
+        "i18n-json/identical-keys": 0,
+        /**
+         * @see https://typescript-eslint.io
+         */
         "@typescript-eslint/consistent-type-imports": [
-          "off"
+          "off",
           // "warn",
           // {
           //   prefer: "type-imports",
@@ -63,7 +85,7 @@ const config = defineConfig({
           // }
         ],
         "@typescript-eslint/no-unused-vars": [
-          "off"
+          "off",
           // "warn",
           // {
           //   argsIgnorePattern: "^_",
@@ -73,9 +95,17 @@ const config = defineConfig({
         ],
         "@typescript-eslint/consistent-type-definitions": [
           /* "error", "type" */
-          "off"
+          "off",
         ],
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-unsafe-enum-comparison": "off",
+        "@typescript-eslint/dot-notation": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/restrict-plus-operands": "off",
+        "@typescript-eslint/non-nullable-type-assertion-style": "off",
         "@tanstack/query/exhaustive-deps": "error",
+        "@typescript-eslint/restrict-template-expressions": "off",
         "no-case-declarations": "off",
         "@typescript-eslint/no-unnecessary-type-arguments": "off",
         "@typescript-eslint/consistent-indexed-object-style": "off",
@@ -108,7 +138,7 @@ const config = defineConfig({
         "tailwindcss/migration-from-tailwind-2": "off",
         "tailwindcss/no-custom-classname": "off",
         "import/order": [
-          "off"
+          "off",
           // "error",
           // {
           //   "newlines-between": "always",
@@ -126,13 +156,13 @@ const config = defineConfig({
           // }
         ],
         "sort-imports": [
-          "off"
+          "off",
           // "error",
           // {
           //   ignoreDeclarationSort: true
           // }
-        ]
-      }
+        ],
+      },
     },
 
     // ============================================
@@ -140,7 +170,7 @@ const config = defineConfig({
     // ============================================
 
     {
-      files: ["*.js", "*.jsx", "*.mjs", "*.cjs"]
+      files: ["*.js", "*.jsx", "*.mjs", "*.cjs"],
     },
 
     // ============================================
@@ -156,11 +186,12 @@ const config = defineConfig({
         "plugin:@typescript-eslint/strict-type-checked",
         "plugin:jest-extended/all",
         "plugin:jest/style",
-        "plugin:jest/all"
+        "plugin:jest/all",
       ],
       rules: {
         // !! We are incrementally moving towards full and strict type safety.
         // !! Accordingly, disabled rules will be eliminated in the future.
+        "@typescript-eslint/prefer-nullish-coalescing": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "jest/prefer-expect-assertions": "off",
         "jest/no-disabled-tests": "warn",
@@ -168,10 +199,10 @@ const config = defineConfig({
         "jest/no-identical-title": "error",
         "jest/prefer-to-have-length": "warn",
         "jest/valid-expect": "error",
-        "jest/require-top-level-describe": "off"
-      }
-    }
-  ]
+        "jest/require-top-level-describe": "off",
+      },
+    },
+  ],
 });
 
 module.exports = config;

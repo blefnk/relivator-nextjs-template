@@ -6,7 +6,7 @@ import {
   LinkAuthenticationElement,
   PaymentElement,
   useElements,
-  useStripe
+  useStripe,
 } from "@stripe/react-stripe-js";
 
 import { absoluteUrl } from "~/server/utils";
@@ -29,7 +29,7 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
     if (!stripe) return;
 
     const clientSecret = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
+      "payment_intent_client_secret",
     );
 
     if (!clientSecret) return;
@@ -69,8 +69,8 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
         elements,
         confirmParams: {
           return_url: absoluteUrl(`/checkout/${storeId}/order-summary`),
-          receipt_email: email
-        }
+          receipt_email: email,
+        },
       });
 
       // This point will only be reached if there is an immediate error when
@@ -99,13 +99,13 @@ export default function CheckoutForm({ storeId }: CheckoutFormProps) {
       />
       <AddressElement
         options={{
-          mode: "shipping"
+          mode: "shipping",
         }}
       />
       <PaymentElement
         id={`payment-element-${id}`}
         options={{
-          layout: "tabs"
+          layout: "tabs",
         }}
       />
       <Button

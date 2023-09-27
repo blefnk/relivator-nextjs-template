@@ -2,17 +2,17 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import type { CartLineItem } from "~/types";
+import { type CartLineItem } from "~/types";
 import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { carts, products, stores } from "~/data/db/schema";
 import type {
   cartItemSchema,
   deleteCartItemSchema,
-  deleteCartItemsSchema
-} from "~/data/valids/cart";
+  deleteCartItemsSchema,
+} from "~/data/validations/cart";
 
 export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
   const cartId = cookies().get("cartId")?.value;
@@ -21,9 +21,9 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
 
   const cart = await db.query.carts.findFirst({
     columns: {
-      items: true
+      items: true,
     },
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   });
 
   const productIds = cart?.items?.map((item) => item.productId) ?? [];
@@ -43,27 +43,27 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
       inventory: products.inventory,
       storeId: products.storeId,
       storeName: stores.name,
-      storeStripeAccountId: stores.stripeAccountId
+      storeStripeAccountId: stores.stripeAccountId,
     })
     .from(products)
     .leftJoin(stores, eq(stores.id, products.storeId))
     .where(
       and(
         inArray(products.id, uniqueProductIds),
-        storeId ? eq(products.storeId, storeId) : undefined
-      )
+        storeId ? eq(products.storeId, storeId) : undefined,
+      ),
     )
     .groupBy(products.id)
     .orderBy(desc(stores.stripeAccountId), asc(products.createdAt))
     .then((items) => {
       return items.map((item) => {
         const quantity = cart?.items?.find(
-          (cartItem) => cartItem.productId === item.id
+          (cartItem) => cartItem.productId === item.id,
         )?.quantity;
 
         return {
           ...item,
-          quantity: quantity ?? 0
+          quantity: quantity ?? 0,
         };
       });
     });
@@ -81,7 +81,7 @@ export async function getUniqueStoreIds() {
     .from(carts)
     .leftJoin(
       products,
-      sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`
+      sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`,
     )
     .groupBy(products.storeId)
     .where(eq(carts.id, Number(cartId)));
@@ -97,7 +97,7 @@ export async function getCartItemsAction(input: { cartId?: number }) {
   if (!input.cartId || isNaN(input.cartId)) return [];
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, input.cartId)
+    where: eq(carts.id, input.cartId),
   });
 
   return cart?.items;
@@ -109,10 +109,11 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
 
   if (!cartId) {
     const cart = await db.insert(carts).values({
-      items: [input]
+      items: [input],
     });
 
     // Note: .set() is only available in a Server Action or Route Handler
+    // @ts-expect-error // todo: fix Property 'insertId' does not exist on type 'RowList<never[]>'
     cookieStore.set("cartId", String(cart.insertId));
 
     revalidatePath("/");
@@ -120,7 +121,7 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   });
 
   // TODO: Find a better way to deal with expired carts
@@ -128,7 +129,7 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
     cookieStore.set({
       name: "cartId",
       value: "",
-      expires: new Date(0)
+      expires: new Date(0),
     });
 
     await db.delete(carts).where(eq(carts.id, Number(cartId)));
@@ -137,7 +138,7 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
   }
 
   const cartItem = cart.items?.find(
-    (item) => item.productId === input.productId
+    (item) => item.productId === input.productId,
   );
 
   if (cartItem) {
@@ -149,7 +150,7 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
   await db
     .update(carts)
     .set({
-      items: cart.items
+      items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)));
 
@@ -157,7 +158,7 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
 }
 
 export async function updateCartItemAction(
-  input: z.infer<typeof cartItemSchema>
+  input: z.infer<typeof cartItemSchema>,
 ) {
   const cartId = cookies().get("cartId")?.value;
 
@@ -170,7 +171,7 @@ export async function updateCartItemAction(
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   });
 
   if (!cart) {
@@ -178,7 +179,7 @@ export async function updateCartItemAction(
   }
 
   const cartItem = cart.items?.find(
-    (item) => item.productId === input.productId
+    (item) => item.productId === input.productId,
   );
 
   if (!cartItem) {
@@ -195,7 +196,7 @@ export async function updateCartItemAction(
   await db
     .update(carts)
     .set({
-      items: cart.items
+      items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)));
 
@@ -217,7 +218,7 @@ export async function deleteCartAction() {
 }
 
 export async function deleteCartItemAction(
-  input: z.infer<typeof deleteCartItemSchema>
+  input: z.infer<typeof deleteCartItemSchema>,
 ) {
   const cartId = cookies().get("cartId")?.value;
 
@@ -230,7 +231,7 @@ export async function deleteCartItemAction(
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   });
 
   if (!cart) return;
@@ -241,7 +242,7 @@ export async function deleteCartItemAction(
   await db
     .update(carts)
     .set({
-      items: cart.items
+      items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)));
 
@@ -249,7 +250,7 @@ export async function deleteCartItemAction(
 }
 
 export async function deleteCartItemsAction(
-  input: z.infer<typeof deleteCartItemsSchema>
+  input: z.infer<typeof deleteCartItemsSchema>,
 ) {
   const cartId = cookies().get("cartId")?.value;
 
@@ -262,7 +263,7 @@ export async function deleteCartItemsAction(
   }
 
   const cart = await db.query.carts.findFirst({
-    where: eq(carts.id, Number(cartId))
+    where: eq(carts.id, Number(cartId)),
   });
 
   if (!cart) return;
@@ -274,7 +275,7 @@ export async function deleteCartItemsAction(
   await db
     .update(carts)
     .set({
-      items: cart.items
+      items: cart.items,
     })
     .where(eq(carts.id, Number(cartId)));
 

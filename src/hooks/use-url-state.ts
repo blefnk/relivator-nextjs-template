@@ -5,10 +5,13 @@ export function useURLState(query: string): [string, (value: string) => void] {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const [state, setState] = useState(searchParams.get(query) ?? "");
+
+  const [state, setState] = useState(searchParams?.get(query) ?? "");
 
   const updateState = (value: string) => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
+    const current = new URLSearchParams(
+      Array.from(searchParams?.entries() || []),
+    );
 
     if (!value.trim()) {
       current.delete(query);

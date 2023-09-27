@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { redirect } from "next/navigation";
-import { currentUser } from "@clerk/nextjs";
+import { getServerSession } from "next-auth";
 
-import { env } from "~/data/env";
+import { authOptions } from "~/server/auth";
+// import { env } from "~/data/env/env.mjs";
 import { fullURL } from "~/data/meta/builder";
 import { AddProductForm } from "~/forms/add-product-form";
 import {
@@ -10,13 +11,13 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "New Product",
-  description: "Add a new product"
+  description: "Add a new product",
 };
 
 interface NewProductPageProps {
@@ -28,10 +29,10 @@ interface NewProductPageProps {
 export default async function NewProductPage({ params }: NewProductPageProps) {
   const storeId = Number(params.storeId);
 
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
 
-  if (!user) {
-    redirect("/sigin");
+  if (!session) {
+    redirect("/sign-in");
   }
 
   return (

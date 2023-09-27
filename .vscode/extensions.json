@@ -3,6 +3,7 @@
     "aaron-bond.better-comments",
     "ambar.bundle-size",
     "bradlc.vscode-tailwindcss",
+    "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "lokalise.i18n-ally",
@@ -10,9 +11,8 @@
     "mikekscholz.pop-icon-theme",
     "neptunedesign.vs-sequential-number",
     "streetsidesoftware.code-spell-checker",
+    "unifiedjs.vscode-mdx",
     "yoavbls.pretty-ts-errors",
-    "yzhang.markdown-all-in-one",
-    "davidanson.vscode-markdownlint",
-    "unifiedjs.vscode-mdx"
+    "yzhang.markdown-all-in-one"
   ]
 }

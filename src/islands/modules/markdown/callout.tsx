@@ -1,7 +1,7 @@
 import {
   Alert,
   AlertDescription,
-  AlertTitle
+  AlertTitle,
 } from "~/islands/primitives/alert";
 
 interface CalloutProps {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next-intl/link";
 
 import { cn } from "~/server/utils";
 
@@ -19,7 +19,7 @@ export function MdxCard({
       className={cn(
         "group relative rounded-lg border p-6 shadow-md transition-shadow hover:shadow-lg",
         disabled && "cursor-not-allowed opacity-60",
-        className
+        className,
       )}
       {...props}
     >

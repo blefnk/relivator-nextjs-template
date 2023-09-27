@@ -1,14 +1,13 @@
 import { type Metadata } from "next";
 import { revalidatePath } from "next/cache";
-import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { and, eq, not } from "drizzle-orm";
+import Link from "next-intl/link";
 
 import { getStripeAccountAction } from "~/server/actions/stripe";
 import { cn, formatDate } from "~/server/utils";
 import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import { LoadingButton } from "~/islands/loading-button";
 import { buttonVariants } from "~/islands/primitives/button";
@@ -18,7 +17,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
 import { Input } from "~/islands/primitives/input";
 import { Label } from "~/islands/primitives/label";
@@ -28,7 +27,7 @@ import { ConnectStoreToStripeButton } from "~/islands/stripe-btn-connect";
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Manage Store",
-  description: "Manage your store"
+  description: "Manage your store",
 };
 
 interface UpdateStorePageProps {
@@ -38,7 +37,7 @@ interface UpdateStorePageProps {
 }
 
 export default async function UpdateStorePage({
-  params
+  params,
 }: UpdateStorePageProps) {
   const storeId = Number(params.storeId);
 
@@ -51,8 +50,8 @@ export default async function UpdateStorePage({
     const storeWithSameName = await db.query.stores.findFirst({
       where: and(eq(stores.name, name), not(eq(stores.id, storeId))),
       columns: {
-        id: true
-      }
+        id: true,
+      },
     });
 
     if (storeWithSameName) {
@@ -73,8 +72,8 @@ export default async function UpdateStorePage({
     const store = await db.query.stores.findFirst({
       where: eq(stores.id, storeId),
       columns: {
-        id: true
-      }
+        id: true,
+      },
     });
 
     if (!store) {
@@ -96,8 +95,8 @@ export default async function UpdateStorePage({
     columns: {
       id: true,
       name: true,
-      description: true
-    }
+      description: true,
+    },
   });
 
   if (!store) {
@@ -105,7 +104,7 @@ export default async function UpdateStorePage({
   }
 
   const { account: stripeAccount } = await getStripeAccountAction({
-    storeId
+    storeId,
   });
 
   return (
@@ -175,8 +174,8 @@ export default async function UpdateStorePage({
               rel="noopener noreferrer"
               className={cn(
                 buttonVariants({
-                  className: "text-center"
-                })
+                  className: "text-center",
+                }),
               )}
             >
               Manage Stripe account

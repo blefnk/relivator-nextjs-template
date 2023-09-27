@@ -12,7 +12,7 @@ interface ConnectToStripeButtonProps {
 }
 
 export function ConnectStoreToStripeButton({
-  storeId
+  storeId,
 }: ConnectToStripeButtonProps) {
   const [isPending, startTransaction] = React.useTransition();
 

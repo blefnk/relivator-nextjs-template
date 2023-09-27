@@ -2,16 +2,16 @@ import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { and, asc, desc, eq, inArray, like, sql } from "drizzle-orm";
 
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { products, stores, type Product } from "~/data/db/schema";
-import { env } from "~/data/env";
+import { env } from "~/data/env/env.mjs";
 import { GenerateButton } from "~/islands/generate";
 import { ProductsTableShell } from "~/islands/wrappers/products-table-shell";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Products",
-  description: "Manage your products"
+  description: "Manage your products",
 };
 
 interface ProductsPageProps {
@@ -25,7 +25,7 @@ interface ProductsPageProps {
 
 export default async function ProductsPage({
   params,
-  searchParams
+  searchParams,
 }: ProductsPageProps) {
   const storeId = Number(params.storeId);
 
@@ -35,8 +35,8 @@ export default async function ProductsPage({
     where: eq(stores.id, storeId),
     columns: {
       id: true,
-      name: true
-    }
+      name: true,
+    },
   });
 
   if (!store) {
@@ -57,7 +57,7 @@ export default async function ProductsPage({
     typeof sort === "string"
       ? (sort.split(".") as [
           keyof Product | undefined,
-          "asc" | "desc" | undefined
+          "asc" | "desc" | undefined,
         ])
       : [];
 
@@ -83,20 +83,20 @@ export default async function ProductsPage({
           // Filter by category
           categories.length > 0
             ? inArray(products.category, categories)
-            : undefined
-        )
+            : undefined,
+        ),
       )
       .orderBy(
         column && column in products
           ? order === "asc"
             ? asc(products[column])
             : desc(products[column])
-          : desc(products.createdAt)
+          : desc(products.createdAt),
       );
 
     const total = await tx
       .select({
-        count: sql<number>`count(${products.id})`
+        count: sql<number>`count(${products.id})`,
       })
       .from(products)
       .where(
@@ -107,14 +107,14 @@ export default async function ProductsPage({
             : undefined,
           categories.length > 0
             ? inArray(products.category, categories)
-            : undefined
-        )
+            : undefined,
+        ),
       )
       .then((res) => res[0]?.count ?? 0);
 
     return {
       items,
-      total
+      total,
     };
   });
 

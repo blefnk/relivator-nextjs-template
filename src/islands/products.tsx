@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { Option } from "~/types";
+import { type Option } from "~/types";
 
 import { getSubcategories, sortOptions } from "~/server/config/products";
 import { cn, toTitleCase, truncate } from "~/server/utils";
@@ -20,8 +20,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "~/islands/primitives/dropdown-menu";
+  DropdownMenuTrigger,
+} from "~/islands/primitives/dropdown";
 import { Input } from "~/islands/primitives/input";
 import { Label } from "~/islands/primitives/label";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
@@ -32,7 +32,7 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
+  SheetTrigger,
 } from "~/islands/primitives/sheet";
 import { Slider } from "~/islands/primitives/slider";
 
@@ -81,12 +81,12 @@ export function Products({
 
       return newSearchParams.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   // Price filter
   const [priceRange, setPriceRange] = React.useState<[number, number]>([
-    0, 500
+    0, 500,
   ]);
   const debouncedPrice = useDebounce(priceRange, 500);
 
@@ -95,11 +95,11 @@ export function Products({
     startTransition(() => {
       router.push(
         `${pathname}?${createQueryString({
-          price_range: `${min}-${max}`
+          price_range: `${min}-${max}`,
         })}`,
         {
-          scroll: false
-        }
+          scroll: false,
+        },
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -117,11 +117,11 @@ export function Products({
           categories: selectedCategories?.length
             ? // Join categories with a dot to make search params prettier
               selectedCategories.map((c) => c.value).join(".")
-            : null
+            : null,
         })}`,
         {
-          scroll: false
-        }
+          scroll: false,
+        },
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -139,11 +139,11 @@ export function Products({
         `${pathname}?${createQueryString({
           subcategories: selectedSubcategories?.length
             ? selectedSubcategories.map((s) => s.value).join(".")
-            : null
+            : null,
         })}`,
         {
-          scroll: false
-        }
+          scroll: false,
+        },
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -151,18 +151,18 @@ export function Products({
 
   // Store filter
   const [storeIds, setStoreIds] = React.useState<number[] | null>(
-    store_ids?.split(".").map(Number) ?? null
+    store_ids?.split(".").map(Number) ?? null,
   );
 
   React.useEffect(() => {
     startTransition(() => {
       router.push(
         `${pathname}?${createQueryString({
-          store_ids: storeIds?.length ? storeIds.join(".") : null
+          store_ids: storeIds?.length ? storeIds.join(".") : null,
         })}`,
         {
-          scroll: false
-        }
+          scroll: false,
+        },
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -237,7 +237,7 @@ export function Products({
                     setSelected={setSelectedCategories}
                     options={categories.map((c) => ({
                       label: toTitleCase(c),
-                      value: c
+                      value: c,
                     }))}
                   />
                 </div>
@@ -269,8 +269,8 @@ export function Products({
                           startTransition(() => {
                             router.push(
                               `${pathname}?${createQueryString({
-                                store_page: Number(store_page) - 1
-                              })}`
+                                store_page: Number(store_page) - 1,
+                              })}`,
                             );
                           });
                         }}
@@ -289,8 +289,8 @@ export function Products({
                           startTransition(() => {
                             router.push(
                               `${pathname}?${createQueryString({
-                                store_page: Number(store_page) + 1
-                              })}`
+                                store_page: Number(store_page) + 1,
+                              })}`,
                             );
                           });
                         }}
@@ -322,7 +322,7 @@ export function Products({
                               } else {
                                 setStoreIds(
                                   storeIds?.filter((id) => id !== store.id) ??
-                                    null
+                                    null,
                                 );
                               }
                             }}
@@ -354,8 +354,8 @@ export function Products({
                           price_range: 0 - 100,
                           store_ids: null,
                           categories: null,
-                          subcategories: null
-                        })}`
+                          subcategories: null,
+                        })}`,
                       );
 
                       setPriceRange([0, 100]);
@@ -390,11 +390,11 @@ export function Products({
                   startTransition(() => {
                     router.push(
                       `${pathname}?${createQueryString({
-                        sort: option.value
+                        sort: option.value,
                       })}`,
                       {
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     );
                   });
                 }}

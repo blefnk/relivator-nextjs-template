@@ -5,10 +5,10 @@ import { type Product } from "~/data/db/schema";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Products } from "~/islands/products";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 interface CategoryPageProps {
   params: {
@@ -22,13 +22,13 @@ interface CategoryPageProps {
 export function generateMetadata({ params }: CategoryPageProps) {
   return {
     title: toTitleCase(params.category),
-    description: `Buy products from the ${params.category} category`
+    description: `Buy products from the ${params.category} category`,
   };
 }
 
 export default async function CategoryPage({
   params,
-  searchParams
+  searchParams,
 }: CategoryPageProps) {
   const { category } = params;
   const {
@@ -38,7 +38,7 @@ export default async function CategoryPage({
     subcategories,
     price_range,
     store_ids,
-    store_page
+    store_page,
   } = searchParams;
 
   // Products transaction
@@ -52,7 +52,7 @@ export default async function CategoryPage({
     categories: category,
     subcategories: typeof subcategories === "string" ? subcategories : null,
     price_range: typeof price_range === "string" ? price_range : null,
-    store_ids: typeof store_ids === "string" ? store_ids : null
+    store_ids: typeof store_ids === "string" ? store_ids : null,
   });
 
   const pageCount = Math.ceil(productsTransaction.total / limit);
@@ -67,7 +67,7 @@ export default async function CategoryPage({
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
     offset: storesOffset,
-    sort: "productCount.desc"
+    sort: "productCount.desc",
   });
 
   const storePageCount = Math.ceil(storesTransaction.total / storesLimit);

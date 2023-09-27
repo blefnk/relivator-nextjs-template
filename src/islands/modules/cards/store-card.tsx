@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { type CuratedStore } from "~/types";
+import Link from "next-intl/link";
 
 import { getRandomPatternStyle } from "~/server/pattern";
 import { cn } from "~/server/utils";
@@ -9,7 +9,7 @@ import {
   Card,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
 
 interface StoreCardProps {
@@ -26,7 +26,7 @@ export function StoreCard({ store, href }: StoreCardProps) {
           <Badge
             className={cn(
               "pointer-events-none absolute right-2 top-2 text-white",
-              store.stripeAccountId ? "bg-green-600" : "bg-red-600"
+              store.stripeAccountId ? "bg-green-600" : "bg-red-600",
             )}
           >
             {store.stripeAccountId ? "Active" : "Inactive"}

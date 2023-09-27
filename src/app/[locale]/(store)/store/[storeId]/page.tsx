@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 
@@ -6,17 +6,16 @@ import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
 import { db } from "~/data/db/client";
 import { products, stores } from "~/data/db/schema";
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
 import { Breadcrumbs } from "~/islands/navigation/pagination/breadcrumbs";
 import { Separator } from "~/islands/primitives/separator";
 import { Products } from "~/islands/products";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Store",
-  description: "Store description"
+  description: "Store description",
 };
 
 interface StorePageProps {
@@ -30,12 +29,12 @@ interface StorePageProps {
 
 export default async function StorePage({
   params,
-  searchParams
+  searchParams,
 }: StorePageProps) {
   const storeId = Number(params.storeId);
 
   const store = await db.query.stores.findFirst({
-    where: eq(stores.id, storeId)
+    where: eq(stores.id, storeId),
   });
 
   if (!store) {
@@ -51,7 +50,7 @@ export default async function StorePage({
   const productsTransaction = await getProductsAction({
     limit: limit,
     offset: offset,
-    store_ids: String(storeId)
+    store_ids: String(storeId),
   });
 
   const pageCount = Math.ceil(productsTransaction.total / limit);
@@ -66,7 +65,7 @@ export default async function StorePage({
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
     offset: storesOffset,
-    sort: "name.asc"
+    sort: "name.asc",
   });
 
   const storePageCount = Math.ceil(storesTransaction.total / storesLimit);
@@ -77,12 +76,12 @@ export default async function StorePage({
         segments={[
           {
             title: "Stores",
-            href: "/stores"
+            href: "/stores",
           },
           {
             title: store.name,
-            href: `/store/${store.id}`
-          }
+            href: `/store/${store.id}`,
+          },
         ]}
       />
       <div className="flex flex-col gap-8 md:flex-row md:gap-16">

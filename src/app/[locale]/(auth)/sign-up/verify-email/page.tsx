@@ -1,21 +1,20 @@
 import { type Metadata } from "next";
 
-import { env } from "~/data/env";
 import { fullURL } from "~/data/meta/builder";
-import { VerifyEmailForm } from "~/forms/verify-email-form";
+// import { VerifyEmailForm } from "~/forms/verify-email-form";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Verify Email",
-  description: "Verify your email address to continue with your sign up"
+  description: "Verify your email address to continue with your sign up",
 };
 
 export default function VerifyEmailPage() {
@@ -29,7 +28,7 @@ export default function VerifyEmailPage() {
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4">
-          <VerifyEmailForm />
+          {/* <VerifyEmailForm /> */}
         </CardContent>
       </Card>
     </Shell>

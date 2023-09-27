@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { CartItem } from "~/types";
+import { type CartItem } from "~/types";
 import { toast } from "sonner";
 
 import { addToCartAction, deleteCartItemAction } from "~/server/actions/cart";
@@ -20,8 +20,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "~/islands/primitives/dropdown-menu";
+  DropdownMenuTrigger,
+} from "~/islands/primitives/dropdown";
 import { Input } from "~/islands/primitives/input";
 import { Separator } from "~/islands/primitives/separator";
 import {
@@ -30,7 +30,7 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger
+  SheetTrigger,
 } from "~/islands/primitives/sheet";
 import { Slider } from "~/islands/primitives/slider";
 
@@ -73,12 +73,12 @@ export function ProductBuilder({
 
       return newSearchParams.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   // Price filter
   const [priceRange, setPriceRange] = React.useState<[number, number]>([
-    0, 500
+    0, 500,
   ]);
   const debouncedPrice = useDebounce(priceRange, 500);
 
@@ -87,8 +87,8 @@ export function ProductBuilder({
     startTransition(() => {
       router.push(
         `${pathname}?${createQueryString({
-          price_range: `${min}-${max}`
-        })}`
+          price_range: `${min}-${max}`,
+        })}`,
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,19 +101,19 @@ export function ProductBuilder({
         if (!cartItems.map((item) => item.productId).includes(product.id)) {
           // Only allow one product per subcategory in cart
           const productIdWithSameSubcategory = cartItems.find(
-            (item) => item.subcategory === product.subcategory
+            (item) => item.subcategory === product.subcategory,
           )?.productId;
 
           if (productIdWithSameSubcategory) {
             await deleteCartItemAction({
-              productId: productIdWithSameSubcategory
+              productId: productIdWithSameSubcategory,
             });
           }
 
           await addToCartAction({
             productId: product.id,
             quantity: 1,
-            subcategory: product.subcategory ?? subcategory
+            subcategory: product.subcategory ?? subcategory,
           });
 
           toast.success("Added to cart.");
@@ -121,7 +121,7 @@ export function ProductBuilder({
         }
 
         await deleteCartItemAction({
-          productId: product.id
+          productId: product.id,
         });
         toast.success("Removed from cart.");
       } catch (error) {
@@ -130,7 +130,7 @@ export function ProductBuilder({
           : toast.error("Something went wrong, please try again.");
       }
     },
-    [subcategory, cartItems]
+    [subcategory, cartItems],
   );
 
   return (
@@ -203,8 +203,8 @@ export function ProductBuilder({
                     startTransition(() => {
                       router.push(
                         `${pathname}?${createQueryString({
-                          price_range: 0 - 100
-                        })}`
+                          price_range: 0 - 100,
+                        })}`,
                       );
 
                       setPriceRange([0, 100]);
@@ -236,8 +236,8 @@ export function ProductBuilder({
                   startTransition(() => {
                     router.push(
                       `${pathname}?${createQueryString({
-                        sort: option.value
-                      })}`
+                        sort: option.value,
+                      })}`,
                     );
                   });
                 }}

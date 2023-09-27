@@ -1,17 +1,19 @@
 import { notFound, redirect } from "next/navigation";
-import { currentUser } from "@clerk/nextjs";
 import { eq } from "drizzle-orm";
+import { getServerSession } from "next-auth";
 
+import { authOptions } from "~/server/auth";
 import {
   getDashboardRedirectPath,
-  getUserSubscriptionPlan
+  getUserSubscriptionPlan,
 } from "~/server/subs";
 import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
+import { findUserById } from "~/data/routers/handlers/users";
 import { PageHeaderHeading } from "~/islands/navigation/page-header";
 import { StoreSwitcher } from "~/islands/navigation/pagination/store-switcher";
 import { StoreTabs } from "~/islands/navigation/pagination/store-tabs";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 interface StoreLayoutProps {
   children: React.ReactNode;
@@ -22,23 +24,22 @@ interface StoreLayoutProps {
 
 export default async function StoreLayout({
   children,
-  params
+  params,
 }: StoreLayoutProps) {
   const storeId = Number(params.storeId);
 
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
+  if (!session?.userId) redirect("/sign-in");
 
-  if (!user) {
-    redirect("/sign-in");
-  }
+  const user = await findUserById(session.userId);
 
   const allStores = await db
     .select({
       id: stores.id,
-      name: stores.name
+      name: stores.name,
     })
     .from(stores)
-    .where(eq(stores.userId, user.id));
+    .where(eq(stores.userId, session?.userId));
 
   const store = allStores.find((store) => store.id === storeId);
 
@@ -46,7 +47,8 @@ export default async function StoreLayout({
     notFound();
   }
 
-  const subscriptionPlan = await getUserSubscriptionPlan(user.id);
+  // const subscriptionPlan = await getUserSubscriptionPlan(user.id);
+  const subscriptionPlan = await getUserSubscriptionPlan();
 
   return (
     <Shell variant="sidebar" className="gap-4">
@@ -60,7 +62,7 @@ export default async function StoreLayout({
             stores={allStores}
             dashboardRedirectPath={getDashboardRedirectPath({
               subscriptionPlan,
-              storeCount: allStores.length
+              storeCount: allStores.length,
             })}
           />
         ) : null}

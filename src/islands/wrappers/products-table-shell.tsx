@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
+import Link from "next-intl/link";
 import { toast } from "sonner";
 
 import { deleteProductAction } from "~/server/actions/product";
@@ -20,8 +20,8 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuTrigger
-} from "~/islands/primitives/dropdown-menu";
+  DropdownMenuTrigger,
+} from "~/islands/primitives/dropdown";
 
 interface ProductsTableShellProps {
   data: Product[];
@@ -32,7 +32,7 @@ interface ProductsTableShellProps {
 export function ProductsTableShell({
   data,
   pageCount,
-  storeId
+  storeId,
 }: ProductsTableShellProps) {
   const [isPending, startTransition] = React.useTransition();
   const [selectedRowIds, setSelectedRowIds] = React.useState<number[]>([]);
@@ -48,7 +48,7 @@ export function ProductsTableShell({
             onCheckedChange={(value) => {
               table.toggleAllPageRowsSelected(!!value);
               setSelectedRowIds((prev) =>
-                prev.length === data.length ? [] : data.map((row) => row.id)
+                prev.length === data.length ? [] : data.map((row) => row.id),
               );
             }}
             aria-label="Select all"
@@ -63,7 +63,7 @@ export function ProductsTableShell({
               setSelectedRowIds((prev) =>
                 value
                   ? [...prev, row.original.id]
-                  : prev.filter((id) => id !== row.original.id)
+                  : prev.filter((id) => id !== row.original.id),
               );
             }}
             aria-label="Select row"
@@ -71,13 +71,13 @@ export function ProductsTableShell({
           />
         ),
         enableSorting: false,
-        enableHiding: false
+        enableHiding: false,
       },
       {
         accessorKey: "name",
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Name" />
-        )
+        ),
       },
       {
         accessorKey: "category",
@@ -95,26 +95,26 @@ export function ProductsTableShell({
               {category}
             </Badge>
           );
-        }
+        },
       },
       {
         accessorKey: "price",
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Price" />
         ),
-        cell: ({ cell }) => formatPrice(cell.getValue() as number)
+        cell: ({ cell }) => formatPrice(cell.getValue() as number),
       },
       {
         accessorKey: "inventory",
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Inventory" />
-        )
+        ),
       },
       {
         accessorKey: "rating",
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Rating" />
-        )
+        ),
       },
       {
         accessorKey: "createdAt",
@@ -122,7 +122,7 @@ export function ProductsTableShell({
           <DataTableColumnHeader column={column} title="Created At" />
         ),
         cell: ({ cell }) => formatDate(cell.getValue() as Date),
-        enableColumnFilter: false
+        enableColumnFilter: false,
       },
       {
         id: "actions",
@@ -157,13 +157,13 @@ export function ProductsTableShell({
                     toast.promise(
                       deleteProductAction({
                         id: row.original.id,
-                        storeId
+                        storeId,
                       }),
                       {
                         loading: "Deleting...",
                         success: () => "Product deleted successfully.",
-                        error: (err: unknown) => catchError(err)
-                      }
+                        error: (err: unknown) => catchError(err),
+                      },
                     );
                   });
                 }}
@@ -174,10 +174,10 @@ export function ProductsTableShell({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        )
-      }
+        ),
+      },
     ],
-    [data, isPending, storeId]
+    [data, isPending, storeId],
   );
 
   function deleteSelectedRows() {
@@ -186,9 +186,9 @@ export function ProductsTableShell({
         selectedRowIds.map((id) =>
           deleteProductAction({
             id,
-            storeId
-          })
-        )
+            storeId,
+          }),
+        ),
       ),
       {
         loading: "Deleting...",
@@ -199,8 +199,8 @@ export function ProductsTableShell({
         error: (err: unknown) => {
           setSelectedRowIds([]);
           return catchError(err);
-        }
-      }
+        },
+      },
     );
   }
 
@@ -215,15 +215,15 @@ export function ProductsTableShell({
           title: "Category",
           options: products.category.enumValues.map((category) => ({
             label: `${category.charAt(0).toUpperCase()}${category.slice(1)}`,
-            value: category
-          }))
-        }
+            value: category,
+          })),
+        },
       ]}
       searchableColumns={[
         {
           id: "name",
-          title: "names"
-        }
+          title: "names",
+        },
       ]}
       newRowLink={`/dashboard/stores/${storeId}/products/new`}
       deleteRowsAction={() => void deleteSelectedRows()}

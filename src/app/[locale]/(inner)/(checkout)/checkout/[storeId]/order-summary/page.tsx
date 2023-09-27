@@ -1,23 +1,23 @@
-import type { Metadata } from "next";
-import type { CheckoutItem } from "~/types";
+import { type Metadata } from "next";
+import { type CheckoutItem } from "~/types";
 import { eq } from "drizzle-orm";
 
 import { getOrderedProducts } from "~/server/actions/order";
 import { getPaymentIntentAction } from "~/server/actions/stripe";
-import { db } from "~/data/db";
+import { db } from "~/data/db/client";
 import { stores } from "~/data/db/schema";
-import { env } from "~/data/env";
+import { env } from "~/data/env/env.mjs";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
   title: "Order Summary",
-  description: "Order Summary for your purchase"
+  description: "Order Summary for your purchase",
 };
 
 interface OrderSummaryPageProps {
@@ -31,37 +31,37 @@ interface OrderSummaryPageProps {
 
 export default async function OrderSummaryPage({
   params,
-  searchParams
+  searchParams,
 }: OrderSummaryPageProps) {
   const storeId = Number(params.storeId);
   const {
     payment_intent,
-    payment_intent_client_secret,
-    redirect_status,
-    delivery_postal_code
+    // payment_intent_client_secret,
+    // redirect_status,
+    delivery_postal_code,
   } = searchParams ?? {};
 
   const store = await db.query.stores.findFirst({
     columns: {
-      name: true
+      name: true,
     },
-    where: eq(stores.id, storeId)
+    where: eq(stores.id, storeId),
   });
 
   const { isVerified, paymentIntent } = await getPaymentIntentAction({
     storeId,
     paymentIntentId: typeof payment_intent === "string" ? payment_intent : "",
     deliveryPostalCode:
-      typeof delivery_postal_code === "string" ? delivery_postal_code : ""
+      typeof delivery_postal_code === "string" ? delivery_postal_code : "",
   });
 
   const checkoutItems = JSON.parse(
-    paymentIntent?.metadata?.items ?? ""
+    paymentIntent?.metadata?.items ?? "",
   ) as unknown as CheckoutItem[];
 
   if (isVerified) {
     const products = await getOrderedProducts({
-      checkoutItems
+      checkoutItems,
     });
 
     return (

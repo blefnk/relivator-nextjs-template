@@ -9,7 +9,7 @@ import {
   Preview,
   Section,
   Tailwind,
-  Text
+  Text,
 } from "@react-email/components";
 import { siteConfig } from "~/app";
 
@@ -22,7 +22,7 @@ export type SignInEmailProps = {
 export default function SignInEmail({
   url,
   emailAddress,
-  existingUser = false
+  existingUser = false,
 }: SignInEmailProps) {
   return (
     <Html>

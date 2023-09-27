@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { toast } from "sonner";
 
 import { addToCartAction } from "~/server/actions/cart";
@@ -17,7 +17,7 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -97,7 +97,7 @@ export function ProductCard({
                 try {
                   await addToCartAction({
                     productId: product.id,
-                    quantity: 1
+                    quantity: 1,
                   });
                   toast.success("Added to cart.");
                 } catch (error) {

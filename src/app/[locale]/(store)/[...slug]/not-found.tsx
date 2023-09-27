@@ -1,5 +1,5 @@
 import { ErrorCard } from "~/islands/modules/cards/error-card";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export default function PageNotFound() {
   return (

@@ -10,15 +10,15 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuSeparator
-} from "~/islands/primitives/dropdown-menu";
+  DropdownMenuSeparator,
+} from "~/islands/primitives/dropdown";
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
 }
 
 export function DataTableViewOptions<TData>({
-  table
+  table,
 }: DataTableViewOptionsProps<TData>) {
   return (
     <DropdownMenu>
@@ -40,7 +40,7 @@ export function DataTableViewOptions<TData>({
           .getAllColumns()
           .filter(
             (column) =>
-              typeof column.accessorFn !== "undefined" && column.getCanHide()
+              typeof column.accessorFn !== "undefined" && column.getCanHide(),
           )
           .map((column) => {
             return (

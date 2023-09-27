@@ -1,28 +1,28 @@
 export const storeSortOptions = [
   {
     label: "Item count: Low to high",
-    value: "productCount.asc"
+    value: "productCount.asc",
   },
   {
     label: "Item count: High to low",
-    value: "productCount.desc"
+    value: "productCount.desc",
   },
   { label: "Date: Old to new", value: "createdAt.asc" },
   {
     label: "Date: New to old",
-    value: "createdAt.desc"
+    value: "createdAt.desc",
   },
   {
     label: "Alphabetical: A to Z",
-    value: "name.asc"
+    value: "name.asc",
   },
   {
     label: "Alphabetical: Z to A",
-    value: "name.desc"
-  }
+    value: "name.desc",
+  },
 ];
 
 export const storeStatusOptions = [
   { label: "Active", value: "active" },
-  { label: "Inactive", value: "inactive" }
+  { label: "Inactive", value: "inactive" },
 ];

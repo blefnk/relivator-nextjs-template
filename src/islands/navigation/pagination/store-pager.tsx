@@ -6,7 +6,7 @@ import { toast } from "sonner";
 
 import {
   getNextStoreIdAction,
-  getPreviousStoreIdAction
+  getPreviousStoreIdAction,
 } from "~/server/actions/store";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -30,7 +30,7 @@ export function StorePager({ storeId, userId }: StorePagerProps) {
             try {
               const prevStoreId = await getPreviousStoreIdAction({
                 id: storeId,
-                userId
+                userId,
               });
               router.push(`/dashboard/stores/${prevStoreId}`);
             } catch (error) {
@@ -53,7 +53,7 @@ export function StorePager({ storeId, userId }: StorePagerProps) {
             try {
               const nextStoreId = await getNextStoreIdAction({
                 id: storeId,
-                userId
+                userId,
               });
               router.push(`/dashboard/stores/${nextStoreId}`);
             } catch (error) {

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import type { CuratedStore } from "~/types";
+import { type CuratedStore } from "~/types";
 
 import { storeSortOptions, storeStatusOptions } from "~/server/config/stores";
 import { cn } from "~/server/utils";
@@ -17,8 +17,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from "~/islands/primitives/dropdown-menu";
+  DropdownMenuTrigger,
+} from "~/islands/primitives/dropdown";
 
 import { FacetedFilter } from "./faceted-filter";
 
@@ -54,23 +54,23 @@ export function Stores({ stores, pageCount, ...props }: StoresProps) {
 
       return newSearchParams.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   // Store status filter
   const [filterValues, setFilterValues] = React.useState<string[]>(
-    statuses?.split(".") ?? []
+    statuses?.split(".") ?? [],
   );
 
   React.useEffect(() => {
     startTransition(() => {
       router.push(
         `${pathname}?${createQueryString({
-          statuses: filterValues?.length ? filterValues.join(".") : null
+          statuses: filterValues?.length ? filterValues.join(".") : null,
         })}`,
         {
-          scroll: false
-        }
+          scroll: false,
+        },
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,11 +97,11 @@ export function Stores({ stores, pageCount, ...props }: StoresProps) {
                   startTransition(() => {
                     router.push(
                       `${pathname}?${createQueryString({
-                        sort: option.value
+                        sort: option.value,
                       })}`,
                       {
-                        scroll: false
-                      }
+                        scroll: false,
+                      },
                     );
                   });
                 }}

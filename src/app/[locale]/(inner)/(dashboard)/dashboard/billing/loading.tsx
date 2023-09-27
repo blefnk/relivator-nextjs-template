@@ -2,16 +2,16 @@ import { cn } from "~/server/utils";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import {
   Card,
   CardContent,
   CardFooter,
-  CardHeader
+  CardHeader,
 } from "~/islands/primitives/card";
 import { Skeleton } from "~/islands/primitives/skeleton";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export default function BillingLoading() {
   return (
@@ -47,7 +47,7 @@ export default function BillingLoading() {
               key={i}
               className={cn(
                 "flex flex-col",
-                i === 2 && "lg:col-span-2 xl:col-span-1"
+                i === 2 && "lg:col-span-2 xl:col-span-1",
               )}
             >
               <CardHeader>

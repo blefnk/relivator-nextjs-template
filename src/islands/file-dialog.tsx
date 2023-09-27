@@ -1,18 +1,18 @@
 import * as React from "react";
-import type { FileWithPreview } from "~/types";
+import { type FileWithPreview } from "~/types";
 import Cropper, { type ReactCropperElement } from "react-cropper";
 import {
   useDropzone,
   type Accept,
   type FileRejection,
-  type FileWithPath
+  type FileWithPath,
 } from "react-dropzone";
 import type {
   FieldPath,
   FieldValues,
   Path,
   PathValue,
-  UseFormSetValue
+  UseFormSetValue,
 } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -26,14 +26,14 @@ import { Button } from "~/islands/primitives/button";
 import {
   Dialog,
   DialogContent,
-  DialogTrigger
+  DialogTrigger,
 } from "~/islands/primitives/dialog";
 
 // FIXME Your proposed upload exceeds the maximum allowed size, this should trigger toast.error too
 
 interface FileDialogProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends React.HTMLAttributes<HTMLDivElement> {
   name: TName;
   setValue: UseFormSetValue<TFieldValues>;
@@ -50,7 +50,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
   name,
   setValue,
   accept = {
-    "image/*": []
+    "image/*": [],
   },
   maxSize = 1024 * 1024 * 2,
   maxFiles = 1,
@@ -65,7 +65,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
     (acceptedFiles: FileWithPath[], rejectedFiles: FileRejection[]) => {
       acceptedFiles.forEach((file) => {
         const fileWithPreview = Object.assign(file, {
-          preview: URL.createObjectURL(file)
+          preview: URL.createObjectURL(file),
         });
         setFiles((prev) => [...(prev ?? []), fileWithPreview]);
       });
@@ -74,7 +74,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
         rejectedFiles.forEach(({ errors }) => {
           if (errors[0]?.code === "file-too-large") {
             toast.error(
-              `File is too large. Max size is ${formatBytes(maxSize)}`
+              `File is too large. Max size is ${formatBytes(maxSize)}`,
             );
             return;
           }
@@ -83,7 +83,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
       }
     },
 
-    [maxSize, setFiles]
+    [maxSize, setFiles],
   );
 
   // Register files to react-hook-form
@@ -98,7 +98,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
     maxSize,
     maxFiles,
     multiple: maxFiles > 1,
-    disabled
+    disabled,
   });
 
   // Revoke preview url when component unmounts
@@ -129,7 +129,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
             "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
             isDragActive && "border-muted-foreground/50",
             disabled && "pointer-events-none opacity-60",
-            className
+            className,
           )}
           {...props}
         >
@@ -223,16 +223,16 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
       }
       const croppedImage = new File([blob], file.name, {
         type: file.type,
-        lastModified: Date.now()
+        lastModified: Date.now(),
       });
 
       const croppedFileWithPathAndPreview = Object.assign(croppedImage, {
         preview: URL.createObjectURL(croppedImage),
-        path: file.name
+        path: file.name,
       }) satisfies FileWithPreview;
 
       const newFiles = files.map((file, j) =>
-        j === i ? croppedFileWithPathAndPreview : file
+        j === i ? croppedFileWithPathAndPreview : file,
       );
       setFiles(newFiles);
     });

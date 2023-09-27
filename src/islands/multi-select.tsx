@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { Option } from "~/types";
+import { type Option } from "~/types";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
 
@@ -10,7 +10,7 @@ import { Button } from "~/islands/primitives/button";
 import {
   Command,
   CommandGroup,
-  CommandItem
+  CommandItem,
 } from "~/islands/primitives/command";
 
 interface MultiSelectProps {
@@ -26,7 +26,7 @@ export function MultiSelect({
   setSelected,
   onChange,
   placeholder = "Select options",
-  options
+  options,
 }: MultiSelectProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -41,14 +41,14 @@ export function MultiSelect({
     (option: Option) => {
       setSelected((prev) => [...(prev ?? []), option]);
     },
-    [setSelected]
+    [setSelected],
   );
 
   const handleRemove = React.useCallback(
     (option: Option) => {
       setSelected((prev) => prev?.filter((item) => item !== option) ?? []);
     },
-    [setSelected]
+    [setSelected],
   );
 
   const handleKeyDown = React.useCallback(
@@ -64,7 +64,7 @@ export function MultiSelect({
         inputRef.current.blur();
       }
     },
-    [setSelected]
+    [setSelected],
   );
 
   // Memoize filtered options to avoid unnecessary re-renders

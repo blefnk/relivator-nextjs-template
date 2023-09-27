@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import type { StoredFile } from "~/types";
+import { type StoredFile } from "~/types";
 import {
   and,
   asc,
@@ -14,7 +14,7 @@ import {
   lt,
   lte,
   not,
-  sql
+  sql,
 } from "drizzle-orm";
 import { type z } from "zod";
 
@@ -23,8 +23,8 @@ import { products, type Product } from "~/data/db/schema";
 import type {
   getProductSchema,
   getProductsSchema,
-  productSchema
-} from "~/data/valids/product";
+  productSchema,
+} from "~/data/validations/product";
 
 export async function filterProductsAction(query: string) {
   if (query.length === 0) return null;
@@ -33,7 +33,7 @@ export async function filterProductsAction(query: string) {
     .select({
       id: products.id,
       name: products.name,
-      category: products.category
+      category: products.category,
     })
     .from(products)
     .where(like(products.name, `%${query}%`))
@@ -44,21 +44,21 @@ export async function filterProductsAction(query: string) {
     (category) => ({
       category,
       products: filteredProducts.filter(
-        (product) => product.category === category
-      )
-    })
+        (product) => product.category === category,
+      ),
+    }),
   );
 
   return productsByCategory;
 }
 
 export async function getProductsAction(
-  input: z.infer<typeof getProductsSchema>
+  input: z.infer<typeof getProductsSchema>,
 ) {
   const [column, order] =
     (input.sort?.split(".") as [
       keyof Product | undefined,
-      "asc" | "desc" | undefined
+      "asc" | "desc" | undefined,
     ]) ?? [];
   const [minPrice, maxPrice] = input.price_range?.split("-") ?? [];
   const categories =
@@ -82,8 +82,8 @@ export async function getProductsAction(
             : undefined,
           minPrice ? gte(products.price, minPrice) : undefined,
           maxPrice ? lte(products.price, maxPrice) : undefined,
-          storeIds.length ? inArray(products.storeId, storeIds) : undefined
-        )
+          storeIds.length ? inArray(products.storeId, storeIds) : undefined,
+        ),
       )
       .groupBy(products.id)
       .orderBy(
@@ -91,12 +91,12 @@ export async function getProductsAction(
           ? order === "asc"
             ? asc(products[column])
             : desc(products[column])
-          : desc(products.createdAt)
+          : desc(products.createdAt),
       );
 
     const total = await tx
       .select({
-        count: sql<number>`count(*)`
+        count: sql<number>`count(*)`,
       })
       .from(products)
       .where(
@@ -109,19 +109,19 @@ export async function getProductsAction(
             : undefined,
           minPrice ? gte(products.price, minPrice) : undefined,
           maxPrice ? lte(products.price, maxPrice) : undefined,
-          storeIds.length ? inArray(products.storeId, storeIds) : undefined
-        )
+          storeIds.length ? inArray(products.storeId, storeIds) : undefined,
+        ),
       );
 
     return {
       items,
-      total: Number(total[0]?.count) ?? 0
+      total: Number(total[0]?.count) ?? 0,
     };
   });
 
   return {
     items,
-    total
+    total,
   };
 }
 
@@ -129,7 +129,7 @@ export async function checkProductAction(input: { name: string; id?: number }) {
   const productWithSameName = await db.query.products.findFirst({
     where: input.id
       ? and(not(eq(products.id, input.id)), eq(products.name, input.name))
-      : eq(products.name, input.name)
+      : eq(products.name, input.name),
   });
 
   if (productWithSameName) {
@@ -141,13 +141,13 @@ export async function addProductAction(
   input: z.infer<typeof productSchema> & {
     storeId: number;
     images: StoredFile[] | null;
-  }
+  },
 ) {
   const productWithSameName = await db.query.products.findFirst({
     columns: {
-      id: true
+      id: true,
     },
-    where: eq(products.name, input.name)
+    where: eq(products.name, input.name),
   });
 
   if (productWithSameName) {
@@ -157,7 +157,7 @@ export async function addProductAction(
   await db.insert(products).values({
     ...input,
     storeId: input.storeId,
-    images: input.images
+    images: input.images,
   });
 
   revalidatePath(`/dashboard/stores/${input.storeId}/products.`);
@@ -168,10 +168,10 @@ export async function updateProductAction(
     storeId: number;
     id: number;
     images: StoredFile[] | null;
-  }
+  },
 ) {
   const product = await db.query.products.findFirst({
-    where: and(eq(products.id, input.id), eq(products.storeId, input.storeId))
+    where: and(eq(products.id, input.id), eq(products.storeId, input.storeId)),
   });
 
   if (!product) {
@@ -184,13 +184,13 @@ export async function updateProductAction(
 }
 
 export async function deleteProductAction(
-  input: z.infer<typeof getProductSchema>
+  input: z.infer<typeof getProductSchema>,
 ) {
   const product = await db.query.products.findFirst({
     columns: {
-      id: true
+      id: true,
     },
-    where: and(eq(products.id, input.id), eq(products.storeId, input.storeId))
+    where: and(eq(products.id, input.id), eq(products.storeId, input.storeId)),
   });
 
   if (!product) {
@@ -203,14 +203,14 @@ export async function deleteProductAction(
 }
 
 export async function getNextProductIdAction(
-  input: z.infer<typeof getProductSchema>
+  input: z.infer<typeof getProductSchema>,
 ) {
   const product = await db.query.products.findFirst({
     columns: {
-      id: true
+      id: true,
     },
     where: and(eq(products.storeId, input.storeId), gt(products.id, input.id)),
-    orderBy: asc(products.id)
+    orderBy: asc(products.id),
   });
 
   if (!product) {
@@ -221,14 +221,14 @@ export async function getNextProductIdAction(
 }
 
 export async function getPreviousProductIdAction(
-  input: z.infer<typeof getProductSchema>
+  input: z.infer<typeof getProductSchema>,
 ) {
   const product = await db.query.products.findFirst({
     columns: {
-      id: true
+      id: true,
     },
     where: and(eq(products.storeId, input.storeId), lt(products.id, input.id)),
-    orderBy: desc(products.id)
+    orderBy: desc(products.id),
   });
 
   if (!product) {

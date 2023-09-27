@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { CartLineItem } from "~/types";
+import { type CartLineItem } from "~/types";
 
 import { createCheckoutSessionAction } from "~/server/actions/stripe";
 import { getStripe } from "~/server/get-stripe";
@@ -16,13 +16,13 @@ interface CheckoutButtonProps {
 
 export function CheckoutButton({
   storeId,
-  cartLineItems
+  cartLineItems,
 }: CheckoutButtonProps) {
   const [isPending, startTransition] = React.useTransition();
 
   const stripePromise = React.useMemo(
     () => getStripe(cartLineItems[0]?.storeStripeAccountId ?? ""),
-    [cartLineItems]
+    [cartLineItems],
   );
 
   return (
@@ -38,11 +38,11 @@ export function CheckoutButton({
 
             const session = await createCheckoutSessionAction({
               storeId,
-              items: cartLineItems
+              items: cartLineItems,
             });
 
             const { error } = await stripe.redirectToCheckout({
-              sessionId: session.id
+              sessionId: session.id,
             });
             if (error) {
               catchError(error);

@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 
 import "~/styles/mdx.css";
 
@@ -6,45 +6,44 @@ import { type Metadata } from "next";
 import { siteConfig } from "~/app";
 
 import { absoluteUrl } from "~/server/utils";
-import { Mdx } from "~/islands/modules/markdown/mdx-components";
+// import { Mdx } from "~/islands/modules/markdown/mdx-components";
 import {
   PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading
+  // PageHeaderDescription,
+  // PageHeaderHeading,
 } from "~/islands/navigation/page-header";
-import { MdxPager } from "~/islands/navigation/pagination/mdx-pager";
+// import { MdxPager } from "~/islands/navigation/pagination/mdx-pager";
 import { Separator } from "~/islands/primitives/separator";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
-interface PageProps {
-  params: {
-    slug: string[];
-  };
-}
+// interface PageProps {
+//   params: {
+//     slug: string[];
+//   };
+// }
 
 // eslint-disable-next-line @typescript-eslint/require-await
-async function getPageFromParams(params: PageProps["params"]) {
-  const slug = params?.slug?.join("/") ?? "";
-  // const page = allPages.find((page) => page.slugAsParams === slug);
+// async function getPageFromParams(params: PageProps["params"]) {
+//   const slug = params?.slug?.join("/") ?? "";
+//   const page = allPages.find((page) => page.slugAsParams === slug);
 
-  // if (!page) {
-  //   null;
-  // }
+//   if (!page) {
+//     null;
+//   }
 
-  // return page;
+//   return page;
 
-  return null;
-}
+//   return null;
+// }
 
-export async function generateMetadata({
-  params
-}: PageProps): Promise<Metadata> {
-  const page = await getPageFromParams(params);
-
-  if (!page) {
-    return {};
-  }
-
+// export async function generateMetadata({
+//   params,
+// }: PageProps): Promise<Metadata> {
+//   const page = await getPageFromParams(params);
+//   if (!page) {
+//     return {};
+//   }
+export async function generateMetadata(): Promise<Metadata> {
   const url = absoluteUrl("/");
 
   const ogUrl = new URL(`${url}/api/og`);
@@ -64,17 +63,17 @@ export async function generateMetadata({
         {
           url: ogUrl.toString(),
           width: 1200,
-          height: 630
+          height: 630,
           // alt: page.title
-        }
-      ]
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       // title: page.title,
       // description: page.description,
-      images: [ogUrl.toString()]
-    }
+      images: [ogUrl.toString()],
+    },
   };
 }
 
@@ -85,12 +84,12 @@ export async function generateMetadata({
 //   }));
 // }
 
-export default async function PagePage({ params }: PageProps) {
-  const page = await getPageFromParams(params);
+export default async function PagePage(/* { params }: PageProps */) {
+  /* const page = await getPageFromParams(params);
 
   if (!page) {
     notFound();
-  }
+  } */
 
   // Remove the /pages prefix from the slug
   // const formattedPage = {

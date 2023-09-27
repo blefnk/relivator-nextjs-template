@@ -1,48 +1,65 @@
 {
   "compilerOptions": {
+    /**
+     * In this file you can set the options for the TypeScript compiler.
+     * You can hover over on each option to get more information about.
+     * Hint: You can also press Shift+Space to get auto-completion.
+     * Lean more by checking the official TypeScript documentation:
+     * https://typescriptlang.org/docs/handbook/tsconfig-json
+     */
     "lib": ["dom", "dom.iterable", "esnext"],
     "moduleResolution": "bundler",
-    "target": "esnext",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./public/*"]
+    },
     "module": "esnext",
+    "target": "esnext",
     "jsx": "preserve",
-    "allowJs": true,
+    "baseUrl": ".",
+    "plugins": [
+      {
+        /**
+         * Next.js has built-in support for TypeScript, using plugin below.
+         * But while you use `pnpm build`, it stops on the first type errors.
+         * So you can use `pnpm bv` to check all type warns and errors at once.
+         */
+        "name": "next"
+      }
+    ],
     "strict": true,
     "noEmit": true,
+    "allowJs": true,
+    "checkJs": true,
+    "sourceMap": true,
     "incremental": true,
     "skipLibCheck": true,
     "removeComments": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
-    "strictPropertyInitialization": true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports": true,
-    "noUncheckedIndexedAccess": true,
     "downlevelIteration": true,
+    "noUncheckedIndexedAccess": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    /**
+     * Options below can be dangerously set to false,
+     * while you're incrementally move from JS to TS.
+     */
+    "strictPropertyInitialization": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "alwaysStrict": true,
-    "sourceMap": true,
-    "checkJs": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./public/*"]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+    "alwaysStrict": true
   },
   "include": [
-    ".next/types/**/*.ts",
-    "next-env.d.ts",
-    "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "**/*.cjs",
-    "**/*.mjs"
+    "**/*.mjs",
+    "**/*.d.ts",
+    "**/*.test.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

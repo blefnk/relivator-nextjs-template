@@ -1,36 +1,37 @@
-import type { Metadata } from "next";
+import { type Metadata } from "next";
 import { redirect } from "next/navigation";
-import { currentUser } from "@clerk/nextjs";
+import { getServerSession } from "next-auth";
 
-import { env } from "~/data/env";
+import { authOptions } from "~/server/auth";
+// import { env } from "~/data/env/env.mjs";
 import { fullURL } from "~/data/meta/builder";
+import { findUserById } from "~/data/routers/handlers/users";
 import { AddStoreForm } from "~/forms/add-store-form";
 import {
   PageHeader,
   PageHeaderDescription,
-  PageHeaderHeading
+  PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from "~/islands/primitives/card";
-import { Shell } from "~/islands/wrappers/shell";
+import { Shell } from "~/islands/wrappers/shell-variants";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "New Store",
-  description: "Add a new store"
+  description: "Add a new store",
 };
 
 export default async function NewStorePage() {
-  const user = await currentUser();
+  const session = await getServerSession(authOptions());
+  if (!session?.userId) redirect("/sign-in");
 
-  if (!user) {
-    redirect("/sign-in");
-  }
+  const user = await findUserById(session.userId);
 
   return (
     <Shell variant="sidebar">
@@ -53,7 +54,7 @@ export default async function NewStorePage() {
           <CardDescription>Add a new store to your account</CardDescription>
         </CardHeader>
         <CardContent>
-          <AddStoreForm userId={user.id} />
+          <AddStoreForm userId={session.userId} />
         </CardContent>
       </Card>
     </Shell>

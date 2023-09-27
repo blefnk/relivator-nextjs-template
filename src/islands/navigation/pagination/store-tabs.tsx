@@ -16,20 +16,20 @@ export function StoreTabs({ className, storeId, ...props }: StoreTabsProps) {
   const tabs = [
     {
       title: "Store",
-      href: `/dashboard/stores/${storeId}`
+      href: `/dashboard/stores/${storeId}`,
     },
     {
       title: "Products",
-      href: `/dashboard/stores/${storeId}/products`
+      href: `/dashboard/stores/${storeId}/products`,
     },
     {
       title: "Orders",
-      href: `/dashboard/stores/${storeId}/orders`
+      href: `/dashboard/stores/${storeId}/orders`,
     },
     {
       title: "Analytics",
-      href: `/dashboard/stores/${storeId}/analytics`
-    }
+      href: `/dashboard/stores/${storeId}/analytics`,
+    },
   ];
 
   return (
@@ -45,7 +45,8 @@ export function StoreTabs({ className, storeId, ...props }: StoreTabsProps) {
             value={tab.href}
             className={cn(
               "rounded-sm",
-              pathname === tab.href && "bg-background text-foreground shadow-sm"
+              pathname === tab.href &&
+                "bg-background text-foreground shadow-sm",
             )}
             onClick={() => router.push(tab.href)}
           >
