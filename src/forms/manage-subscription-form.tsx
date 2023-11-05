@@ -1,22 +1,23 @@
 "use client";
 
 import * as React from "react";
-import { type z } from "zod";
+import { catchError } from "~/utils";
+import type { z } from "zod";
 
-import { manageSubscriptionAction } from "~/server/actions/stripe";
-import { catchError } from "~/server/utils";
-import { type manageSubscriptionSchema } from "~/data/validations/stripe";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
+import { manageSubscriptionAction } from "~/utils/stripe/actions";
+import type { manageSubscriptionSchema } from "~/utils/stripe/zod";
 
 type ManageSubscriptionFormProps = z.infer<typeof manageSubscriptionSchema>;
 
-export function ManageSubscriptionForm({
+export function ButtonManageSubscription({
+  mapPlanId,
   isCurrentPlan,
   isSubscribed,
   stripeCustomerId,
-  stripeSubscriptionId,
   stripePriceId,
+  stripeSubscriptionId,
 }: ManageSubscriptionFormProps) {
   const [isPending, startTransition] = React.useTransition();
 
@@ -42,16 +43,30 @@ export function ManageSubscriptionForm({
   }
 
   return (
-    <form className="w-full" onSubmit={(e) => onSubmit(e)}>
-      <Button className="w-full" disabled={isPending}>
-        {isPending && (
-          <Icons.spinner
-            className="mr-2 h-4 w-4 animate-spin"
-            aria-hidden="true"
-          />
-        )}
-        {isCurrentPlan ? "Manage" : "Subscribe"}
-      </Button>
-    </form>
+    <>
+      <form className="w-full" onSubmit={(e) => onSubmit(e)}>
+        <Button
+          disabled={isPending || (mapPlanId === "starter" && isCurrentPlan)}
+          className={`w-full py-2 px-4 rounded ${
+            isPending ? "cursor-not-allowed opacity-50" : ""
+          } ${
+            isCurrentPlan &&
+            "bg-transparent border bord-slate-100 dark:border-zinc-600 text-zinc-900 dark:text-zinc-300 hover:bg-white/80 hover:text-zinc-900 dark:hover:bg-white/80 dark:hover:text-zinc-900"
+          }`}
+        >
+          {isPending && (
+            <Icons.spinner
+              className="mr-2 h-4 w-4 animate-spin"
+              aria-hidden="true"
+            />
+          )}
+          {isCurrentPlan
+            ? mapPlanId === "starter"
+              ? "Current"
+              : "Manage"
+            : "Subscribe"}
+        </Button>
+      </form>
+    </>
   );
 }

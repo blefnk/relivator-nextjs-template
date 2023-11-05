@@ -1,12 +1,12 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
+import { env } from "~/env.mjs";
+import { Link } from "~/navigation";
+import { formatPrice, toTitleCase } from "~/utils";
 import { and, desc, eq, not } from "drizzle-orm";
-import Link from "next-intl/link";
 
-import { formatPrice, toTitleCase } from "~/server/utils";
-import { db } from "~/data/db/client";
+import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
-import { fullURL } from "~/data/meta/builder";
 import { AddToCartForm } from "~/forms/add-to-cart-form";
 import { ProductCard } from "~/islands/modules/cards/product-card";
 import { Breadcrumbs } from "~/islands/navigation/pagination/breadcrumbs";
@@ -20,15 +20,33 @@ import { Separator } from "~/islands/primitives/separator";
 import { ProductImageCarousel } from "~/islands/product-carousel";
 import { Shell } from "~/islands/wrappers/shell-variants";
 
-export const metadata: Metadata = {
-  metadataBase: fullURL(),
-  title: "Product",
-  description: "Product description",
-};
-
 interface ProductPageProps {
   params: {
     productId: string;
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const productId = Number(params.productId);
+
+  const product = await db.query.products.findFirst({
+    columns: {
+      name: true,
+      description: true,
+    },
+    where: eq(products.id, productId),
+  });
+
+  if (!product) {
+    return {};
+  }
+
+  return {
+    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+    title: toTitleCase(product.name),
+    description: product.description,
   };
 }
 
@@ -36,6 +54,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const productId = Number(params.productId);
 
   const product = await db.query.products.findFirst({
+    columns: {
+      id: true,
+      name: true,
+      description: true,
+      price: true,
+      images: true,
+      category: true,
+      storeId: true,
+    },
     where: eq(products.id, productId),
   });
 
@@ -51,7 +78,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     where: eq(stores.id, product.storeId),
   });
 
-  const productsFromStore = store
+  const otherProducts = store
     ? await db
         .select({
           id: products.id,
@@ -128,21 +155,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </Accordion>
         </div>
       </div>
-      {store && productsFromStore.length > 0 ? (
+      {store && otherProducts.length > 0 ? (
         <div className="overflow-hidden md:pt-6">
-          <h2 className="line-clamp-1 border-b pb-3 flex-1 text-2xl font-heading">
-            Other products published by{" "}
-            <Link
-              href={`/products?store_ids=${store.id}`}
-              className="font-bold hover:underline"
-            >
-              {store.name}
-            </Link>{" "}
-            store:
+          <h2 className="line-clamp-1 flex-1 text-2xl font-bold">
+            More products from {store.name}
           </h2>
           <div className="overflow-x-auto pb-2 pt-6">
             <div className="flex w-fit gap-4">
-              {productsFromStore.map((product) => (
+              {otherProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   product={product}

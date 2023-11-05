@@ -1,6 +1,6 @@
 import { HTMLAttributes, type FC } from "react";
+import Link from "next/link";
 import clsx from "clsx";
-import Link from "next-intl/link";
 
 import { LanguageSwitcher } from "./language-switcher";
 import { UserLogin } from "./user-login";
@@ -18,7 +18,7 @@ export const Header: FC<Omit<HTMLAttributes<HTMLElement>, "children">> = ({
       {...props}
     >
       <LanguageSwitcher />
-      <Link href="/sign-in">Sign in</Link>
+      <Link href="/auth">Sign in</Link>
       <UserLogin />
     </header>
   );

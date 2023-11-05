@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import { siteConfig } from "~/app";
+import { Link } from "~/navigation";
 import { type MainMenuItem } from "~/types";
+import { cn } from "~/utils";
 import { ActivitySquare } from "lucide-react";
-import Link from "next-intl/link";
 
-import { cn } from "~/server/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,

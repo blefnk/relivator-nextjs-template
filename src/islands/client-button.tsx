@@ -1,6 +1,7 @@
 "use client";
 
-import { cn } from "~/server/utils";
+import { cn } from "~/utils";
+
 import { Button, type ButtonProps } from "~/islands/primitives/button";
 
 interface ClientButtonProps extends ButtonProps {}

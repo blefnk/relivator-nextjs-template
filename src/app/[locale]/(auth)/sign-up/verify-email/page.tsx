@@ -1,10 +1,8 @@
 import { type Metadata } from "next";
 
 import { fullURL } from "~/data/meta/builder";
-// import { VerifyEmailForm } from "~/forms/verify-email-form";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -27,9 +25,6 @@ export default function VerifyEmailPage() {
             Verify your email address to complete your account creation
           </CardDescription>
         </CardHeader>
-        <CardContent className="grid gap-4">
-          {/* <VerifyEmailForm /> */}
-        </CardContent>
       </Card>
     </Shell>
   );

@@ -7,9 +7,9 @@ import {
   CheckIcon,
   PlusCircledIcon,
 } from "@radix-ui/react-icons";
+import { cn } from "~/utils";
 
 import { getRandomPatternStyle } from "~/server/pattern";
-import { cn } from "~/server/utils";
 import { type Store } from "~/data/db/schema";
 import { Button } from "~/islands/primitives/button";
 import {

@@ -1,17 +1,16 @@
 import * as React from "react";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
-import Link from "next-intl/link";
+import { Link } from "~/navigation";
+import { cn, truncate } from "~/utils";
 
-import { cn, truncate } from "~/server/utils";
-
-interface BreadcrumbsProps extends React.ComponentPropsWithoutRef<"nav"> {
+type BreadcrumbsProps = React.ComponentPropsWithoutRef<"nav"> & {
   segments: {
     title: string;
     href: string;
   }[];
   separator?: React.ComponentType<{ className?: string }>;
   truncationLength?: number;
-}
+};
 
 export function Breadcrumbs({
   segments,

@@ -16,9 +16,9 @@ import {
   not,
   sql,
 } from "drizzle-orm";
-import { type z } from "zod";
+import type { z } from "zod";
 
-import { db } from "~/data/db/client";
+import { db } from "~/data/db";
 import { products, type Product } from "~/data/db/schema";
 import type {
   getProductSchema,

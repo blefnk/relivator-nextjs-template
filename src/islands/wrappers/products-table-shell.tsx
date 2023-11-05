@@ -3,11 +3,11 @@
 import * as React from "react";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
-import Link from "next-intl/link";
-import { toast } from "sonner";
+import { Link } from "~/navigation";
+import { catchError, formatDate, formatPrice } from "~/utils";
+import { toast } from "react-hot-toast";
 
 import { deleteProductAction } from "~/server/actions/product";
-import { catchError, formatDate, formatPrice } from "~/server/utils";
 import { products, type Product } from "~/data/db/schema";
 import { DataTable } from "~/islands/modules/data-table/data-table";
 import { DataTableColumnHeader } from "~/islands/modules/data-table/data-table-column-header";
@@ -23,11 +23,11 @@ import {
   DropdownMenuTrigger,
 } from "~/islands/primitives/dropdown";
 
-interface ProductsTableShellProps {
+type ProductsTableShellProps = {
   data: Product[];
   pageCount: number;
   storeId: number;
-}
+};
 
 export function ProductsTableShell({
   data,

@@ -1,11 +1,11 @@
 import { type Metadata } from "next";
 import { cookies } from "next/headers";
-import Link from "next-intl/link";
+import { Link } from "~/navigation";
+import { cn } from "~/utils";
 
 import { getCartItemsAction } from "~/server/actions/cart";
 import { getProductsAction } from "~/server/actions/product";
 import { productCategories } from "~/server/config/products";
-import { cn } from "~/server/utils";
 import { fullURL } from "~/data/meta/builder";
 import { Icons } from "~/islands/icons";
 import {

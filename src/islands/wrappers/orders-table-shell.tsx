@@ -3,17 +3,17 @@
 import * as React from "react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { type CheckoutItem } from "~/types";
+import { cn, formatDate, formatPrice } from "~/utils";
 
-import { cn, formatDate, formatPrice } from "~/server/utils";
 import { type Order } from "~/data/db/schema";
 import { DataTable } from "~/islands/modules/data-table/data-table";
 import { DataTableColumnHeader } from "~/islands/modules/data-table/data-table-column-header";
 import { Badge } from "~/islands/primitives/badge";
 
-interface OrdersTableShellProps {
+type OrdersTableShellProps = {
   data: Order[];
   pageCount: number;
-}
+};
 
 export function OrdersTableShell({ data, pageCount }: OrdersTableShellProps) {
   // Memoize the columns so they don't re-render on every render

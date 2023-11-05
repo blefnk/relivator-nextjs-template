@@ -1,14 +1,19 @@
-import { ImageResponse } from "next/server";
-
-// Route segment config
-export const runtime = "edge";
-
 // Image metadata
 export const size = {
   width: 32,
   height: 32,
 };
 export const contentType = "image/png";
+
+type ImageOptions = {
+  width: number;
+  height: number;
+};
+
+export declare function ImageResponse(
+  element: JSX.Element,
+  options: ImageOptions,
+): void;
 
 // Image generation
 export default function Icon() {

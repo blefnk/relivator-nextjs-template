@@ -32,7 +32,7 @@ import {
   TableRow,
 } from "~/islands/primitives/table";
 
-interface DataTableProps<TData, TValue> {
+type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   pageCount: number;
@@ -40,7 +40,7 @@ interface DataTableProps<TData, TValue> {
   searchableColumns?: DataTableSearchableColumn<TData>[];
   newRowLink?: string;
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>;
-}
+};
 
 export function DataTable<TData, TValue>({
   columns,

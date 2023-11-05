@@ -1,6 +1,7 @@
+import { toTitleCase, unslugify } from "~/utils";
+
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
-import { toTitleCase, unslugify } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import {
   PageHeader,
@@ -10,10 +11,7 @@ import {
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/wrappers/shell-variants";
 
-// Running out of edge function execution units on vercel free plan
-// export const runtime = "edge"
-
-interface SubcategoryPageProps {
+type SubcategoryPageProps = {
   params: {
     category: Product["category"];
     subcategory: string;
@@ -21,7 +19,7 @@ interface SubcategoryPageProps {
   searchParams: {
     [key: string]: string | string[] | undefined;
   };
-}
+};
 
 export function generateMetadata({ params }: SubcategoryPageProps) {
   const subcategory = unslugify(params.subcategory);

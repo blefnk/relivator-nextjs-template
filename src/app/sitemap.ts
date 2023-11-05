@@ -1,9 +1,9 @@
 import { type MetadataRoute } from "next";
+import { absoluteUrl } from "~/utils";
 
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
 import { productCategories } from "~/server/config/products";
-import { absoluteUrl } from "~/server/utils";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const storesTransaction = await getStoresAction({
@@ -42,11 +42,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     )
     .flat();
 
-  // const posts = allPosts.map((post) => ({
-  //   url: absoluteUrl(`/blog/${post.slug}`),
-  //   lastModified: new Date().toISOString()
-  // }));
-
   const routes = [
     "",
     "/blog",
@@ -63,14 +58,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date().toISOString(),
   }));
 
-  // todo: find the proper way to handle locales
-
-  return [
-    ...routes,
-    ...stores,
-    ...products,
-    ...categories,
-    ...subcategories,
-    // ...posts
-  ];
+  return [...routes, ...stores, ...products, ...categories, ...subcategories];
 }

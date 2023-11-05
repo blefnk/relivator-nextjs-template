@@ -2,17 +2,17 @@
 
 import * as React from "react";
 import { type CartLineItem } from "~/types";
+import { catchError } from "~/utils";
 
-import { createCheckoutSessionAction } from "~/server/actions/stripe";
-import { getStripe } from "~/server/get-stripe";
-import { catchError } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
+import { createCheckoutSessionAction } from "~/utils/stripe/actions";
+import { getStripe } from "~/utils/stripe/getting";
 
-interface CheckoutButtonProps {
+type CheckoutButtonProps = {
   storeId: number;
   cartLineItems: CartLineItem[];
-}
+};
 
 export function CheckoutButton({
   storeId,

@@ -3,8 +3,8 @@
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { type z } from "zod";
+import { toast } from "react-hot-toast";
+import type { z } from "zod";
 
 import { emailSchema } from "~/data/validations/email";
 import { Icons } from "~/islands/icons";
@@ -91,6 +91,7 @@ export function SubscribeToNewsletterForm() {
               <FormMessage />
               <Button
                 className="absolute right-[5.2px] top-[5.5px] z-20 h-7 w-7"
+                variant="secondary"
                 size="icon"
                 disabled={isPending}
               >

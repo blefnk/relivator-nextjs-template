@@ -1,4 +1,4 @@
-import { env } from "~/data/env/env.mjs";
+import { env } from "~/env.mjs";
 
 /**
  * Helper function to determine the hostname for the given environment,

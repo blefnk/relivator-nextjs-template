@@ -1,7 +1,6 @@
 import { type Metadata } from "next";
 
 import { getStoresAction } from "~/server/actions/store";
-// import { env } from "~/data/env/env.mjs";
 import { fullURL } from "~/data/meta/builder";
 import {
   PageHeader,

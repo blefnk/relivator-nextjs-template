@@ -3,12 +3,12 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { catchError } from "~/utils";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { type z } from "zod";
+import { toast } from "react-hot-toast";
+import type { z } from "zod";
 
 import { addStoreAction } from "~/server/actions/store";
-import { catchError } from "~/server/utils";
 import { storeSchema } from "~/data/validations/store";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -48,7 +48,7 @@ export function AddStoreForm({ userId }: AddStoreFormProps) {
         await addStoreAction({ ...data, userId });
 
         form.reset();
-        toast.success("Store added successfully.");
+        toast.success(`Store '${data.name}' created successfully.`);
         router.push("/dashboard/stores");
         router.refresh(); // Workaround for the inconsistency of cache revalidation
       } catch (err) {

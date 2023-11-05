@@ -3,9 +3,9 @@
 import * as React from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { type StripeElementsOptions } from "@stripe/stripe-js";
+import { cn } from "~/utils";
 
-import { getStripe } from "~/server/get-stripe";
-import { cn } from "~/server/utils";
+import { getStripe } from "~/utils/stripe/getting";
 
 interface CheckoutShellProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

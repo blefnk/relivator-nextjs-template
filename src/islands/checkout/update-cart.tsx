@@ -2,13 +2,13 @@
 
 import * as React from "react";
 import { type CartLineItem } from "~/types";
+import { catchError } from "~/utils";
+import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
 
 import {
   deleteCartItemAction,
   updateCartItemAction,
 } from "~/server/actions/cart";
-import { catchError } from "~/server/utils";
-import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import { Input } from "~/islands/primitives/input";
 
@@ -42,7 +42,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           }}
           disabled={isPending}
         >
-          <Icons.remove className="h-3 w-3" aria-hidden="true" />
+          <MinusIcon className="h-3 w-3" aria-hidden="true" />
           <span className="sr-only">Remove one item</span>
         </Button>
         <Input
@@ -64,6 +64,10 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
             });
           }}
           disabled={isPending}
+          style={{
+            WebkitAppearance: "none",
+            MozAppearance: "textfield",
+          }}
         />
         <Button
           id={`${id}-increment`}
@@ -84,7 +88,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           }}
           disabled={isPending}
         >
-          <Icons.add className="h-3 w-3" aria-hidden="true" />
+          <PlusIcon className="h-3 w-3" aria-hidden="true" />
           <span className="sr-only">Add one item</span>
         </Button>
       </div>
@@ -106,7 +110,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
         }}
         disabled={isPending}
       >
-        <Icons.trash className="h-3 w-3" aria-hidden="true" />
+        <TrashIcon className="h-3 w-3" aria-hidden="true" />
         <span className="sr-only">Delete item</span>
       </Button>
     </div>

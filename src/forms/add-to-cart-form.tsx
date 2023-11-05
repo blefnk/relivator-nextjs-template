@@ -2,12 +2,13 @@
 
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
+import { catchError } from "~/utils";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { type z } from "zod";
+import toast from "react-hot-toast";
+import type { z } from "zod";
 
 import { addToCartAction } from "~/server/actions/cart";
-import { catchError } from "~/server/utils";
 import { updateCartItemSchema } from "~/data/validations/cart";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -48,6 +49,9 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
         });
         toast.success("Added to cart.");
       } catch (err) {
+        toast.error(
+          "Something wrong with adding to cart. Please try again later.",
+        );
         catchError(err);
       }
     });
@@ -74,7 +78,7 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
             }
             disabled={isPending}
           >
-            <Icons.remove className="h-3 w-3" aria-hidden="true" />
+            <MinusIcon className="h-3 w-3" aria-hidden="true" />
             <span className="sr-only">Remove one item</span>
           </Button>
           <FormField
@@ -113,7 +117,7 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
             }
             disabled={isPending}
           >
-            <Icons.add className="h-3 w-3" aria-hidden="true" />
+            <PlusIcon className="h-3 w-3" aria-hidden="true" />
             <span className="sr-only">Add one item</span>
           </Button>
         </div>

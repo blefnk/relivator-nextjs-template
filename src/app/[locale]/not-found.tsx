@@ -1,29 +1,31 @@
-import Link from "next/link";
+"use client";
+
+import { Link } from "~/navigation";
 import { ChevronLeft } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Balancer } from "react-wrap-balancer";
 
-import { typography } from "~/server/text";
 import { Button } from "~/islands/primitives/button";
+import PageLayout from "~/islands/wrappers/page-layout";
 
-export default function NotFound() {
+/** @see https://nextjs.org/docs/app/api-reference/file-conventions/not-found */
+
+export default function NotFoundPage() {
+  const t = useTranslations("pages");
   return (
-    <main className="bg-background text-foreground antialiased">
-      <div className="duration-really-slow container grid min-h-screen place-content-center text-center animate-in fade-in">
-        <h1 className={typography.h1}>Sadly! Page not found! 🫠</h1>
-        <Balancer
-          as="p"
-          className="mx-auto mt-4 !block leading-normal text-muted-foreground sm:text-lg sm:leading-7"
-        >
-          The resource you're seeking might have been relocated or is not a part
-          of our website. Double-check the URL or explore other pages.
-        </Balancer>
-        <Button className="mx-auto mt-6 w-fit gap-1" asChild>
-          <Link href="/">
-            <ChevronLeft size={16} />
-            <span>Return to Home Page</span>
-          </Link>
-        </Button>
-      </div>
-    </main>
+    <PageLayout title={t("not-found.title")}>
+      <Balancer
+        as="p"
+        className="mx-auto mt-4 !block leading-normal text-muted-foreground sm:text-lg sm:leading-7"
+      >
+        {t("not-found.description")}
+      </Balancer>
+      <Button className="mx-auto mt-6 w-fit gap-1" asChild>
+        <Link href="/">
+          <ChevronLeft size={16} />
+          <span>{t("not-found.go-home")}</span>
+        </Link>
+      </Button>
+    </PageLayout>
   );
 }

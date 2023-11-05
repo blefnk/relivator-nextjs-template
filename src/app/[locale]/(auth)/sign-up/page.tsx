@@ -1,29 +1,42 @@
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
+import { currentUser } from "@clerk/nextjs";
+import { env } from "~/env.mjs";
+import { redirect } from "~/navigation";
 import { getProviders } from "next-auth/react";
 
-import { authOptions } from "~/server/auth";
 import { seo } from "~/data/meta";
-import AuthPageContent from "~/islands/content/auth-pages-content";
+import { fullURL } from "~/data/meta/builder";
+import AuthPagesContent from "~/islands/content/auth-pages-content";
+import { getCurrentUser } from "~/utils/users";
 
 export const metadata = seo({
+  metadataBase: fullURL(),
   title: "Sign Up",
   description: "Register to have full website access",
 });
 
-export default async function ProfilesPage() {
-  const session = await getServerSession(authOptions());
-  const providers = await getProviders();
+export default async function SignUpPage() {
+  // const user = await getCurrentUser();
+  let user: any;
+  let NextAuthProviders: any;
 
-  if (session?.userId) return redirect("/dashboard/account");
-  if (!providers) return null;
+  if (env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk") {
+    user = await currentUser();
+  } else if (env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs") {
+    user = await getCurrentUser();
+    NextAuthProviders = await getProviders();
+    if (user?.id) return redirect("/dashboard/stores");
+    if (!NextAuthProviders) return null;
+  } else {
+    throw new Error(
+      "❌ [SiteHeader] `env.NEXT_PUBLIC_AUTH_PROVIDER` is not defined",
+    );
+  }
 
   return (
-    <AuthPageContent
-      accounts={[]}
+    <AuthPagesContent
+      user={user}
       isRegPage={true}
-      providers={providers}
-      user={null}
+      providers={NextAuthProviders}
     />
   );
 }

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { toast } from "react-hot-toast";
 
 import {
   getNextProductIdAction,
@@ -12,9 +12,9 @@ import { type Product } from "~/data/db/schema";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 
-interface ProductPagerProps {
+type ProductPagerProps = {
   product: Product;
-}
+};
 
 export function ProductPager({ product }: ProductPagerProps) {
   const router = useRouter();

@@ -1,11 +1,10 @@
-import Link from "next-intl/link";
+import { Link } from "~/navigation";
+import { cn } from "~/utils";
 
-import { cn } from "~/server/utils";
-
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   href?: string;
   disabled?: boolean;
-}
+};
 
 export function MdxCard({
   href,

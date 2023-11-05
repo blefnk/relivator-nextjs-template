@@ -1,6 +1,7 @@
+import { toTitleCase } from "~/utils";
+
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
-import { toTitleCase } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import {
   PageHeader,
@@ -10,14 +11,14 @@ import {
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/wrappers/shell-variants";
 
-interface CategoryPageProps {
+type CategoryPageProps = {
   params: {
     category: Product["category"];
   };
   searchParams: {
     [key: string]: string | string[] | undefined;
   };
-}
+};
 
 export function generateMetadata({ params }: CategoryPageProps) {
   return {

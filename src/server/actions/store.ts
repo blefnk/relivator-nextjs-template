@@ -1,11 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { slugify } from "~/utils";
 import { and, asc, desc, eq, gt, isNull, lt, not, sql } from "drizzle-orm";
-import { type z } from "zod";
+import type { z } from "zod";
 
-import { slugify } from "~/server/utils";
-import { db } from "~/data/db/client";
+import { db } from "~/data/db";
 import { products, stores, type Store } from "~/data/db/schema";
 import type {
   getStoreSchema,

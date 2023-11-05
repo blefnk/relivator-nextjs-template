@@ -1,0 +1,662 @@
+{
+  "DataTable": {
+    "block": "अवरोधित करें",
+    "columns": "स्तंभ",
+    "delete": "हटाएं",
+    "email": "ईमेल",
+    "filter-emails-placeholder": "ईमेल को फ़िल्टर करें",
+    "id": "आईडी",
+    "isadmin": "व्यवस्थापक है",
+    "lastlogintime": "अंतिम लॉगिन समय",
+    "make-admin": "व्यवस्थापक बनाएं",
+    "make-non-admin": "गैर-व्यवस्थापक बनाएं",
+    "name": "नाम",
+    "next": "अगला",
+    "no-results": "कोई परिणाम नहीं",
+    "of": "का",
+    "previous": "पिछला",
+    "registrationtime": "पंजीकरण समय",
+    "rows-selected": "पंक्ति(ओं) का चयन किया गया",
+    "success-description": "सफलता",
+    "success-title": "सफलतापूर्वक",
+    "unblock": "अनवरोधित करें",
+    "view-profile": "प्रोफ़ाइल देखें"
+  },
+  "LanguageSwitch": {
+    "choose-language": "भाषा चुनें"
+  },
+  "LocaleSwitcher": {
+    "label": "भाषा बदलें",
+    "selectLocale": "भाषा"
+  },
+  "LoginForm": {
+    "description": "अपने ईमेल पते और पासवर्ड का उपयोग करके अपने खाते में साइन इन करें।",
+    "email": "ईमेल",
+    "email-placeholder": "अपना ईमेल पता दर्ज करें",
+    "error-heading": "साइन इन करने में असमर्थ।",
+    "errors": {
+      "Callback": "कृपया एक अलग खाता उपयोग करके प्रयास करें।",
+      "CredentialsSignin": "साइन इन विफल। सुनिश्चित करें कि आपने सही विवरण प्रदान किए हैं।",
+      "Email or password is incorrect": "ईमेल या पासवर्ड गलत है।",
+      "EmailCreateAccount": "कृपया एक अलग खाता उपयोग करके प्रयास करें।",
+      "EmailSignin": "अपना ईमेल पता जांचें।",
+      "Invalid credentials": "अमान्य प्रमाणीकरण।",
+      "OAuthAccountNotLinked": "अपनी पहचान की पुष्टि करने के लिए, मौलिक रूप से आपके द्वारा उपयुक्त वही खाता उपयोग करके साइन इन करें।",
+      "OAuthCallback": "कृपया एक अलग खाता उपयोग करके प्रयास करें।",
+      "OAuthCreateAccount": "कृपया एक अलग खाता उपयोग करके प्रयास करें।",
+      "OAuthSignin": "कृपया एक अलग खाता उपयोग करके प्रयास करें।",
+      "Signin": "कृपया एक अलग खाता उपयोग करके प्रयास करें।",
+      "default": "साइन इन करने में असमर्थ।"
+    },
+    "form": {
+      "description": "अपने ईमेल पते और पासवर्ड का उपयोग करके अपने खाते में साइन इन करें।",
+      "email": "ईमेल",
+      "email-placeholder": "अपना ईमेल पता दर्ज करें",
+      "error-heading": "साइन इन करने में असमर्थ।",
+      "no-account": "क्या आपका खाता नहीं है?",
+      "other-options": "इसका उपयोग करके साइन इन करें:",
+      "password": "पासवर्ड",
+      "password-placeholder": "अपना पासवर्ड दर्ज करें",
+      "sign-out": "साइन आउट",
+      "signup": "यहां साइन अप करें।",
+      "submit": "साइन इन करें",
+      "title": "साइन इन करें",
+      "wait": "कृपया प्रतीक्षा करें..."
+    },
+    "no-account": "क्या आपका खाता नहीं है?",
+    "other-options": "इसका उपयोग करके साइन इन करें:",
+    "password": "पासवर्ड",
+    "password-placeholder": "अपना पासवर्ड दर्ज करें",
+    "reset-password": "पासवर्ड रीसेट करें",
+    "signin": "साइन इन करें",
+    "signup": "यहाँ साइन अप करें।",
+    "submit": "साइन इन करें",
+    "success-description": "सफलता।",
+    "success-title": "हो गया!",
+    "title": "साइन इन करें",
+    "wait": "कृपया प्रतीक्षा करें..."
+  },
+  "MainError": {
+    "Could not fetch user.": "उपयोगकर्ता को प्राप्त नहीं कर सकते थे।",
+    "Not authenticated.": "प्रमाणित नहीं है।",
+    "User not found.": "उपयोगकर्ता नहीं मिला।",
+    "error": "त्रुटि"
+  },
+  "Navbar": {
+    "home": "होम",
+    "sign-out": "लॉग आउट",
+    "signin": "साइन इन करें"
+  },
+  "ProfileButton": {
+    "admin": "व्यवस्थापक पैनल",
+    "logout": "लॉग आउट",
+    "my-account": "मेरा खाता",
+    "new-review": "नया समीक्षा",
+    "profile": "प्रोफ़ाइल",
+    "settings": "सेटिंग्स"
+  },
+  "ProfileSettingsForm": {
+    "description": "अपनी प्रोफ़ाइल सेटिंग्स अपडेट करें।",
+    "errors": {
+      "update-error": "उपयोगकर्ता को अपडेट करने में असमर्थ।"
+    },
+    "name": "नाम",
+    "name-min": "नाम कम से कम 2 अक्षर का होना चाहिए।",
+    "name-placeholder": "अपना नाम दर्ज करें",
+    "submit": "उपयोगकर्ता अपडेट करें",
+    "title": "प्रोफ़ाइल सेटिंग्स",
+    "update-success": "उपयोगकर्ता सफलतापूर्वक अपडेट हुआ।"
+  },
+  "RegisterForm": {
+    "description": "अपने ईमेल पते और पासवर्ड का उपयोग करके एक नया खाता बनाएं।",
+    "email": "ईमेल",
+    "email-placeholder": "अपना ईमेल पता दर्ज करें",
+    "error-heading": "साइन अप करने में असमर्थ।",
+    "errors": {
+      "Not authenticated.": "प्रमाणित नहीं है।",
+      "Please fill all fields.": "कृपया सभी फ़ील्ड भरें।",
+      "User with this email already exists.": "इस ईमेल वाला उपयोगकर्ता पहले ही मौजूद है।"
+    },
+    "form": {
+      "email-min": "उपयोगकर्ता नाम कम से कम 2 अक्षर का होना चाहिए।",
+      "invalid-email": "अमान्य ईमेल पता।",
+      "name-min": "नाम कम से कम 2 अक्षर का होना चाहिए।",
+      "password-min": "पासवर्ड कम से कम 6 अक्षर का होना चाहिए।"
+    },
+    "have-account": "पहले से ही एक खाता है?",
+    "name": "नाम",
+    "name-placeholder": "अपना नाम दर्ज करें",
+    "other-options": "या साइन अप करें इसके साथ:",
+    "password": "पासवर्ड",
+    "password-placeholder": "अपना पासवर्ड दर्ज करें",
+    "signin": "यहां साइन इन करें।",
+    "submit": "साइन अप करें",
+    "success-description": "अब आप अपने खाते में साइन इन कर सकते हैं।",
+    "success-title": "पंजीकरण सफल था!",
+    "title": "साइन अप करें",
+    "wait": "कृपया प्रतीक्षा करें..."
+  },
+  "ReviewNewForm": {
+    "description": "एक नया समीक्षा बनाएं।",
+    "errors": {
+      "create-error": "समीक्षा बनाने में असमर्थ।"
+    },
+    "grade": "ग्रेड",
+    "grade-placeholder": "ग्रेड दर्ज करें",
+    "item": "वस्तु",
+    "item-placeholder": "समीक्षित कला का नाम",
+    "submit": "समीक्षा बनाएं",
+    "tags": "टैग्स",
+    "tags-placeholder": "टैग्स दर्ज करें",
+    "title": "समीक्षा बनाएं",
+    "title-field": "शीर्षक",
+    "title-field-placeholder": "शीर्षक दर्ज करें"
+  },
+  "TagsSelect": {
+    "no-options": "कोई विकल्प नहीं",
+    "search": "खोजें...",
+    "tags": "टैग्स",
+    "tags-placeholder": "टैग्स दर्ज करें"
+  },
+  "ThemeSwitch": {
+    "dark": "अंधेरा",
+    "light": "रोशन",
+    "system": "सिस्टम"
+  },
+  "account-page": {
+    "Settings": "सेटिंग्स",
+    "loggedIn": "लॉग इन किया हुआ",
+    "loggedOut": "लॉग आउट किया हुआ",
+    "login": "साइन इन करें",
+    "logout": "लॉग आउट",
+    "title": "खाता"
+  },
+  "auth": {
+    "other-options": "और अधिक खाते लिंक करें:"
+  },
+  "auth-page": {
+    "error": "कुछ गलत है...",
+    "password": "पासवर्ड",
+    "submit": "सबमिट करें",
+    "username": "उपयोगकर्ता नाम"
+  },
+  "auth-pages-content": {
+    "change": "मेरा ईमेल/पासवर्ड बदलें",
+    "description": "यदि आपको आवश्यकता है, तो आप यहां अपने अन्य प्रोफ़ाइल्स को लिंक कर सकते हैं। उन्हें भी साइन इन करने के लिए नीचे दिए गए बटन का उपयोग करें। फिर आप लॉग आउट कर सकते हैं और आपने जो सोशल प्रोफ़ाइल्स लिंक की है उसमें वापस साइन इन कर सकते हैं।",
+    "magic-link": "मैजिक लिंक भेजें",
+    "sign-out": "लॉग आउट"
+  },
+  "common": {
+    "home": {
+      "linkText": "होमपेज पर वापस जाएं"
+    },
+    "userLogin": {
+      "signInText": "साइन इन करें",
+      "signOutText": "साइन आउट करें {userName}"
+    }
+  },
+  "environments": {
+    "auth-button-placeholder": "⚠️ कृपया ऑथ संबंधित सुविधाओं को अनलॉक करने के लिए वातावरण चर में GitHub या Google या Discord को निर्दिष्ट करें।"
+  },
+  "general": {
+    "about": "बारे में",
+    "pricing": "मूल्य",
+    "tools": "उपकरण"
+  },
+  "islands": {
+    "command": {
+      "dark": "डार्क",
+      "light": "लाइट",
+      "system": "सिस्टम",
+      "theme": "थीम",
+      "tools": "विशेषताएँ"
+    },
+    "copy-button": {
+      "copied": "क्लिपबोर्ड पर कॉपी किया गया!",
+      "copy": "क्लिपबोर्ड पर कॉपी करें"
+    },
+    "footer": "{author} द्वारा विकसित किया गया। स्रोत कोड {github} पर उपलब्ध है।",
+    "links": {
+      "github": "मेरा GitHub प्रोफ़ाइल",
+      "twitter": "मेरा ट्विटर प्रोफ़ाइल"
+    },
+    "main": {
+      "about": "के बारे में",
+      "github": "गिटहब",
+      "tools": "विशेषताएँ",
+      "twitter": "ट्विटर"
+    },
+    "pricing": {
+      "toast": {
+        "description": "यह परियोजना ओपन सोर्स और मुफ्त में उपयोग करने के लिए है। 🥳",
+        "title": "यह मुफ्त है! 😜"
+      }
+    },
+    "search": {
+      "placeholder": "एक कमांड टाइप करें या खोजें",
+      "title": "खोजें..."
+    },
+    "toast": {
+      "error": "त्रुटि",
+      "success": "सफलता",
+      "warning": "चेतावनी"
+    }
+  },
+  "landing": {
+    "btn1-products-now": "उत्पाद अब",
+    "btn1-sell": "बेचें",
+    "btn2-download": "डाउनलोड करें",
+    "btn2-starter": "Next.js Relivator स्टार्टर",
+    "features": {
+      "clock": {
+        "description": "Drizzle ORM के साथ पथ पर बने रहें। Vercel, Railway, Neon, आदि पर तैनात करें।",
+        "title": "डेटाबेस"
+      },
+      "cryptography": {
+        "description": "App dir, Routing, Layouts, Loading UI, API routes, और उससे परे के साथ मिलें।",
+        "title": "Next.js 14"
+      },
+      "currency": {
+        "description": "UI कंपोनेंट्स Radix UI का उपयोग करके बनाए गए और Tailwind CSS के साथ स्टाइल किए गए।",
+        "title": "कंपोनेंट्स"
+      },
+      "devtools": {
+        "description": "Stripe का उपयोग करके मुफ्त और पेड सब्सक्रिप्शन्स।",
+        "title": "सब्सक्रिप्शन्स"
+      },
+      "files": {
+        "description": "NextAuth.js का उपयोग करके मिडलवेयर प्रमाणीकरण।",
+        "title": "प्रमाणीकरण"
+      },
+      "subtitle": "कोड से लेकर डिजाइन तक, Relivator में आपके वेब परियोजनाओं को सुपरचार्ज करने वाले कार्यक्षमता हैं।",
+      "text": {
+        "description": "सर्वर और क्लाइंट कंपोनेंट्स के साथ ऐप को आसानी से हेरफेर करें। हुक का उपयोग करें। और अधिक।",
+        "title": "React 18"
+      },
+      "title": "Relivator स्टार्टर विशेषताएं"
+    },
+    "get-started": "स्टार्टर विशेषताएं देखें",
+    "heading": "अधिक कुशल, प्रेरणादायक, और लाभकारी ऑनलाइन स्टोर्स बनाएं: Relivator आपके ईकॉमर्स को Next.js की शक्ति से सशक्त बनाता है।",
+    "meta": {
+      "description": "Next.js के साथ बना Relivator",
+      "title": "Relivator"
+    },
+    "open-source": {
+      "stars": "इस परियोजना में {count} स्टार्स हैं! 😍",
+      "stars#few": "इस परियोजना में {count} स्टार्स हैं! 😍",
+      "stars#many": "इस परियोजना में {count} स्टार्स हैं! 😍",
+      "stars#one": "इस परियोजना में सिर्फ एक स्टार है... 😢",
+      "subtitle": {
+        "first": "Bleverse Relivator खुले स्रोत आदर्श का समर्थन करता है और सहयोगी कोड विकास को प्रोत्साहित करता है।",
+        "second": "हमारे कोडबेस का अन्वेषण करें"
+      },
+      "title": "ओपन सोर्स को गले लगाएं"
+    },
+    "subtitle": "Bleverse Relivator आपके विकास यात्रा को सरल बनाता है। आधुनिक वेब विकास के लिए अनुकूलित बने विशेषताओं के साथ शुरुआत करें।",
+    "things": {
+      "linkText": "सूची पर जाएं"
+    },
+    "title": "React, Next.js, और उससे परे के लिए सर्वोत्तम उपकरणों की खोज करें। विशेष रूप से आपके लिए तैयार किया गया।",
+    "about": "हमारा लक्ष्य दुनिया का सबसे अधिक सुविधा संपन्न, वैश्विक और प्रतिष्ठित नेक्स्ट.जेएस स्टार्टर बनाना है। सुविधाओं की व्यापक सूची का अन्वेषण करें। केवल कोड से अधिक की पेशकश, यह एक यात्रा है। यह स्थिर है और उत्पादन के लिए तैयार है।"
+  },
+  "meta": {
+    "description": "Next.js 14 स्टार्टर",
+    "title": "Relivator"
+  },
+  "pages": {
+    "about": {
+      "author": "License",
+      "credits": {
+        "title": "Credits",
+        "topics": {
+          "lucide": "For the cool icons.",
+          "nextjs": "For the React-based web framework.",
+          "radix-ui": "For the wonderful primitives.",
+          "shadcn/ui": "For the chic components.",
+          "tailwind": "For incredibly simplifying our CSS life.",
+          "typescript": "For type-safe JavaScript.",
+          "vercel": "For deploying all my projects."
+        }
+      },
+      "subtitle": "Bleverse Relivator is a powerful Next.js TypeScript Tailwind starter. It streamlines the development process and provides a solid foundation for creating web projects. Feel free to use, adapt, and contribute to the project by {link}.",
+      "subtitle.link": "clicking here",
+      "title": "About"
+    },
+    "home": {
+      "features": {
+        "clock": {
+          "description": "Stay on track with Drizzle ORM. Deployed on Vercel, Railway, Neon, etc.",
+          "title": "Database"
+        },
+        "cryptography": {
+          "description": "Engage with App dir, Routing, Layouts, Loading UI, API routes, and beyond.",
+          "title": "Next.js 14"
+        },
+        "currency": {
+          "description": "UI components built using Radix UI and styled with Tailwind CSS.",
+          "title": "Components"
+        },
+        "devtools": {
+          "description": "Free and paid subscriptions using Stripe.",
+          "title": "Subscriptions"
+        },
+        "files": {
+          "description": "Middleware authentication using NextAuth.js.",
+          "title": "Authentication"
+        },
+        "subtitle": "From code to design, Relivator has functionalities that supercharge your web projects.",
+        "text": {
+          "description": "Manipulate app effortlessly with Server and Client Components. Use hook. And more.",
+          "title": "React 18"
+        },
+        "title": "Features"
+      },
+      "get-started": "Features",
+      "open-source": {
+        "stars": "This project has {count} stars! 😍",
+        "stars#few": "This project has {count} stars! 😍",
+        "stars#many": "This project has {count} stars! 😍",
+        "stars#one": "This project has only one star... 😢",
+        "subtitle": {
+          "first": "Bleverse Relivator champions open-source ethos and encourages collaborative code evolution.",
+          "second": "Explore our codebase on"
+        },
+        "title": "Embrace Open Source"
+      },
+      "subtitle": "Bleverse Relivator simplifies your development journey. Start with built-in features optimized for modern web development.",
+      "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
+    },
+    "not-found": {
+      "title": "🫠 पेज नहीं मिला! 🥲 दुखद...",
+      "description": "जिस संसाधन की आप खोज कर रहे हैं, उसे शायद भूल गया गया हो, नाम बदल दिया गया हो, या कभी मौजूद ही नहीं हो। कृपया URL की पुष्टि करें या मेनू का उपयोग करके अन्य भागों में जाएं।",
+      "go-home": "होम पेज पर लौटें"
+    },
+    "tools": {
+      "binary-code": {
+        "decode": "Binary to text",
+        "encode": "Text to binary",
+        "title": "Binary Code"
+      },
+      "caesar-cipher": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Cipher to text",
+        "encode": "Text to cipher",
+        "key": "Key",
+        "title": "Caesar Cipher",
+        "toast": {
+          "invalid-key": "Please type a number between 0 - 25"
+        }
+      },
+      "clock": {
+        "title": "Clock"
+      },
+      "color-picker": {
+        "title": "Color Picker"
+      },
+      "css-minifier": {
+        "actions": {
+          "minify": "Minify",
+          "minifying": "Minifying"
+        },
+        "title": "CSS Minifier",
+        "toast": {
+          "required": "Please enter some CSS to minify",
+          "success": "CSS minified successfully"
+        }
+      },
+      "currency": {
+        "not-found": "No currency found.",
+        "placeholder": "Search currency...",
+        "result": "{from} equals to {to}",
+        "source": "Source",
+        "title": "Currency"
+      },
+      "hex-code": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Hex to text",
+        "encode": "Text to hex",
+        "title": "Hex Code"
+      },
+      "json-formatter": {
+        "actions": {
+          "format": "Format",
+          "formatting": "Formatting"
+        },
+        "placeholder": "Number of spaces",
+        "title": "JSON Formatter",
+        "toast": {
+          "invalid-json": "Invalid JSON",
+          "invalid-number": "Please enter a valid number",
+          "required": "Please enter some JSON to format",
+          "success": "JSON formatted successfully"
+        }
+      },
+      "length": {
+        "centimeter": "Centimeter",
+        "foot": "Foot",
+        "inch": "Inch",
+        "kilometer": "Kilometer",
+        "meter": "Meter",
+        "micrometers": "Micrometers",
+        "mile": "Mile",
+        "millimeter": "Millimeter",
+        "nanometers": "Nanometers",
+        "nautical mile": "Nautical Mile",
+        "title": "Length",
+        "yard": "Yard"
+      },
+      "morse-code": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Morse to text",
+        "encode": "Text to morse",
+        "title": "Morse Code"
+      },
+      "password-generator": {
+        "actions": {
+          "generate": "Generate"
+        },
+        "length": "Length: {length}",
+        "placeholder": "Password",
+        "title": "Password Generator"
+      },
+      "qr-code": {
+        "actions": {
+          "download": "Download",
+          "share": {
+            "twitter": "Share on Twitter",
+            "whatsapp": "Share on WhatsApp"
+          }
+        },
+        "hint": "(Your QR Code will be generated automatically)",
+        "placeholder": "Enter your website, text or link here",
+        "title": "QR Code"
+      },
+      "random-color": {
+        "generate": "New color",
+        "title": "Random Color"
+      },
+      "stopwatch": {
+        "clear": "Clear",
+        "start": "Start",
+        "stop": "Stop",
+        "title": "Stopwatch"
+      },
+      "text-converter": {
+        "actions": {
+          "camel-case": "Convert to Camel case",
+          "capitalize": "Capitalize",
+          "kebab-case": "Convert to Kebab case",
+          "lowercase": "Convert to lowercase",
+          "pascal-case": "Convert to Pascal case",
+          "remove-accents": "Remove accents",
+          "remove-duplicates": "Remove duplicates",
+          "remove-empty-lines": "Remove empty lines",
+          "remove-spaces": "Remove spaces",
+          "remove-special-characters": "Remove special characters",
+          "reverse": "Reverse",
+          "snake-case": "Convert to Snake case",
+          "uppercase": "Convert to uppercase"
+        },
+        "clear-input": "Clear input",
+        "placeholder": {
+          "input": "Type something here...",
+          "output": "Result"
+        },
+        "title": "Text Converter",
+        "toast": {
+          "required": "Please enter some text to convert",
+          "success-camel-case": "Converted to Camel case successfully",
+          "success-capitalize": "Capitalized successfully",
+          "success-kebab-case": "Converted to Kebab case successfully",
+          "success-lowercase": "Converted to lowercase successfully",
+          "success-pascal-case": "Converted to Pascal case successfully",
+          "success-remove-accents": "Accents removed successfully",
+          "success-remove-duplicates": "Duplicates removed successfully",
+          "success-remove-empty-lines": "Empty lines removed successfully",
+          "success-remove-spaces": "Spaces removed successfully",
+          "success-remove-special-characters": "Special characters removed successfully",
+          "success-reverse": "Reversed successfully",
+          "success-snake-case": "Converted to Snake case successfully",
+          "success-uppercase": "Converted to uppercase successfully"
+        }
+      },
+      "timestamp": "-",
+      "title": "Utils",
+      "todo": {
+        "actions": {
+          "create": "Create new todo",
+          "delete": "Delete task"
+        },
+        "placeholder": "Add new task",
+        "title": "Todo"
+      },
+      "unit-converter": {
+        "actions": "-",
+        "categories": "-",
+        "placeholder": "-",
+        "toast": "-"
+      },
+      "url-encoder-decoder": {
+        "actions": "-"
+      },
+      "word-counter": "-"
+    }
+  },
+  "plugins": {
+    "stars": "कृपया! GitHub पर Relivator को स्टार करें ⭐ स्टार्स लक्ष्य:"
+  },
+  "pricing": {
+    "compare": {
+      "features": {
+        "enterprise": "Business",
+        "features": "Features",
+        "free": "Free",
+        "team": "Team"
+      },
+      "title": "Compare plans"
+    },
+    "cta": {
+      "get-started": "Get Started",
+      "sign-up": "Register"
+    },
+    "faq": {
+      "have-questions": "Questions?",
+      "read-faq": "Read our {faq}.",
+      "title": "FAQs"
+    },
+    "features": {
+      "features": {
+        "included": "Included",
+        "not-included": "Not included"
+      },
+      "title": "Features"
+    },
+    "hero": {
+      "description": "Join the Relivator community. Choose the plan that suits you best.",
+      "pricing": "Pricing"
+    },
+    "plans": {
+      "title": "Plans"
+    },
+    "questions": {
+      "answer-card": "A la carte pricing allows you to customize your plan based on your specific needs. You only pay for the features you need.",
+      "answer-change": "Yes, you can change plans at any time.",
+      "answer-free": "Yes, Relivator offers a free plan with a basic feature set. You can use it free of charge.",
+      "answer-limits": "If you exceed your plan limits, you can either upgrade your plan to get more resources or pay additional fees based on your excess usage.",
+      "answer-nonprofit": "Yes, we offer discounts for nonprofits and educational institutions. Contact us for more details.",
+      "answer-payment": "We accept credit card payments and secure online payments. You can also choose to pay monthly or annually.",
+      "answer-prices": "All prices are monthly.",
+      "answer-teams": "Pricing for teams is based on the number of team members. You can add or remove team members at any time, and your billing will be adjusted accordingly.",
+      "are-prices": "Are the prices monthly or yearly?",
+      "can-i-change": "Can I change plans later?",
+      "do-you-offer": "Do you offer discounts for nonprofits or educational institutions?",
+      "how-does": "How does à la carte pricing work?",
+      "how-is": "How is pricing calculated for teams?",
+      "is-there": "Is there a free version of Relivator?",
+      "what-happens": "What happens if I exceed my plan limits?",
+      "what-payment": "What payment methods do you accept?"
+    }
+  },
+  "settings-page": {
+    "description": "अपनी सेटिंग्स प्रबंधित करें।",
+    "title": "सेटिंग्स"
+  },
+  "signIn": {
+    "heading": "साइन इन करें",
+    "meta": {
+      "description": "एक व्यक्तिगत अनुभव के लिए साइन इन करें",
+      "title": "साइन इन करें"
+    },
+    "providerButtonText": "{name} के साथ साइन इन करें",
+    "providerButtonTextReg": "{name} के साथ साइन अप करें",
+    "LoginForm": {
+      "wait": "कृपया, प्रतीक्षा करें..."
+    }
+  },
+  "things": {
+    "heading": "Your Relivator",
+    "input": {
+      "placeholder": "Enter a title",
+      "submitButtonText": "Add to list"
+    },
+    "list": {
+      "createdDate": "Created on {createdDate, date, ::yyyyMMddHHmmss}",
+      "loading": "Loading..."
+    },
+    "meta": {
+      "description": "List of your personal things",
+      "title": "Your Relivator"
+    },
+    "signIn": "Please <link>sign in</link> to view it."
+  },
+  "tools": {
+    "about": "-",
+    "categories": "-",
+    "cta": "-",
+    "hero": {
+      "title": "Free online tools from Relivator"
+    },
+    "title": "Tools"
+  },
+  "EnvironmentVariables": {
+    "errors": {
+      "something-wrong": "ये पर्यावरण चर गलत तरीके से निर्दिष्ट हैं या निर्दिष्ट नहीं हैं (कृपया .env फ़ाइल की जाँच करें):"
+    }
+  },
+  "auth-provider": {
+    "please-wait": "कृपया प्रतीक्षा करें...",
+    "sign-in": "{नाम} से साइन इन करें",
+    "sign-in-null": "{नाम}",
+    "sign-up": "{नाम} के साथ साइन अप करें",
+    "sign-up-null": "{नाम}"
+  }
+}

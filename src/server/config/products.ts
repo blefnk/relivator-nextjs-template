@@ -22,7 +22,7 @@ export const sortOptions = [
 
 export const productCategories = [
   {
-    title: "pants",
+    title: "furniture",
     image: "/images/skateboard-one.webp",
     subcategories: [
       {
@@ -101,7 +101,7 @@ export const productCategories = [
     ],
   },
   {
-    title: "shoes",
+    title: "tech",
     image: "/images/shoe-one.webp",
     subcategories: [
       {

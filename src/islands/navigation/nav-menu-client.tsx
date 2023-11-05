@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { Link } from "~/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
-import Link from "next-intl/link";
 
 /** @see https://github.com/jherr/app-router-auth-using-next-auth */
 

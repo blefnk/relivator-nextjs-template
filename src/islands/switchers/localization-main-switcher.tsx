@@ -1,11 +1,8 @@
 "use client";
 
-import "/node_modules/flag-icons/css/flag-icons.min.css";
-
 import { useSearchParams } from "next/navigation";
-import { localeLabels, locales } from "~/i18n/locales";
+import { labels, locales, usePathname, useRouter } from "~/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname, useRouter } from "next-intl/client";
 
 import { useIsClient } from "~/hooks/use-is-client";
 import { Button, type ButtonProps } from "~/islands/primitives/button";
@@ -47,7 +44,7 @@ export default function LocalizationMainSwitcher({
       >
         <span className="hidden sm:block">
           <LocaleFlagIcon locale={locale} />
-          {localeLabels[locale as keyof typeof localeLabels]}
+          {labels[locale as keyof typeof labels]}
         </span>
         <span className="block sm:hidden -mr-2">
           <LocaleFlagIcon locale={locale} />
@@ -69,7 +66,7 @@ export default function LocalizationMainSwitcher({
             <span className="hidden md:block">
               <span className="flex">
                 <LocaleFlagIcon locale={locale} />
-                {localeLabels[locale as keyof typeof localeLabels]}
+                {labels[locale as keyof typeof labels]}
               </span>
             </span>
             <span className="block md:hidden -mr-2">
@@ -93,7 +90,7 @@ export default function LocalizationMainSwitcher({
                 className="flex"
               >
                 <LocaleFlagIcon locale={locale} />
-                {localeLabels[locale as keyof typeof localeLabels]}
+                {labels[locale as keyof typeof labels]}
               </DropdownMenuRadioItem>
             ))}
           </DropdownMenuRadioGroup>
@@ -108,17 +105,22 @@ export default function LocalizationMainSwitcher({
 type LocaleFlagIconProps = { locale: string };
 
 function LocaleFlagIcon({ locale }: LocaleFlagIconProps) {
-  if (locale === "en") {
+  const baseLocale = locale.split("-")[0];
+  if (baseLocale === "en") {
     return <span aria-hidden="true" className="mr-2 fi fi-gb"></span>;
-  } else if (locale === "uk") {
+  } else if (baseLocale === "uk") {
     return <span aria-hidden="true" className="mr-2 fi fi-ua"></span>;
-  } else if (locale === "pl") {
+  } else if (baseLocale === "pl") {
     return (
       <span
         aria-hidden="true"
         className="mr-2 border border-zinc-200 border-b-0 dark:border-none fi fi-pl"
       ></span>
     );
+  } else if (baseLocale === "hi") {
+    return <span aria-hidden="true" className="mr-2 fi fi-in"></span>;
   }
-  return <span aria-hidden="true" className={`mr-2 fi fi-${locale}`}></span>;
+  return (
+    <span aria-hidden="true" className={`mr-2 fi fi-${baseLocale}`}></span>
+  );
 }

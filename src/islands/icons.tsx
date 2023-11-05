@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable import/consistent-type-specifier-style */
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 import {
   AlarmClock,
   AlertTriangle,
@@ -99,7 +102,7 @@ export const Icons = {
   reset: RefreshCw,
   send: Send,
   copy: Copy,
-  downlaod: Download,
+  download: Download,
   warning: AlertTriangle,
   search: Search,
   filter: Filter,
@@ -109,8 +112,8 @@ export const Icons = {
   terminal: FileTerminal,
   settings: Settings,
   logout: LogOut,
-  volumne: Volume2,
-  volumneMute: VolumeX,
+  volume: Volume2,
+  volumeMute: VolumeX,
   message: MessageSquare,
   billing: CreditCard,
   wallet: Wallet,
@@ -175,10 +178,10 @@ export const Icons = {
   ),
 };
 
-type XTwitterIconProps = {
+interface XTwitterIconProps {
   className?: string;
   height?: string;
-};
+}
 
 export function XTwitterIcon({ className, height = "16" }: XTwitterIconProps) {
   return (

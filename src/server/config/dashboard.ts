@@ -1,8 +1,8 @@
 import { type SidebarNavItem } from "~/types";
 
-export interface DashboardConfig {
+export type DashboardConfig = {
   sidebarNav: SidebarNavItem[];
-}
+};
 
 /**
  * You can get it in sync with src/islands/navigation/user-menu.tsx

@@ -1,17 +1,20 @@
 /**
- * To reduce the number of config files, we aim to combine everything into a single file.
- * Materials about @satisfies: https://youtu.be/49gHWuepxxE, https://youtu.be/G1RtAmI0-vc
+ * [app.ts] App Configuration
+ * ==========================
+ *
+ * To reduce the number of config files, we aim to
+ * combine as much as possible into a single file.
  */
 
-import { MainMenuItem, type FooterItem } from "~/types";
+import { ContentSection, MainMenuItem, type FooterItem } from "~/types";
+import { slugify } from "~/utils";
 
-import { ContentSection, HeroHeader } from "~/server/config/appts";
 import { productCategories } from "~/server/config/products";
 import { networks } from "~/server/config/socials";
-import { slugify } from "~/server/utils";
 
 export const appts = {
   name: "Relivator",
+  debug: false,
   social: networks({
     youtube: "@bleverse_com",
     discord: "Pb8uKbwpsJ",
@@ -19,18 +22,9 @@ export const appts = {
     twitter: "blefnk",
     github: "blefnk",
   }),
-  // currently not recommended to use debug
-  debug: false,
 };
 
 export default appts;
-
-export type articles = {
-  type?: "blog_news" | "blog_only" | "news_only" | undefined;
-  articles_provider?: "default" | "contentlayer" | undefined;
-};
-
-export type SiteConfig = typeof siteConfig;
 
 const links = {
   twitter: "https://x.com/blefnk",
@@ -47,13 +41,14 @@ export const contactConfig = {
 export const REPOSITORY_OWNER = "blefnk";
 export const REPOSITORY_NAME = "relivator";
 export const REPOSITORY_URL = `https://github.com/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`;
+export const DISCORD_URL = "https://discord.gg/Pb8uKbwpsJ";
 export const baseUrl = "https://relivator.bleverse.com";
 
 export const BASE_URL =
   process.env.NODE_ENV === "production" ? baseUrl : "http://localhost:3000";
 export const BRAND_NAME = "Relivator";
 export const BRAND_DESCRIPTION =
-  "Next.js 13 free store and dashboard template. It helps you build great eCommerce and SaaS apps faster than ever. Get it now!";
+  "Next.js 14 free store and dashboard template. It helps you build great eCommerce and SaaS apps faster than ever. Get it now!";
 
 export const OWNER_ROLE = "owner";
 export const ADMIN_ROLE = "admin";
@@ -70,12 +65,12 @@ export const settings = {
 export const siteConfig = {
   name: "Relivator",
   shortName: "Relivator",
-  author: "Bleverse",
+  author: "Nazarii Korniienko",
   description:
-    "NextJS 13 free starter: store, landing, dashboard. It helps you build great eCommerce and SaaS apps faster than ever. Get it!",
+    "NextJS 14 free starter: store, landing, dashboard. It helps you build great eCommerce and SaaS apps faster than ever. Get it!",
   company: {
-    name: "Bleverse",
-    link: "https://bleverse.com",
+    name: "Bleverse Nazarii Korniienko",
+    link: "https://github.com/blefnk",
     email: "blefnk@gmail.com",
     twitter: "@blefnk",
   },
@@ -88,8 +83,7 @@ export const siteConfig = {
     "Bleverse",
     "Drizzle Orm",
     "Landing Page",
-    "Lemon Squeezy",
-    "Next.js 13.5",
+    "Next.js 14",
     "Nextjs",
     "Open Source",
     "Parallel Routes",
@@ -258,14 +252,6 @@ export const siteConfig = {
       ],
     },
   ] satisfies FooterItem[],
-};
-
-export const heroHeader: HeroHeader = {
-  header1: `Next.js 13 Store & Dashboard Template`,
-  header2: `Build Great eCommerce and SaaS Faster`,
-  subheader: `shadcn/ui, Link, App Router, TypeScript, T3, Stripe, NextAuth.js, Tailwind,
-  Drizzle, Zod, RSC, SWC, tRPC, NextAuth, Server Actions, Lucide Icons,
-  etc.`,
 };
 
 export const featureCards: ContentSection = {

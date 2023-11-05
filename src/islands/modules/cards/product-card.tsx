@@ -2,11 +2,11 @@
 
 import * as React from "react";
 import Image from "next/image";
-import Link from "next-intl/link";
-import { toast } from "sonner";
+import { Link } from "~/navigation";
+import { cn, formatPrice } from "~/utils";
+import { toast } from "react-hot-toast";
 
 import { addToCartAction } from "~/server/actions/cart";
-import { cn, formatPrice } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import { Icons } from "~/islands/icons";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";

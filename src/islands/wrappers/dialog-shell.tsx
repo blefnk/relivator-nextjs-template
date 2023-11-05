@@ -2,14 +2,14 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { cn } from "~/utils";
 
-import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 
-interface DialogShellProps extends React.HTMLAttributes<HTMLDivElement> {
+type DialogShellProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
-}
+};
 
 export function DialogShell({
   children,

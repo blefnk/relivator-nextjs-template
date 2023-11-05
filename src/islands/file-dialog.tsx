@@ -14,13 +14,13 @@ import type {
   PathValue,
   UseFormSetValue,
 } from "react-hook-form";
-import { toast } from "sonner";
+import { toast } from "react-hot-toast";
 
 import "cropperjs/dist/cropper.css";
 
 import Image from "next/image";
+import { cn, formatBytes } from "~/utils";
 
-import { cn, formatBytes } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -29,12 +29,10 @@ import {
   DialogTrigger,
 } from "~/islands/primitives/dialog";
 
-// FIXME Your proposed upload exceeds the maximum allowed size, this should trigger toast.error too
-
-interface FileDialogProps<
+type FileDialogProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> extends React.HTMLAttributes<HTMLDivElement> {
+> = React.HTMLAttributes<HTMLDivElement> & {
   name: TName;
   setValue: UseFormSetValue<TFieldValues>;
   accept?: Accept;
@@ -44,7 +42,7 @@ interface FileDialogProps<
   setFiles: React.Dispatch<React.SetStateAction<FileWithPreview[] | null>>;
   isUploading?: boolean;
   disabled?: boolean;
-}
+};
 
 export function FileDialog<TFieldValues extends FieldValues>({
   name,
@@ -198,12 +196,12 @@ export function FileDialog<TFieldValues extends FieldValues>({
   );
 }
 
-interface FileCardProps {
+type FileCardProps = {
   i: number;
   file: FileWithPreview;
   files: FileWithPreview[] | null;
   setFiles: React.Dispatch<React.SetStateAction<FileWithPreview[] | null>>;
-}
+};
 
 function FileCard({ i, file, files, setFiles }: FileCardProps) {
   const [isOpen, setIsOpen] = React.useState(false);

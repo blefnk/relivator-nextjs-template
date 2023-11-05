@@ -11,9 +11,9 @@ import remarkGfm from "remark-gfm";
 /**
  * If you need, you can very dangerously run build or dev with SKIP_ENV_VALIDATION.
  * It skips environment vars validation. This is especially useful for Docker builds.
- * @example !process.env.SKIP_ENV_VALIDATION && (await import("./src/data/env/env.mjs"));
+ * @example !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"));
  */
-await import("./src/data/env/env.mjs");
+await import("./src/env.mjs");
 
 /**
  * The whitelist list of domains,
@@ -38,13 +38,13 @@ const hostnames = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   swcMinify: true,
   /**
    * Toggle experimental features.
    */
   experimental: {
     serverComponentsExternalPackages: ["mysql2"],
-    serverActions: true,
     mdxRs: true,
   },
   /**
@@ -94,7 +94,7 @@ const withMDX = createMDX({ options: { remarkPlugins: [remarkGfm] } });
  * Create configuration wrapper required for using next-intl with React Server Components.
  * @see https://next-intl-docs.vercel.app/docs/getting-started/app-router-server-components
  */
-const withNextIntl = nextIntlPlugin("./src/i18n/server.ts");
+const withNextIntl = nextIntlPlugin("./src/i18n.ts");
 
 /**
  * Send the config to server while build or lint.

@@ -1,4 +1,4 @@
-# ?? https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# @see https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
 
 # dependencies
 /node_modules
@@ -11,6 +11,7 @@
 # next.js
 /.next/
 /out/
+next-env.d.ts
 
 # production
 /build
@@ -25,19 +26,16 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+# do not commit any .env files to git
+# except for the .env.example file
 .env
+.env*.local
 
 # vercel
 .vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
 
 # postbuild
 robots.txt
 sitemap.xml
 sitemap-*.xml
-
-# custom
-*.ignore
+*.tsbuildinfo

@@ -1,0 +1,662 @@
+{
+  "DataTable": {
+    "block": "Blocca",
+    "columns": "Colonne",
+    "delete": "Elimina",
+    "email": "Email",
+    "filter-emails-placeholder": "Filtra per email",
+    "id": "ID",
+    "isadmin": "Amministratore",
+    "lastlogintime": "Ultimo accesso",
+    "make-admin": "Rendi amministratore",
+    "make-non-admin": "Rendi utente normale",
+    "name": "Nome",
+    "next": "Successivo",
+    "no-results": "Nessun risultato",
+    "of": "di",
+    "previous": "Precedente",
+    "registrationtime": "Data di registrazione",
+    "rows-selected": "riga(e) selezionata(e)",
+    "success-description": "Successo",
+    "success-title": "Operazione completata con successo",
+    "unblock": "Sblocca",
+    "view-profile": "Visualizza profilo"
+  },
+  "EnvironmentVariables": {
+    "errors": {
+      "something-wrong": "Queste variabili di ambiente sono specificate in modo errato o non specificate (controlla il file .env):"
+    }
+  },
+  "LanguageSwitch": {
+    "choose-language": "Lingua"
+  },
+  "LocaleSwitcher": {
+    "label": "Cambia lingua",
+    "selectLocale": "Lingua"
+  },
+  "LoginForm": {
+    "description": "Accedi al tuo account utilizzando il tuo indirizzo email e la password.",
+    "email": "Email",
+    "email-placeholder": "Inserisci il tuo indirizzo email",
+    "error-heading": "Impossibile accedere.",
+    "errors": {
+      "Callback": "Prova ad accedere con un account diverso.",
+      "CredentialsSignin": "Accesso non riuscito. Verifica che i dettagli forniti siano corretti.",
+      "Email or password is incorrect": "Email o password non corretti.",
+      "EmailCreateAccount": "Prova ad accedere con un account diverso.",
+      "EmailSignin": "Controlla il tuo indirizzo email.",
+      "Invalid credentials": "Credenziali non valide.",
+      "OAuthAccountNotLinked": "Per confermare la tua identità, accedi con lo stesso account che hai utilizzato inizialmente.",
+      "OAuthCallback": "Prova ad accedere con un account diverso.",
+      "OAuthCreateAccount": "Prova ad accedere con un account diverso.",
+      "OAuthSignin": "Prova ad accedere con un account diverso.",
+      "Signin": "Prova ad accedere con un account diverso.",
+      "default": "Impossibile accedere."
+    },
+    "form": {
+      "description": "Accedi al tuo account utilizzando il tuo indirizzo email e la password.",
+      "email": "E-mail",
+      "email-placeholder": "Inserisci il tuo indirizzo email",
+      "error-heading": "A volte succedono cose brutte...",
+      "no-account": "Non hai un account?",
+      "other-options": "Accedi utilizzando:",
+      "password": "Parola d'ordine",
+      "password-placeholder": "Inserisci la tua password",
+      "sign-out": "disconnessione",
+      "signup": "Iscriviti qui.",
+      "submit": "Registrazione",
+      "title": "Registrazione",
+      "wait": "Attendere prego..."
+    },
+    "no-account": "Non hai un account?",
+    "other-options": "Accedi utilizzando:",
+    "password": "Password",
+    "password-placeholder": "Inserisci la tua password",
+    "reset-password": "Resetta la password",
+    "signin": "Registrazione",
+    "signup": "Registrati qui.",
+    "submit": "Accedi",
+    "success-description": "Successo.",
+    "success-title": "Fatto!",
+    "title": "Accedi",
+    "wait": "Attendere prego..."
+  },
+  "MainError": {
+    "Could not fetch user.": "Impossibile recuperare l'utente.",
+    "Not authenticated.": "Non autenticato.",
+    "User not found.": "Utente non trovato.",
+    "error": "Errore"
+  },
+  "Navbar": {
+    "home": "Prima",
+    "sign-out": "Disconnettersi",
+    "signin": "Accedi"
+  },
+  "ProfileButton": {
+    "admin": "Pannello di amministrazione",
+    "logout": "Esci",
+    "my-account": "Il mio account",
+    "new-review": "Nuova recensione",
+    "profile": "Profilo",
+    "settings": "Impostazioni"
+  },
+  "ProfileSettingsForm": {
+    "description": "Aggiorna le impostazioni del tuo profilo.",
+    "errors": {
+      "update-error": "Impossibile aggiornare l'utente."
+    },
+    "name": "Nome",
+    "name-min": "Il nome deve essere lungo almeno 2 caratteri.",
+    "name-placeholder": "Inserisci il tuo nome",
+    "submit": "Aggiorna utente",
+    "title": "Impostazioni del profilo",
+    "update-success": "Aggiornamento dell'utente completato con successo."
+  },
+  "RegisterForm": {
+    "description": "Crea un nuovo account utilizzando il tuo indirizzo email e la password.",
+    "email": "Email",
+    "email-placeholder": "Inserisci il tuo indirizzo email",
+    "error-heading": "Impossibile registrarsi.",
+    "errors": {
+      "Not authenticated.": "Non autenticato.",
+      "Please fill all fields.": "Si prega di compilare tutti i campi.",
+      "User with this email already exists.": "Un utente con questa email esiste già."
+    },
+    "form": {
+      "email-min": "Il nome utente deve essere lungo almeno 2 caratteri.",
+      "invalid-email": "Indirizzo email non valido.",
+      "name-min": "Il nome deve essere lungo almeno 2 caratteri.",
+      "password-min": "La password deve essere lunga almeno 6 caratteri."
+    },
+    "have-account": "Hai già un account?",
+    "name": "Nome",
+    "name-placeholder": "Inserisci il tuo nome",
+    "other-options": "O registrati con:",
+    "password": "Password",
+    "password-placeholder": "Inserisci la tua password",
+    "signin": "Accedi qui.",
+    "submit": "Registrati",
+    "success-description": "Ora puoi accedere al tuo account.",
+    "success-title": "La registrazione è stata completata con successo!",
+    "title": "Registrati",
+    "wait": "Attendere prego..."
+  },
+  "ReviewNewForm": {
+    "description": "Crea una nuova recensione.",
+    "errors": {
+      "create-error": "Impossibile creare la recensione."
+    },
+    "grade": "Voto",
+    "grade-placeholder": "Inserisci il voto",
+    "item": "Oggetto",
+    "item-placeholder": "Nome dell'opera recensita",
+    "submit": "Crea recensione",
+    "tags": "Tag",
+    "tags-placeholder": "Inserisci i tag",
+    "title": "Crea una recensione",
+    "title-field": "Titolo",
+    "title-field-placeholder": "Inserisci il titolo"
+  },
+  "TagsSelect": {
+    "no-options": "Nessuna opzione disponibile",
+    "search": "Cerca...",
+    "tags": "Tag",
+    "tags-placeholder": "Inserisci i tag"
+  },
+  "ThemeSwitch": {
+    "dark": "Scuro",
+    "light": "Chiaro",
+    "system": "Sistema"
+  },
+  "account-page": {
+    "Settings": "Impostazioni",
+    "loggedIn": "Connesso",
+    "loggedOut": "Disconnesso",
+    "login": "Registrazione",
+    "logout": "Disconnettersi",
+    "title": "Account"
+  },
+  "auth": {
+    "other-options": "Collega più account:"
+  },
+  "auth-page": {
+    "error": "Qualcosa non va...",
+    "password": "Parola d'ordine",
+    "submit": "Invia",
+    "username": "Nome utente"
+  },
+  "auth-pages-content": {
+    "change": "Cambia la mia email/password",
+    "description": "Se necessario, puoi collegare i tuoi altri profili qui. Usa semplicemente i pulsanti qui sotto per accedere anche con loro. Potrai quindi uscire e accedere nuovamente con uno qualsiasi dei profili social che hai collegato.",
+    "magic-link": "Invia collegamento magico",
+    "sign-out": "disconnessione"
+  },
+  "auth-provider": {
+    "please-wait": "Attendere prego...",
+    "sign-in": "Accedi con {name}",
+    "sign-in-null": "{name}",
+    "sign-up": "Iscriviti con {name}",
+    "sign-up-null": "{name}"
+  },
+  "common": {
+    "home": {
+      "linkText": "Torna alla Homepage"
+    },
+    "userLogin": {
+      "signInText": "Accedi",
+      "signOutText": "Esci {userName}"
+    }
+  },
+  "environments": {
+    "auth-button-placeholder": "⚠️ Specifica Github/Google/Discord nelle variabili di ambiente per sbloccare le funzionalità relative all'autenticazione."
+  },
+  "general": {
+    "about": "about",
+    "pricing": "pricing",
+    "tools": "utils"
+  },
+  "islands": {
+    "command": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "theme": "Theme",
+      "tools": "Features"
+    },
+    "copy-button": {
+      "copied": "Copied to clipboard!",
+      "copy": "Copy to clipboard"
+    },
+    "footer": "Developed by {author}. The source code is available on {github}.",
+    "links": {
+      "github": "My GitHub profile",
+      "twitter": "My Twitter profile"
+    },
+    "main": {
+      "about": "about",
+      "github": "github",
+      "tools": "features",
+      "twitter": "twitter"
+    },
+    "pricing": {
+      "toast": {
+        "description": "This project is open source and free to use. 🥳",
+        "title": "It's free! 😜"
+      }
+    },
+    "search": {
+      "placeholder": "Type a command or search",
+      "title": "Search..."
+    },
+    "toast": {
+      "error": "Error",
+      "success": "Success",
+      "warning": "Warning"
+    }
+  },
+  "landing": {
+    "btn1-products-now": "Prodotti adesso",
+    "btn1-sell": "Vendere",
+    "btn2-download": "Download",
+    "btn2-starter": "Next.js Relivator Starter",
+    "features": {
+      "clock": {
+        "description": "Rimani in pista con Drizzle ORM. Distribuito su Vercel, Railway, Neon, ecc.",
+        "title": "Banca dati"
+      },
+      "cryptography": {
+        "description": "Interagisci con directory app, routing, layout, interfaccia utente di caricamento, percorsi API e altro ancora.",
+        "title": "Next.js 14"
+      },
+      "currency": {
+        "description": "Componenti dell'interfaccia utente creati utilizzando Radix UI e stilizzati con Tailwind CSS.",
+        "title": "Componenti"
+      },
+      "devtools": {
+        "description": "Abbonamenti gratuiti e a pagamento utilizzando Stripe.",
+        "title": "Abbonamenti"
+      },
+      "files": {
+        "description": "Autenticazione middleware utilizzando NextAuth.js.",
+        "title": "Autenticazione"
+      },
+      "subtitle": "Dal codice alla progettazione, Relivator ha funzionalità che potenziano i tuoi progetti web.",
+      "text": {
+        "description": "Manipola l'app senza sforzo con i componenti server e client. Usa il gancio. E altro ancora.",
+        "title": "Reagire 18"
+      },
+      "title": "Funzionalità"
+    },
+    "get-started": "Funzionalità",
+    "heading": "Costruisci Negozi Online Più Efficienti, Coinvolgenti e Redditizi: Relivator Potenzia il Tuo eCommerce con la Forza di Next.js",
+    "meta": {
+      "description": "Relivator costruito con Next.js",
+      "title": "Relivator"
+    },
+    "open-source": {
+      "stars": "questo progetto ha {count} stelle! 😍",
+      "stars#few": "questo progetto ha {count} stelle! 😍",
+      "stars#many": "questo progetto ha {count} stelle! 😍",
+      "stars#one": "Questo progetto ha solo una stella... 😢",
+      "subtitle": {
+        "first": "Bleverse Relivator sostiene l'etica open source e incoraggia l'evoluzione collaborativa del codice.",
+        "second": "Esplora la nostra codebase su"
+      },
+      "title": "Abbraccia l'Open Source"
+    },
+    "subtitle": "Bleverse Relivator semplifica il tuo percorso di sviluppo. Inizia con funzionalità integrate ottimizzate per lo sviluppo web moderno.",
+    "things": {
+      "linkText": "Vai alla lista"
+    },
+    "title": "Scopri gli strumenti fondamentali per React, Next.js e oltre. Su misura per te.",
+    "about": "Il nostro obiettivo è creare lo starter Next.js più ricco di funzionalità, globale e iconico al mondo. Esplora l'elenco completo delle funzionalità. Offrendo più di un semplice codice, è un viaggio. È stabile e pronto per la produzione."
+  },
+  "meta": {
+    "description": "Next.js 14 Starter",
+    "title": "Rilevatore"
+  },
+  "pages": {
+    "about": {
+      "author": "License",
+      "credits": {
+        "title": "Credits",
+        "topics": {
+          "lucide": "For the cool icons.",
+          "nextjs": "For the React-based web framework.",
+          "radix-ui": "For the wonderful primitives.",
+          "shadcn/ui": "For the chic components.",
+          "tailwind": "For incredibly simplifying our CSS life.",
+          "typescript": "For type-safe JavaScript.",
+          "vercel": "For deploying all my projects."
+        }
+      },
+      "subtitle": "Bleverse Relivator is a powerful Next.js TypeScript Tailwind starter. It streamlines the development process and provides a solid foundation for creating web projects. Feel free to use, adapt, and contribute to the project by {link}.",
+      "subtitle.link": "clicking here",
+      "title": "About"
+    },
+    "home": {
+      "features": {
+        "clock": {
+          "description": "Stay on track with Drizzle ORM. Deployed on Vercel, Railway, Neon, etc.",
+          "title": "Database"
+        },
+        "cryptography": {
+          "description": "Engage with App dir, Routing, Layouts, Loading UI, API routes, and beyond.",
+          "title": "Next.js 14"
+        },
+        "currency": {
+          "description": "UI components built using Radix UI and styled with Tailwind CSS.",
+          "title": "Components"
+        },
+        "devtools": {
+          "description": "Free and paid subscriptions using Stripe.",
+          "title": "Subscriptions"
+        },
+        "files": {
+          "description": "Middleware authentication using NextAuth.js.",
+          "title": "Authentication"
+        },
+        "subtitle": "From code to design, Relivator has functionalities that supercharge your web projects.",
+        "text": {
+          "description": "Manipulate app effortlessly with Server and Client Components. Use hook. And more.",
+          "title": "React 18"
+        },
+        "title": "Features"
+      },
+      "get-started": "Funzionalità",
+      "open-source": {
+        "stars": "This project has {count} stars! 😍",
+        "stars#few": "This project has {count} stars! 😍",
+        "stars#many": "This project has {count} stars! 😍",
+        "stars#one": "This project has only one star... 😢",
+        "subtitle": {
+          "first": "Bleverse Relivator champions open-source ethos and encourages collaborative code evolution.",
+          "second": "Explore our codebase on"
+        },
+        "title": "Embrace Open Source"
+      },
+      "subtitle": "Bleverse Relivator simplifies your development journey. Start with built-in features optimized for modern web development.",
+      "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
+    },
+    "not-found": {
+      "title": "🫠 Pagina non trovata! 🥲 Purtroppo...",
+      "description": "La risorsa che stai cercando potrebbe essere stata spostata, rinominata o forse non è mai esistita. Verifica l'URL o naviga verso altre sezioni utilizzando il menu.",
+      "go-home": "Torna alla pagina principale"
+    },
+    "tools": {
+      "binary-code": {
+        "decode": "Binary to text",
+        "encode": "Text to binary",
+        "title": "Binary Code"
+      },
+      "caesar-cipher": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Cipher to text",
+        "encode": "Text to cipher",
+        "key": "Key",
+        "title": "Caesar Cipher",
+        "toast": {
+          "invalid-key": "Please type a number between 0 - 25"
+        }
+      },
+      "clock": {
+        "title": "Clock"
+      },
+      "color-picker": {
+        "title": "Color Picker"
+      },
+      "css-minifier": {
+        "actions": {
+          "minify": "Minify",
+          "minifying": "Minifying"
+        },
+        "title": "CSS Minifier",
+        "toast": {
+          "required": "Please enter some CSS to minify",
+          "success": "CSS minified successfully"
+        }
+      },
+      "currency": {
+        "not-found": "No currency found.",
+        "placeholder": "Search currency...",
+        "result": "{from} equals to {to}",
+        "source": "Source",
+        "title": "Currency"
+      },
+      "hex-code": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Hex to text",
+        "encode": "Text to hex",
+        "title": "Hex Code"
+      },
+      "json-formatter": {
+        "actions": {
+          "format": "Format",
+          "formatting": "Formatting"
+        },
+        "placeholder": "Number of spaces",
+        "title": "JSON Formatter",
+        "toast": {
+          "invalid-json": "Invalid JSON",
+          "invalid-number": "Please enter a valid number",
+          "required": "Please enter some JSON to format",
+          "success": "JSON formatted successfully"
+        }
+      },
+      "length": {
+        "centimeter": "Centimeter",
+        "foot": "Foot",
+        "inch": "Inch",
+        "kilometer": "Kilometer",
+        "meter": "Meter",
+        "micrometers": "Micrometers",
+        "mile": "Mile",
+        "millimeter": "Millimeter",
+        "nanometers": "Nanometers",
+        "nautical mile": "Nautical Mile",
+        "title": "Length",
+        "yard": "Yard"
+      },
+      "morse-code": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Morse to text",
+        "encode": "Text to morse",
+        "title": "Morse Code"
+      },
+      "password-generator": {
+        "actions": {
+          "generate": "Generate"
+        },
+        "length": "Length: {length}",
+        "placeholder": "Password",
+        "title": "Password Generator"
+      },
+      "qr-code": {
+        "actions": {
+          "download": "Download",
+          "share": {
+            "twitter": "Share on Twitter",
+            "whatsapp": "Share on WhatsApp"
+          }
+        },
+        "hint": "(Your QR Code will be generated automatically)",
+        "placeholder": "Enter your website, text or link here",
+        "title": "QR Code"
+      },
+      "random-color": {
+        "generate": "New color",
+        "title": "Random Color"
+      },
+      "stopwatch": {
+        "clear": "Clear",
+        "start": "Start",
+        "stop": "Stop",
+        "title": "Stopwatch"
+      },
+      "text-converter": {
+        "actions": {
+          "camel-case": "Convert to Camel case",
+          "capitalize": "Capitalize",
+          "kebab-case": "Convert to Kebab case",
+          "lowercase": "Convert to lowercase",
+          "pascal-case": "Convert to Pascal case",
+          "remove-accents": "Remove accents",
+          "remove-duplicates": "Remove duplicates",
+          "remove-empty-lines": "Remove empty lines",
+          "remove-spaces": "Remove spaces",
+          "remove-special-characters": "Remove special characters",
+          "reverse": "Reverse",
+          "snake-case": "Convert to Snake case",
+          "uppercase": "Convert to uppercase"
+        },
+        "clear-input": "Clear input",
+        "placeholder": {
+          "input": "Type something here...",
+          "output": "Result"
+        },
+        "title": "Text Converter",
+        "toast": {
+          "required": "Please enter some text to convert",
+          "success-camel-case": "Converted to Camel case successfully",
+          "success-capitalize": "Capitalized successfully",
+          "success-kebab-case": "Converted to Kebab case successfully",
+          "success-lowercase": "Converted to lowercase successfully",
+          "success-pascal-case": "Converted to Pascal case successfully",
+          "success-remove-accents": "Accents removed successfully",
+          "success-remove-duplicates": "Duplicates removed successfully",
+          "success-remove-empty-lines": "Empty lines removed successfully",
+          "success-remove-spaces": "Spaces removed successfully",
+          "success-remove-special-characters": "Special characters removed successfully",
+          "success-reverse": "Reversed successfully",
+          "success-snake-case": "Converted to Snake case successfully",
+          "success-uppercase": "Converted to uppercase successfully"
+        }
+      },
+      "timestamp": "-",
+      "title": "Utils",
+      "todo": {
+        "actions": {
+          "create": "Create new todo",
+          "delete": "Delete task"
+        },
+        "placeholder": "Add new task",
+        "title": "Todo"
+      },
+      "unit-converter": {
+        "actions": "-",
+        "categories": "-",
+        "placeholder": "-",
+        "toast": "-"
+      },
+      "url-encoder-decoder": {
+        "actions": "-"
+      },
+      "word-counter": "-"
+    }
+  },
+  "plugins": {
+    "stars": "Per favore! Lascia una stella su GitHub ⭐ Obiettivo:"
+  },
+  "pricing": {
+    "compare": {
+      "features": {
+        "enterprise": "Azienda",
+        "features": "Caratteristiche",
+        "free": "Gratuito",
+        "team": "Squadra"
+      },
+      "title": "Confronta i piani"
+    },
+    "cta": {
+      "get-started": "Cominciare",
+      "sign-up": "Registrati"
+    },
+    "faq": {
+      "have-questions": "Domande?",
+      "read-faq": "Leggi le nostre {faq}.",
+      "title": "Domande frequenti"
+    },
+    "features": {
+      "features": {
+        "included": "Incluso",
+        "not-included": "Non incluso"
+      },
+      "title": "Caratteristiche"
+    },
+    "hero": {
+      "description": "Unisciti alla comunità di Relivator. Scegli il piano più adatto a te.",
+      "pricing": "Prezzi"
+    },
+    "plans": {
+      "title": "Piani"
+    },
+    "questions": {
+      "answer-card": "Il prezzo à la carte ti consente di personalizzare il tuo piano in base alle tue esigenze specifiche. Paghi solo per le funzionalità di cui hai bisogno.",
+      "answer-change": "Sì, puoi modificare i piani in qualsiasi momento.",
+      "answer-free": "Sì, Relivator offre un piano gratuito con un set di funzionalità di base. Puoi usarlo gratuitamente.",
+      "answer-limits": "Se superi i limiti del tuo piano, puoi aggiornare il tuo piano per ottenere più risorse o pagare tariffe aggiuntive in base all'utilizzo in eccesso.",
+      "answer-nonprofit": "Sì, offriamo sconti per organizzazioni no-profit e istituti scolastici. Contattateci per maggiori dettagli.",
+      "answer-payment": "Accettiamo pagamenti con carta di credito e pagamenti online sicuri. Puoi anche scegliere di pagare mensilmente o annualmente.",
+      "answer-prices": "Tutti i prezzi sono mensili.",
+      "answer-teams": "Il prezzo per i team si basa sul numero di membri del team. Puoi aggiungere o rimuovere membri del team in qualsiasi momento e la tua fatturazione verrà adeguata di conseguenza.",
+      "are-prices": "I prezzi sono mensili o annuali?",
+      "can-i-change": "Posso cambiare i piani in seguito?",
+      "do-you-offer": "Offrite sconti per organizzazioni no-profit o istituti scolastici?",
+      "how-does": "Come funziona la tariffazione à la carte?",
+      "how-is": "Come vengono calcolati i prezzi per i team?",
+      "is-there": "Esiste una versione gratuita di Relivator?",
+      "what-happens": "Cosa succede se supero i limiti del mio piano?",
+      "what-payment": "Quali metodi di pagamento accettate?"
+    }
+  },
+  "settings-page": {
+    "description": "Gestisci le tue impostazioni.",
+    "title": "Impostazioni"
+  },
+  "signIn": {
+    "LoginForm": {
+      "wait": "Attendere prego..."
+    },
+    "heading": "Accedi",
+    "meta": {
+      "description": "Accedi per un'esperienza personalizzata",
+      "title": "Accedi"
+    },
+    "providerButtonText": "Accedi con {name}",
+    "providerButtonTextReg": "Iscriviti con {nome}"
+  },
+  "things": {
+    "heading": "Il tuo Relivator",
+    "input": {
+      "placeholder": "Inserisci un titolo",
+      "submitButtonText": "Aggiungi alla lista"
+    },
+    "list": {
+      "createdDate": "Creato il {createdDate, date, ::yyyyMMddHHmmss}",
+      "loading": "Caricamento..."
+    },
+    "meta": {
+      "description": "Elenco delle tue cose personali",
+      "title": "Il tuo Relivator"
+    },
+    "signIn": "Per favore, <link>accedi</link> per vederlo."
+  },
+  "tools": {
+    "about": "-",
+    "categories": "-",
+    "cta": "-",
+    "hero": {
+      "title": "Strumenti online gratuiti di Relivator"
+    },
+    "title": "Utensili"
+  }
+}

@@ -4,12 +4,11 @@ import * as React from "react";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { catchAuthError } from "~/utils";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { type z } from "zod";
+import { toast } from "react-hot-toast";
+import type { z } from "zod";
 
-import { updateEmailPreferencesAction } from "~/server/actions/email";
-import { catchAuthError } from "~/server/utils";
 import { type EmailPreference } from "~/data/db/schema";
 import { updateEmailPreferencesSchema } from "~/data/validations/email";
 import { useToast } from "~/hooks/use-toast-2";
@@ -37,9 +36,6 @@ export function UpdateEmailPreferencesForm({
 }: UpdateEmailPreferencesFormProps) {
   const [isPending, startTransition] = React.useTransition();
 
-  // const searchParams = useSearchParams();
-  // const { toast } = useToast();
-
   // react-hook-form
   const form = useForm<Inputs>({
     resolver: zodResolver(updateEmailPreferencesSchema),
@@ -52,34 +48,14 @@ export function UpdateEmailPreferencesForm({
   });
 
   /**
-   * If this page loads with an error query
-   * parameter, display the error message.
-   */
-  // useEffect(() => {
-  //   if (searchParams?.get("error")) {
-  //     toast({
-  //       ...catchAuthError(searchParams?.get("error")),
-  //       variant: "destructive",
-  //     });
-  //   }
-  // }, [searchParams, toast]);
-
-  /**
    * Handle the form submission.
    */
   function onSubmit(data: Inputs) {
     console.log(data);
     startTransition(async () => {
       try {
-        await updateEmailPreferencesAction({
-          token: data.token,
-          newsletter: data.newsletter,
-          transactional: data.transactional,
-          marketing: data.marketing,
-        });
         toast.success("Email preferences updated.");
       } catch (err) {
-        // catchAuthError(err);
         console.error(err);
       }
     });

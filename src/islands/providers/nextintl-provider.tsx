@@ -5,7 +5,8 @@ import _ from "lodash";
 import { NextIntlClientProvider } from "next-intl";
 
 /**
- * Next.js 13 internationalization library
+ * next-intl: next.js internationalization library
+ * todo: fix compatibility with `next dev --turbo`
  * @see https://next-intl-docs.vercel.app
  */
 

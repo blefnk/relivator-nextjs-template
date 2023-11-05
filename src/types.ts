@@ -1,17 +1,21 @@
-import { Metadata } from "next";
+/**
+ * TypeScript Project Types
+ * ========================
+ *
+ * Each of these types represents a distinct aspect of the app categories, such as user management,
+ * subscription services, API interactions, UI components, and store/product management.
+ * This categorization can help in better organizing the types and understanding
+ * their roles within the application's structure.
+ */
+
 import { NextResponse, type NextRequest } from "next/server";
-import { type DefaultSession } from "next-auth";
+import { siteConfig } from "~/app";
 import { type FileWithPath } from "react-dropzone";
 import { type z, type ZodIssue } from "zod";
 
+import { Network } from "~/server/config/socials";
 import type { storeSubscriptionPlans } from "~/server/config/subscriptions";
-import {
-  commentsTypeEnum,
-  type accounts,
-  type comments,
-  type Store,
-} from "~/data/db/schema";
-import { IUser } from "~/data/routers/handlers/users";
+import { type accounts, type Store } from "~/data/db/schema";
 import { type userPrivateMetadataSchema } from "~/data/validations/auth";
 import type {
   cartItemSchema,
@@ -20,24 +24,62 @@ import type {
 } from "~/data/validations/cart";
 import { type Icons } from "~/islands/icons";
 
-/**
- * =======================================================================
- * TYPES: MISCELLANEOUS
- * =======================================================================
- */
+/* User-Related Types */
 
-export type Comment = typeof comments.$inferSelect;
-export const CommentTuple = commentsTypeEnum.enumValues;
-export type CommentType = (typeof CommentTuple)[number];
-export type Account = typeof accounts.$inferSelect;
+export type PlanProps = "starter" | "professional" | "enterprise";
+
+export type UserProps = {
+  id: string;
+  name?: string;
+  email?: string;
+  image?: string;
+  plan: PlanProps;
+  createdAt?: Date;
+  stripeId?: string;
+  usage?: number; // how many stores the user has created
+  usageLimit?: number; // how many stores the user can create
+  billingCycleStart?: number;
+  stores?: { storeId: string }[];
+  role?: "admin" | "seller" | "buyer";
+};
+
+export type SellerProps = {
+  id: string;
+  name?: string;
+  slug?: string;
+  logo?: string;
+  createdAt?: Date;
+  domains?: { slug: string }[];
+  users?: { role: "admin" | "seller" | "buyer" }[];
+};
+
+export type UserRole = z.infer<typeof userPrivateMetadataSchema.shape.role>;
+
+/* Subscription and Plan-Related Types */
+
 export type SubPlan = (typeof storeSubscriptionPlans)[number];
+
 export type PlanName = (typeof storeSubscriptionPlans)[number]["name"];
 
-/**
- * =======================================================================
- * TYPES: RESPONSE
- * =======================================================================
- */
+export type SubscriptionPlanTypes = {
+  id: "starter" | "professional" | "enterprise";
+  name: string;
+  description: string;
+  features: string[];
+  stripePriceId: string;
+  price: number;
+};
+
+export type UserSubscriptionPlan = SubscriptionPlanTypes & {
+  stripeCurrentPeriodEnd?: string | null;
+  stripeSubscriptionId?: string | null;
+  stripeCustomerId?: string | null;
+  isSubscribed: boolean;
+  isCanceled: boolean;
+  isActive: boolean;
+};
+
+/* API Response and Data Handling Types */
 
 export type ApiResponseError = {
   ok: false;
@@ -52,124 +94,24 @@ export type ApiResponseSuccess<T> = {
 
 export type ApiResponse<T> = ApiResponseSuccess<T> | ApiResponseError;
 
+/* Next.js Context and Route Handler Types */
+
 export type NextRequestContext<T> = {
   params: T;
 };
 
-/**
- * The Context parameter for route handlers, which is currently optional `params` object.
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/route#context-optional
- */
-export type NextRouteContext<T = undefined> = {
-  params: T;
-};
+export type NextRouteContext<T = undefined> = { params: T };
 
-/**
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/route
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/route#request-optional
- */
 export type NextRouteHandler<T = void, U = NextRouteContext> = (
   request: NextRequest,
   context: U,
 ) => NextResponse<T> | Promise<NextResponse<T>>;
 
-/**
- * =======================================================================
- * TYPES: NEXT-AUTH
- * =======================================================================
- */
-
-type JwtPayload = {
-  userId?: IUser["id"];
-};
-
-declare module "next-auth" {
-  /**
-   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-   */
-  interface Session {
-    userId?: IUser["id"];
-  }
-}
-
-// declare module "next-auth" {
-//   /**
-//    * Returned by useSession, getSession and received
-//    * as a prop on the SessionProvider React Context
-//    */
-//   interface Session extends DefaultSession {
-//     user: {
-//       userId?: string | null;
-//       email?: string | null;
-//       image?: string | null;
-//       role: User["role"];
-//     } & DefaultSession["user"];
-//   }
-//   /**
-//    * Here we can specify the new custom types
-//    * for Session which extends DefaultSession
-//    */
-//   interface User {
-//     role: "admin" | "user";
-//   }
-// }
-
-declare module "next-auth/jwt" {
-  /**
-   * Returned by the jwt callback and
-   * getToken when using jwt sessions
-   */
-  // interface JWT {
-  //   userId?: string | null;
-  //   email?: string | null;
-  // }
-  interface JWT extends JwtPayload {
-    // @ts-expect-error
-    [k in JwtPayload]: JwtPayload[k];
-  }
-}
-
-/**
- * =======================================================================
- * TYPES: PROPS
- * =======================================================================
- */
+/* UI Component and Layout Types */
 
 export type WithChildren<T = unknown> = T & { children: React.ReactNode };
 
-export type LocaleLayoutParams = { params: { locale: string } };
-
-export interface NullLayoutParams {}
-
-export type GeneralShellParams = { header?: React.ReactNode };
-
-/**
- * =======================================================================
- * TYPES: API
- * =======================================================================
- */
-
-declare module "translate" {
-  export default function translate(
-    text: string,
-    options: {
-      from: string;
-      to: string;
-      cache?: number;
-      engine?: string;
-      key?: string;
-      url?: string;
-    },
-  ): string;
-}
-
-/**
- * =======================================================================
- * TYPES: NAVIGATION
- * =======================================================================
- */
-
-export interface NavItem {
+export type NavItem = {
   title: string;
   href?: string;
   disabled?: boolean;
@@ -177,97 +119,107 @@ export interface NavItem {
   icon?: keyof typeof Icons;
   label?: string;
   description?: string;
-}
+};
 
-export interface NavItemWithChildren extends NavItem {
+export type NavItemWithChildren = NavItem & {
   items: NavItemWithChildren[];
-}
+};
 
-export interface NavItemWithOptionalChildren extends NavItem {
+export type NavItemWithOptionalChildren = NavItem & {
   items?: NavItemWithChildren[];
-}
+};
 
-export interface FooterItem {
+export type FooterItem = {
   title: string;
   items: {
     title: string;
     href: string;
     external?: boolean;
   }[];
-}
+};
 
 export type MainMenuItem = NavItemWithOptionalChildren;
 
 export type SidebarNavItem = NavItemWithChildren;
 
-/**
- * =======================================================================
- * TYPES: USER
- * =======================================================================
- */
+export type GeneralShellParams = { header?: React.ReactNode };
 
-export type UserRole = z.infer<typeof userPrivateMetadataSchema.shape.role>;
+export type LocaleLayoutParams = { params: { locale: string } };
 
-export interface Option {
+export type SiteConfig = typeof siteConfig;
+
+export type Config = {
+  social: Network[];
+  name: string;
+};
+
+export type ContactConfig = {
+  email: string;
+};
+
+export type Settings = {
+  themeToggleEnabled: boolean;
+};
+
+export type Layout = {
+  featureCards: string;
+  headers: {
+    featureCards: string;
+    features: string;
+  };
+};
+
+export type Content = {
+  text: string;
+  subtext: string;
+  image?: string;
+};
+
+export type ContentSection = {
+  header: string;
+  subheader: string;
+  image?: string;
+  content: Array<Content>;
+};
+
+/* Store and Product-Related Types */
+
+export type Option = {
   label: string;
   value: string;
   icon?: React.ComponentType<{ className?: string }>;
-}
+};
 
 export type FileWithPreview = FileWithPath & {
   preview: string;
 };
 
-export interface StoredFile {
+export type StoredFile = {
   id: string;
   name: string;
   url: string;
-}
+};
 
-export interface DataTableSearchableColumn<TData> {
+export type DataTableSearchableColumn<TData> = {
   id: keyof TData;
   title: string;
-}
+};
 
-export interface DataTableFilterableColumn<TData>
-  extends DataTableSearchableColumn<TData> {
-  options: Option[];
-}
+export type DataTableFilterableColumn<TData> =
+  DataTableSearchableColumn<TData> & {
+    options: Option[];
+  };
 
-/**
- * =======================================================================
- * TYPES: STORE
- * =======================================================================
- */
-
-export interface CuratedStore {
+export type CuratedStore = {
   id: Store["id"];
   name: Store["name"];
   description?: Store["description"];
   stripeAccountId?: Store["stripeAccountId"];
   productCount?: number;
-}
+};
 
 export type CartItem = z.infer<typeof cartItemSchema>;
 
 export type CheckoutItem = z.infer<typeof checkoutItemSchema>;
 
 export type CartLineItem = z.infer<typeof cartLineItemSchema>;
-
-export interface SubscriptionPlan {
-  id: "starter" | "basic" | "advanced" | "enterprise";
-  name: string;
-  description: string;
-  features: string[];
-  stripePriceId: string;
-  price: number;
-}
-
-export interface UserSubscriptionPlan extends SubscriptionPlan {
-  stripeSubscriptionId?: string | null;
-  stripeCurrentPeriodEnd?: string | null;
-  stripeCustomerId?: string | null;
-  isSubscribed: boolean;
-  isCanceled: boolean;
-  isActive: boolean;
-}

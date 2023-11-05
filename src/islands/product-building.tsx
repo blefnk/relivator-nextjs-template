@@ -3,11 +3,11 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { type CartItem } from "~/types";
-import { toast } from "sonner";
+import { cn } from "~/utils";
+import { toast } from "react-hot-toast";
 
 import { addToCartAction, deleteCartItemAction } from "~/server/actions/cart";
 import { sortOptions } from "~/server/config/products";
-import { cn } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { Icons } from "~/islands/icons";

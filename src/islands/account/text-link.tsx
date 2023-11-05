@@ -1,8 +1,8 @@
 "use client";
 
 import { forwardRef, type ComponentPropsWithoutRef } from "react";
+import { Link } from "~/navigation";
 import clsx from "clsx";
-import Link from "next-intl/link";
 
 export const TextLink = forwardRef<
   HTMLAnchorElement,

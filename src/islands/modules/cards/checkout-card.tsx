@@ -1,7 +1,7 @@
-import Link from "next-intl/link";
+import { Link } from "~/navigation";
+import { cn, formatPrice } from "~/utils";
 
 import { getCartAction } from "~/server/actions/cart";
-import { cn, formatPrice } from "~/server/utils";
 import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { buttonVariants } from "~/islands/primitives/button";
 import {
@@ -29,15 +29,15 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
       className={cn(
         cartLineItems[0]?.storeStripeAccountId
           ? "border-green-500"
-          : "border-destructive",
+          : "border-neutral-700",
       )}
     >
       <CardHeader className="flex flex-row items-center space-x-4 py-4">
         <CardTitle className="line-clamp-1 flex-1">
           {cartLineItems[0]?.storeName}
         </CardTitle>
-        {/* <CheckoutButton storeId={storeId} cartLineItems={cartLineItems} /> */}
         <Link
+          aria-label="Checkout"
           href={`/checkout/${storeId}`}
           className={cn(
             buttonVariants({
@@ -50,21 +50,17 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
       </CardHeader>
       <Separator className="mb-4" />
       <CardContent className="pb-6 pl-6 pr-0">
-        <CartLineItems
-          cartLineItems={cartLineItems}
-          className="max-h-[280px]"
-        />
+        <CartLineItems items={cartLineItems} className="max-h-[280px]" />
       </CardContent>
       <Separator className="mb-4" />
       <CardFooter className="space-x-4">
         <span className="flex-1">
-          {cartLineItems.reduce((acc, item) => acc + Number(item.quantity), 0)}{" "}
-          items
+          Total ({cartLineItems.reduce((acc, item) => acc + item.quantity, 0)})
         </span>
         <span>
           {formatPrice(
             cartLineItems.reduce(
-              (acc, item) => acc + Number(item.price) * Number(item.quantity),
+              (acc, item) => acc + Number(item.price) * item.quantity,
               0,
             ),
           )}

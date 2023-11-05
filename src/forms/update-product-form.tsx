@@ -5,10 +5,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { generateReactHelpers } from "@uploadthing/react/hooks";
+import { env } from "~/env.mjs";
 import { type FileWithPreview } from "~/types";
+import { catchError, isArrayOfFile } from "~/utils";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { type z } from "zod";
+import { toast } from "react-hot-toast";
+import type { z } from "zod";
 
 import {
   checkProductAction,
@@ -16,7 +18,6 @@ import {
   updateProductAction,
 } from "~/server/actions/product";
 import { getSubcategories } from "~/server/config/products";
-import { catchError, isArrayOfFile } from "~/server/utils";
 import { products, type Product } from "~/data/db/schema";
 import { productSchema } from "~/data/validations/product";
 import { FileDialog } from "~/islands/file-dialog";
@@ -42,11 +43,9 @@ import {
 } from "~/islands/primitives/select";
 import { Textarea } from "~/islands/primitives/textarea";
 import { Zoom } from "~/islands/zoom-image";
-import { type OurFileRouter } from "~/app/(api)/api/uploadthing/core";
+import { type OurFileRouter } from "~/app/api/uploadthing/core";
 
-interface UpdateProductFormProps {
-  product: Product;
-}
+type UpdateProductFormProps = { product: Product };
 
 type Inputs = z.infer<typeof productSchema>;
 
@@ -258,6 +257,12 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
         </div>
         <FormItem className="flex w-full flex-col gap-1.5">
           <FormLabel>Images</FormLabel>
+          {process.env.NODE_ENV === "development" && (
+            <span className="text-red-500 font-mono">
+              [localhost-only message]: UploadThing fully works only on live
+              domains.
+            </span>
+          )}
           {files?.length ? (
             <div className="flex items-center gap-2">
               {files.map((file, i) => (

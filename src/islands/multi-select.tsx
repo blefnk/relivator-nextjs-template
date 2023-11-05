@@ -13,13 +13,13 @@ import {
   CommandItem,
 } from "~/islands/primitives/command";
 
-interface MultiSelectProps {
+type MultiSelectProps = {
   selected: Option[] | null;
   setSelected: React.Dispatch<React.SetStateAction<Option[] | null>>;
   onChange?: (value: Option[] | null) => void;
   placeholder?: string;
   options: Option[];
-}
+};
 
 export function MultiSelect({
   selected,

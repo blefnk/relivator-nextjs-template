@@ -1,13 +1,12 @@
-/**
- * This is an optional `page.tsx`.
- * Just used to ensure if locale cookie is not set
- * then we redirect manually to the default locale.
- * Please go to the "app/[locale]/page.tsx" file.
- */
-
 import { redirect } from "next/navigation";
-import { defaultLocale } from "~/i18n/locales";
+import { defaultLocale } from "~/navigation";
 
+/**
+ * This page component acts as a root-level page for locale redirection.
+ * If the locale cookie isn't set, it redirects the user to the default one.
+ * For the actual content, please visit the "app/[locale]/page.tsx" page component.
+ */
 export default function RootPage() {
-  redirect(`/${defaultLocale}`);
+  // return <>debug_mode_enabled</>;
+  redirect(defaultLocale);
 }

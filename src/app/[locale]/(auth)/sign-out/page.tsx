@@ -28,6 +28,7 @@ export default function SignOutPage() {
           Are you sure you want to sign out?
         </PageHeaderDescription>
       </PageHeader>
+
       <LogOutButtons />
     </Shell>
   );

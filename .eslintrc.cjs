@@ -1,12 +1,14 @@
-// @ts-check
+/**
+ * @see https://eslint.org
+ * @see https://typescript-eslint.io
+ * @see https://github.com/godaddy/eslint-plugin-i18n-json#readme
+ */
 
-const { defineConfig } = require("eslint-define-config");
-
-const config = defineConfig({
+/** @type {import('eslint').Linter.Config} */
+const config = {
   // ==============================================
   // | Global: TypeScript + JavaScript + Jest     |
   // ==============================================
-
   root: true,
   env: {
     es2023: true,
@@ -31,13 +33,11 @@ const config = defineConfig({
     "eslint:recommended",
     "prettier",
   ],
-
   overrides: [
-    // ============================================
-    // | Override: TypeScript                     |
-    // ============================================
-
     {
+      // ============================================
+      // | Overrides for TypeScript                 |
+      // ============================================
       files: ["*.ts", "*.tsx", "*.mts", "*.cts", "*.d.ts"],
       parser: "@typescript-eslint/parser",
       parserOptions: {
@@ -53,11 +53,6 @@ const config = defineConfig({
         "plugin:@typescript-eslint/strict-type-checked",
       ],
       rules: {
-        // !! We are incrementally moving towards full and strict type safety.
-        // !! Accordingly, disabled rules will be eliminated in the future.
-        /**
-         * @see https://github.com/godaddy/eslint-plugin-i18n-json#readme
-         */
         "i18n-json/valid-message-syntax": [
           2,
           {
@@ -73,9 +68,6 @@ const config = defineConfig({
           },
         ],
         "i18n-json/identical-keys": 0,
-        /**
-         * @see https://typescript-eslint.io
-         */
         "@typescript-eslint/consistent-type-imports": [
           "off",
           // "warn",
@@ -94,8 +86,7 @@ const config = defineConfig({
           // }
         ],
         "@typescript-eslint/consistent-type-definitions": [
-          /* "error", "type" */
-          "off",
+          "off" /* "error", "type" */,
         ],
         "@typescript-eslint/no-non-null-assertion": "off",
         "@typescript-eslint/no-unsafe-enum-comparison": "off",
@@ -121,7 +112,7 @@ const config = defineConfig({
         "@typescript-eslint/no-confusing-void-expression": "off",
         "@typescript-eslint/prefer-optional-chain": "off",
         "@typescript-eslint/no-unnecessary-condition": "off",
-        "@tanstack/query/prefer-query-object-syntax": "error",
+        "@tanstack/query/prefer-query-object-syntax": "off",
         "@typescript-eslint/no-redundant-type-constituents": "off",
         "@typescript-eslint/no-unnecessary-type-assertion": "off",
         "@typescript-eslint/no-unsafe-argument": "off",
@@ -164,20 +155,25 @@ const config = defineConfig({
         ],
       },
     },
-
-    // ============================================
-    // | Override: JavaScript                     |
-    // ============================================
-
     {
+      // ============================================
+      // | Overrides for specific files              |
+      // ============================================
+      files: ["auth.ts"],
+      rules: {
+        "@typescript-eslint/consistent-type-definitions": ["off"],
+      },
+    },
+    {
+      // ============================================
+      // | Overrides for JavaScript                 |
+      // ============================================
       files: ["*.js", "*.jsx", "*.mjs", "*.cjs"],
     },
-
-    // ============================================
-    // | Override: Jest (JavaScript)              |
-    // ============================================
-
     {
+      // ============================================
+      // | Override for Jest Tests                  |
+      // ============================================
       files: ["**/__tests__/**/*.{ts,tsx}", "**/*.test.{ts,tsx}"],
       env: { "jest/globals": true },
       plugins: ["jest"],
@@ -189,8 +185,6 @@ const config = defineConfig({
         "plugin:jest/all",
       ],
       rules: {
-        // !! We are incrementally moving towards full and strict type safety.
-        // !! Accordingly, disabled rules will be eliminated in the future.
         "@typescript-eslint/prefer-nullish-coalescing": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "jest/prefer-expect-assertions": "off",
@@ -203,6 +197,6 @@ const config = defineConfig({
       },
     },
   ],
-});
+};
 
 module.exports = config;

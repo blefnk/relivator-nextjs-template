@@ -6,8 +6,8 @@ import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
+import { cn } from "~/utils";
 
-import { cn } from "~/server/utils";
 import { Button } from "~/islands/primitives/button";
 
 interface PaginationButtonProps
@@ -45,7 +45,7 @@ export function PaginationButton({
   const paginationRange = React.useMemo(() => {
     const delta = siblingCount + 2;
 
-    const range = [];
+    const range: (number | "...")[] = [];
     for (
       let i = Math.max(2, Number(page) - delta);
       i <= Math.min(pageCount - 1, Number(page) + delta);

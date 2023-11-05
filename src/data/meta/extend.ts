@@ -4,9 +4,6 @@ import merge from "ts-deepmerge";
 
 import { DEFAULT_METADATA } from "./default";
 
-/**
- * todo: improve this type
- */
 export type GenerateMetadata = (
   params: LocaleLayoutParams,
 ) => Metadata | Promise<Metadata>;

@@ -3,9 +3,9 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { type Option } from "~/types";
+import { cn, toTitleCase, truncate } from "~/utils";
 
 import { getSubcategories, sortOptions } from "~/server/config/products";
-import { cn, toTitleCase, truncate } from "~/server/utils";
 import { type Product, type Store } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { Icons } from "~/islands/icons";
@@ -36,14 +36,14 @@ import {
 } from "~/islands/primitives/sheet";
 import { Slider } from "~/islands/primitives/slider";
 
-interface ProductsProps extends React.HTMLAttributes<HTMLDivElement> {
+type ProductsProps = React.HTMLAttributes<HTMLDivElement> & {
   products: Product[];
   pageCount: number;
   category?: Product["category"];
   categories?: Product["category"][];
   stores?: Pick<Store, "id" | "name">[];
   storePageCount?: number;
-}
+};
 
 export function Products({
   products,

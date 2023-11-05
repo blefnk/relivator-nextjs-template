@@ -2,18 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { Laptop, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
 
-import { useIsClient } from "~/hooks/use-is-client";
-import { Button, type ButtonProps } from "~/islands/primitives/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "~/islands/primitives/dropdown";
+import { type ButtonProps } from "~/islands/primitives/button";
 
 /**
  * todo: implement (with adding UI from `general`):

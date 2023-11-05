@@ -4,9 +4,9 @@ import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { type CuratedStore } from "~/types";
+import { cn } from "~/utils";
 
 import { storeSortOptions, storeStatusOptions } from "~/server/config/stores";
-import { cn } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { StoreCard } from "~/islands/modules/cards/store-card";
 import { PaginationButton } from "~/islands/navigation/pagination/pagination-button";

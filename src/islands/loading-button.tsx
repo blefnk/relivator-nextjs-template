@@ -1,9 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { cn } from "~/utils";
+import { useFormStatus } from "react-dom";
 
-import { cn } from "~/server/utils";
 import { useIsClient } from "~/hooks/use-is-client";
 import { Icons } from "~/islands/icons";
 import {

@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
-import { db } from "~/data/db/client";
+import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { fullURL } from "~/data/meta/builder";
 import { Breadcrumbs } from "~/islands/navigation/pagination/breadcrumbs";

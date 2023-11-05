@@ -1,18 +1,16 @@
 {
   "recommendations": [
     "aaron-bond.better-comments",
-    "ambar.bundle-size",
     "bradlc.vscode-tailwindcss",
     "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "lokalise.i18n-ally",
-    "mattpocock.ts-error-translator",
-    "mikekscholz.pop-icon-theme",
-    "neptunedesign.vs-sequential-number",
+    "omkarbhede.tailwindcss-tune",
     "streetsidesoftware.code-spell-checker",
-    "unifiedjs.vscode-mdx",
     "yoavbls.pretty-ts-errors",
-    "yzhang.markdown-all-in-one"
+    "yzhang.markdown-all-in-one",
+    "usernamehw.errorlens",
+    "github.copilot"
   ]
 }

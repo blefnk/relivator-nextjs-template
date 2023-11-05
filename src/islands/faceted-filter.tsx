@@ -1,8 +1,8 @@
 import * as React from "react";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
 import { type Option } from "~/types";
+import { cn } from "~/utils";
 
-import { cn } from "~/server/utils";
 import { Badge } from "~/islands/primitives/badge";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -21,12 +21,12 @@ import {
 } from "~/islands/primitives/popover";
 import { Separator } from "~/islands/primitives/separator";
 
-interface FacetedFilterProps {
+type FacetedFilterProps = {
   title?: string;
   filterValues: string[];
   setFilterValues: React.Dispatch<React.SetStateAction<string[]>>;
   options: Option[];
-}
+};
 
 export function FacetedFilter({
   title,

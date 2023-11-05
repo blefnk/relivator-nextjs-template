@@ -2,13 +2,13 @@
 
 import { useCallback, useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { cn } from "~/utils";
 import { Circle, File, Laptop, Moon, Sun } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 import { filterProductsAction } from "~/server/actions/product";
 import { navItems } from "~/server/links";
-import { cn } from "~/server/utils";
 import { type Product } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { useHotkeys } from "~/hooks/use-hotkeys";
@@ -151,7 +151,8 @@ export function Combobox() {
               {group.items.map((item) => (
                 <CommandItem
                   key={item.id}
-                  value={t(`pages.tools.${item.id}.title`)}
+                  value={item.id}
+                  // value={t(`pages.tools.${item.id}.title`)}
                   onSelect={runCommand(() =>
                     router.push(item.href as RouteHref),
                   )}
@@ -159,7 +160,8 @@ export function Combobox() {
                   <div className="mr-2 flex h-4 w-4 items-center justify-center">
                     <Circle className="h-3 w-3" />
                   </div>
-                  {t(`pages.tools.${item.id}.title`)}
+                  {item.id}
+                  {/* {t(`pages.tools.${item.id}.title`)} */}
                 </CommandItem>
               ))}
             </CommandGroup>

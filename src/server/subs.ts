@@ -1,85 +1,65 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
 import appts from "~/app";
-import { UserSubscriptionPlan, type SubscriptionPlan } from "~/types";
+import { env } from "~/env.mjs";
+import { UserSubscriptionPlan, type SubscriptionPlanTypes } from "~/types";
+import { absoluteUrl } from "~/utils";
 import dayjs from "dayjs";
-import { getServerSession } from "next-auth";
 import Stripe from "stripe";
 
-import { authOptions } from "~/server/auth";
 import { storeSubscriptionPlans } from "~/server/config/subscriptions";
+import { userPrivateMetadataSchema } from "~/data/validations/auth";
+import { stripe } from "~/utils/stripe/connect";
+import { getOrCreateCustomerId } from "~/utils/stripe/stripe";
 import {
   findAccount,
   findUserById,
   getUserAccounts,
-} from "~/data/routers/handlers/users";
-import { stripe } from "~/data/routers/stripe";
-import { userPrivateMetadataSchema } from "~/data/validations/auth";
+} from "~/utils/trpc/others/handlers/users";
+import {
+  getCurrentUser,
+  getServerAuthSession,
+  getUserById,
+} from "~/utils/users";
+
+export const PROFESSIONAL = env.STRIPE_PROFESSIONAL_SUBSCRIPTION_PRICE_ID ?? "";
+export const ENTERPRISE = env.STRIPE_ENTERPRISE_SUBSCRIPTION_PRICE_ID ?? "";
 
 // export async function getUserSubscriptionPlan(): Promise<UserSubscriptionPlan | null> {
 export async function getUserSubscriptionPlan() {
   try {
-    const session = await getServerSession(authOptions());
-    if (!session?.userId) throw new Error("User not found.");
+    // const session = await getServerSession(authOptions);
+    // if (!session?.userId) throw new Error("User not found.");
 
-    const user = await findUserById(session.userId);
+    const session = await getServerAuthSession();
+    if (!session) return redirect("/auth");
+    // const user = await getUserById(session.id);
+    // if (!user) throw new Error("❌ [getOrCreateCustomerId] something wrong");
+    const billingUrl = absoluteUrl("/dashboard/billing");
+    // await getOrCreateCustomerId({ stripe: stripe });
+
+    // const user = await findUserById(session.userId);
     const userPrivateMetadata = userPrivateMetadataSchema.parse(
       // session?.user?.name ?? "none",
       {},
     );
 
-    // Check if user is subscribed
-    // const isSubscribed =
-    //   !!userPrivateMetadata.stripePriceId &&
-    //   dayjs(userPrivateMetadata.stripeCurrentPeriodEnd).valueOf() + 86_400_000 >
-    //     Date.now();
-    // const plan = isSubscribed
-    //   ? storeSubscriptionPlans.find(
-    //       (plan) => plan.stripePriceId === userPrivateMetadata.stripePriceId,
-    //     )
-    //   : storeSubscriptionPlans[0];
-    // if (!plan) {
-    //   throw new Error("Plan not found.");
-    // }
+    // Check if user subscribed
+    // const isSubscribed = user.stripeSubscriptionId;
 
-    // Check if user has canceled subscription
-    // let isCanceled = false;
-    // if (isSubscribed && !!userPrivateMetadata.stripeSubscriptionId) {
-    //   const stripePlan = await stripe.subscriptions.retrieve(
-    //     userPrivateMetadata.stripeSubscriptionId,
-    //   );
-    //   isCanceled = stripePlan.cancel_at_period_end;
-    // }
+    // Stripe Subscription
+    let subscription;
 
-    if (appts.debug) console.log(user);
-
-    return null;
-    // return {
-    //   ...plan,
-    //   stripeSubscriptionId: userPrivateMetadata.stripeSubscriptionId,
-    //   stripeCurrentPeriodEnd: userPrivateMetadata.stripeCurrentPeriodEnd,
-    //   stripeCustomerId: userPrivateMetadata.stripeCustomerId,
-    //   isSubscribed,
-    //   isCanceled,
-    //   isActive: isSubscribed && !isCanceled,
-    // };
+    return {
+      // isSubscribed,
+      subscription,
+    };
   } catch (error) {
-    // console.error(err);
-    // const session = await getServerSession(authOptions());
-    // if (err instanceof Stripe.errors.StripeError) {
-    //   await session?.user?.updateUserMetadata(userId, {
-    //     privateMetadata: {
-    //       stripePriceId: null,
-    //       stripeCustomerId: null,
-    //       stripeSubscriptionId: null,
-    //       stripeCurrentPeriodEnd: null,
-    //     },
-    //   });
-    // }
-    console.log("User not found.");
     return null;
   }
 }
 
-export function getPlanFeatures(planId?: SubscriptionPlan["id"]) {
+export function getPlanFeatures(planId?: SubscriptionPlanTypes["id"]) {
   const plan = storeSubscriptionPlans.find((plan) => plan.id === planId);
   const features = plan?.features.map((feature) => feature.split(",")).flat();
 
@@ -102,9 +82,8 @@ export function getDashboardRedirectPath(input: {
   const { storeCount, subscriptionPlan } = input;
   // todo: implement `enterprise` custom things
   const minStoresWithProductCount = {
-    starter: 1,
-    basic: 2,
-    advanced: 3,
+    starter: 2,
+    professional: 3,
     enterprise: 4,
   }[subscriptionPlan?.id ?? "starter"];
 

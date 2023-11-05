@@ -1,18 +1,18 @@
-import Link from "next-intl/link";
+import { Link } from "~/navigation";
+import { cn, truncate } from "~/utils";
 
-import { cn, truncate } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { buttonVariants } from "~/islands/primitives/button";
 
-interface MdxPagerItem {
+type MdxPagerItem = {
   title: string;
   slug: string;
-}
+};
 
-interface MdxPagerProps extends React.HTMLAttributes<HTMLDivElement> {
+type MdxPagerProps = React.HTMLAttributes<HTMLDivElement> & {
   currentItem: MdxPagerItem;
   allItems: MdxPagerItem[];
-}
+};
 
 export function MdxPager({
   currentItem,

@@ -1,351 +1,240 @@
 /**
- * `app/[locale]/page.tsx` is the UI (User Interface) for the /{locale} URL. Learn more here:
- * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages
+ * Learn more about the Relivator Next.js project:
+ * @see https://github.com/blefnk/relivator#readme
  */
 
-import Image from "next/image";
-import {
-  heroHeader,
-  REPOSITORY_NAME,
-  REPOSITORY_OWNER,
-  REPOSITORY_URL,
-  siteConfig,
-} from "~/app";
-import { desc, eq, sql } from "drizzle-orm";
+import { REPOSITORY_URL, siteConfig } from "~/app";
+import { Link, redirect, type Locale } from "~/navigation";
+import { cn } from "~/utils";
+import { eq } from "drizzle-orm";
 import { Download, Store } from "lucide-react";
-import Link from "next-intl/link";
-import { FaDiscord } from "react-icons/fa";
 import { Balancer } from "react-wrap-balancer";
 
 import { productCategories } from "~/server/config/products";
-import { typography } from "~/server/text";
-import { cn } from "~/server/utils";
-import { db } from "~/data/db/client";
-import { products, stores } from "~/data/db/schema";
+import { db } from "~/data/db";
+import { User, users } from "~/data/db/schema";
 import { seo } from "~/data/meta";
-import { Icons } from "~/islands/icons";
-import { ProductCard } from "~/islands/modules/cards/product-card";
-import { StoreCard } from "~/islands/modules/cards/store-card";
-import { AspectRatio } from "~/islands/primitives/aspect-ratio";
-import { Badge } from "~/islands/primitives/badge";
+import { FeaturedStoreItems } from "~/islands/commerce/featured-store-items";
+import { HeroSection } from "~/islands/marketing/hero-section";
+import { IntlMessage } from "~/islands/message";
+import { SiteFooter } from "~/islands/navigation/site-footer";
+import { SiteHeader } from "~/islands/navigation/site-header";
 import { buttonVariants } from "~/islands/primitives/button";
-import CommonSection from "~/islands/sections/common-section";
-import FeaturesSection from "~/islands/sections/features-section";
-import OssRepoSection from "~/islands/sections/ossrepo-section";
-import GeneralShell from "~/islands/wrappers/general-shell";
+import ProductsCtx from "~/islands/products-ctx";
+import { GeneralShell } from "~/islands/wrappers/general-shell";
+import { getServerAuthSession } from "~/utils/users";
 
-export const dynamic = "force-dynamic";
+import { GithubStarsPlugin } from "~/plugins/islands/github/server";
 
-/**
- * Here you can override the metadata
- * from layout for this specific page
- */
-export const metadata = seo({
-  title: `Home – ${siteConfig.name}`,
-});
+export const metadata = seo({ title: `Home – ${siteConfig.name}` });
 
-export default async function HomePage() {
-  async function getGithubStars(): Promise<number | null> {
-    try {
-      const response = await fetch(
-        `https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`,
-        {
-          headers: {
-            Accept: "application/vnd.github+json",
-          },
-          next: {
-            revalidate: 60,
-          },
-        },
-      );
-      if (!response.ok) return null;
-      const data = (await response.json()) as { stargazers_count: number };
-      return data.stargazers_count;
-    } catch (err) {
-      console.error(err);
-      return null;
+type HomePageProps = { params: { locale: Locale } };
+
+export default async function HomePage({ params: { locale } }: HomePageProps) {
+  // Get the user session for NextAuth.js and Clerk
+  const session = await getServerAuthSession();
+
+  // Ensure that the user is ready to use the app
+  if (session) {
+    const user: User = await db
+      .select()
+      .from(users)
+      .where(eq(users.id, session.id))
+      .then((res: User[]) => res[0] ?? null);
+    if (!user || (user && !user.emailVerified)) {
+      return redirect(`/auth`);
     }
   }
 
-  const githubStars = await getGithubStars();
-
-  const technologies = [
-    { name: "Next.js 13", link: "https://nextjs.org/" },
-    { name: "i18n", link: "https://tailwindcss.com/" },
-    { name: "shadcn/ui", link: "https://ui.shadcn.com/" },
-    { name: "App Router", link: "https://nextjs.org/docs/app" },
-    { name: "TypeScript", link: "https://cutt.ly/CwjVPUNu" },
-    { name: "T3 Stack", link: "https://create.t3.gg/" },
-    { name: "Stripe", link: "https://stripe.com/" },
-    { name: "NextAuth.js", link: "https://authjs.dev/" },
-    { name: "Tailwind CSS", link: "https://tailwindcss.com/" },
-    { name: "TanStack", link: "https://tanstack.com/" },
-    { name: "Drizzle", link: "https://orm.drizzle.team/" },
-    { name: "Zod", link: "https://zod.dev/" },
-    { name: "RSC", link: "https://cutt.ly/WwjVDQDT" },
-    { name: "SWC", link: "https://swc.rs/" },
-    { name: "tRPC", link: "https://trpc.io/" },
-    { name: "Server Actions", link: "https://cutt.ly/awjVFfJg" },
-    { name: "Lucide Icons", link: "https://lucide.dev/" },
-  ];
-
-  const technologyLinks = technologies.map((tech, index) => (
-    <span key={tech.name}>
-      <Link
-        href={tech.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={typography.link}
-      >
-        {tech.name}
-      </Link>
-      {index < technologies.length - 1 ? ", " : ""}
-    </span>
-  ));
-
-  const someProducts = await db
-    .select({
-      id: products.id,
-      name: products.name,
-      images: products.images,
-      category: products.category,
-      price: products.price,
-      stripeAccountId: products.stripeAccountId,
-    })
-    .from(products)
-    .limit(8)
-    .orderBy(desc(products.createdAt))
-    .leftJoin(stores, eq(products.storeId, stores.id))
-    .groupBy(products.id)
-    .orderBy(desc(products.stripeAccountId), desc(products.createdAt));
-
-  const someStores = await db
-    .select({
-      id: stores.id,
-      name: stores.name,
-      description: stores.description,
-      stripeAccountId: stores.stripeAccountId,
-    })
-    .from(stores)
-    .limit(4)
-    .leftJoin(products, eq(products.storeId, stores.id))
-    .groupBy(stores.id)
-    .orderBy(desc(stores.stripeAccountId), desc(sql<number>`count(*)`));
-
   return (
-    <GeneralShell>
-      <section
-        id="hero"
-        aria-labelledby="hero-heading"
-        className="mx-auto flex w-full flex-col items-center justify-center gap-4 pb-8 pt-6 mt-6 text-center md:pb-12 md:pt-10 lg:py-14"
-      >
-        {githubStars ? (
-          <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
-            <Badge
-              className="rounded-md px-3.5 font-medium py-1.5"
-              variant="secondary"
-            >
-              <Icons.gitHub className="mr-2 h-3.5 w-3.5" aria-label="GitHub" />
-              Please! Star Relivator On GitHub! ⭐ Current Goal: {githubStars}
-              /100
-            </Badge>
-          </Link>
-        ) : null}
-        <h1 className="text-3xl font-heading leading-tight tracking-tighter md:text-4xl lg:text-5xl lg:leading-[1.1]">
-          <Balancer>
-            <span className="block">{heroHeader.header1}</span>
-            {heroHeader.header2}
-          </Balancer>
-        </h1>
-        <div
-          id="random-subcategories"
-          aria-labelledby="random-subcategories-heading"
-          className="flex flex-wrap mt-2 mb-2 items-center justify-center gap-4"
+    <>
+      <SiteHeader />
+      <GeneralShell>
+        <section
+          id="hero"
+          aria-labelledby="hero-heading"
+          className="flex w-full flex-col items-center justify-center pt-10 gap-4 mx-auto mt-8 mb-2 text-center"
         >
-          {productCategories[
-            Math.floor(Math.random() * productCategories.length)
-          ]?.subcategories.map((subcategory) => (
-            <Link
-              key={subcategory.slug}
-              href={`/categories/${String(productCategories[0]?.title)}/${
-                subcategory.slug
-              }`}
-            >
-              <Badge variant="secondary" className="rounded px-3 py-1">
-                {subcategory.title}
-              </Badge>
-              <span className="sr-only">{subcategory.title}</span>
-            </Link>
-          ))}
-        </div>
-        <Balancer className="max-w-[46rem] text-2xl text-muted-foreground">
-          {technologyLinks}
-        </Balancer>
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="/sign-in" className={cn(buttonVariants())}>
-            <Store className="h-4 w-4 mr-2" />
-            Sell<div className="hidden md:block ml-1">Products Now</div>
-          </Link>
-          <Link
-            href={REPOSITORY_URL}
-            target="_blank"
-            className={cn(
-              buttonVariants({
-                variant: "outline",
-              }),
-              "p-5",
-            )}
+          <GithubStarsPlugin />
+          <HeroSection />
+          <Balancer
+            as="p"
+            className="leading-normal text-base text-primary/90 sm:text-lg sm:leading-7 !max-w-5xl"
           >
-            <Download className="h-4 w-4 mr-2" />
-            Download <div className="hidden md:block ml-1">Template</div>
-          </Link>
-          <Link
-            href="https://discord.gg/Pb8uKbwpsJ"
-            target="_blank"
-            className={cn(
-              buttonVariants({
-                variant: "outline",
-              }),
-              "p-5",
-            )}
-          >
-            <FaDiscord className="h-4 w-4 mr-2" />
-            <div className="hidden md:block mr-1">Our</div>Discord
-          </Link>
-        </div>
-      </section>
-
-      <section
-        id="featured-products"
-        aria-labelledby="featured-products-heading"
-        className="space-y-6 py-12"
-      >
-        <div className="flex items-center">
-          <h2 className="flex-1 text-2xl font-heading sm:text-3xl">
-            Featured products
-          </h2>
-          <Link aria-label="Products" href="/products">
-            <div
-              className={cn(
-                buttonVariants({
-                  size: "sm",
-                }),
-              )}
-            >
-              View all
-            </div>
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {someProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
-
-      <section
-        id="create-a-store-banner"
-        aria-labelledby="create-a-store-banner-heading"
-        className="grid place-items-center gap-6 rounded-lg border bg-card px-6 py-16 text-center text-card-foreground shadow-sm"
-      >
-        <div className="text-2xl font-medium sm:text-3xl">
-          Do you want to sell your products on our website?
-        </div>
-        <Link href="/sign-in">
-          <div className={cn(buttonVariants())}>
-            Create a store
-            <span className="sr-only">Create a store</span>
-          </div>
-        </Link>
-      </section>
-
-      <section
-        id="featured-stores"
-        aria-labelledby="featured-stores-heading"
-        className="space-y-6 pt-6 pb-12"
-      >
-        <div className="flex items-center">
-          <h2 className="flex-1 text-2xl font-heading sm:text-3xl">
-            Featured stores
-          </h2>
-          <Link aria-label="Stores" href="/stores">
-            <div
-              className={cn(
-                buttonVariants({
-                  size: "sm",
-                }),
-              )}
-            >
-              View all
-            </div>
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {someStores.map((store) => (
-            <StoreCard
-              key={store.id}
-              store={store}
-              href={`/products?store_ids=${store.id}`}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section
-        id="categories"
-        aria-labelledby="categories-heading"
-        className="space-y-6 py-2"
-      >
-        <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
-          <h2 className="text-3xl font-heading leading-[1.1] sm:text-3xl md:text-5xl">
-            Categories
-          </h2>
-          <Balancer className="max-w-[46rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-            Explore our categories and find the best products for you
+            <IntlMessage id="landing.about" />
           </Balancer>
-        </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {productCategories.map((category) => (
+          <div className="flex flex-wrap mt-3 items-center justify-center gap-4">
             <Link
-              aria-label={`Go to ${category.title}`}
-              key={category.title}
-              href={`/categories/${category.title}`}
+              href={`${REPOSITORY_URL}/#readme`}
+              target="_blank"
+              className={cn(
+                buttonVariants({
+                  variant: "secondary",
+                  size: "lg",
+                }),
+                "",
+              )}
             >
-              <div className="group relative overflow-hidden rounded-md">
-                <AspectRatio ratio={4 / 5}>
-                  <div className="absolute inset-0 z-10 bg-slate-500/60 group-hover:bg-slate-400/70 dark:bg-zinc-900/60 transition-colors dark:group-hover:bg-zinc-800/70" />
-                  {/* todo: fix strange src fetching error when changing screen size */}
-                  <Image
-                    src={category.image}
-                    alt={category.title}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                    priority
-                  />
-                </AspectRatio>
-                <div className="absolute inset-0 z-20 flex items-center justify-center">
-                  <h3 className="text-3xl font-medium capitalize text-slate-100 md:text-2xl">
-                    {category.title}
-                  </h3>
-                </div>
-              </div>
+              <Download className="h-4 w-4 mr-2" />
+              Free Download
             </Link>
-          ))}
-        </div>
-      </section>
 
-      <OssRepoSection githubStars={githubStars} />
-      <FeaturesSection />
-      <CommonSection />
-    </GeneralShell>
+            <Link
+              href="/dashboard/stores"
+              className={cn(
+                buttonVariants({
+                  variant: "outline",
+                  size: "lg",
+                }),
+                "",
+              )}
+            >
+              <Store className="h-4 w-4 mr-2" />
+              Check Demo
+            </Link>
+          </div>
+        </section>
+
+        <FeaturedStoreItems />
+        {/* <ProductsCtx /> */}
+
+        <section
+          id="categories"
+          aria-labelledby="categories-heading"
+          className="py-1"
+        >
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+            {productCategories.map((category) => (
+              <Link
+                aria-label={`Go to ${category.title}`}
+                key={category.title}
+                href={`/categories/${category.title}`}
+              >
+                <h3 className="font-medium capitalize flex items-center justify-center transition-colors text-zinc-900 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-900 h-12 rounded-lg">
+                  {category.title}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section
+          id="create-a-store-banner"
+          aria-labelledby="create-a-store-banner-heading"
+          className="grid place-items-center gap-6 bg-card px-6 mt-10 mb-14 text-center text-card-foreground"
+        >
+          <div className="text-xl font-medium sm:text-2xl">
+            Do you want to sell your products?
+          </div>
+          <Link href="https://github.com/blefnk/relivator/#readme">
+            <div className={cn(buttonVariants({ variant: "outline" }))}>
+              Get Started
+              <span className="sr-only">Create a store</span>
+            </div>
+          </Link>
+        </section>
+      </GeneralShell>
+      <SiteFooter />
+    </>
   );
 }
 
-// [💡 INTERESTING THINGS SECTION 💡]
+// ===== [TODO SECTION] =================================================
+
+// todo: fix typescript errors when using next-intl without "use client"
+// unstable_setRequestLocale(locale); // needs for static pages rendering
+// const t = useTranslations("landing"); // traditional page translations
+// const t = await getTranslator(locale, "landing"); // also static pages
+/** @see https://github.com/amannn/next-intl/pull/149 */
+
+// ===== [INTERESTING THINGS ] ==========================================
+
+// note: information below is not updated constantly and may be outdated
 
 /**
- * !📄 "HOW TO USE TRPC-BASED COMPONENTS"
+ * The 'await' Keyword:
+ *
+ * The 'await' keyword is crucial in asynchronous programming in JavaScript.
+ * It pauses the execution of an async function until a Promise is fulfilled,
+ * ensuring that subsequent lines of code are executed only after the awaited
+ * operation completes. This makes handling asynchronous operations more
+ * intuitive and allows for a sequential programming style even with
+ * asynchronous code.
+ *
+ * Usage Example:
+ * When fetching data from an API, using 'await' ensures that the variable
+ * storing the fetched data is assigned only after the data has been
+ * successfully retrieved.
+ */
+
+/**
+ * [Important Next.js Caveat: Dynamic Rendering with cookies()]
+ *
+ * Understanding cookies() in Next.js:
+ * The function cookies(), in the context of Next.js, is dynamic by nature.
+ * This means that its output varies and is determined at the time of request.
+ *
+ * Impact on Static Rendering:
+ * Using cookies() within key components like Layout.tsx, which are common
+ * across multiple pages, can affect the static rendering capabilities of your
+ * application. Specifically, it causes these pages to be rendered dynamically
+ * at request time, rather than being pre-rendered as static HTML.
+ *
+ * Why Caution is Needed:
+ * For large applications with numerous static pages, opting into dynamic
+ * rendering for all pages by using cookies() in a common layout component can
+ * potentially impact performance and loading times. It's advisable to assess
+ * the necessity and placement of cookies() within your application, especially
+ * if static rendering is a priority.
+ *
+ * @see https://nextjs.org/docs/app/api-reference/functions/cookies
+ * @see https://michaelangelo.io/blog/darkmode-rsc#important-nextjs-caveat
+ * @see https://github.com/pacocoursey/next-themes/issues/152#issuecomment-1693979442
+ */
+
+/**
+ * !📄 "TRPC EXAMPLE 1"
+ *
+ * import { api } from "~/data/api/package/server";
+ * import { CreateTodo } from "~/islands/data-api/create-todo";
+ *
+ * const hello = await api.todo.hello.query({ text: "from tRPC" });
+ *
+ * <CrudShowcase />
+ *
+ */
+/*
+<section className="flex flex-col items-center gap-2 pb-20">
+  <p className="text-2xl text-white">
+    {hello ? hello.greeting : "Loading tRPC query..."}
+  </p>
+  <div className="flex flex-col items-center justify-center gap-4">
+    <p className="text-center text-2xl text-white">
+      {session && <span>Logged in as {session.user?.name}</span>}
+    </p>
+  </div>
+</section>
+*/
+/*
+async function CrudShowcase() {
+  const session = await getServerAuthSession();
+  if (!session?.user) return null;
+  const latestTodo = await api.todo.getLatest.query();
+  return (
+    <div className="w-full max-w-xs">
+      {latestTodo ? (
+        <p className="truncate">Your most recent todo: {latestTodo.name}</p>
+      ) : (
+        <p>You have no todos yet.</p>
+      )}
+      <CreateTodo />
+    </div>
+  );
+}
+*/
+
+/**
+ * !📄 "TRPC EXAMPLE 2"
  *
  * ?1️⃣ Import the component and forse cache:
  * import { serverClient } from "~/islands/wrappers/trpc/server-client";
@@ -375,7 +264,7 @@ export default async function HomePage() {
  * }: LocaleLayoutParams): Promise<Metadata> {
  *   const t = await getTranslator(params.locale, "landing");
  *   return {
- *     description: t("subtitle"),
+ *     description: t(""),
  *   };
  * }
  *
@@ -390,7 +279,7 @@ export default async function HomePage() {
  * import { authOptions } from "~/server/auth";
  *
  * ?2️⃣ Add variables inside the component:
- * const session = await getServerSession(authOptions());
+ * const session = await getServerSession(authOptions);
  *
  * ?2️⃣ Use code example inside the component:
  * <div>

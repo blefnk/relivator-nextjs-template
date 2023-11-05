@@ -2,13 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { type CartLineItem } from "~/types";
+import type { CartLineItem } from "~/types";
 import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
 import { type z } from "zod";
 
-import { db } from "~/data/db/client";
+import { db } from "~/data/db";
 import { carts, products, stores } from "~/data/db/schema";
-import type {
+import {
   cartItemSchema,
   deleteCartItemSchema,
   deleteCartItemsSchema,
@@ -30,7 +30,8 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
 
   if (productIds.length === 0) return [];
 
-  const uniqueProductIds = [...new Set(productIds)];
+  // Make TypeScript happy by casting uniqueProductIds to the correct type
+  const uniqueProductIds: number[] = [...new Set(productIds)].map(Number);
 
   const cartLineItems = await db
     .select({
@@ -50,11 +51,13 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
     .where(
       and(
         inArray(products.id, uniqueProductIds),
-        storeId ? eq(products.storeId, storeId) : undefined,
+        // storeId ? eq(products.storeId, storeId) : undefined,
+        storeId ? eq(products.storeId, storeId) : sql`TRUE`,
       ),
     )
     .groupBy(products.id)
     .orderBy(desc(stores.stripeAccountId), asc(products.createdAt))
+    .execute()
     .then((items) => {
       return items.map((item) => {
         const quantity = cart?.items?.find(
@@ -81,12 +84,13 @@ export async function getUniqueStoreIds() {
     .from(carts)
     .leftJoin(
       products,
-      sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`,
+      sql`JSON_CONTAINS(${carts}.items, JSON_OBJECT('productId', ${products}.id))`,
+      // sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`,
     )
     .groupBy(products.storeId)
     .where(eq(carts.id, Number(cartId)));
 
-  const storeIds = cart.map((item) => Number(item.storeId));
+  const storeIds = cart.map((item) => Number(item.storeId)).filter((id) => id);
 
   const uniqueStoreIds = [...new Set(storeIds)];
 
@@ -103,7 +107,27 @@ export async function getCartItemsAction(input: { cartId?: number }) {
   return cart?.items;
 }
 
-export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
+export async function addToCartAction(
+  rawInput: z.infer<typeof cartItemSchema>,
+) {
+  const input = cartItemSchema.parse(rawInput);
+
+  // Checking if product is in stock
+  const product = await db.query.products.findFirst({
+    columns: {
+      inventory: true,
+    },
+    where: eq(products.id, input.productId),
+  });
+
+  if (!product) {
+    throw new Error("Product not found, please try again.");
+  }
+
+  if (product.inventory < input.quantity) {
+    throw new Error("Product is out of stock, please try again later.");
+  }
+
   const cookieStore = cookies();
   const cartId = cookieStore.get("cartId")?.value;
 
@@ -113,7 +137,6 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
     });
 
     // Note: .set() is only available in a Server Action or Route Handler
-    // @ts-expect-error // todo: fix Property 'insertId' does not exist on type 'RowList<never[]>'
     cookieStore.set("cartId", String(cart.insertId));
 
     revalidatePath("/");
@@ -137,6 +160,20 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
     throw new Error("Cart not found, please try again.");
   }
 
+  // If cart is closed, delete it and create a new one
+  if (cart.closed) {
+    await db.delete(carts).where(eq(carts.id, Number(cartId)));
+
+    const newCart = await db.insert(carts).values({
+      items: [input],
+    });
+
+    cookieStore.set("cartId", String(newCart.insertId));
+
+    revalidatePath("/");
+    return;
+  }
+
   const cartItem = cart.items?.find(
     (item) => item.productId === input.productId,
   );
@@ -158,8 +195,10 @@ export async function addToCartAction(input: z.infer<typeof cartItemSchema>) {
 }
 
 export async function updateCartItemAction(
-  input: z.infer<typeof cartItemSchema>,
+  rawInput: z.infer<typeof cartItemSchema>,
 ) {
+  const input = cartItemSchema.parse(rawInput);
+
   const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {
@@ -218,8 +257,10 @@ export async function deleteCartAction() {
 }
 
 export async function deleteCartItemAction(
-  input: z.infer<typeof deleteCartItemSchema>,
+  rawInput: z.infer<typeof deleteCartItemSchema>,
 ) {
+  const input = deleteCartItemSchema.parse(rawInput);
+
   const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {
@@ -250,8 +291,10 @@ export async function deleteCartItemAction(
 }
 
 export async function deleteCartItemsAction(
-  input: z.infer<typeof deleteCartItemsSchema>,
+  rawInput: z.infer<typeof deleteCartItemsSchema>,
 ) {
+  const input = deleteCartItemsSchema.parse(rawInput);
+
   const cartId = cookies().get("cartId")?.value;
 
   if (!cartId) {

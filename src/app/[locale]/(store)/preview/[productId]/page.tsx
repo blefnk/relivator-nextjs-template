@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { redirect } from "~/navigation";
 
 interface ProductPreviewPageProps {
   params: {

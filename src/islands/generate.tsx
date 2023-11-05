@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { toast } from "sonner";
+import { catchError } from "~/utils";
+import { toast } from "react-hot-toast";
 
 import { generateProducts } from "~/server/actions/generate";
-import { catchError } from "~/server/utils";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
 
@@ -24,6 +24,7 @@ export function GenerateButton({ storeId }: GenerateButtonProps) {
             await generateProducts({ storeId, count: 10 });
             toast.success("Products generated successfully.");
           } catch (err) {
+            toast.error("Something wrong. Check console if there is an error.");
             catchError(err);
           }
         });

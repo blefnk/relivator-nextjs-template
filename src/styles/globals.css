@@ -26,6 +26,8 @@
     --radius: 0.5rem;
     --warning: 38 92% 50%;
     --warning-foreground: 48 96% 89%;
+    --color-start: #2e2e2f;
+    --color-end: #222222;
   }
 
   .dark {
@@ -50,6 +52,8 @@
     --ring: 240 4.9% 83.9%;
     --warning: 48 96% 89%;
     --warning-foreground: 38 92% 50%;
+    --color-start: #cfcfcf;
+    --color-end: #4c3ba1;
   }
 }
 
@@ -99,3 +103,37 @@
     opacity: 0.5;
   }
 }
+
+@keyframes smoothColorChange {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.smooth-color-change {
+  background-size: 200% 100%;
+  background-image: linear-gradient(
+    to right,
+    var(--color-start),
+    var(--color-end),
+    var(--color-start),
+    var(--color-end)
+  );
+  animation: smoothColorChange 30s infinite linear;
+}
+
+/* For WebKit browsers like Chrome and Safari */
+/* input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+/* For Mozilla Firefox */
+/* input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+} */

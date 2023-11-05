@@ -1,8 +1,8 @@
 import { siteConfig } from "~/app";
+import { Link } from "~/navigation";
+import { cn } from "~/utils";
 import { Github, Twitter } from "lucide-react";
-import Link from "next-intl/link";
 
-import { cn } from "~/server/utils";
 import { SubscribeToNewsletterForm } from "~/forms/newsletter-subscribe";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/wrappers/shell-variants";
@@ -14,25 +14,12 @@ export async function SiteFooter() {
         <section
           id="footer-content"
           aria-labelledby="footer-content-heading"
-          className="flex flex-col gap-10 lg:flex-row lg:gap-20"
+          className="flex flex-col items-center gap-10 lg:flex-row lg:gap-20 lg:items-center lg:justify-center"
         >
-          <section
-            id="footer-branding"
-            aria-labelledby="footer-branding-heading"
-            className="space-y-4"
-          >
-            <Link
-              aria-label="Home"
-              href="/"
-              className="flex items-center space-x-2"
-            >
-              <span className="font-bold">{siteConfig.name}</span>
-            </Link>
-          </section>
           <section
             id="footer-links"
             aria-labelledby="footer-links-heading"
-            className="xxs:grid-cols-2 grid flex-1 grid-cols-1 gap-10 sm:grid-cols-4"
+            className="grid grid-cols-4 gap-4"
           >
             {siteConfig.footerNav.map((item) => (
               <div key={item.title} className="space-y-3">
@@ -55,10 +42,11 @@ export async function SiteFooter() {
               </div>
             ))}
           </section>
+
           <section
             id="newsletter"
             aria-labelledby="newsletter-heading"
-            className="space-y-3"
+            className="space-y-3 flex flex-col items-center lg:items-start"
           >
             <h4 className="text-base font-medium">
               Subscribe to our newsletter
@@ -97,7 +85,7 @@ export async function SiteFooter() {
             <div
               id="footer-copyright"
               aria-labelledby="footer-copyright-text"
-              className="flex items-center space-x-4"
+              className="flex items-center space-x-4 justify-center lg:justify-start"
             >
               <div className="block text-sm text-muted-foreground sm:text-center">
                 © {new Date().getFullYear()}{" "}

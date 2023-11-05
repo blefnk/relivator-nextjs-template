@@ -1,7 +1,7 @@
 import * as React from "react";
 import Link from "next/link";
+import { cn } from "~/utils";
 
-import { cn } from "~/server/utils";
 import { ClientButton } from "~/islands/client-button";
 import { Icons } from "~/islands/icons";
 import { buttonVariants } from "~/islands/primitives/button";

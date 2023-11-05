@@ -8,15 +8,15 @@
      * https://typescriptlang.org/docs/handbook/tsconfig-json
      */
     "lib": ["dom", "dom.iterable", "esnext"],
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
+    "target": "es2017",
+    "module": "esnext",
+    "jsx": "preserve",
+    "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["./public/*"]
     },
-    "module": "esnext",
-    "target": "esnext",
-    "jsx": "preserve",
-    "baseUrl": ".",
     "plugins": [
       {
         /**
@@ -27,7 +27,6 @@
         "name": "next"
       }
     ],
-    "strict": true,
     "noEmit": true,
     "allowJs": true,
     "checkJs": true,
@@ -43,23 +42,28 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     /**
-     * Options below can be dangerously set to false,
-     * while you're incrementally move from JS to TS.
+     * These options below can be dangerously set to false,
+     * while you're incrementally move to full type-safety.
      */
     "strictPropertyInitialization": true,
     "strictNullChecks": true,
-    "noImplicitAny": true,
-    "alwaysStrict": true
+    "noImplicitAny": false,
+    "alwaysStrict": true,
+    "strict": true
   },
   "include": [
+    ".eslintrc.cjs",
+    "next-env.d.ts",
+    "**/*.cjs",
+    "**/*.cjs",
+    "**/*.d.ts",
+    "**/*.mjs",
+    "**/*.mjs",
+    "**/*.test.ts",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.cjs",
-    "**/*.mjs",
-    "**/*.d.ts",
-    "**/*.test.ts",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/app/[locale]/error.tsx_"
   ],
   "exclude": ["node_modules"]
 }

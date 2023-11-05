@@ -1,0 +1,662 @@
+{
+  "DataTable": {
+    "block": "Engelle",
+    "columns": "Sütunlar",
+    "delete": "Sil",
+    "email": "E-posta",
+    "filter-emails-placeholder": "E-postaları filtrele",
+    "id": "ID",
+    "isadmin": "Yönetici Mi",
+    "lastlogintime": "Son Giriş Zamanı",
+    "make-admin": "Yönetici Yap",
+    "make-non-admin": "Yönetici Değil Yap",
+    "name": "Ad",
+    "next": "Sonraki",
+    "no-results": "Sonuç bulunamadı",
+    "of": "arasından",
+    "previous": "Önceki",
+    "registrationtime": "Kayıt Zamanı",
+    "rows-selected": "satır seçildi",
+    "success-description": "Başarı",
+    "success-title": "Başarılı",
+    "unblock": "Engeli Kaldır",
+    "view-profile": "Profilini Görüntüle"
+  },
+  "EnvironmentVariables": {
+    "errors": {
+      "something-wrong": "Bu ortam değişkenleri yanlış belirtildi veya belirtilmedi (lütfen .env dosyasını kontrol edin):"
+    }
+  },
+  "LanguageSwitch": {
+    "choose-language": "Dil"
+  },
+  "LocaleSwitcher": {
+    "label": "Dil Değiştir",
+    "selectLocale": "Dil"
+  },
+  "LoginForm": {
+    "description": "E-posta adresinizi ve şifrenizi kullanarak hesabınıza giriş yapın.",
+    "email": "E-posta",
+    "email-placeholder": "E-posta adresinizi girin",
+    "error-heading": "Giriş yapma işlemi başarısız oldu.",
+    "errors": {
+      "Callback": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "CredentialsSignin": "Giriş yapma işlemi başarısız oldu. Sağladığınız bilgilerin doğru olduğunu kontrol edin.",
+      "Email or password is incorrect": "E-posta veya şifre yanlış.",
+      "EmailCreateAccount": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "EmailSignin": "E-posta adresinizi kontrol edin.",
+      "Invalid credentials": "Geçersiz kimlik bilgileri.",
+      "OAuthAccountNotLinked": "Kimliğinizi doğrulamak için, başlangıçta kullandığınız aynı hesapla giriş yapın.",
+      "OAuthCallback": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "OAuthCreateAccount": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "OAuthSignin": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "Signin": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "default": "Giriş yapma işlemi başarısız oldu."
+    },
+    "form": {
+      "description": "E-posta adresinizi ve şifrenizi kullanarak hesabınızda oturum açın.",
+      "email": "E-posta",
+      "email-placeholder": "E-posta adresinizi giriniz",
+      "error-heading": "Bazen Kötü Şeyler Olur...",
+      "no-account": "Hesabınız yok mu?",
+      "other-options": "Şunu kullanarak oturum açın:",
+      "password": "Şifre",
+      "password-placeholder": "Şifrenizi girin",
+      "sign-out": "oturumu Kapat",
+      "signup": "Buradan kaydolun.",
+      "submit": "Kayıt olmak",
+      "title": "Kayıt olmak",
+      "wait": "Lütfen bekleyin..."
+    },
+    "no-account": "Hesabınız yok mu?",
+    "other-options": "Şunları kullanarak giriş yapın:",
+    "password": "Şifre",
+    "password-placeholder": "Şifrenizi girin",
+    "reset-password": "Şifreyi yenile",
+    "signin": "Kayıt olmak",
+    "signup": "Buradan kayıt olun.",
+    "submit": "Giriş Yap",
+    "success-description": "Başarı.",
+    "success-title": "Tamamlamak!",
+    "title": "Giriş Yap",
+    "wait": "Lütfen bekleyin..."
+  },
+  "MainError": {
+    "Could not fetch user.": "Kullanıcı alınamadı.",
+    "Not authenticated.": "Kimlik doğrulanamadı.",
+    "User not found.": "Kullanıcı bulunamadı.",
+    "error": "Hata"
+  },
+  "Navbar": {
+    "home": "Anasayfa",
+    "sign-out": "Çıkış Yap",
+    "signin": "Giriş Yap"
+  },
+  "ProfileButton": {
+    "admin": "Yönetici Paneli",
+    "logout": "Çıkış Yap",
+    "my-account": "Hesabım",
+    "new-review": "Yeni İnceleme",
+    "profile": "Profil",
+    "settings": "Ayarlar"
+  },
+  "ProfileSettingsForm": {
+    "description": "Profil ayarlarınızı güncelleyin.",
+    "errors": {
+      "update-error": "Kullanıcı güncellenemedi."
+    },
+    "name": "Ad",
+    "name-min": "Ad en az 2 karakter olmalıdır.",
+    "name-placeholder": "Adınızı girin",
+    "submit": "Kullanıcıyı Güncelle",
+    "title": "Profil Ayarları",
+    "update-success": "Kullanıcı başarıyla güncellendi."
+  },
+  "RegisterForm": {
+    "description": "E-posta adresinizi ve şifrenizi kullanarak yeni bir hesap oluşturun.",
+    "email": "E-posta",
+    "email-placeholder": "E-posta adresinizi girin",
+    "error-heading": "Kaydolma işlemi başarısız oldu.",
+    "errors": {
+      "Not authenticated.": "Kimlik doğrulama başarısız.",
+      "Please fill all fields.": "Lütfen tüm alanları doldurun.",
+      "User with this email already exists.": "Bu e-posta adresi ile zaten bir kullanıcı var."
+    },
+    "form": {
+      "email-min": "Kullanıcı adı en az 2 karakter olmalıdır.",
+      "invalid-email": "Geçersiz e-posta adresi.",
+      "name-min": "Ad en az 2 karakter olmalıdır.",
+      "password-min": "Şifre en az 6 karakter olmalıdır."
+    },
+    "have-account": "Zaten bir hesabınız mı var?",
+    "name": "Ad",
+    "name-placeholder": "Adınızı girin",
+    "other-options": "Veya şunlarla kaydolun:",
+    "password": "Şifre",
+    "password-placeholder": "Şifrenizi girin",
+    "signin": "Buradan giriş yapın.",
+    "submit": "Kaydol",
+    "success-description": "Artık hesabınıza giriş yapabilirsiniz.",
+    "success-title": "Kayıt başarılı!",
+    "title": "Kaydol",
+    "wait": "Lütfen bekleyin..."
+  },
+  "ReviewNewForm": {
+    "description": "Yeni bir inceleme oluşturun.",
+    "errors": {
+      "create-error": "İnceleme oluşturulamadı."
+    },
+    "grade": "Puan",
+    "grade-placeholder": "Puanı girin",
+    "item": "Öğe",
+    "item-placeholder": "İncelemesi yapılacak sanat eserinin adı",
+    "submit": "İnceleme Oluştur",
+    "tags": "Etiketler",
+    "tags-placeholder": "Etiketleri girin",
+    "title": "İnceleme Oluştur",
+    "title-field": "Başlık",
+    "title-field-placeholder": "Başlık girin"
+  },
+  "TagsSelect": {
+    "no-options": "Seçenek yok",
+    "search": "Ara...",
+    "tags": "Etiketler",
+    "tags-placeholder": "Etiketleri girin"
+  },
+  "ThemeSwitch": {
+    "dark": "Koyu",
+    "light": "Açık",
+    "system": "Sistem"
+  },
+  "account-page": {
+    "Settings": "Ayarlar",
+    "loggedIn": "Giriş",
+    "loggedOut": "Çıkış yapıldı",
+    "login": "Kayıt olmak",
+    "logout": "Çıkış Yap",
+    "title": "Hesap"
+  },
+  "auth": {
+    "other-options": "Daha fazla hesap bağlayın:"
+  },
+  "auth-page": {
+    "error": "Ters giden birşey mi var...",
+    "password": "Şifre",
+    "submit": "Göndermek",
+    "username": "Kullanıcı adı"
+  },
+  "auth-pages-content": {
+    "change": "E-postamı/Şifremi Değiştir",
+    "description": "Ihtiyacınız olursa diğer profillerinizi buraya bağlayabilirsiniz. Onlarla da oturum açmak için aşağıdaki düğmeleri kullanmanız yeterlidir. Daha sonra bağlantı verdiğiniz sosyal profillerden herhangi birinde oturumu kapatıp tekrar oturum açabilirsiniz.",
+    "magic-link": "Sihirli Bağlantı Gönder",
+    "sign-out": "oturumu Kapat"
+  },
+  "auth-provider": {
+    "please-wait": "Lütfen bekleyin...",
+    "sign-in": "{name} ile oturum açın",
+    "sign-in-null": "{name}",
+    "sign-up": "{name} ile kaydolun",
+    "sign-up-null": "{name}"
+  },
+  "common": {
+    "home": {
+      "linkText": "Anasayfaya Geri Dön"
+    },
+    "userLogin": {
+      "signInText": "Giriş Yap",
+      "signOutText": "{userName} Çıkış Yap"
+    }
+  },
+  "environments": {
+    "auth-button-placeholder": "⚠️ Kimlik doğrulamaya ilgili özelliklerin kilidini açmak için lütfen ortam değişkenlerinde Github/Google/Discord belirtin."
+  },
+  "general": {
+    "about": "about",
+    "pricing": "pricing",
+    "tools": "utils"
+  },
+  "islands": {
+    "command": {
+      "dark": "Dark",
+      "light": "Light",
+      "system": "System",
+      "theme": "Theme",
+      "tools": "Features"
+    },
+    "copy-button": {
+      "copied": "Copied to clipboard!",
+      "copy": "Copy to clipboard"
+    },
+    "footer": "Developed by {author}. The source code is available on {github}.",
+    "links": {
+      "github": "My GitHub profile",
+      "twitter": "My Twitter profile"
+    },
+    "main": {
+      "about": "about",
+      "github": "github",
+      "tools": "features",
+      "twitter": "twitter"
+    },
+    "pricing": {
+      "toast": {
+        "description": "This project is open source and free to use. 🥳",
+        "title": "It's free! 😜"
+      }
+    },
+    "search": {
+      "placeholder": "Type a command or search",
+      "title": "Search..."
+    },
+    "toast": {
+      "error": "Error",
+      "success": "Success",
+      "warning": "Warning"
+    }
+  },
+  "landing": {
+    "btn1-products-now": "Şimdiki Ürünler",
+    "btn1-sell": "Satmak",
+    "btn2-download": "Download",
+    "btn2-starter": "Next.js Relivator Starter",
+    "features": {
+      "clock": {
+        "description": "Drizzle ORM ile yolunda kalın. Vercel, Neon vb. üzerinde konuşlandırılmıştır.",
+        "title": "Veri tabanı"
+      },
+      "cryptography": {
+        "description": "Uygulama dizini, Yönlendirme, Düzenler, Yükleme Kullanıcı Arayüzü, API rotaları ve daha fazlasıyla etkileşime geçin.",
+        "title": "Sonraki.js 14"
+      },
+      "currency": {
+        "description": "Radix UI kullanılarak oluşturulmuş ve Tailwind CSS ile sislendirilmiş UI bileşenleri.",
+        "title": "Bileşenler"
+      },
+      "devtools": {
+        "description": "Stripe kullanarak ücretsiz ve ücretli abonelikler.",
+        "title": "Abonelikler"
+      },
+      "files": {
+        "description": "NextAuth.js kullanarak ara yazılım kimlik doğrulaması.",
+        "title": "Kimlik doğrulama"
+      },
+      "subtitle": "Relivator, koddan tasarıma kadar web projelerinizi güçlendiren işlevlere sahiptir.",
+      "text": {
+        "description": "Sunucu ve Istemci Bileşenleri ile uygulamayı zahmetsizce yönetin. Kanca kullanın. Ve dahası.",
+        "title": "React 18"
+      },
+      "title": "Özellikleri"
+    },
+    "get-started": "Özellikleri",
+    "heading": "Daha Verimli, İlgi Çekici ve Kârlı Çevrimiçi Mağazalar Oluşturun: Relivator Next.js'nin Gücü ile e-Ticaretinizi Güçlendiriyor",
+    "meta": {
+      "description": "Next.js ile oluşturulmuş Relivator",
+      "title": "Relivator"
+    },
+    "open-source": {
+      "stars": "Bu projede {count} yıldız var! 😍",
+      "stars#few": "Bu projede {count} yıldız var! 😍",
+      "stars#many": "Bu projede {count} yıldız var! 😍",
+      "stars#one": "Bu projenin yalnızca bir yıldızı var... 😢",
+      "subtitle": {
+        "first": "Bleverse Relivator açık kaynak ahlakını savunur ve işbirliğine dayalı kod gelişimini teşvik eder.",
+        "second": "Kod tabanımızı keşfedin"
+      },
+      "title": "Açık Kaynağı Kucaklayın"
+    },
+    "subtitle": "Bleverse Relivator gelişim yolculuğunuzu kolaylaştırır. Modern web geliştirme için optimize edilmiş yerleşik özelliklerle başlayın.",
+    "things": {
+      "linkText": "Listeye Git"
+    },
+    "title": "React, Next.js ve ötesine yönelik en önemli araçları keşfedin. Size özel olarak tasarlandı.",
+    "about": "Dünyanın en zengin özelliklere sahip, küresel ve ikonik Next.js başlatıcısını oluşturmayı hedefliyoruz. Kapsamlı özellik listesini keşfedin. Koddan daha fazlasını sunan bu bir yolculuktur. Stabildir ve üretime hazırdır."
+  },
+  "meta": {
+    "description": "Next.js 14 Starter",
+    "title": "canlandırıcı"
+  },
+  "pages": {
+    "about": {
+      "author": "License",
+      "credits": {
+        "title": "Credits",
+        "topics": {
+          "lucide": "For the cool icons.",
+          "nextjs": "For the React-based web framework.",
+          "radix-ui": "For the wonderful primitives.",
+          "shadcn/ui": "For the chic components.",
+          "tailwind": "For incredibly simplifying our CSS life.",
+          "typescript": "For type-safe JavaScript.",
+          "vercel": "For deploying all my projects."
+        }
+      },
+      "subtitle": "Bleverse Relivator is a powerful Next.js TypeScript Tailwind starter. It streamlines the development process and provides a solid foundation for creating web projects. Feel free to use, adapt, and contribute to the project by {link}.",
+      "subtitle.link": "clicking here",
+      "title": "About"
+    },
+    "home": {
+      "features": {
+        "clock": {
+          "description": "Stay on track with Drizzle ORM. Deployed on Vercel, Railway, Neon, etc.",
+          "title": "Database"
+        },
+        "cryptography": {
+          "description": "Engage with App dir, Routing, Layouts, Loading UI, API routes, and beyond.",
+          "title": "Next.js 14"
+        },
+        "currency": {
+          "description": "UI components built using Radix UI and styled with Tailwind CSS.",
+          "title": "Components"
+        },
+        "devtools": {
+          "description": "Free and paid subscriptions using Stripe.",
+          "title": "Subscriptions"
+        },
+        "files": {
+          "description": "Middleware authentication using NextAuth.js.",
+          "title": "Authentication"
+        },
+        "subtitle": "From code to design, Relivator has functionalities that supercharge your web projects.",
+        "text": {
+          "description": "Manipulate app effortlessly with Server and Client Components. Use hook. And more.",
+          "title": "React 18"
+        },
+        "title": "Özellikleri"
+      },
+      "get-started": "Özellikleri",
+      "open-source": {
+        "stars": "This project has {count} stars! 😍",
+        "stars#few": "This project has {count} stars! 😍",
+        "stars#many": "This project has {count} stars! 😍",
+        "stars#one": "This project has only one star... 😢",
+        "subtitle": {
+          "first": "Bleverse Relivator champions open-source ethos and encourages collaborative code evolution.",
+          "second": "Explore our codebase on"
+        },
+        "title": "Embrace Open Source"
+      },
+      "subtitle": "Bleverse Relivator simplifies your development journey. Start with built-in features optimized for modern web development.",
+      "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
+    },
+    "not-found": {
+      "title": "🫠 Sayfa bulunamadı! 🥲 Maalesef...",
+      "description": "Aradığınız kaynak taşınmış, yeniden adlandırılmış olabilir veya hiç var olmamış olabilir. Lütfen URL'yi doğrulayın veya menüyü kullanarak diğer bölümlere gidin.",
+      "go-home": "Ana Sayfaya Dön"
+    },
+    "tools": {
+      "binary-code": {
+        "decode": "Binary to text",
+        "encode": "Text to binary",
+        "title": "Binary Code"
+      },
+      "caesar-cipher": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Cipher to text",
+        "encode": "Text to cipher",
+        "key": "Key",
+        "title": "Caesar Cipher",
+        "toast": {
+          "invalid-key": "Please type a number between 0 - 25"
+        }
+      },
+      "clock": {
+        "title": "Clock"
+      },
+      "color-picker": {
+        "title": "Color Picker"
+      },
+      "css-minifier": {
+        "actions": {
+          "minify": "Minify",
+          "minifying": "Minifying"
+        },
+        "title": "CSS Minifier",
+        "toast": {
+          "required": "Please enter some CSS to minify",
+          "success": "CSS minified successfully"
+        }
+      },
+      "currency": {
+        "not-found": "No currency found.",
+        "placeholder": "Search currency...",
+        "result": "{from} equals to {to}",
+        "source": "Source",
+        "title": "Currency"
+      },
+      "hex-code": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Hex to text",
+        "encode": "Text to hex",
+        "title": "Hex Code"
+      },
+      "json-formatter": {
+        "actions": {
+          "format": "Format",
+          "formatting": "Formatting"
+        },
+        "placeholder": "Number of spaces",
+        "title": "JSON Formatter",
+        "toast": {
+          "invalid-json": "Invalid JSON",
+          "invalid-number": "Please enter a valid number",
+          "required": "Please enter some JSON to format",
+          "success": "JSON formatted successfully"
+        }
+      },
+      "length": {
+        "centimeter": "Centimeter",
+        "foot": "Foot",
+        "inch": "Inch",
+        "kilometer": "Kilometer",
+        "meter": "Meter",
+        "micrometers": "Micrometers",
+        "mile": "Mile",
+        "millimeter": "Millimeter",
+        "nanometers": "Nanometers",
+        "nautical mile": "Nautical Mile",
+        "title": "Length",
+        "yard": "Yard"
+      },
+      "morse-code": {
+        "actions": {
+          "code": "Code",
+          "decode": "Decode"
+        },
+        "decode": "Morse to text",
+        "encode": "Text to morse",
+        "title": "Morse Code"
+      },
+      "password-generator": {
+        "actions": {
+          "generate": "Generate"
+        },
+        "length": "Length: {length}",
+        "placeholder": "Password",
+        "title": "Password Generator"
+      },
+      "qr-code": {
+        "actions": {
+          "download": "Download",
+          "share": {
+            "twitter": "Share on Twitter",
+            "whatsapp": "Share on WhatsApp"
+          }
+        },
+        "hint": "(Your QR Code will be generated automatically)",
+        "placeholder": "Enter your website, text or link here",
+        "title": "QR Code"
+      },
+      "random-color": {
+        "generate": "New color",
+        "title": "Random Color"
+      },
+      "stopwatch": {
+        "clear": "Clear",
+        "start": "Start",
+        "stop": "Stop",
+        "title": "Stopwatch"
+      },
+      "text-converter": {
+        "actions": {
+          "camel-case": "Convert to Camel case",
+          "capitalize": "Capitalize",
+          "kebab-case": "Convert to Kebab case",
+          "lowercase": "Convert to lowercase",
+          "pascal-case": "Convert to Pascal case",
+          "remove-accents": "Remove accents",
+          "remove-duplicates": "Remove duplicates",
+          "remove-empty-lines": "Remove empty lines",
+          "remove-spaces": "Remove spaces",
+          "remove-special-characters": "Remove special characters",
+          "reverse": "Reverse",
+          "snake-case": "Convert to Snake case",
+          "uppercase": "Convert to uppercase"
+        },
+        "clear-input": "Clear input",
+        "placeholder": {
+          "input": "Type something here...",
+          "output": "Result"
+        },
+        "title": "Text Converter",
+        "toast": {
+          "required": "Please enter some text to convert",
+          "success-camel-case": "Converted to Camel case successfully",
+          "success-capitalize": "Capitalized successfully",
+          "success-kebab-case": "Converted to Kebab case successfully",
+          "success-lowercase": "Converted to lowercase successfully",
+          "success-pascal-case": "Converted to Pascal case successfully",
+          "success-remove-accents": "Accents removed successfully",
+          "success-remove-duplicates": "Duplicates removed successfully",
+          "success-remove-empty-lines": "Empty lines removed successfully",
+          "success-remove-spaces": "Spaces removed successfully",
+          "success-remove-special-characters": "Special characters removed successfully",
+          "success-reverse": "Reversed successfully",
+          "success-snake-case": "Converted to Snake case successfully",
+          "success-uppercase": "Converted to uppercase successfully"
+        }
+      },
+      "timestamp": "-",
+      "title": "Utils",
+      "todo": {
+        "actions": {
+          "create": "Create new todo",
+          "delete": "Delete task"
+        },
+        "placeholder": "Add new task",
+        "title": "Todo"
+      },
+      "unit-converter": {
+        "actions": "-",
+        "categories": "-",
+        "placeholder": "-",
+        "toast": "-"
+      },
+      "url-encoder-decoder": {
+        "actions": "-"
+      },
+      "word-counter": "-"
+    }
+  },
+  "plugins": {
+    "stars": "Lütfen! Yıldız Kurtarıcı GitHub'da ⭐ Yıldız Hedefi:"
+  },
+  "pricing": {
+    "compare": {
+      "features": {
+        "enterprise": "Işletme",
+        "features": "Özellikler",
+        "free": "Özgür",
+        "team": "Takım"
+      },
+      "title": "Planları karşılaştır"
+    },
+    "cta": {
+      "get-started": "Başlamak",
+      "sign-up": "Kayıt olmak"
+    },
+    "faq": {
+      "have-questions": "Sorular mı?",
+      "read-faq": "{faq} bölümümüzü okuyun.",
+      "title": "SSS"
+    },
+    "features": {
+      "features": {
+        "included": "Dahil",
+        "not-included": "Dahil değil"
+      },
+      "title": "Özellikler"
+    },
+    "hero": {
+      "description": "Relivator topluluğuna katılın. Size en uygun planı seçin.",
+      "pricing": "Fiyatlandırma"
+    },
+    "plans": {
+      "title": "Planlar"
+    },
+    "questions": {
+      "answer-card": "Alakart fiyatlandırma, planınızı özel ihtiyaçlarınıza göre özelleştirmenize olanak tanır. Yalnızca ihtiyacınız olan özellikler için ödeme yaparsınız.",
+      "answer-change": "Evet, planları istediğiniz zaman değiştirebilirsiniz.",
+      "answer-free": "Evet, Relivator temel özelliklere sahip ücretsiz bir plan sunuyor. Ücretsiz olarak kullanabilirsiniz.",
+      "answer-limits": "Plan sınırlarınızı aşarsanız daha fazla kaynak almak için planınızı yükseltebilir veya fazla kullanımınıza göre ek ücret ödeyebilirsiniz.",
+      "answer-nonprofit": "Evet, kar amacı gütmeyen kuruluşlar ve eğitim kurumları için indirimler sunuyoruz. Daha fazla ayrıntı için bizimle iletişime geçin.",
+      "answer-payment": "Kredi kartı ödemelerini ve güvenli çevrimini ödemeleri kabul ediyoruz. Ayrıca aylık veya yıllık ödeme yapmayı da seçebilirsiniz.",
+      "answer-prices": "Tüm fiyatlar aylıktır.",
+      "answer-teams": "Takım fiyatları takım sayısına göre belirlenmektedir. Ekip üyelerini istediğiniz zaman ekleyebilir veya kaldırabilirsiniz; faturalandırmanın buna göre ayarlanacaktır.",
+      "are-prices": "Fiyatlar aylık mı yıllık mı?",
+      "can-i-change": "Planları daha sonra değiştirebilir miyim?",
+      "do-you-offer": "Kâr amacı gütmeyen kuruluşlar veya eğitim kurumları için indirimler sunuyor musunuz?",
+      "how-does": "Alakart fiyatlandırma nasıl çalışır?",
+      "how-is": "Ekipler için fiyatlandırma nasıl hesaplanır?",
+      "is-there": "Relivator ücretsiz bir sürümü var mı?",
+      "what-happens": "Plan sınırlarımı aşarsam ne olur?",
+      "what-payment": "Hangi ödeme yöntemlerini kabul ediyorsunuz?"
+    }
+  },
+  "settings-page": {
+    "description": "Ayarlarınızı yönetin.",
+    "title": "Ayarlar"
+  },
+  "signIn": {
+    "LoginForm": {
+      "wait": "Lütfen bekleyin..."
+    },
+    "heading": "Giriş Yap",
+    "meta": {
+      "description": "Kişiselleştirilmiş bir deneyim için giriş yapın",
+      "title": "Giriş Yap"
+    },
+    "providerButtonText": "{name} ile Giriş Yap",
+    "providerButtonTextReg": "{name} ile kaydolun"
+  },
+  "things": {
+    "heading": "Relivator'unuz",
+    "input": {
+      "placeholder": "Bir başlık girin",
+      "submitButtonText": "Listeye Ekle"
+    },
+    "list": {
+      "createdDate": "Oluşturulma tarihi: {createdDate, date, ::yyyyMMddHHmmss}",
+      "loading": "Yükleniyor..."
+    },
+    "meta": {
+      "description": "Kişisel şeylerinizin listesi",
+      "title": "Relivator'unuz"
+    },
+    "signIn": "Bu içeriği görüntülemek için lütfen <link>giriş yapın</link>."
+  },
+  "tools": {
+    "about": "-",
+    "categories": "-",
+    "cta": "-",
+    "hero": {
+      "title": "Relivator'dan ücretsiz çevrimini araçlar"
+    },
+    "title": "Aletler"
+  }
+}

@@ -1,52 +1,45 @@
 /**
- * This file is the `locale` root of the app. Everything starts here for rendering a UI.
- * @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts
+ * Layout file for internationalized-first rendering in the Next.js app.
+ * This file serves as the primary entry point for handling UI rendering.
+ *
+ * Learn more about the Relivator Next.js project:
+ * @see https://github.com/blefnk/relivator#readme
  */
 
 import "~/styles/globals.css";
 
 import { PropsWithChildren } from "react";
-import {
-  Playfair_Display as FontHeading,
-  Inter as FontSans,
-} from "next/font/google";
+import localFont from "next/font/local";
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { siteConfig } from "~/app";
-import { defaultLocale, locales } from "~/i18n/locales";
+import { getNextAuthServerSession } from "~/auth";
+import { defaultLocale, locales } from "~/navigation";
 import { WithChildren, type LocaleLayoutParams } from "~/types";
-import { getServerSession } from "next-auth";
+import { cn } from "~/utils";
 
-import { authOptions } from "~/server/auth";
-import { cn } from "~/server/utils";
 import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
+import { ReactHotToast } from "~/islands/application/overlays/notifications/react-hot-toast";
 import LoglibAnalytics from "~/islands/loglib-analytics";
-import { SiteFooter } from "~/islands/navigation/site-footer";
-import { SiteHeader } from "~/islands/navigation/site-header";
 import { TooltipProvider } from "~/islands/primitives/tooltip";
-import { TailwindIndicator } from "~/islands/providers/indicators/tailwind-indicator";
+import { Debug } from "~/islands/providers/indicators/debug-indicator";
+import { ShowErrors } from "~/islands/providers/indicators/errors-indicators";
+import { TailwindScreens } from "~/islands/providers/indicators/tailwind-indicator";
 import { NextIntlProvider } from "~/islands/providers/nextintl-provider";
 import NextAuthProvider from "~/islands/providers/session-provider";
 import { NextThemesProvider } from "~/islands/providers/theme-provider";
-import { ToasterNotifier } from "~/islands/wrappers/toaster";
-import TrpcQueryProvider from "~/islands/wrappers/trpc/trpc-query-provider";
+import { TrpcTanstackProvider } from "~/utils/trpc/react";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+// @example opt out of caching for all data requests in the route segment
+// export const dynamic = "force-dynamic";
+// @example enable edge runtime, but some errors on windows are possible
+// export const runtime = "edge";
 
-const fontHeading = FontHeading({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  weight: "500",
-});
-
-/**
- * Every page in the app will have this metadata.
- * You can override it by defining the `metadata`
- * in the `page.tsx` or in children `layout.tsx`.
- */
+// Every page in the app will have this metadata, You can override it by
+// defining the `metadata` in the `page.tsx` or in children `layout.tsx`
 export const metadata = seo({
   metadataBase: fullURL(),
   title: {
@@ -55,9 +48,8 @@ export const metadata = seo({
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-  viewport: "width=device-width, initial-scale=1",
   creator: siteConfig.author,
-  publisher: "Bleverse",
+  publisher: siteConfig.author,
   authors: [
     {
       name: siteConfig.author,
@@ -65,13 +57,9 @@ export const metadata = seo({
     },
   ],
   robots: "index, follow",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-  applicationName: "Bleverse Relivator",
+  applicationName: siteConfig.name,
   alternates: {
-    canonical: "https://relivator.bleverse.com",
+    canonical: fullURL(),
   },
   openGraph: {
     type: "website",
@@ -86,7 +74,7 @@ export const metadata = seo({
         url: "/og-image.png",
         width: 1280,
         height: 640,
-        alt: "Bleverse Relivator",
+        alt: `${siteConfig.name} Website OG Image`,
       },
     ],
   },
@@ -100,88 +88,97 @@ export const metadata = seo({
   icons: {
     icon: "/favicon.ico",
   },
+  other: {
+    "darkreader-lock": "true",
+  },
 });
 
+// @example remote fonts
+/* import { Roboto as FontHeading, Inter as FontSans } from "next/font/google";
+const fontSans = FontSans({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-sans",
+});
+const fontHeading = FontHeading({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-heading",
+  weight: "500",
+}); */
+
+const fontSans = localFont({
+  src: "../../styles/fonts/inter.woff2",
+  variable: "--font-sans",
+  display: "swap",
+});
+const fontHeading = localFont({
+  src: "../../styles/fonts/inter.woff2",
+  variable: "--font-heading",
+  weight: "600",
+  display: "swap",
+});
+
+/**
+ * LocaleLayoutProps extends from PropsWithChildren, a utility type
+ * that automatically infers and includes the 'children' prop, making it
+ * suitable for components that expect to receive children elements.
+ */
 type LocaleLayoutProps = PropsWithChildren<LocaleLayoutParams>;
 
+/**
+ * This component handles the layout for different locales. It dynamically loads
+ * translation messages, checks for valid locales, and sets up the page
+ * with appropriate fonts, themes, analytics tools, and much more.
+ */
 export default async function LocaleLayout({
-  children, // share page or nested layout
-  params: { locale }, // share user locale
+  children,
+  params: { locale },
 }: WithChildren<LocaleLayoutProps>) {
-  /**
-   * Next.js 13 internationalization library
-   * @see https://next-intl-docs.vercel.app
-   */
+  // Validate the incoming 'locale' parameter to ensure it's supported
+  const isValidLocale = locales.some((cur) => cur === locale);
+  if (!isValidLocale) notFound(); // Redirect if the locale is invalid
+
+  // Dynamically load internationalization messages based on the current locale
   let messages: any;
   try {
-    messages = (await import(`~/i18n/messages/${locale}.json`)).default;
+    messages = (await import(`~/data/i18n/${locale}.json`)).default;
   } catch (error) {
-    console.log("❌ Internationalization", error);
+    console.error("❌ Error loading internationalization messages", error);
+    notFound(); // Redirect to 'Not Found' page if messages can't be loaded
   }
 
-  /**
-   * _For debug purposes_ use this to check the session object:
-   * @example ```<pre>{JSON.stringify(session, null, 2)}</pre>```
-   * @see https://next-auth.js.org/configuration/nextjs#in-app-router
-   */
-  const session = await getServerSession(authOptions());
+  // Retrieve the authentication session state for the current layout request
+  const session = await getNextAuthServerSession();
 
+  // Render the layout with internationalization, themes, analytics, and more
   return (
     <html lang={locale} suppressHydrationWarning>
-      <head />
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable,
           fontHeading.variable,
+          fontSans.variable,
         )}
       >
         <NextIntlProvider locale={locale} messages={messages}>
-          <NextAuthProvider session={session}>
+          <TrpcTanstackProvider headers={headers()}>
             <NextThemesProvider>
-              <TrpcQueryProvider>
+              <ReactHotToast />
+              <NextAuthProvider session={session}>
                 <TooltipProvider>
-                  <SiteHeader />
-                  {children}
-                  <SiteFooter />
+                  <ClerkProvider>
+                    <Debug hide />
+                    <ShowErrors />
+                    {children}
+                  </ClerkProvider>
                 </TooltipProvider>
-                <TailwindIndicator />
-                <ToasterNotifier />
-                <LoglibAnalytics />
-                <VercelAnalytics />
-              </TrpcQueryProvider>
+              </NextAuthProvider>
+              <TailwindScreens />
+              <LoglibAnalytics />
+              <VercelAnalytics />
             </NextThemesProvider>
-          </NextAuthProvider>
+          </TrpcTanstackProvider>
         </NextIntlProvider>
       </body>
     </html>
   );
 }
-
-// [💡 INTERESTING THINGS SECTION 💡]
-
-/**
- * ?? Important Nextjs Caveat
- *
- * Good to know: cookies() is a Dynamic Function whose returned values cannot be
- * known ahead of time. Using it in a layout or page will opt a route
- * into dynamic rendering at request time.
- *
- * This caveat means that putting cookies() in the Layout.tsx component will
- * disable static rendering for the entire app. You may not want to
- * do this if you have a large app with many static pages.
- *
- * @see https://nextjs.org/docs/app/api-reference/functions/cookies
- * @see https://michaelangelo.io/blog/darkmode-rsc#important-nextjs-caveat
- * @see https://github.com/pacocoursey/next-themes/issues/152#issuecomment-1693979442
- */
-
-// [ IMPLEMENT ]
-
-/**
- * import { PackagesIndicator } from "~/islands/packages-indicator";
- * import { VariableIndicator } from "~/islands/variable-indicator";
- * ?...
- * <PackagesIndicator />
- * <VariableIndicator />
- */

@@ -3,25 +3,25 @@
 import * as React from "react";
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons";
 import { type Table } from "@tanstack/react-table";
+import { Link } from "~/navigation";
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn,
 } from "~/types";
-import Link from "next-intl/link";
+import { cn } from "~/utils";
 
-import { cn } from "~/server/utils";
 import { DataTableFacetedFilter } from "~/islands/modules/data-table/data-table-faceted-filter";
 import { DataTableViewOptions } from "~/islands/modules/data-table/data-table-view-options";
 import { Button, buttonVariants } from "~/islands/primitives/button";
 import { Input } from "~/islands/primitives/input";
 
-interface DataTableToolbarProps<TData> {
+type DataTableToolbarProps<TData> = {
   table: Table<TData>;
   filterableColumns?: DataTableFilterableColumn<TData>[];
   searchableColumns?: DataTableSearchableColumn<TData>[];
   newRowLink?: string;
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>;
-}
+};
 
 export function DataTableToolbar<TData>({
   table,

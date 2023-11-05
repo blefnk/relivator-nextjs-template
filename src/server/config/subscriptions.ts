@@ -1,64 +1,62 @@
 /**
- * This file contains the subscription plans that are available for purchase.
- * TODO: Merge with ./subscriptions2.ts
+ * This file manages the configuration of Stripe subscription plans used on the website.
+ * Ensure to set the Stripe price IDs in your environment variables to maintain a layer of security.
+ * Always keep your subscription plans synchronized between this file and your Stripe dashboard
+ * to prevent discrepancies and potential issues in transaction handling.
+ *
+ * @see https://github.com/apestein/nextflix/blob/main/src/lib/configs.ts
  * @see https://github.com/sadmann7/skateshop/blob/main/src/config/subscriptions.ts
  */
 
-import { type SubscriptionPlan } from "~/types";
+import { env } from "~/env.mjs";
+import { type SubscriptionPlanTypes } from "~/types";
 
-import { env } from "~/data/env/env.mjs";
+export const PROFESSIONAL = env.STRIPE_PROFESSIONAL_SUBSCRIPTION_PRICE_ID ?? "";
+export const ENTERPRISE = env.STRIPE_ENTERPRISE_SUBSCRIPTION_PRICE_ID ?? "";
 
-export const storeSubscriptionPlans: SubscriptionPlan[] = [
+export const storeSubscriptionPlans: SubscriptionPlanTypes[] = [
   {
     id: "starter",
     name: "Starter",
-    description: "Kickstart Your Online Sales",
-    features: [
-      "1 Store Max",
-      "10 Products (per store)",
-      "Limited Analytics",
-      "Community Support",
-    ],
+    description: "Free, for trying things out.",
+    features: ["Create up to 1 store", "Create up to 20 products per store"],
     stripePriceId: "",
     price: 0,
   },
   {
-    id: "basic",
-    name: "Basic",
-    description: "Expand Your Online Presence.",
-    features: [
-      "2 Stores Max",
-      "15 Products (per store)",
-      "Basic Analytics",
-      "Community Support",
-    ],
-    stripePriceId: env.STRIPE_BASIC_MONTHLY_PRICE_ID,
-    price: 10,
-  },
-  {
-    id: "advanced",
-    name: "Advanced",
-    description: "Scale Your Online Business",
-    features: [
-      "4 Stores Max",
-      "20 Products (per store)",
-      "Advanced Analytics",
-      "Email Support",
-    ],
-    stripePriceId: env.STRIPE_ADVANCED_MONTHLY_PRICE_ID,
-    price: 20,
+    id: "professional",
+    name: "Professional",
+    description: "For you and your team, with all the pro features.",
+    features: ["Create up to 2 store", "Create up to 20 products per store"],
+    stripePriceId: PROFESSIONAL,
+    price: 12,
   },
   {
     id: "enterprise",
     name: "Enterprise",
-    description: "Crafted for High-Volume Sales",
-    features: [
-      "Custom Store Count",
-      "Custom Products (per store)",
-      "Advanced Analytics",
-      "Email Support",
-    ],
-    stripePriceId: env.STRIPE_ENTERPRISE_MONTHLY_PRICE_ID,
-    price: 0,
+    description: "Extended plan crafted for high-volume sales.",
+    features: ["Create up to 3 stores", "Create up to 20 products per store"],
+    stripePriceId: ENTERPRISE,
+    price: 24,
   },
 ];
+
+// description: "Usage-based plan crafted for high-volume sales, with unlimited features.",
+// features: [
+//   "20 Products (per store)",
+//   "2 Stores Max",
+//   "Basic Analytics",
+//   "Community Support",
+// ],
+// features: [
+//   "40 Products (per store)",
+//   "3 Stores Max",
+//   "Advanced Analytics",
+//   "Email Support",
+// ],
+// features: [
+//   "Custom Store Count",
+//   "Custom Products",
+//   "Unlimited Analytics",
+//   "Email Support",
+// ],
