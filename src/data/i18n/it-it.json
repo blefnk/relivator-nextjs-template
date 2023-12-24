@@ -658,5 +658,23 @@
       "title": "Strumenti online gratuiti di Relivator"
     },
     "title": "Utensili"
+  },
+  "store": {
+    "stores": {
+      "buy-products": "Acquista i prodotti dai nostri negozi",
+      "stores": "I negozi"
+    },
+    "categories": {
+      "buyFromCategories": "Acquista {category} dai migliori negozi",
+      "buyProducts": "Acquista prodotti dalla categoria ${category}",
+      "buyTheBest": "Acquista la migliore {category}"
+    },
+    "product": {
+      "products": "Prodotti",
+      "noDescription": "Nessuna descrizione è disponibile per questo prodotto.",
+      "description": "Descrizione",
+      "moreProductsFrom": "Altri prodotti da {storeName}",
+      "buyProductsFromOurStores": "Acquista i prodotti dai nostri negozi"
+    }
   }
 }

@@ -30,7 +30,9 @@
 
   // VSCode Config
   "editor.tabSize": 2,
-  "editor.codeActionsOnSave": { "source.fixAll": false },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "never"
+  },
   "editor.formatOnSave": true,
   "editor.unicodeHighlight.allowedCharacters": {
     "a": true,

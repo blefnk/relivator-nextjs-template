@@ -28,12 +28,11 @@ export function IntlMessage({
   // Trying to translate using the provided id.
   let translation;
   try {
-    translation = t(id);
+    translation = t(id, variables);
+    // Returning the translated string.
+    return <>{translation}</>;
   } catch (error) {
     // We can provide here a general fallback or return null.
     return null;
   }
-
-  // Returning the translated string.
-  return <>{translation}</>;
 }

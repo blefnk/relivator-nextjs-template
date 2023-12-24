@@ -8,6 +8,7 @@ import { and, desc, eq, not } from "drizzle-orm";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { AddToCartForm } from "~/forms/add-to-cart-form";
+import { IntlMessage } from "~/islands/message";
 import { ProductCard } from "~/islands/modules/cards/product-card";
 import { Breadcrumbs } from "~/islands/navigation/pagination/breadcrumbs";
 import {
@@ -104,7 +105,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <Breadcrumbs
         segments={[
           {
-            title: "Products",
+            title: <IntlMessage id="store.product.products" />,
             href: "/products",
           },
           {
@@ -146,10 +147,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <Separator className="mt-5" />
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="description">
-              <AccordionTrigger>Description</AccordionTrigger>
+              <AccordionTrigger>
+                <IntlMessage id="store.product.description" />
+              </AccordionTrigger>
               <AccordionContent>
-                {product.description ??
-                  "No description is available for this product."}
+                {product.description ?? (
+                  <IntlMessage id="store.product.noDescription" />
+                )}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -158,7 +162,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {store && otherProducts.length > 0 ? (
         <div className="overflow-hidden md:pt-6">
           <h2 className="line-clamp-1 flex-1 text-2xl font-bold">
-            More products from {store.name}
+            {store.Name}
+            <IntlMessage
+              id="store.product.moreProductsFrom"
+              variables={{ storeName: store.name }}
+            />
           </h2>
           <div className="overflow-x-auto pb-2 pt-6">
             <div className="flex w-fit gap-4">

@@ -4,6 +4,7 @@ import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
 import { products } from "~/data/db/schema";
 import { fullURL } from "~/data/meta/builder";
+import { IntlMessage } from "~/islands/message";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -75,9 +76,11 @@ export default async function ProductsPage({
         id="products-page-header"
         aria-labelledby="products-page-header-heading"
       >
-        <PageHeaderHeading size="sm">Products</PageHeaderHeading>
+        <PageHeaderHeading size="sm">
+          <IntlMessage id="store.product.products" />
+        </PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          Buy products from our stores
+          <IntlMessage id="store.product.buyProductsFromOurStores" />
         </PageHeaderDescription>
       </PageHeader>
       <Products

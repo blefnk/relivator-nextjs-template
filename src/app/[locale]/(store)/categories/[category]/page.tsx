@@ -3,6 +3,7 @@ import { toTitleCase } from "~/utils";
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
 import { type Product } from "~/data/db/schema";
+import { IntlMessage } from "~/islands/message";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -81,7 +82,10 @@ export default async function CategoryPage({
       >
         <PageHeaderHeading size="sm">{toTitleCase(category)}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          {`Buy ${category} from the best stores`}
+          <IntlMessage
+            id="store.categories.buyFromCategories"
+            variables={{ category: category }}
+          />
         </PageHeaderDescription>
       </PageHeader>
       <Products

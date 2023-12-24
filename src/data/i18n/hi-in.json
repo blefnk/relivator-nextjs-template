@@ -658,5 +658,23 @@
     "sign-in-null": "{नाम}",
     "sign-up": "{नाम} के साथ साइन अप करें",
     "sign-up-null": "{नाम}"
+  },
+  "store": {
+    "stores": {
+      "buy-products": "हमारे स्टोर से उत्पाद खरीदें",
+      "stores": "स्टोर"
+    },
+    "categories": {
+      "buyFromCategories": "सर्वोत्तम स्टोर से {श्रेणी} खरीदें",
+      "buyProducts": "${श्रेणी} श्रेणी से उत्पाद खरीदें",
+      "buyTheBest": "सर्वोत्तम {category} खरीदें"
+    },
+    "product": {
+      "products": "उत्पादों",
+      "noDescription": "इस उत्पाद का कोई विवरण उपलब्ध नहीं है.",
+      "description": "विवरण",
+      "moreProductsFrom": "{storeName} से अधिक उत्पाद",
+      "buyProductsFromOurStores": "हमारे स्टोर से उत्पाद खरीदें"
+    }
   }
 }

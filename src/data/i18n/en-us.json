@@ -658,5 +658,23 @@
     "sign-in-null": "{name}",
     "sign-up": "Sign up with {name}",
     "sign-up-null": "{name}"
+  },
+  "store": {
+    "categories": {
+      "buyProducts": "Buy products from the ${category} category",
+      "buyFromCategories": "Buy {category} from the best stores",
+      "buyTheBest": "Buy the best {category}"
+    },
+    "stores": {
+      "stores": "Stores",
+      "buy-products": "Buy products from our stores"
+    },
+    "product": {
+      "products": "Products",
+      "description": "Description",
+      "noDescription": "No description is available for this product.",
+      "moreProductsFrom": "More products from {storeName}",
+      "buyProductsFromOurStores": "Buy products from our stores"
+    }
   }
 }

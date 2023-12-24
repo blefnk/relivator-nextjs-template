@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 
 import { getStoresAction } from "~/server/actions/store";
 import { fullURL } from "~/data/meta/builder";
+import { IntlMessage } from "~/islands/message";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -44,9 +45,11 @@ export default async function StoresPage({ searchParams }: StoresPageProps) {
         id="stores-page-header"
         aria-labelledby="stores-page-header-heading"
       >
-        <PageHeaderHeading size="sm">Stores</PageHeaderHeading>
+        <PageHeaderHeading size="sm">
+          <IntlMessage id="store.stores.stores" />
+        </PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          Buy products from our stores
+          <IntlMessage id="store.stores.buy-products" />
         </PageHeaderDescription>
       </PageHeader>
       <Stores

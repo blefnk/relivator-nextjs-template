@@ -3,6 +3,7 @@ import { toTitleCase, unslugify } from "~/utils";
 import { getProductsAction } from "~/server/actions/product";
 import { getStoresAction } from "~/server/actions/store";
 import { type Product } from "~/data/db/schema";
+import { IntlMessage } from "~/islands/message";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -79,7 +80,10 @@ export default async function SubcategoryPage({
           {toTitleCase(unslugify(subcategory))}
         </PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          {`Buy the best ${unslugify(subcategory)}`}
+          <IntlMessage
+            id="store.categories.buyTheBest"
+            variables={{ category: unslugify(subcategory) }}
+          />
         </PageHeaderDescription>
       </PageHeader>
       <Products

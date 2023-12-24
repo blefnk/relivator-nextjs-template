@@ -7,6 +7,7 @@ import { getStoresAction } from "~/server/actions/store";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { fullURL } from "~/data/meta/builder";
+import { IntlMessage } from "~/islands/message";
 import { Breadcrumbs } from "~/islands/navigation/pagination/breadcrumbs";
 import { Separator } from "~/islands/primitives/separator";
 import { Products } from "~/islands/products";
@@ -75,7 +76,7 @@ export default async function StorePage({
       <Breadcrumbs
         segments={[
           {
-            title: "Stores",
+            title: <IntlMessage id="store.stores.stores" />,
             href: "/stores",
           },
           {

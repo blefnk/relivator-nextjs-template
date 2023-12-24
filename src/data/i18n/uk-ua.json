@@ -658,5 +658,23 @@
       "title": "-"
     },
     "title": "-"
+  },
+  "store": {
+    "stores": {
+      "buy-products": "Купуйте продукти в наших магазинах",
+      "stores": "Магазини"
+    },
+    "categories": {
+      "buyFromCategories": "Купуйте {category} у найкращих магазинах",
+      "buyProducts": "Купуйте продукти з категорії ${category}",
+      "buyTheBest": "Купуйте найкраще {category}"
+    },
+    "product": {
+      "products": "Продукти",
+      "noDescription": "Для цього продукту немає опису.",
+      "description": "опис",
+      "moreProductsFrom": "Більше товарів від {storeName}",
+      "buyProductsFromOurStores": "Купуйте продукти в наших магазинах"
+    }
   }
 }

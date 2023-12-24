@@ -658,5 +658,23 @@
       "title": "Relivator'dan ücretsiz çevrimini araçlar"
     },
     "title": "Aletler"
+  },
+  "store": {
+    "stores": {
+      "buy-products": "Mağazalarımızdan ürün satın alın",
+      "stores": "Mağazalar"
+    },
+    "categories": {
+      "buyFromCategories": "En iyi mağazalardan {category} satın alın",
+      "buyProducts": "${category} kategorisinden ürünler satın alın",
+      "buyTheBest": "En iyi {category} satın alın"
+    },
+    "product": {
+      "products": "Ürünler",
+      "noDescription": "Bu ürün için açıklama mevcut değil.",
+      "description": "Tanım",
+      "moreProductsFrom": "{storeName}'dan daha fazla ürün",
+      "buyProductsFromOurStores": "Mağazalarımızdan ürün satın alın"
+    }
   }
 }
