@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
-import { type Option } from "~/types";
+import type { Option } from "~/types";
 import { cn } from "~/utils";
 
 import { Badge } from "~/islands/primitives/badge";
@@ -21,12 +21,12 @@ import {
 } from "~/islands/primitives/popover";
 import { Separator } from "~/islands/primitives/separator";
 
-type FacetedFilterProps = {
+interface FacetedFilterProps {
   title?: string;
   filterValues: string[];
   setFilterValues: React.Dispatch<React.SetStateAction<string[]>>;
   options: Option[];
-};
+}
 
 export function FacetedFilter({
   title,
@@ -60,15 +60,14 @@ export function FacetedFilter({
                 {selectedValues.size}
               </Badge>
               <div className="hidden space-x-1 lg:flex">
-                {selectedValues.size > 2 ? (
+                {selectedValues.size > 2 ?
                   <Badge
                     variant="secondary"
                     className="rounded-sm px-1 font-normal"
                   >
                     {selectedValues.size} selected
                   </Badge>
-                ) : (
-                  options
+                : options
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
@@ -79,7 +78,7 @@ export function FacetedFilter({
                         {option.label}
                       </Badge>
                     ))
-                )}
+                }
               </div>
             </>
           )}
@@ -102,7 +101,7 @@ export function FacetedFilter({
                       } else {
                         selectedValues.add(option.value);
                       }
-                      const filterValues = Array.from(selectedValues);
+                      const filterValues = [...selectedValues];
                       setFilterValues(
                         filterValues.length > 0 ? filterValues : [],
                       );
@@ -111,9 +110,9 @@ export function FacetedFilter({
                     <div
                       className={cn(
                         "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
-                        isSelected
-                          ? "bg-primary text-primary-foreground"
-                          : "opacity-50 [&_svg]:invisible",
+                        isSelected ?
+                          "bg-primary text-primary-foreground"
+                        : "opacity-50 [&_svg]:invisible",
                       )}
                     >
                       <CheckIcon className={cn("h-4 w-4")} aria-hidden="true" />

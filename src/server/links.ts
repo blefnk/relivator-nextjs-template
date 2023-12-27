@@ -1,4 +1,5 @@
-import { type Route } from "next";
+import type { Route } from "next";
+
 import { REPOSITORY_URL } from "~/app";
 
 export const navItems = {
@@ -6,7 +7,7 @@ export const navItems = {
     {
       id: "tools",
       title: "Features",
-      href: `/` as Route,
+      href: "/" as Route,
       external: false,
     },
     {
@@ -36,7 +37,7 @@ export const navItems = {
         {
           id: "todo",
           title: "Todo List",
-          href: "/features/todo",
+          href: "#",
           items: [],
         },
       ],
@@ -47,7 +48,7 @@ export const navItems = {
 export const navLinks = [
   {
     route: "Home",
-    path: `/` as Route,
+    path: "/" as Route,
   },
   {
     route: "Features",

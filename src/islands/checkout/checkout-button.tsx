@@ -1,18 +1,18 @@
 "use client";
 
 import * as React from "react";
-import { type CartLineItem } from "~/types";
-import { catchError } from "~/utils";
+import type { CartLineItem } from "~/types";
+import { catchError, toastError } from "~/utils";
 
+import { createCheckoutSessionAction } from "~/core/stripe/actions";
+import { getStripe } from "~/core/stripe/getting";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
-import { createCheckoutSessionAction } from "~/utils/stripe/actions";
-import { getStripe } from "~/utils/stripe/getting";
 
-type CheckoutButtonProps = {
+interface CheckoutButtonProps {
   storeId: number;
   cartLineItems: CartLineItem[];
-};
+}
 
 export function CheckoutButton({
   storeId,
@@ -34,21 +34,39 @@ export function CheckoutButton({
         startTransition(async () => {
           try {
             const stripe = await stripePromise;
-            if (!stripe) return;
+            if (!stripe) {
+              toastError("Stripe is not available.");
+              return;
+            }
 
-            const session = await createCheckoutSessionAction({
-              storeId,
+            const sessionResponse = await createCheckoutSessionAction({
               items: cartLineItems,
+              storeId,
             });
+
+            if (sessionResponse.error) {
+              toastError(sessionResponse.error);
+              return;
+            }
+
+            if (!sessionResponse.id) {
+              toastError("Session ID is undefined.");
+              return;
+            }
 
             const { error } = await stripe.redirectToCheckout({
-              sessionId: session.id,
+              sessionId: sessionResponse.id,
             });
+
             if (error) {
-              catchError(error);
+              toastError(
+                error.message ||
+                  "An error occurred during the checkout process.",
+              );
             }
           } catch (err) {
-            catchError(err);
+            if (err instanceof Error) toastError(err.message);
+            else toastError("An unexpected error occurred.");
           }
         });
       }}

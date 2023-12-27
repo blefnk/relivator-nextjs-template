@@ -1,6 +1,6 @@
 "use client";
 
-import { api } from "~/utils/trpc/react";
+import { api } from "~/core/trpc/infer";
 
 export default function ProductsCtx() {
   const { data, isLoading, error } = api.product.getProduct.useQuery();

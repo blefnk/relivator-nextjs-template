@@ -1,24 +1,21 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
+import { getTranslations } from "next-intl/server";
 
-import { getProductsAction } from "~/server/actions/product";
-import { getStoresAction } from "~/server/actions/store";
 import { db } from "~/data/db";
 import { products, stores } from "~/data/db/schema";
 import { fullURL } from "~/data/meta/builder";
+import { env } from "~/env.mjs";
 import { Breadcrumbs } from "~/islands/navigation/pagination/breadcrumbs";
 import { Separator } from "~/islands/primitives/separator";
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { getProductsAction } from "~/server/actions/product";
+import { getStoresAction } from "~/server/actions/store";
+import { getServerAuthSession } from "~/utils/auth/users";
 
-export const metadata: Metadata = {
-  metadataBase: fullURL(),
-  title: "Store",
-  description: "Store description",
-};
-
-interface StorePageProps {
+interface StorePageProperties {
   params: {
     storeId: string;
   };
@@ -27,21 +24,43 @@ interface StorePageProps {
   };
 }
 
+async function getStoreFromParams(params: StorePageProperties["params"]) {
+  const storeId = Number(params.storeId);
+
+  return await db.query.stores.findFirst({
+    where: eq(stores.id, storeId),
+  });
+}
+
+export async function generateMetadata({
+  params,
+}: StorePageProperties): Promise<Metadata> {
+  const store = await getStoreFromParams(params);
+
+  if (!store) {
+    return {};
+  }
+
+  return {
+    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+    title: store.name,
+    description: store.description,
+  };
+}
+
 export default async function StorePage({
   params,
   searchParams,
-}: StorePageProps) {
-  const storeId = Number(params.storeId);
-
-  const store = await db.query.stores.findFirst({
-    where: eq(stores.id, storeId),
-  });
+}: StorePageProperties) {
+  const store = await getStoreFromParams(params);
 
   if (!store) {
     notFound();
   }
 
   const { page, per_page, store_page } = searchParams;
+
+  const t = await getTranslations();
 
   // Products transaction
   const limit = typeof per_page === "string" ? parseInt(per_page) : 8;
@@ -50,17 +69,17 @@ export default async function StorePage({
   const productsTransaction = await getProductsAction({
     limit: limit,
     offset: offset,
-    store_ids: String(storeId),
+    store_ids: String(store.id),
   });
 
-  const pageCount = Math.ceil(productsTransaction.total / limit);
+  const pageCount = Math.ceil(productsTransaction.count / limit);
 
   // Stores transaction
   const storesLimit = 25;
   const storesOffset =
-    typeof store_page === "string"
-      ? (parseInt(store_page) - 1) * storesLimit
-      : 0;
+    typeof store_page === "string" ?
+      (parseInt(store_page) - 1) * storesLimit
+    : 0;
 
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
@@ -68,14 +87,16 @@ export default async function StorePage({
     sort: "name.asc",
   });
 
-  const storePageCount = Math.ceil(storesTransaction.total / storesLimit);
+  const storePageCount = Math.ceil(storesTransaction.count / storesLimit);
+
+  const session = await getServerAuthSession();
 
   return (
     <Shell>
       <Breadcrumbs
         segments={[
           {
-            title: "Stores",
+            title: `${t("store.stores.stores")}`,
             href: "/stores",
           },
           {
@@ -99,6 +120,8 @@ export default async function StorePage({
             categories={Object.values(products.category.enumValues)}
             stores={storesTransaction.items}
             storePageCount={storePageCount}
+            session={session?.id ?? null}
+            tAddToCart={t("store.product.addToCart")}
           />
         </div>
       </div>

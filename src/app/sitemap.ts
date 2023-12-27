@@ -33,14 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date().toISOString(),
   }));
 
-  const subcategories = productCategories
-    .map((category) =>
-      category.subcategories.map((subcategory) => ({
-        url: absoluteUrl(`/categories/${category.title}/${subcategory.slug}`),
-        lastModified: new Date().toISOString(),
-      })),
-    )
-    .flat();
+  const subcategories = productCategories.flatMap((category) =>
+    category.subcategories.map((subcategory) => ({
+      url: absoluteUrl(`/categories/${category.title}/${subcategory.slug}`),
+      lastModified: new Date().toISOString(),
+    })),
+  );
 
   const routes = [
     "",

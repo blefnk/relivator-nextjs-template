@@ -1,3 +1,5 @@
+/* stylelint-disable scss/at-rule-no-unknown */
+/* stylelint-disable at-rule-no-unknown */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,7 +29,7 @@
     --warning: 38 92% 50%;
     --warning-foreground: 48 96% 89%;
     --color-start: #2e2e2f;
-    --color-end: #222222;
+    --color-end: #222;
   }
 
   .dark {
@@ -61,6 +63,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -72,68 +75,13 @@
   }
 
   .zoom-image [data-rmiz-modal-img] {
-    @apply rounded-md lg:rounded-2xl;
+    @apply rounded-lg lg:rounded-2xl;
   }
 }
 
+/* stylelint-disable-next-line media-feature-range-notation */
 @media (max-width: 640px) {
   .container {
     @apply px-4;
   }
 }
-
-.radial-gradient {
-  background: radial-gradient(
-    128.88% 128.88% at 103.9% -10.39%,
-    #e84d70 0%,
-    #a337f6 53.09%,
-    #28a7ed 100%
-  );
-}
-
-.animate-opacity {
-  animation: opacityCycle 1s infinite alternate;
-}
-
-@keyframes opacityCycle {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.5;
-  }
-}
-
-@keyframes smoothColorChange {
-  0% {
-    background-position: 200% center;
-  }
-  100% {
-    background-position: -200% center;
-  }
-}
-
-.smooth-color-change {
-  background-size: 200% 100%;
-  background-image: linear-gradient(
-    to right,
-    var(--color-start),
-    var(--color-end),
-    var(--color-start),
-    var(--color-end)
-  );
-  animation: smoothColorChange 30s infinite linear;
-}
-
-/* For WebKit browsers like Chrome and Safari */
-/* input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-} */
-
-/* For Mozilla Firefox */
-/* input[type="number"] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-} */

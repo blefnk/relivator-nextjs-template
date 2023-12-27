@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import type { z } from "zod";
 
-import { addStoreAction } from "~/server/actions/store";
 import { storeSchema } from "~/data/validations/store";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -22,6 +21,7 @@ import {
 } from "~/islands/primitives/form";
 import { Input } from "~/islands/primitives/input";
 import { Textarea } from "~/islands/primitives/textarea";
+import { addStoreAction } from "~/server/actions/store";
 
 interface AddStoreFormProps {
   userId: string;
@@ -45,7 +45,12 @@ export function AddStoreForm({ userId }: AddStoreFormProps) {
   function onSubmit(data: Inputs) {
     startTransition(async () => {
       try {
-        await addStoreAction({ ...data, userId });
+        const addResult = await addStoreAction({ ...data, userId });
+
+        if (addResult && addResult.status === "error") {
+          toast.error(addResult.message);
+          return; // Stop further execution
+        }
 
         form.reset();
         toast.success(`Store '${data.name}' created successfully.`);

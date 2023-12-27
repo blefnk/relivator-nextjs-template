@@ -1,8 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Link } from "~/navigation";
 import { signIn, signOut, useSession } from "next-auth/react";
+
+import { Link } from "~/navigation";
 
 /** @see https://github.com/jherr/app-router-auth-using-next-auth */
 
@@ -17,14 +18,18 @@ function AuthButton() {
     return (
       <>
         {session?.user?.name} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <button type="button" onClick={() => signOut()}>
+          Sign out
+        </button>
       </>
     );
   }
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
+      <button type="button" onClick={() => signIn()}>
+        Sign in
+      </button>
     </>
   );
 }

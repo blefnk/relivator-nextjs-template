@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef } from "react";
+import React, { forwardRef } from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { AlertTriangle, Check, X } from "lucide-react";
 import { cnBase, tv, type VariantProps } from "tailwind-variants";
@@ -10,7 +10,7 @@ const ToastProvider = ToastPrimitives.Provider;
 const ToastStyles = {
   Root: tv({
     base: `
-      group pointer-events-auto relative flex w-full items-center space-x-4 overflow-hidden rounded-md border border-border bg-background p-6 pr-8 shadow-lg transition-all
+      group pointer-events-auto relative flex w-full items-center space-x-4 overflow-hidden rounded-lg border border-border bg-background p-6 pr-8 shadow-lg transition-all
       before:absolute before:left-0 before:h-full before:w-2 before:content-['']
       data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]
       data-[state=open]:animate-in data-[state=closed]:animate-out
@@ -44,10 +44,10 @@ const ToastStyles = {
     base: "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
   }),
   Action: tv({
-    base: "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
+    base: "inline-flex h-8 shrink-0 items-center justify-center rounded-lg border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
   }),
   Close: tv({
-    base: "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+    base: "absolute right-2 top-2 rounded-lg p-1 text-foreground/50 opacity-0 transition hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
   }),
 };
 

@@ -4,7 +4,6 @@ import { getProviders } from "next-auth/react";
 
 import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
-import SettingsPageContent from "~/islands/content/settings-content";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -54,7 +53,6 @@ export default async function ProfilesPage() {
           </Link>{" "}
           page for now.
         </h2>
-        {/* <SettingsPageContent /> */}
       </section>
 
       {/* <Card

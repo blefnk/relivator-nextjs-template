@@ -1,11 +1,11 @@
 import { SiteFooter } from "~/islands/navigation/site-footer";
 import { SiteHeader } from "~/islands/navigation/site-header";
 
-interface LobbyLayoutProps {
+interface LobbyLayoutProperties {
   children: React.ReactNode;
 }
 
-export default async function LobbyLayout({ children }: LobbyLayoutProps) {
+export default async function LobbyLayout({ children }: LobbyLayoutProperties) {
   return (
     <>
       <SiteHeader />

@@ -1,11 +1,13 @@
-import { siteConfig } from "~/app";
-import { Link } from "~/navigation";
 import { cn } from "~/utils";
 import { Github, Twitter } from "lucide-react";
 
+import { siteConfig } from "~/app";
+import { env } from "~/env.mjs";
 import { SubscribeToNewsletterForm } from "~/forms/newsletter-subscribe";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { Link } from "~/navigation";
+import { ExtraContent } from "~/plugins/million/islands/users-online";
 
 export async function SiteFooter() {
   return (
@@ -14,7 +16,7 @@ export async function SiteFooter() {
         <section
           id="footer-content"
           aria-labelledby="footer-content-heading"
-          className="flex flex-col items-center gap-10 lg:flex-row lg:gap-20 lg:items-center lg:justify-center"
+          className="flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:justify-center lg:gap-20"
         >
           <section
             id="footer-links"
@@ -46,7 +48,7 @@ export async function SiteFooter() {
           <section
             id="newsletter"
             aria-labelledby="newsletter-heading"
-            className="space-y-3 flex flex-col items-center lg:items-start"
+            className="flex flex-col items-center space-y-3 lg:items-start"
           >
             <h4 className="text-base font-medium">
               Subscribe to our newsletter
@@ -81,17 +83,20 @@ export async function SiteFooter() {
                 <Twitter className="h-4 w-4" aria-hidden="true" />
                 <span className="sr-only">X (known as Twitter)</span>
               </Link>
+              {/* UNCOMMENT AS NEEDED & ADD <Room /> TO LocaleLayout */}
+              {/* {env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY !== null &&
+                env.DEV_DEMO_NOTES === "true" && <ExtraContent />} */}
             </div>
             <div
               id="footer-copyright"
               aria-labelledby="footer-copyright-text"
-              className="flex items-center space-x-4 justify-center lg:justify-start"
+              className="flex items-center justify-center space-x-4 lg:justify-start"
             >
               <div className="block text-sm text-muted-foreground sm:text-center">
                 © {new Date().getFullYear()}{" "}
                 <Link
                   target="_blank"
-                  href="https://bleverse.com/"
+                  href="https://github.com/blefnk/relivator"
                   className="hover:underline"
                 >
                   {siteConfig.company.name}

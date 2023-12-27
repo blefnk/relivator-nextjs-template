@@ -9,9 +9,7 @@ export function useURLState(query: string): [string, (value: string) => void] {
   const [state, setState] = useState(searchParams?.get(query) ?? "");
 
   const updateState = (value: string) => {
-    const current = new URLSearchParams(
-      Array.from(searchParams?.entries() || []),
-    );
+    const current = new URLSearchParams([...(searchParams?.entries() || [])]);
 
     if (!value.trim()) {
       current.delete(query);

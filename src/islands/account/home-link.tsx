@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, type ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef, FC } from "react";
 
 import { TextLink } from "./text-link";
 

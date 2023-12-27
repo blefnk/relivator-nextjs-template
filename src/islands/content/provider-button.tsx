@@ -3,57 +3,48 @@ import { useSearchParams } from "next/navigation";
 import { cn } from "~/utils";
 import { Loader2 } from "lucide-react";
 import { getProviders, signIn, type ClientSafeProvider } from "next-auth/react";
-import { useLocale, useTranslations } from "next-intl";
 import { FaDiscord, FaGithub, FaGoogle } from "react-icons/fa";
 
 import { ActionButton } from "~/islands/account/action-button";
 import { Spinner } from "~/islands/modules/spinner";
 import { Button, buttonVariants } from "~/islands/primitives/button";
 
-/**
- * @see https://github.com/search?q=ProviderButton%20path%3Atsx&type=code
- */
-
 type ProviderButtonProps = {
   onClick: () => void;
-  isRegPage: boolean;
   loading: boolean;
   provider: ClientSafeProvider;
+  tPleaseWait: string;
 };
 
 export default function ProviderButton({
   onClick,
-  isRegPage,
   loading,
   provider,
+  tPleaseWait,
 }: ProviderButtonProps) {
-  const t = useTranslations();
-
   return (
     <div
       key={provider.id}
-      className="w-full flex justify-center flex-row gap-2 items-baseline"
+      className="flex w-full flex-row items-baseline justify-center gap-2"
     >
       <Button
         variant="outline"
         disabled={loading}
         onClick={onClick}
-        className={`transition font-semibold max-w-lg duration-400 flex-1 text-lg px-4 py-5 rounded-full shadow-md dark:bg-zinc-900 dark:text-zinc-300 flex gap-3 items-center bg-zinc-50 text-zinc-900 ${
-          loading ? "animate-opacity opacity-50 cursor-not-allowed" : ""
+        className={`flex max-w-lg flex-1 items-center gap-3 rounded-full bg-zinc-50 px-4 py-5 text-lg font-semibold text-zinc-900 shadow-md transition dark:bg-zinc-900 dark:text-zinc-300 ${
+          loading ? "cursor-not-allowed opacity-50" : ""
         }`}
       >
-        {loading ? (
+        {loading ?
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            {t("auth-provider.please-wait")}
+            {tPleaseWait}
           </>
-        ) : (
-          <>
-            {isRegPage
-              ? t("auth-provider.sign-up-null", { name: provider.name })
-              : t("auth-provider.sign-in-null", { name: provider.name })}
+        : <>
+            {/* <renderProviderIcon provider={provider.name} /> */}
+            {provider.name}
           </>
-        )}
+        }
       </Button>
     </div>
   );
@@ -88,3 +79,5 @@ function renderProviderIcon(provider: string) {
       return null;
   }
 }
+
+/** @see https://github.com/search?q=ProviderButton%20path%3Atsx&type=code */

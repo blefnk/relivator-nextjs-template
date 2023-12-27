@@ -3,13 +3,13 @@ import { type HandleOAuthCallbackParams } from "@clerk/types";
 import SSOCallback from "~/islands/account/sso-callback";
 import { Shell } from "~/islands/wrappers/shell-variants";
 
-export interface SSOCallbackPageProps {
+export interface SSOCallbackPageProperties {
   searchParams: HandleOAuthCallbackParams;
 }
 
 export default function SSOCallbackPage({
   searchParams,
-}: SSOCallbackPageProps) {
+}: SSOCallbackPageProperties) {
   return (
     <Shell className="max-w-lg">
       <SSOCallback searchParams={searchParams} />

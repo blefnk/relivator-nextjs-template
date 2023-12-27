@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cnBase } from "tailwind-variants";
 
-import { Button, ButtonProps } from "./button";
+import { Button, type ButtonProps } from "./button";
 import {
   Command,
   CommandEmpty,
@@ -29,9 +29,9 @@ export const ComboboxTrigger = forwardRef<
   return (
     <PopoverTrigger asChild>
       <Button ref={ref} variant="outline" {...props} role="combobox">
-        {value
-          ? items.find((item) => item.toUpperCase() === value.toUpperCase())
-          : placeholder}
+        {value ?
+          items.find((item) => item.toUpperCase() === value.toUpperCase())
+        : placeholder}
         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
       </Button>
     </PopoverTrigger>
@@ -91,9 +91,9 @@ export const ComboboxList = forwardRef<HTMLDivElement, ComboboxListProps>(
             <Check
               className={cnBase(
                 "mr-2 h-4 w-4",
-                value.toUpperCase() === item.toUpperCase()
-                  ? "animate-in fade-in"
-                  : "opacity-0 animate-out fade-out",
+                value.toUpperCase() === item.toUpperCase() ?
+                  "animate-in fade-in"
+                : "opacity-0 animate-out fade-out",
               )}
             />
             {item}

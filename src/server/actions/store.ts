@@ -3,91 +3,128 @@
 import { revalidatePath } from "next/cache";
 import { slugify } from "~/utils";
 import { and, asc, desc, eq, gt, isNull, lt, not, sql } from "drizzle-orm";
-import type { z } from "zod";
+import { z } from "zod";
 
 import { db } from "~/data/db";
 import { products, stores, type Store } from "~/data/db/schema";
-import type {
-  getStoreSchema,
-  getStoresSchema,
-  storeSchema,
-} from "~/data/validations/store";
+import type { getStoreSchema } from "~/data/validations/store";
+import { getStoresSchema, storeSchema } from "~/data/validations/store";
 
-export async function getStoresAction(input: z.infer<typeof getStoresSchema>) {
-  const limit = input.limit ?? 10;
-  const offset = input.offset ?? 0;
-  const [column, order] =
-    (input.sort?.split(".") as [
-      keyof Store | undefined,
-      "asc" | "desc" | undefined,
-    ]) ?? [];
-  const statuses = input.statuses?.split(".") ?? [];
+export async function getStoresAction(
+  rawInput: z.infer<typeof getStoresSchema>,
+) {
+  try {
+    const input = getStoresSchema.parse(rawInput);
 
-  const { items, total } = await db.transaction(async (tx) => {
-    const items = await tx
-      .select({
-        id: stores.id,
-        name: stores.name,
-        description: stores.description,
-        stripeAccountId: stores.stripeAccountId,
-      })
-      .from(stores)
-      .limit(limit)
-      .offset(offset)
-      .leftJoin(products, eq(stores.id, products.storeId))
-      .where(
-        and(
-          input.userId ? eq(stores.userId, input.userId) : undefined,
-          statuses.includes("active") && !statuses.includes("inactive")
-            ? not(isNull(stores.stripeAccountId))
-            : undefined,
-          statuses.includes("inactive") && !statuses.includes("active")
-            ? isNull(stores.stripeAccountId)
-            : undefined,
-        ),
-      )
-      .groupBy(stores.id)
-      .orderBy(
-        desc(stores.stripeAccountId),
-        input.sort === "productCount.asc"
-          ? asc(sql<number>`count(*)`)
-          : input.sort === "productCount.desc"
-          ? desc(sql<number>`count(*)`)
-          : column && column in stores
-          ? order === "asc"
-            ? asc(stores[column])
-            : desc(stores[column])
-          : desc(stores.createdAt),
-      );
+    const limit = input.limit ?? 10;
+    const offset = input.offset ?? 0;
+    const [column, order] =
+      (input.sort?.split(".") as [
+        keyof Store | undefined,
+        "asc" | "desc" | undefined,
+      ]) ?? [];
+    const statuses = input.statuses?.split(".") ?? [];
 
-    const total = await tx
-      .select({
-        count: sql<number>`count(*)`,
-      })
-      .from(stores)
-      .where(input.userId ? eq(stores.userId, input.userId) : undefined);
+    const { items, count } = await db.transaction(async (tx) => {
+      const items = await tx
+        .select({
+          id: stores.id,
+          name: stores.name,
+          description: stores.description,
+          stripeAccountId: stores.stripeAccountId,
+          productCount: sql<number>`count(*)`,
+        })
+        .from(stores)
+        .limit(limit)
+        .offset(offset)
+        .leftJoin(products, eq(stores.id, products.storeId))
+        .where(
+          and(
+            input.userId ? eq(stores.userId, input.userId) : undefined,
+            statuses.includes("active") && !statuses.includes("inactive")
+              ? not(isNull(stores.stripeAccountId))
+              : undefined,
+            statuses.includes("inactive") && !statuses.includes("active")
+              ? isNull(stores.stripeAccountId)
+              : undefined,
+          ),
+        )
+        .groupBy(stores.id)
+        .orderBy(
+          input.sort === "stripeAccountId.asc"
+            ? asc(stores.stripeAccountId)
+            : input.sort === "stripeAccountId.desc"
+              ? desc(stores.stripeAccountId)
+              : input.sort === "productCount.asc"
+                ? asc(sql<number>`count(*)`)
+                : input.sort === "productCount.desc"
+                  ? desc(sql<number>`count(*)`)
+                  : column && column in stores
+                    ? order === "asc"
+                      ? asc(stores[column])
+                      : desc(stores[column])
+                    : desc(stores.createdAt),
+        );
+
+      const count = await tx
+        .select({
+          count: sql<number>`count(*)`,
+        })
+        .from(stores)
+        .where(
+          and(
+            input.userId ? eq(stores.userId, input.userId) : undefined,
+            statuses.includes("active") && !statuses.includes("inactive")
+              ? not(isNull(stores.stripeAccountId))
+              : undefined,
+            statuses.includes("inactive") && !statuses.includes("active")
+              ? isNull(stores.stripeAccountId)
+              : undefined,
+          ),
+        )
+        .execute()
+        .then((res) => res[0]?.count ?? 0);
+
+      return {
+        items,
+        count,
+      };
+    });
 
     return {
       items,
-      total: Number(total[0]?.count) ?? 0,
+      count,
     };
-  });
-
-  return {
-    items,
-    total,
-  };
+  } catch (err) {
+    console.error(err);
+    if (err instanceof Error) {
+      // Throw an Error object with the original error message
+      throw new TypeError(err.message);
+    } else if (err instanceof z.ZodError) {
+      // Combine Zod error messages and throw as an Error object
+      throw new TypeError(err.issues.map((issue) => issue.message).join("\n"));
+    } else {
+      // Throw a generic Error for unknown cases
+      throw new TypeError("Unknown error.");
+    }
+  }
 }
 
+const extendedStoreSchema = storeSchema.extend({
+  userId: z.string(),
+});
+
 export async function addStoreAction(
-  input: z.infer<typeof storeSchema> & { userId: string },
+  rawInput: z.infer<typeof extendedStoreSchema>,
 ) {
+  const input = extendedStoreSchema.parse(rawInput);
+
   const storeWithSameName = await db.query.stores.findFirst({
     where: eq(stores.name, input.name),
   });
 
   if (storeWithSameName) {
-    throw new Error("Store name already taken.");
+    return { status: "error", message: "Store name already taken." };
   }
 
   await db.insert(stores).values({
@@ -104,7 +141,7 @@ export async function getNextStoreIdAction(
   input: z.infer<typeof getStoreSchema>,
 ) {
   if (typeof input.id !== "number" || typeof input.userId !== "string") {
-    throw new Error("Invalid input.");
+    throw new TypeError("Invalid input.");
   }
 
   const nextStore = await db.query.stores.findFirst({
@@ -138,7 +175,7 @@ export async function getPreviousStoreIdAction(
   input: z.infer<typeof getStoreSchema>,
 ) {
   if (typeof input.id !== "number" || typeof input.userId !== "string") {
-    throw new Error("Invalid input.");
+    throw new TypeError("Invalid input.");
   }
 
   const previousStore = await db.query.stores.findFirst({

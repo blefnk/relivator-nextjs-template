@@ -14,12 +14,12 @@
 
 import { headers } from "next/headers";
 import { clerkClient } from "@clerk/nextjs";
-import { env } from "~/env.mjs";
 import { type CheckoutItem } from "~/types";
 import { eq } from "drizzle-orm";
 import type Stripe from "stripe";
 import { z } from "zod";
 
+import { stripe } from "~/core/stripe/connect";
 import { db } from "~/data/db";
 import {
   addresses,
@@ -30,7 +30,7 @@ import {
   users,
 } from "~/data/db/schema";
 import { checkoutItemSchema } from "~/data/validations/cart";
-import { stripe } from "~/utils/stripe/connect";
+import { env } from "~/env.mjs";
 
 /**
  * POST /api/webhooks/stripe
@@ -38,29 +38,31 @@ import { stripe } from "~/utils/stripe/connect";
  * It's responsible for handling various event types sent by Stripe, such as payment
  * success, payment failure, customer creation, etc.
  */
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   /**
    * Construct and validate the event sent by Stripe.
    * This process is crucial to ensure the integrity and authenticity of the event.
    * The event is created by parsing the request body, the Stripe signature header,
    * and using the Stripe webhook signing secret from the environment variables.
    */
-  const body = await req.text();
+  const body = await request.text();
   const signature = headers().get("Stripe-Signature") ?? "";
   const secret = env.STRIPE_WEBHOOK_SIGNING_SECRET as string;
   let event: Stripe.Event;
   try {
     event = stripe.webhooks.constructEvent(body, signature, secret);
-  } catch (err) {
+  } catch (error) {
     return new Response(
-      `❌ [Stripe Error]: ${err instanceof Error ? err.message : "Unknown"}`,
+      `❌ [Stripe Error]: ${
+        error instanceof Error ? error.message : "Unknown"
+      }`,
       { status: 400 },
     );
   }
 
   // By using console.log in this place, we ensure to see triggered events only
   const debug = process.env.NODE_ENV === "development"; // const debug = false;
-  if (debug) console.log(` ✓ Received ${event.type}`);
+  // if (debug) console.log(` ✓ Received ${event.type}`);
 
   // Switch case to handle different types of Stripe webhook events
   switch (event.type) {
@@ -106,7 +108,7 @@ export async function POST(req: Request) {
           );
 
           // Update the user stripe into in our database as well.
-          const update_db = await db
+          const update_database = await db
             .update(users)
             .set({
               stripeSubscriptionId: subscription.id,
@@ -120,8 +122,8 @@ export async function POST(req: Request) {
               eq(users.id, checkoutSessionCompleted?.metadata?.userId ?? ""),
             );
 
-          if (debug && update_clerk && update_db)
-            console.log("✅ [stripe/clerk] User successfully updated.");
+          if (debug && update_clerk && update_database)
+            console.log(" ✓ [stripe/clerk] Customer successfully updated");
         } else if (env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs") {
           // Update the user stripe into in our database.
           // Since this is the initial subscription, we need
@@ -141,7 +143,7 @@ export async function POST(req: Request) {
             );
 
           if (debug && update)
-            console.log("✅ [stripe/authjs] User successfully updated.");
+            console.log(" ✓ [stripe/authjs] Customer successfully updated");
         }
       }
 
@@ -186,7 +188,7 @@ export async function POST(req: Request) {
           );
 
           // Update the user stripe into in our database as well.
-          const update_db = await db
+          const update_database = await db
             .update(users)
             .set({
               stripePriceId: subscription.items.data[0]?.price.id,
@@ -198,8 +200,8 @@ export async function POST(req: Request) {
               eq(users.id, invoicePaymentSucceeded?.metadata?.userId ?? ""),
             );
 
-          if (debug && update_clerk && update_db)
-            console.log("✅ [stripe/clerk] User successfully updated.");
+          if (debug && update_clerk && update_database)
+            console.log(" ✓ [stripe/clerk] Customer successfully updated");
         } else if (env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs") {
           // Update the price id and set the new period end
           const update = await db
@@ -215,7 +217,7 @@ export async function POST(req: Request) {
             );
 
           if (debug && update)
-            console.log("✅ [stripe/authjs] User successfully updated.");
+            console.log(" ✓ [stripe/authjs] Customer successfully updated");
         }
       }
       break; //=> invoice.payment_succeeded (2)
@@ -233,7 +235,7 @@ export async function POST(req: Request) {
       const paymentIntentPaymentFailed = event.data
         .object as Stripe.PaymentIntent;
       if (debug) {
-        console.log(
+        console.error(
           `❌ Payment failed: ${paymentIntentPaymentFailed.last_payment_error?.message}`,
         );
       }
@@ -250,9 +252,8 @@ export async function POST(req: Request) {
      */
     case "payment_intent.processing": {
       const paymentIntentProcessing = event.data.object as Stripe.PaymentIntent;
-      if (debug) {
+      if (debug)
         console.log(`⌛ Payment processing: ${paymentIntentProcessing.id}`);
-      }
       break; //=> payment_intent.processing (4)
     }
 
@@ -284,7 +285,7 @@ export async function POST(req: Request) {
       // If there are items in metadata, then create order
       if (checkoutItems) {
         try {
-          if (!event.account) throw new Error("❌ No account found.");
+          if (!event.account) throw new Error("❌ No account found");
 
           // Parsing items from metadata
           // Didn't parse before because can pass the unparsed data
@@ -295,7 +296,7 @@ export async function POST(req: Request) {
               JSON.parse(paymentIntentSucceeded?.metadata?.items ?? "[]"),
             );
           if (!safeParsedItems.success) {
-            throw new Error("❌ Could not parse items.");
+            throw new Error("❌ Could not parse items");
           }
 
           const payment = await db.query.payments.findFirst({
@@ -303,11 +304,11 @@ export async function POST(req: Request) {
             where: eq(payments.stripeAccountId, event.account),
           });
           if (!payment?.storeId) {
-            return new Response("❌ Store not found.", { status: 404 });
+            return new Response("❌ Store not found", { status: 404 });
           }
 
           // Create new address in DB
-          const stripeAddress = paymentIntentSucceeded?.shipping?.address;
+          /* const stripeAddress = paymentIntentSucceeded?.shipping?.address;
           const newAddress = await db.insert(addresses).values({
             line1: stripeAddress?.line1,
             line2: stripeAddress?.line2,
@@ -316,7 +317,7 @@ export async function POST(req: Request) {
             country: stripeAddress?.country,
             postalCode: stripeAddress?.postal_code,
           });
-          if (!newAddress.insertId) throw new Error("❌ No address created.");
+          if (!newAddress.insertId) throw new Error("❌ No address created"); */
 
           // Create new order in db
           await db.insert(orders).values({
@@ -331,7 +332,7 @@ export async function POST(req: Request) {
             stripePaymentIntentStatus: paymentIntentSucceeded?.status,
             name: paymentIntentSucceeded?.shipping?.name,
             email: paymentIntentSucceeded?.receipt_email,
-            addressId: Number(newAddress.insertId),
+            // addressId: Number(newAddress.insertId),
           });
 
           // Update product inventory in db
@@ -344,12 +345,14 @@ export async function POST(req: Request) {
               where: eq(products.id, item.productId),
             });
             if (!product) {
-              throw new Error("❌ Product not found.");
+              throw new Error("❌ Product not found");
             }
 
-            const inventory = product.inventory - item.quantity;
+            let inventory: number = product.inventory - item.quantity;
             if (inventory < 0) {
-              throw new Error("❌ Product out of stock.");
+              // TODO: FIX MYSQL !! TEMPORARY SOLUTION
+              inventory = 1;
+              // throw new Error("❌ Product out of stock");
             }
 
             await db
@@ -368,8 +371,8 @@ export async function POST(req: Request) {
               items: [],
             })
             .where(eq(carts.paymentIntentId, paymentIntentId));
-        } catch (err) {
-          console.log("❌ Error creating order.", err);
+        } catch (error) {
+          console.error("❌ Error creating order", error);
         }
       }
 
@@ -382,7 +385,7 @@ export async function POST(req: Request) {
      */
     case "application_fee.created": {
       const applicationFeeCreated = event.data.object;
-      console.log(`Application fee id: ${applicationFeeCreated.id}`);
+      console.log(` ✓ Application fee id: ${applicationFeeCreated}`);
       break; //=> application_fee.created (6)
     }
 
@@ -397,7 +400,7 @@ export async function POST(req: Request) {
     case "charge.succeeded": {
       // const chargeSucceeded = event.data.object as Stripe.Charge;
       // if (debug) {
-      //   console.log(`✅ ChargeId ${chargeSucceeded.id} succeeded!`);
+      //   console.log(` ✓ ChargeId ${chargeSucceeded.id} succeeded!`);
       // }
       break; //=> charge.succeeded (7)
     }
@@ -412,7 +415,7 @@ export async function POST(req: Request) {
      */
     case "customer.created": {
       // if (debug) {
-      //   console.log("✅ New customer successfully created!");
+      //   console.log(" ✓ New customer successfully created!");
       // }
       break; //=> customer.created (8)
     }
@@ -421,7 +424,7 @@ export async function POST(req: Request) {
      * [9] customer.subscription.updated
      * =================================
      *
-     * Triggered when a subscription for a customer is updated. This
+     * Triggered when a subscription for a customer is updated This
      * can involve changes in plan, status updates, or billing cycles.
      * Essential for maintaining current subscription states in your system.
      */
@@ -449,8 +452,9 @@ export async function POST(req: Request) {
     case "payment_method.attached":
     case "account.external_account.deleted":
     case "account.external_account.updated":
-    case "account.external_account.created":
+    case "account.external_account.created": {
       break;
+    }
 
     /**
      * [else] Unknown event types
@@ -469,7 +473,7 @@ export async function POST(req: Request) {
    * Respond to the webhook event. And
    * close the current webhook request.
    */
-  return new Response(null, { status: 200 });
+  return new Response(undefined, { status: 200 });
 }
 
 /**

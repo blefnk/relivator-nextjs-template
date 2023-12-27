@@ -1,17 +1,17 @@
 import "~/styles/mdx.css";
 
 import { type Metadata } from "next";
-import { env } from "~/env.mjs";
-import { Link } from "~/navigation";
 import { cn } from "~/utils";
 
+import { env } from "~/env.mjs";
 import { Icons } from "~/islands/icons";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Separator } from "~/islands/primitives/separator";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { Link } from "~/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const url = env.NEXT_PUBLIC_APP_URL;
+  const url = env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
   const ogUrl = new URL(`${url}/api/og`);
   ogUrl.searchParams.set("type", "Blog Post");

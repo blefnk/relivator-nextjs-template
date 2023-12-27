@@ -1,17 +1,58 @@
 /**
+ * Utility functions
+ * =================
+ *
+ * This file contains utility functions that are used throughout the app.
+ *
  * @see https://github.com/sadmann7/skateshop/blob/main/src/lib/utils.ts
  * @see https://github.com/steven-tey/dub/blob/main/packages/utils/src/index.ts
  */
 
-import { isClerkAPIResponseError, useSignIn } from "@clerk/nextjs";
-import { type OAuthStrategy } from "@clerk/types";
-import { env } from "~/env.mjs";
+import { isClerkAPIResponseError } from "@clerk/nextjs";
 import { type CartLineItem } from "~/types";
 import { clsx, type ClassValue } from "clsx";
 import dayjs from "dayjs";
 import { toast } from "react-hot-toast";
+import { replace } from "string-ts";
 import { twMerge } from "tailwind-merge";
 import * as z from "zod";
+
+import { env } from "~/env.mjs";
+
+/**
+ * Determines whether the environment is development.
+ * @returns boolean Whether the environment is dev.
+ */
+export const isDevEnv = () => {
+  return process.env.NODE_ENV === "development";
+};
+
+/**
+ * ### Helper function to append a query parameter to the URL.
+ *
+ * If URL contains other query parameters besides specified ones in the function,
+ * the `addQueryParamIfMissed` function will handle them. This function works
+ * by parsing the entire URL and manipulating its query parameters
+ * specifically, without altering other parts of the URL.
+ *
+ * @param url - the URL to append the query parameter to.
+ * @param parameter - the query parameter to append.
+ * @param value - the value of the query parameter.
+ * @returns the URL with the query parameter appended.
+ *
+ * @see https://stackoverflow.com/q/5999118
+ */
+export function addQueryParamIfMissed(
+  url: string,
+  parameter: string,
+  value: string,
+): string {
+  const urlObject = new URL(url);
+  if (!urlObject.searchParams.has(parameter)) {
+    urlObject.searchParams.append(parameter, value);
+  }
+  return urlObject.toString();
+}
 
 /**
  * `clsx` is a tiny utility for constructing className strings conditionally.
@@ -44,7 +85,7 @@ export function formatBytes(
   const accurateSizes = ["Bytes", "KiB", "MiB", "GiB", "TiB"];
   if (bytes === 0) return "0 Byte";
   const i = Math.floor(Math.log(bytes) / Math.log(1024));
-  return `${(bytes / Math.pow(1024, i)).toFixed(decimals)} ${
+  return `${(bytes / 1024 ** i).toFixed(decimals)} ${
     sizeType === "accurate" ? accurateSizes[i] ?? "Bytest" : sizes[i] ?? "Bytes"
   }`;
 }
@@ -58,14 +99,37 @@ export function slugify(str: string) {
 }
 
 export function unslugify(str: string) {
-  return str.replace(/-/g, " ");
+  return replace(str, /-/g, " ");
 }
 
-export function toTitleCase(str: string) {
+/**
+ * @deprecated Use this instead:
+ * @see https://github.com/gustavoguichard/string-ts#titlecase
+ */
+export function titleCaseDeprecated(str: string) {
   return str.replace(
     /\w\S*/g,
     (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase(),
   );
+}
+
+/**
+ * @deprecated Use this instead:
+ * @see https://github.com/gustavoguichard/string-ts#titlecase
+ */
+export function titleCaseTsDeprecated(str: string) {
+  return str
+    .split(/\s+/) // Split the string into words
+    .map(
+      (word) =>
+        word.charAt(0).toUpperCase() + // Uppercase the first char of each word
+        replace(
+          word.slice(1), // Take the rest of the word
+          /.+/,
+          word.slice(1).toLowerCase(), // Make the rest of the word lowercase
+        ),
+    )
+    .join(" "); // Rejoin the words into a single string
 }
 
 export function toSentenceCase(str: string) {
@@ -88,29 +152,33 @@ export function absoluteUrl(path: string) {
   return `${env.NEXT_PUBLIC_APP_URL}${path}`;
 }
 
-export function catchError(err: unknown) {
-  if (err instanceof z.ZodError) {
-    const errors = err.issues.map((issue) => {
+export function catchError(error: unknown) {
+  if (error instanceof z.ZodError) {
+    const errors = error.issues.map((issue) => {
       return issue.message;
     });
     return toast(errors.join("\n"));
-  } else if (err instanceof Error) {
-    return toast(err.message);
+  } else if (error instanceof Error) {
+    return toast(error.message);
   } else {
     return toast("Something went wrong, please try again later.");
   }
 }
 
-export function catchClerkError(err: unknown) {
+export function toastError(errorMessage: string) {
+  toast.error(errorMessage);
+}
+
+export function catchClerkError(error: unknown) {
   const unknownErr = "Something went wrong, please try again later.";
 
-  if (err instanceof z.ZodError) {
-    const errors = err.issues.map((issue) => {
+  if (error instanceof z.ZodError) {
+    const errors = error.issues.map((issue) => {
       return issue.message;
     });
     return toast(errors.join("\n"));
-  } else if (isClerkAPIResponseError(err)) {
-    return toast.error(err.errors[0]?.longMessage ?? unknownErr);
+  } else if (isClerkAPIResponseError(error)) {
+    return toast.error(error.errors[0]?.longMessage ?? unknownErr);
   } else {
     return toast.error(unknownErr);
   }
@@ -143,12 +211,6 @@ export function catchAuthError(error?: string | null) {
         title: "Login required",
         description: "You must be logged in to view this page",
       };
-    case "OAuthCallback":
-    case "OAuthCreateAccount":
-    case "OAuthSignin":
-    case "EmailCreateAccount":
-    case "Callback":
-    case "Default":
     default:
       return {
         title: "Something went wrong.",
@@ -194,25 +256,25 @@ export function formatPrice(
   }).format(Number(price));
 }
 
-export const numberToSI = (number: any) => {
+export const numberToSI = (number) => {
   const SI_SYMBOL = ["", "k", "M", "B", "T"];
 
   const tier = (Math.log10(Math.abs(number)) / 3) | 0;
 
-  if (tier == 0) return number;
+  if (tier === 0) return number;
 
   const suffix = SI_SYMBOL[tier];
-  const scale = Math.pow(10, tier * 3);
+  const scale = 10 ** (tier * 3);
 
   const scaled = number / scale;
 
   return scaled.toFixed(1) + suffix;
 };
 
-export const numberToMoney = (number: any) => {
+export const numberToMoney = (number) => {
   const parsedNumber = parseFloat(number);
 
-  if (isNaN(parsedNumber)) return "--";
+  if (Number.isNaN(parsedNumber)) return "--";
 
   const money = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -222,10 +284,10 @@ export const numberToMoney = (number: any) => {
   return money.format(parsedNumber);
 };
 
-export const numberToSIMoney = (number: any) => {
+export const numberToSIMoney = (number) => {
   const parsedNumber = parseFloat(number);
 
-  if (isNaN(parsedNumber)) return "--";
+  if (Number.isNaN(parsedNumber)) return "--";
 
   const money = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -236,7 +298,7 @@ export const numberToSIMoney = (number: any) => {
   return money.format(parsedNumber);
 };
 
-export const numberToPercent = (number: any) => {
+export const numberToPercent = (number) => {
   const percent = new Intl.NumberFormat("en-US", {
     style: "percent",
     maximumSignificantDigits: 2,

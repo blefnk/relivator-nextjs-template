@@ -1,37 +1,68 @@
 {
-  // TypeScript Config
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-
-  // TailwindCSS Config
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["tw=\"([^\"]*)\""]
   ],
-  "tailwindCSS.includeLanguages": { "plaintext": "html" },
-
-  // i18n-ally Config
-  // @see https://github.com/zmedamine90/startui-enzyme/tree/master#translations
   "i18n-ally.keystyle": "nested",
+  "css.validate": false,
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "classNames",
+    "containerClassName"
+  ],
   "i18n-ally.sourceLanguage": "en-us",
   "i18n-ally.displayLanguage": "en-us",
   "i18n-ally.localesPaths": ["src/data/i18n"],
   "i18n-ally.enabledFrameworks": ["general", "react", "next-intl"],
-
-  // Files Config
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.associations": {
     "*.ignore": "plaintext",
-    "*.tson": "typescript",
     "*.txt": "plaintext"
   },
-
-  // VSCode Config
   "editor.tabSize": 2,
-  "editor.codeActionsOnSave": { "source.fixAll": false },
-  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "markdownlint.config": {
+    "MD033": {
+      "allowed_elements": ["img", "p", "a", "details", "summary"]
+    }
+  },
+  "tsEssentialPlugins.fixSuggestionsSorting": true,
+  "search.exclude": {
+    "**/node_modules": false,
+    "**/node_modulesDISABLE": true
+  },
+  "tsEssentialPlugins.globalLibCompletions.action": "mark",
+  "tsEssentialPlugins.patchOutline": true,
+  "tsEssentialPlugins.outline.arraysTuplesNumberedItems": true,
+  "tsEssentialPlugins.renameImportNameOfFileRename": true,
+  "tsEssentialPlugins.signatureHelp.excludeBlockScope": true,
+  "tsEssentialPlugins.skipNodeModulesReferences": true,
+  "tsEssentialPlugins.suggestions.localityBonus": true,
+  "tsEssentialPlugins.tupleHelpSignature": true,
+  "tsEssentialPlugins.jsxEmmet.modernize": true,
+  "cSpell.enabled": true,
+  "tsEssentialPlugins.arrayMethodsSnippets.enable": true,
+  "ava-runner.experimentalEnabled": false,
   "editor.unicodeHighlight.allowedCharacters": {
     "a": true,
     "а": true,
@@ -53,35 +84,34 @@
     "у": true,
     "У": true
   },
-
-  // ESLint Config
-  "eslint.format.enable": true,
+  "jest.autoRevealOutput": "on-exec-error",
+  "cSpell.words": [
+    "ecmascript",
+    "graphqlsp",
+    "nextjs",
+    "trpc",
+    "typecheck",
+    "webhookthing"
+  ],
+  "eslint.lintTask.options": "-c ${workspaceFolder}/eslint.config.ts",
+  "eslint.experimental.useFlatConfig": true,
+  "prettier.enable": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
+  },
   "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
-    "typescriptreact"
-  ],
-
-  // Filetype-specific Config
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
-  },
-  "markdownlint.config": {
-    "MD033": {
-      "allowed_elements": ["img", "p", "a"]
-    }
-  }
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml",
+    "toml"
+  ]
 }

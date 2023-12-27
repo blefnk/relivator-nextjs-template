@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description: "Manage your product",
 };
 
-interface UpdateProductPageProps {
+interface UpdateProductPageProperties {
   params: {
     storeId: string;
     productId: string;
@@ -30,7 +30,7 @@ interface UpdateProductPageProps {
 
 export default async function UpdateProductPage({
   params,
-}: UpdateProductPageProps) {
+}: UpdateProductPageProperties) {
   const storeId = Number(params.storeId);
   const productId = Number(params.productId);
 

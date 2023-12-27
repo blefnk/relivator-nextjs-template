@@ -16,7 +16,9 @@ const Popup = () => {
     <>
       <Sheet open={isOpen}>
         <SheetTrigger>
-          <button onClick={() => setIsOpen(true)}>Open Popup</button>
+          <button type="button" onClick={() => setIsOpen(true)}>
+            Open Popup
+          </button>
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>

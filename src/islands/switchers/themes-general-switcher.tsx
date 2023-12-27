@@ -30,7 +30,7 @@ export function ThemesGeneralSwitcher({
       <Button
         disabled
         aria-label="Theme Switcher"
-        className="h-9 w-9 border rounded-md"
+        className="h-9 w-9 rounded-lg border"
         variant="ghost"
         size="icon"
         {...props}
@@ -45,7 +45,7 @@ export function ThemesGeneralSwitcher({
       <DropdownMenuTrigger asChild>
         <Button
           aria-label="Theme Switcher"
-          className="h-9 w-9 border rounded-md"
+          className="h-9 w-9 rounded-lg border"
           variant="ghost"
           size="icon"
           {...props}

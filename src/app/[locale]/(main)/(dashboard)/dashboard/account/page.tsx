@@ -1,17 +1,17 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { env } from "~/env.mjs";
 
+import { UserProfileClerk } from "~/core/auth/clerkjs/islands/user-profile-clerk";
 import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
-import { UserProfileClerk } from "~/islands/account/user-profile-clerk";
+import { env } from "~/env.mjs";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Shell } from "~/islands/wrappers/shell-variants";
-import { getServerAuthSession } from "~/utils/users";
+import { getServerAuthSession } from "~/utils/auth/users";
 
 export const metadata = seo({
   metadataBase: fullURL(),
@@ -51,7 +51,7 @@ export default async function ProfilesPage() {
 
       {env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs" && (
         <>
-          <h2 className="border p-4 rounded-md">
+          <h2 className="rounded-lg border p-4">
             This page is under construction.
             <br />
             Please{" "}
@@ -65,7 +65,7 @@ export default async function ProfilesPage() {
 
       {debug && (
         <>
-          <h2 className="font-bold -mb-6">
+          <h2 className="-mb-6 font-bold">
             [localhost-debug-mode-user-object]
           </h2>
           <pre>

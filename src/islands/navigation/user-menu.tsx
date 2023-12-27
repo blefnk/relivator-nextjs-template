@@ -1,6 +1,3 @@
-import Link from "next/link";
-import { env } from "~/env.mjs";
-import { Link as IntlLink } from "~/navigation";
 import { cn } from "~/utils";
 
 import { Avatar, AvatarFallback, AvatarImage } from "~/islands/account/avatar";
@@ -15,12 +12,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/islands/primitives/dropdown";
-import { getUserData } from "~/utils/users";
+import { Link } from "~/navigation";
+import { getServerAuthSession, getUserData } from "~/utils/auth/users";
 
-export type UserMenuProps = { session: any };
+export default async function UserMenu() {
+  const session = await getServerAuthSession();
+  const data = await getUserData(session);
 
-export default async function UserMenu({ session }: UserMenuProps) {
-  const user = await getUserData(session);
+  const username = data.username;
+  const image = data.image;
+  const initials = data.initials;
+  const email = data.email;
 
   if (session) {
     return (
@@ -28,66 +30,70 @@ export default async function UserMenu({ session }: UserMenuProps) {
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" className="relative h-8 w-8 rounded-full">
             <Avatar className="h-8 w-8">
-              <AvatarImage src={user.image} alt={user.username} />
-              <AvatarFallback>{user.initials}</AvatarFallback>
+              <AvatarImage src={image} alt={username} />
+              <AvatarFallback>{initials}</AvatarFallback>
             </Avatar>
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56" align="end" forceMount>
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
-              <p className="text-sm font-medium leading-none">
-                {user.username}
-              </p>
+              <p className="text-sm font-medium leading-none">{username}</p>
               <p className="text-xs leading-none text-muted-foreground">
-                {user.email}
+                {email}
               </p>
             </div>
           </DropdownMenuLabel>
+
           <DropdownMenuSeparator />
+
           <DropdownMenuGroup>
-            <DropdownMenuItem asChild>
-              <IntlLink href="/dashboard/account">
-                <Icons.user className="mr-2 h-4 w-4" aria-hidden="true" />
-                Account
-              </IntlLink>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <IntlLink href="/dashboard/stores">
+            <DropdownMenuItem>
+              <Link href="/dashboard/stores" className="flex items-center">
                 <Icons.store className="mr-2 h-4 w-4" aria-hidden="true" />
                 Stores
-              </IntlLink>
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <IntlLink href="/dashboard/billing">
+            <DropdownMenuItem>
+              <Link href="/dashboard/billing" className="flex items-center">
                 <Icons.billing className="mr-2 h-4 w-4" aria-hidden="true" />
                 Billing
-              </IntlLink>
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <IntlLink href="/dashboard/settings">
+            <DropdownMenuItem>
+              <Link href="/dashboard/account" className="flex items-center">
+                <Icons.user className="mr-2 h-4 w-4" aria-hidden="true" />
+                Account
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/dashboard/settings" className="flex items-center">
                 <Icons.settings className="mr-2 h-4 w-4" aria-hidden="true" />
                 Settings
-              </IntlLink>
+              </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <IntlLink href="/dashboard/purchases">
+            <DropdownMenuItem>
+              <Link href="/dashboard/purchases" className="flex items-center">
                 <Icons.dollarSign className="mr-2 h-4 w-4" aria-hidden="true" />
                 Purchases
-              </IntlLink>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/dashboard/admin" className="flex items-center">
+                <Icons.terminal className="mr-2 h-4 w-4" aria-hidden="true" />
+                Admin Page
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
+
           <DropdownMenuSeparator />
-          <DropdownMenuItem asChild>
+
+          <DropdownMenuItem>
             <Link
-              href={
-                env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk"
-                  ? "/sign-out"
-                  : "/api/auth/signout"
-              }
+              href="/sign-out"
               className={cn(
                 buttonVariants({ variant: "outline" }),
-                "mr-2 px-3 w-full start",
+                "start mr-2 w-full px-3",
               )}
             >
               <Icons.logout className="mr-2 h-4 w-4" aria-hidden="true" />
@@ -100,17 +106,14 @@ export default async function UserMenu({ session }: UserMenuProps) {
   }
 
   return (
-    <IntlLink
-      href="/auth"
-      // @example alternative way: use Link, and conditional href:
-      // href={
-      //   env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk"
-      //     ? "/sign-in"
-      //     : "/api/auth/signin"
-      // }
-      className={cn(buttonVariants({ variant: "secondary" }), "px-3")}
+    <Link
+      href="/sign-in"
+      className={cn(
+        buttonVariants({ variant: "secondary" }),
+        "whitespace-nowrap px-3",
+      )}
     >
       Sign In
-    </IntlLink>
+    </Link>
   );
 }

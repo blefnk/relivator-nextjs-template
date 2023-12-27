@@ -1,14 +1,16 @@
-/** @see https://robotstxt.org/robotstxt.html */
+import type { MetadataRoute } from "next";
 
-import { MetadataRoute } from "next";
 import { BASE_URL } from "~/app";
+
+/**
+ * @see https://github.com/search?q=path%3Aapp%2Frobots.ts&type=code
+ * @see https://robotstxt.org/robotstxt.html
+ * @see https://rotecna.com/robots.txt
+ */
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: { userAgent: "*", allow: "/" },
     sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }

@@ -1,20 +1,15 @@
-import { type SidebarNavItem } from "~/types";
+import type { SidebarNavItem } from "~/types";
 
-export type DashboardConfig = {
+export interface DashboardConfig {
   sidebarNav: SidebarNavItem[];
-};
+}
 
 /**
- * You can get it in sync with src/islands/navigation/user-menu.tsx
+ * You can keep it in sync with similar:
+ * src/islands/navigation/user-menu.tsx
  */
 export const dashboardConfig: DashboardConfig = {
   sidebarNav: [
-    {
-      title: "Account",
-      href: "/dashboard/account",
-      icon: "user",
-      items: [],
-    },
     {
       title: "Stores",
       href: "/dashboard/stores",
@@ -28,6 +23,12 @@ export const dashboardConfig: DashboardConfig = {
       items: [],
     },
     {
+      title: "Account",
+      href: "/dashboard/account",
+      icon: "user",
+      items: [],
+    },
+    {
       title: "Settings",
       href: "/dashboard/settings",
       icon: "settings",
@@ -37,6 +38,12 @@ export const dashboardConfig: DashboardConfig = {
       title: "Purchases",
       href: "/dashboard/purchases",
       icon: "dollarSign",
+      items: [],
+    },
+    {
+      title: "Admin Page",
+      href: "/dashboard/admin",
+      icon: "terminal",
       items: [],
     },
   ],

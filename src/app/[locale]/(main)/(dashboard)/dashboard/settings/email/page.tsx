@@ -1,9 +1,9 @@
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 
 import { db } from "~/data/db";
-import { emailPreferences } from "~/data/db/schema";
+import { emails } from "~/data/db/schema";
 import { fullURL } from "~/data/meta/builder";
 import { UpdateEmailPreferencesForm } from "~/forms/update-email-preferences-form";
 import { PageHeader } from "~/islands/navigation/page-header";
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description: "Manage your email preferences",
 };
 
-interface EmailPreferencesPageProps {
+interface EmailPreferencesPageProperties {
   searchParams: {
     [key: string]: string | string[] | undefined;
   };
@@ -30,12 +30,12 @@ interface EmailPreferencesPageProps {
 
 export default async function EmailPreferencesPage({
   searchParams,
-}: EmailPreferencesPageProps) {
+}: EmailPreferencesPageProperties) {
   const token =
     typeof searchParams.token === "string" ? searchParams.token : "";
 
-  const emailPreference = await db.query.emailPreferences.findFirst({
-    where: eq(emailPreferences.token, token),
+  const emailPreference = await db.query.emails.findFirst({
+    where: eq(emails.token, token),
   });
 
   if (!emailPreference) {

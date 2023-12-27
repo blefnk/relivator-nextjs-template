@@ -24,6 +24,7 @@ import { Input } from "~/islands/primitives/input";
  * @see https://github.com/jackblatch/OneStopShop/blob/main/app/(storefront)/checkout/%5BstoreSlug%5D/order-confirmation/components/verification.tsx
  */
 
+// biome-ignore lint/suspicious/noEmptyInterface: <explanation>
 interface VerifyOderFormProps extends React.ComponentPropsWithoutRef<"form"> {}
 type Inputs = z.infer<typeof verifyOrderSchema>;
 

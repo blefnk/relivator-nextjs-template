@@ -2,11 +2,10 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Link } from "~/navigation";
 import { cn, formatPrice } from "~/utils";
 import { toast } from "react-hot-toast";
 
-import { addToCartAction } from "~/server/actions/cart";
+import { Link as ButtonLink } from "~/core/link";
 import { type Product } from "~/data/db/schema";
 import { Icons } from "~/islands/icons";
 import { AspectRatio } from "~/islands/primitives/aspect-ratio";
@@ -19,36 +18,45 @@ import {
   CardHeader,
   CardTitle,
 } from "~/islands/primitives/card";
+import { Link } from "~/navigation";
+import { addToCartAction } from "~/server/actions/cart";
 
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  product: Pick<Product, "id" | "name" | "price" | "images" | "category">;
-  variant?: "default" | "switchable";
+  product: Pick<
+    Product,
+    "id" | "storeId" | "name" | "price" | "images" | "category" | "inventory"
+  >;
+  storeId: number | undefined;
+  variant?: "default" | "switchable" | "guest";
   isAddedToCart?: boolean;
+  tAddToCart: string;
   onSwitch?: () => Promise<void>;
 }
 
 export function ProductCard({
-  product,
-  variant = "default",
+  tAddToCart = "Add to cart",
   isAddedToCart = false,
-  onSwitch,
+  variant = "default",
   className,
+  onSwitch,
+  product,
+  storeId,
   ...props
 }: ProductCardProps) {
   const [isPending, startTransition] = React.useTransition();
 
+  // console.log("(x) storeId:", storeId, typeof storeId);
+  // console.log("(x) product.storeId:", product.storeId, typeof product.storeId);
+
   return (
-    <Card
-      className={cn("h-full overflow-hidden rounded-sm", className)}
-      {...props}
-    >
+    <Card className={cn("h-full overflow-hidden", className)} {...props}>
       <Link
         aria-label={`View ${product.name} details`}
         href={`/product/${product.id}`}
       >
         <CardHeader className="border-b p-0">
           <AspectRatio ratio={4 / 3}>
-            {product?.images?.length ? (
+            {product?.images?.length ?
               <Image
                 src={
                   product.images[0]?.url ?? "/images/product-placeholder.webp"
@@ -59,8 +67,7 @@ export function ProductCard({
                 className="object-cover"
                 loading="lazy"
               />
-            ) : (
-              <div
+            : <div
                 aria-label="Placeholder"
                 role="img"
                 aria-roledescription="placeholder"
@@ -71,7 +78,7 @@ export function ProductCard({
                   aria-hidden="true"
                 />
               </div>
-            )}
+            }
           </AspectRatio>
         </CardHeader>
       </Link>
@@ -87,23 +94,32 @@ export function ProductCard({
         </CardContent>
       </Link>
       <CardFooter className="p-4">
-        {variant === "default" ? (
+        {variant === "default" && (
           <Button
-            aria-label="Add to cart"
-            size="sm"
-            className="h-8 w-full rounded-sm"
+            size="default"
+            variant="secondary"
+            className="h-8 w-full whitespace-nowrap"
             onClick={() => {
               startTransition(async () => {
                 try {
                   await addToCartAction({
                     productId: product.id,
+                    storeId: Number(product.storeId),
                     quantity: 1,
                   });
+                  // console.log("(!) addToCartAction awaited...");
+                  // console.log(
+                  //   "(!) product.storeId:",
+                  //   product.storeId,
+                  //   typeof product.storeId,
+                  // );
                   toast.success("Added to cart.");
                 } catch (error) {
-                  error instanceof Error
-                    ? toast.error(error.message)
-                    : toast.error("Something went wrong, please try again.");
+                  error instanceof Error ?
+                    toast.error(error.message)
+                  : toast.error(
+                      "Something went wrong, please try again later.",
+                    );
                 }
               });
             }}
@@ -115,13 +131,15 @@ export function ProductCard({
                 aria-hidden="true"
               />
             )}
-            Add to cart
+            {tAddToCart}
           </Button>
-        ) : (
+        )}
+        {variant === "switchable" && (
           <Button
-            aria-label={isAddedToCart ? "Remove from cart" : "Add to cart"}
-            size="sm"
-            className="h-8 w-full rounded-sm"
+            aria-label={isAddedToCart ? "Remove from cart" : `${tAddToCart}`}
+            size="default"
+            variant="secondary"
+            className="h-8 w-full whitespace-nowrap"
             onClick={() => {
               startTransition(async () => {
                 await onSwitch?.();
@@ -129,18 +147,26 @@ export function ProductCard({
             }}
             disabled={isPending}
           >
-            {isPending ? (
+            {isPending ?
               <Icons.spinner
                 className="mr-2 h-4 w-4 animate-spin"
                 aria-hidden="true"
               />
-            ) : isAddedToCart ? (
+            : isAddedToCart ?
               <Icons.check className="mr-2 h-4 w-4" aria-hidden="true" />
-            ) : (
-              <Icons.add className="mr-2 h-4 w-4" aria-hidden="true" />
-            )}
-            {isAddedToCart ? "Added" : "Add to cart"}
+            : <Icons.add className="mr-2 h-4 w-4" aria-hidden="true" />}
+            {isAddedToCart ? "Added" : `${tAddToCart}`}
           </Button>
+        )}
+        {variant === "guest" && (
+          <ButtonLink
+            href="/sign-in"
+            size="default"
+            variant="secondary"
+            className="h-8 w-full whitespace-nowrap"
+          >
+            {tAddToCart}
+          </ButtonLink>
         )}
       </CardFooter>
     </Card>

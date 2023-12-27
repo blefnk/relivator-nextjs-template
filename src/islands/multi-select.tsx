@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { type Option } from "~/types";
+import type { Option } from "~/types";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
 
@@ -13,13 +13,13 @@ import {
   CommandItem,
 } from "~/islands/primitives/command";
 
-type MultiSelectProps = {
+interface MultiSelectProps {
   selected: Option[] | null;
   setSelected: React.Dispatch<React.SetStateAction<Option[] | null>>;
   onChange?: (value: Option[] | null) => void;
   placeholder?: string;
   options: Option[];
-};
+}
 
 export function MultiSelect({
   selected,
@@ -55,14 +55,11 @@ export function MultiSelect({
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (!inputRef.current) return;
 
-      if (event.key === "Backspace" || event.key === "Delete") {
+      if (event.key === "Backspace" || event.key === "Delete")
         setSelected((prev) => prev?.slice(0, -1) ?? []);
-      }
 
       // Blur input on escape
-      if (event.key === "Escape") {
-        inputRef.current.blur();
-      }
+      if (event.key === "Escape") inputRef.current.blur();
     },
     [setSelected],
   );
@@ -83,7 +80,7 @@ export function MultiSelect({
       onKeyDown={handleKeyDown}
       className="overflow-visible bg-transparent"
     >
-      <div className="group rounded-md border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+      <div className="group rounded-lg border border-input px-3 py-2 text-sm ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
         <div className="flex flex-wrap gap-1">
           {selected?.map((option) => {
             return (
@@ -127,8 +124,8 @@ export function MultiSelect({
         </div>
       </div>
       <div className="relative z-50 mt-2">
-        {isOpen && filteredOptions.length > 0 ? (
-          <div className="absolute top-0 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+        {isOpen && filteredOptions.length > 0 ?
+          <div className="absolute top-0 w-full rounded-lg border bg-popover text-popover-foreground shadow-md outline-none animate-in">
             <CommandGroup className="h-full overflow-auto">
               {filteredOptions.map((option) => {
                 return (
@@ -150,7 +147,7 @@ export function MultiSelect({
               })}
             </CommandGroup>
           </div>
-        ) : null}
+        : null}
       </div>
     </Command>
   );

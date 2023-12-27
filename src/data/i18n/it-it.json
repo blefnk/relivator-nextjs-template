@@ -1,183 +1,57 @@
 {
-  "DataTable": {
-    "block": "Blocca",
-    "columns": "Colonne",
-    "delete": "Elimina",
-    "email": "Email",
-    "filter-emails-placeholder": "Filtra per email",
-    "id": "ID",
-    "isadmin": "Amministratore",
-    "lastlogintime": "Ultimo accesso",
-    "make-admin": "Rendi amministratore",
-    "make-non-admin": "Rendi utente normale",
-    "name": "Nome",
-    "next": "Successivo",
-    "no-results": "Nessun risultato",
-    "of": "di",
-    "previous": "Precedente",
-    "registrationtime": "Data di registrazione",
-    "rows-selected": "riga(e) selezionata(e)",
-    "success-description": "Successo",
-    "success-title": "Operazione completata con successo",
-    "unblock": "Sblocca",
-    "view-profile": "Visualizza profilo"
-  },
-  "EnvironmentVariables": {
-    "errors": {
-      "something-wrong": "Queste variabili di ambiente sono specificate in modo errato o non specificate (controlla il file .env):"
-    }
-  },
-  "LanguageSwitch": {
-    "choose-language": "Lingua"
-  },
-  "LocaleSwitcher": {
-    "label": "Cambia lingua",
-    "selectLocale": "Lingua"
-  },
-  "LoginForm": {
-    "description": "Accedi al tuo account utilizzando il tuo indirizzo email e la password.",
-    "email": "Email",
-    "email-placeholder": "Inserisci il tuo indirizzo email",
-    "error-heading": "Impossibile accedere.",
-    "errors": {
-      "Callback": "Prova ad accedere con un account diverso.",
-      "CredentialsSignin": "Accesso non riuscito. Verifica che i dettagli forniti siano corretti.",
-      "Email or password is incorrect": "Email o password non corretti.",
-      "EmailCreateAccount": "Prova ad accedere con un account diverso.",
-      "EmailSignin": "Controlla il tuo indirizzo email.",
-      "Invalid credentials": "Credenziali non valide.",
-      "OAuthAccountNotLinked": "Per confermare la tua identità, accedi con lo stesso account che hai utilizzato inizialmente.",
-      "OAuthCallback": "Prova ad accedere con un account diverso.",
-      "OAuthCreateAccount": "Prova ad accedere con un account diverso.",
-      "OAuthSignin": "Prova ad accedere con un account diverso.",
-      "Signin": "Prova ad accedere con un account diverso.",
-      "default": "Impossibile accedere."
-    },
-    "form": {
-      "description": "Accedi al tuo account utilizzando il tuo indirizzo email e la password.",
-      "email": "E-mail",
-      "email-placeholder": "Inserisci il tuo indirizzo email",
-      "error-heading": "A volte succedono cose brutte...",
-      "no-account": "Non hai un account?",
-      "other-options": "Accedi utilizzando:",
-      "password": "Parola d'ordine",
-      "password-placeholder": "Inserisci la tua password",
-      "sign-out": "disconnessione",
-      "signup": "Iscriviti qui.",
-      "submit": "Registrazione",
-      "title": "Registrazione",
-      "wait": "Attendere prego..."
-    },
-    "no-account": "Non hai un account?",
-    "other-options": "Accedi utilizzando:",
-    "password": "Password",
-    "password-placeholder": "Inserisci la tua password",
-    "reset-password": "Resetta la password",
-    "signin": "Registrazione",
-    "signup": "Registrati qui.",
-    "submit": "Accedi",
-    "success-description": "Successo.",
-    "success-title": "Fatto!",
-    "title": "Accedi",
-    "wait": "Attendere prego..."
-  },
-  "MainError": {
-    "Could not fetch user.": "Impossibile recuperare l'utente.",
-    "Not authenticated.": "Non autenticato.",
-    "User not found.": "Utente non trovato.",
-    "error": "Errore"
-  },
-  "Navbar": {
-    "home": "Prima",
-    "sign-out": "Disconnettersi",
-    "signin": "Accedi"
-  },
-  "ProfileButton": {
-    "admin": "Pannello di amministrazione",
-    "logout": "Esci",
-    "my-account": "Il mio account",
-    "new-review": "Nuova recensione",
-    "profile": "Profilo",
-    "settings": "Impostazioni"
-  },
-  "ProfileSettingsForm": {
-    "description": "Aggiorna le impostazioni del tuo profilo.",
-    "errors": {
-      "update-error": "Impossibile aggiornare l'utente."
-    },
-    "name": "Nome",
-    "name-min": "Il nome deve essere lungo almeno 2 caratteri.",
-    "name-placeholder": "Inserisci il tuo nome",
-    "submit": "Aggiorna utente",
-    "title": "Impostazioni del profilo",
-    "update-success": "Aggiornamento dell'utente completato con successo."
-  },
-  "RegisterForm": {
-    "description": "Crea un nuovo account utilizzando il tuo indirizzo email e la password.",
-    "email": "Email",
-    "email-placeholder": "Inserisci il tuo indirizzo email",
-    "error-heading": "Impossibile registrarsi.",
-    "errors": {
-      "Not authenticated.": "Non autenticato.",
-      "Please fill all fields.": "Si prega di compilare tutti i campi.",
-      "User with this email already exists.": "Un utente con questa email esiste già."
-    },
-    "form": {
-      "email-min": "Il nome utente deve essere lungo almeno 2 caratteri.",
-      "invalid-email": "Indirizzo email non valido.",
-      "name-min": "Il nome deve essere lungo almeno 2 caratteri.",
-      "password-min": "La password deve essere lunga almeno 6 caratteri."
-    },
-    "have-account": "Hai già un account?",
-    "name": "Nome",
-    "name-placeholder": "Inserisci il tuo nome",
-    "other-options": "O registrati con:",
-    "password": "Password",
-    "password-placeholder": "Inserisci la tua password",
-    "signin": "Accedi qui.",
-    "submit": "Registrati",
-    "success-description": "Ora puoi accedere al tuo account.",
-    "success-title": "La registrazione è stata completata con successo!",
-    "title": "Registrati",
-    "wait": "Attendere prego..."
-  },
-  "ReviewNewForm": {
-    "description": "Crea una nuova recensione.",
-    "errors": {
-      "create-error": "Impossibile creare la recensione."
-    },
-    "grade": "Voto",
-    "grade-placeholder": "Inserisci il voto",
-    "item": "Oggetto",
-    "item-placeholder": "Nome dell'opera recensita",
-    "submit": "Crea recensione",
-    "tags": "Tag",
-    "tags-placeholder": "Inserisci i tag",
-    "title": "Crea una recensione",
-    "title-field": "Titolo",
-    "title-field-placeholder": "Inserisci il titolo"
-  },
-  "TagsSelect": {
-    "no-options": "Nessuna opzione disponibile",
-    "search": "Cerca...",
-    "tags": "Tag",
-    "tags-placeholder": "Inserisci i tag"
-  },
-  "ThemeSwitch": {
-    "dark": "Scuro",
-    "light": "Chiaro",
-    "system": "Sistema"
-  },
   "account-page": {
-    "Settings": "Impostazioni",
     "loggedIn": "Connesso",
     "loggedOut": "Disconnesso",
     "login": "Registrazione",
     "logout": "Disconnettersi",
+    "Settings": "Impostazioni",
     "title": "Account"
   },
   "auth": {
-    "other-options": "Collega più account:"
+    "emailSubmitButton": {
+      "label": "Invia"
+    },
+    "error": {
+      "default": "Prova ad accedere con un altro account.",
+      "email": "Email non trovata. Prova ad accedere con un altro fornitore.",
+      "oauthNotLinked": "Per confermare la tua identità, accedi con lo stesso account che hai usato inizialmente.",
+      "unknown": "Si è verificato un errore. Si prega di riprovare.",
+      "unknown-error": "Qualcosa è andato storto. Si prega di visitare la pagina /contact e informare il nostro team di supporto su questo errore sconosciuto."
+    },
+    "legal": "Utilizzando i pulsanti sopra accetti",
+    "legal-and": "E",
+    "legal-privacy": "politica sulla riservatezza",
+    "legal-terms": "Termini di servizio",
+    "magicLink": {
+      "description": "Assicurati di controllare la cartella spam.",
+      "title": "È stata inviata un'email con il link magico. 🧙‍♂️"
+    },
+    "noProvider": {
+      "link": "configura almeno un provider di autenticazione (ad es. Email, Google, GitHub, Facebook, ecc.)",
+      "preLink": "È necessario"
+    },
+    "orEmailLabel": "Oppure con la tua email",
+    "other-options": "Collega altri account:",
+    "register": {
+      "agreeToTerms": "Registrandoti, accetti i nostri <terms>termini di servizio</terms> e <privacy>la politica sulla privacy</privacy>.",
+      "alreadyHaveAccountLabel": {
+        "link": "Accedi",
+        "preLink": "Hai già un account?"
+      },
+      "heading": "Crea un account"
+    },
+    "signin": {
+      "heading": "Accedi",
+      "noAccountLabel": {
+        "link": "Registrati gratuitamente",
+        "preLink": "Non hai un account?"
+      }
+    },
+    "signinErrorToast": {
+      "description": "Le registrazioni sono disabilitate.",
+      "title": "Non autorizzato",
+      "tooManyRequests": "Troppe richieste. Riprova più tardi."
+    }
   },
   "auth-page": {
     "error": "Qualcosa non va...",
@@ -207,8 +81,36 @@
       "signOutText": "Esci {userName}"
     }
   },
+  "DataTable": {
+    "block": "Blocca",
+    "columns": "Colonne",
+    "delete": "Elimina",
+    "email": "Email",
+    "filter-emails-placeholder": "Filtra per email",
+    "id": "ID",
+    "isadmin": "Amministratore",
+    "lastlogintime": "Ultimo accesso",
+    "make-admin": "Rendi amministratore",
+    "make-non-admin": "Rendi utente normale",
+    "name": "Nome",
+    "next": "Successivo",
+    "no-results": "Nessun risultato",
+    "of": "di",
+    "previous": "Precedente",
+    "registrationtime": "Data di registrazione",
+    "rows-selected": "riga(e) selezionata(e)",
+    "success-description": "Successo",
+    "success-title": "Operazione completata con successo",
+    "unblock": "Sblocca",
+    "view-profile": "Visualizza profilo"
+  },
   "environments": {
     "auth-button-placeholder": "⚠️ Specifica Github/Google/Discord nelle variabili di ambiente per sbloccare le funzionalità relative all'autenticazione."
+  },
+  "EnvironmentVariables": {
+    "errors": {
+      "something-wrong": "Queste variabili di ambiente sono specificate in modo errato o non specificate (controlla il file .env):"
+    }
   },
   "general": {
     "about": "about",
@@ -255,6 +157,7 @@
     }
   },
   "landing": {
+    "about": "Il nostro obiettivo è creare lo starter Next.js più ricco di funzionalità, globale e iconico al mondo. Esplora l'elenco completo delle funzionalità. Offrendo più di un semplice codice, è un viaggio. È stabile e pronto per la produzione.",
     "btn1-products-now": "Prodotti adesso",
     "btn1-sell": "Vendere",
     "btn2-download": "Download",
@@ -274,11 +177,15 @@
       },
       "devtools": {
         "description": "Abbonamenti gratuiti e a pagamento utilizzando Stripe.",
-        "title": "Abbonamenti"
+        "title": "Abbonamenti",
+        "ambitions-description": "Smettere di correre da un antipasto all'altro. Con Relivator avrai possibilità illimitate. Puoi creare tutto ciò che vuoi; tutti gli strumenti sono già pronti, solo per te."
       },
       "files": {
         "description": "Autenticazione middleware utilizzando NextAuth.js.",
-        "title": "Autenticazione"
+        "title": "Autenticazione",
+        "on-the-fly": "Personalizzazione completa al volo",
+        "on-the-fly-description": "Esplora l'ampio elenco di funzionalità nel nostro repository di progetti. Passa facilmente da Clerk/NextAuth.js a MySQL/PostgreSQL per soddisfare i requisiti del tuo progetto.",
+        "roadmap": "Enormi ambizioni: possibilità illimitate"
       },
       "subtitle": "Dal codice alla progettazione, Relivator ha funzionalità che potenziano i tuoi progetti web.",
       "text": {
@@ -308,12 +215,76 @@
     "things": {
       "linkText": "Vai alla lista"
     },
-    "title": "Scopri gli strumenti fondamentali per React, Next.js e oltre. Su misura per te.",
-    "about": "Il nostro obiettivo è creare lo starter Next.js più ricco di funzionalità, globale e iconico al mondo. Esplora l'elenco completo delle funzionalità. Offrendo più di un semplice codice, è un viaggio. È stabile e pronto per la produzione."
+    "title": "Scopri gli strumenti fondamentali per React, Next.js e oltre. Su misura per te."
+  },
+  "LanguageSwitch": {
+    "choose-language": "Lingua"
+  },
+  "LocaleSwitcher": {
+    "label": "Cambia lingua",
+    "selectLocale": "Lingua"
+  },
+  "LoginForm": {
+    "description": "Accedi al tuo account utilizzando il tuo indirizzo email e la password.",
+    "email": "Email",
+    "email-placeholder": "Inserisci il tuo indirizzo email",
+    "error-heading": "Impossibile accedere.",
+    "errors": {
+      "Callback": "Prova ad accedere con un account diverso.",
+      "CredentialsSignin": "Accesso non riuscito. Verifica che i dettagli forniti siano corretti.",
+      "default": "Impossibile accedere.",
+      "Email or password is incorrect": "Email o password non corretti.",
+      "EmailCreateAccount": "Prova ad accedere con un account diverso.",
+      "EmailSignin": "Controlla il tuo indirizzo email.",
+      "Invalid credentials": "Credenziali non valide.",
+      "OAuthAccountNotLinked": "Per confermare la tua identità, accedi con lo stesso account che hai utilizzato inizialmente.",
+      "OAuthCallback": "Prova ad accedere con un account diverso.",
+      "OAuthCreateAccount": "Prova ad accedere con un account diverso.",
+      "OAuthSignin": "Prova ad accedere con un account diverso.",
+      "Signin": "Prova ad accedere con un account diverso."
+    },
+    "form": {
+      "description": "Accedi al tuo account utilizzando il tuo indirizzo email e la password.",
+      "email": "E-mail",
+      "email-placeholder": "Inserisci il tuo indirizzo email",
+      "error-heading": "A volte succedono cose brutte...",
+      "no-account": "Non hai un account?",
+      "other-options": "Accedi utilizzando:",
+      "password": "Parola d'ordine",
+      "password-placeholder": "Inserisci la tua password",
+      "sign-out": "disconnessione",
+      "signup": "Iscriviti qui.",
+      "submit": "Registrazione",
+      "title": "Registrazione",
+      "wait": "Attendere prego..."
+    },
+    "no-account": "Non hai un account?",
+    "other-options": "Accedi utilizzando:",
+    "password": "Password",
+    "password-placeholder": "Inserisci la tua password",
+    "reset-password": "Resetta la password",
+    "signin": "Registrazione",
+    "signup": "Registrati qui.",
+    "submit": "Accedi",
+    "success-description": "Successo.",
+    "success-title": "Fatto!",
+    "title": "Accedi",
+    "wait": "Attendere prego..."
+  },
+  "MainError": {
+    "error": "Errore",
+    "fetch-failed": "Could not fetch user.",
+    "not-authenticated": "Not authenticated.",
+    "not-found": "User not found."
   },
   "meta": {
     "description": "Next.js 14 Starter",
     "title": "Rilevatore"
+  },
+  "Navbar": {
+    "home": "Prima",
+    "sign-out": "Disconnettersi",
+    "signin": "Accedi"
   },
   "pages": {
     "about": {
@@ -331,7 +302,7 @@
         }
       },
       "subtitle": "Bleverse Relivator is a powerful Next.js TypeScript Tailwind starter. It streamlines the development process and provides a solid foundation for creating web projects. Feel free to use, adapt, and contribute to the project by {link}.",
-      "subtitle.link": "clicking here",
+      "subtitle-link": "clicking here",
       "title": "About"
     },
     "home": {
@@ -379,9 +350,9 @@
       "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
     },
     "not-found": {
-      "title": "🫠 Pagina non trovata! 🥲 Purtroppo...",
       "description": "La risorsa che stai cercando potrebbe essere stata spostata, rinominata o forse non è mai esistita. Verifica l'URL o naviga verso altre sezioni utilizzando il menu.",
-      "go-home": "Torna alla pagina principale"
+      "go-home": "Torna alla pagina principale",
+      "title": "🫠 Pagina non trovata! 🥲 Purtroppo..."
     },
     "tools": {
       "binary-code": {
@@ -564,7 +535,7 @@
     }
   },
   "plugins": {
-    "stars": "Per favore! Lascia una stella su GitHub ⭐ Obiettivo:"
+    "stars": "Per favore! Lascia una stella ⭐"
   },
   "pricing": {
     "compare": {
@@ -618,21 +589,97 @@
       "what-payment": "Quali metodi di pagamento accettate?"
     }
   },
+  "ProfileButton": {
+    "admin": "Pannello di amministrazione",
+    "logout": "Esci",
+    "my-account": "Il mio account",
+    "new-review": "Nuova recensione",
+    "profile": "Profilo",
+    "settings": "Impostazioni"
+  },
+  "ProfileSettingsForm": {
+    "description": "Aggiorna le impostazioni del tuo profilo.",
+    "errors": {
+      "update-error": "Impossibile aggiornare l'utente."
+    },
+    "name": "Nome",
+    "name-min": "Il nome deve essere lungo almeno 2 caratteri.",
+    "name-placeholder": "Inserisci il tuo nome",
+    "submit": "Aggiorna utente",
+    "title": "Impostazioni del profilo",
+    "update-success": "Aggiornamento dell'utente completato con successo."
+  },
+  "RegisterForm": {
+    "description": "Crea un nuovo account utilizzando il tuo indirizzo email e la password.",
+    "email": "Email",
+    "email-placeholder": "Inserisci il tuo indirizzo email",
+    "error-heading": "Impossibile registrarsi.",
+    "errors": {
+      "email-exists": "User with this email already exists.",
+      "fill-fields": "Please fill all fields.",
+      "not-authenticated": "Not authenticated."
+    },
+    "form": {
+      "email-min": "Il nome utente deve essere lungo almeno 2 caratteri.",
+      "invalid-email": "Indirizzo email non valido.",
+      "name-min": "Il nome deve essere lungo almeno 2 caratteri.",
+      "password-min": "La password deve essere lunga almeno 6 caratteri."
+    },
+    "have-account": "Hai già un account?",
+    "name": "Nome",
+    "name-placeholder": "Inserisci il tuo nome",
+    "other-options": "O registrati con:",
+    "password": "Password",
+    "password-placeholder": "Inserisci la tua password",
+    "signin": "Accedi qui.",
+    "submit": "Registrati",
+    "success-description": "Ora puoi accedere al tuo account.",
+    "success-title": "La registrazione è stata completata con successo!",
+    "title": "Registrati",
+    "wait": "Attendere prego..."
+  },
+  "ReviewNewForm": {
+    "description": "Crea una nuova recensione.",
+    "errors": {
+      "create-error": "Impossibile creare la recensione."
+    },
+    "grade": "Voto",
+    "grade-placeholder": "Inserisci il voto",
+    "item": "Oggetto",
+    "item-placeholder": "Nome dell'opera recensita",
+    "submit": "Crea recensione",
+    "tags": "Tag",
+    "tags-placeholder": "Inserisci i tag",
+    "title": "Crea una recensione",
+    "title-field": "Titolo",
+    "title-field-placeholder": "Inserisci il titolo"
+  },
   "settings-page": {
     "description": "Gestisci le tue impostazioni.",
     "title": "Impostazioni"
   },
   "signIn": {
+    "heading": "Accedi",
     "LoginForm": {
       "wait": "Attendere prego..."
     },
-    "heading": "Accedi",
     "meta": {
       "description": "Accedi per un'esperienza personalizzata",
       "title": "Accedi"
     },
     "providerButtonText": "Accedi con {name}",
     "providerButtonTextReg": "Iscriviti con {nome}"
+  },
+  "TagsSelect": {
+    "no-options": "Nessuna opzione disponibile",
+    "search": "Cerca...",
+    "tags": "Tag",
+    "tags-placeholder": "Inserisci i tag"
+  },
+  "ThemeSwitch": {
+    "dark": "Scuro",
+    "light": "Chiaro",
+    "system": "Sistema"
   },
   "things": {
     "heading": "Il tuo Relivator",
@@ -658,5 +705,24 @@
       "title": "Strumenti online gratuiti di Relivator"
     },
     "title": "Utensili"
+  },
+  "store": {
+    "stores": {
+      "buy-products": "Acquista i prodotti dai nostri negozi",
+      "stores": "I negozi"
+    },
+    "categories": {
+      "buyFromCategories": "Acquista {category} dai migliori negozi",
+      "buyProducts": "Acquista prodotti dalla categoria ${category}",
+      "buyTheBest": "Acquista la migliore {category}"
+    },
+    "product": {
+      "products": "Prodotti",
+      "noDescription": "Nessuna descrizione è disponibile per questo prodotto.",
+      "description": "Descrizione",
+      "moreProductsFrom": "Altri prodotti da {storeName}",
+      "buyProductsFromOurStores": "Acquista i prodotti dai nostri negozi",
+      "addToCart": "Aggiungi al carrello"
+    }
   }
 }

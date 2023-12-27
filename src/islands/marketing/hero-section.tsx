@@ -1,9 +1,7 @@
-"use client";
-
-import { Link } from "~/navigation";
 import { useTranslations } from "next-intl";
 import { Balancer } from "react-wrap-balancer";
 
+import { Link } from "~/navigation";
 import { typography } from "~/server/text";
 
 export function HeroSection() {
@@ -47,7 +45,7 @@ export function HeroSection() {
     <>
       <Balancer
         as="h1"
-        className="text-3xl font-heading mt-4 leading-[1.1] sm:text-3xl md:text-4xl tracking-tighter bg-gradient-to-br from-primary/60 dark:from-zinc-400 from-10% via-primary/90 dark:via-zinc-300 via-30% to-primary dark:to-zinc-600 to-90% bg-clip-text text-transparent"
+        className="mt-4 bg-gradient-to-br from-primary/60 from-10% via-primary/90 via-30% to-primary to-90% bg-clip-text font-heading text-2xl leading-[1.1] tracking-tighter text-transparent sm:text-2xl md:text-3xl xl:text-4xl dark:from-zinc-400 dark:via-zinc-300 dark:to-zinc-600"
       >
         <span className="block max-w-5xl">{t("heading")}</span>
       </Balancer>

@@ -1,8 +1,8 @@
 # Security Policy
 
-## Supported Version
+## Supported Versions
 
-The security policy outlined below applies to latest only version of the project.
+Our commitment to security extends to the following version of the project:
 
 | Version | Supported          |
 | ------- | ------------------ |
@@ -10,21 +10,17 @@ The security policy outlined below applies to latest only version of the project
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in this project, we appreciate your responsible disclosure. By working together, we can address the issue promptly and ensure the security of our users' data.
+We greatly value the security community's efforts in helping keep our project safe. If you've discovered a security vulnerability, your responsible disclosure is crucial for us. Here's how you can report it:
 
-To report a vulnerability, please follow these steps:
+1. **Contact Method**: Email us at [hello@bleverse.com](mailto:hello@bleverse.com).
+2. **Email Subject**: Please use a concise yet descriptive subject, such as "Security Vulnerability Found".
+3. **Vulnerability Details**: Provide a comprehensive description of the vulnerability. Include reproduction steps, and any other information that might help us understand and resolve the issue effectively.
+4. **Proof of Concept**: Attach any proof-of-concept or sample code if available. Please ensure that your research does not involve destructive testing or violate any laws.
+5. **Encryption**: For secure communication, use our public PGP key available on our website or public key servers.
+6. **Response Timeline**: We aim to acknowledge your report within [e.g., 48 hours] and will keep you updated on our progress.
+7. **Investigation and Remediation**: Our team will promptly investigate and work on resolving the issue. We'll maintain communication with you throughout this process.
+8. **Disclosure Policy**: Please refrain from public disclosure until we have mitigated the vulnerability. We will collaborate with you to decide on an appropriate disclosure timeline, considering the issue's severity.
 
-1. **Email**: Send an email to our security team at [:blefnk@gmail.com](mailto:blefnk@gmail.com).
-2. **Subject**: Use a clear and descriptive subject line, such as "Security Vulnerability Report"
-3. **Description**: Provide a detailed description of the vulnerability, including the steps to reproduce it and any relevant information that can help us understand and address the issue.
-4. **Attach Proof of Concept**: If possible, provide a proof-of-concept or sample code that demonstrates the vulnerability. However, please refrain from performing any destructive actions or violating any privacy or security laws during your research.
-5. **Encryption (Optional)**: If you prefer to encrypt your communication, please use our public PGP key, which can be found on our website or on public key servers.
-6. **Responsiveness**: We strive to respond to vulnerability reports promptly. You can expect an initial response acknowledging your report within [specify time frame, e.g., 48 hours].
-7. **Investigation and Disclosure**: Our security team will investigate the reported vulnerability and assess its impact on our system. We will keep you informed of our progress and any necessary actions.
-8. **Responsible Disclosure**: We kindly request that you do not disclose the vulnerability publicly until we have addressed it and provided an official announcement. We will work together with you to determine an appropriate timeline for disclosure, considering the severity and complexity of the vulnerability.
+We're grateful for your contributions to our project's security. Contributors who help improve our security may be publicly acknowledged (with consent).
 
-We value the contributions of security researchers and the broader community in improving the security of our project. As a token of our appreciation, we may acknowledge your contribution publicly, upon mutual agreement.
-
-Thank you for your commitment to keeping our project secure!
-
-Note: This security policy is subject to change without notice.
+_Note: Our security policy may be updated periodically._

@@ -2,41 +2,33 @@
  * Layout file for internationalized-first rendering in the Next.js app.
  * This file serves as the primary entry point for handling UI rendering.
  *
- * Learn more about the Relivator Next.js project:
+ * Learn more about the Relivator Next.js starter:
  * @see https://github.com/blefnk/relivator#readme
  */
 
 import "~/styles/globals.css";
 
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import localFont from "next/font/local";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
-import { ClerkProvider } from "@clerk/nextjs";
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
-import { siteConfig } from "~/app";
-import { getNextAuthServerSession } from "~/auth";
-import { defaultLocale, locales } from "~/navigation";
-import { WithChildren, type LocaleLayoutParams } from "~/types";
+import { ShowInfo } from "~/indicators-error";
+import type { LocaleLayoutParams, WithChildren } from "~/types";
 import { cn } from "~/utils";
 
+import { siteConfig } from "~/app";
+import { TRPC } from "~/core/trpc/react";
 import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
-import { ReactHotToast } from "~/islands/application/overlays/notifications/react-hot-toast";
+import { ReactHotToasts } from "~/islands/application/overlays/notifications/react-hot-toast";
 import LoglibAnalytics from "~/islands/loglib-analytics";
-import { TooltipProvider } from "~/islands/primitives/tooltip";
-import { Debug } from "~/islands/providers/indicators/debug-indicator";
-import { ShowErrors } from "~/islands/providers/indicators/errors-indicators";
+import AuthProvider from "~/islands/providers/auth-provider";
 import { TailwindScreens } from "~/islands/providers/indicators/tailwind-indicator";
-import { NextIntlProvider } from "~/islands/providers/nextintl-provider";
-import NextAuthProvider from "~/islands/providers/session-provider";
 import { NextThemesProvider } from "~/islands/providers/theme-provider";
-import { TrpcTanstackProvider } from "~/utils/trpc/react";
-
-// @example opt out of caching for all data requests in the route segment
-// export const dynamic = "force-dynamic";
-// @example enable edge runtime, but some errors on windows are possible
-// export const runtime = "edge";
+import { TooltipProvider } from "~/islands/providers/tooltip";
+import ZustandProvider from "~/islands/providers/zustand";
+import { defaultLocale, locales } from "~/navigation";
+import { Room } from "~/plugins/million/islands/room";
 
 // Every page in the app will have this metadata, You can override it by
 // defining the `metadata` in the `page.tsx` or in children `layout.tsx`
@@ -65,6 +57,9 @@ export const metadata = seo({
     type: "website",
     locale: defaultLocale,
     alternateLocale: locales.filter((locale) => locale !== defaultLocale),
+    // alternateLocale: locales
+    //   .filter((cur) => cur.code !== defaultLocale)
+    //   .map((cur) => cur.code),
     description: siteConfig.description,
     siteName: siteConfig.name,
     url: siteConfig.url.base,
@@ -93,18 +88,6 @@ export const metadata = seo({
   },
 });
 
-// @example remote fonts
-/* import { Roboto as FontHeading, Inter as FontSans } from "next/font/google";
-const fontSans = FontSans({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-sans",
-});
-const fontHeading = FontHeading({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-heading",
-  weight: "500",
-}); */
-
 const fontSans = localFont({
   src: "../../styles/fonts/inter.woff2",
   variable: "--font-sans",
@@ -117,12 +100,30 @@ const fontHeading = localFont({
   display: "swap",
 });
 
+// @example remote fonts
+/* import { Roboto as FontHeading, Inter as FontSans } from "next/font/google";
+const fontSans = FontSans({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-sans",
+});
+const fontHeading = FontHeading({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-heading",
+  weight: "500",
+}); */
+
 /**
- * LocaleLayoutProps extends from PropsWithChildren, a utility type
+ * LocaleLayoutProperties extends from PropsWithChildren, a utility type
  * that automatically infers and includes the 'children' prop, making it
  * suitable for components that expect to receive children elements.
+ * @see https://next-intl-docs.vercel.app/docs/environments/server-client-components
  */
-type LocaleLayoutProps = PropsWithChildren<LocaleLayoutParams>;
+type LocaleLayoutProperties = PropsWithChildren<LocaleLayoutParams>;
+
+// @example opt out of caching for all data requests in the route segment
+// export const dynamic = "force-dynamic";
+// @example enable edge runtime, but some errors on windows are possible
+// export const runtime = "edge";
 
 /**
  * This component handles the layout for different locales. It dynamically loads
@@ -132,24 +133,11 @@ type LocaleLayoutProps = PropsWithChildren<LocaleLayoutParams>;
 export default async function LocaleLayout({
   children,
   params: { locale },
-}: WithChildren<LocaleLayoutProps>) {
+}: WithChildren<LocaleLayoutProperties>) {
   // Validate the incoming 'locale' parameter to ensure it's supported
-  const isValidLocale = locales.some((cur) => cur === locale);
-  if (!isValidLocale) notFound(); // Redirect if the locale is invalid
-
-  // Dynamically load internationalization messages based on the current locale
-  let messages: any;
-  try {
-    messages = (await import(`~/data/i18n/${locale}.json`)).default;
-  } catch (error) {
-    console.error("❌ Error loading internationalization messages", error);
-    notFound(); // Redirect to 'Not Found' page if messages can't be loaded
-  }
-
-  // Retrieve the authentication session state for the current layout request
-  const session = await getNextAuthServerSession();
-
-  // Render the layout with internationalization, themes, analytics, and more
+  if (!locales.includes(locale as any)) notFound(); // Redirect if not
+  // Render the layout with internationalization
+  // theme, analytics, other providers, and more
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
@@ -159,25 +147,21 @@ export default async function LocaleLayout({
           fontSans.variable,
         )}
       >
-        <NextIntlProvider locale={locale} messages={messages}>
-          <TrpcTanstackProvider headers={headers()}>
-            <NextThemesProvider>
-              <ReactHotToast />
-              <NextAuthProvider session={session}>
-                <TooltipProvider>
-                  <ClerkProvider>
-                    <Debug hide />
-                    <ShowErrors />
-                    {children}
-                  </ClerkProvider>
-                </TooltipProvider>
-              </NextAuthProvider>
-              <TailwindScreens />
-              <LoglibAnalytics />
-              <VercelAnalytics />
-            </NextThemesProvider>
-          </TrpcTanstackProvider>
-        </NextIntlProvider>
+        <TRPC data={headers()}>
+          <NextThemesProvider>
+            <ReactHotToasts />
+            <TooltipProvider>
+              <ZustandProvider>
+                <AuthProvider>
+                  <ShowInfo />
+                  {children}
+                </AuthProvider>
+              </ZustandProvider>
+            </TooltipProvider>
+            <TailwindScreens />
+            <LoglibAnalytics />
+          </NextThemesProvider>
+        </TRPC>
       </body>
     </html>
   );

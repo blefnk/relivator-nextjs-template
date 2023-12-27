@@ -1,10 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { contactConfig } from "~/app";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { contactConfig } from "~/app";
 import { Button } from "~/islands/primitives/button";
 import {
   Form,

@@ -1,10 +1,10 @@
 import { type ReactNode } from "react";
-import { Link } from "~/navigation";
 import { ChevronLeftIcon } from "lucide-react";
 
 import { SiteFooter } from "~/islands/navigation/site-footer";
 import { SiteHeader } from "~/islands/navigation/site-header";
 import { Button } from "~/islands/primitives/button";
+import { Link } from "~/navigation";
 
 type Props = {
   children?: ReactNode;

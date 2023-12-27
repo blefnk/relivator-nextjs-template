@@ -2,11 +2,12 @@
 
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { type Option } from "~/types";
-import { cn, toTitleCase, truncate } from "~/utils";
+import type { Option } from "~/types";
+import { cn, truncate } from "~/utils";
+import { getCookie } from "cookies-next";
+import { titleCase } from "string-ts";
 
-import { getSubcategories, sortOptions } from "~/server/config/products";
-import { type Product, type Store } from "~/data/db/schema";
+import type { Product, Store } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { Icons } from "~/islands/icons";
 import { ProductCard } from "~/islands/modules/cards/product-card";
@@ -35,6 +36,7 @@ import {
   SheetTrigger,
 } from "~/islands/primitives/sheet";
 import { Slider } from "~/islands/primitives/slider";
+import { getSubcategories, sortOptions } from "~/server/config/products";
 
 type ProductsProps = React.HTMLAttributes<HTMLDivElement> & {
   products: Product[];
@@ -43,15 +45,19 @@ type ProductsProps = React.HTMLAttributes<HTMLDivElement> & {
   categories?: Product["category"][];
   stores?: Pick<Store, "id" | "name">[];
   storePageCount?: number;
+  session?: any;
+  tAddToCart: string;
 };
 
-export function Products({
+export async function Products({
+  tAddToCart = "Add to cart",
   products,
   pageCount,
   category,
   categories,
   stores,
   storePageCount,
+  session,
   ...props
 }: ProductsProps) {
   const router = useRouter();
@@ -72,11 +78,8 @@ export function Products({
       const newSearchParams = new URLSearchParams(searchParams?.toString());
 
       for (const [key, value] of Object.entries(params)) {
-        if (value === null) {
-          newSearchParams.delete(key);
-        } else {
-          newSearchParams.set(key, String(value));
-        }
+        if (value === null) newSearchParams.delete(key);
+        else newSearchParams.set(key, String(value));
       }
 
       return newSearchParams.toString();
@@ -102,7 +105,6 @@ export function Products({
         },
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedPrice]);
 
   // Category filter
@@ -114,8 +116,9 @@ export function Products({
     startTransition(() => {
       router.push(
         `${pathname}?${createQueryString({
-          categories: selectedCategories?.length
-            ? // Join categories with a dot to make search params prettier
+          categories:
+            selectedCategories?.length ?
+              // Join categories with a dot to make search params prettier
               selectedCategories.map((c) => c.value).join(".")
             : null,
         })}`,
@@ -124,7 +127,6 @@ export function Products({
         },
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategories]);
 
   // Subcategory filter
@@ -137,8 +139,9 @@ export function Products({
     startTransition(() => {
       router.push(
         `${pathname}?${createQueryString({
-          subcategories: selectedSubcategories?.length
-            ? selectedSubcategories.map((s) => s.value).join(".")
+          subcategories:
+            selectedSubcategories?.length ?
+              selectedSubcategories.map((s) => s.value).join(".")
             : null,
         })}`,
         {
@@ -146,7 +149,6 @@ export function Products({
         },
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSubcategories]);
 
   // Store filter
@@ -165,8 +167,9 @@ export function Products({
         },
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storeIds]);
+
+  const guestEmail = getCookie("GUEST_EMAIL")?.toString() || null;
 
   return (
     <section className="flex flex-col space-y-6" {...props}>
@@ -226,7 +229,7 @@ export function Products({
                   />
                 </div>
               </div>
-              {categories?.length ? (
+              {categories?.length ?
                 <div className="space-y-4">
                   <h3 className="text-sm font-medium tracking-wide text-foreground">
                     Categories
@@ -236,13 +239,13 @@ export function Products({
                     selected={selectedCategories}
                     setSelected={setSelectedCategories}
                     options={categories.map((c) => ({
-                      label: toTitleCase(c),
+                      label: titleCase(c),
                       value: c,
                     }))}
                   />
                 </div>
-              ) : null}
-              {category ? (
+              : null}
+              {category ?
                 <div className="space-y-4">
                   <h3 className="text-sm font-medium tracking-wide text-foreground">
                     Subcategories
@@ -254,8 +257,8 @@ export function Products({
                     options={subcategories}
                   />
                 </div>
-              ) : null}
-              {stores?.length ? (
+              : null}
+              {stores?.length ?
                 <div className="space-y-3">
                   <div className="flex gap-2">
                     <h3 className="flex-1 text-sm font-medium tracking-wide text-foreground">
@@ -338,7 +341,7 @@ export function Products({
                     </div>
                   </ScrollArea>
                 </div>
-              ) : null}
+              : null}
             </div>
             <div>
               <Separator className="my-4" />
@@ -405,20 +408,43 @@ export function Products({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      {!isPending && !products.length ? (
+      {!isPending && !products.length ?
         <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
           <h1 className="text-center text-2xl font-bold">No products found</h1>
           <p className="text-center text-muted-foreground">
             Try changing your filters, or check back later for new products
           </p>
         </div>
-      ) : null}
+      : null}
+
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {guestEmail || session ?
+          <>
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                storeId={Number(product.storeId)}
+                variant="default"
+                tAddToCart={tAddToCart}
+              />
+            ))}
+          </>
+        : <>
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                storeId={Number(product.storeId)}
+                variant="guest"
+                tAddToCart={tAddToCart}
+              />
+            ))}
+          </>
+        }
       </div>
-      {products.length ? (
+
+      {products.length ?
         <PaginationButton
           pageCount={pageCount}
           page={page}
@@ -430,7 +456,7 @@ export function Products({
           isPending={isPending}
           startTransition={startTransition}
         />
-      ) : null}
+      : null}
     </section>
   );
 }

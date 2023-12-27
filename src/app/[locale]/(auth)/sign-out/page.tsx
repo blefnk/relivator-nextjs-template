@@ -1,6 +1,7 @@
 import { type Metadata } from "next";
 
 import { fullURL } from "~/data/meta/builder";
+import { env } from "~/env.mjs";
 import { LogOutButtons } from "~/islands/account/logout-buttons";
 import {
   PageHeader,
@@ -8,6 +9,8 @@ import {
   PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { redirect } from "~/navigation";
+import { getServerAuthSession } from "~/utils/auth/users";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
@@ -15,7 +18,10 @@ export const metadata: Metadata = {
   description: "Sign out of your account",
 };
 
-export default function SignOutPage() {
+export default async function SignOutPage() {
+  const session = await getServerAuthSession();
+  if (!session) return redirect("/");
+
   return (
     <Shell className="max-w-xs">
       <PageHeader

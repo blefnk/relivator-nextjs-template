@@ -17,10 +17,20 @@ import {
   text,
   timestamp,
 } from "drizzle-orm/pg-core";
-import Stripe from "stripe";
+import type Stripe from "stripe";
+
+export const roleEnum = pgEnum("role", ["user", "admin"]);
+export const modeEnum = pgEnum("mode", ["buyer", "seller"]);
+export const categoryEnum = pgEnum("category", [
+  "accessories",
+  "furniture",
+  "clothing",
+  "tech",
+]);
 
 export const pgTable = pgTableCreator((name) => `acme_${name}`);
 
+// @see src/app/[locale]/(auth)/auth/page.tsx
 export const users = pgTable("user", {
   id: text("id").notNull().primaryKey(),
   name: text("name"),
@@ -28,8 +38,11 @@ export const users = pgTable("user", {
   emailClerk: text("emailClerk"),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
+  role: roleEnum("role").notNull().default("user"),
+  mode: modeEnum("mode").notNull().default("buyer"),
   stripeCustomerId: text("stripeCustomerId"),
   stripePriceId: text("stripePriceId"),
+  currentCartId: text("currentCartId"),
   stripeCurrentPeriodEnd: text("stripeCurrentPeriodEnd"),
   stripeSubscriptionId: text("stripeSubscriptionId"),
   createdAt: timestamp("createdAt").defaultNow(),
@@ -38,6 +51,7 @@ export const users = pgTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   usersToProducts: many(usersToProducts),
+  capabilities: many(capabilities),
   accounts: many(accounts),
   products: many(products),
   stores: many(stores),
@@ -62,7 +76,9 @@ export const accounts = pgTable(
     token_type: text("token_type"),
   },
   (account) => ({
-    compoundKey: primaryKey(account.provider, account.providerAccountId),
+    compoundKey: primaryKey({
+      columns: [account.provider, account.providerAccountId],
+    }),
     userIdIdx: index("userId_idx").on(account.userId),
   }),
 );
@@ -71,17 +87,11 @@ export const accountsRelations = relations(accounts, ({ one }) => ({
   user: one(users, { fields: [accounts.userId], references: [users.id] }),
 }));
 
-export const sessions = pgTable(
-  "session",
-  {
-    sessionToken: text("sessionToken").notNull().primaryKey(),
-    userId: text("userId").notNull(),
-    expires: timestamp("expires", { mode: "date" }).notNull(),
-  },
-  (session) => ({
-    userIdIdx: index("userId_idx").on(session.userId),
-  }),
-);
+export const sessions = pgTable("session", {
+  sessionToken: text("sessionToken").notNull().primaryKey(),
+  userId: text("userId").notNull(),
+  expires: timestamp("expires", { mode: "date" }).notNull(),
+});
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
   user: one(users, { fields: [sessions.userId], references: [users.id] }),
@@ -95,7 +105,7 @@ export const verificationTokens = pgTable(
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (vt) => ({
-    compoundKey: primaryKey(vt.identifier, vt.token),
+    compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   }),
 );
 
@@ -147,16 +157,10 @@ export const storesRelations = relations(stores, ({ many, one }) => ({
   user: one(users, { fields: [stores.id], references: [users.id] }),
 }));
 
-export const categoryEnum = pgEnum("category", [
-  "accessories",
-  "furniture",
-  "clothing",
-  "tech",
-]);
-
 export const products = pgTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  storeId: integer("storeId").notNull().default(1),
   description: text("description"),
   images: json("images").$type<StoredFile[] | null>().default(null),
   category: categoryEnum("category").notNull().default("clothing"),
@@ -165,7 +169,6 @@ export const products = pgTable("products", {
   inventory: integer("inventory").notNull().default(0),
   rating: integer("rating").notNull().default(0),
   tags: json("tags").$type<string[] | null>().default(null),
-  storeId: integer("storeId").notNull(),
   createdAt: timestamp("createdAt").defaultNow(),
 });
 
@@ -176,8 +179,10 @@ export const productsRelations = relations(products, ({ one }) => ({
 
 export const carts = pgTable("carts", {
   id: serial("id").primaryKey(),
-  paymentIntentId: text("paymentIntentId"),
+  userId: text("userId"),
+  email: text("email"),
   clientSecret: text("clientSecret"),
+  paymentIntentId: text("paymentIntentId"),
   items: json("items").$type<CartItem[] | null>().default(null),
   closed: boolean("closed").notNull().default(false),
   createdAt: timestamp("createdAt").defaultNow(),
@@ -185,9 +190,10 @@ export const carts = pgTable("carts", {
 
 export const cartsRelations = relations(carts, ({ one }) => ({
   user: one(users, { fields: [carts.id], references: [users.id] }),
+  store: one(stores, { fields: [carts.id], references: [stores.id] }),
 }));
 
-export const emailPreferences = pgTable("emails", {
+export const emails = pgTable("emails", {
   id: serial("id").primaryKey(),
   userId: text("userId"),
   email: text("email").notNull(),
@@ -244,7 +250,9 @@ export const usersToProducts = pgTable(
     productId: text("product_id").notNull(),
   },
   (usersToProducts) => ({
-    compoundKey: primaryKey(usersToProducts.userId, usersToProducts.productId),
+    compoundKey: primaryKey({
+      columns: [usersToProducts.userId, usersToProducts.productId],
+    }),
   }),
 );
 
@@ -261,3 +269,33 @@ export const usersToProductsRelations = relations(
     }),
   }),
 );
+
+export const guests = pgTable("guest", {
+  id: text("id").notNull().primaryKey(),
+  email: text("email"),
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+});
+
+export const guestsRelations = relations(users, ({ many }) => ({
+  usersToProducts: many(usersToProducts),
+  products: many(products),
+  todos: many(todos),
+  carts: many(carts),
+}));
+
+export const capabilities = pgTable("capabilities", {
+  id: serial("id").primaryKey(),
+  userId: text("userId").notNull(),
+  promoteUsers: boolean("promote_users").notNull().default(false),
+  removeUsers: boolean("remove_users").notNull().default(false),
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+});
+
+export const capabilitiesRelations = relations(capabilities, ({ one }) => ({
+  user: one(users, {
+    fields: [capabilities.userId],
+    references: [users.id],
+  }),
+}));

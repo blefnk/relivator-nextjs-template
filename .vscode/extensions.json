@@ -1,16 +1,25 @@
 {
   "recommendations": [
     "aaron-bond.better-comments",
-    "bradlc.vscode-tailwindcss",
-    "davidanson.vscode-markdownlint",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode",
-    "lokalise.i18n-ally",
-    "omkarbhede.tailwindcss-tune",
     "streetsidesoftware.code-spell-checker",
-    "yoavbls.pretty-ts-errors",
-    "yzhang.markdown-all-in-one",
     "usernamehw.errorlens",
-    "github.copilot"
+    "dbaeumer.vscode-eslint",
+    "github.copilot",
+    "lokalise.i18n-ally",
+    "ms-vscode.vscode-typescript-next",
+    "yzhang.markdown-all-in-one",
+    "davidanson.vscode-markdownlint",
+    "mikekscholz.pop-icon-theme",
+    "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
+    "bradlc.vscode-tailwindcss",
+    "omkarbhede.tailwindcss-tune",
+    "zardoy.ts-essential-plugins",
+    "biomejs.biome",
+    "helixquar.randomeverything",
+    "dsznajder.es7-react-js-snippets",
+    "alduncanson.react-hooks-snippets",
+    "planbcoding.vscode-react-refactor",
+    "orta.vscode-twoslash-queries"
   ]
 }

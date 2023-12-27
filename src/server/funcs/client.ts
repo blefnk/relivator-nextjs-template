@@ -1,8 +1,5 @@
-import { ApiResponseError, type ApiResponse } from "~/types";
+import type { ApiResponse, ApiResponseError } from "~/types";
 
-/**
- *
- */
 function isApiResponseError(
   response: Response,
   json: unknown,
@@ -21,9 +18,6 @@ function isApiResponseError(
   return "error" in json && typeof json.error !== "string";
 }
 
-/**
- *
- */
 export async function apiFetch<T>(url: string, options?: RequestInit) {
   const response = await fetch(url, {
     ...options,

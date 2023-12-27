@@ -8,7 +8,7 @@ import {
   PageHeaderHeading,
 } from "~/islands/navigation/page-header";
 import { Shell } from "~/islands/wrappers/shell-variants";
-import { getServerAuthSession } from "~/utils/users";
+import { getServerAuthSession } from "~/utils/auth/users";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),

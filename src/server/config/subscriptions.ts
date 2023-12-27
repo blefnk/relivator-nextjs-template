@@ -8,11 +8,13 @@
  * @see https://github.com/sadmann7/skateshop/blob/main/src/config/subscriptions.ts
  */
 
+import type { SubscriptionPlanTypes } from "~/types";
+
 import { env } from "~/env.mjs";
-import { type SubscriptionPlanTypes } from "~/types";
 
 export const PROFESSIONAL = env.STRIPE_PROFESSIONAL_SUBSCRIPTION_PRICE_ID ?? "";
-export const ENTERPRISE = env.STRIPE_ENTERPRISE_SUBSCRIPTION_PRICE_ID ?? "";
+export const ENTERPRISE =
+  env.STRIPE_ENTERPRISE_SUBSCRIPTION_PRICE_ID ?? PROFESSIONAL ?? "";
 
 export const storeSubscriptionPlans: SubscriptionPlanTypes[] = [
   {
@@ -20,14 +22,14 @@ export const storeSubscriptionPlans: SubscriptionPlanTypes[] = [
     name: "Starter",
     description: "Free, for trying things out.",
     features: ["Create up to 1 store", "Create up to 20 products per store"],
-    stripePriceId: "",
+    stripePriceId: "none",
     price: 0,
   },
   {
     id: "professional",
     name: "Professional",
     description: "For you and your team, with all the pro features.",
-    features: ["Create up to 2 store", "Create up to 20 products per store"],
+    features: ["Create up to 2 store", "Create up to 25 products per store"],
     stripePriceId: PROFESSIONAL,
     price: 12,
   },
@@ -35,7 +37,7 @@ export const storeSubscriptionPlans: SubscriptionPlanTypes[] = [
     id: "enterprise",
     name: "Enterprise",
     description: "Extended plan crafted for high-volume sales.",
-    features: ["Create up to 3 stores", "Create up to 20 products per store"],
+    features: ["Create up to 3 stores", "Create up to 35 products per store"],
     stripePriceId: ENTERPRISE,
     price: 24,
   },

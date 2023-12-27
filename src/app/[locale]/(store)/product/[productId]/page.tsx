@@ -1,12 +1,22 @@
+/**
+ * Product Page
+ * ============
+ *
+ * @see https://github.com/gustavoguichard/string-ts#-api
+ */
+
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
-import { env } from "~/env.mjs";
-import { Link } from "~/navigation";
-import { formatPrice, toTitleCase } from "~/utils";
+import { formatPrice } from "~/utils";
+import { getCookie, setCookie } from "cookies-next";
 import { and, desc, eq, not } from "drizzle-orm";
+import { getTranslations } from "next-intl/server";
+import { titleCase } from "string-ts";
 
+import { Link as ButtonLink } from "~/core/link";
 import { db } from "~/data/db";
-import { products, stores } from "~/data/db/schema";
+import { products, stores, users, type Product } from "~/data/db/schema";
+import { env } from "~/env.mjs";
 import { AddToCartForm } from "~/forms/add-to-cart-form";
 import { ProductCard } from "~/islands/modules/cards/product-card";
 import { Breadcrumbs } from "~/islands/navigation/pagination/breadcrumbs";
@@ -16,11 +26,16 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/islands/primitives/accordion";
+import { Button } from "~/islands/primitives/button";
 import { Separator } from "~/islands/primitives/separator";
 import { ProductImageCarousel } from "~/islands/product-carousel";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { Link, redirect } from "~/navigation";
+import { getServerAuthSession, getUserById } from "~/utils/auth/users";
 
-interface ProductPageProps {
+import AddToCart from "./_islands/client";
+
+interface ProductPageProperties {
   params: {
     productId: string;
   };
@@ -28,32 +43,32 @@ interface ProductPageProps {
 
 export async function generateMetadata({
   params,
-}: ProductPageProps): Promise<Metadata> {
+}: ProductPageProperties): Promise<Metadata> {
   const productId = Number(params.productId);
 
   const product = await db.query.products.findFirst({
-    columns: {
-      name: true,
-      description: true,
-    },
+    columns: { name: true, description: true },
     where: eq(products.id, productId),
   });
 
-  if (!product) {
-    return {};
-  }
+  if (!product) return {};
 
   return {
-    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-    title: toTitleCase(product.name),
+    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+    title: titleCase(product.name),
     description: product.description,
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params }: ProductPageProperties) {
+  const session = await getServerAuthSession();
+  const guestEmail = getCookie("GUEST_EMAIL")?.toString() || null;
+
+  const t = await getTranslations();
+
   const productId = Number(params.productId);
 
-  const product = await db.query.products.findFirst({
+  const product: Product = await db.query.products.findFirst({
     columns: {
       id: true,
       name: true,
@@ -66,20 +81,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
     where: eq(products.id, productId),
   });
 
-  if (!product) {
-    notFound();
-  }
+  if (!product) notFound();
 
   const store = await db.query.stores.findFirst({
-    columns: {
-      id: true,
-      name: true,
-    },
-    where: eq(stores.id, product.storeId),
+    columns: { id: true, name: true },
+    where: eq(stores.id, Number(product.storeId)),
   });
 
-  const otherProducts = store
-    ? await db
+  const otherProducts =
+    store ?
+      await db
         .select({
           id: products.id,
           name: products.name,
@@ -104,11 +115,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <Breadcrumbs
         segments={[
           {
-            title: "Products",
+            title: `${t("store.product.products")}`,
             href: "/products",
           },
           {
-            title: toTitleCase(product.category),
+            title: titleCase(product.category),
             href: `/products?category=${product.category}`,
           },
           {
@@ -121,9 +132,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <ProductImageCarousel
           className="w-full md:w-1/2"
           images={product.images ?? []}
-          options={{
-            loop: true,
-          }}
+          options={{ loop: true }}
         />
         <Separator className="mt-4 md:hidden" />
         <div className="flex w-full flex-col gap-4 md:w-1/2">
@@ -132,33 +141,83 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <p className="text-base text-muted-foreground">
               {formatPrice(product.price)}
             </p>
-            {store ? (
+            {store ?
               <Link
                 href={`/products?store_ids=${store.id}`}
                 className="line-clamp-1 inline-block text-base text-muted-foreground hover:underline"
               >
                 {store.name}
               </Link>
-            ) : null}
+            : null}
           </div>
+
           <Separator className="my-1.5" />
-          <AddToCartForm productId={productId} />
+
+          {guestEmail || session ?
+            <AddToCartForm
+              productId={productId}
+              storeId={store.id}
+              tAddToCart={t("store.product.addToCart")}
+            />
+          : <ButtonLink
+              href="/sign-in"
+              size="default"
+              variant="secondary"
+              className="max-w-[164px] whitespace-nowrap"
+            >
+              {t("store.product.addToCart")}
+            </ButtonLink>
+          }
+
           <Separator className="mt-5" />
-          <Accordion type="single" collapsible className="w-full">
+
+          <Accordion
+            type="single"
+            collapsible
+            defaultValue="description"
+            className="w-full"
+          >
             <AccordionItem value="description">
-              <AccordionTrigger>Description</AccordionTrigger>
+              <AccordionTrigger>
+                {t("store.product.description")}
+              </AccordionTrigger>
               <AccordionContent>
-                {product.description ??
-                  "No description is available for this product."}
+                {product.description && product.description.length > 0 ?
+                  product.description
+                : `${t("store.product.noDescription")}`}
               </AccordionContent>
             </AccordionItem>
           </Accordion>
         </div>
       </div>
-      {store && otherProducts.length > 0 ? (
+
+      {env.NODE_ENV === "development" && (
+        <>
+          <Separator />
+          <h1 className="font-semibold">[localhost-only-debug-info]</h1>
+          <div className="space-y-2">
+            <p>store.id: {store.id}</p>
+            <p>productId: {productId}</p>
+            <p>product.storeId: {product.storeId}</p>
+            <p>product.price: {product.price}</p>
+            <p>product.inventory: {product.inventory || 0}</p>
+            <p>store.name: {store.name}</p>
+            <p>product.category: {product.category}</p>
+            <p>product.name: {product.name}</p>
+            <p>guestEmail: {guestEmail || "not set or not found in cookie"}</p>
+          </div>
+          {store && otherProducts.length > 0 ?
+            <Separator />
+          : null}
+        </>
+      )}
+
+      {store && otherProducts.length > 0 ?
         <div className="overflow-hidden md:pt-6">
           <h2 className="line-clamp-1 flex-1 text-2xl font-bold">
-            More products from {store.name}
+            {t("store.product.moreProductsFrom", {
+              storeName: store.name,
+            })}
           </h2>
           <div className="overflow-x-auto pb-2 pt-6">
             <div className="flex w-fit gap-4">
@@ -166,13 +225,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <ProductCard
                   key={product.id}
                   product={product}
+                  storeId={product.storeId}
                   className="min-w-[260px]"
+                  tAddToCart={t("store.product.addToCart")}
                 />
               ))}
             </div>
           </div>
         </div>
-      ) : null}
+      : null}
     </Shell>
   );
 }

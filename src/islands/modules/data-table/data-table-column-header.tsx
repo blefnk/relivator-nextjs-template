@@ -37,24 +37,22 @@ export function DataTableColumnHeader<TData, TValue>({
         <DropdownMenuTrigger asChild>
           <Button
             aria-label={
-              column.getIsSorted() === "desc"
-                ? `Sorted descending. Click to sort ascending.`
-                : column.getIsSorted() === "asc"
-                ? `Sorted ascending. Click to sort descending.`
-                : `Not sorted. Click to sort ascending.`
+              column.getIsSorted() === "desc" ?
+                "Sorted descending. Click to sort ascending."
+              : column.getIsSorted() === "asc" ?
+                "Sorted ascending. Click to sort descending."
+              : "Not sorted. Click to sort ascending."
             }
             variant="ghost"
             size="sm"
             className="-ml-3 h-8 data-[state=open]:bg-accent"
           >
             <span>{title}</span>
-            {column.getIsSorted() === "desc" ? (
+            {column.getIsSorted() === "desc" ?
               <ArrowDownIcon className="ml-2 h-4 w-4" aria-hidden="true" />
-            ) : column.getIsSorted() === "asc" ? (
+            : column.getIsSorted() === "asc" ?
               <ArrowUpIcon className="ml-2 h-4 w-4" aria-hidden="true" />
-            ) : (
-              <CaretSortIcon className="ml-2 h-4 w-4" aria-hidden="true" />
-            )}
+            : <CaretSortIcon className="ml-2 h-4 w-4" aria-hidden="true" />}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">

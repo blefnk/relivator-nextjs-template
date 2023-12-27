@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import type { z } from "zod";
 
+import { siteConfig } from "~/app";
 import { emailSchema } from "~/data/validations/email";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -42,7 +43,7 @@ export function SubscribeToNewsletterForm() {
           email: data.email,
           // This token is used as a search param in the email preferences page to identify the subscriber.
           token: crypto.randomUUID(),
-          subject: "Welcome to Relivator",
+          subject: `Welcome to ${siteConfig.name}`,
         }),
       });
 
@@ -95,14 +96,12 @@ export function SubscribeToNewsletterForm() {
                 size="icon"
                 disabled={isPending}
               >
-                {isPending ? (
+                {isPending ?
                   <Icons.spinner
                     className="h-3 w-3 animate-spin"
                     aria-hidden="true"
                   />
-                ) : (
-                  <Icons.send className="h-3 w-3" aria-hidden="true" />
-                )}
+                : <Icons.send className="h-3 w-3" aria-hidden="true" />}
                 <span className="sr-only">Join newsletter</span>
               </Button>
             </FormItem>

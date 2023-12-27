@@ -3,9 +3,9 @@
 import * as React from "react";
 import { catchError } from "~/utils";
 
+import { createAccountLinkAction } from "~/core/stripe/actions";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
-import { createAccountLinkAction } from "~/utils/stripe/actions";
 
 interface ConnectToStripeButtonProps {
   storeId: number;

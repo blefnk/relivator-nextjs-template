@@ -1,2 +1,6 @@
+# @see https://dev.to/deadlybyte/please-add-gitattributes-to-your-git-repository-1jld
+# @see https://rehansaeed.com/gitattributes-best-practices
+# @see https://github.com/gitattributes/gitattributes
+
 # Auto detect text files and perform LF normalization
 * text=auto

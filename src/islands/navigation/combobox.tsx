@@ -4,11 +4,8 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "~/utils";
 import { Circle, File, Laptop, Moon, Sun } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
-import { filterProductsAction } from "~/server/actions/product";
-import { navItems } from "~/server/links";
 import { type Product } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { useHotkeys } from "~/hooks/use-hotkeys";
@@ -24,12 +21,26 @@ import {
   CommandSeparator,
 } from "~/islands/primitives/command";
 import { Skeleton } from "~/islands/primitives/skeleton";
+import { filterProductsAction } from "~/server/actions/product";
+import { navItems } from "~/server/links";
 
 type RouteHref = never;
 
-export function Combobox() {
-  const t = useTranslations("islands");
-
+export function Combobox({
+  tSearchTitle = "Search...",
+  tPlaceholder = "Type a command or search",
+  tCmdTheme = "Theme",
+  tCmdLight = "Light",
+  tCmdDark = "Dark",
+  tCmdSystem = "System",
+}: {
+  tSearchTitle?: string;
+  tPlaceholder?: string;
+  tCmdTheme?: string;
+  tCmdLight?: string;
+  tCmdDark?: string;
+  tCmdSystem?: string;
+}) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -99,7 +110,7 @@ export function Combobox() {
         onClick={() => setIsOpen(true)}
       >
         <Icons.search className="h-4 w-4 xl:mr-2" aria-hidden="true" />
-        <span className="hidden xl:inline-flex">{t("search.title")}</span>
+        <span className="hidden xl:inline-flex">{tSearchTitle}</span>
         <span className="sr-only">Search products</span>
         <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-6 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 xl:flex">
           <abbr title="Control">⌘</abbr>K
@@ -107,7 +118,7 @@ export function Combobox() {
       </Button>
       <CommandDialog position="top" open={isOpen} onOpenChange={setIsOpen}>
         <CommandInput
-          placeholder={t("search.placeholder")}
+          placeholder={tPlaceholder}
           value={query}
           onValueChange={setQuery}
         />
@@ -119,14 +130,13 @@ export function Combobox() {
             <br className="my-2" />
             Try find something in another ways.
           </CommandEmpty>
-          {isPending ? (
+          {isPending ?
             <div className="space-y-1 overflow-hidden px-1 py-2">
               <Skeleton className="h-4 w-10 rounded" />
               <Skeleton className="h-8 rounded-sm" />
               <Skeleton className="h-8 rounded-sm" />
             </div>
-          ) : (
-            data?.map((group) => (
+          : data?.map((group) => (
               <CommandGroup
                 key={group.category}
                 className="capitalize"
@@ -144,15 +154,14 @@ export function Combobox() {
                 ))}
               </CommandGroup>
             ))
-          )}
+          }
           <CommandSeparator />
-          {navItems.sidebarNav.map((group) => (
-            <CommandGroup key={group.title} heading={t(`command.${group.id}`)}>
+          {/* {navItems.sidebarNav.map((group) => (
+            <CommandGroup key={group.title} heading={group.id}>
               {group.items.map((item) => (
                 <CommandItem
                   key={item.id}
                   value={item.id}
-                  // value={t(`pages.tools.${item.id}.title`)}
                   onSelect={runCommand(() =>
                     router.push(item.href as RouteHref),
                   )}
@@ -161,41 +170,40 @@ export function Combobox() {
                     <Circle className="h-3 w-3" />
                   </div>
                   {item.id}
-                  {/* {t(`pages.tools.${item.id}.title`)} */}
                 </CommandItem>
               ))}
             </CommandGroup>
-          ))}
-          <CommandSeparator />
+          ))} */}
+          {/* <CommandSeparator />
           <CommandGroup heading="Links">
             {navItems.mainNav
               .filter((item) => !item.external)
               .map((item) => (
                 <CommandItem
                   key={item.href}
-                  value={t(`main.${item.id}`)}
+                  value={item.id}
                   onSelect={runCommand(() =>
                     router.push(item.href as RouteHref),
                   )}
                   className="capitalize"
                 >
                   <File className="mr-2 h-4 w-4" />
-                  {t(`main.${item.id}`)}
+                  {item.id}
                 </CommandItem>
               ))}
-          </CommandGroup>
-          <CommandGroup heading={t("command.theme")}>
+          </CommandGroup> */}
+          <CommandGroup heading={tCmdTheme}>
             <CommandItem onSelect={runCommand(() => setTheme("light"))}>
               <Sun className="mr-2 h-4 w-4" />
-              <span>{t("command.light")}</span>
+              <span>{tCmdLight}</span>
             </CommandItem>
             <CommandItem onSelect={runCommand(() => setTheme("dark"))}>
               <Moon className="mr-2 h-4 w-4" />
-              <span>{t("command.dark")}</span>
+              <span>{tCmdDark}</span>
             </CommandItem>
             <CommandItem onSelect={runCommand(() => setTheme("system"))}>
               <Laptop className="mr-2 h-4 w-4" />
-              <span>{t("command.system")}</span>
+              <span>{tCmdSystem}</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>

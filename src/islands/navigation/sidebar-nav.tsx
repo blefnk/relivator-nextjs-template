@@ -1,11 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Link } from "~/navigation";
 import { type SidebarNavItem } from "~/types";
 import { cn } from "~/utils";
 
 import { Icons } from "~/islands/icons";
+import { Link } from "~/navigation";
 
 export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
   items: SidebarNavItem[];
@@ -21,35 +21,33 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
       {items.map((item, index) => {
         const Icon = Icons[item.icon ?? "chevronLeft"];
 
-        return item.href ? (
-          <Link
-            aria-label={item.title}
-            key={index}
-            href={item.href}
-            target={item.external ? "_blank" : ""}
-            rel={item.external ? "noreferrer" : ""}
-          >
-            <span
-              className={cn(
-                "group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:bg-muted hover:text-foreground",
-                pathname === item.href
-                  ? "bg-muted font-medium text-foreground"
-                  : "text-muted-foreground",
-                item.disabled && "pointer-events-none opacity-60",
-              )}
+        return item.href ?
+            <Link
+              aria-label={item.title}
+              key={index}
+              href={item.href}
+              target={item.external ? "_blank" : ""}
+              rel={item.external ? "noreferrer" : ""}
             >
-              <Icon className="mr-2 h-4 w-4" aria-hidden="true" />
-              <span>{item.title}</span>
-            </span>
-          </Link>
-        ) : (
-          <span
-            key={index}
-            className="flex w-full cursor-not-allowed items-center rounded-md p-2 text-muted-foreground hover:underline"
-          >
-            {item.title}
-          </span>
-        );
+              <span
+                className={cn(
+                  "group flex w-full items-center rounded-lg border border-transparent px-2 py-1 hover:bg-muted hover:text-foreground",
+                  pathname === item.href ?
+                    "bg-muted font-medium text-foreground"
+                  : "text-muted-foreground",
+                  item.disabled && "pointer-events-none opacity-60",
+                )}
+              >
+                <Icon className="mr-2 h-4 w-4" aria-hidden="true" />
+                <span>{item.title}</span>
+              </span>
+            </Link>
+          : <span
+              key={index}
+              className="flex w-full cursor-not-allowed items-center rounded-lg p-2 text-muted-foreground hover:underline"
+            >
+              {item.title}
+            </span>;
       })}
     </div>
   );

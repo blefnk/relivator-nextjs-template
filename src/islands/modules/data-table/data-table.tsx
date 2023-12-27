@@ -119,8 +119,6 @@ export function DataTable<TData, TValue>({
         scroll: false,
       },
     );
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageIndex, pageSize]);
 
   // Handle server-side sorting
@@ -135,16 +133,15 @@ export function DataTable<TData, TValue>({
     router.push(
       `${pathname}?${createQueryString({
         page,
-        sort: sorting[0]?.id
-          ? `${sorting[0]?.id}.${sorting[0]?.desc ? "desc" : "asc"}`
+        sort:
+          sorting[0]?.id ?
+            `${sorting[0]?.id}.${sorting[0]?.desc ? "desc" : "asc"}`
           : null,
       })}`,
       {
         scroll: false,
       },
     );
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sorting]);
 
   // Handle server-side filtering
@@ -194,7 +191,6 @@ export function DataTable<TData, TValue>({
         );
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchableColumnFilters]);
 
   React.useEffect(() => {
@@ -228,7 +224,6 @@ export function DataTable<TData, TValue>({
         );
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterableColumnFilters]);
 
   const table = useReactTable({
@@ -267,8 +262,9 @@ export function DataTable<TData, TValue>({
         searchableColumns={searchableColumns}
         newRowLink={newRowLink}
         deleteRowsAction={deleteRowsAction}
+        // storeId={storeId}
       />
-      <div className="rounded-md border">
+      <div className="rounded-lg border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -276,12 +272,12 @@ export function DataTable<TData, TValue>({
                 {headerGroup.headers.map((header) => {
                   return (
                     <TableHead key={header.id} className="whitespace-nowrap">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                      {header.isPlaceholder ? null : (
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )
+                      )}
                     </TableHead>
                   );
                 })}
@@ -289,7 +285,7 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows?.length ?
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -305,8 +301,7 @@ export function DataTable<TData, TValue>({
                   ))}
                 </TableRow>
               ))
-            ) : (
-              <TableRow>
+            : <TableRow>
                 <TableCell
                   colSpan={columns.length}
                   className="h-24 text-center"
@@ -314,7 +309,7 @@ export function DataTable<TData, TValue>({
                   No results.
                 </TableCell>
               </TableRow>
-            )}
+            }
           </TableBody>
         </Table>
       </div>

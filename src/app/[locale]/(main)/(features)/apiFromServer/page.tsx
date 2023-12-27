@@ -1,10 +1,16 @@
 import { headers } from "next/headers";
 
+interface ApiResponse {
+  name: string;
+}
+
 export default async function APIFromServer() {
-  const resp = await fetch("http://localhost:3000/api/whoAmI", {
+  const response = await fetch("http://localhost:3000/api/whoAmI", {
     method: "GET",
     headers: headers(),
-  }).then((res) => res.json());
+  });
+
+  const resp = (await response.json()) as ApiResponse;
 
   return (
     <div>

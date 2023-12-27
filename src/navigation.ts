@@ -9,8 +9,11 @@
 import {
   createLocalizedPathnamesNavigation,
   createSharedPathnamesNavigation,
-  Pathnames,
+  type Pathnames,
 } from "next-intl/navigation";
+
+// todo: finish the new version of this file:
+// todo: src/islands/switchers/navigation-new-beta.tsx
 
 // Default locale for the application.
 // export const defaultLocale = "en-us";
@@ -21,6 +24,7 @@ export const locales = [
   "de-de",
   "en-us",
   "es-es",
+  "fa-ir",
   "fr-fr",
   "hi-in",
   "it-it",
@@ -28,13 +32,13 @@ export const locales = [
   "tr-tr",
   "uk-ua",
 ] as const;
-// ];
 
 // Labels for each supported locale, used for displaying human-readable names.
 export const labels = {
   "de-de": "German",
   "en-us": "English",
   "es-es": "Spanish",
+  "fa-ir": "Persian",
   "fr-fr": "French",
   "hi-in": "Hindi",
   "it-it": "Italian",
@@ -48,6 +52,7 @@ export type Locale = (typeof locales)[number];
 
 // Ensure every locale has a label.
 if (process.env.NODE_ENV === "development") {
+  // biome-ignore lint/complexity/noForEach: <explanation>
   locales.forEach((locale) => {
     if (!labels[locale]) {
       console.warn(`No label found for locale: ${locale}`);

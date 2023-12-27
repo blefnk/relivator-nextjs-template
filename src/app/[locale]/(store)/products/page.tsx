@@ -1,9 +1,10 @@
 import { type Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-import { getProductsAction } from "~/server/actions/product";
-import { getStoresAction } from "~/server/actions/store";
 import { products } from "~/data/db/schema";
 import { fullURL } from "~/data/meta/builder";
+import { productsSearchParamsSchema } from "~/data/validations/params";
+import { env } from "~/env.mjs";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -11,6 +12,9 @@ import {
 } from "~/islands/navigation/page-header";
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { getProductsAction } from "~/server/actions/product";
+import { getStoresAction } from "~/server/actions/store";
+import { getServerAuthSession } from "~/utils/auth/users";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
@@ -18,7 +22,7 @@ export const metadata: Metadata = {
   description: "Buy products from our stores",
 };
 
-interface ProductsPageProps {
+interface ProductsPageProperties {
   searchParams: {
     [key: string]: string | string[] | undefined;
   };
@@ -26,7 +30,7 @@ interface ProductsPageProps {
 
 export default async function ProductsPage({
   searchParams,
-}: ProductsPageProps) {
+}: ProductsPageProperties) {
   const {
     page,
     per_page,
@@ -36,30 +40,41 @@ export default async function ProductsPage({
     price_range,
     store_ids,
     store_page,
-  } = searchParams ?? {};
+  } = productsSearchParamsSchema.parse(searchParams);
+
+  const t = await getTranslations();
 
   // Products transaction
-  const limit = typeof per_page === "string" ? parseInt(per_page) : 8;
-  const offset = typeof page === "string" ? (parseInt(page) - 1) * limit : 0;
+  const pageAsNumber = Number(page);
+  const fallbackPage =
+    Number.isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber;
+  const perPageAsNumber = Number(per_page);
+  // Number of items per page
+  const limit = Number.isNaN(perPageAsNumber) ? 10 : perPageAsNumber;
+  // Number of items to skip
+  const offset = fallbackPage > 0 ? (fallbackPage - 1) * limit : 0;
 
   const productsTransaction = await getProductsAction({
     limit,
     offset,
-    sort: typeof sort === "string" ? sort : null,
-    categories: typeof categories === "string" ? categories : null,
-    subcategories: typeof subcategories === "string" ? subcategories : null,
-    price_range: typeof price_range === "string" ? price_range : null,
-    store_ids: typeof store_ids === "string" ? store_ids : null,
+    sort,
+    categories,
+    subcategories,
+    price_range,
+    store_ids,
   });
 
-  const pageCount = Math.ceil(productsTransaction.total / limit);
+  const pageCount = Math.ceil(productsTransaction.count / limit);
 
   // Stores transaction
-  const storesLimit = 25;
+  const storesPageAsNumber = Number(store_page);
+  const fallbackStoresPage =
+    Number.isNaN(storesPageAsNumber) || storesPageAsNumber < 1 ?
+      1
+    : storesPageAsNumber;
+  const storesLimit = 40;
   const storesOffset =
-    typeof store_page === "string"
-      ? (parseInt(store_page) - 1) * storesLimit
-      : 0;
+    fallbackStoresPage > 0 ? (fallbackStoresPage - 1) * storesLimit : 0;
 
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
@@ -67,27 +82,28 @@ export default async function ProductsPage({
     sort: "productCount.desc",
   });
 
-  const storePageCount = Math.ceil(storesTransaction.total / storesLimit);
+  const storePageCount = Math.ceil(storesTransaction.count / storesLimit);
+
+  const session = await getServerAuthSession();
 
   return (
     <Shell>
-      <PageHeader
-        id="products-page-header"
-        aria-labelledby="products-page-header-heading"
-      >
-        <PageHeaderHeading size="sm">Products</PageHeaderHeading>
+      <PageHeader>
+        <PageHeaderHeading size="sm">
+          {t("store.product.products")}
+        </PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          Buy products from our stores
+          {t("store.product.buyProductsFromOurStores")}
         </PageHeaderDescription>
       </PageHeader>
       <Products
-        id="products-page-products"
-        aria-labelledby="products-page-products-heading"
         products={productsTransaction.items}
         pageCount={pageCount}
         categories={Object.values(products.category.enumValues)}
         stores={storesTransaction.items}
         storePageCount={storePageCount}
+        session={session?.id ?? null}
+        tAddToCart={t("store.product.addToCart")}
       />
     </Shell>
   );

@@ -1,4 +1,105 @@
 {
+  "account-page": {
+    "loggedIn": "Logged In",
+    "loggedOut": "Logged Out",
+    "login": "Sign In",
+    "logout": "Log Out",
+    "Settings": "Settings",
+    "title": "Account"
+  },
+  "auth": {
+    "emailSubmitButton": {
+      "label": "Submit"
+    },
+    "error": {
+      "default": "Try signing with a different account.",
+      "email": "Email not found. Try signing with a different provider.",
+      "oauthNotLinked": "To confirm your identity, sign in with the same account you used originally.",
+      "unknown": "An error occurred. Please try again.",
+      "unknown-error": "Something went wrong. Please visit the /contact page and inform our support team about this unknown error."
+    },
+    "legal": "By using the buttons above, you agree with",
+    "legal-and": "and",
+    "legal-privacy": "Privacy Policy",
+    "legal-terms": "Terms of Service",
+    "magicLink": {
+      "description": "Make sure to check your spam folder.",
+      "title": "A magic link email was sent. 🧙‍♂️"
+    },
+    "noProvider": {
+      "link": "configure at least one auth provider (e.g. Email, Google, GitHub, Facebook, etc.)",
+      "preLink": "You need to"
+    },
+    "orEmailLabel": "Or with your email",
+    "other-options": "Link more accounts:",
+    "register": {
+      "agreeToTerms": "By signing up, you agree to our <terms>termsOfService</terms> and <privacy>privacyPolicy</privacy>.",
+      "alreadyHaveAccountLabel": {
+        "link": "Sign in",
+        "preLink": "Already have an account?"
+      },
+      "heading": "Create an account"
+    },
+    "signin": {
+      "heading": "Sign In",
+      "noAccountLabel": {
+        "link": "Sign up for free",
+        "preLink": "Don't have an account?"
+      }
+    },
+    "signinErrorToast": {
+      "description": "Sign ups are disabled.",
+      "title": "Unauthorized",
+      "tooManyRequests": "Too many requests. Try again later."
+    }
+  },
+  "auth-page": {
+    "error": "Something wrong...",
+    "password": "Password",
+    "submit": "Submit",
+    "username": "Username"
+  },
+  "auth-pages-content": {
+    "change": "Change My Email/Password",
+    "description": "If you need, you can link your another profiles here. Just use the buttons below to sign in with them as well. You can then sign out and sign back in with any of the social profiles you linked.",
+    "magic-link": "Send Magic Link",
+    "sign-out": "Sign out"
+  },
+  "auth-provider": {
+    "please-wait": "Please, wait...",
+    "sign-in": "Sign in with {name}",
+    "sign-in-null": "{name}",
+    "sign-up": "Sign up with {name}",
+    "sign-up-null": "{name}"
+  },
+  "store": {
+    "categories": {
+      "buyProducts": "Buy products from the ${category} category",
+      "buyFromCategories": "Buy {category} from the best stores",
+      "buyTheBest": "Buy the best {category}"
+    },
+    "stores": {
+      "stores": "Stores",
+      "buy-products": "Buy products from our stores"
+    },
+    "product": {
+      "products": "Products",
+      "description": "Description",
+      "noDescription": "No description is available for this product.",
+      "moreProductsFrom": "More products from {storeName}",
+      "buyProductsFromOurStores": "Buy products from our stores",
+      "addToCart": "Add to cart"
+    }
+  },
+  "common": {
+    "home": {
+      "linkText": "Back to Homepage"
+    },
+    "userLogin": {
+      "signInText": "Sign in",
+      "signOutText": "Sign out {userName}"
+    }
+  },
   "DataTable": {
     "block": "Block",
     "columns": "Columns",
@@ -22,186 +123,13 @@
     "unblock": "Unblock",
     "view-profile": "View profile"
   },
+  "environments": {
+    "auth-button-placeholder": "⚠️ Please specify Github/Google/Discord in environment variables to unlock auth-related features."
+  },
   "EnvironmentVariables": {
     "errors": {
       "something-wrong": "These environment variables are specified incorrectly or not specified (please check .env file):"
     }
-  },
-  "LanguageSwitch": {
-    "choose-language": "Language"
-  },
-  "LocaleSwitcher": {
-    "label": "Change language",
-    "selectLocale": "Language"
-  },
-  "LoginForm": {
-    "description": "Sign in to your account using your email address and password.",
-    "email": "Email",
-    "email-placeholder": "Enter your email address",
-    "error-heading": "Unable to sign in.",
-    "errors": {
-      "Callback": "Try signing with a different account.",
-      "CredentialsSignin": "Sign in failed. Check the details you provided are correct.",
-      "Email or password is incorrect": "Email or password is incorrect.",
-      "EmailCreateAccount": "Try signing with a different account.",
-      "EmailSignin": "Check your email address.",
-      "Invalid credentials": "Invalid credentials.",
-      "OAuthAccountNotLinked": "To confirm your identity, sign in with the same account you used originally.",
-      "OAuthCallback": "Try signing with a different account.",
-      "OAuthCreateAccount": "Try signing with a different account.",
-      "OAuthSignin": "Try signing with a different account.",
-      "Signin": "Try signing with a different account.",
-      "default": "Unable to sign in."
-    },
-    "form": {
-      "description": "Sign in to your account using your email address and password.",
-      "email": "Email",
-      "email-placeholder": "Enter your email address",
-      "error-heading": "Unable to sign in.",
-      "no-account": "Don't have an account?",
-      "other-options": "Sign in using:",
-      "password": "Password",
-      "password-placeholder": "Enter your password",
-      "sign-out": "Sign out",
-      "signup": "Sign up here.",
-      "submit": "Sign in",
-      "title": "Sign in",
-      "wait": "Please wait..."
-    },
-    "no-account": "Don't have an account?",
-    "other-options": "Sign in using:",
-    "password": "Password",
-    "password-placeholder": "Enter your password",
-    "reset-password": "Reset Password",
-    "signin": "Sign in",
-    "signup": "Sign up here.",
-    "submit": "Sign in",
-    "success-description": "Success.",
-    "success-title": "Done!",
-    "title": "Sign in",
-    "wait": "Please wait..."
-  },
-  "MainError": {
-    "Could not fetch user.": "Could not fetch user.",
-    "Not authenticated.": "Not authenticated.",
-    "User not found.": "User not found.",
-    "error": "Error"
-  },
-  "Navbar": {
-    "home": "Home",
-    "sign-out": "Log out",
-    "signin": "Sign in"
-  },
-  "ProfileButton": {
-    "admin": "Admin panel",
-    "logout": "Log out",
-    "my-account": "My account",
-    "new-review": "New review",
-    "profile": "Profile",
-    "settings": "Settings"
-  },
-  "ProfileSettingsForm": {
-    "description": "Update your profile settings.",
-    "errors": {
-      "update-error": "Unable to update user."
-    },
-    "name": "Name",
-    "name-min": "Name must be at least 2 characters.",
-    "name-placeholder": "Enter your name",
-    "submit": "Update User",
-    "title": "Profile settings",
-    "update-success": "User updated successfully."
-  },
-  "RegisterForm": {
-    "description": "Create a new account using your email address and password.",
-    "email": "Email",
-    "email-placeholder": "Enter your email address",
-    "error-heading": "Unable to sign up.",
-    "errors": {
-      "Not authenticated.": "Not authenticated.",
-      "Please fill all fields.": "Please fill all fields.",
-      "User with this email already exists.": "User with this email already exists."
-    },
-    "form": {
-      "email-min": "Username must be at least 2 characters.",
-      "invalid-email": "Invalid email address.",
-      "name-min": "Name must be at least 2 characters.",
-      "password-min": "Password must be at least 6 characters."
-    },
-    "have-account": "Already have an account?",
-    "name": "Name",
-    "name-placeholder": "Enter your name",
-    "other-options": "Or sign up with:",
-    "password": "Password",
-    "password-placeholder": "Enter your password",
-    "signin": "Sign in here.",
-    "submit": "Sign up",
-    "success-description": "You can now sign in to your account.",
-    "success-title": "Registration was successful!",
-    "title": "Sign up",
-    "wait": "Please wait..."
-  },
-  "ReviewNewForm": {
-    "description": "Create a new review.",
-    "errors": {
-      "create-error": "Unable to create review."
-    },
-    "grade": "Grade",
-    "grade-placeholder": "Enter grade",
-    "item": "Item",
-    "item-placeholder": "Name of the reviewed piece of art",
-    "submit": "Create review",
-    "tags": "Tags",
-    "tags-placeholder": "Enter tags",
-    "title": "Create review",
-    "title-field": "Title",
-    "title-field-placeholder": "Enter title"
-  },
-  "TagsSelect": {
-    "no-options": "No options",
-    "search": "Search...",
-    "tags": "Tags",
-    "tags-placeholder": "Enter tags"
-  },
-  "ThemeSwitch": {
-    "dark": "Dark",
-    "light": "Light",
-    "system": "System"
-  },
-  "account-page": {
-    "Settings": "Settings",
-    "loggedIn": "Logged In",
-    "loggedOut": "Logged Out",
-    "login": "Sign In",
-    "logout": "Log Out",
-    "title": "Account"
-  },
-  "auth": {
-    "other-options": "Link more accounts:"
-  },
-  "auth-page": {
-    "error": "Something wrong...",
-    "password": "Password",
-    "submit": "Submit",
-    "username": "Username"
-  },
-  "auth-pages-content": {
-    "change": "Change My Email/Password",
-    "description": "If you need, you can link your another profiles here. Just use the buttons below to sign in with them as well. You can then sign out and sign back in with any of the social profiles you linked.",
-    "magic-link": "Send Magic Link",
-    "sign-out": "Sign out"
-  },
-  "common": {
-    "home": {
-      "linkText": "Back to Homepage"
-    },
-    "userLogin": {
-      "signInText": "Sign in",
-      "signOutText": "Sign out {userName}"
-    }
-  },
-  "environments": {
-    "auth-button-placeholder": "⚠️ Please specify Github/Google/Discord in environment variables to unlock auth-related features."
   },
   "general": {
     "about": "about",
@@ -248,35 +176,40 @@
     }
   },
   "landing": {
+    "about": "We aim to create the world's most feature-rich, global, and iconic Next.js starter. Explore the comprehensive list of features. Offering more than just code, it's a journey. It's stable and ready for production.",
     "btn1-products-now": "Products Now",
     "btn1-sell": "Sell",
     "btn2-download": "Download",
     "btn2-starter": "Next.js Relivator Starter",
     "features": {
       "clock": {
-        "description": "Stay on track with Drizzle ORM. Deployed on Vercel, Railway, Neon, etc.",
-        "title": "Database"
+        "description": "Maintain peak performance with Drizzle ORM, by switching MySQL and Postgres on-the-fly. Enjoy flexible deployment options, including Planetscale, Vercel, Railway, Neon, and more.",
+        "title": "Database Integration: Robust and Versatile"
       },
       "cryptography": {
-        "description": "Engage with App dir, Routing, Layouts, Loading UI, API routes, and beyond.",
-        "title": "Next.js 14"
+        "description": "Experience seamless navigation with advanced features like App Router, Layouts, and Loading UI. Leverage powerful API routes and explore innovative capabilities beyond the basics.",
+        "title": "Next.js 14: Enhanced User Experience & DX"
       },
       "currency": {
-        "description": "UI components built using Radix UI and styled with Tailwind CSS.",
-        "title": "Components"
+        "description": "Craft stunning UI with components built on top of Radix and Shadcn UI, beautifully styled with Tailwind CSS for a modern aesthetic. VSCode is recommended for a full immersion experience.",
+        "title": "Components: Elegant & Functional"
       },
       "devtools": {
-        "description": "Free and paid subscriptions using Stripe.",
-        "title": "Subscriptions"
+        "description": "Implemented a robust subscription system, both free and paid plans are supported, optimized for efficiency and scalability. Learn README.md of the project to learn more.",
+        "title": "Stripe Subscriptions: Powerful & Flexible",
+        "ambitions-description": "Stop running from one starter to the next. With Relivator, you'll have unlimited possibilities. You can create anything you want; all the tools are already prepared, just for you."
       },
       "files": {
-        "description": "Middleware authentication using NextAuth.js.",
-        "title": "Authentication"
+        "description": "Deploy a versatile authentication system using NextAuth.js and Clerk, tailored for your application’s needs. Learn more in .env.example file, and you're ready to go.",
+        "title": "User Authentication: Secure & Conditional",
+        "on-the-fly": "Full On The Fly Customization",
+        "roadmap": "Huge Ambitions: Limitless Possibilities",
+        "on-the-fly-description": "Dive into an extensive list of features in our project repository. Effortlessly switch between Clerk/NextAuth.js and MySQL/PostgreSQL to suit your project requirements."
       },
       "subtitle": "From code to design, Relivator has functionalities that supercharge your web projects.",
       "text": {
-        "description": "Manipulate app effortlessly with Server and Client Components. Use hook. And more.",
-        "title": "React 18"
+        "description": "Effortlessly manipulate your app with both Server and Client Components. Utilize advanced hooks and explore a range of additional features for a smoother development experience.",
+        "title": "React 18: Streamlined Modern Development"
       },
       "title": "Features"
     },
@@ -301,12 +234,76 @@
     "things": {
       "linkText": "Go to list"
     },
-    "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you.",
-    "about": "We aim to create the world's most feature-rich, global, and iconic Next.js starter. Explore the comprehensive list of features. Offering more than just code, it's a journey. It's stable and ready for production."
+    "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
+  },
+  "LanguageSwitch": {
+    "choose-language": "Language"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "selectLocale": "Language"
+  },
+  "LoginForm": {
+    "description": "Sign in to your account using your email address and password.",
+    "email": "Email",
+    "email-placeholder": "Enter your email address",
+    "error-heading": "Unable to sign in.",
+    "errors": {
+      "Callback": "Try signing with a different account.",
+      "CredentialsSignin": "Sign in failed. Check the details you provided are correct.",
+      "default": "Unable to sign in.",
+      "Email or password is incorrect": "Email or password is incorrect.",
+      "EmailCreateAccount": "Try signing with a different account.",
+      "EmailSignin": "Check your email address.",
+      "Invalid credentials": "Invalid credentials.",
+      "OAuthAccountNotLinked": "To confirm your identity, sign in with the same account you used originally.",
+      "OAuthCallback": "Try signing with a different account.",
+      "OAuthCreateAccount": "Try signing with a different account.",
+      "OAuthSignin": "Try signing with a different account.",
+      "Signin": "Try signing with a different account."
+    },
+    "form": {
+      "description": "Sign in to your account using your email address and password.",
+      "email": "Email",
+      "email-placeholder": "Enter your email address",
+      "error-heading": "Unable to sign in.",
+      "no-account": "Don't have an account?",
+      "other-options": "Sign in using:",
+      "password": "Password",
+      "password-placeholder": "Enter your password",
+      "sign-out": "Sign out",
+      "signup": "Sign up here.",
+      "submit": "Sign in",
+      "title": "Sign in",
+      "wait": "Please wait..."
+    },
+    "no-account": "Don't have an account?",
+    "other-options": "Sign in using:",
+    "password": "Password",
+    "password-placeholder": "Enter your password",
+    "reset-password": "Reset Password",
+    "signin": "Sign in",
+    "signup": "Sign up here.",
+    "submit": "Sign in",
+    "success-description": "Success.",
+    "success-title": "Done!",
+    "title": "Sign in",
+    "wait": "Please wait..."
+  },
+  "MainError": {
+    "error": "Error",
+    "fetch-failed": "Could not fetch user.",
+    "not-authenticated": "Not authenticated.",
+    "not-found": "User not found."
   },
   "meta": {
     "description": "Next.js 14 Starter",
     "title": "Relivator"
+  },
+  "Navbar": {
+    "home": "Home",
+    "sign-out": "Log out",
+    "signin": "Sign in"
   },
   "pages": {
     "about": {
@@ -324,7 +321,7 @@
         }
       },
       "subtitle": "Bleverse Relivator is a powerful Next.js TypeScript Tailwind starter. It streamlines the development process and provides a solid foundation for creating web projects. Feel free to use, adapt, and contribute to the project by {link}.",
-      "subtitle.link": "clicking here",
+      "subtitle-link": "clicking here",
       "title": "About"
     },
     "home": {
@@ -372,9 +369,9 @@
       "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
     },
     "not-found": {
-      "title": "🫠 Page not found! 🥲 Sadly...",
       "description": "The resource you're looking for might have been moved, renamed, or might never have existed. Please verify the URL or navigate to other sections using the menu.",
-      "go-home": "Return to Home Page"
+      "go-home": "Return to Home Page",
+      "title": "🫠 Page not found! 🥲 Sadly..."
     },
     "tools": {
       "binary-code": {
@@ -557,7 +554,7 @@
     }
   },
   "plugins": {
-    "stars": "Support 'Relivator' by starring it on GitHub ⭐ Goal:"
+    "stars": "Star Relivator v1.2.0 on GitHub ⭐"
   },
   "pricing": {
     "compare": {
@@ -611,21 +608,97 @@
       "what-payment": "What payment methods do you accept?"
     }
   },
+  "ProfileButton": {
+    "admin": "Admin panel",
+    "logout": "Log out",
+    "my-account": "My account",
+    "new-review": "New review",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "ProfileSettingsForm": {
+    "description": "Update your profile settings.",
+    "errors": {
+      "update-error": "Unable to update user."
+    },
+    "name": "Name",
+    "name-min": "Name must be at least 2 characters.",
+    "name-placeholder": "Enter your name",
+    "submit": "Update User",
+    "title": "Profile settings",
+    "update-success": "User updated successfully."
+  },
+  "RegisterForm": {
+    "description": "Create a new account using your email address and password.",
+    "email": "Email",
+    "email-placeholder": "Enter your email address",
+    "error-heading": "Unable to sign up.",
+    "errors": {
+      "email-exists": "User with this email already exists.",
+      "fill-fields": "Please fill all fields.",
+      "not-authenticated": "Not authenticated."
+    },
+    "form": {
+      "email-min": "Username must be at least 2 characters.",
+      "invalid-email": "Invalid email address.",
+      "name-min": "Name must be at least 2 characters.",
+      "password-min": "Password must be at least 6 characters."
+    },
+    "have-account": "Already have an account?",
+    "name": "Name",
+    "name-placeholder": "Enter your name",
+    "other-options": "Or sign up with:",
+    "password": "Password",
+    "password-placeholder": "Enter your password",
+    "signin": "Sign in here.",
+    "submit": "Sign up",
+    "success-description": "You can now sign in to your account.",
+    "success-title": "Registration was successful!",
+    "title": "Sign up",
+    "wait": "Please wait..."
+  },
+  "ReviewNewForm": {
+    "description": "Create a new review.",
+    "errors": {
+      "create-error": "Unable to create review."
+    },
+    "grade": "Grade",
+    "grade-placeholder": "Enter grade",
+    "item": "Item",
+    "item-placeholder": "Name of the reviewed piece of art",
+    "submit": "Create review",
+    "tags": "Tags",
+    "tags-placeholder": "Enter tags",
+    "title": "Create review",
+    "title-field": "Title",
+    "title-field-placeholder": "Enter title"
+  },
   "settings-page": {
     "description": "Manage your settings.",
     "title": "Settings"
   },
   "signIn": {
     "heading": "Sign In",
+    "LoginForm": {
+      "wait": "Please, wait..."
+    },
     "meta": {
       "description": "Sign in for a personalized experience",
       "title": "Sign In"
     },
     "providerButtonText": "Sign in with {name}",
-    "providerButtonTextReg": "Sign up with {name}",
-    "LoginForm": {
-      "wait": "Please, wait..."
-    }
+    "providerButtonTextReg": "Sign up with {name}"
+  },
+  "TagsSelect": {
+    "no-options": "No options",
+    "search": "Search...",
+    "tags": "Tags",
+    "tags-placeholder": "Enter tags"
+  },
+  "ThemeSwitch": {
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
   },
   "things": {
     "heading": "Your Relivator",
@@ -651,12 +724,5 @@
       "title": "Free online tools from Relivator"
     },
     "title": "Tools"
-  },
-  "auth-provider": {
-    "please-wait": "Please, wait...",
-    "sign-in": "Sign in with {name}",
-    "sign-in-null": "{name}",
-    "sign-up": "Sign up with {name}",
-    "sign-up-null": "{name}"
   }
 }

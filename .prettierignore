@@ -1,4 +1,4 @@
-# ?? https://prettier.io/docs/en/ignore.html
+# @see https://prettier.io/docs/en/ignore.html
 
 # dependencies
 /node_modules
@@ -13,3 +13,6 @@
 
 # typescript
 next-env.d.ts
+
+# project
+/drizzle

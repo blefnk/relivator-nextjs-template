@@ -1,10 +1,7 @@
+/* eslint-disable style/quotes */
 /**
- * Patterns from Hero Patterns
- * Licence: CC BY 4.0
- * https://www.heropatterns.com/
- *
- * Original library source:
- * https://github.com/juliusmarminge/acme-corp/blob/main/apps/nextjs/src/lib/generate-pattern.ts
+ * @see https://heropatterns.com
+ * @see https://github.com/juliusmarminge/acme-corp/blob/main/apps/nextjs/src/lib/generate-pattern.ts
  */
 const patterns = [
   {
@@ -456,7 +453,7 @@ const bgPattern = (
     .replace(/>/g, "%3E")
     .replace(/&/g, "%26")
     .replace(/#/g, "%23");
-  return 'url("data:image/svg+xml,' + svg + '")';
+  return `url("data:image/svg+xml,${svg}")`;
 };
 
 const colors = [

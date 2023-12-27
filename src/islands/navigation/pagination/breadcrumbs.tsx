@@ -1,7 +1,8 @@
 import * as React from "react";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
-import { Link } from "~/navigation";
 import { cn, truncate } from "~/utils";
+
+import { Link } from "~/navigation";
 
 type BreadcrumbsProps = React.ComponentPropsWithoutRef<"nav"> & {
   segments: {
@@ -43,9 +44,9 @@ export function Breadcrumbs({
                 isLastSegment ? "text-foreground" : "text-muted-foreground",
               )}
             >
-              {truncationLength > 0 && segment.title
-                ? truncate(segment.title, truncationLength)
-                : segment.title}
+              {truncationLength > 0 && segment.title ?
+                truncate(segment.title, truncationLength)
+              : segment.title}
             </Link>
             {!isLastSegment && (
               <SeparatorIcon className="mx-2 h-4 w-4" aria-hidden="true" />

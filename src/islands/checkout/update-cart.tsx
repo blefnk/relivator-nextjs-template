@@ -1,16 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { type CartLineItem } from "~/types";
+import type { CartLineItem } from "~/types";
 import { catchError } from "~/utils";
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
 
+import { Button } from "~/islands/primitives/button";
+import { Input } from "~/islands/primitives/input";
 import {
   deleteCartItemAction,
   updateCartItemAction,
 } from "~/server/actions/cart";
-import { Button } from "~/islands/primitives/button";
-import { Input } from "~/islands/primitives/input";
 
 interface UpdateCartProps {
   cartLineItem: CartLineItem;
@@ -34,6 +34,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
                 await updateCartItemAction({
                   productId: cartLineItem.id,
                   quantity: Number(cartLineItem.quantity) - 1,
+                  storeId: cartLineItem.storeId,
                 });
               } catch (err) {
                 catchError(err);
@@ -57,6 +58,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
                 await updateCartItemAction({
                   productId: cartLineItem.id,
                   quantity: Number(e.target.value),
+                  storeId: cartLineItem.storeId,
                 });
               } catch (err) {
                 catchError(err);
@@ -80,6 +82,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
                 await updateCartItemAction({
                   productId: cartLineItem.id,
                   quantity: Number(cartLineItem.quantity) + 1,
+                  storeId: cartLineItem.storeId,
                 });
               } catch (err) {
                 catchError(err);

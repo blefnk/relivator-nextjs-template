@@ -1,6 +1,6 @@
 "use client";
 
-import { HTMLAttributes, type FC } from "react";
+import type { FC, HTMLAttributes } from "react";
 import clsx from "clsx";
 import { signIn } from "next-auth/react";
 

@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 
+interface ApiResponse {
+  name: string;
+}
+
 export default function APITestPage() {
   const [name, setName] = useState<string>();
 
   useEffect(() => {
     fetch("/api/whoAmI")
-      .then((res) => res.json())
+      .then((res) => res.json() as Promise<ApiResponse>)
       .then((data) => setName(data.name));
   }, []);
 

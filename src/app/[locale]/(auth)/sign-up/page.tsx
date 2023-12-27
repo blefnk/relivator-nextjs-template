@@ -1,12 +1,14 @@
 import { currentUser } from "@clerk/nextjs";
-import { env } from "~/env.mjs";
-import { redirect } from "~/navigation";
 import { getProviders } from "next-auth/react";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
+import { AuthPagesContent } from "~/core/auth/shared/islands/auth-pages-content";
 import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
-import AuthPagesContent from "~/islands/content/auth-pages-content";
-import { getCurrentUser } from "~/utils/users";
+import { env } from "~/env.mjs";
+import { redirect } from "~/navigation";
+import { getCurrentUser } from "~/utils/auth/users";
 
 export const metadata = seo({
   metadataBase: fullURL(),
@@ -15,21 +17,24 @@ export const metadata = seo({
 });
 
 export default async function SignUpPage() {
-  // const user = await getCurrentUser();
-  let user: any;
+  const t = await getTranslations();
+
   let NextAuthProviders: any;
+  let user: any;
 
   if (env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk") {
     user = await currentUser();
-  } else if (env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs") {
+    if (user?.id) return redirect("/auth");
+  } else {
     user = await getCurrentUser();
     NextAuthProviders = await getProviders();
-    if (user?.id) return redirect("/dashboard/stores");
-    if (!NextAuthProviders) return null;
-  } else {
-    throw new Error(
-      "❌ [SiteHeader] `env.NEXT_PUBLIC_AUTH_PROVIDER` is not defined",
-    );
+    if (!NextAuthProviders) {
+      console.error(
+        "❌ Specify at least one NextAuth.js provider or switch to Clerk (refer to .env.example)",
+      );
+      return redirect("/");
+    }
+    if (user?.id) return redirect("/auth");
   }
 
   return (
@@ -37,6 +42,27 @@ export default async function SignUpPage() {
       user={user}
       isRegPage={true}
       providers={NextAuthProviders}
+      // INTERNATIONALIZATION
+      tSignin={t("auth.error.default")}
+      tOAuthSignin={t("auth.error.default")}
+      tOAuthCallback={t("auth.error.default")}
+      tOAuthCreateAccount={t("auth.error.email")}
+      tEmailCreateAccount={t("auth.error.default")}
+      tCallback={t("auth.error.default")}
+      tOAuthAccountNotLinked={t("auth.error.oauthNotLinked")}
+      tDefault={t("auth.error.unknown")}
+      tUnknownError={t("auth.error.unknown-error")}
+      tPrivacy={t("auth.legal-privacy")}
+      tTerms={t("auth.legal-terms")}
+      tAnd={t("auth.legal-and")}
+      tSignUpLink={t("RegisterForm.title")}
+      tSignInLink={t("LoginForm.title")}
+      tAuthLegal={t("auth.legal")}
+      tSignUpHere={t("LoginForm.signup")}
+      tNoAccount={t("LoginForm.no-account")}
+      tSignInHere={t("RegisterForm.signin")}
+      tHaveAccount={t("RegisterForm.have-account")}
+      tPleaseWait={t("auth-provider.please-wait")}
     />
   );
 }

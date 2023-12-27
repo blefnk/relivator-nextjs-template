@@ -2,18 +2,20 @@
 
 import { revalidatePath } from "next/cache";
 import { faker } from "@faker-js/faker";
+import { z } from "zod";
 
+import { db } from "~/data/db";
+import { products, type Product } from "~/data/db/schema";
+import { action } from "~/server/clients/next-safe-action";
 import {
   getSubcategories,
   productCategories,
   productTags,
 } from "~/server/config/products";
-import { db } from "~/data/db";
-import { products, type Product } from "~/data/db/schema";
 
 export async function generateProducts({
   storeId,
-  count = 10,
+  count = 5,
 }: {
   storeId: number;
   count?: number;
@@ -28,13 +30,14 @@ export async function generateProducts({
   const subcategory = faker.helpers.shuffle(subcategories)[0] ?? "decks";
 
   for (let i = 0; i < count; i++) {
-    ``;
+    ("");
     allProducts.push({
       id: faker.number.int({ min: 100000, max: 999999 }),
       name: faker.commerce.productName(),
       description: faker.commerce.productDescription(),
       price: faker.commerce.price(),
-      rating: faker.number.float({ min: 0, max: 5, precision: 0.1 }),
+      // todo: float doesn't work with postgres here:
+      rating: faker.number.int({ min: 0, max: 5 }),
       category,
       subcategory,
       images: null,

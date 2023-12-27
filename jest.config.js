@@ -1,22 +1,33 @@
+/**
+ * Jest Testing Configuration
+ * ==========================
+ *
+ * @see https://nextjs.org/docs/architecture/nextjs-compiler#jest
+ * @see https://jest-extended.jestcommunity.dev/docs/getting-started/setup
+ * @see https://github.com/MichalLytek/type-graphql/blob/master/jest.config.ts
+ */
+
 const nextJest = require("next/jest");
 
-const createJestConfig = nextJest({
-  // Provide the path to your Next.js app to load next.config.js and .env files in the test environment
-  dir: "./",
-});
+const createJestConfig = nextJest({ dir: "./" });
 
-// Add any custom config to be passed to Jest
-/** @type {import('jest').Config} */
 const customJestConfig = {
-  // Add more setup options before each test is run
+  rootDir: "./",
+  verbose: false,
+  preset: "ts-jest",
+  collectCoverage: false,
+  testEnvironment: "node",
+  extensionsToTreatAsEsm: [".ts"],
+  coverageDirectory: "<rootDir>/coverage",
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
-  // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
+  moduleNameMapper: { "^~/(.*)$": "<rootDir>/$1" },
   moduleDirectories: ["node_modules", "<rootDir>/"],
-  moduleNameMapper: {
-    "^~/(.*)$": "<rootDir>/$1",
-  },
-  testEnvironment: "jest-environment-jsdom",
+  roots: ["<rootDir>/src", "<rootDir>/src/tests/jest"],
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  collectCoverageFrom: ["<rootDir>/src/**/*.ts", "!<rootDir>/src/**/*.d.ts"],
+  transform: { "^.+\\.tsx?$": ["ts-jest", { tsconfig: "./tsconfig.json" }] },
 };
 
-// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+// createJestConfig is exported this way to ensure that
+// next/jest can load the nextjs config which is async
 module.exports = createJestConfig(customJestConfig);

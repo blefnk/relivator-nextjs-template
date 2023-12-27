@@ -1,3 +1,4 @@
+import type React from "react";
 import { FaDiscord, FaFacebook, FaGithub, FaYoutube } from "react-icons/fa";
 
 import { XTwitterIcon } from "~/islands/icons";
@@ -6,12 +7,12 @@ import { XTwitterIcon } from "~/islands/icons";
 export type NetworkKey = keyof typeof networkDefaults;
 
 // The type structure for a single network.
-export type Network = {
+export interface Network {
   id: string; // The identifier for the network (e.g., "youtube")
   url: string; // Complete URL leading to the specific profile or page
   label: string; // Display name for the platform (e.g., "YouTube")
   IconComponent: React.ComponentType<{ className?: string }>; // React component for the platform's icon
-};
+}
 
 // Default settings for each platform. It includes the base URL, display name, and icon.
 export const networkDefaults: Record<

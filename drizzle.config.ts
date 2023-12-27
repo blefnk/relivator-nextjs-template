@@ -1,42 +1,75 @@
 /**
  * [drizzle-orm-mono] Drizzle ORM Configuration
  *
- * This script configures drizzle-orm with environment-specific settings, including database connection details.
- * The configuration relies on environment variables for setting the database provider and connection string.
+ * This script configures drizzle-orm with environment-specific settings,
+ * including database connection details. The configuration relies on
+ * env vars for setting the database provider and connection string.
  *
  * @see https://github.com/bs-oss/drizzle-orm-mono
  * @see https://orm.drizzle.team/kit-docs/config-reference
  * @see https://discord.com/channels/1043890932593987624/1043890932593987627/1153940001885794304
  */
 
-import { Config } from "drizzle-kit";
+import { addQueryParamIfMissed } from "~/utils";
+import type { Config } from "drizzle-kit";
 
 import { env } from "./src/env.mjs";
 
-export type DbCredentials = { connectionString: string };
+// if (!env.NEXT_PUBLIC_DB_PROVIDER || !env.DATABASE_URL)
+//   throw new Error(
+//     "NEXT_PUBLIC_DB_PROVIDER or DATABASE_URL is not set in environment variables.",
+//   );
+
+// Add the ssl query parameter if it's missing
+const csMysql: string = addQueryParamIfMissed(
+  env.DATABASE_URL,
+  "ssl",
+  JSON.stringify({ rejectUnauthorized: true }),
+);
+const csPgsql: string = addQueryParamIfMissed(
+  env.DATABASE_URL,
+  "sslmode",
+  "require",
+);
+
+// Connection strings for MySQL and PostgreSQL
+// const csMysql = `${env.DATABASE_URL}?ssl={"rejectUnauthorized":true}`;
+// const csPgsql = `${env.DATABASE_URL}?sslmode=require`;
 
 // Initialize configuration variables
-let dbCredentials: DbCredentials;
+type MysqlCredentials = { uri: string };
+type PgsqlCredentials = { connectionString: string };
+let dbCredentials: MysqlCredentials | PgsqlCredentials;
 let driver: "mysql2" | "pg";
 let tablesFilter: string[];
 let schema: string;
 let out: string;
-
-export const csMysql = `${env.DATABASE_URL}?ssl={"rejectUnauthorized":true}`;
-export const csPgsql = `${env.DATABASE_URL}?sslmode=require`;
 
 /**
  * Configure this based on the database provider.
  * Feel free to add/remove/edit things if needed.
  */
 try {
-  switch (env.NEXT_PUBLIC_DB_PROVIDER) {
+  // Set default DB provider based on DATABASE_URL
+  // if NEXT_PUBLIC_DB_PROVIDER is not specified
+  let dbProvider = env.NEXT_PUBLIC_DB_PROVIDER;
+  if (!dbProvider) {
+    const databaseUrl = process.env.DATABASE_URL;
+    if (databaseUrl?.startsWith("mysql://")) {
+      dbProvider = "planetscale";
+    } else if (databaseUrl?.startsWith("postgres://")) {
+      dbProvider = "neon";
+    }
+  }
+
+  switch (dbProvider) {
     case "planetscale":
       driver = "mysql2";
       out = "drizzle/mysql";
       tablesFilter = ["acme_*"];
+      dbCredentials = { uri: csMysql };
       schema = "./src/data/db/schema/mysql.ts";
-      dbCredentials = { connectionString: csMysql };
+      // console.log("✓ MySQL triggered");
       break;
     case "railway":
     case "vercel":
@@ -44,12 +77,14 @@ try {
       driver = "pg";
       out = "drizzle/pgsql";
       tablesFilter = ["acme_*"];
-      schema = "./src/data/db/schema/pgsql.ts";
       dbCredentials = { connectionString: csPgsql };
+      schema = "./src/data/db/schema/pgsql.ts";
+      // console.log("✓ PostgreSQL triggered");
       break;
     default:
       throw new Error(
-        `💡 Unsupported NEXT_PUBLIC_DB_PROVIDER '${env.NEXT_PUBLIC_DB_PROVIDER}'. Verify your environment configuration.`,
+        `❌ Unsupported NEXT_PUBLIC_DB_PROVIDER '${dbProvider}'.\
+        Verify your environment configuration.`,
       );
   }
 } catch (error) {
@@ -87,7 +122,10 @@ export default {
   const drizzleDirPath = join(process.cwd(), out);
   if (!existsSync(drizzleDirPath)) {
     throw new Error(
-      "💡 The required files in `drizzle` directory do not exist. Please execute `pnpm mysql:generate` (PlanetScale provider), or `pnpm pg:generate` (Neon provider), to generate the necessary files. Afterward, you may retry your previous command.",
+      "💡 The required files in `drizzle` directory do not exist.\
+      Please execute `pnpm mysql:generate` (PlanetScale provider),\
+      or `pnpm pg:generate` (Neon provider), to generate the necessary\
+      files. Afterward, you may retry your previous command.",
     );
   }
 } catch (error) {
@@ -124,19 +162,23 @@ if (NEXT_PUBLIC_DB_PROVIDER && env.DATABASE_URL) {
   if (expectedPrefix) {
     if (!env.DATABASE_URL.startsWith(expectedPrefix)) {
       console.error(
-        `💡 Connection error: The DATABASE_URL does not match the expected format for provider '${NEXT_PUBLIC_DB_PROVIDER}'. Please check your configuration.`,
+        `💡 Connection error: The DATABASE_URL does not match the\
+        expected format for provider '${NEXT_PUBLIC_DB_PROVIDER}'.\
+        Please check your configuration.`,
       );
       process.exit(1);
     }
   } else {
     console.error(
-      `💡 Unknown NEXT_PUBLIC_DB_PROVIDER '${NEXT_PUBLIC_DB_PROVIDER}'. Please check your configuration.`,
+      `💡 Unknown NEXT_PUBLIC_DB_PROVIDER '${NEXT_PUBLIC_DB_PROVIDER}'.\
+      Please check your configuration.`,
     );
     process.exit(1);
   }
 } else {
   console.error(
-    "💡 Essential environment variables are missing. Ensure NEXT_PUBLIC_DB_PROVIDER and DATABASE_URL are set.",
+    "💡 Essential environment variables are missing. Ensure\
+    NEXT_PUBLIC_DB_PROVIDER and DATABASE_URL are set.",
   );
   process.exit(1);
 } */

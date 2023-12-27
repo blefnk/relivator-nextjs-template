@@ -11,7 +11,7 @@ export default function SignInEmail({
 }: SignInEmailProps) {
   return (
     <>
-      <div></div>
+      <div />
     </>
   );
 }

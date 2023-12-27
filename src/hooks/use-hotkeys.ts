@@ -64,6 +64,7 @@ function isExactHotkey(hotkey: Hotkey, event: KeyboardEvent) {
     return false;
   }
 
+  // eslint-disable-next-line sonarjs/prefer-single-boolean-return
   if (
     key &&
     (pressedKey.toLowerCase() === key.toLowerCase() ||
@@ -92,6 +93,7 @@ export type HotkeyItem = [
 export function useHotkeys(hotkeys: HotkeyItem[]) {
   useEffect(() => {
     function keydownListener(event: KeyboardEvent) {
+      // biome-ignore lint/complexity/noForEach: <explanation>
       hotkeys.forEach(
         ([hotkey, handler, options = { preventDefault: true }]) => {
           if (getHotkeyMatcher(hotkey)(event)) {

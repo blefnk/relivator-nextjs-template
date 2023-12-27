@@ -118,7 +118,7 @@ export function PaginationButton({
         <ChevronLeftIcon className="h-4 w-4" aria-hidden="true" />
       </Button>
       {paginationRange.map((pageNumber, i) =>
-        pageNumber === "..." ? (
+        pageNumber === "..." ?
           <Button
             aria-label="Page separator"
             key={i}
@@ -129,8 +129,7 @@ export function PaginationButton({
           >
             ...
           </Button>
-        ) : (
-          <Button
+        : <Button
             aria-label={`Page ${pageNumber}`}
             key={i}
             variant={Number(page) === pageNumber ? "default" : "outline"}
@@ -150,8 +149,7 @@ export function PaginationButton({
             disabled={isPending}
           >
             {pageNumber}
-          </Button>
-        ),
+          </Button>,
       )}
       <Button
         aria-label="Go to next page"

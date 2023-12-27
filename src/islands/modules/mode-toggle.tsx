@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { useState } from "react";
-import { settings } from "~/app";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { settings } from "~/app";
 import { Button } from "~/islands/primitives/button";
 import {
   DropdownMenu,

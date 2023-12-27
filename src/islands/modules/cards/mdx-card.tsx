@@ -1,5 +1,6 @@
-import { Link } from "~/navigation";
 import { cn } from "~/utils";
+
+import { Link } from "~/navigation";
 
 type CardProps = React.HTMLAttributes<HTMLDivElement> & {
   href?: string;

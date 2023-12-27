@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
-import { type StoredFile } from "~/types";
+import type { StoredFile } from "~/types";
 import { cn } from "~/utils";
 import useEmblaCarousel, {
   type EmblaCarouselType,
@@ -32,16 +32,16 @@ export function ProductImageCarousel({
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const scrollPrev = React.useCallback(
-    () => emblaApi && emblaApi.scrollPrev(),
+    () => emblaApi?.scrollPrev(),
     [emblaApi],
   );
   const scrollNext = React.useCallback(
-    () => emblaApi && emblaApi.scrollNext(),
+    () => emblaApi?.scrollNext(),
     [emblaApi],
   );
 
   const scrollTo = React.useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => emblaApi?.scrollTo(index),
     [emblaApi],
   );
 
@@ -100,11 +100,13 @@ export function ProductImageCarousel({
           }}
         >
           {images.map((image, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <div className="relative min-w-0 flex-full pl-4" key={index}>
               <AspectRatio ratio={1}>
                 <Image
                   aria-label={`Slide ${index + 1} of ${images.length}`}
                   role="group"
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   key={index}
                   aria-roledescription="slide"
                   src={image.url}
@@ -119,7 +121,7 @@ export function ProductImageCarousel({
           ))}
         </div>
       </div>
-      {images.length > 1 ? (
+      {images.length > 1 ?
         <div className="flex w-full items-center justify-center gap-2">
           <Button
             variant="outline"
@@ -136,6 +138,7 @@ export function ProductImageCarousel({
           </Button>
           {images.map((image, i) => (
             <Button
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={i}
               variant="outline"
               size="icon"
@@ -172,7 +175,7 @@ export function ProductImageCarousel({
             <span className="sr-only">Next slide</span>
           </Button>
         </div>
-      ) : null}
+      : null}
     </div>
   );
 }

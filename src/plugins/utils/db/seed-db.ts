@@ -37,7 +37,7 @@ console.log("🚀 Starting seed...");
 
 main()
   .then(() => {
-    console.log("✅ Seed complete!");
+    console.log(" ✓ Seed complete!");
     process.exit(0);
   })
   .catch((err) => {

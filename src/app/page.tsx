@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+
 import { defaultLocale } from "~/navigation";
 
 /**
@@ -7,6 +8,5 @@ import { defaultLocale } from "~/navigation";
  * For the actual content, please visit the "app/[locale]/page.tsx" page component.
  */
 export default function RootPage() {
-  // return <>debug_mode_enabled</>;
   redirect(defaultLocale);
 }

@@ -1,22 +1,20 @@
-import { env } from "~/env.mjs";
-
 /**
  * Helper function to determine the hostname for the given environment,
  * with a focus on working with Vercel deployments. Set by Vercel automatically.
  * @returns the hostname for the given environment.
  */
 export function appHost(includeProtocol = true): string {
-  const host = env.NEXT_PUBLIC_APP_URL
-    ? env.NEXT_PUBLIC_APP_URL
-    : process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
+  const host =
+    process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000" ?
+      process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"
+    : process.env.NEXT_PUBLIC_VERCEL_URL ?
+      `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}`
     : "";
 
-  return includeProtocol
-    ? host
-    : host.replace("https://", "").replace("http://", "");
+  return includeProtocol ? host : (
+      host.replace("https://", "").replace("http://", "")
+    );
 }
 
 /**

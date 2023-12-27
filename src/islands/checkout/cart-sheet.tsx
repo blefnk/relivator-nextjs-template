@@ -1,7 +1,5 @@
-import { Link } from "~/navigation";
 import { cn, formatPrice } from "~/utils";
 
-import { getCartAction } from "~/server/actions/cart";
 import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { Icons } from "~/islands/icons";
 import { Badge } from "~/islands/primitives/badge";
@@ -15,19 +13,47 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "~/islands/primitives/sheet";
+import { Link } from "~/navigation";
+import { getCartAction } from "~/server/actions/cart";
 
 export async function CartSheet() {
+  // console.log("CartSheet's await getCartAction");
   const cartLineItems = await getCartAction();
 
-  const itemCount = cartLineItems.reduce(
-    (total, item) => total + Number(item.quantity),
-    0,
-  );
+  let itemCount = 0;
+  let cartTotal = 0;
 
-  const cartTotal = cartLineItems.reduce(
-    (total, item) => total + item.quantity * Number(item.price),
-    0,
-  );
+  try {
+    itemCount = cartLineItems.reduce(
+      (total, item) => total + (Number(item.quantity) ?? 0),
+      0,
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("❌ Error calculating item count:", error.message);
+      itemCount = 0; // Set default variable value in case of an error
+    } else {
+      // If for any reason something else was
+      // thrown that wasn't an Error, handle it
+      console.error("❌ An unexpected error occurred:", error);
+    }
+  }
+
+  try {
+    cartTotal = cartLineItems.reduce(
+      (total, item) => total + (item.quantity ?? 0) * (Number(item.price) ?? 0),
+      0,
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("❌ Error calculating cart total:", error.message);
+      cartTotal = 0; // Set default variable value in case of an error
+    } else {
+      // If for any reason something else was
+      // thrown that wasn't an Error, handle it
+      console.error("❌ An unexpected error occurred:", error);
+    }
+  }
 
   return (
     <Sheet>
@@ -36,12 +62,14 @@ export async function CartSheet() {
           aria-label="Open cart"
           variant="outline"
           size="icon"
-          className="relative"
+          className={`relative ${
+            itemCount > 0 ? "border border-primary/40" : ""
+          }`}
         >
           {itemCount > 0 && (
             <Badge
               variant="secondary"
-              className="absolute -right-2 -top-2 h-6 w-6 justify-center rounded-full p-2.5"
+              className="absolute -right-2 -top-2 h-6 w-6 justify-center rounded-full border-4 border-primary/20 p-2.5 text-sm text-primary/70"
             >
               {itemCount}
             </Badge>
@@ -54,7 +82,7 @@ export async function CartSheet() {
           <SheetTitle>Cart {itemCount > 0 && `(${itemCount})`}</SheetTitle>
           <Separator />
         </SheetHeader>
-        {itemCount > 0 ? (
+        {itemCount > 0 ?
           <>
             <CartLineItems items={cartLineItems} className="flex-1" />
             <div className="space-y-4 pr-6">
@@ -73,8 +101,9 @@ export async function CartSheet() {
                   <span>{formatPrice(cartTotal.toFixed(2))}</span>
                 </div>
               </div>
+
               <SheetFooter>
-                <SheetTrigger asChild>
+                <SheetTrigger>
                   <Link
                     aria-label="View your cart"
                     href="/cart"
@@ -89,8 +118,7 @@ export async function CartSheet() {
               </SheetFooter>
             </div>
           </>
-        ) : (
-          <div className="flex h-full flex-col items-center justify-center space-y-1">
+        : <div className="flex h-full flex-col items-center justify-center space-y-1">
             <Icons.cart
               className="mb-4 h-16 w-16 text-muted-foreground"
               aria-hidden="true"
@@ -98,7 +126,8 @@ export async function CartSheet() {
             <div className="text-xl font-medium text-muted-foreground">
               Your cart is empty
             </div>
-            <SheetTrigger asChild>
+
+            <SheetTrigger>
               <Link
                 aria-label="Add items to your cart to checkout"
                 href="/products"
@@ -114,7 +143,7 @@ export async function CartSheet() {
               </Link>
             </SheetTrigger>
           </div>
-        )}
+        }
       </SheetContent>
     </Sheet>
   );

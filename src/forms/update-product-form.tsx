@@ -4,20 +4,12 @@ import * as React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { generateReactHelpers } from "@uploadthing/react/hooks";
-import { env } from "~/env.mjs";
 import { type FileWithPreview } from "~/types";
 import { catchError, isArrayOfFile } from "~/utils";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import type { z } from "zod";
 
-import {
-  checkProductAction,
-  deleteProductAction,
-  updateProductAction,
-} from "~/server/actions/product";
-import { getSubcategories } from "~/server/config/products";
 import { products, type Product } from "~/data/db/schema";
 import { productSchema } from "~/data/validations/product";
 import { FileDialog } from "~/islands/file-dialog";
@@ -43,15 +35,24 @@ import {
 } from "~/islands/primitives/select";
 import { Textarea } from "~/islands/primitives/textarea";
 import { Zoom } from "~/islands/zoom-image";
-import { type OurFileRouter } from "~/app/api/uploadthing/core";
+import {
+  checkProductAction,
+  deleteProductAction,
+  updateProductAction,
+} from "~/server/actions/product";
+import { getSubcategories } from "~/server/config/products";
+import { useUploadThing } from "~/utils/other/uploads/uploadthing";
 
-type UpdateProductFormProps = { product: Product };
+interface UpdateProductFormProps {
+  product: Product;
+}
 
 type Inputs = z.infer<typeof productSchema>;
 
-const { useUploadThing } = generateReactHelpers<OurFileRouter>();
-
 export function UpdateProductForm({ product }: UpdateProductFormProps) {
+  // todo: fix strange product images browser console warning message:
+  // todo: "Ignoring unsupported entryTypes: largest-contentful-paint"
+
   const router = useRouter();
   const [files, setFiles] = React.useState<FileWithPreview[] | null>(null);
   const [isPending, startTransition] = React.useTransition();
@@ -73,7 +74,18 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
     }
   }, [product]);
 
-  const { isUploading, startUpload } = useUploadThing("productImage");
+  const { startUpload, isUploading } = useUploadThing("imageUploader", {
+    onUploadError: (err) => {
+      const errorMessage = `An unknown error occurred during image updating (${err.message})`;
+      console.error("❌ Image update error:", errorMessage);
+      toast.error(errorMessage);
+      throw new Error(err.message);
+    },
+    onClientUploadComplete: (res) => {
+      if (!res) return;
+      toast.success("Your images were updated successfully");
+    },
+  });
 
   const form = useForm<Inputs>({
     resolver: zodResolver(productSchema),
@@ -88,10 +100,15 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
   function onSubmit(data: Inputs) {
     startTransition(async () => {
       try {
-        await checkProductAction({
+        const checkResult = await checkProductAction({
           name: data.name,
           id: product.id,
         });
+
+        if (checkResult && checkResult.status === "error") {
+          toast.error(checkResult.message);
+          return; // Stop further execution
+        }
 
         const images = isArrayOfFile(data.images)
           ? await startUpload(data.images).then((res) => {
@@ -244,9 +261,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
                 type="number"
                 inputMode="numeric"
                 placeholder="Type product inventory here."
-                {...form.register("inventory", {
-                  valueAsNumber: true,
-                })}
+                {...form.register("inventory", { valueAsNumber: true })}
                 defaultValue={product.inventory}
               />
             </FormControl>
@@ -258,19 +273,21 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
         <FormItem className="flex w-full flex-col gap-1.5">
           <FormLabel>Images</FormLabel>
           {process.env.NODE_ENV === "development" && (
-            <span className="text-red-500 font-mono">
-              [localhost-only message]: UploadThing fully works only on live
-              domains.
+            <span className="font-mono text-red-500">
+              {/* [localhost-notice] Upload button is hidden if UploadThing env are missing. */}
+              [localhost-notice] Ensure you have UploadThing's environment
+              variables.
             </span>
           )}
           {files?.length ? (
             <div className="flex items-center gap-2">
               {files.map((file, i) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <Zoom key={i}>
                   <Image
                     src={file.preview}
                     alt={file.name}
-                    className="h-20 w-20 shrink-0 rounded-md object-cover object-center"
+                    className="h-20 w-20 shrink-0 rounded-lg object-cover object-center"
                     width={80}
                     height={80}
                   />
@@ -309,6 +326,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
             variant="destructive"
             onClick={() => {
               startTransition(async () => {
+                void form.trigger(["name", "price", "inventory"]);
                 await deleteProductAction({
                   storeId: product.storeId,
                   id: product.id,

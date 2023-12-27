@@ -23,9 +23,9 @@
       "autoprefixer",
       "cspell",
       "dotenv",
+      "flag-icons",
       "drizzle.config",
       "eslint-interactive",
-      "flag-icons",
       "international-types",
       "next-international",
       "postcss"

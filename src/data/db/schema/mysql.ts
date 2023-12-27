@@ -18,10 +18,11 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/mysql-core";
-import Stripe from "stripe";
+import type Stripe from "stripe";
 
 export const mysqlTable = mysqlTableCreator((name) => `acme_${name}`);
 
+// @see src/app/[locale]/(auth)/auth/page.tsx
 export const users = mysqlTable("user", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
   name: varchar("name", { length: 255 }),
@@ -32,8 +33,11 @@ export const users = mysqlTable("user", {
     fsp: 3,
   }).default(sql`CURRENT_TIMESTAMP(3)`),
   image: varchar("image", { length: 255 }),
+  role: mysqlEnum("role", ["admin", "user"]).notNull().default("user"),
+  mode: mysqlEnum("mode", ["seller", "buyer"]).notNull().default("buyer"),
   stripeCustomerId: text("stripeCustomerId"),
   stripePriceId: text("stripePriceId"),
+  currentCartId: varchar("currentCartId", { length: 255 }),
   stripeCurrentPeriodEnd: text("stripeCurrentPeriodEnd"),
   stripeSubscriptionId: text("stripeSubscriptionId"),
   createdAt: timestamp("createdAt").defaultNow(),
@@ -42,6 +46,7 @@ export const users = mysqlTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   usersToProducts: many(usersToProducts),
+  capabilities: many(capabilities),
   accounts: many(accounts),
   products: many(products),
   stores: many(stores),
@@ -138,12 +143,12 @@ export const todosRelations = relations(todos, ({ one }) => ({
 
 export const stores = mysqlTable("stores", {
   id: serial("id").primaryKey(),
-  userId: varchar("userId", { length: 191 }).notNull(),
-  name: varchar("name", { length: 191 }).notNull(),
+  userId: varchar("userId", { length: 255 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
   description: text("description"),
   slug: text("slug"),
   active: boolean("active").notNull().default(false),
-  stripeAccountId: varchar("stripeAccountId", { length: 191 }),
+  stripeAccountId: varchar("stripeAccountId", { length: 255 }),
   createdAt: timestamp("createdAt").defaultNow(),
 });
 
@@ -155,7 +160,8 @@ export const storesRelations = relations(stores, ({ many, one }) => ({
 
 export const products = mysqlTable("products", {
   id: serial("id").primaryKey(),
-  name: varchar("name", { length: 191 }).notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  storeId: int("storeId").notNull().default(1),
   description: text("description"),
   images: json("images").$type<StoredFile[] | null>().default(null),
   category: mysqlEnum("category", [
@@ -166,12 +172,11 @@ export const products = mysqlTable("products", {
   ])
     .notNull()
     .default("clothing"),
-  subcategory: varchar("subcategory", { length: 191 }),
+  subcategory: varchar("subcategory", { length: 255 }),
   price: decimal("price", { precision: 10, scale: 2 }).notNull().default("0"),
   inventory: int("inventory").notNull().default(0),
   rating: int("rating").notNull().default(0),
   tags: json("tags").$type<string[] | null>().default(null),
-  storeId: int("storeId").notNull(),
   createdAt: timestamp("createdAt").defaultNow(),
 });
 
@@ -182,8 +187,10 @@ export const productsRelations = relations(products, ({ one }) => ({
 
 export const carts = mysqlTable("carts", {
   id: serial("id").primaryKey(),
-  paymentIntentId: varchar("paymentIntentId", { length: 191 }),
-  clientSecret: varchar("clientSecret", { length: 191 }),
+  userId: varchar("userId", { length: 255 }),
+  email: varchar("email", { length: 255 }),
+  clientSecret: varchar("clientSecret", { length: 255 }),
+  paymentIntentId: varchar("paymentIntentId", { length: 255 }),
   items: json("items").$type<CartItem[] | null>().default(null),
   closed: boolean("closed").notNull().default(false),
   createdAt: timestamp("createdAt").defaultNow(),
@@ -191,13 +198,14 @@ export const carts = mysqlTable("carts", {
 
 export const cartsRelations = relations(carts, ({ one }) => ({
   user: one(users, { fields: [carts.id], references: [users.id] }),
+  store: one(stores, { fields: [carts.id], references: [stores.id] }),
 }));
 
-export const emailPreferences = mysqlTable("emails", {
+export const emails = mysqlTable("emails", {
   id: serial("id").primaryKey(),
-  userId: varchar("userId", { length: 191 }),
-  email: varchar("email", { length: 191 }).notNull(),
-  token: varchar("token", { length: 191 }).notNull(),
+  userId: varchar("userId", { length: 255 }),
+  email: varchar("email", { length: 255 }).notNull(),
+  token: varchar("token", { length: 255 }).notNull(),
   newsletter: boolean("newsletter").notNull().default(false),
   marketing: boolean("marketing").notNull().default(false),
   transactional: boolean("transactional").notNull().default(false),
@@ -207,7 +215,7 @@ export const emailPreferences = mysqlTable("emails", {
 export const payments = mysqlTable("payments", {
   id: serial("id").primaryKey(),
   storeId: int("storeId").notNull(),
-  stripeAccountId: varchar("stripeAccountId", { length: 191 }).notNull(),
+  stripeAccountId: varchar("stripeAccountId", { length: 255 }).notNull(),
   stripeAccountCreatedAt: int("stripeAccountCreatedAt"),
   stripeAccountExpiresAt: int("stripeAccountExpiresAt"),
   detailsSubmitted: boolean("detailsSubmitted").notNull().default(false),
@@ -225,25 +233,25 @@ export const orders = mysqlTable("orders", {
   quantity: int("quantity"),
   amount: decimal("amount", { precision: 10, scale: 2 }).notNull().default("0"),
   stripePaymentIntentId: varchar("stripePaymentIntentId", {
-    length: 191,
+    length: 255,
   }).notNull(),
   stripePaymentIntentStatus: varchar("stripePaymentIntentStatus", {
-    length: 191,
+    length: 255,
   }).notNull(),
-  name: varchar("name", { length: 191 }),
-  email: varchar("email", { length: 191 }),
+  name: varchar("name", { length: 255 }),
+  email: varchar("email", { length: 255 }),
   addressId: int("addressId"),
   createdAt: timestamp("createdAt").defaultNow(),
 });
 
 export const addresses = mysqlTable("addresses", {
   id: serial("id").primaryKey(),
-  line1: varchar("line1", { length: 191 }),
-  line2: varchar("line2", { length: 191 }),
-  city: varchar("city", { length: 191 }),
-  state: varchar("state", { length: 191 }),
-  postalCode: varchar("postalCode", { length: 191 }),
-  country: varchar("country", { length: 191 }),
+  line1: varchar("line1", { length: 255 }),
+  line2: varchar("line2", { length: 255 }),
+  city: varchar("city", { length: 255 }),
+  state: varchar("state", { length: 255 }),
+  postalCode: varchar("postalCode", { length: 255 }),
+  country: varchar("country", { length: 255 }),
   createdAt: timestamp("createdAt").defaultNow(),
 });
 
@@ -271,3 +279,33 @@ export const usersToProductsRelations = relations(
     }),
   }),
 );
+
+export const guests = mysqlTable("guest", {
+  id: varchar("id", { length: 255 }).notNull().primaryKey(),
+  email: varchar("email", { length: 255 }),
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+});
+
+export const guestsRelations = relations(users, ({ many }) => ({
+  usersToProducts: many(usersToProducts),
+  products: many(products),
+  todos: many(todos),
+  carts: many(carts),
+}));
+
+export const capabilities = mysqlTable("capabilities", {
+  id: serial("id").primaryKey(),
+  userId: varchar("userId", { length: 255 }).notNull(),
+  promoteUsers: boolean("promote_users").notNull().default(false),
+  removeUsers: boolean("remove_users").notNull().default(false),
+  createdAt: timestamp("createdAt").defaultNow(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
+});
+
+export const capabilitiesRelations = relations(capabilities, ({ one }) => ({
+  user: one(users, {
+    fields: [capabilities.userId],
+    references: [users.id],
+  }),
+}));

@@ -1,10 +1,10 @@
-import { type Metadata } from "next";
-import { cookies } from "next/headers";
-import { env } from "~/env.mjs";
-import { Link } from "~/navigation";
+import type { Metadata } from "next";
 import { cn } from "~/utils";
+import { and, eq } from "drizzle-orm";
 
-import { getUniqueStoreIds } from "~/server/actions/cart";
+import { db } from "~/data/db";
+import { products } from "~/data/db/schema";
+import { env } from "~/env.mjs";
 import { Icons } from "~/islands/icons";
 import { CheckoutCard } from "~/islands/modules/cards/checkout-card";
 import {
@@ -14,21 +14,25 @@ import {
 } from "~/islands/navigation/page-header";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { Link } from "~/navigation";
+import { getUniqueStoreIds } from "~/server/actions/cart";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
-  title: "Cart",
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   description: "Checkout with your cart items",
+  title: "Cart",
 };
 
 export default async function CartPage() {
-  const uniqueStoreIds = (await getUniqueStoreIds()) as number[];
+  // console.log("⏳ awaiting getUniqueStoreIds for uniqueStoreIds...");
+  const uniqueStoreIds = await getUniqueStoreIds();
+  // console.log("...uniqueStoreIds:", uniqueStoreIds);
 
   return (
     <Shell>
       <PageHeader
-        id="cart-page-header"
         aria-labelledby="cart-page-header-heading"
+        id="cart-page-header"
       >
         <PageHeaderHeading size="sm">Checkout</PageHeaderHeading>
         <PageHeaderDescription size="sm">
@@ -36,15 +40,14 @@ export default async function CartPage() {
         </PageHeaderDescription>
       </PageHeader>
 
-      {uniqueStoreIds.length > 0 ? (
+      {uniqueStoreIds.length > 0 ?
         uniqueStoreIds.map((storeId) => (
-          <CheckoutCard key={storeId} storeId={storeId} />
+          <CheckoutCard storeId={storeId} key={storeId} />
         ))
-      ) : (
-        <section
-          id="cart-page-empty-cart"
-          aria-labelledby="cart-page-empty-cart-heading"
+      : <section
           className="flex h-full flex-col items-center justify-center space-y-1 pt-16"
+          aria-labelledby="cart-page-empty-cart-heading"
+          id="cart-page-empty-cart"
         >
           <Icons.cart
             className="mb-4 h-16 w-16 text-muted-foreground"
@@ -54,20 +57,20 @@ export default async function CartPage() {
             Your cart is empty
           </div>
           <Link
-            aria-label="Add items to your cart to checkout"
-            href="/products"
             className={cn(
               buttonVariants({
+                className: "text-sm text-muted-foreground",
                 variant: "link",
                 size: "sm",
-                className: "text-sm text-muted-foreground",
               }),
             )}
+            aria-label="Add items to your cart to checkout"
+            href="/products"
           >
             Add items to your cart to checkout
           </Link>
         </section>
-      )}
+      }
     </Shell>
   );
 }

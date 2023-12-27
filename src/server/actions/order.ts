@@ -1,12 +1,11 @@
 "use server";
 
-import { cookies } from "next/headers";
-import { type CheckoutItem } from "~/types";
-import type { CartLineItem } from "~/types";
+import type { CartLineItem, CheckoutItem } from "~/types";
 import { desc, eq, inArray } from "drizzle-orm";
 import type Stripe from "stripe";
 import { z } from "zod";
 
+import { stripe } from "~/core/stripe/connect";
 import { db } from "~/data/db";
 import {
   addresses,
@@ -22,7 +21,9 @@ import type {
   getOrderedProductsSchema,
   getOrderLineItemsSchema,
 } from "~/data/validations/order";
-import { stripe } from "~/utils/stripe/connect";
+import { env } from "~/env.mjs";
+
+import { getCartId } from "../cart";
 
 export async function getOrderLineItemsAction(
   input: z.infer<typeof getOrderLineItemsSchema> & {
@@ -72,10 +73,14 @@ export async function getOrderLineItemsAction(
         });
       });
 
-    // Temporary workaround for payment_intent.succeeded webhook event not firing in production
+    // Temporary workaround for payment_intent.succeeded
+    // webhook event not firing in production mode
     // TODO: Remove this once the webhook is working
     if (input.paymentIntent?.status === "succeeded") {
-      const cartId = Number(cookies().get("cartId")?.value);
+      // console.log("⏳ awaiting getCartId for input.paymentIntent?.status...");
+      const cartId = await getCartId();
+      // console.log("get order's `cartId`:", cartId);
+      if (!cartId) return lineItems;
 
       const cart = await db.query.carts.findFirst({
         columns: {
@@ -83,16 +88,11 @@ export async function getOrderLineItemsAction(
           paymentIntentId: true,
           clientSecret: true,
         },
-        where: eq(carts.id, cartId),
+        where: eq(carts.id, Number(cartId)),
       });
 
-      if (!cart || cart.closed) {
-        return lineItems;
-      }
-
-      if (!cart.clientSecret || !cart.paymentIntentId) {
-        return lineItems;
-      }
+      if (!cart || cart.closed) return lineItems;
+      if (!cart.clientSecret || !cart.paymentIntentId) return lineItems;
 
       const payment = await db.query.payments.findFirst({
         columns: {
@@ -102,12 +102,10 @@ export async function getOrderLineItemsAction(
         where: eq(payments.storeId, input.storeId),
       });
 
-      if (!payment?.stripeAccountId) {
-        return lineItems;
-      }
+      if (!payment?.stripeAccountId) return lineItems;
 
       // Create new address in DB
-      const stripeAddress = input.paymentIntent.shipping?.address;
+      /* const stripeAddress = input.paymentIntent.shipping?.address;
 
       const newAddress = await db.insert(addresses).values({
         line1: stripeAddress?.line1,
@@ -118,7 +116,7 @@ export async function getOrderLineItemsAction(
         postalCode: stripeAddress?.postal_code,
       });
 
-      if (!newAddress.insertId) throw new Error("No address created.");
+      if (!newAddress.insertId) throw new Error("No address created."); */
 
       // Create new order in db
       await db.insert(orders).values({
@@ -133,7 +131,7 @@ export async function getOrderLineItemsAction(
         stripePaymentIntentStatus: input.paymentIntent.status,
         name: input.paymentIntent.shipping?.name,
         email: input.paymentIntent.receipt_email,
-        addressId: Number(newAddress.insertId),
+        // addressId: Number(newAddress.insertId),
       });
 
       // Update product inventory in db

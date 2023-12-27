@@ -1,5 +1,5 @@
-import { type NextResponse } from "next/server";
-import { NextRouteContext, NextRouteHandler, type ApiResponse } from "~/types";
+import type { NextResponse } from "next/server";
+import type { ApiResponse, NextRouteContext, NextRouteHandler } from "~/types";
 
 import { logger } from "~/server/logger";
 
@@ -25,7 +25,7 @@ import { buildErrorResponse } from "./errors/error-response";
  *      return NextResponse.json({ name: request.query.name })
  *   })
  *
- * @param handler the api handler
+ * @param routeHandler the api handler
  * @returns a wrapped api handler
  */
 export const handler = <T = void, U = NextRouteContext>(

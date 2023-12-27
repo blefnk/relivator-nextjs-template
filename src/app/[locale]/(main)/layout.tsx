@@ -1,11 +1,11 @@
 import { SiteFooter } from "~/islands/navigation/site-footer";
 import { SiteHeader } from "~/islands/navigation/site-header";
 
-interface MainLayoutProps {
+interface MainLayoutProperties {
   children: React.ReactNode;
 }
 
-export default async function MainLayout({ children }: MainLayoutProps) {
+export default async function MainLayout({ children }: MainLayoutProperties) {
   return (
     <>
       <SiteHeader />

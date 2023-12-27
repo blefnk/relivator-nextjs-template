@@ -1,8 +1,8 @@
-import { Link } from "~/navigation";
 import { cn, truncate } from "~/utils";
 
 import { Icons } from "~/islands/icons";
 import { buttonVariants } from "~/islands/primitives/button";
+import { Link } from "~/navigation";
 
 type MdxPagerItem = {
   title: string;
@@ -31,7 +31,7 @@ export function MdxPager({
       className={cn("flex items-center justify-between", className)}
       {...props}
     >
-      {pager?.prev ? (
+      {pager?.prev ?
         <Link
           aria-label="Previous post"
           href={pager.prev.slug}
@@ -40,8 +40,8 @@ export function MdxPager({
           <Icons.chevronLeft className="mr-2 h-4 w-4" aria-hidden="true" />
           {truncate(pager.prev.title, 20)}
         </Link>
-      ) : null}
-      {pager?.next ? (
+      : null}
+      {pager?.next ?
         <Link
           aria-label="Next post"
           href={pager.next.slug}
@@ -50,7 +50,7 @@ export function MdxPager({
           {truncate(pager.next.title, 20)}
           <Icons.chevronRight className="ml-2 h-4 w-4" aria-hidden="true" />
         </Link>
-      ) : null}
+      : null}
     </div>
   );
 }
@@ -62,9 +62,9 @@ export function getPager(currentItem: MdxPagerItem, allItems: MdxPagerItem[]) {
   );
   const prev = activeIndex !== 0 ? flattenedLinks[activeIndex - 1] : null;
   const next =
-    activeIndex !== flattenedLinks.length - 1
-      ? flattenedLinks[activeIndex + 1]
-      : null;
+    activeIndex !== flattenedLinks.length - 1 ?
+      flattenedLinks[activeIndex + 1]
+    : null;
   return {
     prev,
     next,

@@ -1,11 +1,12 @@
 import type { PlaywrightTestConfig } from "@playwright/test";
 import { devices } from "@playwright/test";
 
-// Use a distinct port on CI to avoid conflicts during concurrent tests
+// use a distinct port on CI to avoid
+// conflicts during concurrent tests
 const PORT = process.env.CI ? 3002 : 3000;
 
 const config: PlaywrightTestConfig = {
-  testDir: "./src/plugins/tests",
+  testDir: "./src/tests/pw",
   projects: [
     {
       name: "chromium",
@@ -14,8 +15,8 @@ const config: PlaywrightTestConfig = {
   ],
   webServer: {
     command: `PORT=${PORT} pnpm start`,
-    port: PORT,
     reuseExistingServer: true,
+    port: PORT,
   },
 };
 

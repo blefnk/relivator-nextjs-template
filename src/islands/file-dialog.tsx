@@ -1,5 +1,5 @@
 import * as React from "react";
-import { type FileWithPreview } from "~/types";
+import type { FileWithPreview } from "~/types";
 import Cropper, { type ReactCropperElement } from "react-cropper";
 import {
   useDropzone,
@@ -19,6 +19,13 @@ import { toast } from "react-hot-toast";
 import "cropperjs/dist/cropper.css";
 
 import Image from "next/image";
+import {
+  CropIcon,
+  Cross2Icon,
+  ResetIcon,
+  TrashIcon,
+  UploadIcon,
+} from "@radix-ui/react-icons";
 import { cn, formatBytes } from "~/utils";
 
 import { Icons } from "~/islands/icons";
@@ -29,10 +36,10 @@ import {
   DialogTrigger,
 } from "~/islands/primitives/dialog";
 
-type FileDialogProps<
+interface FileDialogProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
-> = React.HTMLAttributes<HTMLDivElement> & {
+> extends React.HTMLAttributes<HTMLDivElement> {
   name: TName;
   setValue: UseFormSetValue<TFieldValues>;
   accept?: Accept;
@@ -42,15 +49,16 @@ type FileDialogProps<
   setFiles: React.Dispatch<React.SetStateAction<FileWithPreview[] | null>>;
   isUploading?: boolean;
   disabled?: boolean;
-};
+}
 
 export function FileDialog<TFieldValues extends FieldValues>({
   name,
   setValue,
   accept = {
-    "image/*": [],
-  },
-  maxSize = 1024 * 1024 * 2,
+    "image/png": [],
+    "image/jpeg": [],
+  }, // todo: parse api/uploadthing/core.ts instead
+  maxSize = 1024 * 1024 * 2, // todo: this as well
   maxFiles = 1,
   files,
   setFiles,
@@ -61,6 +69,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
 }: FileDialogProps<TFieldValues>) {
   const onDrop = React.useCallback(
     (acceptedFiles: FileWithPath[], rejectedFiles: FileRejection[]) => {
+      // biome-ignore lint/complexity/noForEach: <explanation>
       acceptedFiles.forEach((file) => {
         const fileWithPreview = Object.assign(file, {
           preview: URL.createObjectURL(file),
@@ -69,6 +78,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
       });
 
       if (rejectedFiles.length > 0) {
+        // biome-ignore lint/complexity/noForEach: <explanation>
         rejectedFiles.forEach(({ errors }) => {
           if (errors[0]?.code === "file-too-large") {
             toast.error(
@@ -87,15 +97,17 @@ export function FileDialog<TFieldValues extends FieldValues>({
   // Register files to react-hook-form
   React.useEffect(() => {
     setValue(name, files as PathValue<TFieldValues, Path<TFieldValues>>);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [files]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    //    ^?
     onDrop,
     accept,
     maxSize,
+    // ^? <== "Twoslash Query" VSCode Extension
     maxFiles,
     multiple: maxFiles > 1,
+    //        ^?
     disabled,
   });
 
@@ -103,9 +115,9 @@ export function FileDialog<TFieldValues extends FieldValues>({
   React.useEffect(() => {
     return () => {
       if (!files) return;
+      // biome-ignore lint/complexity/noForEach: <explanation>
       files.forEach((file) => URL.revokeObjectURL(file.preview));
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -132,24 +144,23 @@ export function FileDialog<TFieldValues extends FieldValues>({
           {...props}
         >
           <input {...getInputProps()} />
-          {isUploading ? (
+          {isUploading ?
             <div className="group grid w-full place-items-center gap-1 sm:px-10">
-              <Icons.upload
+              <UploadIcon
                 className="h-9 w-9 animate-pulse text-muted-foreground"
                 aria-hidden="true"
               />
             </div>
-          ) : isDragActive ? (
+          : isDragActive ?
             <div className="grid place-items-center gap-2 text-muted-foreground sm:px-5">
-              <Icons.upload
+              <UploadIcon
                 className={cn("h-8 w-8", isDragActive && "animate-bounce")}
                 aria-hidden="true"
               />
               <p className="text-base font-medium">Drop the file here</p>
             </div>
-          ) : (
-            <div className="grid place-items-center gap-1 sm:px-5">
-              <Icons.upload
+          : <div className="grid place-items-center gap-1 sm:px-5">
+              <UploadIcon
                 className="h-8 w-8 text-muted-foreground"
                 aria-hidden="true"
               />
@@ -160,15 +171,16 @@ export function FileDialog<TFieldValues extends FieldValues>({
                 Please upload file with size less than {formatBytes(maxSize)}
               </p>
             </div>
-          )}
+          }
         </div>
         <p className="text-center text-sm font-medium text-muted-foreground">
           You can upload up to {maxFiles} {maxFiles === 1 ? "file" : "files"}
         </p>
-        {files?.length ? (
+        {files?.length ?
           <div className="grid gap-5">
             {files?.map((file, i) => (
               <FileCard
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 key={i}
                 i={i}
                 files={files}
@@ -177,8 +189,8 @@ export function FileDialog<TFieldValues extends FieldValues>({
               />
             ))}
           </div>
-        ) : null}
-        {files?.length ? (
+        : null}
+        {files?.length ?
           <Button
             type="button"
             variant="outline"
@@ -186,22 +198,22 @@ export function FileDialog<TFieldValues extends FieldValues>({
             className="mt-2.5 w-full"
             onClick={() => setFiles(null)}
           >
-            <Icons.trash className="mr-2 h-4 w-4" aria-hidden="true" />
+            <TrashIcon className="mr-2 h-4 w-4" aria-hidden="true" />
             Remove All
             <span className="sr-only">Remove all</span>
           </Button>
-        ) : null}
+        : null}
       </DialogContent>
     </Dialog>
   );
 }
 
-type FileCardProps = {
+interface FileCardProps {
   i: number;
   file: FileWithPreview;
   files: FileWithPreview[] | null;
   setFiles: React.Dispatch<React.SetStateAction<FileWithPreview[] | null>>;
-};
+}
 
 function FileCard({ i, file, files, setFiles }: FileCardProps) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -251,9 +263,9 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
     <div className="relative flex items-center justify-between gap-2.5">
       <div className="flex items-center gap-2">
         <Image
-          src={cropData ? cropData : file.preview}
+          src={cropData || file.preview}
           alt={file.name}
-          className="h-10 w-10 shrink-0 rounded-md"
+          className="h-10 w-10 shrink-0 rounded-lg"
           width={40}
           height={40}
           loading="lazy"
@@ -277,7 +289,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
                 size="icon"
                 className="h-7 w-7"
               >
-                <Icons.crop className="h-4 w-4 text-white" aria-hidden="true" />
+                <CropIcon className="h-4 w-4 text-white" aria-hidden="true" />
                 <span className="sr-only">Crop image</span>
               </Button>
             </DialogTrigger>
@@ -290,6 +302,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
                   ref={cropperRef}
                   className="h-[450px] w-[450px] object-cover"
                   zoomTo={0.5}
+                  // eslint-disable-next-line sonarjs/no-identical-expressions
                   initialAspectRatio={1 / 1}
                   preview=".img-preview"
                   src={file.preview}
@@ -313,11 +326,8 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
                       setIsOpen(false);
                     }}
                   >
-                    <Icons.crop
-                      className="mr-2 h-3.5 w-3.5"
-                      aria-hidden="true"
-                    />
-                    Crop Image
+                    <CropIcon className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
+                    Crop image
                   </Button>
                   <Button
                     aria-label="Reset crop"
@@ -330,11 +340,11 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
                       setCropData(null);
                     }}
                   >
-                    <Icons.reset
+                    <ResetIcon
                       className="mr-2 h-3.5 w-3.5"
                       aria-hidden="true"
                     />
-                    Reset Crop
+                    Reset crop
                   </Button>
                 </div>
               </div>
@@ -351,7 +361,7 @@ function FileCard({ i, file, files, setFiles }: FileCardProps) {
             setFiles(files.filter((_, j) => j !== i));
           }}
         >
-          <Icons.close className="h-4 w-4 text-white" aria-hidden="true" />
+          <Cross2Icon className="h-4 w-4 text-white" aria-hidden="true" />
           <span className="sr-only">Remove file</span>
         </Button>
       </div>

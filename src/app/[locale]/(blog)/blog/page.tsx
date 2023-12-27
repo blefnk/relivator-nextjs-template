@@ -1,4 +1,9 @@
 import { type Metadata } from "next";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
 import { fullURL } from "~/data/meta/builder";
 import {
@@ -6,6 +11,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/islands/navigation/page-header";
+import { Button } from "~/islands/primitives/button";
 import { Separator } from "~/islands/primitives/separator";
 import { Shell } from "~/islands/wrappers/shell-variants";
 
@@ -29,7 +35,9 @@ export default function BlogPage() {
         id="blog-posts"
         aria-labelledby="blog-posts-heading"
         className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-      ></section>
+      >
+        Blog still in development. Please check back later.
+      </section>
     </Shell>
   );
 }

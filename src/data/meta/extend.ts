@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { LocaleLayoutParams } from "~/types";
+import type { LocaleLayoutParams } from "~/types";
 import merge from "ts-deepmerge";
 
 import { DEFAULT_METADATA } from "./default";

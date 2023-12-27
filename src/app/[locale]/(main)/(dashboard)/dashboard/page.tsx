@@ -1,5 +1,5 @@
 import { redirect } from "~/navigation";
 
 export default function DashboardPage() {
-  return redirect("/dashboard/stores");
+  return redirect("/dashboard/billing");
 }

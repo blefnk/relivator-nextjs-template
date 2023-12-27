@@ -21,6 +21,7 @@ export const productSchema = z.object({
     .unknown()
     .refine((val) => {
       if (!Array.isArray(val)) return false;
+      // eslint-disable-next-line sonarjs/prefer-single-boolean-return
       if (val.some((file) => !(file instanceof File))) return false;
       return true;
     }, "Must be an array of File")
@@ -38,32 +39,16 @@ export const getProductSchema = z.object({
   storeId: z.number(),
 });
 
+export const getProductInventorySchema = z.object({
+  id: z.number(),
+});
+
 export const getProductsSchema = z.object({
   limit: z.number().default(10),
   offset: z.number().default(0),
-  categories: z
-    .string()
-    .regex(/^\d+.\d+$/)
-    .optional()
-    .nullable(),
-  subcategories: z
-    .string()
-    .regex(/^\d+.\d+$/)
-    .optional()
-    .nullable(),
-  sort: z
-    .string()
-    .regex(/^\w+.(asc|desc)$/)
-    .optional()
-    .nullable(),
-  price_range: z
-    .string()
-    .regex(/^\d+-\d+$/)
-    .optional()
-    .nullable(),
-  store_ids: z
-    .string()
-    .regex(/^\d+.\d+$/)
-    .optional()
-    .nullable(),
+  categories: z.string().optional().nullable(),
+  subcategories: z.string().optional().nullable(),
+  sort: z.string().optional().nullable(),
+  price_range: z.string().optional().nullable(),
+  store_ids: z.string().optional().nullable(),
 });

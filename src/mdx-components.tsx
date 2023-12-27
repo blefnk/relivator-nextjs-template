@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 /**
  * This file allows you to provide custom React components
  * to be used in MDX files. You can import and use any React
@@ -5,9 +6,10 @@
  * @see https://nextjs.org/docs/app/building-your-application/configuring/mdx
  */
 
+import React from "react";
 import Image from "next/image";
 import { cn } from "~/utils";
-import { type MDXComponents } from "mdx/types";
+import type { MDXComponents } from "mdx/types";
 
 import { MdxCard } from "~/islands/modules/cards/mdx-card";
 import { Callout } from "~/islands/modules/markdown/callout";
@@ -114,8 +116,9 @@ const components = {
     alt,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    // biome-ignore lint/a11y/useAltText: <explanation>
     // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn("rounded-md", className)} alt={alt} {...props} />
+    <img className={cn("rounded-lg", className)} alt={alt} {...props} />
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className="my-4 md:my-8" {...props} />
@@ -183,11 +186,12 @@ interface MdxProps {
 }
 
 export function Mdx({ code }: MdxProps) {
-  // @ts-expect-error
-  const Component = useMDXComponent(code);
+  // @ts-expect-error ...
+  const Component = useMDXComponents(code);
 
   return (
     <div className="mdx">
+      {/* @ts-expect-error ... */}
       <Component components={components} />
     </div>
   );

@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "~/islands/primitives/card";
-import { getServerAuthSession } from "~/utils/users";
+import { getServerAuthSession } from "~/utils/auth/users";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
@@ -18,13 +18,15 @@ export const metadata: Metadata = {
   description: "Add a new product",
 };
 
-type NewProductPageProps = {
+type NewProductPageProperties = {
   params: {
     storeId: string;
   };
 };
 
-export default async function NewProductPage({ params }: NewProductPageProps) {
+export default async function NewProductPage({
+  params,
+}: NewProductPageProperties) {
   const user = await getServerAuthSession();
   if (!user) redirect("/auth");
 

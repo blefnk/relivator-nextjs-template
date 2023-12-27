@@ -1,15 +1,17 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { siteConfig } from "~/app";
-import { env } from "~/env.mjs";
-import { Link } from "~/navigation";
 import { cn, formatPrice } from "~/utils";
 import { eq } from "drizzle-orm";
 
-import { getCartAction } from "~/server/actions/cart";
+import { siteConfig } from "~/app";
+import {
+  createPaymentIntentAction,
+  getStripeAccountAction,
+} from "~/core/stripe/actions";
 import { db } from "~/data/db";
 import { stores } from "~/data/db/schema";
+import { env } from "~/env.mjs";
 import { CheckoutForm } from "~/forms/checkout-form";
 import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { CheckoutShell } from "~/islands/checkout/checkout-shell";
@@ -21,26 +23,23 @@ import {
 } from "~/islands/primitives/drawer";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
 import { Shell } from "~/islands/wrappers/shell-variants";
-import {
-  createPaymentIntentAction,
-  getStripeAccountAction,
-} from "~/utils/stripe/actions";
+import { Link } from "~/navigation";
+import { getCartAction } from "~/server/actions/cart";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   title: "Checkout",
   description: "Checkout with store items",
 };
 
-interface CheckoutPageProps {
+interface CheckoutPageProperties {
   params: {
     storeId: string;
   };
 }
 
-export default async function CheckoutPage({ params }: CheckoutPageProps) {
+export default async function CheckoutPage({ params }: CheckoutPageProperties) {
   const appName = siteConfig.name;
-  const appUrl = siteConfig.url.base ?? "";
 
   const storeId = Number(params.storeId);
 
@@ -63,6 +62,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
     storeId,
   });
 
+  // console.log("CheckoutPage's await getCartAction");
   const cartLineItems = await getCartAction(storeId);
 
   const paymentIntent = createPaymentIntentAction({
@@ -70,10 +70,45 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
     items: cartLineItems,
   });
 
-  const total = cartLineItems.reduce(
-    (total, item) => total + item.quantity * Number(item.price),
-    0,
-  );
+  let total = 0;
+  let totalQuantity = 0;
+
+  // Calculation of total price
+  try {
+    total = cartLineItems.reduce(
+      (total, item) => total + (item.quantity ?? 0) * Number(item.price ?? 0),
+      0,
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("❌ Error calculating total:", error.message);
+      total = 0; // Set default variable value in case of an error
+    } else {
+      // If for any reason something else was
+      // thrown that wasn't an Error, handle it
+      console.error("❌ An unexpected error occurred:", error);
+    }
+  }
+
+  // Component for displaying total quantity
+  const TotalQuantity = () => {
+    try {
+      totalQuantity = cartLineItems.reduce(
+        (acc, item) => acc + (item.quantity ?? 0),
+        0,
+      );
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error("❌ Error in totalQuantity:", error.message);
+        totalQuantity = 0; // Set default value in case of an error
+      } else {
+        // If for any reason something else was
+        // thrown that wasn't an Error, handle it
+        console.error("❌ An unexpected error occurred:", error);
+      }
+    }
+    return <div className="flex-1">Total ({totalQuantity})</div>;
+  };
 
   if (!(isConnected && store.stripeAccountId)) {
     return (
@@ -108,7 +143,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
 
   return (
     <section className="relative flex h-full min-h-[100dvh] flex-col items-start justify-center lg:h-[100dvh] lg:flex-row lg:overflow-hidden">
-      <div className="w-full space-y-12 -mt-4 lg:mt-0 pb-8 lg:pt-16 lg:pb-0">
+      <div className="-mt-4 w-full space-y-12 pb-8 lg:mt-0 lg:pb-0 lg:pt-16">
         <div className="fixed top-0 z-40 h-16 w-full bg-[#09090b] py-4 lg:static lg:top-auto lg:z-0 lg:h-0 lg:py-0">
           <div className="container flex max-w-xl items-center justify-between space-x-2 lg:ml-auto lg:mr-0 lg:pr-[4.5rem]">
             <Link
@@ -141,14 +176,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
                   className="container max-w-6xl"
                 />
                 <div className="container flex max-w-6xl pr-6 font-medium">
-                  <div className="flex-1">
-                    Total (
-                    {cartLineItems.reduce(
-                      (acc, item) => acc + item.quantity,
-                      0,
-                    )}
-                    )
-                  </div>
+                  <TotalQuantity />
                   <div>{formatPrice(total)}</div>
                 </div>
               </DrawerContent>
@@ -156,7 +184,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
           </div>
         </div>
         <div className="container flex max-w-xl flex-col items-center space-y-1 lg:ml-auto lg:mr-0 lg:items-start lg:pr-[4.5rem]">
-          <div className="text-sm font-semibold mb-4">
+          <div className="mb-4 text-sm font-semibold">
             {env.DEV_DEMO_NOTES === "true" &&
               "Test data can be used: 4242424242424242 | 12/34 | 567"}
           </div>

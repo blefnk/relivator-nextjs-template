@@ -1,29 +1,30 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import appts from "~/app";
-import { env } from "~/env.mjs";
-import { UserSubscriptionPlan, type SubscriptionPlanTypes } from "~/types";
+import type { SubscriptionPlanTypes, UserSubscriptionPlan } from "~/types";
 import { absoluteUrl } from "~/utils";
 import dayjs from "dayjs";
 import Stripe from "stripe";
 
-import { storeSubscriptionPlans } from "~/server/config/subscriptions";
-import { userPrivateMetadataSchema } from "~/data/validations/auth";
-import { stripe } from "~/utils/stripe/connect";
-import { getOrCreateCustomerId } from "~/utils/stripe/stripe";
+import appts from "~/app";
+import { stripe } from "~/core/stripe/connect";
+import { getOrCreateCustomerId } from "~/core/stripe/stripe";
 import {
   findAccount,
   findUserById,
   getUserAccounts,
-} from "~/utils/trpc/others/handlers/users";
+} from "~/core/trpc/routers/auth3";
+import { userPrivateMetadataSchema } from "~/data/validations/auth";
+import { env } from "~/env.mjs";
+import { storeSubscriptionPlans } from "~/server/config/subscriptions";
 import {
   getCurrentUser,
   getServerAuthSession,
   getUserById,
-} from "~/utils/users";
+} from "~/utils/auth/users";
 
 export const PROFESSIONAL = env.STRIPE_PROFESSIONAL_SUBSCRIPTION_PRICE_ID ?? "";
-export const ENTERPRISE = env.STRIPE_ENTERPRISE_SUBSCRIPTION_PRICE_ID ?? "";
+export const ENTERPRISE =
+  env.STRIPE_ENTERPRISE_SUBSCRIPTION_PRICE_ID ?? PROFESSIONAL ?? "";
 
 // export async function getUserSubscriptionPlan(): Promise<UserSubscriptionPlan | null> {
 export async function getUserSubscriptionPlan() {
@@ -61,7 +62,7 @@ export async function getUserSubscriptionPlan() {
 
 export function getPlanFeatures(planId?: SubscriptionPlanTypes["id"]) {
   const plan = storeSubscriptionPlans.find((plan) => plan.id === planId);
-  const features = plan?.features.map((feature) => feature.split(",")).flat();
+  const features = plan?.features.flatMap((feature) => feature.split(","));
 
   const maxStoreCount =
     features?.find((feature) => feature.match(/store/i))?.match(/\d+/) ?? 0;
@@ -90,7 +91,7 @@ export function getDashboardRedirectPath(input: {
   const isActive = subscriptionPlan?.isActive ?? false;
   const hasEnoughStores = storeCount >= minStoresWithProductCount;
 
-  return isActive && hasEnoughStores
-    ? "/dashboard/billing"
-    : "/dashboard/stores/new";
+  return isActive && hasEnoughStores ? "/dashboard/billing" : (
+      "/dashboard/stores/new"
+    );
 }

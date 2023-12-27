@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { productCategories } from "~/server/config/products";
 import { Badge } from "~/islands/primitives/badge";
+import { productCategories } from "~/server/config/products";
 
 export function ProductSubcategories() {
   return (

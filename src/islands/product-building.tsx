@@ -2,13 +2,11 @@
 
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { type CartItem } from "~/types";
+import type { CartItem } from "~/types";
 import { cn } from "~/utils";
 import { toast } from "react-hot-toast";
 
-import { addToCartAction, deleteCartItemAction } from "~/server/actions/cart";
-import { sortOptions } from "~/server/config/products";
-import { type Product } from "~/data/db/schema";
+import type { Product } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { Icons } from "~/islands/icons";
 import { ProductCard } from "~/islands/modules/cards/product-card";
@@ -33,15 +31,19 @@ import {
   SheetTrigger,
 } from "~/islands/primitives/sheet";
 import { Slider } from "~/islands/primitives/slider";
+import { addToCartAction, deleteCartItemAction } from "~/server/actions/cart";
+import { sortOptions } from "~/server/config/products";
 
 interface ProductBuilderProps extends React.HTMLAttributes<HTMLDivElement> {
   products: Product[];
   pageCount: number;
   subcategory: string | null;
   cartItems: CartItem[];
+  tAddToCart: string;
 }
 
 export function ProductBuilder({
+  tAddToCart = "Add to cart",
   products,
   pageCount,
   subcategory,
@@ -91,10 +93,8 @@ export function ProductBuilder({
         })}`,
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedPrice]);
 
-  // Add to cart
   const addToCart = React.useCallback(
     async (product: Product) => {
       try {
@@ -110,9 +110,11 @@ export function ProductBuilder({
             });
           }
 
+          // console.log("ProductBuilder's await addToCartAction");
           await addToCartAction({
             productId: product.id,
             quantity: 1,
+            storeId: Number(product.storeId),
             subcategory: product.subcategory ?? subcategory,
           });
 
@@ -125,9 +127,9 @@ export function ProductBuilder({
         });
         toast.success("Removed from cart.");
       } catch (error) {
-        error instanceof Error
-          ? toast.error(error.message)
-          : toast.error("Something went wrong, please try again.");
+        error instanceof Error ?
+          toast.error(error.message)
+        : toast.error("Something went wrong, please try again.");
       }
     },
     [subcategory, cartItems],
@@ -138,7 +140,7 @@ export function ProductBuilder({
       <div className="flex items-center space-x-2">
         <Sheet>
           <SheetTrigger asChild>
-            <Button aria-label="Filter products" size="sm" disabled={isPending}>
+            <Button aria-label="Filter products" disabled={isPending} size="sm">
               Filter
             </Button>
           </SheetTrigger>
@@ -153,41 +155,41 @@ export function ProductBuilder({
                   Price range ($)
                 </h3>
                 <Slider
-                  variant="range"
-                  thickness="thin"
                   defaultValue={[0, 500]}
                   max={500}
-                  step={1}
-                  value={priceRange}
                   onValueChange={(value: typeof priceRange) => {
                     setPriceRange(value);
                   }}
+                  step={1}
+                  thickness="thin"
+                  value={priceRange}
+                  variant="range"
                 />
                 <div className="flex items-center space-x-4">
                   <Input
-                    type="number"
-                    inputMode="numeric"
-                    min={0}
-                    max={priceRange[1]}
                     className="h-9"
-                    value={priceRange[0]}
+                    inputMode="numeric"
+                    max={priceRange[1]}
+                    min={0}
                     onChange={(e) => {
                       const value = Number(e.target.value);
                       setPriceRange([value, priceRange[1]]);
                     }}
+                    type="number"
+                    value={priceRange[0]}
                   />
                   <span className="text-muted-foreground">-</span>
                   <Input
-                    type="number"
-                    inputMode="numeric"
-                    min={priceRange[0]}
-                    max={500}
                     className="h-9"
-                    value={priceRange[1]}
+                    inputMode="numeric"
+                    max={500}
+                    min={priceRange[0]}
                     onChange={(e) => {
                       const value = Number(e.target.value);
                       setPriceRange([priceRange[0], value]);
                     }}
+                    type="number"
+                    value={priceRange[1]}
                   />
                 </div>
               </div>
@@ -197,8 +199,8 @@ export function ProductBuilder({
               <SheetFooter>
                 <Button
                   aria-label="Clear filters"
-                  size="sm"
                   className="w-full"
+                  disabled={isPending}
                   onClick={() => {
                     startTransition(() => {
                       router.push(
@@ -210,7 +212,7 @@ export function ProductBuilder({
                       setPriceRange([0, 100]);
                     });
                   }}
-                  disabled={isPending}
+                  size="sm"
                 >
                   Clear Filters
                 </Button>
@@ -220,9 +222,9 @@ export function ProductBuilder({
         </Sheet>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button aria-label="Sort products" size="sm" disabled={isPending}>
+            <Button aria-label="Sort products" disabled={isPending} size="sm">
               Sort
-              <Icons.chevronDown className="ml-2 h-4 w-4" aria-hidden="true" />
+              <Icons.chevronDown aria-hidden="true" className="ml-2 h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-48">
@@ -248,40 +250,42 @@ export function ProductBuilder({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      {!isPending && !products.length ? (
+      {!isPending && !products.length ?
         <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
           <h1 className="text-center text-2xl font-bold">No products found</h1>
           <p className="text-center text-muted-foreground">
             Try changing your filters, or check back later for new products
           </p>
         </div>
-      ) : null}
+      : null}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
           <ProductCard
             key={product.id}
-            variant="switchable"
-            product={product}
             isAddedToCart={cartItems
               .map((item) => item.productId)
               .includes(product.id)}
             onSwitch={() => addToCart(product)}
+            product={product}
+            storeId={Number(product.storeId)}
+            variant="switchable"
+            tAddToCart={tAddToCart}
           />
         ))}
       </div>
-      {products.length ? (
+      {products.length ?
         <PaginationButton
-          pageCount={pageCount}
-          page={page}
-          per_page={per_page}
-          sort={sort}
           createQueryString={createQueryString}
-          router={router}
-          pathname={pathname}
           isPending={isPending}
+          page={page}
+          pageCount={pageCount}
+          pathname={pathname}
+          per_page={per_page}
+          router={router}
+          sort={sort}
           startTransition={startTransition}
         />
-      ) : null}
+      : null}
     </section>
   );
 }

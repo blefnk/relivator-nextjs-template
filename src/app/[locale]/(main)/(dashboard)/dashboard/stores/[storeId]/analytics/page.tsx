@@ -19,13 +19,15 @@ export const metadata: Metadata = {
   description: "Analytics for your store",
 };
 
-interface AnalyticsPageProps {
+interface AnalyticsPageProperties {
   params: {
     storeId: string;
   };
 }
 
-export default async function AnalyticsPage({ params }: AnalyticsPageProps) {
+export default async function AnalyticsPage({
+  params,
+}: AnalyticsPageProperties) {
   const storeId = Number(params.storeId);
 
   const store = await db.query.stores.findFirst({

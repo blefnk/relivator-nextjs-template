@@ -1,136 +1,117 @@
 /**
- * Learn more about the Relivator Next.js project:
+ * Learn more about the Relivator Next.js starter:
  * @see https://github.com/blefnk/relivator#readme
  */
 
-import { REPOSITORY_URL, siteConfig } from "~/app";
-import { Link, redirect, type Locale } from "~/navigation";
-import { cn } from "~/utils";
-import { eq } from "drizzle-orm";
-import { Download, Store } from "lucide-react";
+import { ArrowRight, Download, ShoppingCart, Store } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { Balancer } from "react-wrap-balancer";
 
-import { productCategories } from "~/server/config/products";
-import { db } from "~/data/db";
-import { User, users } from "~/data/db/schema";
+import { REPOSITORY_URL, siteConfig } from "~/app";
+import { Link } from "~/core/link";
 import { seo } from "~/data/meta";
+import { env } from "~/env.mjs";
 import { FeaturedStoreItems } from "~/islands/commerce/featured-store-items";
 import { HeroSection } from "~/islands/marketing/hero-section";
-import { IntlMessage } from "~/islands/message";
 import { SiteFooter } from "~/islands/navigation/site-footer";
 import { SiteHeader } from "~/islands/navigation/site-header";
-import { buttonVariants } from "~/islands/primitives/button";
-import ProductsCtx from "~/islands/products-ctx";
 import { GeneralShell } from "~/islands/wrappers/general-shell";
-import { getServerAuthSession } from "~/utils/users";
-
-import { GithubStarsPlugin } from "~/plugins/islands/github/server";
+import { Link as NavLink } from "~/navigation";
+import { Features, GithubStarsPlugin } from "~/plugins/islands/github/stars";
+import { productCategories } from "~/server/config/products";
 
 export const metadata = seo({ title: `Home – ${siteConfig.name}` });
 
-type HomePageProps = { params: { locale: Locale } };
-
-export default async function HomePage({ params: { locale } }: HomePageProps) {
-  // Get the user session for NextAuth.js and Clerk
-  const session = await getServerAuthSession();
-
-  // Ensure that the user is ready to use the app
-  if (session) {
-    const user: User = await db
-      .select()
-      .from(users)
-      .where(eq(users.id, session.id))
-      .then((res: User[]) => res[0] ?? null);
-    if (!user || (user && !user.emailVerified)) {
-      return redirect(`/auth`);
-    }
-  }
+export default function HomePage() {
+  // useTranslations works both on the server and client
+  // we only need the getTranslations on async components
+  const t = useTranslations();
 
   return (
     <>
       <SiteHeader />
       <GeneralShell>
         <section
-          id="hero"
           aria-labelledby="hero-heading"
-          className="flex w-full flex-col items-center justify-center pt-10 gap-4 mx-auto mt-8 mb-2 text-center"
+          className="mx-auto mb-2 mt-8 flex w-full flex-col items-center justify-center gap-4 pt-10 text-center"
+          id="hero"
         >
           <GithubStarsPlugin />
+
           <HeroSection />
+
           <Balancer
             as="p"
-            className="leading-normal text-base text-primary/90 sm:text-lg sm:leading-7 !max-w-5xl"
+            className="!max-w-5xl text-base leading-normal text-primary/90 sm:text-lg sm:leading-7"
           >
-            <IntlMessage id="landing.about" />
+            {t("landing.about")}
           </Balancer>
-          <div className="flex flex-wrap mt-3 items-center justify-center gap-4">
-            <Link
-              href={`${REPOSITORY_URL}/#readme`}
-              target="_blank"
-              className={cn(
-                buttonVariants({
-                  variant: "secondary",
-                  size: "lg",
-                }),
-                "",
-              )}
-            >
-              <Download className="h-4 w-4 mr-2" />
-              Free Download
-            </Link>
+
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
+            {env.DEV_DEMO_NOTES === "true" ? (
+              <Link
+                href={REPOSITORY_URL}
+                size="lg"
+                target="_blank"
+                variant="secondary"
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Download Starter
+              </Link>
+            ) : (
+              <Link href="/products" size="lg" variant="secondary">
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Buy Now
+              </Link>
+            )}
 
             <Link
-              href="/dashboard/stores"
-              className={cn(
-                buttonVariants({
-                  variant: "outline",
-                  size: "lg",
-                }),
-                "",
-              )}
+              className="border-2 border-zinc-900 dark:border-zinc-800"
+              href="/dashboard/billing"
+              size="lg"
+              variant="outline"
             >
-              <Store className="h-4 w-4 mr-2" />
-              Check Demo
+              <Store className="mr-2 h-4 w-4" />
+              {env.DEV_DEMO_NOTES === "true" ? "Launch Demo" : "Sell Now"}
             </Link>
           </div>
         </section>
 
         <FeaturedStoreItems />
-        {/* <ProductsCtx /> */}
 
         <section
-          id="categories"
           aria-labelledby="categories-heading"
           className="py-1"
+          id="categories"
         >
           <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
             {productCategories.map((category) => (
-              <Link
+              <NavLink
                 aria-label={`Go to ${category.title}`}
-                key={category.title}
                 href={`/categories/${category.title}`}
+                key={category.title}
               >
-                <h3 className="font-medium capitalize flex items-center justify-center transition-colors text-zinc-900 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-900 h-12 rounded-lg">
+                <h3 className="flex h-12 items-center justify-center rounded-lg bg-zinc-100 font-medium capitalize text-zinc-900 transition-colors dark:bg-zinc-900 dark:text-zinc-200">
                   {category.title}
                 </h3>
-              </Link>
+              </NavLink>
             ))}
           </div>
         </section>
 
+        {env.DEV_DEMO_NOTES === "true" && <Features />}
+
         <section
-          id="create-a-store-banner"
           aria-labelledby="create-a-store-banner-heading"
-          className="grid place-items-center gap-6 bg-card px-6 mt-10 mb-14 text-center text-card-foreground"
+          className="mb-14 mt-10 grid place-items-center gap-6 bg-card px-6 text-center text-card-foreground"
+          id="create-a-store-banner"
         >
           <div className="text-xl font-medium sm:text-2xl">
             Do you want to sell your products?
           </div>
-          <Link href="https://github.com/blefnk/relivator/#readme">
-            <div className={cn(buttonVariants({ variant: "outline" }))}>
-              Get Started
-              <span className="sr-only">Create a store</span>
-            </div>
+          <Link href="/dashboard/stores" size="lg" variant="secondary">
+            Get Started
+            <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </section>
       </GeneralShell>
@@ -139,13 +120,40 @@ export default async function HomePage({ params: { locale } }: HomePageProps) {
   );
 }
 
-// ===== [TODO SECTION] =================================================
+/**
+ * Learning resources:
+ * ===================
+ * @see https://next-intl-docs.vercel.app/docs/environments/server-client-components
+ * @see https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md#capabilities--constraints-of-server-and-client-components
+ */
 
-// todo: fix typescript errors when using next-intl without "use client"
+// [TODO SECTION]
+// ==============
+
+// todo: try to use this for static pages rendering
 // unstable_setRequestLocale(locale); // needs for static pages rendering
 // const t = useTranslations("landing"); // traditional page translations
 // const t = await getTranslator(locale, "landing"); // also static pages
-/** @see https://github.com/amannn/next-intl/pull/149 */
+// @see https://github.com/amannn/next-intl/pull/149
+
+// todo: try to add this somewhere to the app
+/**
+ import {
+  getTranslations,
+  getFormatter,
+  getNow,
+  getTimeZone,
+  getMessages,
+  getLocale
+} from 'next-intl/server';
+
+const t = await getTranslations('ProfilePage');
+const format = await getFormatter();
+const now = await getNow();
+const timeZone = await getTimeZone();
+const messages = await getMessages();
+const locale = await getLocale();
+*/
 
 // ===== [INTERESTING THINGS ] ==========================================
 

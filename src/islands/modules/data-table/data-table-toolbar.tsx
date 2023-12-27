@@ -3,13 +3,15 @@
 import * as React from "react";
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons";
 import { type Table } from "@tanstack/react-table";
-import { Link } from "~/navigation";
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn,
 } from "~/types";
 import { cn } from "~/utils";
 
+import { Link as ButtonLink } from "~/core/link";
+import { env } from "~/env.mjs";
+import { GenerateButton } from "~/islands/generate";
 import { DataTableFacetedFilter } from "~/islands/modules/data-table/data-table-faceted-filter";
 import { DataTableViewOptions } from "~/islands/modules/data-table/data-table-view-options";
 import { Button, buttonVariants } from "~/islands/primitives/button";
@@ -20,6 +22,7 @@ type DataTableToolbarProps<TData> = {
   filterableColumns?: DataTableFilterableColumn<TData>[];
   searchableColumns?: DataTableSearchableColumn<TData>[];
   newRowLink?: string;
+  storeId?: number;
   deleteRowsAction?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -28,6 +31,7 @@ export function DataTableToolbar<TData>({
   filterableColumns = [],
   searchableColumns = [],
   newRowLink,
+  storeId,
   deleteRowsAction,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
@@ -82,7 +86,7 @@ export function DataTableToolbar<TData>({
         )}
       </div>
       <div className="flex items-center space-x-2">
-        {deleteRowsAction && table.getSelectedRowModel().rows.length > 0 ? (
+        {deleteRowsAction && table.getSelectedRowModel().rows.length > 0 ?
           <Button
             aria-label="Delete selected rows"
             variant="outline"
@@ -99,22 +103,22 @@ export function DataTableToolbar<TData>({
             <TrashIcon className="mr-2 h-4 w-4" aria-hidden="true" />
             Delete
           </Button>
-        ) : newRowLink ? (
-          <Link aria-label="Create new row" href={newRowLink}>
-            <div
-              className={cn(
-                buttonVariants({
-                  variant: "outline",
-                  size: "sm",
-                  className: "h-8",
-                }),
-              )}
-            >
-              <PlusCircledIcon className="mr-2 h-4 w-4" aria-hidden="true" />
-              New
-            </div>
-          </Link>
-        ) : null}
+        : newRowLink ?
+          <ButtonLink
+            variant="default"
+            size="sm"
+            aria-label="Create new row"
+            className="h-8"
+            href={newRowLink}
+          >
+            <PlusCircledIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+            Add new product
+          </ButtonLink>
+        : null}
+
+        {/* {process.env.NODE_ENV !== "production" && storeId !== undefined && (
+          <GenerateButton storeId={storeId} />
+        )} */}
         <DataTableViewOptions table={table} />
       </div>
     </div>

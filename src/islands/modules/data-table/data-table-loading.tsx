@@ -29,20 +29,22 @@ export function DataTableLoading({
           <Skeleton className="h-7 w-[70px] border-dashed" />
         </div>
         <div className="flex items-center space-x-2">
-          {isRowsDeletable ? (
+          {isRowsDeletable ?
             <Skeleton className="h-7 w-[70px]" />
-          ) : isNewRowCreatable ? (
+          : isNewRowCreatable ?
             <Skeleton className="h-7 w-[70px]" />
-          ) : null}
+          : null}
           <Skeleton className="ml-auto hidden h-7 w-[70px] lg:flex" />
         </div>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-lg border">
         <Table className="min-w-[640px]">
           <TableHeader>
             {Array.from({ length: 1 }).map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <TableRow key={i} className="hover:bg-transparent">
                 {Array.from({ length: columnCount }).map((_, i) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   <TableHead key={i}>
                     <Skeleton className="h-6 w-full" />
                   </TableHead>
@@ -52,8 +54,10 @@ export function DataTableLoading({
           </TableHeader>
           <TableBody>
             {Array.from({ length: rowCount }).map((_, i) => (
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <TableRow key={i} className="hover:bg-transparent">
                 {Array.from({ length: columnCount }).map((_, i) => (
+                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   <TableCell key={i}>
                     <Skeleton className="h-6 w-full" />
                   </TableCell>

@@ -1,8 +1,18 @@
-import { toTitleCase, unslugify } from "~/utils";
+/**
+ * Subcategory Page
+ * ================
+ *
+ * @see https://github.com/gustavoguichard/string-ts#-api
+ */
 
-import { getProductsAction } from "~/server/actions/product";
-import { getStoresAction } from "~/server/actions/store";
+import type { Metadata } from "next";
+import { unslugify } from "~/utils";
+import { getTranslations } from "next-intl/server";
+import { titleCase } from "string-ts";
+
 import { type Product } from "~/data/db/schema";
+import { env } from "~/env.mjs";
+import { IntlMessage } from "~/islands/message";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -10,8 +20,11 @@ import {
 } from "~/islands/navigation/page-header";
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { getProductsAction } from "~/server/actions/product";
+import { getStoresAction } from "~/server/actions/store";
+import { getServerAuthSession } from "~/utils/auth/users";
 
-type SubcategoryPageProps = {
+type SubcategoryPageProperties = {
   params: {
     category: Product["category"];
     subcategory: string;
@@ -21,11 +34,14 @@ type SubcategoryPageProps = {
   };
 };
 
-export function generateMetadata({ params }: SubcategoryPageProps) {
+export function generateMetadata({
+  params,
+}: SubcategoryPageProperties): Metadata {
   const subcategory = unslugify(params.subcategory);
 
   return {
-    title: toTitleCase(subcategory),
+    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+    title: titleCase(subcategory),
     description: `Buy the best ${subcategory}`,
   };
 }
@@ -33,10 +49,12 @@ export function generateMetadata({ params }: SubcategoryPageProps) {
 export default async function SubcategoryPage({
   params,
   searchParams,
-}: SubcategoryPageProps) {
+}: SubcategoryPageProperties) {
   const { category, subcategory } = params;
   const { page, per_page, sort, price_range, store_ids, store_page } =
     searchParams;
+
+  const t = await getTranslations();
 
   // Products transaction
   const limit = typeof per_page === "string" ? parseInt(per_page) : 8;
@@ -52,14 +70,14 @@ export default async function SubcategoryPage({
     store_ids: typeof store_ids === "string" ? store_ids : null,
   });
 
-  const pageCount = Math.ceil(productsTransaction.total / limit);
+  const pageCount = Math.ceil(productsTransaction.count / limit);
 
   // Stores transaction
   const storesLimit = 25;
   const storesOffset =
-    typeof store_page === "string"
-      ? (parseInt(store_page) - 1) * storesLimit
-      : 0;
+    typeof store_page === "string" ?
+      (parseInt(store_page) - 1) * storesLimit
+    : 0;
 
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
@@ -67,7 +85,9 @@ export default async function SubcategoryPage({
     sort: "productCount.desc",
   });
 
-  const storePageCount = Math.ceil(storesTransaction.total / storesLimit);
+  const storePageCount = Math.ceil(storesTransaction.count / storesLimit);
+
+  const session = await getServerAuthSession();
 
   return (
     <Shell>
@@ -76,10 +96,12 @@ export default async function SubcategoryPage({
         aria-labelledby="subcategory-page-header-heading"
       >
         <PageHeaderHeading size="sm">
-          {toTitleCase(unslugify(subcategory))}
+          {titleCase(unslugify(subcategory))}
         </PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          {`Buy the best ${unslugify(subcategory)}`}
+          {t("store.categories.buyTheBest", {
+            category: unslugify(subcategory),
+          })}
         </PageHeaderDescription>
       </PageHeader>
       <Products
@@ -89,6 +111,8 @@ export default async function SubcategoryPage({
         pageCount={pageCount}
         stores={storesTransaction.items}
         storePageCount={storePageCount}
+        session={session?.id || null}
+        tAddToCart={t("store.product.addToCart")}
       />
     </Shell>
   );

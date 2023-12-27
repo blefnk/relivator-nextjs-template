@@ -3,10 +3,12 @@
 import * as React from "react";
 import { useClerk } from "@clerk/nextjs";
 
+import type { SSOCallbackPageProperties } from "~/app/[locale]/(auth)/sign-sso/page";
 import { Icons } from "~/islands/icons";
-import { type SSOCallbackPageProps } from "~/app/[locale]/(auth)/sign-sso/page";
 
-export default function SSOCallback({ searchParams }: SSOCallbackPageProps) {
+export default function SSOCallback({
+  searchParams,
+}: SSOCallbackPageProperties) {
   const { handleRedirectCallback } = useClerk();
 
   React.useEffect(() => {

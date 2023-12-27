@@ -1,4 +1,8 @@
 {
-  "*.{js,ts,tsx}": ["cspell", "eslint --fix", "prettier -w"],
-  "*.{md,json}": ["prettier -w"]
+  "**/*.{js,jsx,cjs,mjs,ts,tsx,md,mdx}": [
+    "eslint --fix",
+    "prettier --check --write"
+  ],
+  "**/*.{json,yml}": ["prettier --check --write"],
+  "**/*.css": ["prettier --write"]
 }

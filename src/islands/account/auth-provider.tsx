@@ -1,7 +1,7 @@
 "use client";
 
-import { PropsWithChildren, type FC } from "react";
-import { type Session } from "next-auth";
+import type { FC, PropsWithChildren } from "react";
+import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
 type AuthProviderProps = PropsWithChildren<{ session?: Session | null }>;

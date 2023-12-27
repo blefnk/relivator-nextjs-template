@@ -1,8 +1,9 @@
-import { toTitleCase } from "~/utils";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { titleCase } from "string-ts";
 
-import { getProductsAction } from "~/server/actions/product";
-import { getStoresAction } from "~/server/actions/store";
 import { type Product } from "~/data/db/schema";
+import { env } from "~/env.mjs";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -10,19 +11,23 @@ import {
 } from "~/islands/navigation/page-header";
 import { Products } from "~/islands/products";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { getProductsAction } from "~/server/actions/product";
+import { getStoresAction } from "~/server/actions/store";
+import { getServerAuthSession } from "~/utils/auth/users";
 
-type CategoryPageProps = {
+interface CategoryPageProperties {
   params: {
     category: Product["category"];
   };
   searchParams: {
     [key: string]: string | string[] | undefined;
   };
-};
+}
 
-export function generateMetadata({ params }: CategoryPageProps) {
+export function generateMetadata({ params }: CategoryPageProperties): Metadata {
   return {
-    title: toTitleCase(params.category),
+    metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+    title: titleCase(params.category),
     description: `Buy products from the ${params.category} category`,
   };
 }
@@ -30,7 +35,7 @@ export function generateMetadata({ params }: CategoryPageProps) {
 export default async function CategoryPage({
   params,
   searchParams,
-}: CategoryPageProps) {
+}: CategoryPageProperties) {
   const { category } = params;
   const {
     page,
@@ -41,6 +46,8 @@ export default async function CategoryPage({
     store_ids,
     store_page,
   } = searchParams;
+
+  const t = await getTranslations();
 
   // Products transaction
   const limit = typeof per_page === "string" ? parseInt(per_page) : 8;
@@ -56,14 +63,14 @@ export default async function CategoryPage({
     store_ids: typeof store_ids === "string" ? store_ids : null,
   });
 
-  const pageCount = Math.ceil(productsTransaction.total / limit);
+  const pageCount = Math.ceil(productsTransaction.count / limit);
 
   // Stores transaction
   const storesLimit = 25;
   const storesOffset =
-    typeof store_page === "string"
-      ? (parseInt(store_page) - 1) * storesLimit
-      : 0;
+    typeof store_page === "string" ?
+      (parseInt(store_page) - 1) * storesLimit
+    : 0;
 
   const storesTransaction = await getStoresAction({
     limit: storesLimit,
@@ -71,7 +78,9 @@ export default async function CategoryPage({
     sort: "productCount.desc",
   });
 
-  const storePageCount = Math.ceil(storesTransaction.total / storesLimit);
+  const storePageCount = Math.ceil(storesTransaction.count / storesLimit);
+
+  const session = await getServerAuthSession();
 
   return (
     <Shell>
@@ -79,9 +88,11 @@ export default async function CategoryPage({
         id="category-page-header"
         aria-labelledby="category-page-header-heading"
       >
-        <PageHeaderHeading size="sm">{toTitleCase(category)}</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{titleCase(category)}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          {`Buy ${category} from the best stores`}
+          {t("store.categories.buyFromCategories", {
+            category: category,
+          })}
         </PageHeaderDescription>
       </PageHeader>
       <Products
@@ -92,6 +103,8 @@ export default async function CategoryPage({
         category={category}
         stores={storesTransaction.items}
         storePageCount={storePageCount}
+        session={session?.id ?? null}
+        tAddToCart={t("store.product.addToCart")}
       />
     </Shell>
   );

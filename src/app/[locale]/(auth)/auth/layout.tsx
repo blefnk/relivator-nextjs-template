@@ -3,11 +3,11 @@ import { type WithChildren } from "~/types";
 
 import { FakeLoadingVariantOne } from "~/islands/fake-loading";
 
-type AuthLayoutProps = PropsWithChildren;
+type AuthLayoutProperties = PropsWithChildren;
 
 export default function AuthLayout({
   children,
-}: WithChildren<AuthLayoutProps>) {
+}: WithChildren<AuthLayoutProperties>) {
   return (
     <>
       <FakeLoadingVariantOne />

@@ -3,11 +3,9 @@
 import * as React from "react";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
-import { Link } from "~/navigation";
 import { catchError, formatDate, formatPrice } from "~/utils";
 import { toast } from "react-hot-toast";
 
-import { deleteProductAction } from "~/server/actions/product";
 import { products, type Product } from "~/data/db/schema";
 import { DataTable } from "~/islands/modules/data-table/data-table";
 import { DataTableColumnHeader } from "~/islands/modules/data-table/data-table-column-header";
@@ -22,6 +20,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "~/islands/primitives/dropdown";
+import { Link } from "~/navigation";
+import { deleteProductAction } from "~/server/actions/product";
 
 type ProductsTableShellProps = {
   data: Product[];
@@ -61,9 +61,9 @@ export function ProductsTableShell({
             onCheckedChange={(value) => {
               row.toggleSelected(!!value);
               setSelectedRowIds((prev) =>
-                value
-                  ? [...prev, row.original.id]
-                  : prev.filter((id) => id !== row.original.id),
+                value ?
+                  [...prev, row.original.id]
+                : prev.filter((id) => id !== row.original.id),
               );
             }}
             aria-label="Select row"

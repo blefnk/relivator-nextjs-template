@@ -10,7 +10,7 @@
 
 import { NextResponse } from "next/server";
 
-import { withAuth } from "~/utils/with";
+import { withAuth } from "~/utils/auth/with";
 
 // POST /api/projects/[slug]/billing/manage - create a Stripe billing portal session
 export const POST = withAuth(async ({ seller }) => {

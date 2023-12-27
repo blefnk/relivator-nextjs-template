@@ -1,6 +1,7 @@
+import React from "react";
 import Image from "next/image";
 import { Slot } from "@radix-ui/react-slot";
-import { type CartLineItem } from "~/types";
+import type { CartLineItem } from "~/types";
 import { cn, formatPrice } from "~/utils";
 
 import { UpdateCart } from "~/islands/checkout/update-cart";
@@ -44,9 +45,9 @@ export function CartLineItems({
               )}
             >
               <div className="flex items-center space-x-4">
-                {variant === "default" ? (
+                {variant === "default" ?
                   <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded">
-                    {item?.images?.length ? (
+                    {item?.images?.length ?
                       <Image
                         src={
                           item.images[0]?.url ??
@@ -58,45 +59,42 @@ export function CartLineItems({
                         className="absolute object-cover"
                         loading="lazy"
                       />
-                    ) : (
-                      <div className="flex h-full items-center justify-center bg-secondary">
+                    : <div className="flex h-full items-center justify-center bg-secondary">
                         <Icons.placeholder
                           className="h-4 w-4 text-muted-foreground"
                           aria-hidden="true"
                         />
                       </div>
-                    )}
+                    }
                   </div>
-                ) : null}
+                : null}
                 <div className="flex flex-col space-y-1 self-start">
                   <span className="line-clamp-1 text-sm font-medium">
                     {item.name}
                   </span>
-                  {isEditable ? (
+                  {isEditable ?
                     <span className="line-clamp-1 text-xs text-muted-foreground">
                       {formatPrice(item.price)} x {item.quantity} ={" "}
                       {formatPrice(
                         (Number(item.price) * Number(item.quantity)).toFixed(2),
                       )}
                     </span>
-                  ) : (
-                    <span className="line-clamp-1 text-xs text-muted-foreground">
+                  : <span className="line-clamp-1 text-xs text-muted-foreground">
                       Qty {item.quantity}
                     </span>
-                  )}
-                  {variant === "default" ? (
+                  }
+                  {variant === "default" ?
                     <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
                       {`${item.category} ${
                         item.subcategory ? `/ ${item.subcategory}` : ""
                       }`}
                     </span>
-                  ) : null}
+                  : null}
                 </div>
               </div>
-              {isEditable ? (
+              {isEditable ?
                 <UpdateCart cartLineItem={item} />
-              ) : (
-                <div className="flex flex-col space-y-1 font-medium">
+              : <div className="flex flex-col space-y-1 font-medium">
                   <span className="ml-auto line-clamp-1 text-sm">
                     {formatPrice(
                       (Number(item.price) * item.quantity).toFixed(2),
@@ -106,9 +104,11 @@ export function CartLineItems({
                     {formatPrice(item.price)} each
                   </span>
                 </div>
-              )}
+              }
             </div>
-            {variant === "default" ? <Separator /> : null}
+            {variant === "default" ?
+              <Separator />
+            : null}
           </div>
         ))}
       </div>

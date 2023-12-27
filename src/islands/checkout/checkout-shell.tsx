@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { Elements } from "@stripe/react-stripe-js";
-import { type StripeElementsOptions } from "@stripe/stripe-js";
+import type { StripeElementsOptions } from "@stripe/stripe-js";
 import { cn } from "~/utils";
 
-import { getStripe } from "~/utils/stripe/getting";
+import { getStripe } from "~/core/stripe/getting";
 
 interface CheckoutShellProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
@@ -34,7 +34,7 @@ export function CheckoutShell({
     appearance: {
       theme: "stripe",
     },
-    clientSecret: clientSecret,
+    clientSecret,
   };
 
   return (

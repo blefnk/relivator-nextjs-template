@@ -4,13 +4,13 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
+import { type Product } from "~/data/db/schema";
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 import {
   getNextProductIdAction,
   getPreviousProductIdAction,
 } from "~/server/actions/product";
-import { type Product } from "~/data/db/schema";
-import { Icons } from "~/islands/icons";
-import { Button } from "~/islands/primitives/button";
 
 type ProductPagerProps = {
   product: Product;
@@ -36,9 +36,9 @@ export function ProductPager({ product }: ProductPagerProps) {
                 `/dashboard/stores/${product.storeId}/products/${prevProductId}`,
               );
             } catch (error) {
-              error instanceof Error
-                ? toast.error(error.message)
-                : toast.error("Something went wrong, please try again.");
+              error instanceof Error ?
+                toast.error(error.message)
+              : toast.error("Something went wrong, please try again.");
             }
           });
         }}
@@ -61,9 +61,9 @@ export function ProductPager({ product }: ProductPagerProps) {
                 `/dashboard/stores/${product.storeId}/products/${nextProductId}`,
               );
             } catch (error) {
-              error instanceof Error
-                ? toast.error(error.message)
-                : toast.error("Something went wrong, please try again.");
+              error instanceof Error ?
+                toast.error(error.message)
+              : toast.error("Something went wrong, please try again.");
             }
           });
         }}

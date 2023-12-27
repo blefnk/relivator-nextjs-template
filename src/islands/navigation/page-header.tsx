@@ -23,7 +23,9 @@ function PageHeader({
   return (
     <Comp className={cn("grid gap-1", className)} {...props}>
       {children}
-      {separated ? <Separator className="mt-2.5" /> : null}
+      {separated ?
+        <Separator className="mt-2.5" />
+      : null}
     </Comp>
   );
 }

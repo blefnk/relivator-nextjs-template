@@ -53,7 +53,7 @@ export function ErrorCard({
         <CardTitle className="text-2xl">{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardContent>
-      {retryLink ? (
+      {retryLink ?
         <CardFooter>
           <Link
             href={retryLink}
@@ -67,14 +67,14 @@ export function ErrorCard({
             <span className="sr-only">{retryLinkText}</span>
           </Link>
         </CardFooter>
-      ) : null}
-      {reset ? (
+      : null}
+      {reset ?
         <CardFooter>
           <ClientButton aria-label="Retry" variant="ghost" onClick={reset}>
             Retry
           </ClientButton>
         </CardFooter>
-      ) : null}
+      : null}
     </Card>
   );
 }

@@ -1,4 +1,5 @@
 import Loglib from "@loglib/tracker/react";
+
 import { env } from "~/env.mjs";
 
 export default function LoglibAnalytics() {

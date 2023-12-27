@@ -1,17 +1,16 @@
-import { redirect } from "~/navigation";
-
-import { dashboardConfig } from "~/server/config/dashboard";
 import { SidebarNav } from "~/islands/navigation/sidebar-nav";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
-import { getServerAuthSession } from "~/utils/users";
+import { redirect } from "~/navigation";
+import { dashboardConfig } from "~/server/config/dashboard";
+import { getServerAuthSession } from "~/utils/auth/users";
 
-interface DashboardLayoutProps {
+interface DashboardLayoutProperties {
   children: React.ReactNode;
 }
 
 export default async function DashboardLayout({
   children,
-}: DashboardLayoutProps) {
+}: DashboardLayoutProperties) {
   const session = await getServerAuthSession();
   if (!session) redirect("/auth");
 

@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 
-import WhoAmIButton from "./WhoAmIButton";
+import WhoAmIButton from "~/core/auth/authjs/islands/check-user-button";
 
 export default async function ServerActionPage() {
   const whoAmI = async () => {

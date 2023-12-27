@@ -4,12 +4,12 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 
+import { Icons } from "~/islands/icons";
+import { Button } from "~/islands/primitives/button";
 import {
   getNextStoreIdAction,
   getPreviousStoreIdAction,
 } from "~/server/actions/store";
-import { Icons } from "~/islands/icons";
-import { Button } from "~/islands/primitives/button";
 
 interface StorePagerProps {
   storeId: number;
@@ -34,9 +34,9 @@ export function StorePager({ storeId, userId }: StorePagerProps) {
               });
               router.push(`/dashboard/stores/${prevStoreId}`);
             } catch (error) {
-              error instanceof Error
-                ? toast.error(error.message)
-                : toast.error("Something went wrong, please try again.");
+              error instanceof Error ?
+                toast.error(error.message)
+              : toast.error("Something went wrong, please try again.");
             }
           });
         }}
@@ -57,9 +57,9 @@ export function StorePager({ storeId, userId }: StorePagerProps) {
               });
               router.push(`/dashboard/stores/${nextStoreId}`);
             } catch (error) {
-              error instanceof Error
-                ? toast.error(error.message)
-                : toast.error("Something went wrong, please try again.");
+              error instanceof Error ?
+                toast.error(error.message)
+              : toast.error("Something went wrong, please try again.");
             }
           });
         }}

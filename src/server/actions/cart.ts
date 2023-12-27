@@ -1,28 +1,34 @@
 "use server";
 
+import { log } from "console";
+
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
-import type { CartLineItem } from "~/types";
+import type { CartItem, CartLineItem } from "~/types";
 import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
-import { type z } from "zod";
+import type { z } from "zod";
 
 import { db } from "~/data/db";
-import { carts, products, stores } from "~/data/db/schema";
+import type { User } from "~/data/db/schema";
+import { carts, products, stores, users, type Cart } from "~/data/db/schema";
 import {
   cartItemSchema,
   deleteCartItemSchema,
   deleteCartItemsSchema,
 } from "~/data/validations/cart";
+import { env } from "~/env.mjs";
+import { StoreSwitcher } from "~/islands/navigation/pagination/store-switcher";
+import { getCartId } from "~/server/cart";
+import { getServerAuthSession } from "~/utils/auth/users";
 
 export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
-  const cartId = cookies().get("cartId")?.value;
+  // console.log("⏳ awaiting getCartId for getCartAction...");
+  const cartId = await getCartId();
 
-  if (!cartId || isNaN(Number(cartId))) return [];
+  if (!cartId || Number.isNaN(Number(cartId))) return [];
+  // console.log("get `cartId` (1):", cartId);
 
   const cart = await db.query.carts.findFirst({
-    columns: {
-      items: true,
-    },
+    columns: { items: true },
     where: eq(carts.id, Number(cartId)),
   });
 
@@ -30,7 +36,6 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
 
   if (productIds.length === 0) return [];
 
-  // Make TypeScript happy by casting uniqueProductIds to the correct type
   const uniqueProductIds: number[] = [...new Set(productIds)].map(Number);
 
   const cartLineItems = await db
@@ -51,11 +56,10 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
     .where(
       and(
         inArray(products.id, uniqueProductIds),
-        // storeId ? eq(products.storeId, storeId) : undefined,
         storeId ? eq(products.storeId, storeId) : sql`TRUE`,
       ),
     )
-    .groupBy(products.id)
+    .groupBy(products.id, stores.stripeAccountId, stores.name)
     .orderBy(desc(stores.stripeAccountId), asc(products.createdAt))
     .execute()
     .then((items) => {
@@ -74,31 +78,87 @@ export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
   return cartLineItems;
 }
 
-export async function getUniqueStoreIds() {
-  const cartId = cookies().get("cartId")?.value;
+export async function getUniqueStoreIds(): Promise<number[]> {
+  const storeIds: number[] = [];
+  const carts = await db.query.carts.findMany();
 
-  if (!cartId || isNaN(Number(cartId))) return [];
+  for (const cart of carts) {
+    for (const item of cart.items) {
+      if (!storeIds.includes(item.storeId)) {
+        storeIds.push(item.storeId);
+      }
+    }
+  }
 
-  const cart = await db
-    .select({ storeId: products.storeId })
-    .from(carts)
-    .leftJoin(
-      products,
-      sql`JSON_CONTAINS(${carts}.items, JSON_OBJECT('productId', ${products}.id))`,
-      // sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`,
-    )
-    .groupBy(products.storeId)
-    .where(eq(carts.id, Number(cartId)));
+  return storeIds;
+}
 
-  const storeIds = cart.map((item) => Number(item.storeId)).filter((id) => id);
+export async function getUniqueStoreIdsDeprecated() {
+  const cartId = await getCartId();
 
-  const uniqueStoreIds = [...new Set(storeIds)];
+  if (!cartId || Number.isNaN(Number(cartId))) {
+    console.error("cartId is invalid or missed");
+    return [];
+  }
 
-  return uniqueStoreIds;
+  try {
+    // console.log("Querying for cartId:", cartId, typeof cartId);
+
+    /* const cart = await db
+      .selectDistinct({ storeId: products.storeId })
+      .from(carts)
+      .leftJoin(
+        products,
+        // sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`,
+      )
+      .groupBy(products.storeId)
+      .where(eq(carts.id, Number(cartId))); */
+
+    const cart = await db
+      .select({ storeId: products.storeId })
+      .from(carts)
+      .leftJoin(
+        products,
+        env.DATABASE_URL.startsWith("mysql://")
+          ? sql`JSON_CONTAINS(${carts}.items, JSON_OBJECT('productId', ${products}.id))`
+          : sql`${carts}.items::jsonb @> jsonb_build_array(jsonb_build_object('productId', ${products}.id))`,
+      )
+      .groupBy(products.storeId)
+      .where(eq(carts.id, cartId));
+
+    // console.log("Queried cart:", cart);
+
+    const storeIds = cart
+      .map((item) => Number(item.storeId))
+      .filter((id) => id);
+
+    // console.log("Queried storeIds:", storeIds);
+
+    const uniqueStoreIds = [...new Set(storeIds)] as number[];
+
+    if (!uniqueStoreIds.length) {
+      console.error("uniqueStoreIds are empty.");
+      return [];
+    }
+
+    // console.log("Queried uniqueStoreIds:", uniqueStoreIds);
+
+    return uniqueStoreIds;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(
+        "❌ Error fetching or processing cart data:",
+        error.message,
+      );
+    } else {
+      console.error("❌ An unexpected error occurred:", error);
+    }
+    return [];
+  }
 }
 
 export async function getCartItemsAction(input: { cartId?: number }) {
-  if (!input.cartId || isNaN(input.cartId)) return [];
+  if (!input.cartId || Number.isNaN(input.cartId)) return [];
 
   const cart = await db.query.carts.findFirst({
     where: eq(carts.id, input.cartId),
@@ -110,68 +170,79 @@ export async function getCartItemsAction(input: { cartId?: number }) {
 export async function addToCartAction(
   rawInput: z.infer<typeof cartItemSchema>,
 ) {
+  // console.log("rawInput:", rawInput);
   const input = cartItemSchema.parse(rawInput);
+
+  // console.log("input:", input);
+
+  const session = await getServerAuthSession();
+  if (!session) throw new Error("No session found.");
+
+  const user: User = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, session.id))
+    .then((res: User[]) => res[0] ?? null);
+
+  if (user.email == null && user.emailClerk == null)
+    throw new Error("User email is null or undefined");
 
   // Checking if product is in stock
   const product = await db.query.products.findFirst({
-    columns: {
-      inventory: true,
-    },
+    columns: { inventory: true },
     where: eq(products.id, input.productId),
   });
 
-  if (!product) {
-    throw new Error("Product not found, please try again.");
-  }
+  if (!product) throw new Error("Product not found, please try again later.");
 
-  if (product.inventory < input.quantity) {
-    throw new Error("Product is out of stock, please try again later.");
-  }
+  // TODO: FIX MYSQL !! TEMP COMMENTED OUT
+  // if (product.inventory < input.quantity)
+  // throw new Error("❌ Product is out of stock, please try again later.");
 
-  const cookieStore = cookies();
-  const cartId = cookieStore.get("cartId")?.value;
+  const cartId = await getCartId(); // find user's cartId in users table
 
   if (!cartId) {
-    const cart = await db.insert(carts).values({
-      items: [input],
-    });
+    const email =
+      env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk" ? user.emailClerk : user.email;
 
-    // Note: .set() is only available in a Server Action or Route Handler
-    cookieStore.set("cartId", String(cart.insertId));
+    await db
+      .insert(carts)
+      // create a new row in the carts table and sets relations with user
+      .values({ userId: session.id, email: email, items: [input] });
 
-    revalidatePath("/");
-    return;
+    return revalidatePath("/");
   }
 
   const cart = await db.query.carts.findFirst({
     where: eq(carts.id, Number(cartId)),
   });
 
-  // TODO: Find a better way to deal with expired carts
   if (!cart) {
-    cookieStore.set({
-      name: "cartId",
-      value: "",
-      expires: new Date(0),
-    });
-
     await db.delete(carts).where(eq(carts.id, Number(cartId)));
 
-    throw new Error("Cart not found, please try again.");
+    throw new Error(
+      "cartId can't be found, because row with requested id is not found in the `carts` database table",
+    );
   }
 
   // If cart is closed, delete it and create a new one
   if (cart.closed) {
     await db.delete(carts).where(eq(carts.id, Number(cartId)));
 
-    const newCart = await db.insert(carts).values({
-      items: [input],
+    /* const cartDb = await db.query.carts.findFirst({
+      where: eq(carts.email, user.email),
     });
 
-    cookieStore.set("cartId", String(newCart.insertId));
+    // console.log("cartDb:", cartDb);
 
-    revalidatePath("/");
-    return;
+    if (!cartDb) {
+      const newCart = await db.insert(carts).values({
+        userId: session.id,
+        email: user.email,
+        items: [input],
+      });
+      // if (newCart) console.log("newCart:", newCart);
+    } */
   }
 
   const cartItem = cart.items?.find(
@@ -179,19 +250,21 @@ export async function addToCartAction(
   );
 
   if (cartItem) {
+    // console.log("cartItem:", cartItem);
     cartItem.quantity += input.quantity;
   } else {
+    // console.log("cartItem:", cartItem);
     cart.items?.push(input);
   }
 
   await db
     .update(carts)
-    .set({
-      items: cart.items,
-    })
+    .set({ items: cart.items })
     .where(eq(carts.id, Number(cartId)));
 
-  revalidatePath("/");
+  // console.log("...cartId:", cartId);
+
+  return revalidatePath("/");
 }
 
 export async function updateCartItemAction(
@@ -199,14 +272,17 @@ export async function updateCartItemAction(
 ) {
   const input = cartItemSchema.parse(rawInput);
 
-  const cartId = cookies().get("cartId")?.value;
+  // console.log("⏳ awaiting getCartId for updateCartItemAction...");
+  const cartId = await getCartId();
 
-  if (!cartId) {
-    throw new Error("cartId not found, please try again.");
-  }
+  // console.log("get `cartId` (4):", cartId);
 
-  if (isNaN(Number(cartId))) {
-    throw new Error("Invalid cartId, please try again.");
+  if (!cartId) throw new Error("(1) cartId is not found");
+
+  if (Number.isNaN(Number(cartId))) {
+    throw new TypeError(
+      "❌ cartId is found, but is invalid, possibly value is NaN (not a number) type",
+    );
   }
 
   const cart = await db.query.carts.findFirst({
@@ -214,7 +290,9 @@ export async function updateCartItemAction(
   });
 
   if (!cart) {
-    throw new Error("Cart not found, please try again.");
+    throw new Error(
+      "cartId can't be found, because row with requested id is not found in the `carts` database table",
+    );
   }
 
   const cartItem = cart.items?.find(
@@ -243,17 +321,19 @@ export async function updateCartItemAction(
 }
 
 export async function deleteCartAction() {
-  const cartId = Number(cookies().get("cartId")?.value);
+  // console.log("⏳ awaiting getCartId for deleteCartAction...");
+  const cartId = await getCartId();
+  // console.log("get `cartId` (5):", cartId);
 
-  if (!cartId) {
-    throw new Error("cartId not found, please try again.");
-  }
+  if (cartId === undefined) throw new Error("(2) cartId is not found");
+  if (typeof cartId !== "number" || Number.isNaN(cartId))
+    throw new Error("cartId is found, but it's invalid");
 
-  if (isNaN(cartId)) {
-    throw new Error("Invalid cartId, please try again.");
-  }
+  const cart = await db.query.carts.findFirst({
+    where: eq(carts.id, Number(cartId)),
+  });
 
-  await db.delete(carts).where(eq(carts.id, cartId));
+  await db.delete(carts).where(eq(carts.id, Number(cartId)));
 }
 
 export async function deleteCartItemAction(
@@ -261,14 +341,17 @@ export async function deleteCartItemAction(
 ) {
   const input = deleteCartItemSchema.parse(rawInput);
 
-  const cartId = cookies().get("cartId")?.value;
+  // console.log("⏳ awaiting getCartId for deleteCartItemAction...");
+  const cartId = await getCartId();
 
   if (!cartId) {
-    throw new Error("cartId not found, please try again.");
+    throw new Error("(3) cartId is not found");
   }
 
-  if (isNaN(Number(cartId))) {
-    throw new Error("Invalid cartId, please try again.");
+  if (Number.isNaN(Number(cartId))) {
+    throw new TypeError(
+      "❌ cartId is found, but is invalid, possibly value is NaN (not a number) type",
+    );
   }
 
   const cart = await db.query.carts.findFirst({
@@ -295,14 +378,18 @@ export async function deleteCartItemsAction(
 ) {
   const input = deleteCartItemsSchema.parse(rawInput);
 
-  const cartId = cookies().get("cartId")?.value;
+  // console.log("⏳ awaiting getCartId for deleteCartItemsAction...");
+  const cartId = await getCartId();
+  // console.log("get `cartId` (7):", cartId);
 
   if (!cartId) {
-    throw new Error("cartId not found, please try again.");
+    throw new Error("(4) cartId is not found");
   }
 
-  if (isNaN(Number(cartId))) {
-    throw new Error("Invalid cartId, please try again.");
+  if (Number.isNaN(Number(cartId))) {
+    throw new TypeError(
+      "❌ cartId is found, but is invalid, possibly value is NaN (not a number) type",
+    );
   }
 
   const cart = await db.query.carts.findFirst({

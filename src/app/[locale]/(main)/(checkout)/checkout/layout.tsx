@@ -1,14 +1,14 @@
 import { redirect } from "next/navigation";
 
-import { getServerAuthSession } from "~/utils/users";
+import { getServerAuthSession } from "~/utils/auth/users";
 
-interface CheckoutLayoutProps {
+interface CheckoutLayoutProperties {
   children: React.ReactNode;
 }
 
 export default async function CheckoutLayout({
   children,
-}: CheckoutLayoutProps) {
+}: CheckoutLayoutProperties) {
   const user = await getServerAuthSession();
   if (!user) redirect("/auth");
 

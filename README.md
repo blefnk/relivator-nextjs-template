@@ -1,105 +1,164 @@
-# Relivator: The Most Feature-Rich Next.js 14 Starter
+# Relivator 1.2.0: The Most Feature-Rich Next.js 14 Starter
 
 <!-- https://github.com/blefnk/relivator#readme -->
 
-🌐 [https://relivator.bleverse.com](https://relivator.bleverse.com)
+🌐 [Launch Relivator's Demo](https://relivator.bleverse.com) | ❄️ [Check Project Features](https://github.com/blefnk/relivator#project-features-checklist)
 
-We aim to create the world's most feature-rich and global Next.js starter. Offering more than just code—it's a journey. It's stable and ready for production. Scroll down and check out the breathtaking list of project features, including switching between Clerk/NextAuth.js and MySQL/PostgreSQL on the fly.
+Stop running from one starter to the next. With Relivator, you'll have unlimited possibilities. You can create anything you want; all the tools are already prepared, just for you.
 
-Each week, we grant early access to Relivator to 2 randomly selected individuals. Simply `star this repository` and [let us know how to contact you](https://forms.gle/NXZ6QHpwrxh52VA36). For discussions, join [the project Discord](https://discord.gg/Pb8uKbwpsJ).
+We aim to create the world's most feature-rich and global Next.js starter. Offering more than just code—it's a journey. It's stable and ready for production. Scroll down and check out the breathtaking list of project features, including switching between Clerk/NextAuth.js and Drizzle's MySQL/PostgreSQL on the fly.
+
+Please scroll down the page to see a lot of useful information about how everything works in the project, and a comprehensive list of project features as well.
 
 ## How to Install and Get Started
 
-1. **Essential Tools**: Ensure that [_VSCode_](https://code.visualstudio.com), [_Git_](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git), _GitHub Desktop_ ([Windows/macOS](https://desktop.github.com/) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)), and _Node.js LTS_ ([Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis)) are installed.
+1. **Essential Tools**: Ensure that [_VSCode_](https://code.visualstudio.com), [_Git_](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git), _GitHub Desktop_ ([Windows/macOS](https://desktop.github.com) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)), and _Node.js LTS_ ([Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis)) are installed.
 2. **Project Cloning**: [_Create a new fork_](https://github.com/blefnk/relivator/fork) and use GitHub Desktop to download it.
-3. **Configuration**: Open VSCode and load the project folder. Press `Ctrl+Shift+P` and search for `>Create New Terminal`. Install _PNPM_ using `corepack enable`. Then, enter `pnpm install` to install the packages. Next, copy the `.env.example` file to a new `.env` file and fill in at least the `DATABASE_URL` field. Finally, send the database schema to your database using `pnpm mysql:push` or `pnpm pg:push`.
-4. **Run, Stop, Build**: Use `pnpm dev` to run the app (visit <http://localhost:3000> to check it). Stop it by focusing on the console and pressing `Ctrl+C`. After making changes, build the app using `pnpm build`. Thats okay if you see Clerk's warnings.
+3. **Configuration**: Open VSCode and load the project folder. Press `Ctrl+Shift+P` and search for `>Create New Terminal`. Install _PNPM_ using `corepack enable`. Then, enter `pnpm install` to install the packages. Next, copy the `.env.example` file to a new `.env` file and fill in at least the `NEXT_PUBLIC_DB_PROVIDER` and `DATABASE_URL` fields. Finally, send the database schema to your database using `pnpm mysql:push` or `pnpm pg:push`.
+4. **Run, Stop, Build**: Use `pnpm dev` to run the app (visit <http://localhost:3000> to check it). Stop it by focusing on the console and pressing `Ctrl+C`. After making changes, build the app using `pnpm build`. _Thats okay if you see Clerk's warnings_ when executing `pnpm build`, this is a known issue not related to Relivator.
 5. **Commit and Deploy**: Upload your project to your GitHub profile using GitHub Desktop. Then, deploy it by importing the project into [Vercel](https://vercel.com/new), making your website publicly accessible on the internet. If you wish to share your work, seek feedback, or ask for assistance, you're welcome to do so either [in our Discord server](https://discord.gg/Pb8uKbwpsJ) or [via GitHub discussions](https://github.com/blefnk/relivator/discussions).
 
-Please scroll down the page to see a lot of useful information about how everything works in the project.
+Tip! You can create a folder, for instance, `home`, within the `src` directory, to store your project-specific files. It allows you for easy updates whenever Relivator has new versions.
 
 ## Project Features Checklist
 
-- [x] Utilized [Next.js 14](https://nextjs.org), [React 18](https://react.dev), [TailwindCSS](https://tailwindcss.com), and [TypeScript](https://typescriptlang.org) serve as the project's core technologies.
-- [x] Implemented authentication through **both [Clerk](https://clerk.com/) and [NextAuth.js](https://authjs.dev)**.
-- [x] Unleashed extensive internationalization **in 9 languages** (_English, German, Spanish, French, Hindi, Italian, Polish, Turkish, Ukrainian_), using [next-intl](https://next-intl-docs.vercel.app).
-- [x] Undertook [Drizzle ORM](https://orm.drizzle.team), utilizing **both MySQL and PostgreSQL** databases, and [PlanetScale](https://planetscale.com)/[Neon](https://neon.tech)/[Vercel](https://vercel.com)/[Railway](https://railway.app) services.
-- [x] Successfully configured `next.config.mjs` with i18n and MDX support.
-- [x] Strived for thorough documentation and a beginner-friendly approach throughout the project.
-- [x] Skillfully configured and commented on `middleware.ts` for i18n and next-auth.
-- [x] Provided exemplary VSCode settings and recommended extensions.
-- [x] Optimized the [Next.js Metadata API](https://nextjs.org/docs/app/building-your-application/optimizing/metadata) for SEO, integrating file-system handlers.
-- [x] Integrated a TailwindCSS screen size indicator for local project runs.
-- [x] Established a user subscription and checkout system using [Stripe](hhttps://github.com/stripe/stripe-node#readme).
-- [x] Ensured type-safety validations for project schemas and UI fields using [Zod](https://zod.dev).
-- [x] Employed [EsLint](https://eslint.org) and [Prettier](https://prettier.io) to ensure the code is safe and readable.
-- [x] Elegantly executed the font system, utilizing [Inter](https://rsms.me/inter) and additional typefaces.
-- [x] Developed a storefront, incorporating product, category, and subcategory functionality.
-- [x] Designed a modern, cleanly composed UI using [Radix](https://radix-ui.com), with attractive UI components from [shadcn/ui](https://ui.shadcn.com).
-- [x] Composed a comprehensive, beginner-friendly `README.md`, including descriptions of [environment variables](https://nextjs.org/docs/basic-features/environment-variables).
-- [x] Blog functionality realized through the use of MDX files.
-- [x] Implemented [tRPC](https://trpc.io) and [TanStack Query](https://tanstack.com/query) for server and client data fetching.
-- [ ] Use absolute paths where applied.
-- [ ] Use [Kysely](https://kysely.dev) with Drizzle to achieve full TypeScript SQL query builder type-safety.
-- [ ] Translate README.md and related files into more languages.
-- [ ] Transform beyond a simple e-commerce store to become a universal website starter.
-- [ ] Tidy up `package.json` with correctly installed and orderly sorted packages in `dependencies` and `devDependencies`.
-- [ ] The project author should publish a series of detailed videos on how to use this project. There should also be some enthusiasts willing to publish their own videos about the project on their resources.
-- [ ] Reduce the number of config files as much as possible.
-- [ ] Reduce HTML tag nesting and ensure correct usage of HTML tags whenever possible.
-- [ ] Prioritize accessibility throughout, for both app user UI (User Interface) and UX (User Experience), as well as developers' DX (Developer Experience). Maintain usability without compromising aesthetics.
-- [ ] Prefer `function` over `const` for components to maintain clean and beginner-friendly code.
-- [ ] Optimize all app elements to improve dev cold start and build speeds.
-- [ ] Manage email verification, newsletter sign-ups, and email marketing via [Resend](https://resend.com) and [React Email](https://react.email).
-- [ ] Make certain environment variables optional, allowing the app to operate without them, simply omitting specific code sections as necessary.
-- [ ] Keep the project free from `@ts-expect-error` and related not very type-safety things.
-- [ ] Keep the cookie count as low as possible, prepare for a cookie-free future, and implement cookie notifications.
-- [ ] Introduce a comment system for products, including Review and Question types.
-- [ ] Integrate valuable insights from [Next.js Weekly](https://nextjsweekly.com/issues) into this starter.
-- [ ] Implement file uploads using [UploadThing](https://uploadthing.com) and [Cloudinary](https://cloudinary.com).
-- [ ] Implement dynamic switching between app features, like database provider, by making corresponding checks for environment variables.
-- [ ] Implement AI features and chat, using, for example, [Vercel AI SDK](https://sdk.vercel.ai/docs) (see: [Introducing the Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk)).
-- [ ] Implement advanced theme switching without flashing, utilizing Tailwind Dark Mode with [React Server Side support](https://michaelangelo.io/blog/darkmode-rsc) and dynamic cookies.
-- [ ] Implement [Jest](https://jestjs.io) testing, optimized for Next.js.
-- [ ] Implement CLI to quickly get Relivator with selected options only.
-- [ ] Guarantee that every possible page is enveloped using predefined shell wrappers.
-- [ ] Generously comment throughout your code, while keeping it clean.
-- [ ] Fully develop advanced sign-up and sign-in pages, integrating both social media and classic form methods.
-- [ ] Follow recommendations from [Material Design 3](https://m3.material.io) and other design systems when relevant.
-- [ ] Establish, document, and adhere to conventions, such as maintaining a single naming case style for files and variables.
-- [ ] Establish a comprehensive i18n, using country and locale codes, and support even more languages. Ensure native speakers verify each language following machine translation. Consider to use the [next-international](https://github.com/QuiiBz/next-international) library.
-- [ ] Ensure ultimate type safety using strict mode in [TypeScript](https://typescriptlang.org), typedRoutes, Zod, middleware, etc.
-- [ ] Ensure the project lacks any unused items, including packages, libraries, variables, etc.
-- [ ] Ensure full Next.js Edge support and compatibility.
-- [ ] Ensure full [Bun](https://bun.sh) support and compatibility.
-- [ ] Ensure all website languages are grammatically correct and adhere to the latest rules for each language.
-- [ ] Ensure all items in the project are sorted in ascending order unless different sorting is required elsewhere.
-- [ ] Ensure accessibility for **users**, **developers** (both beginners and experts), **bots** (like [Googlebot](https://developers.google.com/search/docs/crawling-indexing/googlebot) or [PageSpeed Insights Crawler](https://pagespeed.web.dev)), for **everyone**.
-- [ ] Enhance `middleware.ts` configuration with multi-middleware implementation.
-- [ ] Employ all relevant [TanStack](https://tanstack.com) libraries.
-- [ ] Elegantly configure `app.ts`, offering a single config to replace all others.
-- [ ] Develop workflows for both sellers and customers.
-- [ ] Develop an advanced storefront featuring products, categories, and subcategories.
-- [ ] Develop an advanced 404 Not Found page with full internationalization support.
-- [ ] Develop advanced sign-up, sign-in, and restoration using email-password and magic links.
-- [ ] Develop an even more sophisticated implementation of user subscriptions and the checkout system via Stripe.
-- [ ] Decrease file count by merging similar items, etc.
-- [ ] Create the most beginner-friendly and aesthetically pleasing starter possible.
-- [ ] Create an advanced notification system, inclusive of toasters, pop-ups, and pages.
-- [ ] Create a new landing page with a distinctive design and update components, plus fully redesign all other pages and components.
-- [ ] Confirm the project is free from duplicates, like files, components, etc.
-- [ ] Conduct useful tests, including possible stress tests, to simulate and assess app performance under high-traffic conditions.
-- [ ] Comprehensively configure Next.js 14 App Router, with API routes managed by Route Handlers, including the RSCs and all other new features.
-- [ ] Complete the BA11YC (Bleverse Accessibility Convention) checklist.
-- [ ] Complete parts of the [BA11YC (Bleverse Accessibility Convention) checklist](https://github.com/bs-oss/BA11YC).
-- [ ] Boost app performance scores on platforms like Google PageSpeed Insights. Ensure the app passes all rigorous tests.
-- [ ] Apply the [next-usequerystate](https://github.com/47ng/next-usequerystate) library where appropriate ([read the article](https://francoisbest.com/posts/2023/storing-react-state-in-the-url-with-nextjs)).
-- [ ] Add some interesting and useful types to the project, for example, using the [type-fest](https://github.com/sindresorhus/type-fest) library.
-- [ ] Add pop-ups for cookies/GDPR notifications (with a respective management settings page), and Google floating notifications for quick login, etc.
-- [ ] Add an admin dashboard that includes stores, products, orders, subscriptions, and payments.
-- [ ] Add advanced indicators for installed packages, environment variables, and improvements to TailwindCSS screen sizes.
+**Note:** _Every two weeks, we gift early access to Relivator's future plugins to three randomly selected individuals. Simply `star this repository` and [let us know how to contact you](https://forms.gle/NXZ6QHpwrxh52VA36). For discussions, join [the project's Discord](https://discord.gg/Pb8uKbwpsJ)._
 
-This roadmap outlines the key features and improvements planned for implementation in this Next.js starter. Items not marked may already be configured but might not have undergone extensive testing. Should you find any mistakes, please create an issue.
+<details>
+  <summary>[27.12.2023] 🎄 Relivator v1.2.0 is here! 🥳 Click to see the announcement 🎁</summary>
+
+---
+
+_Relivator 1.2.0 is already here! I, [@blefnk Nazarii Korniienko](https://github.com/blefnk), am thrilled to wrap up this year 2023, proudly presenting this release to the OSS community! So, the result of over two months of hard work is finally here!_
+
+In this version, significant attention was focused on stability, security, performance optimization, and a substantial improvements in design—both visually, UX, and the logic of how the app works. A lot was really done, too much to list everything! Be sure to install it and check it out for yourself!
+
+By the way, you can now enjoy a finely-tuned ESLint Flat Config! Also, it's worth noting that Clerk, since version 1.1.0, is no longer considered deprecated in the Relivator project. Thanks to 1.2.0, Clerk now works seamlessly with an easy switch to NextAuth.js when needed, all on the fly. Plus, full support for Turbopack (next dev --turbo) is finally here, even for next-intl!
+
+As for next-intl, finally, we can now enjoy internationalization that works not only on the client-side but also on the server! Only the 404 page has client-side i18n messages, all other pages and components use i18n as server-first. And this is really cool!
+
+Many unique solutions have been implemented in this new version. Moreover, using Relivator from this version, you have the opportunity to try out the alpha version of our unique Code-First/No-Code Builder system for React pages and components (which will appear in Reliverse CMS in the future). Just visit the Admin page while in the development environment and enjoy.
+
+If you have already used Relivator before, please pay attention, this is very important! Be sure to check the updated .env.example file and update your .env file accordingly.
+
+As a small teaser/spoiler, for Relivator 1.3.0, even more improvements in visual design and UX are planned; 1.4.0 will come with a magical CLI implementation, allowing you to quickly obtain only the necessary features and dependencies for your app (even automated updates and the ability to add other functions and packages to an already installed app); 1.5.0 will undergo a full code refactoring that will meet all the best standards and practices; 1.6.0-2.0.0+ versions, apart from many other things, will receive most of the items currently unchecked in the Roadmap (located in the project's README.md). It's going to be incredible!
+
+So, install this new version of Relivator 1.2.0 and appreciate the multitude of incredible features, and freely use it in your own projects today. Please use your preferred feedback channels to share your thoughts on Relivator 1.2.0 and what you would like to see in future releases.
+
+Don't forget to also check out the significantly updated README.md, it's worth it.
+
+Enjoy! ❄️☃️ Merry Christmas and Happy New Year 2024! 🎇🥳
+
+</details>
+
+---
+
+_The roadmap below outlines the key features and improvements planned for implementation in this Next.js starter. `Items not marked may already be configured` but might not have undergone extensive testing. Should you find any mistakes, please create an issue._
+
+- [x] 1. Utilized [Next.js 14](https://nextjs.org) with **complete [Turbopack](https://turbo.build) support**, alongside [React 18](https://react.dev), [TailwindCSS](https://tailwindcss.com), and [TypeScript](https://typescriptlang.org) as the project's core technologies.
+- [x] 2. Undertook [Drizzle ORM](https://orm.drizzle.team), utilizing **both MySQL and PostgreSQL** databases, and [PlanetScale](https://planetscale.com)/[Neon](https://neon.tech)/[Vercel](https://vercel.com)/[Railway](https://railway.app) services.
+- [x] 3. Successfully configured `next.config.mjs` with i18n, MDX, and even [Million.js](https://million.dev) support.
+- [x] 4. Strived for thorough documentation and a beginner-friendly approach throughout the project.
+- [x] 5. Skillfully configured and commented on `middleware.ts` for i18n and next-auth.
+- [x] 6. Set upped the Content-Security-Policy (CSP) system as a security measure to prevent XSS attacks (disabled by default).
+- [x] 7. Provided exemplary VSCode settings and recommended extensions.
+- [x] 8. Optimized the [Next.js Metadata API](https://nextjs.org/docs/app/building-your-application/optimizing/metadata) for SEO, integrating file-system handlers.
+- [x] 9. Integrated a TailwindCSS screen size indicator for local project runs.
+- [x] 10. Implemented extensive internationalization in 10 languages (English, German, Spanish, Persian, French, Hindi, Italian, Polish, Turkish, Ukrainian) using the [next-intl](https://next-intl-docs.vercel.app) library, which works both on server and client, and included support for `next dev --turbo`.
+- [x] 11. Implemented authentication through **both [Clerk](https://clerk.com) and [NextAuth.js](https://authjs.dev)**.
+- [x] 12. Implemented [tRPC](https://trpc.io) and [TanStack Query](https://tanstack.com/query) (with [React Normy](https://github.com/klis87/normy#readme)) to have advanced server and client data fetching.
+- [x] 13. Established a user subscription and checkout system using [Stripe](hhttps://github.com/stripe/stripe-node#readme).
+- [x] 14. Ensured type-safety validations for project schemas and UI fields using [zod](https://zod.dev) library.
+- [x] 15. Employed [EsLint](https://eslint.org) (with [Flat Config support](https://eslint.org/docs/latest/user-guide/configuring/configuration-files-new) and [@antfu/eslint-config](https://github.com/antfu/eslint-config#antfueslint-config), including a [TypeScript patch](https://github.com/antfu/eslint-ts-patch#eslint-ts-patch) to enable the `eslint.config.ts` filename), perfectly configured to work with both [Biome](https://biomejs.dev) and [Prettier](https://prettier.io) (including the latest Sort Imports addon) to ensure the code is readable, clean, and safe. **Tip:** use `pnpm ui:eslint` to open [ESLint Flat Config Viewer](https://github.com/antfu/eslint-flat-config-viewer#eslint-flat-config-viewer) UI tool.
+- [x] 16. Elegantly executed the font system, utilizing [Inter](https://rsms.me/inter) and additional typefaces.
+- [x] 17. Developed a storefront, incorporating product, category, and subcategory functionality.
+- [x] 18. Designed a modern, cleanly composed UI using [Radix](https://radix-ui.com), with attractive UI components from [shadcn/ui](https://ui.shadcn.com).
+- [x] 19. Composed a comprehensive, beginner-friendly `README.md`, including descriptions of [environment variables](https://nextjs.org/docs/basic-features/environment-variables).
+- [x] 20. Blog functionality realized through the use of MDX files.
+- [ ] 21. Use absolute paths everywhere where applied in the project.
+- [ ] 22. Use [Kysely](https://kysely.dev) with Drizzle to achieve full TypeScript SQL query builder type-safety.
+- [ ] 23. Translate README.md and related files into more languages.
+- [ ] 24. Transform beyond a simple e-commerce store to become a universal website starter.
+- [ ] 25. Tidy up `package.json` with correctly installed and orderly sorted packages in `dependencies` and `devDependencies`.
+- [ ] 26. The project author should publish a series of detailed videos on how to use this project. There should also be some enthusiasts willing to publish their own videos about the project on their resources.
+- [ ] 27. Reduce the number of project packages, config files, and etc., as much as possible.
+- [ ] 28. Reduce HTML tag nesting and ensure correct usage of HTML tags whenever possible.
+- [ ] 29. Prioritize accessibility throughout, for both app user UI (User Interface) and UX (User Experience), as well as developers' DX (Developer Experience). Maintain usability without compromising aesthetics.
+- [ ] 30. Prefer `function`/`type` over `const`/`interface` to maintain readably-clean and beginner-friendly code (by using specific [recommendations for functional programming](https://youtu.be/nuML9SmdbJ4) approach).
+- [ ] 31. Optimize all app elements to improve dev cold start and build speeds.
+- [ ] 32. Move each related system to its special folder (into the `src/core` folder), so any system can be easily removed from the project as needed.
+- [ ] 33. Move component styles to .css or .scss files, or use packages that provide syntax sugar for styles in .tsx files.
+- [ ] 34. Migrate to NextAuth.js' [next-auth@beta](https://npmjs.com/package/next-auth?activeTab=versions) ([discussions](https://github.com/nextauthjs/next-auth/releases/tag/next-auth%405.0.0-beta.4)), and to Clerk's [@clerk/*@alpha].
+- [ ] 35. Manage email verification, newsletter sign-ups, and email marketing via [Resend](https://resend.com) and [React Email](https://react.email).
+- [ ] 36. Make sure each page and the middleware are green or yellow, but not red, upon build in the development terminal.
+- [ ] 37. Make each environment variable optional, allowing the app to operate without anything configured, simply omitting specific code sections as necessary.
+- [ ] 38. Keep the project on the best possible way of writing good and clean code, by following guidelines like [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/tree/master/react) / [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react).
+- [ ] 39. Keep the project free from things like `@ts-expect-error`, `eslint-disable`, `biome-ignore`, and others related not very safety things.
+- [ ] 40. Keep the cookie count as low as possible, prepare for a cookie-free future, implement cookie management and notifications.
+- [ ] 41. Introduce a comment system for products, including Review and Question types.
+- [ ] 42. Integrate valuable things from [Next.js' Examples](https://github.com/vercel/next.js/tree/canary/examples) into this project.
+- [ ] 43. Integrate valuable insights from [Next.js Weekly](https://nextjsweekly.com/issues) into this starter.
+- [ ] 44. Implement type-safe [GraphQL](https://hygraph.com/learn/graphql) support by using [Fuse.js](https://fusejs.org) framework.
+- [ ] 45. Implement the best things from [Payload CMS](https://github.com/payloadcms/payload) with Relivator's improvements.
+- [ ] 46. Implement Storybook 8.0 support (read the "[Storybook for React Server Components](https://storybook.js.org/blog/storybook-react-server-components)" announcement).
+- [ ] 47. Implement smart and unified log system, both for development and production, both for console and writing to specific files.
+- [ ] 48. Implement Sentry to handle errors and CSP reports for the application.
+- [ ] 49. Implement Relivator's/Reliverse's own version of [Saas UI](https://saas-ui.dev) to be fully compatible with our project with only needed functionality, with using Tailwind and Shadcn instead of Chakra.
+- [ ] 50. Implement our own fork of [Radix Themes](https://radix-ui.com) library with set up `<main>` as wrapper instead of its current `<section>`; OR implement our very own solution which generates Tailwind instead of Radix's classes.
+- [ ] 51. Implement full [Million.js](https://million.dev) support (read [Million 3.0 Announcement](https://million.dev/blog/million-3) to learn more).
+- [ ] 52. Implement file uploads using [UploadThing](https://uploadthing.com) and [Cloudinary](https://cloudinary.com).
+- [ ] 53. Implement dynamic switching between app features, like database provider, by making corresponding checks for environment variables.
+- [ ] 54. Implement docs to the project and move each explanation from the code into that docs.
+- [ ] 55. Implement deep feature-parity and easy-migration compatibility with Reliverse.
+- [ ] 56. Implement cooperation possibilities by using things like [liveblocks](https://liveblocks.io).
+- [ ] 57. Implement CLI to quickly get Relivator with selected options only; try to use [Charm](https://charm.sh) things to build the Reliverse CLI.
+- [ ] 58. Implement AI features and chat, using, for example, [Vercel AI SDK](https://sdk.vercel.ai/docs) (see: [Introducing the Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk)).
+- [ ] 59. Implement advanced theme switching without flashing, utilizing Tailwind Dark Mode with [React Server Side support](https://michaelangelo.io/blog/darkmode-rsc) and dynamic cookies.
+- [ ] 60. Implement [Jest](https://jestjs.io) testing, optimized for Next.js.
+- [ ] 61. Guarantee that every possible page is enveloped using predefined shell wrappers.
+- [ ] 62. Generously comment throughout the code, while keeping it clean.
+- [ ] 63. Fully develop advanced sign-up and sign-in pages, integrating both social media and classic form methods.
+- [ ] 64. Follow the best practices from the articles and videos like "[10 React Antipatterns to Avoid](https://youtube.com/watch?v=b0IZo2Aho9Y)" (check theirs comment section as well).
+- [ ] 65. Follow recommendations from [Material Design 3](https://m3.material.io) and other design systems when relevant.
+- [ ] 66. Establish, document, and adhere to conventions, such as maintaining a single naming case style for files and variables.
+- [ ] 67. Establish a comprehensive i18n, using country and locale codes, and support even more languages. Ensure native speakers verify each language following machine translation. Consider to use the [next-international](https://github.com/QuiiBz/next-international) library.
+- [ ] 68. Ensure ultimate type-safety using strict mode in [TypeScript](https://typescriptlang.org) including ["Do's and Don'ts"](https://typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html) recommendations (without using [dangerous type assertions](https://youtube.com/watch?v=K9pMxqb5IAk), and with [optional types correct usage](https://youtube.com/watch?v=qy6IBZggXSQ), by also using `pnpm fix:ts` — once you run that, [TypeStat](https://github.com/JoshuaKGoldberg/TypeStat) will start auto-fixing TS typings); And also ensure type-safety with typedRoutes, zod, middleware, etc.
+- [ ] 69. Ensure the project lacks any unused items, including packages, libraries, variables, etc.
+- [ ] 70. Ensure project has full support for [GSAP](https://gsap.com) (GreenSock Animation Platform) library, with convient ways to use @gsap/react [useGSAP() hook](https://gsap.com/docs/v3/React/tools/useGSAP).
+- [ ] 71. Ensure full Next.js Edge support and compatibility.
+- [ ] 72. Ensure full [Biome](https://biomejs.dev), [Bun](https://bun.sh), and [Docker](https://docker.com) support and compatibility.
+- [ ] 73. Ensure all website languages are grammatically correct and adhere to the latest rules for each language.
+- [ ] 74. Ensure all items in the project are sorted in ascending order unless different sorting is required elsewhere.
+- [ ] 75. Ensure the project avoids using redundant imports, such as importing everything from React, when it's sufficient to import only the necessary hooks, for example.
+- [ ] 76. Ensure accessibility for **users**, **developers** (both beginners and experts), **bots** (like [Googlebot](https://developers.google.com/search/docs/crawling-indexing/googlebot) or [PageSpeed Insights Crawler](https://pagespeed.web.dev)), for **everyone**.
+- [ ] 77. Enhance `middleware.ts` configuration with multi-middleware implementation.
+- [ ] 78. Employ all relevant [TanStack](https://tanstack.com) libraries.
+- [ ] 79. Eliminate each disabling in the `.eslintrc.cjs` file, configure config to strict, but to be still beginner-friendly.
+- [ ] 80. Elegantly configure `app.ts`, offering a single config to replace all possible others.
+- [ ] 81. Develop workflows for both sellers and customers.
+- [ ] 82. Develop an even more sophisticated implementation of user subscriptions and the checkout system via Stripe; and also write Jest/Ava tests for Stripe and use `.thing/hooks/stripe_*.json` [webhookthing](https://docs.webhookthing.com) data files for these tests.
+- [ ] 83. Develop an advanced storefront featuring products, categories, and subcategories.
+- [ ] 84. Develop an advanced 404 Not Found page with full internationalization support.
+- [ ] 85. Develop advanced sign-up, sign-in, and restoration using email-password and magic links.
+- [ ] 86. Decrease file count by merging similar items, etc.
+- [ ] 87. Create the most beginner-friendly and aesthetically pleasing starter possible.
+- [ ] 88. Create an advanced notification system, inclusive of toasters, pop-ups, and pages.
+- [ ] 89. Create a new landing page with a distinctive design and update components, plus fully redesign all other pages and components.
+- [ ] 90. Consider adding Facebook's [StyleX](https://stylexjs.com) to work seamlessly with TailwindCSS, but only StyleX will work without setting up Babel in the project to keep full Turbopack/Turborepo support.
+- [ ] 91. Confirm the project is free from duplicates, like files, components, etc.
+- [ ] 92. Conduct useful tests, including possible stress tests, to simulate and assess app performance under high-traffic conditions.
+- [ ] 93. Comprehensively configure Next.js 14 App Router, with API routes managed by Route Handlers, including the RSCs and all other new features.
+- [ ] 94. Complete the BA11YC (Bleverse Accessibility Convention) checklist.
+- [ ] 95. Complete parts of the [BA11YC (Bleverse Accessibility Convention) checklist](https://github.com/bs-oss/BA11YC).
+- [ ] 96. Check all components with side-effects for re-rendering, it is recommended to re-render each component a maximum of 2 times ([good video about it (in Ukrainian)](https://youtu.be/uH9uMH2e5Ts)).
+- [ ] 97. Boost app performance scores on platforms like Google PageSpeed Insights. Ensure the app passes all rigorous tests.
+- [ ] 98. Apply the [next-usequerystate](https://github.com/47ng/next-usequerystate) library where appropriate ([read the article](https://francoisbest.com/posts/2023/storing-react-state-in-the-url-with-nextjs)).
+- [ ] 99. Add the most valuable and useful ESLint things from [awesome-eslint](https://github.com/dustinspecker/awesome-eslint) collection.
+- [ ] 100. Add some interesting and useful types to the project, for example, using the [type-fest](https://github.com/sindresorhus/type-fest) library.
+- [ ] 101. Add pop-ups for cookies/GDPR notifications (with a respective management settings page), and Google floating notifications for quick login, etc.
+- [ ] 102. Add an admin dashboard that includes stores, products, orders, subscriptions, and payments.
+- [ ] 103. Add advanced indicators for environment variables, and improvements to TailwindCSS screen sizes.
+- [ ] 104. Add the integration of a smart git-hooks system with various additional useful functionality.
 
 ![Relivator Landing Page Screenshot](/public/screenshot.png)
 
@@ -107,29 +166,38 @@ This roadmap outlines the key features and improvements planned for implementati
 
 ## Project Commands
 
-- **`pnpm stripe:listen`**: This command runs the Stripe webhook listener and assists in setting up Stripe environment variables. You may need to have [Stripe CLI](https://stripe.com/docs/stripe-cli) installed to run this command.
-- **`pnpm appts`**: This command performs a comprehensive check of the codebase. It sequentially executes `pnpm typecheck` to conduct type-checking and identify any TypeScript errors, `pnpm lint` for code linting, `pnpm format` to format with Prettier, and finally, `pnpm:build`.
-- **`pnpm latest`**: This command updates all project packages to their latest stable versions and updates `next-intl` to the latest beta version. Please update the latest line in the `scripts` section of `package.json` if a [newer beta version of _next-intl_](https://github.com/amannn/next-intl/pull/149) is released.
-- **`pnpm latest:canary`**: This command runs `pnpm latest` and updates Next.js and React to the latest versions available on their canary branches. Use this only if you are certain about why you need it.
+- **`pnpm db:studio`**: This command runs the Drizzle Studio on the <https://local.drizzle.studio> path.
+- **`pnpm stripe:listen`**: This command runs the Stripe webhook listener and assists in setting up Stripe environment variables. You may need to have the [Stripe CLI](https://stripe.com/docs/stripe-cli) installed to run this command.
+- **`pnpm latest`**: This command updates all project packages to their latest stable versions and updates tRPC to the most recent version on the next branch. This ensures we have the newest versions of TanStack Query v5.
+- **`pnpm up-next:canary`**: This command updates Next.js and React to the latest versions available on their canary branches. Use this only if you are certain about its necessity.
+- **`pnpm appts`**: This command performs a comprehensive check of the codebase. It sequentially executes `pnpm typecheck` to identify any TypeScript errors, `pnpm format` to format the code with Prettier (and/or with Biome — coming soon), `pnpm lint` for code linting with EsLint (most of rules in `eslint.config.ts` are disabled by default, just enable what you need) (and/or with Biome — coming soon). **NOTE**: Linting can be time-consuming, so please be patient. The command also runs `pnpm test` to check Jest tests, and finally, it executes `pnpm build`. _Thats okay if you see Clerk's warnings_ when executing `pnpm build`, this is a known issue not related to Relivator.
 
-## About the Project
+## Details About the Project
 
-We've laid the foundation – now it’s your turn to dive in and speed up your development. Explore everything new with Next.js 14 right here, with Relivator.
+[![Join the Relivator Discord](https://discordapp.com/api/guilds/1075533942096150598/widget.png?style=banner2)][bleverse-discord]
 
-Grab it and enjoy! Don’t forget: your feedback and stars mean the world to us. Smash that star button! Fork it! Your involvement lifts the project to new heights! If you have coding skills, your contributions are always welcome!
+We've laid the foundation—now it's your turn to dive in and speed up your development. And, yes, have **fun—think of Relivator as a sandbox**! It's like Minecraft; you can build anything with Relivator, as your creativity has no limits! Explore everything new with Next.js 14 and with many web things right here, right now—with Relivator.
+
+You can even think of Relivator as a Next.js framework! So, finally, just grab it and enjoy! And, don’t forget: your feedback and stars mean the world to us. Smash that star button! Fork it! Your involvement lifts the project to new heights! If you have coding skills, your contributions are always welcome!
 
 Run into issues? Join our repository discussions, open an issue, or DM us on: [Twitter/𝕏](https://x.com/blefnk), [Discord](https://discord.gg/Pb8uKbwpsJ), [Fiverr](https://fiverr.com/blefnk), [LinkedIn](https://linkedin.com/in/blefnk), or [Facebook](https://facebook.com/blefnk).
 
 This project has big plans and we value all the help we can get! If you’re keen to make your own commits, check out the Project Roadmap above to see potential enhancements for the project. Also, use `Cmd/Ctrl+Shift+F` in VSCode and search for `todo:` to find spots that need attention. Please visit the **[Commits](https://github.com/blefnk/relivator/issues)** tab for more opportunities to assist.
 
+**🔥 We're Growing Fast! A Huge Thanks to [All Our Supporters](https://github.com/blefnk/relivator/stargazers)! Check Out Our Star History:**
+
+[![Star History Chart](https://api.star-history.com/svg?repos=blefnk/relivator&type=Date)](https://star-history.com/#blefnk/relivator&Date)
+
 > **Note**
 > Striving to be highly useful, this README contains a lot of information. Some text may be outdated and will be updated as we grow. Please let us know on the [discussion page](https://github.com/blefnk/relivator/discussions/6) if you spot any small issues like outdated info, broken links, or grammatical/spelling errors in README.md or other files.
+
+_Hint: This README.md is translated into these languages (may be outdated):_ [Polish](https://github.com/blefnk/relivator/blob/main/.github/translations/polish.md), [Ukrainian](https://github.com/blefnk/relivator/blob/main/.github/translations/ukrainian.md).
 
 ## Environment Variables (`.env` file)
 
 **Refer to the [`.env.example`](https://github.com/blefnk/relivator/blob/main/.env.example) file as your guide. Simply copy data from it to a new `.env` file.**
 
-The DATABASE_URL environment variable is mandatory; others are optional. You're welcome to deploy the application as-is, but ensure you verify what's necessary. Though the application will run without certain variables, missing ones may deactivate specific features.
+The `DATABASE_URL`, `NEXT_PUBLIC_DB_PROVIDER`, and `NEXT_PUBLIC_AUTH_PROVIDER` environment variables are mandatory; others are optional. You're welcome to deploy the application as-is, but ensure you verify what's necessary. Though the application will run without certain variables, missing ones may deactivate specific features.
 
 Ensure that default values are defined for essential environment variables. Never store secrets in the `.env.example` file. For newcomers or repo cloners, use `.env.example` as a template to create your `.env` file, ensuring it’s never committed. Update the schema in `/src/env.mjs` when adding new variables.
 
@@ -145,7 +213,7 @@ Refer to the [`.env.example`](https://github.com/blefnk/relivator/blob/main/.env
 
 Locally, install the [Stripe CLI](https://stripe.com/docs/stripe-cli) and run the command `pnpm stripe:listen` to initiate the Stripe webhook listener. This action connects Stripe to your account and generates a webhook key, which you can then set as an environment variable in Stripe's settings.
 
-When testing Stripe, you can use its test data: `4242 4242 4242 4242` | `12/34` | `567` | `Random Name` | `Random Country`.
+When testing Stripe, you can use its test data: `4242424242424242` | `12/34` | `567` | `Random Name` | `Random Country`.
 
 Please refer to [src/app/api/webhooks/stripe/route.ts](https://github.com/blefnk/relivator/blob/main/src/app/api/webhooks/stripe/route.ts) file to learn more in the deep details how Stripe things work in the app. You can also visit the [official Stripe repository](https://github.com/stripe/stripe-node#readme), where you'll find a lot of useful information.
 
@@ -189,27 +257,53 @@ Presently, all languages are machine-translated. Future revisions by native spea
 
 Note that i18n messages from another one of our open-source projects are currently present and will be removed shortly.
 
+We are using beta/rc _next-intl_ versions for internationalization. Find more information about [here](https://next-intl-docs.vercel.app/blog/next-intl-3-0) and [here](https://github.com/amannn/next-intl/pull/149).
+
 **Currently supported locales (you can add your own manually):**
 
-de-DE, en-US, es-ES, fr-FR, hi-IN, it-IT, pl-PL, tr-TR, uk-UA.
+de-DE, en-US, es-ES, fa-IR, fr-FR, hi-IN, it-IT, pl-PL, tr-TR, uk-UA.
 
-## Design Decisions, Code Insights, Recommendations
+## Principles, Design Decisions, Code Insights, Recommendations
 
 _We're continuously improving this section. Contributions are welcomed!_
 
 Our starter aims to be a rich resource for developers at all stages of their journey. Within the comment blocks and dedicated sections at the end of select files, you'll find valuable insights and clarifications on a wide array of topics. Your contributions to enhancing these educational nuggets are highly encouraged!
 
+**Principles (W.I.P):**
+
+- [ ] Every file and component should be built consciously, with a certain sense of intelligence, with performance in mind.
+- [ ] We need to think of the project as if it were a planet with its own continents, countries, cities, rooms, individuals, entities etc.
+
+**Highly-Recommended VSCode Extensions:**
+
+1. [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+2. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+3. [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+4. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+5. [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+6. [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally)
+7. [JavaScript and TypeScript Nightly](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next)
+8. [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+9. [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
+10. [POP! Icon Theme](https://marketplace.visualstudio.com/items?itemName=mikekscholz.pop-icon-theme)
+11. [Prettier—Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+12. [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
+13. [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+14. [TailwindCSS Tune](https://marketplace.visualstudio.com/items?itemName=omkarbhede.tailwindcss-tune)
+15. [TypeScript Essential Plugins](https://marketplace.visualstudio.com/items?itemName=zardoy.ts-essential-plugins)
+
+<details>
+  <summary>Why "TypeScript Essential Plugins" is Recommended</summary>
+
+«Feature-complete TypeScript plugin that improves every single builtin feature such as completions, definitions, references and so on, and also adds even new TypeScript killer features, so you can work with large codebases faster! We make completions more informative. Definitions, references (and sometimes even completions) less noisy. And finally our main goal is to provide most customizable TypeScript experience for IDE features.» © [VSCode Extension Repository](https://github.com/zardoy/typescript-vscode-plugins#readme)
+
+Note: You can configure extension settings by opening VSCode Settings UI and searching for `@ext:zardoy.ts-essential-plugins` there.
+
+</details>
+
 **Advanced Environment Variables:**
 
-The `.env.example` file covers all the essential variables for a fully functional website, tailored for beginners. However, if you require advanced configurations, you can extend your `.env` file with the following variables:
-
-```properties
-# For Discord Server Integration: Navigate to Edit Channel > Integrations > New Webhook to obtain the URL.
-DISCORD_WEBHOOK_URL=""
-
-# For Loglib Integration: The site ID can be found on https://loglib.io.
-LOGLIB_SITE_ID=""
-```
+The `.env.example` file covers all the essential variables for a fully functional website, tailored for beginners. However, if you require advanced configurations, you can modify any value in `.env` file as needed.
 
 **About the Plugins Folder:**
 
@@ -235,20 +329,27 @@ The `src/app.ts` file hosts critical configurations to modify website contents a
 
 Customize this file as per your requirements.
 
+**Authentication:**
+
+Setting up authentication is straightforward.
+
+You can configure available sign-in providers for Clerk in the `src/app.ts` file.
+
+Please remember that Clerk fully works with third-party services like "Google PageSpeed Insight" only when domain and live keys are used.
+
+_This section will be implemented soon._
+
 **How to Deploy the Project:**
 
 Please check the _How to Install and Get Started_ section before making the initial deployment.
 
 Consult the deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify), and [Docker](https://create.t3.gg/en/deployment/docker) for further details. The project has only been tested on Vercel; please inform us if you encounter issues with other deployment services.
 
-**UI Components:**
+**Design System and UI Components:**
+
+TODO: Implement design system and style guide.
 
 By default, this project includes components from various libraries, as well as unstyled [shadcn/ui](https://ui.shadcn.com) components. Shadcn/ui even allows you to generate new UI components using its CLI (where "button" can be any Shadcn UI element): `pnpm dlx shadcn-ui@latest add button`.
-
-**Authentication:**
-
-Setting up authentication is straightforward.
-_This section will be implemented soon._
 
 **Bun Things Compatibility:**
 
@@ -263,12 +364,25 @@ A comprehensive guide detailing the typical application workflow will be impleme
 3. _Middleware Setup_: `middleware.ts`
 4. _Additional Steps_: Stay tuned...
 
+**FAQ (Frequently Asked Questions):**
+
+_Q:_ How to grant admin rights to myself or to another user?
+_A:_ Just run `pnpm db:studio`, navigate to the `acme_user` table and set `role: admin` for the user you need. In the future, if you have admin rights, you will be able to change the user privilegies of selected users directly from the frontend admin page.
+
+_Q:_ What does the `DEV_DEMO_NOTES` environment variable mean?
+_A:_ Just don't use it. It is used only on the official [Relivator demo website](https://relivator.bleverse.com) to showcase certain features that are not needed in real-world applications.
+
+_Q:_ I'm using PlanetScale as my database provider. After taking a break from the project, I'm now encountering "unable to connect to branch" error in the console. How can I fix this?
+_A:_ Simply go to the PlanetScale dashboard and click on the `wake up` button. Please contact us in case if your database is not asleep and the problem still persists.
+
 **Recommended Things to Learn:**
 
-1. [Relivator: Next.js 14 Starter (Release Announce of Relivator on Medium)](https://cutt.ly/awf6fScS) by [Nazarii Korniienko @Blefnk](https://github.com/blefnk)
-2. [Welcome to the Wild World of TypeScript, Mate! Is it scary?](https://cutt.ly/CwjVPUNu) by [Nazarii Korniienko @Blefnk](https://github.com/blefnk)
-3. [Thoughts on Next.js 13, Server Actions, Drizzle, Neon, Clerk, and More](https://github.com/Apestein/nextflix/blob/main/README.md#overall-thoughts) by [@Apestein](https://github.com/Apestein)
-4. [Huge Next-Multilingual Readme About i18n](https://github.com/Avansai/next-multilingual#readme) by [@Avansai](https://github.com/Avansai)
+1. [Introduction to Next.js and React](https://youtube.com/watch?v=h2BcitZPMn4) by [Lee Robinson](https://twitter.com/leeerob)
+2. [Relivator: Next.js 14 Starter (Release Announce of Relivator on Medium)](https://cutt.ly/awf6fScS) by [Nazarii Korniienko @Blefnk](https://github.com/blefnk)
+3. [Welcome to the Wild World of TypeScript, Mate! Is it scary?](https://cutt.ly/CwjVPUNu) by [Nazarii Korniienko @Blefnk](https://github.com/blefnk)
+4. [React: Common Mistakes in 2023](https://docs.google.com/presentation/d/1kuBeSh-yTrL031IlmuwrZ8LvavOGzSbo) by [Cory House](https://twitter.com/housecor)
+5. [Thoughts on Next.js 13, Server Actions, Drizzle, Neon, Clerk, and More](https://github.com/Apestein/nextflix/blob/main/README.md#overall-thoughts) by [@Apestein](https://github.com/Apestein)
+6. [Huge Next-Multilingual Readme About i18n](https://github.com/Avansai/next-multilingual#readme) by [@Avansai](https://github.com/Avansai)
 
 _More learning resources can be found within the files of this repository._
 
@@ -308,22 +422,188 @@ This project is licensed under MIT and is free to use and modify for your own pr
 
 **Follow Us Everywhere:** [GitHub](https://github.com/blefnk) | [Twitter/𝕏](https://x.com/blefnk) | [Discord](https://discord.gg/Pb8uKbwpsJ) | [Fiverr](https://fiverr.com/blefnk) | [LinkedIn](https://linkedin.com/in/blefnk) | [Facebook](https://facebook.com/blefnk)
 
-This Next.js 14 starter was crafted with love by [@blefnk Nazarii Korniienko](https://github.com/blefnk), and by the incredible [Bleverse OSS community](https://github.com/blefnk/relivator/wiki/Project-Credits-&-Contributors). We are deeply grateful for all the contributions and support provided by everyone for this project.
+This Next.js 14 starter—Relivator—was crafted with love by [@blefnk Nazarii Korniienko](https://github.com/blefnk), and by the incredible [Bleverse OSS community](https://github.com/blefnk/relivator/wiki/Project-Credits-&-Contributors). We are deeply grateful for all the contributions and support provided by everyone for this project.
 
 ---
 
 Happy coding! Embark on your coding adventure, learn, iterate, and most importantly – enjoy the process! Remember – this is a space of learning and experimentation. Dive in and savor the journey! 🚀🌌
 
-[![Join the Bleverse Discord](https://discordapp.com/api/guilds/1075533942096150598/widget.png?style=banner2)][bleverse-discord]
+![Bleverse Relivator OG Image](/public/og-image.png)
 
-**🔥 We're Growing Fast! A Huge Thanks to [All Our Supporters](https://github.com/blefnk/relivator/stargazers)! Check Out Our Star History:**
+Check out [our other free Next.js 14 starter](https://github.com/blefnk/reliverse). This one, a monorepo, provides the tech used in the current starter and adds: Turborepo/Turbopack, Prisma, Valibot, Lucia, Clerk, and much more, as we experimentally attempt to combine all vital and widely-used tech. It's like thinking about: Reliverse (WordPress) + Relivator (WooCommerce) = 😍.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=blefnk/relivatorandtype=Timeline)](https://star-history.com/#blefnk/relivator)
+[bleverse-discord]: https://discord.gg/Pb8uKbwpsJ
 
 ---
 
-![Bleverse Relivator OG Image](/public/og-image.png)
+<details>
+  <summary>Relivator v1.2.0: Table of Dependencies</summary>
 
-_Check out [our other free Next.js 14 starter](https://github.com/blefnk/reliverse). This one, a monorepo, provides the tech used in the current starter and adds: Turborepo/Turbopack, Prisma, Valibot, Lucia, Clerk, and much more, as we experimentally attempt to combine all vital and widely-used tech._
+| Unsorted Packages                            | Radix/Udecode                       | ESLint Plugins                         | React/Next                  | CSpell                      | Types                 |
+| -------------------------------------------- | ----------------------------------- | -------------------------------------- | --------------------------- | --------------------------- | --------------------- |
+| 1. @auth/core                                | 2. @radix-ui/react-accordion        | 3. eslint-plugin-drizzle               | 4. next-auth                | 5. @cspell/dict-companies   | 6. @types/mdx         |
+| 7. @auth/drizzle-adapter                     | 8. @radix-ui/react-alert-dialog     | 9. eslint-plugin-deprecation           | 10. next-international      | 11. @cspell/dict-de-de      | 12. @types/jest       |
+| 13. @clerk/clerk-react                       | 14. @radix-ui/react-aspect-ratio    | 15. eslint-plugin-format               | 16. next-intl               | 17. @cspell/dict-es-es      | 18. @types/lodash     |
+| 19. @clerk/localizations                     | 20. @radix-ui/react-avatar          | 21. eslint-plugin-functional           | 22. next-safe-action        | 23. @cspell/dict-fr-fr      | 24. @types/negotiator |
+| 25. @clerk/nextjs                            | 26. @radix-ui/react-checkbox        | 27. eslint-plugin-import               | 28. next-themes             | 29. @cspell/dict-fullstack  | 30. @types/node       |
+| 31. @clerk/themes                            | 32. @radix-ui/react-dialog          | 33. eslint-plugin-jest                 | 34. next-usequerystate      | 35. @cspell/dict-it-it      | 36. @types/pg         |
+| 37. @clerk/types                             | 38. @radix-ui/react-dropdown-menu   | 39. eslint-plugin-jest-extended        | 40. react-aria-components   | 41. @cspell/dict-markdown   | 42. @types/react      |
+| 43. @faire/mjml-react                        | 44. @radix-ui/react-icons           | 45. eslint-plugin-jest-formatting      | 46. react-cropper           | 47. @cspell/dict-npm        | 48. @types/react-dom  |
+| 49. @faker-js/faker                          | 50. @radix-ui/react-label           | 51. eslint-plugin-jsdoc                | 52. react-day-picker        | 53. @cspell/dict-pl_pl      |                       |
+| 54. @formatjs/intl-localematcher             | 55. @radix-ui/react-menubar         | 56. eslint-plugin-jsonc                | 57. react-dom               | 58. @cspell/dict-tr-tr      |                       |
+| 59. @gsap/react                              | 60. @radix-ui/react-navigation-menu | 61. eslint-plugin-jsx-a11y             | 62. react-dropzone          | 63. @cspell/dict-typescript |                       |
+| 64. @hookform/resolvers                      | 65. @radix-ui/react-popover         | 66. eslint-plugin-no-barrel-files      | 67. react-hook-form         | 68. @cspell/dict-fa-ir      |                       |
+| 69. @inquirer/prompts                        | 70. @radix-ui/react-scroll-area     | 71. eslint-plugin-no-secrets           | 72. react-hot-toast         | 73. @cspell/dict-uk-ua      |                       |
+| 74. @lemonsqueezy/lemonsqueezy.js            | 75. @radix-ui/react-select          | 76. eslint-plugin-promise              | 77. react-icons             |                             |                       |
+| 78. @liveblocks/client                       | 79. @radix-ui/react-separator       | 80. eslint-plugin-react                | 81. react-lag-radar         |                             |                       |
+| 82. @liveblocks/react                        | 83. @radix-ui/react-slider          | 84. eslint-plugin-react-hooks          | 85. react-medium-image-zoom |                             |                       |
+| 86. @loglib/tracker                          | 87. @radix-ui/react-slot            | 88. eslint-plugin-react-refresh        | 89. react-wrap-balancer     |                             |                       |
+| 90. @mdx-js/loader                           | 91. @radix-ui/react-switch          | 92. eslint-plugin-redundant-undefined  | 93. next-secure-headers     |                             |                       |
+| 94. @mdx-js/react                            | 95. @radix-ui/react-tabs            | 96. eslint-plugin-sonarjs              |                             |                             |                       |
+| 97. @neondatabase/serverless                 | 98. @radix-ui/react-toast           | 99. eslint-plugin-tailwindcss          |                             |                             |                       |
+| 100. @next/mdx                               | 101. @radix-ui/react-tooltip        | 102. eslint-plugin-tsdoc               |                             |                             |                       |
+| 103. @normy/react-query                      | 104. @udecode/cn                    | 105. eslint-plugin-unicorn             |                             |                             |                       |
+| 106. @planetscale/database                   | 107. @udecode/plate-autoformat      | 108. eslint-plugin-write-good-comments |                             |                             |                       |
+| 109. @preact/signals-core                    | 110. @udecode/plate-basic-marks     | 111. eslint-plugin-xss                 |                             |                             |                       |
+| 112. @preact/signals-react                   | 113. @udecode/plate-block-quote     |                                        |                             |                             |                       |
+| 114. @react-rxjs/core                        | 115. @udecode/plate-break           |                                        |                             |                             |                       |
+| 116. @react-rxjs/utils                       | 117. @udecode/plate-code-block      |                                        |                             |                             |                       |
+| 118. @redux-devtools/extension               | 119. @udecode/plate-common          |                                        |                             |                             |                       |
+| 120. @storybook/nextjs                       | 121. @udecode/plate-heading         |                                        |                             |                             |                       |
+| 122. @stripe/react-stripe-js                 | 123. @udecode/plate-highlight       |                                        |                             |                             |                       |
+| 124. @stripe/stripe-js                       | 125. @udecode/plate-horizontal-rule |                                        |                             |                             |                       |
+| 126. @t3-oss/env-nextjs                      | 127. @udecode/plate-indent-list     |                                        |                             |                             |                       |
+| 128. @tanstack/react-query                   | 129. @udecode/plate-link            |                                        |                             |                             |                       |
+| 130. @tanstack/react-query-devtools          | 131. @udecode/plate-list            |                                        |                             |                             |                       |
+| 132. @tanstack/react-query-next-experimental | 133. @udecode/plate-media           |                                        |                             |                             |                       |
+| 134. @tanstack/react-table                   | 135. @udecode/plate-node-id         |                                        |                             |                             |                       |
+| 136. @trpc/client                            | 137. @udecode/plate-normalizers     |                                        |                             |                             |                       |
+| 138. @trpc/react-query                       | 139. @udecode/plate-paragraph       |                                        |                             |                             |                       |
+| 140. @trpc/server                            | 141. @udecode/plate-reset-node      |                                        |                             |                             |                       |
+| 142. @uploadthing/react                      | 143. @udecode/plate-select          |                                        |                             |                             |                       |
+| 144. @upstash/ratelimit                      | 145. @udecode/plate-table           |                                        |                             |                             |                       |
+| 146. @upstash/redis                          | 147. @udecode/plate-trailing-block  |                                        |                             |                             |                       |
+| 148. @vercel/analytics                       |                                     |                                        |                             |                             |                       |
+| 149. axios                                   |                                     |                                        |                             |                             |                       |
+| 150. browserslist                            |                                     |                                        |                             |                             |                       |
+| 151. class-variance-authority                |                                     |                                        |                             |                             |                       |
+| 152. clsx                                    |                                     |                                        |                             |                             |                       |
+| 153. cmdk                                    |                                     |                                        |                             |                             |                       |
+| 154. cookies-next                            |                                     |                                        |                             |                             |                       |
+| 155. cropperjs                               |                                     |                                        |                             |                             |                       |
+| 156. dat.gui                                 |                                     |                                        |                             |                             |                       |
+| 157. dayjs                                   |                                     |                                        |                             |                             |                       |
+| 158. drizzle-orm                             |                                     |                                        |                             |                             |                       |
+| 159. drizzle-zod                             |                                     |                                        |                             |                             |                       |
+| 160. embla-carousel-react                    |                                     |                                        |                             |                             |                       |
+| 161. eslint-config-next                      |                                     |                                        |                             |                             |                       |
+| 162. flag-icons                              |                                     |                                        |                             |                             |                       |
+| 163. fuse                                    |                                     |                                        |                             |                             |                       |
+| 164. graphql                                 |                                     |                                        |                             |                             |                       |
+| 165. graphql-scalars                         |                                     |                                        |                             |                             |                       |
+| 166. gsap                                    |                                     |                                        |                             |                             |                       |
+| 167. healthier                               |                                     |                                        |                             |                             |                       |
+| 168. international-types                     |                                     |                                        |                             |                             |                       |
+| 169. lodash                                  |                                     |                                        |                             |                             |                       |
+| 170. lucide-react                            |                                     |                                        |                             |                             |                       |
+| 171. mdx                                     |                                     |                                        |                             |                             |                       |
+| 172. micro                                   |                                     |                                        |                             |                             |                       |
+| 173. million                                 |                                     |                                        |                             |                             |                       |
+| 174. negotiator                              |                                     |                                        |                             |                             |                       |
+| 175. next                                    |                                     |                                        |                             |                             |                       |
+| 176. nextjs-google-analytics                 |                                     |                                        |                             |                             |                       |
+| 177. nodemailer                              |                                     |                                        |                             |                             |                       |
+| 178. pg                                      |                                     |                                        |                             |                             |                       |
+| 179. postgres                                |                                     |                                        |                             |                             |                       |
+| 180. react                                   |                                     |                                        |                             |                             |                       |
+| 181. reflect-metadata                        |                                     |                                        |                             |                             |                       |
+| 182. remark-gfm                              |                                     |                                        |                             |                             |                       |
+| 183. request-ip                              |                                     |                                        |                             |                             |                       |
+| 184. resend                                  |                                     |                                        |                             |                             |                       |
+| 185. rooks                                   |                                     |                                        |                             |                             |                       |
+| 186. rxjs                                    |                                     |                                        |                             |                             |                       |
+| 187. slate                                   |                                     |                                        |                             |                             |                       |
+| 188. slate-history                           |                                     |                                        |                             |                             |                       |
+| 189. slate-hyperscript                       |                                     |                                        |                             |                             |                       |
+| 190. slate-react                             |                                     |                                        |                             |                             |                       |
+| 191. storybook                               |                                     |                                        |                             |                             |                       |
+| 192. string-ts                               |                                     |                                        |                             |                             |                       |
+| 193. stripe                                  |                                     |                                        |                             |                             |                       |
+| 194. superjson                               |                                     |                                        |                             |                             |                       |
+| 195. tailwind-variants                       |                                     |                                        |                             |                             |                       |
+| 196. tailwindcss-animate                     |                                     |                                        |                             |                             |                       |
+| 197. ts-deepmerge                            |                                     |                                        |                             |                             |                       |
+| 198. type-fest                               |                                     |                                        |                             |                             |                       |
+| 199. type-graphql                            |                                     |                                        |                             |                             |                       |
+| 200. uploadthing                             |                                     |                                        |                             |                             |                       |
+| 201. vaul                                    |                                     |                                        |                             |                             |                       |
+| 202. winston                                 |                                     |                                        |                             |                             |                       |
+| 203. zod                                     |                                     |                                        |                             |                             |                       |
+| 204. zustand                                 |                                     |                                        |                             |                             |                       |
+| 205. @0no-co/graphqlsp                       |                                     |                                        |                             |                             |                       |
+| 206. @antfu/eslint-config                    |                                     |                                        |                             |                             |                       |
+| 207. @ava/typescript                         |                                     |                                        |                             |                             |                       |
+| 208. @biomejs/biome                          |                                     |                                        |                             |                             |                       |
+| 209. @bufbuild/jest-environment-jsdom        |                                     |                                        |                             |                             |                       |
+| 210. @commitlint/cli                         |                                     |                                        |                             |                             |                       |
+| 211. @commitlint/config-conventional         |                                     |                                        |                             |                             |                       |
+| 212. @commitlint/types                       |                                     |                                        |                             |                             |                       |
+| 213. @graphql-typed-document-node/core       |                                     |                                        |                             |                             |                       |
+| 214. @ianvs/prettier-plugin-sort-imports     |                                     |                                        |                             |                             |                       |
+| 215. @limegrass/eslint-plugin-import-alias   |                                     |                                        |                             |                             |                       |
+| 216. @next/eslint-plugin-next                |                                     |                                        |                             |                             |                       |
+| 217. @playwright/test                        |                                     |                                        |                             |                             |                       |
+| 218. @tailwindcss/typography                 |                                     |                                        |                             |                             |                       |
+| 219. @tanstack/eslint-plugin-query           |                                     |                                        |                             |                             |                       |
+| 220. @testing-library/jest-dom               |                                     |                                        |                             |                             |                       |
+| 221. @total-typescript/ts-reset              |                                     |                                        |                             |                             |                       |
+| 222. @typescript-eslint/eslint-plugin        |                                     |                                        |                             |                             |                       |
+| 223. @typescript-eslint/parser               |                                     |                                        |                             |                             |                       |
+| 224. autoprefixer                            |                                     |                                        |                             |                             |                       |
+| 225. ava                                     |                                     |                                        |                             |                             |                       |
+| 226. cross-env                               |                                     |                                        |                             |                             |                       |
+| 227. cspell                                  |                                     |                                        |                             |                             |                       |
+| 228. dotenv-cli                              |                                     |                                        |                             |                             |                       |
+| 229. drizzle-kit                             |                                     |                                        |                             |                             |                       |
+| 230. eslint                                  |                                     |                                        |                             |                             |                       |
+| 231. eslint-config-airbnb                    |                                     |                                        |                             |                             |                       |
+| 232. eslint-config-prettier                  |                                     |                                        |                             |                             |                       |
+| 233. eslint-import-resolver-typescript       |                                     |                                        |                             |                             |                       |
+| 234. eslint-interactive                      |                                     |                                        |                             |                             |                       |
+| 235. eslint-ts-patch                         |                                     |                                        |                             |                             |                       |
+| 236. husky                                   |                                     |                                        |                             |                             |                       |
+| 237. jest                                    |                                     |                                        |                             |                             |                       |
+| 238. jest-environment-jsdom                  |                                     |                                        |                             |                             |                       |
+| 239. jest-extended                           |                                     |                                        |                             |                             |                       |
+| 240. jsonc-eslint-parser                     |                                     |                                        |                             |                             |                       |
+| 241. knip                                    |                                     |                                        |                             |                             |                       |
+| 242. lemonsqueezy.ts                         |                                     |                                        |                             |                             |                       |
+| 243. lint-staged                             |                                     |                                        |                             |                             |                       |
+| 244. markdown-it-shikiji                     |                                     |                                        |                             |                             |                       |
+| 245. mysql2                                  |                                     |                                        |                             |                             |                       |
+| 246. npm-check                               |                                     |                                        |                             |                             |                       |
+| 247. npm-run-all2                            |                                     |                                        |                             |                             |                       |
+| 248. postcss                                 |                                     |                                        |                             |                             |                       |
+| 249. postcss-load-config                     |                                     |                                        |                             |                             |                       |
+| 250. prettier                                |                                     |                                        |                             |                             |                       |
+| 251. prettier-plugin-packagejson             |                                     |                                        |                             |                             |                       |
+| 252. prettier-plugin-tailwindcss             |                                     |                                        |                             |                             |                       |
+| 253. rehype-shikiji                          |                                     |                                        |                             |                             |                       |
+| 254. shikiji                                 |                                     |                                        |                             |                             |                       |
+| 255. standard                                |                                     |                                        |                             |                             |                       |
+| 256. stylelint                               |                                     |                                        |                             |                             |                       |
+| 257. stylelint-config-css-modules            |                                     |                                        |                             |                             |                       |
+| 258. stylelint-config-standard               |                                     |                                        |                             |                             |                       |
+| 259. stylelint-config-standard-scss          |                                     |                                        |                             |                             |                       |
+| 260. stylelint-scss                          |                                     |                                        |                             |                             |                       |
+| 261. tailwind-merge                          |                                     |                                        |                             |                             |                       |
+| 262. tailwindcss                             |                                     |                                        |                             |                             |                       |
+| 263. ts-jest                                 |                                     |                                        |                             |                             |                       |
+| 264. ts-node                                 |                                     |                                        |                             |                             |                       |
+| 265. ts-standard                             |                                     |                                        |                             |                             |                       |
+| 266. tslib                                   |                                     |                                        |                             |                             |                       |
+| 267. tsx                                     |                                     |                                        |                             |                             |                       |
+| 268. typescript                              |                                     |                                        |                             |                             |                       |
+| 269. xo                                      |                                     |                                        |                             |                             |                       |
 
-[bleverse-discord]: https://discord.gg/Pb8uKbwpsJ
+</details>

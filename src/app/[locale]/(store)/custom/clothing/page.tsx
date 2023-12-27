@@ -1,13 +1,10 @@
 import { type Metadata } from "next";
-import { cookies } from "next/headers";
-import { Link } from "~/navigation";
+import { CheckIcon, CircleIcon } from "@radix-ui/react-icons";
 import { cn } from "~/utils";
+import { getTranslations } from "next-intl/server";
 
-import { getCartItemsAction } from "~/server/actions/cart";
-import { getProductsAction } from "~/server/actions/product";
-import { productCategories } from "~/server/config/products";
 import { fullURL } from "~/data/meta/builder";
-import { Icons } from "~/islands/icons";
+import { env } from "~/env.mjs";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -15,6 +12,11 @@ import {
 } from "~/islands/navigation/page-header";
 import { ProductBuilder } from "~/islands/product-building";
 import { Shell } from "~/islands/wrappers/shell-variants";
+import { Link } from "~/navigation";
+import { getCartItemsAction } from "~/server/actions/cart";
+import { getProductsAction } from "~/server/actions/product";
+import { getCartId } from "~/server/cart";
+import { productCategories } from "~/server/config/products";
 
 export const metadata: Metadata = {
   metadataBase: fullURL(),
@@ -22,16 +24,16 @@ export const metadata: Metadata = {
   description: "Select the components for your board",
 };
 
-interface CustomClothesPageProps {
-  searchParams: {
-    [key: string]: string | string[] | undefined;
-  };
+interface CustomClothesPageProperties {
+  searchParams: { [key: string]: string | string[] | undefined };
 }
 
 export default async function CustomClothesPage({
   searchParams,
-}: CustomClothesPageProps) {
+}: CustomClothesPageProperties) {
   const { page, per_page, sort, subcategory, price_range } = searchParams;
+
+  const t = await getTranslations();
 
   // Products transaction
   const limit = typeof per_page === "string" ? parseInt(per_page) : 8;
@@ -47,11 +49,12 @@ export default async function CustomClothesPage({
     price_range: typeof price_range === "string" ? price_range : null,
   });
 
-  const pageCount = Math.ceil(productsTransaction.total / limit);
+  const pageCount = Math.ceil(productsTransaction.count / limit);
 
   // Get cart items
-  const cartId = cookies().get("cartId")?.value;
-
+  // console.log("⏳ awaiting getCartId for CustomClothesPage...");
+  const cartId = await getCartId();
+  // console.log("get custom clothing's `cartId`:", cartId);
   const cartItems = await getCartItemsAction({ cartId: Number(cartId) });
 
   return (
@@ -68,7 +71,7 @@ export default async function CustomClothesPage({
       <section
         id="custom-clothing-categories"
         aria-labelledby="custom-clothing-categories-heading"
-        className="sticky top-14 z-30 w-full shrink-0 overflow-hidden bg-background/80 pb-4 pt-6 shadow-md sm:backdrop-blur-md"
+        className="sticky top-14 z-30 w-full shrink-0 overflow-hidden bg-background/50 pb-4 pt-6 shadow-md sm:backdrop-blur"
       >
         <div className="grid place-items-center overflow-x-auto">
           <div className="inline-flex w-fit items-center rounded border bg-background p-1 text-muted-foreground shadow-2xl">
@@ -77,6 +80,7 @@ export default async function CustomClothesPage({
                 aria-label={subcategory.title}
                 key={subcategory.title}
                 href={`/custom/clothing?subcategory=${subcategory.slug}`}
+                scroll={false}
               >
                 <div
                   className={cn(
@@ -85,13 +89,13 @@ export default async function CustomClothesPage({
                       "rounded-none border-primary text-foreground hover:rounded-t",
                   )}
                 >
-                  {cartItems
-                    ?.map((item) => item.subcategory)
-                    ?.includes(subcategory.slug) ? (
-                    <Icons.check className="mr-2 h-4 w-4" aria-hidden="true" />
-                  ) : (
-                    <Icons.circle className="mr-2 h-4 w-4" aria-hidden="true" />
-                  )}
+                  {(
+                    cartItems
+                      ?.map((item) => item.subcategory)
+                      ?.includes(subcategory.slug)
+                  ) ?
+                    <CheckIcon className="mr-2 h-4 w-4" aria-hidden="true" />
+                  : <CircleIcon className="mr-2 h-4 w-4" aria-hidden="true" />}
                   {subcategory.title}
                 </div>
               </Link>
@@ -106,6 +110,7 @@ export default async function CustomClothesPage({
         pageCount={pageCount}
         subcategory={activeSubcategory}
         cartItems={cartItems ?? []}
+        tAddToCart={t("store.product.addToCart")}
       />
     </Shell>
   );

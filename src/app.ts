@@ -6,11 +6,28 @@
  * combine as much as possible into a single file.
  */
 
-import { ContentSection, MainMenuItem, type FooterItem } from "~/types";
+import type { OAuthStrategy } from "@clerk/types";
+import type { ContentSection, FooterItem, MainMenuItem } from "~/types";
 import { slugify } from "~/utils";
 
 import { productCategories } from "~/server/config/products";
 import { networks } from "~/server/config/socials";
+
+import { env } from "./env.mjs";
+import { Icons } from "./islands/icons";
+
+// todo: parse this from clerk's dashboard instead of hardcoding it
+export const oauthProvidersClerk = [
+  { name: "Google", strategy: "oauth_google", icon: "google" },
+  { name: "Discord", strategy: "oauth_discord", icon: "discord" },
+  // { name: "Microsoft", strategy: "oauth_microsoft", icon: "microsoft" },
+  // { name: "Facebook", strategy: "oauth_facebook", icon: "facebook" },
+  // { name: "Github", strategy: "oauth_github", icon: "gitHub" },
+] satisfies {
+  name: string;
+  icon: keyof typeof Icons;
+  strategy: OAuthStrategy;
+}[];
 
 export const appts = {
   name: "Relivator",
@@ -42,7 +59,9 @@ export const REPOSITORY_OWNER = "blefnk";
 export const REPOSITORY_NAME = "relivator";
 export const REPOSITORY_URL = `https://github.com/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`;
 export const DISCORD_URL = "https://discord.gg/Pb8uKbwpsJ";
-export const baseUrl = "https://relivator.bleverse.com";
+export const baseUrl = new URL(
+  env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
+);
 
 export const BASE_URL =
   process.env.NODE_ENV === "production" ? baseUrl : "http://localhost:3000";
@@ -58,7 +77,6 @@ export const TRIAL_LENGTH_IN_DAYS = 7;
 export const ROLES = [OWNER_ROLE, ADMIN_ROLE, MEMBER_ROLE] as const;
 
 export const settings = {
-  internationalizationEnabled: true,
   themeToggleEnabled: true,
 };
 
@@ -69,8 +87,8 @@ export const siteConfig = {
   description:
     "NextJS 14 free starter: store, landing, dashboard. It helps you build great eCommerce and SaaS apps faster than ever. Get it!",
   company: {
-    name: "Bleverse Nazarii Korniienko",
-    link: "https://github.com/blefnk",
+    name: "Nazarii Korniienko",
+    link: "https://github.com/blefnk/relivator",
     email: "blefnk@gmail.com",
     twitter: "@blefnk",
   },
@@ -103,10 +121,10 @@ export const siteConfig = {
     "Utils",
   ],
   url: {
-    base: baseUrl,
+    base: env.NEXT_PUBLIC_APP_URL,
     author: REPOSITORY_OWNER,
   },
-  ogImage: `${baseUrl}/og-image.png`,
+  ogImage: `${env.NEXT_PUBLIC_APP_URL}/og-image.png`,
   mainNav: [
     {
       title: "Lobby",
@@ -205,8 +223,8 @@ export const siteConfig = {
       title: "Social",
       items: [
         {
-          title: "Facebook",
-          href: links.facebook,
+          title: "Github",
+          href: links.githubAccount,
           external: true,
         },
         {
@@ -220,8 +238,8 @@ export const siteConfig = {
           external: true,
         },
         {
-          title: "Github",
-          href: links.githubAccount,
+          title: "Facebook",
+          href: links.facebook,
           external: true,
         },
       ],
@@ -230,8 +248,8 @@ export const siteConfig = {
       title: "Github",
       items: [
         {
-          title: "Nomaders",
-          href: "https://github.com/blefnk/nomaders",
+          title: "Relivator",
+          href: "https://github.com/blefnk/relivator",
           external: true,
         },
         {
@@ -240,12 +258,12 @@ export const siteConfig = {
           external: true,
         },
         {
-          title: "Relivator",
-          href: "https://github.com/blefnk/relivator",
+          title: "Blefnk",
+          href: "https://github.com/blefnk",
           external: true,
         },
         {
-          title: "Utilities",
+          title: "Utils",
           href: "https://github.com/blefnk/utils",
           external: true,
         },
@@ -255,39 +273,39 @@ export const siteConfig = {
 };
 
 export const featureCards: ContentSection = {
-  header: `Powered by`,
-  subheader: `What Makes Relivator Possible`,
+  header: "Powered by",
+  subheader: "What Makes Relivator Possible",
   content: [
     {
-      text: `Next.js`,
-      subtext: `The React Framework`,
+      text: "Next.js",
+      subtext: "The React Framework",
     },
     {
-      text: `shadcn/ui`,
-      subtext: `Beautifully Designed Components`,
+      text: "shadcn/ui",
+      subtext: "Beautifully Designed Components",
     },
     {
-      text: `Vercel`,
-      subtext: `Develop. Preview. Ship.`,
+      text: "Vercel",
+      subtext: "Develop. Preview. Ship.",
     },
   ],
 };
 
 export const features: ContentSection = {
-  header: `Features`,
-  subheader: `Why You Need to Download Relivator`,
+  header: "Features",
+  subheader: "Why You Need to Download Relivator",
   content: [
     {
-      text: `SEO Optimized`,
-      subtext: `Improved website visibility on search engines`,
+      text: "SEO Optimized",
+      subtext: "Improved website visibility on search engines",
     },
     {
-      text: `Highly Performant`,
-      subtext: `Fast loading times and smooth performance`,
+      text: "Highly Performant",
+      subtext: "Fast loading times and smooth performance",
     },
     {
-      text: `Easy Customization`,
-      subtext: `Change your content and layout with little effort`,
+      text: "Easy Customization",
+      subtext: "Change your content and layout with little effort",
     },
   ],
 };

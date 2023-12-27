@@ -1,6 +1,6 @@
 "use client";
 
-import { PropsWithChildren, ReactNode, type FC } from "react";
+import type { FC, PropsWithChildren, ReactNode } from "react";
 import { useSession } from "next-auth/react";
 
 type AuthRequiredProps = PropsWithChildren<{ fallback?: ReactNode }>;

@@ -1,10 +1,13 @@
+import { siteConfig } from "~/app";
+import { env } from "~/env.mjs";
+
 type NewsletterWelcomeEmailProps = {
   firstName?: string;
   fromEmail: string;
   token: string;
 };
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "";
+const baseUrl = env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 // For previewing we need to put images in the .react-email/public folder
 // In production we need to put images in the root public folder
@@ -32,11 +35,11 @@ export default function NewsletterWelcomeEmail({
   fromEmail,
   token,
 }: NewsletterWelcomeEmailProps) {
-  const previewText = `Hi ${firstName}, welcome to Relivator!`;
+  const previewText = `Hi ${firstName}, welcome to ${siteConfig.name}!`;
 
   return (
     <>
-      <div></div>
+      <div />
     </>
   );
 }

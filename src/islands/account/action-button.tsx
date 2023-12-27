@@ -8,10 +8,11 @@ type ActionButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export const ActionButton = forwardRef<HTMLButtonElement, ActionButtonProps>(
-  function ActionButton({ className, variant, children, ...props }, ref) {
+  ({ className, variant, children, ...props }, ref) => {
     return (
       <button
         ref={ref}
+        type="button"
         className={clsx(
           "rounded border disabled:text-gray-400",
           { "px-4 py-2": !variant || variant === "default" },

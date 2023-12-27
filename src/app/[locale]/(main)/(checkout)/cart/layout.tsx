@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { getServerAuthSession } from "~/utils/users";
+import { getServerAuthSession } from "~/utils/auth/users";
 
-interface CartLayoutProps {
+interface CartLayoutProperties {
   children: React.ReactNode;
 }
 
-export default async function CartLayout({ children }: CartLayoutProps) {
+export default async function CartLayout({ children }: CartLayoutProperties) {
   const user = await getServerAuthSession();
   if (!user) redirect("/auth");
 

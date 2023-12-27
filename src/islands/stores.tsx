@@ -3,12 +3,11 @@
 import * as React from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import { type CuratedStore } from "~/types";
+import type { CuratedStore } from "~/types";
 import { cn } from "~/utils";
 
-import { storeSortOptions, storeStatusOptions } from "~/server/config/stores";
 import { Icons } from "~/islands/icons";
-import { StoreCard } from "~/islands/modules/cards/store-card";
+import { StoreCard } from "~/islands/modules/cards/store-card-default";
 import { PaginationButton } from "~/islands/navigation/pagination/pagination-button";
 import { Button } from "~/islands/primitives/button";
 import {
@@ -19,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/islands/primitives/dropdown";
+import { storeSortOptions, storeStatusOptions } from "~/server/config/stores";
 
 import { FacetedFilter } from "./faceted-filter";
 
@@ -45,11 +45,8 @@ export function Stores({ stores, pageCount, ...props }: StoresProps) {
       const newSearchParams = new URLSearchParams(searchParams?.toString());
 
       for (const [key, value] of Object.entries(params)) {
-        if (value === null) {
-          newSearchParams.delete(key);
-        } else {
-          newSearchParams.set(key, String(value));
-        }
+        if (value === null) newSearchParams.delete(key);
+        else newSearchParams.set(key, String(value));
       }
 
       return newSearchParams.toString();
@@ -73,7 +70,6 @@ export function Stores({ stores, pageCount, ...props }: StoresProps) {
         },
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterValues]);
 
   return (
@@ -131,14 +127,14 @@ export function Stores({ stores, pageCount, ...props }: StoresProps) {
           )}
         </div>
       </div>
-      {!isPending && !stores.length ? (
+      {!isPending && !stores.length ?
         <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
           <h1 className="text-center text-2xl font-bold">No stores found</h1>
           <p className="text-center text-muted-foreground">
             Try changing your filters, or check back later for new stores
           </p>
         </div>
-      ) : null}
+      : null}
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {stores.map((store) => (
           <StoreCard
@@ -148,7 +144,7 @@ export function Stores({ stores, pageCount, ...props }: StoresProps) {
           />
         ))}
       </div>
-      {stores.length ? (
+      {stores.length ?
         <PaginationButton
           pageCount={pageCount}
           page={page}
@@ -160,7 +156,7 @@ export function Stores({ stores, pageCount, ...props }: StoresProps) {
           isPending={isPending}
           startTransition={startTransition}
         />
-      ) : null}
+      : null}
     </section>
   );
 }

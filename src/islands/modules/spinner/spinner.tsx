@@ -8,6 +8,7 @@ type Props = {
 
 export function Spinner({ className, ...props }: Props) {
   return (
+    // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg
       viewBox="0 0 100 100"
       className={cls(styles.svg, className)}

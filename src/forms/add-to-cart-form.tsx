@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import type { z } from "zod";
 
-import { addToCartAction } from "~/server/actions/cart";
 import { updateCartItemSchema } from "~/data/validations/cart";
 import { Icons } from "~/islands/icons";
 import { Button } from "~/islands/primitives/button";
@@ -21,14 +20,23 @@ import {
   FormMessage,
 } from "~/islands/primitives/form";
 import { Input } from "~/islands/primitives/input";
+import { addToCartAction } from "~/server/actions/cart";
 
-interface AddToCartFormProps {
+export interface AddToCartFormProps {
+  tAddToCart: string | "Add to cart";
   productId: number;
+  storeId: number;
+  email?: string;
+  session?: any;
 }
 
 type Inputs = z.infer<typeof updateCartItemSchema>;
 
-export function AddToCartForm({ productId }: AddToCartFormProps) {
+export function AddToCartForm({
+  productId,
+  storeId,
+  tAddToCart,
+}: AddToCartFormProps) {
   const id = React.useId();
   const [isPending, startTransition] = React.useTransition();
 
@@ -37,6 +45,7 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
     resolver: zodResolver(updateCartItemSchema),
     defaultValues: {
       quantity: 1,
+      storeId: 1,
     },
   });
 
@@ -46,13 +55,14 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
         await addToCartAction({
           productId,
           quantity: data.quantity,
+          storeId,
         });
         toast.success("Added to cart.");
-      } catch (err) {
+      } catch (error) {
         toast.error(
           "Something wrong with adding to cart. Please try again later.",
         );
-        catchError(err);
+        catchError(error);
       }
     });
   }
@@ -97,7 +107,7 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
                     onChange={(e) => {
                       const value = e.target.value;
                       const parsedValue = parseInt(value, 10);
-                      if (isNaN(parsedValue)) return;
+                      if (Number.isNaN(parsedValue)) return;
                       field.onChange(parsedValue);
                     }}
                   />
@@ -121,15 +131,20 @@ export function AddToCartForm({ productId }: AddToCartFormProps) {
             <span className="sr-only">Add one item</span>
           </Button>
         </div>
-        <Button type="submit" size="sm" disabled={isPending}>
+
+        <Button
+          type="submit"
+          size="default"
+          variant="secondary"
+          disabled={isPending}
+        >
           {isPending && (
             <Icons.spinner
               className="mr-2 h-4 w-4 animate-spin"
               aria-hidden="true"
             />
           )}
-          Add to cart
-          <span className="sr-only">Add to cart</span>
+          {tAddToCart}
         </Button>
       </form>
     </Form>

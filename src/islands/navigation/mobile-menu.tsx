@@ -2,11 +2,10 @@
 
 import * as React from "react";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "~/app";
-import { Link } from "~/navigation";
-import { SidebarNavItem, type MainMenuItem } from "~/types";
+import type { MainMenuItem, SidebarNavItem } from "~/types";
 import { cn } from "~/utils";
 
+import { siteConfig } from "~/app";
 import { Icons } from "~/islands/icons";
 import {
   Accordion,
@@ -17,6 +16,7 @@ import {
 import { Button } from "~/islands/primitives/button";
 import { ScrollArea } from "~/islands/primitives/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "~/islands/primitives/sheet";
+import { Link } from "~/navigation";
 
 interface MobileMenuProps {
   MainMenuItems?: MainMenuItem[];
@@ -39,7 +39,9 @@ export function MobileMenu({
         >
           <Icons.menu className="h-6 w-6" />
           <span className="sr-only">Toggle Menu</span>
-          <span className="ml-2 font-heading tracking-wide">Relivator</span>
+          <span className="ml-2 hidden font-heading tracking-wide md:block">
+            {siteConfig.name}
+          </span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pl-1 pr-0">
@@ -57,6 +59,7 @@ export function MobileMenu({
           <div className="pl-1 pr-7">
             <Accordion type="single" collapsible className="w-full">
               {MainMenuItems?.map((item, index) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <AccordionItem value={item.title} key={index}>
                   <AccordionTrigger className="text-sm capitalize">
                     {item.title}
@@ -64,8 +67,9 @@ export function MobileMenu({
                   <AccordionContent>
                     <div className="flex flex-col space-y-2">
                       {item.items?.map((subItem, index) =>
-                        subItem.href ? (
+                        subItem.href ?
                           <MobileLink
+                            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                             key={index}
                             href={String(subItem.href)}
                             pathname={pathname}
@@ -74,14 +78,13 @@ export function MobileMenu({
                           >
                             {subItem.title}
                           </MobileLink>
-                        ) : (
-                          <div
+                        : <div
+                            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                             key={index}
                             className="text-foreground/70 transition-colors"
                           >
                             {item.title}
-                          </div>
-                        ),
+                          </div>,
                       )}
                     </div>
                   </AccordionContent>
@@ -94,8 +97,9 @@ export function MobileMenu({
                 <AccordionContent>
                   <div className="flex flex-col space-y-2">
                     {sidebarNavItems?.map((item, index) =>
-                      item.href ? (
+                      item.href ?
                         <MobileLink
+                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           key={index}
                           href={String(item.href)}
                           pathname={pathname}
@@ -104,14 +108,13 @@ export function MobileMenu({
                         >
                           {item.title}
                         </MobileLink>
-                      ) : (
-                        <div
+                      : <div
+                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           key={index}
                           className="text-foreground/70 transition-colors"
                         >
                           {item.title}
-                        </div>
-                      ),
+                        </div>,
                     )}
                   </div>
                 </AccordionContent>

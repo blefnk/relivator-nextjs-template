@@ -11,6 +11,6 @@
   },
   "aliases": {
     "components": "~/islands",
-    "utils": "~/server/utils"
+    "utils": "~/utils"
   }
 }

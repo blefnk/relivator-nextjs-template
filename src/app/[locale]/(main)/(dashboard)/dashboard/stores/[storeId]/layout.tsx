@@ -3,20 +3,20 @@ import { notFound, redirect } from "next/navigation";
 import clsx from "clsx";
 import { eq } from "drizzle-orm";
 
-import {
-  getDashboardRedirectPath,
-  getUserSubscriptionPlan,
-} from "~/server/subs";
+import { findUserById } from "~/core/trpc/routers/auth3";
 import { db } from "~/data/db";
 import { stores } from "~/data/db/schema";
 import { PageHeaderHeading } from "~/islands/navigation/page-header";
 import { StoreSwitcher } from "~/islands/navigation/pagination/store-switcher";
 import { StoreTabs } from "~/islands/navigation/pagination/store-tabs";
 import { Shell } from "~/islands/wrappers/shell-variants";
-import { findUserById } from "~/utils/trpc/others/handlers/users";
-import { getServerAuthSession } from "~/utils/users";
+import {
+  getDashboardRedirectPath,
+  getUserSubscriptionPlan,
+} from "~/server/subs";
+import { getServerAuthSession } from "~/utils/auth/users";
 
-interface StoreLayoutProps {
+interface StoreLayoutProperties {
   children: React.ReactNode;
   params: {
     storeId: string;
@@ -26,7 +26,7 @@ interface StoreLayoutProps {
 export default async function StoreLayout({
   children,
   params,
-}: StoreLayoutProps) {
+}: StoreLayoutProperties) {
   const storeId = Number(params.storeId);
 
   const user = await getServerAuthSession();
@@ -55,7 +55,7 @@ export default async function StoreLayout({
         <PageHeaderHeading className="line-clamp-1 flex-1" size="sm">
           {store.name}
         </PageHeaderHeading>
-        {allStores.length > 1 ? (
+        {allStores.length > 1 ?
           <StoreSwitcher
             currentStore={store}
             stores={allStores}
@@ -64,7 +64,7 @@ export default async function StoreLayout({
               storeCount: allStores.length,
             })}
           />
-        ) : null}
+        : null}
       </div>
       <div className="space-y-4 overflow-hidden">
         <StoreTabs storeId={storeId} />

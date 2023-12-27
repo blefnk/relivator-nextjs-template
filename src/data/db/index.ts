@@ -1,46 +1,64 @@
 /**
  * Unified Schema Exporter for Multiple Databases
  * ==============================================
- *
  * Please check the "schema/index.ts" file for
  * instructions, resources, inspirations, etc.
  */
 
-import { Client as clientPlanetscale } from "@planetscale/database";
-import { env } from "~/env.mjs";
-import { drizzle as drizzlePlanetscale } from "drizzle-orm/planetscale-serverless";
-import { drizzle as drizzlePostgres } from "drizzle-orm/postgres-js";
+import { Client as ClientPlanetscale } from "@planetscale/database";
+import { addQueryParamIfMissed } from "~/utils";
+import {
+  drizzle as drizzlePlanetscale,
+  type PlanetScaleDatabase,
+} from "drizzle-orm/planetscale-serverless";
+import {
+  drizzle as drizzlePostgres,
+  type PostgresJsDatabase,
+} from "drizzle-orm/postgres-js";
 import postgres from "postgres";
+
+import { env } from "~/env.mjs";
 
 import * as schemaMysql from "./schema/mysql";
 import * as schemaPgsql from "./schema/pgsql";
 
-if (!env.NEXT_PUBLIC_DB_PROVIDER)
-  throw new Error(
-    "NEXT_PUBLIC_DB_PROVIDER is not set in environment variables.",
-  );
+// Connection strings for MySQL and PostgreSQL
+// Add the ssl query parameter if it's missing
+const csMysql: string = addQueryParamIfMissed(
+  env.DATABASE_URL,
+  "ssl",
+  JSON.stringify({ rejectUnauthorized: true }),
+);
+const csPgsql: string = addQueryParamIfMissed(
+  env.DATABASE_URL,
+  "sslmode",
+  "require",
+);
 
-const csMysql = `${env.DATABASE_URL}?ssl={"rejectUnauthorized":true}`;
-const csPgsql = `${env.DATABASE_URL}?sslmode=require`;
+// todo: we need to figure out
+// todo: how to type db properly
 
-// todo: We need to figure out how to type this properly
-// import type { PlanetScaleDatabase } from "drizzle-orm/planetscale-serverless";
-// import type { PostgresJsDatabase } from "drizzle-orm/postgres-js";
-// export type DB = PlanetScaleDatabase<typeof schemaMysql> | PostgresJsDatabase<typeof schemaPgsql>;
-// let db: DB | Promise<DB>;
-// type DatabaseInstance = PlanetScaleDatabase<typeof schemaMysql> | PostgresJsDatabase<typeof schemaPgsql>;
-// let db: DatabaseInstance;
-let db: any;
+let db:
+  | PlanetScaleDatabase<typeof schemaMysql>
+  | PostgresJsDatabase<typeof schemaPgsql>
+  | any;
 
-/**
- * Configure this based on the database provider.
- * Feel free to add/remove/edit things if needed.
- */
+let dbProvider = env.NEXT_PUBLIC_DB_PROVIDER;
+
+// Configure this based on the database provider.
+// Feel free to add/remove/edit things if needed.
 try {
-  switch (env.NEXT_PUBLIC_DB_PROVIDER) {
+  // Set default DB provider based on DATABASE_URL
+  // if NEXT_PUBLIC_DB_PROVIDER is not specified
+  if (!dbProvider) {
+    const databaseUrl = process.env.DATABASE_URL;
+    if (databaseUrl?.startsWith("mysql://")) dbProvider = "planetscale";
+    else if (databaseUrl?.startsWith("postgres://")) dbProvider = "neon";
+  }
+  switch (dbProvider) {
     case "planetscale":
       db = drizzlePlanetscale(
-        new clientPlanetscale({ url: csMysql }).connection(),
+        new ClientPlanetscale({ url: csMysql }).connection(),
         { schema: schemaMysql, logger: false },
       );
       break;
@@ -54,7 +72,7 @@ try {
       break;
     default:
       throw new Error(
-        `💡 Unsupported NEXT_PUBLIC_DB_PROVIDER "${env.NEXT_PUBLIC_DB_PROVIDER}".\
+        `❌ Unsupported NEXT_PUBLIC_DB_PROVIDER "${dbProvider}".\
           Please check your environment configuration.`,
       );
   }

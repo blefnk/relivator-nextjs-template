@@ -10,44 +10,53 @@
  * Check {dialect}.ts files to see the detailed database structures.
  */
 
+import * as schemaMysql from "~/data/db/schema/mysql";
+import * as schemaPgsql from "~/data/db/schema/pgsql";
 import { env } from "~/env.mjs";
 
-import * as schemaMysql from "./mysql";
-import * as schemaPgsql from "./pgsql";
-
-if (!env.NEXT_PUBLIC_DB_PROVIDER)
-  throw new Error(
-    "NEXT_PUBLIC_DB_PROVIDER is not set in environment variables.",
-  );
-
-/**
- * Configure this based on the database provider.
- * Feel free to add/remove/edit things if needed.
- */
+// Configure this based on the database provider.
+// Feel free to add/remove/edit things if needed.
 const selectedSchema = (() => {
-  switch (env.NEXT_PUBLIC_DB_PROVIDER) {
-    case "planetscale":
-      return schemaMysql;
-    case "railway":
-    case "vercel":
-    case "neon":
-      return schemaPgsql;
-    default:
-      throw new Error(
-        `Unknown NEXT_PUBLIC_DB_PROVIDER: ${env.NEXT_PUBLIC_DB_PROVIDER}`,
-      );
+  let dbProvider = env.NEXT_PUBLIC_DB_PROVIDER || "";
+
+  if (!dbProvider) {
+    dbProvider = "planetscale";
+    console.error(
+      "❌ NEXT_PUBLIC_DB_PROVIDER is not set (refer to .env.example)",
+    );
+
+    // Set default DB provider based on DATABASE_URL
+    // if NEXT_PUBLIC_DB_PROVIDER is not specified
+    // todo: Find another way, because DATABASE_URL
+    // todo: can't be accessed on the client-side.
+    // const databaseUrl = env.DATABASE_URL;
+    // if (databaseUrl?.startsWith("mysql://")) {
+    //   dbProvider = "planetscale";
+    // } else if (databaseUrl?.startsWith("postgres://")) {
+    //   dbProvider = "neon";
+    // }
+  }
+
+  // Assign schema based on the dbProvider
+  if (dbProvider === "planetscale") {
+    return schemaMysql;
+  } else if (["railway", "vercel", "neon"].includes(dbProvider)) {
+    return schemaPgsql;
+  } else {
+    console.error("❌ selectedSchema(): Unknown NEXT_PUBLIC_DB_PROVIDER");
+    return schemaMysql;
   }
 })();
 
-//=======================================================
+// =======================================================
 // Export tables based on the selected schema
-//=======================================================
+// =======================================================
 
 export const {
   accounts,
   addresses,
   carts,
-  emailPreferences,
+  emails,
   orders,
   payments,
   products,
@@ -59,14 +68,13 @@ export const {
   verificationTokens,
 } = selectedSchema;
 
-//=======================================================
+// =======================================================
 // Export types based on the selected schema
-//=======================================================
+// =======================================================
 
 export type Address = typeof selectedSchema.addresses.$inferSelect;
 export type Cart = typeof selectedSchema.carts.$inferSelect;
-export type EmailPreference =
-  typeof selectedSchema.emailPreferences.$inferSelect;
+export type EmailPreference = typeof selectedSchema.emails.$inferSelect;
 export type Order = typeof selectedSchema.orders.$inferSelect;
 export type Payment = typeof selectedSchema.payments.$inferSelect;
 export type Product = typeof selectedSchema.products.$inferSelect;
@@ -76,8 +84,7 @@ export type User = typeof selectedSchema.users.$inferSelect;
 
 export type NewAddress = typeof selectedSchema.addresses.$inferInsert;
 export type NewCart = typeof selectedSchema.carts.$inferInsert;
-export type NewEmailPreference =
-  typeof selectedSchema.emailPreferences.$inferInsert;
+export type NewEmailPreference = typeof selectedSchema.emails.$inferInsert;
 export type NewOrder = typeof selectedSchema.orders.$inferInsert;
 export type NewPayment = typeof selectedSchema.payments.$inferInsert;
 export type NewProduct = typeof selectedSchema.products.$inferInsert;

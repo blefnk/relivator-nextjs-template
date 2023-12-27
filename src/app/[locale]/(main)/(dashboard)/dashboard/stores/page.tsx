@@ -1,15 +1,15 @@
-import { type Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { RocketIcon } from "@radix-ui/react-icons";
-import { env } from "~/env.mjs";
 import { cn } from "~/utils";
 import { desc, eq, sql } from "drizzle-orm";
 
-import { getDashboardRedirectPath, getPlanFeatures } from "~/server/subs";
+import { getSubscriptionPlanAction } from "~/core/stripe/actions";
 import { db } from "~/data/db";
 import { products, stores, users } from "~/data/db/schema";
-import { StoreCard } from "~/islands/modules/cards/store-card";
+import { env } from "~/env.mjs";
+import { StoreCard } from "~/islands/modules/cards/store-card-dashboard";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -22,11 +22,11 @@ import {
 } from "~/islands/primitives/alert";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/wrappers/shell-variants";
-import { getSubscriptionPlanAction } from "~/utils/stripe/actions";
-import { getServerAuthSession, getUserData } from "~/utils/users";
+import { getDashboardRedirectPath, getPlanFeatures } from "~/server/subs";
+import { getServerAuthSession, getUserData } from "~/utils/auth/users";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
   title: "Stores",
   description: "Manage your stores",
 };
@@ -48,13 +48,6 @@ export default async function StoresPage() {
     .orderBy(desc(stores.stripeAccountId), desc(sql<number>`count(*)`))
     .where(eq(stores.userId, user.id));
 
-  const data = await getUserData(user);
-  const user_db = await db
-    .select()
-    .from(users)
-    .where(eq(users.id, user.id))
-    .then((res) => res[0] ?? null);
-
   const subscriptionPlan = await getSubscriptionPlanAction(user.id);
 
   const { maxStoreCount, maxProductCount } = getPlanFeatures(
@@ -75,7 +68,7 @@ export default async function StoresPage() {
             aria-label="Create store"
             href={getDashboardRedirectPath({
               storeCount: allStores.length,
-              subscriptionPlan: subscriptionPlan,
+              subscriptionPlan,
             })}
             className={cn(
               buttonVariants({
@@ -98,8 +91,10 @@ export default async function StoresPage() {
         <AlertTitle>Heads up!</AlertTitle>
         <AlertDescription>
           Your current plan is{" "}
-          <span className="font-semibold">{subscriptionPlan?.name}</span>. It
-          allows you to create{" "}
+          <span className="font-semibold">
+            {subscriptionPlan?.name ?? "Starter"}
+          </span>
+          . It allows you to create{" "}
           <span className="font-semibold">up to {maxStoreCount} stores</span>{" "}
           and include{" "}
           <span className="font-semibold">

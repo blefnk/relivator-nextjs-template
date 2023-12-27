@@ -5,6 +5,7 @@ import { products } from "~/data/db/schema";
 export const cartItemSchema = z.object({
   productId: z.number(),
   quantity: z.number().min(0),
+  storeId: z.number(),
   subcategory: z.string().optional().nullable(),
 });
 
@@ -45,4 +46,6 @@ export const deleteCartItemsSchema = z.object({
 
 export const updateCartItemSchema = z.object({
   quantity: z.number().min(0).default(1),
+  storeId: z.number().optional(),
+  subcategory: z.string().optional().nullable(),
 });

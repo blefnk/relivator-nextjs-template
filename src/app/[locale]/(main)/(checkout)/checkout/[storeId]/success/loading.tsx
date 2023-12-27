@@ -22,6 +22,7 @@ export default function OrderSuccessLoading() {
           <ScrollArea className="h-full">
             <div className="container flex max-w-7xl flex-col gap-5">
               {Array.from({ length: 4 }).map((_, i) => (
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <div key={i} className="space-y-3">
                   <div className="flex flex-col items-start justify-between gap-4 xs:flex-row">
                     <div className="flex items-center space-x-4">

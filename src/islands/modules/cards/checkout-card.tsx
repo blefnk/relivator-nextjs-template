@@ -1,7 +1,5 @@
-import { Link } from "~/navigation";
 import { cn, formatPrice } from "~/utils";
 
-import { getCartAction } from "~/server/actions/cart";
 import { CartLineItems } from "~/islands/checkout/cart-line-items";
 import { buttonVariants } from "~/islands/primitives/button";
 import {
@@ -12,13 +10,54 @@ import {
   CardTitle,
 } from "~/islands/primitives/card";
 import { Separator } from "~/islands/primitives/separator";
+import { Link } from "~/navigation";
+import { getCartAction } from "~/server/actions/cart";
 
-interface CheckoutCardProps {
+interface CheckoutCardProperties {
   storeId: number;
 }
 
-export async function CheckoutCard({ storeId }: CheckoutCardProps) {
+export async function CheckoutCard({ storeId }: CheckoutCardProperties) {
+  // console.log("CheckoutCard's await getCartAction");
   const cartLineItems = await getCartAction(storeId);
+
+  let totalQuantity = 0;
+  let totalPrice = 0;
+
+  try {
+    totalQuantity = cartLineItems.reduce(
+      (acc, item) => acc + (item.quantity ?? 0),
+      0,
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("❌ Error calculating total quantity:", error.message);
+      totalQuantity = 0; // Set default variable value in case of an error
+    } else {
+      // If for any reason something else was
+      // thrown that wasn't an Error, handle it
+      console.error("❌ An unexpected error occurred:", error);
+    }
+  }
+
+  try {
+    totalPrice = cartLineItems.reduce(
+      (acc, item) => acc + Number(item.price ?? 0) * (item.quantity ?? 0),
+      0,
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("❌ Error calculating total price:", error.message);
+      totalPrice = 0; // Set default variable value in case of an error
+    } else {
+      // If for any reason something else was
+      // thrown that wasn't an Error, handle it
+      console.error("❌ An unexpected error occurred:", error);
+    }
+  }
+
+  // console.log("totalQuantity:", totalQuantity);
+  // console.log("totalPrice:", totalPrice);
 
   return (
     <Card
@@ -27,9 +66,9 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
       id={`checkout-store-${storeId}`}
       aria-labelledby={`checkout-store-${storeId}-heading`}
       className={cn(
-        cartLineItems[0]?.storeStripeAccountId
-          ? "border-green-500"
-          : "border-neutral-700",
+        cartLineItems[0]?.storeStripeAccountId ?
+          "border-green-500"
+        : "border-neutral-700",
       )}
     >
       <CardHeader className="flex flex-row items-center space-x-4 py-4">
@@ -54,17 +93,8 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
       </CardContent>
       <Separator className="mb-4" />
       <CardFooter className="space-x-4">
-        <span className="flex-1">
-          Total ({cartLineItems.reduce((acc, item) => acc + item.quantity, 0)})
-        </span>
-        <span>
-          {formatPrice(
-            cartLineItems.reduce(
-              (acc, item) => acc + Number(item.price) * item.quantity,
-              0,
-            ),
-          )}
-        </span>
+        <span className="flex-1">Total ({totalQuantity})</span>
+        <span>{formatPrice(totalPrice)}</span>
       </CardFooter>
     </Card>
   );

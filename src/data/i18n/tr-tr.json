@@ -1,183 +1,57 @@
 {
-  "DataTable": {
-    "block": "Engelle",
-    "columns": "Sütunlar",
-    "delete": "Sil",
-    "email": "E-posta",
-    "filter-emails-placeholder": "E-postaları filtrele",
-    "id": "ID",
-    "isadmin": "Yönetici Mi",
-    "lastlogintime": "Son Giriş Zamanı",
-    "make-admin": "Yönetici Yap",
-    "make-non-admin": "Yönetici Değil Yap",
-    "name": "Ad",
-    "next": "Sonraki",
-    "no-results": "Sonuç bulunamadı",
-    "of": "arasından",
-    "previous": "Önceki",
-    "registrationtime": "Kayıt Zamanı",
-    "rows-selected": "satır seçildi",
-    "success-description": "Başarı",
-    "success-title": "Başarılı",
-    "unblock": "Engeli Kaldır",
-    "view-profile": "Profilini Görüntüle"
-  },
-  "EnvironmentVariables": {
-    "errors": {
-      "something-wrong": "Bu ortam değişkenleri yanlış belirtildi veya belirtilmedi (lütfen .env dosyasını kontrol edin):"
-    }
-  },
-  "LanguageSwitch": {
-    "choose-language": "Dil"
-  },
-  "LocaleSwitcher": {
-    "label": "Dil Değiştir",
-    "selectLocale": "Dil"
-  },
-  "LoginForm": {
-    "description": "E-posta adresinizi ve şifrenizi kullanarak hesabınıza giriş yapın.",
-    "email": "E-posta",
-    "email-placeholder": "E-posta adresinizi girin",
-    "error-heading": "Giriş yapma işlemi başarısız oldu.",
-    "errors": {
-      "Callback": "Farklı bir hesapla giriş yapmayı deneyin.",
-      "CredentialsSignin": "Giriş yapma işlemi başarısız oldu. Sağladığınız bilgilerin doğru olduğunu kontrol edin.",
-      "Email or password is incorrect": "E-posta veya şifre yanlış.",
-      "EmailCreateAccount": "Farklı bir hesapla giriş yapmayı deneyin.",
-      "EmailSignin": "E-posta adresinizi kontrol edin.",
-      "Invalid credentials": "Geçersiz kimlik bilgileri.",
-      "OAuthAccountNotLinked": "Kimliğinizi doğrulamak için, başlangıçta kullandığınız aynı hesapla giriş yapın.",
-      "OAuthCallback": "Farklı bir hesapla giriş yapmayı deneyin.",
-      "OAuthCreateAccount": "Farklı bir hesapla giriş yapmayı deneyin.",
-      "OAuthSignin": "Farklı bir hesapla giriş yapmayı deneyin.",
-      "Signin": "Farklı bir hesapla giriş yapmayı deneyin.",
-      "default": "Giriş yapma işlemi başarısız oldu."
-    },
-    "form": {
-      "description": "E-posta adresinizi ve şifrenizi kullanarak hesabınızda oturum açın.",
-      "email": "E-posta",
-      "email-placeholder": "E-posta adresinizi giriniz",
-      "error-heading": "Bazen Kötü Şeyler Olur...",
-      "no-account": "Hesabınız yok mu?",
-      "other-options": "Şunu kullanarak oturum açın:",
-      "password": "Şifre",
-      "password-placeholder": "Şifrenizi girin",
-      "sign-out": "oturumu Kapat",
-      "signup": "Buradan kaydolun.",
-      "submit": "Kayıt olmak",
-      "title": "Kayıt olmak",
-      "wait": "Lütfen bekleyin..."
-    },
-    "no-account": "Hesabınız yok mu?",
-    "other-options": "Şunları kullanarak giriş yapın:",
-    "password": "Şifre",
-    "password-placeholder": "Şifrenizi girin",
-    "reset-password": "Şifreyi yenile",
-    "signin": "Kayıt olmak",
-    "signup": "Buradan kayıt olun.",
-    "submit": "Giriş Yap",
-    "success-description": "Başarı.",
-    "success-title": "Tamamlamak!",
-    "title": "Giriş Yap",
-    "wait": "Lütfen bekleyin..."
-  },
-  "MainError": {
-    "Could not fetch user.": "Kullanıcı alınamadı.",
-    "Not authenticated.": "Kimlik doğrulanamadı.",
-    "User not found.": "Kullanıcı bulunamadı.",
-    "error": "Hata"
-  },
-  "Navbar": {
-    "home": "Anasayfa",
-    "sign-out": "Çıkış Yap",
-    "signin": "Giriş Yap"
-  },
-  "ProfileButton": {
-    "admin": "Yönetici Paneli",
-    "logout": "Çıkış Yap",
-    "my-account": "Hesabım",
-    "new-review": "Yeni İnceleme",
-    "profile": "Profil",
-    "settings": "Ayarlar"
-  },
-  "ProfileSettingsForm": {
-    "description": "Profil ayarlarınızı güncelleyin.",
-    "errors": {
-      "update-error": "Kullanıcı güncellenemedi."
-    },
-    "name": "Ad",
-    "name-min": "Ad en az 2 karakter olmalıdır.",
-    "name-placeholder": "Adınızı girin",
-    "submit": "Kullanıcıyı Güncelle",
-    "title": "Profil Ayarları",
-    "update-success": "Kullanıcı başarıyla güncellendi."
-  },
-  "RegisterForm": {
-    "description": "E-posta adresinizi ve şifrenizi kullanarak yeni bir hesap oluşturun.",
-    "email": "E-posta",
-    "email-placeholder": "E-posta adresinizi girin",
-    "error-heading": "Kaydolma işlemi başarısız oldu.",
-    "errors": {
-      "Not authenticated.": "Kimlik doğrulama başarısız.",
-      "Please fill all fields.": "Lütfen tüm alanları doldurun.",
-      "User with this email already exists.": "Bu e-posta adresi ile zaten bir kullanıcı var."
-    },
-    "form": {
-      "email-min": "Kullanıcı adı en az 2 karakter olmalıdır.",
-      "invalid-email": "Geçersiz e-posta adresi.",
-      "name-min": "Ad en az 2 karakter olmalıdır.",
-      "password-min": "Şifre en az 6 karakter olmalıdır."
-    },
-    "have-account": "Zaten bir hesabınız mı var?",
-    "name": "Ad",
-    "name-placeholder": "Adınızı girin",
-    "other-options": "Veya şunlarla kaydolun:",
-    "password": "Şifre",
-    "password-placeholder": "Şifrenizi girin",
-    "signin": "Buradan giriş yapın.",
-    "submit": "Kaydol",
-    "success-description": "Artık hesabınıza giriş yapabilirsiniz.",
-    "success-title": "Kayıt başarılı!",
-    "title": "Kaydol",
-    "wait": "Lütfen bekleyin..."
-  },
-  "ReviewNewForm": {
-    "description": "Yeni bir inceleme oluşturun.",
-    "errors": {
-      "create-error": "İnceleme oluşturulamadı."
-    },
-    "grade": "Puan",
-    "grade-placeholder": "Puanı girin",
-    "item": "Öğe",
-    "item-placeholder": "İncelemesi yapılacak sanat eserinin adı",
-    "submit": "İnceleme Oluştur",
-    "tags": "Etiketler",
-    "tags-placeholder": "Etiketleri girin",
-    "title": "İnceleme Oluştur",
-    "title-field": "Başlık",
-    "title-field-placeholder": "Başlık girin"
-  },
-  "TagsSelect": {
-    "no-options": "Seçenek yok",
-    "search": "Ara...",
-    "tags": "Etiketler",
-    "tags-placeholder": "Etiketleri girin"
-  },
-  "ThemeSwitch": {
-    "dark": "Koyu",
-    "light": "Açık",
-    "system": "Sistem"
-  },
   "account-page": {
-    "Settings": "Ayarlar",
     "loggedIn": "Giriş",
     "loggedOut": "Çıkış yapıldı",
     "login": "Kayıt olmak",
     "logout": "Çıkış Yap",
+    "Settings": "Ayarlar",
     "title": "Hesap"
   },
   "auth": {
-    "other-options": "Daha fazla hesap bağlayın:"
+    "emailSubmitButton": {
+      "label": "Gönder"
+    },
+    "error": {
+      "default": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "email": "E-posta bulunamadı. Farklı bir sağlayıcı ile giriş yapmayı deneyin.",
+      "oauthNotLinked": "Kimliğinizi doğrulamak için, başlangıçta kullandığınız aynı hesapla giriş yapın.",
+      "unknown": "Bir hata oluştu. Lütfen tekrar deneyin.",
+      "unknown-error": "Bir şeyler yanlış gitti. Lütfen /contact sayfasını ziyaret edin ve destek ekibimize bu bilinmeyen hatayı bildirin."
+    },
+    "legal": "Yukarıdaki düğmeleri kullanarak şunu kabul etmiş olursunuz:",
+    "legal-and": "Ve",
+    "legal-privacy": "Gizlilik Politikası",
+    "legal-terms": "Kullanım Şartları",
+    "magicLink": {
+      "description": "Spam klasörünüze kontrol etmeyi unutmayın.",
+      "title": "Bir sihirli bağlantı e-postası gönderildi. 🧙‍♂️"
+    },
+    "noProvider": {
+      "link": "en az bir kimlik doğrulama sağlayıcısı yapılandırın (örn. E-posta, Google, GitHub, Facebook vb.)",
+      "preLink": "Yapmanız gerekiyor"
+    },
+    "orEmailLabel": "Veya e-posta adresinizle",
+    "other-options": "Daha fazla hesap bağlayın:",
+    "register": {
+      "agreeToTerms": "Kayıt olarak, <terms>hizmet şartlarımızı</terms> ve <privacy>gizlilik politikamızı</privacy> kabul etmiş olursunuz.",
+      "alreadyHaveAccountLabel": {
+        "link": "Giriş yap",
+        "preLink": "Zaten bir hesabınız var mı?"
+      },
+      "heading": "Bir hesap oluştur"
+    },
+    "signin": {
+      "heading": "Giriş Yap",
+      "noAccountLabel": {
+        "link": "Ücretsiz kaydol",
+        "preLink": "Bir hesabınız yok mu?"
+      }
+    },
+    "signinErrorToast": {
+      "description": "Kayıtlar devre dışı bırakıldı.",
+      "title": "Yetkisiz",
+      "tooManyRequests": "Çok fazla istek. Daha sonra tekrar deneyin."
+    }
   },
   "auth-page": {
     "error": "Ters giden birşey mi var...",
@@ -207,8 +81,36 @@
       "signOutText": "{userName} Çıkış Yap"
     }
   },
+  "DataTable": {
+    "block": "Engelle",
+    "columns": "Sütunlar",
+    "delete": "Sil",
+    "email": "E-posta",
+    "filter-emails-placeholder": "E-postaları filtrele",
+    "id": "ID",
+    "isadmin": "Yönetici Mi",
+    "lastlogintime": "Son Giriş Zamanı",
+    "make-admin": "Yönetici Yap",
+    "make-non-admin": "Yönetici Değil Yap",
+    "name": "Ad",
+    "next": "Sonraki",
+    "no-results": "Sonuç bulunamadı",
+    "of": "arasından",
+    "previous": "Önceki",
+    "registrationtime": "Kayıt Zamanı",
+    "rows-selected": "satır seçildi",
+    "success-description": "Başarı",
+    "success-title": "Başarılı",
+    "unblock": "Engeli Kaldır",
+    "view-profile": "Profilini Görüntüle"
+  },
   "environments": {
     "auth-button-placeholder": "⚠️ Kimlik doğrulamaya ilgili özelliklerin kilidini açmak için lütfen ortam değişkenlerinde Github/Google/Discord belirtin."
+  },
+  "EnvironmentVariables": {
+    "errors": {
+      "something-wrong": "Bu ortam değişkenleri yanlış belirtildi veya belirtilmedi (lütfen .env dosyasını kontrol edin):"
+    }
   },
   "general": {
     "about": "about",
@@ -255,6 +157,7 @@
     }
   },
   "landing": {
+    "about": "Dünyanın en zengin özelliklere sahip, küresel ve ikonik Next.js başlatıcısını oluşturmayı hedefliyoruz. Kapsamlı özellik listesini keşfedin. Koddan daha fazlasını sunan bu bir yolculuktur. Stabildir ve üretime hazırdır.",
     "btn1-products-now": "Şimdiki Ürünler",
     "btn1-sell": "Satmak",
     "btn2-download": "Download",
@@ -274,11 +177,15 @@
       },
       "devtools": {
         "description": "Stripe kullanarak ücretsiz ve ücretli abonelikler.",
-        "title": "Abonelikler"
+        "title": "Abonelikler",
+        "ambitions-description": "Bir başlangıçtan diğerine koşmayı bırakın. Relivator ile sınırsız olanaklara sahip olacaksınız. Istediğiniz her şeyi yaratabilirsiniz; tüm araçlar zaten sizin için hazırlandı."
       },
       "files": {
         "description": "NextAuth.js kullanarak ara yazılım kimlik doğrulaması.",
-        "title": "Kimlik doğrulama"
+        "title": "Kimlik doğrulama",
+        "on-the-fly": "Tam Anında Özelleştirme",
+        "on-the-fly-description": "Proje havuzumuzdaki kapsamlı özellikler listesine göz atın. Proje gereksinimlerinize uyacak şekilde Clerk/NextAuth.js ve MySQL/PostgreSQL arasında zahmetsizce geçiş yapın.",
+        "roadmap": "Büyük Hırslar: Sınırsız Olasılıklar"
       },
       "subtitle": "Relivator, koddan tasarıma kadar web projelerinizi güçlendiren işlevlere sahiptir.",
       "text": {
@@ -308,12 +215,76 @@
     "things": {
       "linkText": "Listeye Git"
     },
-    "title": "React, Next.js ve ötesine yönelik en önemli araçları keşfedin. Size özel olarak tasarlandı.",
-    "about": "Dünyanın en zengin özelliklere sahip, küresel ve ikonik Next.js başlatıcısını oluşturmayı hedefliyoruz. Kapsamlı özellik listesini keşfedin. Koddan daha fazlasını sunan bu bir yolculuktur. Stabildir ve üretime hazırdır."
+    "title": "React, Next.js ve ötesine yönelik en önemli araçları keşfedin. Size özel olarak tasarlandı."
+  },
+  "LanguageSwitch": {
+    "choose-language": "Dil"
+  },
+  "LocaleSwitcher": {
+    "label": "Dil Değiştir",
+    "selectLocale": "Dil"
+  },
+  "LoginForm": {
+    "description": "E-posta adresinizi ve şifrenizi kullanarak hesabınıza giriş yapın.",
+    "email": "E-posta",
+    "email-placeholder": "E-posta adresinizi girin",
+    "error-heading": "Giriş yapma işlemi başarısız oldu.",
+    "errors": {
+      "Callback": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "CredentialsSignin": "Giriş yapma işlemi başarısız oldu. Sağladığınız bilgilerin doğru olduğunu kontrol edin.",
+      "default": "Giriş yapma işlemi başarısız oldu.",
+      "Email or password is incorrect": "E-posta veya şifre yanlış.",
+      "EmailCreateAccount": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "EmailSignin": "E-posta adresinizi kontrol edin.",
+      "Invalid credentials": "Geçersiz kimlik bilgileri.",
+      "OAuthAccountNotLinked": "Kimliğinizi doğrulamak için, başlangıçta kullandığınız aynı hesapla giriş yapın.",
+      "OAuthCallback": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "OAuthCreateAccount": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "OAuthSignin": "Farklı bir hesapla giriş yapmayı deneyin.",
+      "Signin": "Farklı bir hesapla giriş yapmayı deneyin."
+    },
+    "form": {
+      "description": "E-posta adresinizi ve şifrenizi kullanarak hesabınızda oturum açın.",
+      "email": "E-posta",
+      "email-placeholder": "E-posta adresinizi giriniz",
+      "error-heading": "Bazen Kötü Şeyler Olur...",
+      "no-account": "Hesabınız yok mu?",
+      "other-options": "Şunu kullanarak oturum açın:",
+      "password": "Şifre",
+      "password-placeholder": "Şifrenizi girin",
+      "sign-out": "oturumu Kapat",
+      "signup": "Buradan kaydolun.",
+      "submit": "Kayıt olmak",
+      "title": "Kayıt olmak",
+      "wait": "Lütfen bekleyin..."
+    },
+    "no-account": "Hesabınız yok mu?",
+    "other-options": "Şunları kullanarak giriş yapın:",
+    "password": "Şifre",
+    "password-placeholder": "Şifrenizi girin",
+    "reset-password": "Şifreyi yenile",
+    "signin": "Kayıt olmak",
+    "signup": "Buradan kayıt olun.",
+    "submit": "Giriş Yap",
+    "success-description": "Başarı.",
+    "success-title": "Tamamlamak!",
+    "title": "Giriş Yap",
+    "wait": "Lütfen bekleyin..."
+  },
+  "MainError": {
+    "error": "Hata",
+    "fetch-failed": "Could not fetch user.",
+    "not-authenticated": "Not authenticated.",
+    "not-found": "User not found."
   },
   "meta": {
     "description": "Next.js 14 Starter",
     "title": "canlandırıcı"
+  },
+  "Navbar": {
+    "home": "Anasayfa",
+    "sign-out": "Çıkış Yap",
+    "signin": "Giriş Yap"
   },
   "pages": {
     "about": {
@@ -331,7 +302,7 @@
         }
       },
       "subtitle": "Bleverse Relivator is a powerful Next.js TypeScript Tailwind starter. It streamlines the development process and provides a solid foundation for creating web projects. Feel free to use, adapt, and contribute to the project by {link}.",
-      "subtitle.link": "clicking here",
+      "subtitle-link": "clicking here",
       "title": "About"
     },
     "home": {
@@ -379,9 +350,9 @@
       "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
     },
     "not-found": {
-      "title": "🫠 Sayfa bulunamadı! 🥲 Maalesef...",
       "description": "Aradığınız kaynak taşınmış, yeniden adlandırılmış olabilir veya hiç var olmamış olabilir. Lütfen URL'yi doğrulayın veya menüyü kullanarak diğer bölümlere gidin.",
-      "go-home": "Ana Sayfaya Dön"
+      "go-home": "Ana Sayfaya Dön",
+      "title": "🫠 Sayfa bulunamadı! 🥲 Maalesef..."
     },
     "tools": {
       "binary-code": {
@@ -564,7 +535,7 @@
     }
   },
   "plugins": {
-    "stars": "Lütfen! Yıldız Kurtarıcı GitHub'da ⭐ Yıldız Hedefi:"
+    "stars": "Lütfen GitHub'da yıldız verin ⭐ Hedef:"
   },
   "pricing": {
     "compare": {
@@ -618,21 +589,97 @@
       "what-payment": "Hangi ödeme yöntemlerini kabul ediyorsunuz?"
     }
   },
+  "ProfileButton": {
+    "admin": "Yönetici Paneli",
+    "logout": "Çıkış Yap",
+    "my-account": "Hesabım",
+    "new-review": "Yeni İnceleme",
+    "profile": "Profil",
+    "settings": "Ayarlar"
+  },
+  "ProfileSettingsForm": {
+    "description": "Profil ayarlarınızı güncelleyin.",
+    "errors": {
+      "update-error": "Kullanıcı güncellenemedi."
+    },
+    "name": "Ad",
+    "name-min": "Ad en az 2 karakter olmalıdır.",
+    "name-placeholder": "Adınızı girin",
+    "submit": "Kullanıcıyı Güncelle",
+    "title": "Profil Ayarları",
+    "update-success": "Kullanıcı başarıyla güncellendi."
+  },
+  "RegisterForm": {
+    "description": "E-posta adresinizi ve şifrenizi kullanarak yeni bir hesap oluşturun.",
+    "email": "E-posta",
+    "email-placeholder": "E-posta adresinizi girin",
+    "error-heading": "Kaydolma işlemi başarısız oldu.",
+    "errors": {
+      "email-exists": "User with this email already exists.",
+      "fill-fields": "Please fill all fields.",
+      "not-authenticated": "Not authenticated."
+    },
+    "form": {
+      "email-min": "Kullanıcı adı en az 2 karakter olmalıdır.",
+      "invalid-email": "Geçersiz e-posta adresi.",
+      "name-min": "Ad en az 2 karakter olmalıdır.",
+      "password-min": "Şifre en az 6 karakter olmalıdır."
+    },
+    "have-account": "Zaten bir hesabınız mı var?",
+    "name": "Ad",
+    "name-placeholder": "Adınızı girin",
+    "other-options": "Veya şunlarla kaydolun:",
+    "password": "Şifre",
+    "password-placeholder": "Şifrenizi girin",
+    "signin": "Buradan giriş yapın.",
+    "submit": "Kaydol",
+    "success-description": "Artık hesabınıza giriş yapabilirsiniz.",
+    "success-title": "Kayıt başarılı!",
+    "title": "Kaydol",
+    "wait": "Lütfen bekleyin..."
+  },
+  "ReviewNewForm": {
+    "description": "Yeni bir inceleme oluşturun.",
+    "errors": {
+      "create-error": "İnceleme oluşturulamadı."
+    },
+    "grade": "Puan",
+    "grade-placeholder": "Puanı girin",
+    "item": "Öğe",
+    "item-placeholder": "İncelemesi yapılacak sanat eserinin adı",
+    "submit": "İnceleme Oluştur",
+    "tags": "Etiketler",
+    "tags-placeholder": "Etiketleri girin",
+    "title": "İnceleme Oluştur",
+    "title-field": "Başlık",
+    "title-field-placeholder": "Başlık girin"
+  },
   "settings-page": {
     "description": "Ayarlarınızı yönetin.",
     "title": "Ayarlar"
   },
   "signIn": {
+    "heading": "Giriş Yap",
     "LoginForm": {
       "wait": "Lütfen bekleyin..."
     },
-    "heading": "Giriş Yap",
     "meta": {
       "description": "Kişiselleştirilmiş bir deneyim için giriş yapın",
       "title": "Giriş Yap"
     },
     "providerButtonText": "{name} ile Giriş Yap",
     "providerButtonTextReg": "{name} ile kaydolun"
+  },
+  "TagsSelect": {
+    "no-options": "Seçenek yok",
+    "search": "Ara...",
+    "tags": "Etiketler",
+    "tags-placeholder": "Etiketleri girin"
+  },
+  "ThemeSwitch": {
+    "dark": "Koyu",
+    "light": "Açık",
+    "system": "Sistem"
   },
   "things": {
     "heading": "Relivator'unuz",
@@ -658,5 +705,24 @@
       "title": "Relivator'dan ücretsiz çevrimini araçlar"
     },
     "title": "Aletler"
+  },
+  "store": {
+    "stores": {
+      "buy-products": "Mağazalarımızdan ürün satın alın",
+      "stores": "Mağazalar"
+    },
+    "categories": {
+      "buyFromCategories": "En iyi mağazalardan {category} satın alın",
+      "buyProducts": "${category} kategorisinden ürünler satın alın",
+      "buyTheBest": "En iyi {category} satın alın"
+    },
+    "product": {
+      "products": "Ürünler",
+      "noDescription": "Bu ürün için açıklama mevcut değil.",
+      "description": "Tanım",
+      "moreProductsFrom": "{storeName}'dan daha fazla ürün",
+      "buyProductsFromOurStores": "Mağazalarımızdan ürün satın alın",
+      "addToCart": "Sepete ekle"
+    }
   }
 }

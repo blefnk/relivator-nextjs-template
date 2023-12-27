@@ -1,16 +1,15 @@
 /** @typedef {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig */
 /** @typedef {import("prettier").Config} PrettierConfig */
 
+/**
+ * Remember to restart VSCode after making
+ * any changes here and saving this file.
+ */
 /** @type {PrettierConfig | SortImportsConfig} */
 const config = {
-  printWidth: 80,
-  tabWidth: 2,
-  semi: true,
-  useTabs: false,
-  singleQuote: false,
-  bracketSameLine: false,
   arrowParens: "always",
-  trailingComma: "all",
+  quoteProps: "preserve",
+  bracketSameLine: false,
   endOfLine: "lf",
   importOrder: [
     "^~/styles/(.*)$",
@@ -19,18 +18,19 @@ const config = {
     "^(next/(.*)$)|^(next$)",
     "<THIRD_PARTY_MODULES>",
     "",
-    "^~/types/(.*)$",
-    "^~/server/(.*)$",
-    "^~/data/(.*)$",
-    "^~/hooks/(.*)$",
-    "^~/forms/(.*)$",
-    "^~/islands/(.*)$",
-    "^~/utils/(.*)$",
+    "^~/app",
     "^~/app/(.*)$",
-    "^~/types.ts",
-    "^~/app.ts",
-    "",
+    "^~/core/(.*)$",
+    "^~/data/(.*)$",
+    "^~/env.mjs",
+    "^~/forms/(.*)$",
+    "^~/hooks/(.*)$",
+    "^~/islands/(.*)$",
+    "^~/navigation",
     "^~/plugins/(.*)$",
+    "^~/server/(.*)$",
+    "^~/types/(.*)$",
+    "^~/utils/(.*)$",
     "",
     "^[./]",
     "",
@@ -41,6 +41,12 @@ const config = {
     require.resolve("prettier-plugin-packagejson"),
     require.resolve("@ianvs/prettier-plugin-sort-imports"),
   ],
+  printWidth: 80,
+  semi: true,
+  singleQuote: false,
+  tabWidth: 2,
+  trailingComma: "all",
+  useTabs: false,
 };
 
 module.exports = config;

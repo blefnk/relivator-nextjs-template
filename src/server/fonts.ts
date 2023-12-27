@@ -1,3 +1,5 @@
+// todo: move local fonts to this file from [locale]/layout.tsx
+
 import {
   JetBrains_Mono as FontMono,
   Inter as FontSans,

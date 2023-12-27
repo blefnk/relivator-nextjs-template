@@ -1,9 +1,9 @@
 // This is the RootLayout component: A wrapper for the app.
 // Navigate to "app/[locale]/layout.tsx" for the main layout file.
 
-type RootLayoutProps = { children: React.ReactNode };
+type RootLayoutProperties = { children: React.ReactNode };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProperties) {
   return children;
 }
 
