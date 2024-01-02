@@ -84,7 +84,7 @@ export async function FeaturedStoreItems() {
         </div>
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {guestEmail || session ? (
+          {guestEmail || session ?
             <>
               {someProducts.map((product: Product) => (
                 <ProductCard
@@ -96,8 +96,7 @@ export async function FeaturedStoreItems() {
                 />
               ))}
             </>
-          ) : (
-            <>
+          : <>
               {someProducts.map((product: Product) => (
                 <ProductCard
                   variant="guest"
@@ -108,7 +107,7 @@ export async function FeaturedStoreItems() {
                 />
               ))}
             </>
-          )}
+          }
         </div>
       </div>
 

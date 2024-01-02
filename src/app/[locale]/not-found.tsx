@@ -21,6 +21,7 @@ import it_it from "~/data/i18n/it-it.json";
 import pl_pl from "~/data/i18n/pl-pl.json";
 import tr_tr from "~/data/i18n/tr-tr.json";
 import uk_ua from "~/data/i18n/uk-ua.json";
+import zh_cn from "~/data/i18n/zh-cn.json";
 import NotFoundContent from "~/islands/content/not-found-content";
 import { defaultLocale } from "~/navigation";
 
@@ -37,6 +38,7 @@ const localeMessages = {
   "pl-pl": pl_pl,
   "tr-tr": tr_tr,
   "uk-ua": uk_ua,
+  "zh-cn": zh_cn,
 };
 
 export default function NotFoundPage() {

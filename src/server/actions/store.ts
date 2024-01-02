@@ -41,29 +41,25 @@ export async function getStoresAction(
         .where(
           and(
             input.userId ? eq(stores.userId, input.userId) : undefined,
-            statuses.includes("active") && !statuses.includes("inactive")
-              ? not(isNull(stores.stripeAccountId))
-              : undefined,
-            statuses.includes("inactive") && !statuses.includes("active")
-              ? isNull(stores.stripeAccountId)
-              : undefined,
+            statuses.includes("active") && !statuses.includes("inactive") ?
+              not(isNull(stores.stripeAccountId))
+            : undefined,
+            statuses.includes("inactive") && !statuses.includes("active") ?
+              isNull(stores.stripeAccountId)
+            : undefined,
           ),
         )
         .groupBy(stores.id)
         .orderBy(
-          input.sort === "stripeAccountId.asc"
-            ? asc(stores.stripeAccountId)
-            : input.sort === "stripeAccountId.desc"
-              ? desc(stores.stripeAccountId)
-              : input.sort === "productCount.asc"
-                ? asc(sql<number>`count(*)`)
-                : input.sort === "productCount.desc"
-                  ? desc(sql<number>`count(*)`)
-                  : column && column in stores
-                    ? order === "asc"
-                      ? asc(stores[column])
-                      : desc(stores[column])
-                    : desc(stores.createdAt),
+          input.sort === "stripeAccountId.asc" ? asc(stores.stripeAccountId)
+          : input.sort === "stripeAccountId.desc" ? desc(stores.stripeAccountId)
+          : input.sort === "productCount.asc" ? asc(sql<number>`count(*)`)
+          : input.sort === "productCount.desc" ? desc(sql<number>`count(*)`)
+          : column && column in stores ?
+            order === "asc" ?
+              asc(stores[column])
+            : desc(stores[column])
+          : desc(stores.createdAt),
         );
 
       const count = await tx
@@ -74,12 +70,12 @@ export async function getStoresAction(
         .where(
           and(
             input.userId ? eq(stores.userId, input.userId) : undefined,
-            statuses.includes("active") && !statuses.includes("inactive")
-              ? not(isNull(stores.stripeAccountId))
-              : undefined,
-            statuses.includes("inactive") && !statuses.includes("active")
-              ? isNull(stores.stripeAccountId)
-              : undefined,
+            statuses.includes("active") && !statuses.includes("inactive") ?
+              not(isNull(stores.stripeAccountId))
+            : undefined,
+            statuses.includes("inactive") && !statuses.includes("active") ?
+              isNull(stores.stripeAccountId)
+            : undefined,
           ),
         )
         .execute()

@@ -76,12 +76,12 @@ export async function getProductsAction(
         .offset(input.offset)
         .where(
           and(
-            categories.length
-              ? inArray(products.category, categories)
-              : undefined,
-            subcategories.length
-              ? inArray(products.subcategory, subcategories)
-              : undefined,
+            categories.length ?
+              inArray(products.category, categories)
+            : undefined,
+            subcategories.length ?
+              inArray(products.subcategory, subcategories)
+            : undefined,
             minPrice ? gte(products.price, minPrice) : undefined,
             maxPrice ? lte(products.price, maxPrice) : undefined,
             storeIds.length ? inArray(products.storeId, storeIds) : undefined,
@@ -89,11 +89,11 @@ export async function getProductsAction(
         )
         .groupBy(products.id)
         .orderBy(
-          column && column in products
-            ? order === "asc"
-              ? asc(products[column])
-              : desc(products[column])
-            : desc(products.createdAt),
+          column && column in products ?
+            order === "asc" ?
+              asc(products[column])
+            : desc(products[column])
+          : desc(products.createdAt),
         );
 
       const count = await tx
@@ -103,12 +103,12 @@ export async function getProductsAction(
         .from(products)
         .where(
           and(
-            categories.length
-              ? inArray(products.category, categories)
-              : undefined,
-            subcategories.length
-              ? inArray(products.subcategory, subcategories)
-              : undefined,
+            categories.length ?
+              inArray(products.category, categories)
+            : undefined,
+            subcategories.length ?
+              inArray(products.subcategory, subcategories)
+            : undefined,
             minPrice ? gte(products.price, minPrice) : undefined,
             maxPrice ? lte(products.price, maxPrice) : undefined,
             storeIds.length ? inArray(products.storeId, storeIds) : undefined,
@@ -144,8 +144,9 @@ export async function getProductsAction(
 
 export async function checkProductAction(input: { name: string; id?: number }) {
   const productWithSameName = await db.query.products.findFirst({
-    where: input.id
-      ? and(not(eq(products.id, input.id)), eq(products.name, input.name))
+    where:
+      input.id ?
+        and(not(eq(products.id, input.id)), eq(products.name, input.name))
       : eq(products.name, input.name),
   });
 

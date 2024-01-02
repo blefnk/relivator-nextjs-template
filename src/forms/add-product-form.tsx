@@ -289,7 +289,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
               variables.
             </span>
           )}
-          {files?.length ? (
+          {files?.length ?
             <div className="flex items-center gap-2">
               {files.map((file, i) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
@@ -304,7 +304,7 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
                 </Zoom>
               ))}
             </div>
-          ) : null}
+          : null}
           <FormControl>
             <FileDialog
               setValue={form.setValue}

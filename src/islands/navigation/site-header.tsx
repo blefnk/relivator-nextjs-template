@@ -1,6 +1,7 @@
 import "flag-icons/css/flag-icons.min.css";
 
 import { currentUser } from "@clerk/nextjs";
+import { DiscordLogoIcon } from "@radix-ui/react-icons";
 import LocalizationMainSwitcher from "~/localization-main";
 import { Github } from "lucide-react";
 import { type Session } from "next-auth";
@@ -91,37 +92,47 @@ export async function SiteHeader({
           />
 
           {env.DEV_DEMO_NOTES === "true" && (
-            <ButtonLink
-              size="icon"
-              target="_blank"
-              variant="outline"
-              href="https://github.com/blefnk/relivator"
-            >
-              <Github className="h-4 w-4" />
-            </ButtonLink>
+            <>
+              <ButtonLink
+                size="icon"
+                target="_blank"
+                variant="outline"
+                href="https://discord.gg/TK2SpfXfTB"
+              >
+                <DiscordLogoIcon className="h-4 w-4" />
+              </ButtonLink>
+              <ButtonLink
+                size="icon"
+                target="_blank"
+                variant="outline"
+                href="https://github.com/blefnk/relivator"
+              >
+                <Github className="h-4 w-4" />
+              </ButtonLink>
+            </>
           )}
 
-          {authProvider === "clerk" ?
-            env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && env.CLERK_SECRET_KEY ?
+          {authProvider === "clerk" ? (
+            env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && env.CLERK_SECRET_KEY ? (
               <UserMenu />
-            : <ButtonPlaceholder
+            ) : (
+              <ButtonPlaceholder
                 text="Sign In"
                 auth_provider={authProvider}
                 tNextAuthError={t("environments.auth-button-placeholder")}
               />
-
-          : (
-            (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) ||
+            )
+          ) : (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) ||
             (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) ||
-            (env.DISCORD_CLIENT_ID && env.DISCORD_CLIENT_SECRET)
-          ) ?
+            (env.DISCORD_CLIENT_ID && env.DISCORD_CLIENT_SECRET) ? (
             <UserMenu />
-          : <ButtonPlaceholder
+          ) : (
+            <ButtonPlaceholder
               text="Sign In"
               auth_provider={authProvider}
               tNextAuthError={t("environments.auth-button-placeholder")}
             />
-          }
+          )}
         </div>
       </nav>
     </header>

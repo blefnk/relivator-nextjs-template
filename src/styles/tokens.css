@@ -1,0 +1,41 @@
+:root {
+  --grid: .25rem;
+  --color_slate-100: #f1f5f9;
+  --color_slate-700: #334155;
+  --color_sky-500: #0ea5e9;
+  --radii_rounded: 10px;
+  --radii_circle: 9999px;
+  --radii_none: none;
+}
+
+* {
+  --margin-top: ;
+  --margin-bottom: ;
+  --padding: ;
+}
+
+[style*="--margin-top:"] {
+  margin-top: calc(var(--grid) * var(--margin-top));
+}
+
+[style*="--margin-bottom:"] {
+  margin-bottom: calc(var(--grid) * var(--margin-bottom));
+}
+
+[style*="--margin-top:var"], [style*="--margin-top: var"] {
+  margin-top: var(--margin-top);
+}
+
+[style*="--margin-bottom:var"], [style*="--margin-bottom: var"] {
+  margin-bottom: var(--margin-bottom);
+}
+
+@media (min-width: 1024px) {
+  [style*="--medium_padding:"] {
+    padding: calc(var(--grid) * var(--medium_padding, var(--padding)));
+  }
+
+  [style*="--medium_padding:var"], [style*="--medium_padding: var"] {
+    padding: var(--medium_padding, var(--padding));
+  }
+}

@@ -111,7 +111,7 @@ export default async function UpdateStorePage({
 
   return (
     <div className="space-y-6">
-      {stripeAccount ? (
+      {stripeAccount ?
         <Card
           as="section"
           id="manage-stripe-account"
@@ -161,9 +161,9 @@ export default async function UpdateStorePage({
                 name="stripeAccountCreated"
                 readOnly
                 defaultValue={
-                  stripeAccount.created
-                    ? formatDate(stripeAccount.created * 1000)
-                    : "N/A"
+                  stripeAccount.created ?
+                    formatDate(stripeAccount.created * 1000)
+                  : "N/A"
                 }
               />
             </fieldset>
@@ -184,8 +184,7 @@ export default async function UpdateStorePage({
             </Link>
           </CardFooter>
         </Card>
-      ) : (
-        <Card
+      : <Card
           as="section"
           id="connect-to-stripe"
           aria-labelledby="connect-to-stripe-heading"
@@ -202,7 +201,7 @@ export default async function UpdateStorePage({
             <ConnectStoreToStripeButton storeId={storeId} />
           </CardContent>
         </Card>
-      )}
+      }
       <Card
         as="section"
         id="update-store"

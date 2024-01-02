@@ -119,9 +119,9 @@ export async function getUniqueStoreIdsDeprecated() {
       .from(carts)
       .leftJoin(
         products,
-        env.DATABASE_URL.startsWith("mysql://")
-          ? sql`JSON_CONTAINS(${carts}.items, JSON_OBJECT('productId', ${products}.id))`
-          : sql`${carts}.items::jsonb @> jsonb_build_array(jsonb_build_object('productId', ${products}.id))`,
+        env.DATABASE_URL.startsWith("mysql://") ?
+          sql`JSON_CONTAINS(${carts}.items, JSON_OBJECT('productId', ${products}.id))`
+        : sql`${carts}.items::jsonb @> jsonb_build_array(jsonb_build_object('productId', ${products}.id))`,
       )
       .groupBy(products.storeId)
       .where(eq(carts.id, cartId));

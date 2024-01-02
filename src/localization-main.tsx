@@ -128,6 +128,8 @@ function LocaleFlagIcon({ locale }: LocaleFlagIconProps) {
     return <span aria-hidden="true" className="fi fi-in mr-2" />;
   } else if (baseLocale === "fa") {
     return <span aria-hidden="true" className="fi fi-ir mr-2" />;
+  } else if (baseLocale === "zh") {
+    return <span aria-hidden="true" className="fi fi-cn mr-2" />;
   }
   return <span aria-hidden="true" className={`fi fi-${baseLocale} mr-2`} />;
 }

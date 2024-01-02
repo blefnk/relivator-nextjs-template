@@ -31,6 +31,7 @@ export const locales = [
   "pl-pl",
   "tr-tr",
   "uk-ua",
+  "zh-cn",
 ] as const;
 
 // Labels for each supported locale, used for displaying human-readable names.
@@ -45,6 +46,7 @@ export const labels = {
   "pl-pl": "Polish",
   "tr-tr": "Turkish",
   "uk-ua": "Ukrainian",
+  "zh-cn": "Chinese",
 } as const;
 
 // Type representing valid locale strings.

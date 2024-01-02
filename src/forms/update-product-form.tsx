@@ -110,8 +110,9 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
           return; // Stop further execution
         }
 
-        const images = isArrayOfFile(data.images)
-          ? await startUpload(data.images).then((res) => {
+        const images =
+          isArrayOfFile(data.images) ?
+            await startUpload(data.images).then((res) => {
               const formattedImages = res?.map((image) => ({
                 id: image.key,
                 name: image.key.split("_")[1] ?? image.key,
@@ -279,7 +280,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
               variables.
             </span>
           )}
-          {files?.length ? (
+          {files?.length ?
             <div className="flex items-center gap-2">
               {files.map((file, i) => (
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
@@ -294,7 +295,7 @@ export function UpdateProductForm({ product }: UpdateProductFormProps) {
                 </Zoom>
               ))}
             </div>
-          ) : null}
+          : null}
           <FormControl>
             <FileDialog
               setValue={form.setValue}

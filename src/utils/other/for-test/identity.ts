@@ -1,5 +1,4 @@
 /* eslint-disable jsdoc/require-returns-description */
-/* eslint-disable jsdoc/require-param-description */
 /**
  * Returns whatever is passed into it
  *

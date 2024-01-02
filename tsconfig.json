@@ -26,6 +26,14 @@
          * So you can use `pnpm typecheck` to check all type warns/errors at once.
          */
         "name": "next"
+      },
+      {
+        /**
+         * Atomic CSS in the style attribute. Type-safe static styles with
+         * theming, responsive variant support, and no bundler integration.
+         * @see https://github.com/tokenami/tokenami#readme
+         */
+        "name": "@tokenami/ts-plugin"
       }
     ],
     "noEmit": true,
@@ -69,6 +77,8 @@
     "jest.config.js",
     ".storybook/**/*.ts",
     ".next/types/**/*.ts",
+    ".tokenami/tokenami.env.d.ts",
+    ".tokenami/tokenami.env.ci.d.ts",
     "src/tests/ava/swc/tests/ava/**/*.js"
   ],
   "exclude": ["node_modules"]

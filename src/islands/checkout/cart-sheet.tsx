@@ -82,7 +82,7 @@ export async function CartSheet() {
           <SheetTitle>Cart {itemCount > 0 && `(${itemCount})`}</SheetTitle>
           <Separator />
         </SheetHeader>
-        {itemCount > 0 ?
+        {itemCount > 0 ? (
           <>
             <CartLineItems items={cartLineItems} className="flex-1" />
             <div className="space-y-4 pr-6">
@@ -118,7 +118,8 @@ export async function CartSheet() {
               </SheetFooter>
             </div>
           </>
-        : <div className="flex h-full flex-col items-center justify-center space-y-1">
+        ) : (
+          <div className="flex h-full flex-col items-center justify-center space-y-1">
             <Icons.cart
               className="mb-4 h-16 w-16 text-muted-foreground"
               aria-hidden="true"
@@ -143,7 +144,7 @@ export async function CartSheet() {
               </Link>
             </SheetTrigger>
           </div>
-        }
+        )}
       </SheetContent>
     </Sheet>
   );

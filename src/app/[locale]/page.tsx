@@ -48,7 +48,7 @@ export default function HomePage() {
           </Balancer>
 
           <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
-            {env.DEV_DEMO_NOTES === "true" ? (
+            {env.DEV_DEMO_NOTES === "true" ?
               <Link
                 href={REPOSITORY_URL}
                 size="lg"
@@ -58,12 +58,11 @@ export default function HomePage() {
                 <Download className="mr-2 h-4 w-4" />
                 Download Starter
               </Link>
-            ) : (
-              <Link href="/products" size="lg" variant="secondary">
+            : <Link href="/products" size="lg" variant="secondary">
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 Buy Now
               </Link>
-            )}
+            }
 
             <Link
               className="border-2 border-zinc-900 dark:border-zinc-800"
@@ -129,6 +128,11 @@ export default function HomePage() {
 
 // [TODO SECTION]
 // ==============
+
+// TODO: See #33 and #90 of the Relivator's Roadmap
+// @see https://github.com/tokenami/tokenami#readme
+// <h2 style={{ "--margin-top": 0, "--margin-bottom": 5 }}>Hello, Tokens!</h2>
+// <div style={{ "--medium_padding": 4 }} />
 
 // todo: try to use this for static pages rendering
 // unstable_setRequestLocale(locale); // needs for static pages rendering

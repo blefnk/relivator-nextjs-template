@@ -1,4 +1,4 @@
-# Relivator 1.2.0: The Most Feature-Rich Next.js 14 Starter
+# Relivator 1.2.1: The Most Feature-Rich Next.js 14 Starter
 
 <!-- https://github.com/blefnk/relivator#readme -->
 
@@ -20,9 +20,9 @@ Please scroll down the page to see a lot of useful information about how everyth
 
 Tip! You can create a folder, for instance, `home`, within the `src` directory, to store your project-specific files. It allows you for easy updates whenever Relivator has new versions.
 
-## Project Features Checklist
+## Project Roadmap Features Checklist
 
-**Note:** _Every two weeks, we gift early access to Relivator's future plugins to three randomly selected individuals. Simply `star this repository` and [let us know how to contact you](https://forms.gle/NXZ6QHpwrxh52VA36). For discussions, join [the project's Discord](https://discord.gg/Pb8uKbwpsJ)._
+**Note:** _Sometimes, we gift early access to Relivator's future plugins to three randomly selected individuals. We also give away various other interesting things. Simply `star this repository` and [let us know how to contact you](https://forms.gle/NXZ6QHpwrxh52VA36). For discussions, join [the project's Discord](https://discord.gg/Pb8uKbwpsJ)._
 
 <details>
   <summary>[27.12.2023] 🎄 Relivator v1.2.0 is here! 🥳 Click to see the announcement 🎁</summary>
@@ -84,10 +84,10 @@ _The roadmap below outlines the key features and improvements planned for implem
 - [ ] 27. Reduce the number of project packages, config files, and etc., as much as possible.
 - [ ] 28. Reduce HTML tag nesting and ensure correct usage of HTML tags whenever possible.
 - [ ] 29. Prioritize accessibility throughout, for both app user UI (User Interface) and UX (User Experience), as well as developers' DX (Developer Experience). Maintain usability without compromising aesthetics.
-- [ ] 30. Prefer `function`/`type` over `const`/`interface` to maintain readably-clean and beginner-friendly code (by using specific [recommendations for functional programming](https://youtu.be/nuML9SmdbJ4) approach).
+- [ ] 30. Prefer using [const-arrow](https://freecodecamp.org/news/when-and-why-you-should-use-es6-arrow-functions-and-when-you-shouldnt-3d851d7f0b26) and [type](https://million.dev/docs/manual-mode/block) over [function](https://freecodecamp.org/news/the-difference-between-arrow-functions-and-normal-functions) and [interface](https://totaltypescript.com/type-vs-interface-which-should-you-use) where applicable, and vice versa where applicable correspondingly, with using helpful ESLint [arrow-functions](https://github.com/JamieMason/eslint-plugin-prefer-arrow-functions#readme) plugin, to maintain readable and clean code by adhering to specific [recommendations](https://youtu.be/nuML9SmdbJ4) for [functional programming](https://toptal.com/javascript/functional-programming-javascript).
 - [ ] 31. Optimize all app elements to improve dev cold start and build speeds.
 - [ ] 32. Move each related system to its special folder (into the `src/core` folder), so any system can be easily removed from the project as needed.
-- [ ] 33. Move component styles to .css or .scss files, or use packages that provide syntax sugar for styles in .tsx files.
+- [ ] 33. Move component styles to .css or .scss files, or use packages that provide "syntactic sugar" for styles in .tsx files by using [tokenami](https://github.com/tokenami/tokenami#readme) CSS library. Implement possibility to implement [Figma Tokens System](https://blog.devgenius.io/link-figma-and-react-using-figma-tokens-89e6cc874b4d) to work seamlessly with the project. Tip: go to point #90 of this roadmap to lean more about new ways to use CSS-in-JS.
 - [ ] 34. Migrate to NextAuth.js' [next-auth@beta](https://npmjs.com/package/next-auth?activeTab=versions) ([discussions](https://github.com/nextauthjs/next-auth/releases/tag/next-auth%405.0.0-beta.4)), and to Clerk's [@clerk/*@alpha].
 - [ ] 35. Manage email verification, newsletter sign-ups, and email marketing via [Resend](https://resend.com) and [React Email](https://react.email).
 - [ ] 36. Make sure each page and the middleware are green or yellow, but not red, upon build in the development terminal.
@@ -112,7 +112,7 @@ _The roadmap below outlines the key features and improvements planned for implem
 - [ ] 55. Implement deep feature-parity and easy-migration compatibility with Reliverse.
 - [ ] 56. Implement cooperation possibilities by using things like [liveblocks](https://liveblocks.io).
 - [ ] 57. Implement CLI to quickly get Relivator with selected options only; try to use [Charm](https://charm.sh) things to build the Reliverse CLI.
-- [ ] 58. Implement AI features and chat, using, for example, [Vercel AI SDK](https://sdk.vercel.ai/docs) (see: [Introducing the Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk)).
+- [ ] 58. Implement AI like GPT chat features by using [Vercel AI SDK](https://sdk.vercel.ai/docs) (see: [Introducing the Vercel AI SDK](https://vercel.com/blog/introducing-the-vercel-ai-sdk)).
 - [ ] 59. Implement advanced theme switching without flashing, utilizing Tailwind Dark Mode with [React Server Side support](https://michaelangelo.io/blog/darkmode-rsc) and dynamic cookies.
 - [ ] 60. Implement [Jest](https://jestjs.io) testing, optimized for Next.js.
 - [ ] 61. Guarantee that every possible page is enveloped using predefined shell wrappers.
@@ -123,7 +123,7 @@ _The roadmap below outlines the key features and improvements planned for implem
 - [ ] 66. Establish, document, and adhere to conventions, such as maintaining a single naming case style for files and variables.
 - [ ] 67. Establish a comprehensive i18n, using country and locale codes, and support even more languages. Ensure native speakers verify each language following machine translation. Consider to use the [next-international](https://github.com/QuiiBz/next-international) library.
 - [ ] 68. Ensure ultimate type-safety using strict mode in [TypeScript](https://typescriptlang.org) including ["Do's and Don'ts"](https://typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html) recommendations (without using [dangerous type assertions](https://youtube.com/watch?v=K9pMxqb5IAk), and with [optional types correct usage](https://youtube.com/watch?v=qy6IBZggXSQ), by also using `pnpm fix:ts` — once you run that, [TypeStat](https://github.com/JoshuaKGoldberg/TypeStat) will start auto-fixing TS typings); And also ensure type-safety with typedRoutes, zod, middleware, etc.
-- [ ] 69. Ensure the project lacks any unused items, including packages, libraries, variables, etc.
+- [ ] 69. Ensure the project lacks any unused items, such as packages, libraries, and variables. Also, make sure the project's code adheres to the [Never Nester principles](https://youtube.com/watch?v=CFRhGnuXG-4). Because, as Linus Torvalds once said, _If you need more than 3 levels of indentation, you're screwed anyway, and should fix your program_.
 - [ ] 70. Ensure project has full support for [GSAP](https://gsap.com) (GreenSock Animation Platform) library, with convient ways to use @gsap/react [useGSAP() hook](https://gsap.com/docs/v3/React/tools/useGSAP).
 - [ ] 71. Ensure full Next.js Edge support and compatibility.
 - [ ] 72. Ensure full [Biome](https://biomejs.dev), [Bun](https://bun.sh), and [Docker](https://docker.com) support and compatibility.
@@ -144,21 +144,23 @@ _The roadmap below outlines the key features and improvements planned for implem
 - [ ] 87. Create the most beginner-friendly and aesthetically pleasing starter possible.
 - [ ] 88. Create an advanced notification system, inclusive of toasters, pop-ups, and pages.
 - [ ] 89. Create a new landing page with a distinctive design and update components, plus fully redesign all other pages and components.
-- [ ] 90. Consider adding Facebook's [StyleX](https://stylexjs.com) to work seamlessly with TailwindCSS, but only StyleX will work without setting up Babel in the project to keep full Turbopack/Turborepo support.
+- [ ] 90. Consider adding Facebook's [StyleX](https://stylexjs.com/blog/introducing-stylex). However, StyleX currently requires setting up Babel/Webpack in the project, which we avoid to maintain full Turbopack support. As a suitable alternative, consider jjenzz's [Tokenami](https://github.com/tokenami/tokenami#readme) or Chakra's [Panda CSS](https://panda-css.com). Possibly, we can make a choice between them all while bootstrapping the project with Reliverse CLI. These libraries help with avoiding the deprecated [initial idea](https://stylexjs.com/blog/introducing-stylex/#the-origins-of-stylex) for [CSS-in-JS](https://medium.com/dailyjs/what-is-actually-css-in-js-f2f529a2757). Learn more [here](https://github.com/reactwg/react-18/discussions/110) and in [Next.js docs](https://nextjs.org/docs/app/building-your-application/styling/css-in-js).
 - [ ] 91. Confirm the project is free from duplicates, like files, components, etc.
 - [ ] 92. Conduct useful tests, including possible stress tests, to simulate and assess app performance under high-traffic conditions.
 - [ ] 93. Comprehensively configure Next.js 14 App Router, with API routes managed by Route Handlers, including the RSCs and all other new features.
-- [ ] 94. Complete the BA11YC (Bleverse Accessibility Convention) checklist.
-- [ ] 95. Complete parts of the [BA11YC (Bleverse Accessibility Convention) checklist](https://github.com/bs-oss/BA11YC).
+- [ ] 94. Complete the BA11YC (Bleverse Accessibility Convention) checklist; which may relay on the following principle in the future: [DesignPrototype](https://uiprep.com/blog/ultimate-guide-to-prototyping-in-figma)-[CodePrototype](https://medium.com/@joomiguelcunha/the-power-of-prototyping-code-55f4ed485a30)-CodeTests-HqDesign-[TDD](https://en.wikipedia.org/wiki/Test-driven_development)-HqCode-[CI](https://en.wikipedia.org/wiki/CI/CD).
+- [ ] 95. Complete parts of the [BA11YC (Bleverse Accessibility Convention) checklist](https://github.com/bs-oss/BA11YC). This includes using software [Design Patterns](https://refactoring.guru/design-patterns/what-is-pattern) for code refactoring.
 - [ ] 96. Check all components with side-effects for re-rendering, it is recommended to re-render each component a maximum of 2 times ([good video about it (in Ukrainian)](https://youtu.be/uH9uMH2e5Ts)).
 - [ ] 97. Boost app performance scores on platforms like Google PageSpeed Insights. Ensure the app passes all rigorous tests.
 - [ ] 98. Apply the [next-usequerystate](https://github.com/47ng/next-usequerystate) library where appropriate ([read the article](https://francoisbest.com/posts/2023/storing-react-state-in-the-url-with-nextjs)).
-- [ ] 99. Add the most valuable and useful ESLint things from [awesome-eslint](https://github.com/dustinspecker/awesome-eslint) collection.
-- [ ] 100. Add some interesting and useful types to the project, for example, using the [type-fest](https://github.com/sindresorhus/type-fest) library.
-- [ ] 101. Add pop-ups for cookies/GDPR notifications (with a respective management settings page), and Google floating notifications for quick login, etc.
-- [ ] 102. Add an admin dashboard that includes stores, products, orders, subscriptions, and payments.
-- [ ] 103. Add advanced indicators for environment variables, and improvements to TailwindCSS screen sizes.
-- [ ] 104. Add the integration of a smart git-hooks system with various additional useful functionality.
+- [ ] 99. All third-party libraries and React components should be appropriately isolated. This includes verifying data from these libraries, such as Clerk, and wrapping the components with the "use client" directive as necessary.
+- [ ] 100. Add a reviews section to the landing page. Obtain feedback on Relivator from five widely recognized individuals on the web.
+- [ ] 101. Add an admin dashboard that includes stores, products, orders, subscriptions, and payments.
+- [ ] 102. Add global color variables to all places where they are applied, instead of having hardcoded colors.
+- [ ] 103. Add pop-ups for cookies/GDPR notifications (with a respective management settings page), and Google floating notifications for quick login, etc.
+- [ ] 104. Add some interesting and useful types to the project, for example, using the [type-fest](https://github.com/sindresorhus/type-fest) library.
+- [ ] 105. Add the integration of a smart git-hooks system with various additional useful functionality.
+- [ ] 106. Add the most valuable and useful ESLint things from [awesome-eslint](https://github.com/dustinspecker/awesome-eslint) collection.
 
 ![Relivator Landing Page Screenshot](/public/screenshot.png)
 
@@ -251,13 +253,42 @@ _Stay tuned for further expansions to this section in the future._
 
 Multilingualism at Bleverse is revered. We adore discussing it and plan to delve into the topic of Next.js 14 App Router internationalization in future writings.
 
-Use `pnpm lint:i18n` to verify your i18n files. The tool attempts to rectify issues when possible, offering features like ascending sort. No output means everything is in order.
+Presently, all languages are machine-translated. Future revisions by native speakers are planned. Note that i18n messages from another one of our open-source projects are currently present and will be removed shortly.
 
-Presently, all languages are machine-translated. Future revisions by native speakers are planned.
+_Currently not available._ Use `pnpm lint:i18n` to verify your i18n files. The tool attempts to rectify issues when possible, offering features like ascending sort. No output means everything is in order.
 
-Note that i18n messages from another one of our open-source projects are currently present and will be removed shortly.
+We are using _next-intl_ for internationalization. Sometime we can use beta/rc versions as needed. Find more information about it [here](https://next-intl-docs.vercel.app/blog/next-intl-3-0) and [here](https://github.com/amannn/next-intl/pull/149).
 
-We are using beta/rc _next-intl_ versions for internationalization. Find more information about [here](https://next-intl-docs.vercel.app/blog/next-intl-3-0) and [here](https://github.com/amannn/next-intl/pull/149).
+### How to add a new language
+
+_The process described below will be simplified and automated in the future. Please let us know if you have any further questions regarding the current process for adding languages._
+
+1. We will need an [i18n code](https://saimana.com/list-of-country-locale-code/) (in the format `language-country`; the language code alone is sufficient, but it's not optimal for SEO). For example, let's take Chinese, for which I know the codes _zh-cn/zh-tw/zh-hk_ are used.
+2. Open the `src/data/i18n` folder and create a `zh-cn.json` file with the example content: `{ "landing": { "heading": "建立更高效、更吸引人且更有利可图的在线商店：使用 Relivator" } }`.
+3. Now open `src/i18n.ts` and add `"zh-cn": zh_cn` with the appropriate `import` at the top.
+4. In the file `src/navigation.ts`, add the corresponding values to `locales` and `labels`.
+5. Run `pnpm dev` and review the landing page header. If it appears correctly, you're ready to go.
+6. Optionally, I recommend using the VSCode extension [i18n Ally](https://marketplace.visualstudio.com/items?itemName=Lokalise.i18n-ally), which makes machine translation easy.
+7. Also optionally, install [specific CSpell language](https://github.com/streetsidesoftware/cspell-dicts#language-dictionaries) for full support of this language in VSCode (when using the "[Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)" extension). If your language is not available, try to find a word dictionary file on the web or make one yourself (see CSpell docs).
+
+By the way, **if the country flag is not displayed**: open `src/localization-main.tsx`, go to _LocaleFlagIcon_ and add your `else if`. Please visit the [flag-icons library website](https://flagicons.lipis.dev/) to see the code for the missing icon. The example for _zh-cn_ will be: `} else if (baseLocale === "zh") { return <span aria-hidden="true" className="fi fi-cn mr-2" />; }`
+
+Please be aware that both the "i18n Ally" VSCode extension and manual systems like "Google Translate" may incorrectly translate variables. If you encounter an error like this:
+Original Message: 'The intl string context variable "类别" was not provided to the string "购买最好的{类别}"'.
+This error occurs because we have {类别}, but it should be {category}. To verify the correct variable, refer to the en-us.json file.Certainly! Here's a grammatically corrected version of your text:
+
+Please be aware that both the "i18n Ally" VSCode extension and manual systems like "Google Translate" may incorrectly translate variables. If you encounter an error like this:
+Original Message: 'The intl string context variable "类别" was not provided to the string "购买最好的{类别}"'.
+This error occurs because we have {类别}, but it should be {category}. To verify the correct variable, refer to the en-us.json file.
+So the correct version for this specific case will be:
+
+```txt
+"categories": {
+  "buyProducts": "购买 ${category} 类别的产品",
+  "buyFromCategories": "从最好的商店购买 {category}",
+  "buyTheBest": "购买最好的 {category}"
+},
+```
 
 **Currently supported locales (you can add your own manually):**
 
@@ -271,7 +302,7 @@ Our starter aims to be a rich resource for developers at all stages of their jou
 
 **Principles (W.I.P):**
 
-- [ ] Every file and component should be built consciously, with a certain sense of intelligence, with performance in mind.
+- [ ] Every file and component should be built consciously, by using [KISS/DRY/SOLID/YAGNI principles](https://blog.openreplay.com/applying-design-principles-in-react), with a certain sense of intelligence, with performance in mind.
 - [ ] We need to think of the project as if it were a planet with its own continents, countries, cities, rooms, individuals, entities etc.
 
 **Highly-Recommended VSCode Extensions:**
@@ -345,11 +376,13 @@ Please check the _How to Install and Get Started_ section before making the init
 
 Consult the deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify), and [Docker](https://create.t3.gg/en/deployment/docker) for further details. The project has only been tested on Vercel; please inform us if you encounter issues with other deployment services.
 
-**Design System and UI Components:**
+**Styling, Design System, UI Components:**
 
 TODO: Implement design system and style guide.
 
 By default, this project includes components from various libraries, as well as unstyled [shadcn/ui](https://ui.shadcn.com) components. Shadcn/ui even allows you to generate new UI components using its CLI (where "button" can be any Shadcn UI element): `pnpm dlx shadcn-ui@latest add button`.
+
+W.I.P. — Use `pnpm css` to watch for [CSS tokens](https://blog.devgenius.io/link-figma-and-react-using-figma-tokens-89e6cc874b4d) in accordance with the project's design system. [Tokenami](https://github.com/tokenami/tokenami#readme) and Figma are anticipated to be utilized for this concept. For additional information, refer to points #33 and #90 in the Relivator's Roadmap.
 
 **Bun Things Compatibility:**
 
@@ -383,12 +416,19 @@ _A:_ Simply go to the PlanetScale dashboard and click on the `wake up` button. P
 4. [React: Common Mistakes in 2023](https://docs.google.com/presentation/d/1kuBeSh-yTrL031IlmuwrZ8LvavOGzSbo) by [Cory House](https://twitter.com/housecor)
 5. [Thoughts on Next.js 13, Server Actions, Drizzle, Neon, Clerk, and More](https://github.com/Apestein/nextflix/blob/main/README.md#overall-thoughts) by [@Apestein](https://github.com/Apestein)
 6. [Huge Next-Multilingual Readme About i18n](https://github.com/Avansai/next-multilingual#readme) by [@Avansai](https://github.com/Avansai)
+7. [Applying Design Principles in React](https://blog.openreplay.com/applying-design-principles-in-react) by [Jeremiah (Jerry) Ezekwu](<https://blog.openreplay.com/authors/jeremiah-(jerry)-ezekwu/>)
+8. [The Power of Prototyping Code](https://medium.com/@joomiguelcunha/the-power-of-prototyping-code-55f4ed485a30) by [João Miguel Cunha](https://medium.com/@joomiguelcunha)
+9. [Software Prototyping](https://en.wikipedia.org/wiki/Software_prototyping) on Wikipedia
+10. [TDD: Test-driven development](https://en.wikipedia.org/wiki/Test-driven_development) on Wikipedia
+11. [React 18 Discussions](https://github.com/reactwg/react-18/discussions) by [React Working Group](https://github.com/reactwg)
 
 _More learning resources can be found within the files of this repository._
 
 ## Migration from Other Starters to Relivator
 
-If you've been exploring which Next.js starter to select for your next project like [create-next-app](https://vercel.com/templates/next.js/nextjs-boilerplate), [create-t3-app](https://create.t3.gg), [Next.js Commerce (Vercel Store)](https://vercel.store), [SkateShop](https://github.com/sadmann7/skateshop), [OneStopShop](https://github.com/jackblatch/OneStopShop), [Taxonomy](https://github.com/shadcn-ui/taxonomy)/[nextflix](https://github.com/Apestein/nextflix), [payload](https://github.com/payloadcms/payload), [Medusa](https://github.com/medusajs/medusa), or [any other projects](https://github.com/blefnk/relivator/wiki/Project-Credits-&-Contributors) – your search can end here.
+If you've been exploring which Next.js starter to select for your next project like [create-next-app](https://vercel.com/templates/next.js/nextjs-boilerplate), [create-t3-app](https://create.t3.gg), [Next.js Commerce (Vercel Store)](https://vercel.store), [Skateshop](https://github.com/sadmann7/skateshop), [OneStopShop](https://github.com/jackblatch/OneStopShop), [Taxonomy](https://github.com/shadcn-ui/taxonomy)/[nextflix](https://github.com/Apestein/nextflix), [payload](https://github.com/payloadcms/payload), [Medusa](https://github.com/medusajs/medusa), or [any other projects](https://github.com/blefnk/relivator/wiki/Project-Credits-&-Contributors) – your search can end here.
+
+_«There are a lot of impractical things about owning a ~~Porsche~~ Relivator. But they're all offset by the driving experience. It really is unique. ~~Lamborghinis~~ Skateshop and ~~Ferraris~~ Vercel Store come close. And they are more powerful in specific cases, but they don't handle like a ~~Porsche~~ Relivator.» © Kevin O'Leary_
 
 All these projects are incredible, and if minimalism appeals to you, we recommend checking them out. The creators behind these projects are extremely talented individuals, and we offer them our endless thanks. Without them, this starter would not exist.
 
@@ -423,6 +463,8 @@ This project is licensed under MIT and is free to use and modify for your own pr
 **Follow Us Everywhere:** [GitHub](https://github.com/blefnk) | [Twitter/𝕏](https://x.com/blefnk) | [Discord](https://discord.gg/Pb8uKbwpsJ) | [Fiverr](https://fiverr.com/blefnk) | [LinkedIn](https://linkedin.com/in/blefnk) | [Facebook](https://facebook.com/blefnk)
 
 This Next.js 14 starter—Relivator—was crafted with love by [@blefnk Nazarii Korniienko](https://github.com/blefnk), and by the incredible [Bleverse OSS community](https://github.com/blefnk/relivator/wiki/Project-Credits-&-Contributors). We are deeply grateful for all the contributions and support provided by everyone for this project.
+
+_«I couldn't find the ~~sports car~~ Next.js starter of my dreams, so I built it myself.» © Ferdinand Porsche_
 
 ---
 
