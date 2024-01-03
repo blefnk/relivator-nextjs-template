@@ -256,6 +256,7 @@
     "@limegrass/eslint-plugin-import-alias": "^1.1.0",
     "@next/eslint-plugin-next": "^14.0.4",
     "@playwright/test": "^1.40.1",
+    "@stylistic/eslint-plugin": "^1.5.3",
     "@tailwindcss/typography": "^0.5.10",
     "@tanstack/eslint-plugin-query": "^5.14.6",
     "@testing-library/jest-dom": "^6.1.6",
@@ -343,10 +344,10 @@
     "typescript": "5.3.3",
     "xo": "^0.56.0"
   },
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.14.0",
   "volta": {
     "node": "20.10.0",
-    "pnpm": "8.13.1"
+    "pnpm": "8.14.0"
   },
   "pnpm": {
     "overrides": {

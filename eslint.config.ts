@@ -25,6 +25,7 @@ import { FlatCompat } from "@eslint/eslintrc";
 import eslintJsPlugin from "@eslint/js";
 import importAliasPlugin from "@limegrass/eslint-plugin-import-alias";
 import nextPlugin from "@next/eslint-plugin-next";
+import stylisticPlugin from "@stylistic/eslint-plugin";
 import tanstackQueryPlugin from "@tanstack/eslint-plugin-query";
 import tsEslintPlugin from "@typescript-eslint/eslint-plugin";
 import tsEslintParser from "@typescript-eslint/parser";
@@ -68,7 +69,7 @@ const compat = new FlatCompat();
 
 export default antfu(
   {
-    ignores: ["./.next", "./build", "./drizzle"],
+    ignores: [".next", "drizzle", "build"],
     typescript: { tsconfigPath: "tsconfig.json" },
     stylistic: { quotes: "double", semi: true },
     settings: { react: { version: "detect" } },
@@ -86,6 +87,7 @@ export default antfu(
       "@next/next": nextPlugin,
       "promise": promisePlugin,
       "unicorn": unicornPlugin,
+      "@stylistic": stylisticPlugin,
       "functional": functionalPlugin,
       "react-hooks": reactHooksPlugin,
       "tailwindcss": tailwindcssPlugin,
@@ -97,6 +99,7 @@ export default antfu(
       ...promisePlugin.configs.recommended.rules,
       ...eslintJsPlugin.configs.recommended.rules,
       ...tailwindcssPlugin.configs.recommended.rules,
+      ...stylisticPlugin.configs["recommended-flat"].rules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...unicornPlugin.configs.recommended.rules,
       ...xssPlugin.configs.recommended.rules,
@@ -106,6 +109,49 @@ export default antfu(
       ...airbnbStyleConfig.rules,
       ...airbnbNodeConfig.rules,
       ...airbnbES6Config.rules,
+      // https://eslint.style/packages/default#rules
+      "max-len": "off",
+      "@stylistic/max-len": [
+        // https://eslint.style/rules/default/max-len
+        "error",
+        {
+          "code": 1000,
+          "ignoreComments": true,
+          "ignoreTrailingComments": true,
+        },
+      ],
+      "@stylistic/max-statements-per-line": [
+        // https://eslint.style/rules/default/max-statements-per-line
+        "error",
+        { "max": 1 },
+      ],
+      "@stylistic/keyword-spacing": [
+        // https://eslint.style/rules/default/keyword-spacing
+        "error",
+        { "before": true, "after": true },
+      ],
+      "@stylistic/semi": "off",
+      "@stylistic/quotes": "off",
+      "@stylistic/indent": "off",
+      "@stylistic/quote-props": "off",
+      "@stylistic/operator-linebreak": "off",
+      "@stylistic/member-delimiter-style": "off",
+      "@stylistic/arrow-parens": "off",
+      "@stylistic/brace-style": "off",
+      "@stylistic/indent-binary-ops": "off",
+      "@stylistic/jsx-closing-tag-location": "off",
+      "@stylistic/jsx-curly-newline": "off",
+      "@stylistic/jsx-indent": "off",
+      "@stylistic/jsx-one-expression-per-line": "off",
+      "@stylistic/jsx-wrap-multilines": "off",
+      "@stylistic/multiline-ternary": "off",
+      "@stylistic/spaced-comment": "off",
+      "@stylistic/eol-last": "off",
+      "max-lines-per-function": ["error", 437],
+      "max-nested-callbacks": ["error", 4],
+      "max-statements": ["error", 76],
+      "max-params": ["error", 5],
+      "complexity": ["error", 63],
       "computed-property-spacing": [
         "off",
         "never",
@@ -226,7 +272,6 @@ export default antfu(
       "linebreak-style": "off",
       "lines-around-directive": "off",
       "lines-between-class-members": ["off", "always"],
-      "max-len": "off",
       "new-cap": "off",
       "new-parens": "off",
       "no-alert": "off",
@@ -306,7 +351,7 @@ export default antfu(
       "react/jsx-boolean-value": "off",
       "react/jsx-curly-brace-presence": "off",
       "react/jsx-fragments": "off",
-      "react/jsx-max-depth": ["off", { max: 5 }],
+      "react/jsx-max-depth": ["error", { max: 7 }],
       "react/jsx-no-bind": "off",
       "react/jsx-no-constructed-context-values": "off",
       "react/jsx-no-leaked-render": ["off", { validStrategies: ["ternary"] }],

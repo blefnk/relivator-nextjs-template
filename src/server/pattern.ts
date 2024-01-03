@@ -1,3 +1,4 @@
+/* eslint-disable @stylistic/max-len */
 /* eslint-disable style/quotes */
 /**
  * @see https://heropatterns.com

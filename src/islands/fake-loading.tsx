@@ -48,56 +48,30 @@ export function FakeLoadingVariantOneSpecial() {
   );
 }
 
-export function FakeLoadingVariantTwo() {
+function PlaceholderIcon() {
   return (
-    <Shell>
-      <div className="flex h-full max-h-[100dvh] w-full flex-col gap-10 overflow-hidden pb-8 pt-6 md:py-8">
-        <div className="grid gap-10 overflow-auto">
-          x
-          <section className="flex flex-col space-y-6 overflow-auto">
-            <div className="container flex max-w-7xl flex-col gap-5">
-              <div className="space-y-3">
-                <div className="flex flex-col items-start justify-between gap-4 xs:flex-row">
-                  <div className="flex items-center space-x-4">
-                    <div className="relative h-16 w-16 overflow-hidden rounded">
-                      <div className="flex h-full items-center justify-center bg-secondary">
-                        <Icons.placeholder
-                          className="h-4 w-4 text-muted-foreground"
-                          aria-hidden="true"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex flex-1 flex-col gap-2 self-start text-sm">
-                      <Skeleton className="h-4 w-32" />
-                      <Skeleton className="h-2.5 w-10" />
-                      <Skeleton className="h-2.5 w-20" />
-                    </div>
-                  </div>
-                  <Skeleton className="h-4 w-12" />
-                </div>
-                <Separator />
-              </div>
-            </div>
-            <div className="container flex max-w-7xl items-center justify-between">
-              <Skeleton className="h-4 w-16" />
-              <Skeleton className="h-4 w-20" />
-            </div>
-          </section>
-          <section
-            id="order-success-actions"
-            aria-labelledby="order-success-actions-heading"
-            className="container flex max-w-7xl items-center justify-center space-x-2.5"
-          >
-            <Skeleton className="h-8 w-24" />
-            <Skeleton className="h-8 w-16" />
-          </section>
-        </div>
+    <div className="relative h-16 w-16 overflow-hidden rounded">
+      <div className="flex h-full items-center justify-center bg-secondary">
+        <Icons.placeholder
+          className="h-4 w-4 text-muted-foreground"
+          aria-hidden="true"
+        />
       </div>
-    </Shell>
+    </div>
   );
 }
 
-export function FakeLoadingVariantThree() {
+function SkeletonGroup() {
+  return (
+    <div className="flex flex-1 flex-col gap-2 self-start text-sm">
+      <Skeleton className="h-4 w-32" />
+      <Skeleton className="h-2.5 w-10" />
+      <Skeleton className="h-2.5 w-20" />
+    </div>
+  );
+}
+
+export function FakeLoadingVariantTwo() {
   return (
     <Shell>
       <div className="flex items-center space-x-2">
@@ -156,12 +130,7 @@ export function FakeLoadingVariantThree() {
             <Card className="min-w-[260px] rounded-sm">
               <CardHeader className="border-b p-0">
                 <AspectRatio ratio={4 / 3}>
-                  <div className="flex h-full items-center justify-center bg-secondary">
-                    <Icons.placeholder
-                      className="h-9 w-9 text-muted-foreground"
-                      aria-hidden="true"
-                    />
-                  </div>
+                  <PlaceholderIcon />
                 </AspectRatio>
               </CardHeader>
               <CardContent className="grid gap-2.5 p-4">
@@ -182,7 +151,7 @@ export function FakeLoadingVariantThree() {
   );
 }
 
-export function FakeLoadingVariantFour() {
+export function FakeLoadingVariantThree() {
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="mx-auto w-full max-w-6xl rounded-xl border bg-card text-card-foreground shadow">

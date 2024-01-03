@@ -73,15 +73,6 @@ export async function SiteHeader({
         <div className="flex flex-1 items-center justify-end space-x-2">
           <CartSheet />
 
-          {settings.themeToggleEnabled && <ThemesGeneralSwitcher />}
-
-          {env.NEXT_PUBLIC_INTL_PROVIDER !== "disable" && (
-            // [2/2] ... Then passing to Client Component
-            <LocalizationMainSwitcher
-              tTitle={t("LanguageSwitch.choose-language")}
-            />
-          )}
-
           <Combobox
             tSearchTitle={t("islands.search.title")}
             tPlaceholder={t("islands.search.placeholder")}
@@ -91,16 +82,10 @@ export async function SiteHeader({
             tCmdSystem={t("islands.command.system")}
           />
 
+          {settings.themeToggleEnabled && <ThemesGeneralSwitcher />}
+
           {env.DEV_DEMO_NOTES === "true" && (
-            <>
-              <ButtonLink
-                size="icon"
-                target="_blank"
-                variant="outline"
-                href="https://discord.gg/TK2SpfXfTB"
-              >
-                <DiscordLogoIcon className="h-4 w-4" />
-              </ButtonLink>
+            <div className="hidden sm:block">
               <ButtonLink
                 size="icon"
                 target="_blank"
@@ -109,7 +94,22 @@ export async function SiteHeader({
               >
                 <Github className="h-4 w-4" />
               </ButtonLink>
-            </>
+              <ButtonLink
+                size="icon"
+                target="_blank"
+                variant="outline"
+                href="https://discord.gg/TK2SpfXfTB"
+              >
+                <DiscordLogoIcon className="h-4 w-4" />
+              </ButtonLink>
+            </div>
+          )}
+
+          {env.NEXT_PUBLIC_INTL_PROVIDER !== "disable" && (
+            // [2/2] ... Then passing to Client Component
+            <LocalizationMainSwitcher
+              tTitle={t("LanguageSwitch.choose-language")}
+            />
           )}
 
           {authProvider === "clerk" ? (

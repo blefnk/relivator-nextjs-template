@@ -116,6 +116,7 @@ export function StoreSwitcher({
                       setIsDialogOpen(true);
                     }}
                   >
+                    {/* eslint-disable-next-line react/jsx-max-depth */}
                     <PlusCircledIcon
                       className="mr-2 h-4 w-4"
                       aria-hidden="true"
