@@ -1,4 +1,4 @@
-# Relivator 1.2.2: The Most Feature-Rich Next.js 14 Starter
+# Relivator 1.2.3: The Most Feature-Rich Next.js 14 Starter
 
 <!-- https://github.com/blefnk/relivator#readme -->
 
@@ -232,6 +232,14 @@ Ensure you do not manually delete files from the `drizzle` directory. If a migra
 In the release of Relivator v1.1.0, we made our best efforts to provide simultaneous support for both MySQL and PostgreSQL for the Drizzle ORM. In future releases, we aim to integrate Prisma ORM to this project as well. Thanks to it, the project will be even more inclusive to everyone.
 
 By default we ensure that every database system has everything the same by using `NEXT_PUBLIC_DB_PROVIDER` env variable and by exporting things in the `src/data/db/index.ts` file. When you decide which database provider is best suit your needs, you can safely comment out or remove unneeded providers in the `switch-case` of this file, then related schema files can be removed as well; note that some small additional work may be also required.
+
+### Product Categories and Subcategories
+
+To edit product categories, please refer to the [MySQL](https://github.com/blefnk/relivator/blob/main/src/data/db/schema/mysql.ts#L167C5-L174) or [PostgreSQL](https://github.com/blefnk/relivator/blob/main/src/data/db/schema/pgsql.ts#L24-L29) schema.
+
+After editing these files, don't forget to run `pnpm mysql:push` or `pnpm pg:push` to apply the changes.
+
+Then, simply update the category names and subcategories in the [products file](https://github.com/blefnk/relivator/blob/main/src/server/config/products.ts#L23) accordingly.
 
 ### Additional Notes About Stripe
 
@@ -476,7 +484,7 @@ Check out [our other free Next.js 14 starter](https://github.com/blefnk/relivers
 
 [bleverse-discord]: https://discord.gg/Pb8uKbwpsJ
 
----
+<!-- ---
 
 <details>
   <summary>Relivator v1.2.0: Table of Dependencies</summary>
@@ -649,3 +657,4 @@ Check out [our other free Next.js 14 starter](https://github.com/blefnk/relivers
 | 269. xo                                      |                                     |                                        |                             |                             |                       |
 
 </details>
+ -->

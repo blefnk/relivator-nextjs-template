@@ -1,5 +1,7 @@
 # Project Changelog
 
+Please check the roadmap checklist on README.md instead reading this OUTDATED file.
+
 ## v0.0.0-v1.2.0 Features
 
 - [x] Utilized [Next.js 14](https://nextjs.org), [React 18](https://react.dev), [TailwindCSS](https://tailwindcss.com), and [TypeScript](https://typescriptlang.org) serve as the project's core technologies.
@@ -30,15 +32,15 @@
 
 ## v0.0.0-v1.0.0 Commits
 
-- 1.  [🌱 feat(app): initial deploy](https://github.com/blefnk/relivator/commit/4099c7c7e444b3e5782487355a508fdfdb3a14cd)
-- 2.  [💎 feat(app): initial update](https://github.com/blefnk/relivator/commit/67a68f4cb93f76937b307fc056ba99a9675ba700)
-- 3.  [🌅 upd(app): global update](https://github.com/blefnk/relivator/commit/6247d5cda5a5dc5dea19940b64b39a5ab9aa6ce7)
-- 4.  [🦫 feat(db): add drizzle config](https://github.com/blefnk/relivator/commit/4dbcf8d6682530955913ec088051c63798807d1e)
-- 5.  [✅ feat(app): configure the app](https://github.com/blefnk/relivator/commit/fc941ef5061662a0dc8052641ab010cc45e66c60)
-- 6.  [☘️ feat(app): improve env styling](https://github.com/blefnk/relivator/commit/e75ed0ec2413110b0fcd75f778d63eba9d88faea)
-- 7.  [☘️ feat(store): init app store types](https://github.com/blefnk/relivator/commit/73b00c0ce0f3656bddbe9b71c19631c352ab89b2)
-- 8.  [☘️ feat(store): add more store things](https://github.com/blefnk/relivator/commit/146f9c451544112a18a734b12622f913dd3c8298)
-- 9.  [🧹 feat(app): temporary remove image](https://github.com/blefnk/relivator/commit/f3ce181f3d9844ba718a3aef7fadcd03776fdffe)
+- 1. [🌱 feat(app): initial deploy](https://github.com/blefnk/relivator/commit/4099c7c7e444b3e5782487355a508fdfdb3a14cd)
+- 2. [💎 feat(app): initial update](https://github.com/blefnk/relivator/commit/67a68f4cb93f76937b307fc056ba99a9675ba700)
+- 3. [🌅 upd(app): global update](https://github.com/blefnk/relivator/commit/6247d5cda5a5dc5dea19940b64b39a5ab9aa6ce7)
+- 4. [🦫 feat(db): add drizzle config](https://github.com/blefnk/relivator/commit/4dbcf8d6682530955913ec088051c63798807d1e)
+- 5. [✅ feat(app): configure the app](https://github.com/blefnk/relivator/commit/fc941ef5061662a0dc8052641ab010cc45e66c60)
+- 6. [☘️ feat(app): improve env styling](https://github.com/blefnk/relivator/commit/e75ed0ec2413110b0fcd75f778d63eba9d88faea)
+- 7. [☘️ feat(store): init app store types](https://github.com/blefnk/relivator/commit/73b00c0ce0f3656bddbe9b71c19631c352ab89b2)
+- 8. [☘️ feat(store): add more store things](https://github.com/blefnk/relivator/commit/146f9c451544112a18a734b12622f913dd3c8298)
+- 9. [🧹 feat(app): temporary remove image](https://github.com/blefnk/relivator/commit/f3ce181f3d9844ba718a3aef7fadcd03776fdffe)
 - 10. [🌿 feat(app): improve header and footer](https://github.com/blefnk/relivator/commit/d178f653844cd259db5095022bfe4a1de9ebd070)
 - 11. [🌳 feat(app): add many new store things](https://github.com/blefnk/relivator/commit/b25ea4665975d055310a5f172d658464633d451e)
 - 12. [🌄 feat(app): add payments & store actions](https://github.com/blefnk/relivator/commit/639093c454bd758f0536215ce9830daabf466852)

@@ -724,5 +724,8 @@
       "buyProductsFromOurStores": "Купуйте продукти в наших магазинах",
       "addToCart": "Додати в кошик"
     }
+  },
+  "contact": {
+    "submit": "Надіслати"
   }
 }

@@ -724,5 +724,8 @@
       "buyProductsFromOurStores": "Mağazalarımızdan ürün satın alın",
       "addToCart": "Sepete ekle"
     }
+  },
+  "contact": {
+    "submit": "Göndermek"
   }
 }

@@ -2,11 +2,9 @@
 
 import { revalidatePath } from "next/cache";
 import { faker } from "@faker-js/faker";
-import { z } from "zod";
 
 import { db } from "~/data/db";
 import { products, type Product } from "~/data/db/schema";
-import { action } from "~/server/clients/next-safe-action";
 import {
   getSubcategories,
   productCategories,

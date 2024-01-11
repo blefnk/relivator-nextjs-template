@@ -1,4 +1,8 @@
-import { node } from "fuse";
+// import { node } from "fuse";
+
+/** @see https://fusejs.org/ */
+
+// TODO: Implement
 
 type UserSource = {
   id: string;
@@ -10,7 +14,7 @@ type UserSource = {
 // a resource/entity with multiple fields and has to define two things:
 // 1. load(): How to fetch from the underlying data source
 // 2. fields: What fields should be exposed and added for clients
-export const UserNode = node<UserSource>({
+/* export const UserNode = node<UserSource>({
   name: "User",
   load: async (ids) => getUsers(ids),
   fields: (t) => ({
@@ -22,7 +26,7 @@ export const UserNode = node<UserSource>({
       resolve: (user) => user.name.split(" ")[0],
     }),
   }),
-});
+}); */
 
 // Fake function to fetch users. In real applications, this would
 // talk to an underlying REST API/gRPC service/third-party API/…

@@ -139,7 +139,7 @@ export function AuthPagesContent({
       <Card>
         <CardHeader className="flex flex-row items-baseline justify-between border-b px-4">
           <Link
-            className="z-20 flex items-center bg-transparent font-heading text-lg font-medium text-zinc-800 transition-colors hover:bg-accent hover:underline lg:hover:bg-primary-foreground/10 dark:text-zinc-200"
+            className="z-20 flex items-center bg-transparent font-heading text-lg font-medium text-zinc-800 transition-colors hover:bg-accent hover:underline dark:text-zinc-200 lg:hover:bg-primary-foreground/10"
             href="/"
           >
             {siteConfig.name}

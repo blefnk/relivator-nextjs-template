@@ -724,5 +724,8 @@
       "buyProductsFromOurStores": "Acquista i prodotti dai nostri negozi",
       "addToCart": "Aggiungi al carrello"
     }
+  },
+  "contact": {
+    "submit": "Invia"
   }
 }

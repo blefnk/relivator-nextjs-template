@@ -95,9 +95,9 @@ export function StoreSwitcher({
                     <CheckIcon
                       className={cn(
                         "ml-auto h-4 w-4",
-                        currentStore.id === store.id ?
-                          "opacity-100"
-                        : "opacity-0",
+                        currentStore.id === store.id
+                          ? "opacity-100"
+                          : "opacity-0",
                       )}
                       aria-hidden="true"
                     />
@@ -116,7 +116,6 @@ export function StoreSwitcher({
                       setIsDialogOpen(true);
                     }}
                   >
-                    {/* eslint-disable-next-line react/jsx-max-depth */}
                     <PlusCircledIcon
                       className="mr-2 h-4 w-4"
                       aria-hidden="true"

@@ -1,17 +1,22 @@
+"use client";
+
 import * as React from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { cn } from "~/utils";
 import useEmblaCarousel, {
-  type EmblaCarouselType as CarouselApi,
-  type EmblaOptionsType as CarouselOptions,
-  type EmblaPluginType as CarouselPlugin,
+  type UseEmblaCarouselType,
 } from "embla-carousel-react";
 
 import { Button } from "~/islands/primitives/ui/button";
 
+type CarouselApi = UseEmblaCarouselType["1"];
+type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
+type CarouselOptions = UseCarouselParameters["0"];
+type CarouselPlugins = UseCarouselParameters["1"];
+
 type CarouselProps = {
   opts?: CarouselOptions;
-  plugins?: CarouselPlugin[];
+  plugins?: CarouselPlugins;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
 };
@@ -248,10 +253,10 @@ const CarouselNext = React.forwardRef<
 CarouselNext.displayName = "CarouselNext";
 
 export {
-  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
   CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
 };

@@ -45,7 +45,7 @@ export function HeroSection() {
     <>
       <Balancer
         as="h1"
-        className="mt-4 bg-gradient-to-br from-primary/60 from-10% via-primary/90 via-30% to-primary to-90% bg-clip-text font-heading text-2xl leading-[1.1] tracking-tighter text-transparent sm:text-2xl md:text-3xl xl:text-4xl dark:from-zinc-400 dark:via-zinc-300 dark:to-zinc-600"
+        className="mt-4 bg-gradient-to-br from-primary/60 from-10% via-primary/90 via-30% to-primary to-90% bg-clip-text font-heading text-2xl leading-[1.1] tracking-tighter text-transparent dark:from-zinc-400 dark:via-zinc-300 dark:to-zinc-600 sm:text-2xl md:text-3xl xl:text-4xl"
       >
         <span className="block max-w-5xl">{t("heading")}</span>
       </Balancer>

@@ -724,5 +724,8 @@
       "buyProductsFromOurStores": "Achetez des produits dans nos magasins",
       "addToCart": "Ajouter au panier"
     }
+  },
+  "contact": {
+    "submit": "Soumettre"
   }
 }

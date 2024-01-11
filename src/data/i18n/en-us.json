@@ -554,7 +554,7 @@
     }
   },
   "plugins": {
-    "stars": "Star Relivator v1.2.2 on GitHub ⭐"
+    "stars": "Star Relivator v1.2.3 on GitHub ⭐"
   },
   "pricing": {
     "compare": {
@@ -724,5 +724,8 @@
       "title": "Free online tools from Relivator"
     },
     "title": "Tools"
+  },
+  "contact": {
+    "submit": "Submit"
   }
 }

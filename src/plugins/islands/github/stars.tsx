@@ -35,17 +35,17 @@ export async function GithubStarsPlugin() {
 
   return (
     <>
-      {githubStars ?
+      {githubStars ? (
         <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <Badge
-            className="rounded-lg border-2 border-zinc-900/10 px-3.5 py-1.5 text-sm font-semibold lg:text-base dark:border-zinc-800"
+            className="rounded-lg border-2 border-zinc-900/10 px-3.5 py-1.5 text-sm font-semibold dark:border-zinc-800 lg:text-base"
             variant="outline"
           >
             <Icons.gitHub className="mr-2 h-3.5 w-3.5" aria-label="GitHub" />
             <OssStarsBadge githubStars={githubStars} />
           </Badge>
         </Link>
-      : null}
+      ) : null}
     </>
   );
 }

@@ -2,7 +2,9 @@
 
 <!-- https://github.com/blefnk/relivator#readme -->
 
-🌐 [Запустити демо-версію Relivator](https://relivator.bleverse.com)
+🌐 [Relivator Demo](https://relivator.bleverse.com)
+
+<!-- **TŁUMACZENIE NIE JEST AKTUALNE Z v1.2.3 [WERSJI ANGLOJĘZYCZNEJ README.MD](https://github.com/blefnk/relivator#readme)!** -->
 
 **Uwaga: Poniższy tekst jest w większości maszynowym tłumaczeniem pliku [README.md](https://github.com/blefnk/relivator#readme). Aktywnie pracujemy nad jego ulepszeniem. Prosimy o zapoznanie się z oryginałem, jeśli niektóre fragmenty tekstu są niejasne.**
 

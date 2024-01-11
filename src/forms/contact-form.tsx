@@ -27,7 +27,11 @@ const formSchema = z.object({
   }),
 });
 
-export default function ContactForm() {
+interface ContactFormProps {
+  tSubmit: string;
+}
+
+export default function ContactForm({ tSubmit }: ContactFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -78,7 +82,7 @@ export default function ContactForm() {
         />
         <div />
         <Button className="w-full" type="submit">
-          Submit
+          {tSubmit}
         </Button>
       </form>
     </Form>

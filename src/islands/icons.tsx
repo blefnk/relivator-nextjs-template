@@ -1,4 +1,3 @@
-/* eslint-disable @stylistic/max-len */
 import {
   AlarmClock,
   AlertTriangle,

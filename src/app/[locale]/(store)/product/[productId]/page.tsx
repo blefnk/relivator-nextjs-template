@@ -26,14 +26,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/islands/primitives/accordion";
-import { Button } from "~/islands/primitives/button";
 import { Separator } from "~/islands/primitives/separator";
-import { ProductImageCarousel } from "~/islands/product-carousel";
+import { ProductImageCarousel } from "~/islands/product-image-carousel";
 import { Shell } from "~/islands/wrappers/shell-variants";
 import { Link, redirect } from "~/navigation";
 import { getServerAuthSession, getUserById } from "~/utils/auth/users";
-
-import AddToCart from "./_islands/client";
 
 interface ProductPageProperties {
   params: {

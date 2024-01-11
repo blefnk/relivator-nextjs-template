@@ -724,5 +724,8 @@
       "buyProductsFromOurStores": "Kupuj produkty w naszych sklepach",
       "addToCart": "Dodaj do koszyka"
     }
+  },
+  "contact": {
+    "submit": "Składać"
   }
 }

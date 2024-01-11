@@ -1,5 +1,3 @@
-/* eslint-disable @stylistic/max-len */
-/* eslint-disable style/quotes */
 /**
  * @see https://heropatterns.com
  * @see https://github.com/juliusmarminge/acme-corp/blob/main/apps/nextjs/src/lib/generate-pattern.ts

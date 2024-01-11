@@ -2,21 +2,25 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { AspectRatio } from "@radix-ui/react-aspect-ratio";
-import type { StoredFile } from "~/types";
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { type StoredFile } from "~/types";
 import { cn } from "~/utils";
 import useEmblaCarousel, {
-  type EmblaCarouselType,
-  type EmblaOptionsType,
+  type UseEmblaCarouselType,
 } from "embla-carousel-react";
 
-import { Icons } from "~/islands/icons";
-import { Button } from "~/islands/primitives/button";
+import { Button } from "~/islands/primitives/ui/button";
+
+import { Icons } from "./icons";
+
+type CarouselApi = UseEmblaCarouselType["1"];
+type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
+type CarouselOptions = UseCarouselParameters["0"];
 
 interface ProductImageCarouselProps
   extends React.HTMLAttributes<HTMLDivElement> {
   images: StoredFile[];
-  options?: EmblaOptionsType;
+  options?: CarouselOptions;
 }
 
 export function ProductImageCarousel({
@@ -56,7 +60,9 @@ export function ProductImageCarousel({
     [scrollNext, scrollPrev],
   );
 
-  const onSelect = React.useCallback((emblaApi: EmblaCarouselType) => {
+  const onSelect = React.useCallback((emblaApi: CarouselApi) => {
+    if (!emblaApi) return;
+
     setSelectedIndex(emblaApi.selectedScrollSnap());
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
     setNextBtnDisabled(!emblaApi.canScrollNext());
@@ -100,23 +106,24 @@ export function ProductImageCarousel({
           }}
         >
           {images.map((image, index) => (
-            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-            <div className="relative min-w-0 flex-full pl-4" key={index}>
-              <AspectRatio ratio={1}>
-                <Image
-                  aria-label={`Slide ${index + 1} of ${images.length}`}
-                  role="group"
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                  key={index}
-                  aria-roledescription="slide"
-                  src={image.url}
-                  alt={image.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
-                  priority={index === 0}
-                />
-              </AspectRatio>
+            <div
+              className="relative aspect-square min-w-0 flex-[0_0_100%] pl-4"
+              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              key={index}
+            >
+              <Image
+                aria-label={`Slide ${index + 1} of ${images.length}`}
+                role="group"
+                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                key={index}
+                aria-roledescription="slide"
+                src={image.url}
+                alt={image.name}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
+                priority={index === 0}
+              />
             </div>
           ))}
         </div>
@@ -130,7 +137,7 @@ export function ProductImageCarousel({
             disabled={prevBtnDisabled}
             onClick={scrollPrev}
           >
-            <Icons.chevronLeft
+            <ChevronLeftIcon
               className="h-3 w-3 sm:h-4 sm:w-4"
               aria-hidden="true"
             />
@@ -168,7 +175,7 @@ export function ProductImageCarousel({
             disabled={nextBtnDisabled}
             onClick={scrollNext}
           >
-            <Icons.chevronRight
+            <ChevronRightIcon
               className="h-3 w-3 sm:h-4 sm:w-4"
               aria-hidden="true"
             />
