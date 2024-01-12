@@ -1,4 +1,4 @@
-# Relivator 1.2.3: The Most Feature-Rich Next.js 14 Starter
+# Relivator 1.2.4: The Most Feature-Rich Next.js 14 Starter
 
 <!-- https://github.com/blefnk/relivator#readme -->
 

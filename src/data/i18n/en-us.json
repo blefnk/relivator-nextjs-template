@@ -554,7 +554,7 @@
     }
   },
   "plugins": {
-    "stars": "Star Relivator v1.2.3 on GitHub ⭐"
+    "stars": "Star Relivator v1.2.4 on GitHub ⭐"
   },
   "pricing": {
     "compare": {
@@ -727,5 +727,19 @@
   },
   "contact": {
     "submit": "Submit"
+  },
+  "faq": {
+    "1": {
+      "summary": "How can I install everything and get started immediately?",
+      "details": "Please visit the README.md file in the Relivator GitHub repository, where you'll always find the most current information about the project along with easy installation instructions."
+    },
+    "2": {
+      "summary": "Why should I choose Relivator as my Next.js 14 starter?",
+      "details": "The answer is simple: to prevent you from hopping between different starters. In fact, you can stop searching now. With Relivator, you are presented with unlimited possibilities. You can create anything you desire; all the necessary tools are already prepared, just for you."
+    },
+    "3": {
+      "summary": "Is it possible to speed up the release of Relivator v2.0?",
+      "details": "Developing something as ambitious as Relivator obviously takes a lot of time, especially since the project is primarily developed by just one person. The development could be significantly accelerated by hiring additional developers. Therefore, I, @blefnk Nazarii Korniienko, would be immensely grateful to anyone who could donate to the project in any amount. Please refer to the repository page to see Patreon and other platforms as well. A big thank you to everyone in advance!"
+    }
   }
 }

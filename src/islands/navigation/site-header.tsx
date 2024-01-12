@@ -84,26 +84,26 @@ export async function SiteHeader({
 
           {settings.themeToggleEnabled && <ThemesGeneralSwitcher />}
 
-          {env.DEV_DEMO_NOTES === "true" && (
-            <div className="hidden sm:block">
-              <ButtonLink
-                size="icon"
-                target="_blank"
-                variant="outline"
-                href="https://github.com/blefnk/relivator"
-              >
-                <Github className="h-4 w-4" />
-              </ButtonLink>
-              <ButtonLink
-                size="icon"
-                target="_blank"
-                variant="outline"
-                href="https://discord.gg/TK2SpfXfTB"
-              >
-                <DiscordLogoIcon className="h-4 w-4" />
-              </ButtonLink>
-            </div>
-          )}
+          {/* {env.DEV_DEMO_NOTES === "true" && ( */}
+          <div className="hidden sm:block">
+            <ButtonLink
+              size="icon"
+              target="_blank"
+              variant="outline"
+              href="https://github.com/blefnk/relivator"
+            >
+              <Github className="h-4 w-4" />
+            </ButtonLink>
+            <ButtonLink
+              size="icon"
+              target="_blank"
+              variant="outline"
+              href="https://discord.gg/TK2SpfXfTB"
+            >
+              <DiscordLogoIcon className="h-4 w-4" />
+            </ButtonLink>
+          </div>
+          {/* )} */}
 
           {env.NEXT_PUBLIC_INTL_PROVIDER !== "disable" && (
             // [2/2] ... Then passing to Client Component

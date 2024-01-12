@@ -15,6 +15,7 @@ import { FeaturedStoreItems } from "~/islands/commerce/featured-store-items";
 import { HeroSection } from "~/islands/marketing/hero-section";
 import { SiteFooter } from "~/islands/navigation/site-footer";
 import { SiteHeader } from "~/islands/navigation/site-header";
+import { FrequentlyAskedQuestions } from "~/islands/sections/questions";
 import { GeneralShell } from "~/islands/wrappers/general-shell";
 import { Link as NavLink } from "~/navigation";
 import { Features, GithubStarsPlugin } from "~/plugins/islands/github/stars";
@@ -99,6 +100,8 @@ export default function HomePage() {
         </section>
 
         {env.DEV_DEMO_NOTES === "true" && <Features />}
+
+        <FrequentlyAskedQuestions />
 
         <section
           aria-labelledby="create-a-store-banner-heading"

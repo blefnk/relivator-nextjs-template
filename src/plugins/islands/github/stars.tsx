@@ -35,7 +35,7 @@ export async function GithubStarsPlugin() {
 
   return (
     <>
-      {githubStars ? (
+      {githubStars ?
         <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
           <Badge
             className="rounded-lg border-2 border-zinc-900/10 px-3.5 py-1.5 text-sm font-semibold dark:border-zinc-800 lg:text-base"
@@ -45,7 +45,7 @@ export async function GithubStarsPlugin() {
             <OssStarsBadge githubStars={githubStars} />
           </Badge>
         </Link>
-      ) : null}
+      : null}
     </>
   );
 }

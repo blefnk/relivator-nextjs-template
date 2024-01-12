@@ -15,6 +15,7 @@ import { notFound } from "next/navigation";
 import { ShowInfo } from "~/indicators-error";
 import type { LocaleLayoutParams, WithChildren } from "~/types";
 import { cn } from "~/utils";
+import { Flowbite, ThemeModeScript } from "flowbite-react";
 
 import { siteConfig } from "~/app";
 import { TRPC } from "~/core/trpc/react";
@@ -23,6 +24,7 @@ import { fullURL } from "~/data/meta/builder";
 import { ReactHotToasts } from "~/islands/application/overlays/notifications/react-hot-toast";
 import LoglibAnalytics from "~/islands/loglib-analytics";
 import AuthProvider from "~/islands/providers/auth-provider";
+import { customTheme } from "~/islands/providers/flowbite-theme";
 import { TailwindScreens } from "~/islands/providers/indicators/tailwind-indicator";
 import { NextThemesProvider } from "~/islands/providers/theme-provider";
 import { TooltipProvider } from "~/islands/providers/tooltip";
@@ -140,6 +142,9 @@ export default async function LocaleLayout({
   // theme, analytics, other providers, and more
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <ThemeModeScript />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
@@ -153,8 +158,10 @@ export default async function LocaleLayout({
             <TooltipProvider>
               <ZustandProvider>
                 <AuthProvider>
-                  <ShowInfo />
-                  {children}
+                  <Flowbite theme={{ theme: customTheme }}>
+                    <ShowInfo />
+                    {children}
+                  </Flowbite>
                 </AuthProvider>
               </ZustandProvider>
             </TooltipProvider>
