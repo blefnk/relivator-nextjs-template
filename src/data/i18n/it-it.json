@@ -165,32 +165,44 @@
     "features": {
       "clock": {
         "description": "Rimani in pista con Drizzle ORM. Distribuito su Vercel, Railway, Neon, ecc.",
-        "title": "Banca dati"
+        "title": "Banca dati",
+        "description-v2": "Mantieni le massime prestazioni con Drizzle ORM, cambiando MySQL e Postgres al volo. \nGoditi opzioni di distribuzione flessibili, tra cui Planetscale, Vercel, Railway, Neon e altro ancora.",
+        "title-v2": "Integrazione del database: robusta e versatile"
       },
       "cryptography": {
         "description": "Interagisci con directory app, routing, layout, interfaccia utente di caricamento, percorsi API e altro ancora.",
-        "title": "Next.js 14"
+        "title": "Next.js 14",
+        "description-v2": "Sperimenta una navigazione fluida con funzionalità avanzate come App Router, layout e interfaccia utente di caricamento. \nSfrutta potenti percorsi API ed esplora funzionalità innovative oltre le nozioni di base.",
+        "title-v2": "Next.js 14: Esperienza utente migliorata"
       },
       "currency": {
         "description": "Componenti dell'interfaccia utente creati utilizzando Radix UI e stilizzati con Tailwind CSS.",
-        "title": "Componenti"
+        "title": "Componenti",
+        "description-v2": "Crea un'interfaccia utente straordinaria con componenti basati sull'interfaccia utente Radix e Shadcn, splendidamente stilizzati con Tailwind CSS per un'estetica moderna. \nVSCode è consigliato per un'esperienza full immersion.",
+        "title-v2": "Componenti: Elegante"
       },
       "devtools": {
         "description": "Abbonamenti gratuiti e a pagamento utilizzando Stripe.",
         "title": "Abbonamenti",
-        "ambitions-description": "Smettere di correre da un antipasto all'altro. Con Relivator avrai possibilità illimitate. Puoi creare tutto ciò che vuoi; tutti gli strumenti sono già pronti, solo per te."
+        "ambitions-description": "Smettere di correre da un antipasto all'altro. Con Relivator avrai possibilità illimitate. Puoi creare tutto ciò che vuoi; tutti gli strumenti sono già pronti, solo per te.",
+        "description-v2": "Implementato un solido sistema di abbonamento, sono supportati sia i piani gratuiti che quelli a pagamento, ottimizzati per efficienza e scalabilità. \nScopri README.md del progetto per saperne di più.",
+        "title-v2": "Abbonamenti Stripe: potenti"
       },
       "files": {
         "description": "Autenticazione middleware utilizzando NextAuth.js.",
         "title": "Autenticazione",
         "on-the-fly": "Personalizzazione completa al volo",
         "on-the-fly-description": "Esplora l'ampio elenco di funzionalità nel nostro repository di progetti. Passa facilmente da Clerk/NextAuth.js a MySQL/PostgreSQL per soddisfare i requisiti del tuo progetto.",
-        "roadmap": "Enormi ambizioni: possibilità illimitate"
+        "roadmap": "Enormi ambizioni: possibilità illimitate",
+        "description-v2": "Distribuisci un sistema di autenticazione versatile utilizzando NextAuth.js e Clerk, su misura per le esigenze della tua applicazione. \nScopri di più nel file .env.example e sei pronto per partire.",
+        "title-v2": "Autenticazione utente: sicura"
       },
       "subtitle": "Dal codice alla progettazione, Relivator ha funzionalità che potenziano i tuoi progetti web.",
       "text": {
         "description": "Manipola l'app senza sforzo con i componenti server e client. Usa il gancio. E altro ancora.",
-        "title": "Reagire 18"
+        "title": "Reagire 18",
+        "description-v2": "Manipola facilmente la tua app con i componenti server e client. \nUtilizza hook avanzati ed esplora una gamma di funzionalità aggiuntive per un'esperienza di sviluppo più fluida.",
+        "title-v2": "React 18: sviluppo moderno semplificato"
       },
       "title": "Funzionalità"
     },
@@ -215,7 +227,12 @@
     "things": {
       "linkText": "Vai alla lista"
     },
-    "title": "Scopri gli strumenti fondamentali per React, Next.js e oltre. Su misura per te."
+    "title": "Scopri gli strumenti fondamentali per React, Next.js e oltre. Su misura per te.",
+    "buy-now": "Acquista ora",
+    "footer-cta": "Vuoi vendere i tuoi prodotti?",
+    "get-started-btn": "Iniziare",
+    "main-cta": "Scarica Starter",
+    "sell-now": "Vendi adesso"
   },
   "LanguageSwitch": {
     "choose-language": "Lingua"
@@ -727,5 +744,41 @@
   },
   "contact": {
     "submit": "Invia"
+  },
+  "demo": {
+    "aria-label-goto": "Vai a",
+    "launch": "Avvia la demo"
+  },
+  "faq": {
+    "1": {
+      "details": "Visita il file README.md nel repository GitHub di Relivator, dove troverai sempre le informazioni più aggiornate sul progetto insieme a semplici istruzioni di installazione.",
+      "summary": "Come posso installare tutto e iniziare subito?"
+    },
+    "2": {
+      "details": "La risposta è semplice: per evitare di saltare tra diversi antipasti. \nIn effetti, puoi interrompere la ricerca ora. \nCon Relivator ti vengono presentate possibilità illimitate. \nPuoi creare tutto ciò che desideri; \ntutti gli strumenti necessari sono già pronti, solo per te.",
+      "summary": "Perché dovrei scegliere Relivator come antipasto per Next.js 14?"
+    },
+    "3": {
+      "details": "Sviluppare qualcosa di così ambizioso come Relivator richiede ovviamente molto tempo, soprattutto perché il progetto è sviluppato principalmente da una sola persona. \nLo sviluppo potrebbe essere notevolmente accelerato assumendo ulteriori sviluppatori. \nPertanto, io, @blefnk Nazarii Korniienko, sarei immensamente grato a chiunque potesse donare al progetto di qualsiasi importo. \nFare riferimento alla pagina del repository per vedere anche Patreon e altre piattaforme. \nUn grande grazie a tutti in anticipo!",
+      "summary": "È possibile accelerare il rilascio di Relivator v2.0?"
+    }
+  },
+  "metadata": {
+    "title": {
+      "home": "Casa"
+    }
+  },
+  "checkout": {
+    "CartDetails": "Dettagli",
+    "Demo": "È possibile utilizzare i dati del test: 4242424242424242 | \n34/12 | \n567",
+    "Description": "Acquista con gli articoli del tuo carrello",
+    "EmptyCartDescription": "Aggiungi articoli al carrello alla cassa",
+    "EmptyCartHeading": "il tuo carrello è vuoto",
+    "Pay": "Paga",
+    "Title": "Guardare",
+    "backToCart": "Torna al carrello",
+    "backToCartSingle": "Indietro",
+    "notConnectedDescription": "Il proprietario del negozio deve connettere il proprio negozio a Stripe per accettare pagamenti",
+    "notConnectedHeading": "Il negozio non è connesso a Stripe"
   }
 }

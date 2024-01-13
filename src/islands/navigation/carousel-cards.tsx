@@ -14,7 +14,6 @@ export function CarouselCards() {
     <Carousel opts={{ align: "start" }} className="w-full max-w-sm">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1">
               <Card>

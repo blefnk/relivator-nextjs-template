@@ -48,7 +48,6 @@ export async function getSubscriptionPlanAction(
         .select()
         .from(users)
         .where(eq(users.id, userId))
-        // .where(eq(users.id, session.user.id))
         .then((res: User[]) => res[0] ?? null);
 
       userPrivateMetadata = userPrivateMetadataSchema.parse(user);
@@ -335,9 +334,7 @@ export async function createCheckoutSessionAction(
       return { error: "Stripe account not found." };
     }
 
-    // console.log("⏳ awaiting getCartId for createCheckoutSessionAction...");
     const cartId = await getCartId();
-    // console.log("get stripe(1) `cartId`:", cartId);
 
     const checkoutItems: CheckoutItem[] = input.items.map((item) => ({
       productId: item.id,
@@ -408,9 +405,7 @@ export async function createPaymentIntentAction(
       return { error: "Stripe account not found.", clientSecret: null };
     }
 
-    // console.log("⏳ awaiting getCartId for createPaymentIntentAction...");
     const cartId = await getCartId();
-    // console.log("get stripe(2) `cartId`:", cartId);
 
     const checkoutItems: CheckoutItem[] = input.items.map((item) => ({
       productId: item.id,
@@ -421,7 +416,6 @@ export async function createPaymentIntentAction(
     }));
 
     const metadata = {
-      // cartId: Number.isNaN(cartId) ? "" : cartId,
       cartId: Number(cartId) ?? null,
       items: JSON.stringify(checkoutItems),
     };
@@ -505,9 +499,7 @@ export async function getPaymentIntentAction(
   input: z.infer<typeof getPaymentIntentSchema>,
 ) {
   try {
-    // console.log("⏳ awaiting getCartId for getPaymentIntentAction...");
     const cartId = await getCartId();
-    // console.log("get stripe(3) `cartId`:", cartId);
 
     const { isConnected, payment } = await getStripeAccountAction({
       storeId: input.storeId,
@@ -532,9 +524,6 @@ export async function getPaymentIntentAction(
     if (paymentIntent.status !== "succeeded") {
       throw new Error("Payment intent not succeeded.");
     }
-
-    // console.log("cartId:", cartId);
-    // console.log("paymentIntent.metadata.cartId", paymentIntent.metadata.cartId);
 
     if (
       paymentIntent.metadata.cartId !== cartId

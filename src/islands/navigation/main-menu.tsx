@@ -118,7 +118,6 @@ export function MainMenu({ items }: MainMenuProps) {
             <nav className="hidden gap-6 md:flex">
               {items.map((item, index) => (
                 <Link
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   key={index}
                   href={item.disabled ? "#" : item.href ?? "/default-path"}
                   className={cn(

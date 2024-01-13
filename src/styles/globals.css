@@ -62,6 +62,7 @@
 @layer base {
   * {
     @apply border-border;
+    min-width: 0;
   }
 
   body {
@@ -76,12 +77,5 @@
 
   .zoom-image [data-rmiz-modal-img] {
     @apply rounded-lg lg:rounded-2xl;
-  }
-}
-
-/* stylelint-disable-next-line media-feature-range-notation */
-@media (max-width: 640px) {
-  .container {
-    @apply px-4;
   }
 }

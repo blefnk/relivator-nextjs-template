@@ -51,7 +51,6 @@ export const Pricing = ({
 
       <ul className="flex h-full list-none flex-col">
         {features.map((feature, index) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
           <li key={index}>
             <p className="mb-2 flex items-center text-gray-400">
               <span className="mr-2 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-gray-800 text-gray-500">

@@ -5,23 +5,10 @@ import { desc, eq, inArray } from "drizzle-orm";
 import type Stripe from "stripe";
 import { z } from "zod";
 
-import { stripe } from "~/core/stripe/connect";
 import { db } from "~/data/db";
-import {
-  addresses,
-  carts,
-  orders,
-  payments,
-  products,
-  type Cart,
-} from "~/data/db/schema";
+import { carts, orders, payments, products } from "~/data/db/schema";
 import { checkoutItemSchema } from "~/data/validations/cart";
-import type {
-  getCheckoutSessionProductsSchema,
-  getOrderedProductsSchema,
-  getOrderLineItemsSchema,
-} from "~/data/validations/order";
-import { env } from "~/env.mjs";
+import type { getOrderLineItemsSchema } from "~/data/validations/order";
 
 import { getCartId } from "../cart";
 
@@ -73,13 +60,8 @@ export async function getOrderLineItemsAction(
         });
       });
 
-    // Temporary workaround for payment_intent.succeeded
-    // webhook event not firing in production mode
-    // TODO: Remove this once the webhook is working
     if (input.paymentIntent?.status === "succeeded") {
-      // console.log("⏳ awaiting getCartId for input.paymentIntent?.status...");
       const cartId = await getCartId();
-      // console.log("get order's `cartId`:", cartId);
       if (!cartId) return lineItems;
 
       const cart = await db.query.carts.findFirst({
@@ -104,9 +86,8 @@ export async function getOrderLineItemsAction(
 
       if (!payment?.stripeAccountId) return lineItems;
 
-      // Create new address in DB
+      // TODO: FIX: Create new address in DB
       /* const stripeAddress = input.paymentIntent.shipping?.address;
-
       const newAddress = await db.insert(addresses).values({
         line1: stripeAddress?.line1,
         line2: stripeAddress?.line2,
@@ -115,7 +96,6 @@ export async function getOrderLineItemsAction(
         country: stripeAddress?.country,
         postalCode: stripeAddress?.postal_code,
       });
-
       if (!newAddress.insertId) throw new Error("No address created."); */
 
       // Create new order in db

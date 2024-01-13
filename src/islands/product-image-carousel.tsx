@@ -108,13 +108,11 @@ export function ProductImageCarousel({
           {images.map((image, index) => (
             <div
               className="relative aspect-square min-w-0 flex-[0_0_100%] pl-4"
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={index}
             >
               <Image
                 aria-label={`Slide ${index + 1} of ${images.length}`}
                 role="group"
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 key={index}
                 aria-roledescription="slide"
                 src={image.url}
@@ -145,7 +143,6 @@ export function ProductImageCarousel({
           </Button>
           {images.map((image, i) => (
             <Button
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               key={i}
               variant="outline"
               size="icon"

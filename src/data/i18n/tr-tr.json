@@ -165,32 +165,44 @@
     "features": {
       "clock": {
         "description": "Drizzle ORM ile yolunda kalın. Vercel, Neon vb. üzerinde konuşlandırılmıştır.",
-        "title": "Veri tabanı"
+        "title": "Veri tabanı",
+        "description-v2": "MySQL ve Postgres'i anında değiştirerek Drizzle ORM ile en yüksek performansı koruyun. \nPlanetscale, Vercel, Demiryolu, Neon ve daha fazlasını içeren esnek dağıtım seçeneklerinin keyfini çıkarın.",
+        "title-v2": "Veritabanı Entegrasyonu: Sağlam ve Çok Yönlü"
       },
       "cryptography": {
         "description": "Uygulama dizini, Yönlendirme, Düzenler, Yükleme Kullanıcı Arayüzü, API rotaları ve daha fazlasıyla etkileşime geçin.",
-        "title": "Sonraki.js 14"
+        "title": "Sonraki.js 14",
+        "description-v2": "Uygulama Yönlendiricisi, Düzenler ve Yükleme Kullanıcı Arayüzü gibi gelişmiş özelliklerle kusursuz gezinmeyi deneyimleyin. \nGüçlü API yollarından yararlanın ve temel bilgilerin ötesindeki yenilikçi yetenekleri keşfedin.",
+        "title-v2": "Next.js 14: Gelişmiş Kullanıcı Deneyimi"
       },
       "currency": {
         "description": "Radix UI kullanılarak oluşturulmuş ve Tailwind CSS ile sislendirilmiş UI bileşenleri.",
-        "title": "Bileşenler"
+        "title": "Bileşenler",
+        "description-v2": "Modern bir estetik için Tailwind CSS ile güzel bir şekilde tasarlanmış, Radix ve Shadcn UI üzerine inşa edilmiş bileşenlerle çarpıcı UI oluşturun. \nTam bir sarmal deneyim için VSCode önerilir.",
+        "title-v2": "Bileşenler: Zarif"
       },
       "devtools": {
         "description": "Stripe kullanarak ücretsiz ve ücretli abonelikler.",
         "title": "Abonelikler",
-        "ambitions-description": "Bir başlangıçtan diğerine koşmayı bırakın. Relivator ile sınırsız olanaklara sahip olacaksınız. Istediğiniz her şeyi yaratabilirsiniz; tüm araçlar zaten sizin için hazırlandı."
+        "ambitions-description": "Bir başlangıçtan diğerine koşmayı bırakın. Relivator ile sınırsız olanaklara sahip olacaksınız. Istediğiniz her şeyi yaratabilirsiniz; tüm araçlar zaten sizin için hazırlandı.",
+        "description-v2": "Güçlü bir abonelik sistemi uygulandı; hem ücretsiz hem de ücretli planlar destekleniyor, verimlilik ve ölçeklenebilirlik için optimize ediliyor. \nDaha fazla bilgi edinmek için projenin README.md dosyasını öğrenin.",
+        "title-v2": "Stripe Abonelikleri: Güçlü"
       },
       "files": {
         "description": "NextAuth.js kullanarak ara yazılım kimlik doğrulaması.",
         "title": "Kimlik doğrulama",
         "on-the-fly": "Tam Anında Özelleştirme",
         "on-the-fly-description": "Proje havuzumuzdaki kapsamlı özellikler listesine göz atın. Proje gereksinimlerinize uyacak şekilde Clerk/NextAuth.js ve MySQL/PostgreSQL arasında zahmetsizce geçiş yapın.",
-        "roadmap": "Büyük Hırslar: Sınırsız Olasılıklar"
+        "roadmap": "Büyük Hırslar: Sınırsız Olasılıklar",
+        "description-v2": "NextAuth.js ve Clerk'i kullanarak uygulamanızın ihtiyaçlarına göre uyarlanmış çok yönlü bir kimlik doğrulama sistemi dağıtın. \n.env.example dosyasında daha fazla bilgi edindiğinizde artık hazırsınız.",
+        "title-v2": "Kullanıcı Kimlik Doğrulaması: Güvenli"
       },
       "subtitle": "Relivator, koddan tasarıma kadar web projelerinizi güçlendiren işlevlere sahiptir.",
       "text": {
         "description": "Sunucu ve Istemci Bileşenleri ile uygulamayı zahmetsizce yönetin. Kanca kullanın. Ve dahası.",
-        "title": "React 18"
+        "title": "React 18",
+        "description-v2": "Uygulamanızı hem Sunucu hem de İstemci Bileşenleriyle zahmetsizce yönetin. \nDaha sorunsuz bir geliştirme deneyimi için gelişmiş kancalardan yararlanın ve çeşitli ek özellikleri keşfedin.",
+        "title-v2": "React 18: Kolaylaştırılmış Modern Geliştirme"
       },
       "title": "Özellikleri"
     },
@@ -215,7 +227,12 @@
     "things": {
       "linkText": "Listeye Git"
     },
-    "title": "React, Next.js ve ötesine yönelik en önemli araçları keşfedin. Size özel olarak tasarlandı."
+    "title": "React, Next.js ve ötesine yönelik en önemli araçları keşfedin. Size özel olarak tasarlandı.",
+    "buy-now": "Şimdi al",
+    "footer-cta": "Ürünlerinizi satmak mı istiyorsunuz?",
+    "get-started-btn": "Başlamak",
+    "main-cta": "Başlatıcıyı İndir",
+    "sell-now": "Şimdi sat"
   },
   "LanguageSwitch": {
     "choose-language": "Dil"
@@ -727,5 +744,41 @@
   },
   "contact": {
     "submit": "Göndermek"
+  },
+  "faq": {
+    "1": {
+      "details": "Lütfen Relivator GitHub deposundaki README.md dosyasını ziyaret edin; burada proje hakkında her zaman en güncel bilgileri ve kolay kurulum talimatlarını bulacaksınız.",
+      "summary": "Her şeyi nasıl yükleyebilirim ve hemen başlayabilirim?"
+    },
+    "2": {
+      "details": "Cevap basit: Farklı başlangıçlar arasında atlamanızı önlemek için. \nAslında artık aramayı bırakabilirsiniz. \nRelivator ile size sınırsız olanaklar sunulur. \nArzu ettiğiniz her şeyi yaratabilirsiniz; \ngerekli tüm araçlar zaten sizin için hazırlandı.",
+      "summary": "Next.js 14 başlatıcım olarak neden Relivator'ı seçmeliyim?"
+    },
+    "3": {
+      "details": "Relivator kadar iddialı bir şeyi geliştirmek, özellikle de proje öncelikle tek bir kişi tarafından geliştirildiğinden, açıkçası çok zaman alıyor. \nEk geliştiricilerin işe alınmasıyla geliştirme önemli ölçüde hızlandırılabilir. \nBu nedenle ben, @blefnk Nazarii Korniienko, projeye herhangi bir miktarda bağışta bulunabilecek herkese son derece minnettar olurum. \nPatreon ve diğer platformları da görmek için lütfen depo sayfasına bakın. \nŞimdiden herkese büyük bir teşekkür ederiz!",
+      "summary": "Relivator v2.0'ın çıkışını hızlandırmak mümkün mü?"
+    }
+  },
+  "demo": {
+    "aria-label-goto": "Git",
+    "launch": "Demoyu Başlat"
+  },
+  "metadata": {
+    "title": {
+      "home": "Ev"
+    }
+  },
+  "checkout": {
+    "CartDetails": "Detaylar",
+    "Demo": "Test verileri kullanılabilir: 4242424242424242 | \n12/34 | \n567",
+    "Description": "Sepetinizdeki öğelerle ödeme yapın",
+    "EmptyCartDescription": "Ödeme yapmak için sepetinize ürün ekleyin",
+    "EmptyCartHeading": "Sepetiniz boş",
+    "Pay": "Ödemek",
+    "Title": "Çıkış yapmak",
+    "backToCart": "Sepete geri dön",
+    "backToCartSingle": "Geri",
+    "notConnectedDescription": "Ödemeleri kabul etmek için mağaza sahibinin mağazasını Stripe'a bağlaması gerekiyor",
+    "notConnectedHeading": "Mağaza Stripe'a bağlı değil"
   }
 }

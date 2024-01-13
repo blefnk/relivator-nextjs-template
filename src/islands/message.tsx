@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/check-param-names */
 "use client";
 
 import type { ReactElement } from "react";
@@ -28,7 +27,7 @@ export function IntlMessage({
   variables,
 }: IntlMessageProps): ReactElement | null {
   const t = useTranslations();
-  let translation;
+  let translation: string;
   // Trying to translate by
   // using the provided id.
   try {

@@ -146,33 +146,33 @@ export function Features() {
         icon={PlaneTakeoff}
       />
       <FeatureCard
-        title={t("features.cryptography.title")}
-        description={t("features.cryptography.description")}
+        title={t("features.cryptography.title-v2")}
+        description={t("features.cryptography.description-v2")}
         icon={QrCode}
       />
       <FeatureCard
-        title={t("features.text.title")}
-        description={t("features.text.description")}
+        title={t("features.text.title-v2")}
+        description={t("features.text.description-v2")}
         icon={ToggleRight}
       />
       <FeatureCard
-        title={t("features.files.title")}
-        description={t("features.files.description")}
+        title={t("features.files.title-v2")}
+        description={t("features.files.description-v2")}
         icon={Files}
       />
       <FeatureCard
-        title={t("features.clock.title")}
-        description={t("features.clock.description")}
+        title={t("features.clock.title-v2")}
+        description={t("features.clock.description-v2")}
         icon={Server}
       />
       <FeatureCard
-        title={t("features.currency.title")}
-        description={t("features.currency.description")}
+        title={t("features.currency.title-v2")}
+        description={t("features.currency.description-v2")}
         icon={LayoutDashboard}
       />
       <FeatureCard
-        title={t("features.devtools.title")}
-        description={t("features.devtools.description")}
+        title={t("features.devtools.title-v2")}
+        description={t("features.devtools.description-v2")}
         icon={ShoppingBag}
       />
     </div>

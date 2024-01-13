@@ -184,32 +184,44 @@
     "features": {
       "clock": {
         "description": "Maintain peak performance with Drizzle ORM, by switching MySQL and Postgres on-the-fly. Enjoy flexible deployment options, including Planetscale, Vercel, Railway, Neon, and more.",
-        "title": "Database Integration: Robust and Versatile"
+        "title": "Database Integration: Robust and Versatile",
+        "title-v2": "Database Integration: Robust and Versatile",
+        "description-v2": "Maintain peak performance with Drizzle ORM, by switching MySQL and Postgres on-the-fly. Enjoy flexible deployment options, including Planetscale, Vercel, Railway, Neon, and more."
       },
       "cryptography": {
         "description": "Experience seamless navigation with advanced features like App Router, Layouts, and Loading UI. Leverage powerful API routes and explore innovative capabilities beyond the basics.",
-        "title": "Next.js 14: Enhanced User Experience & DX"
+        "title": "Next.js 14: Enhanced User Experience & DX",
+        "title-v2": "Next.js 14: Enhanced User Experience & DX",
+        "description-v2": "Experience seamless navigation with advanced features like App Router, Layouts, and Loading UI. Leverage powerful API routes and explore innovative capabilities beyond the basics."
       },
       "currency": {
         "description": "Craft stunning UI with components built on top of Radix and Shadcn UI, beautifully styled with Tailwind CSS for a modern aesthetic. VSCode is recommended for a full immersion experience.",
-        "title": "Components: Elegant & Functional"
+        "title": "Components: Elegant & Functional",
+        "title-v2": "Components: Elegant & Functional",
+        "description-v2": "Craft stunning UI with components built on top of Flowbite and Shadcn UI, styled with Radix and Tailwind CSS for a modern aesthetic. VSCode is recommended for a full immersion experience."
       },
       "devtools": {
         "description": "Implemented a robust subscription system, both free and paid plans are supported, optimized for efficiency and scalability. Learn README.md of the project to learn more.",
         "title": "Stripe Subscriptions: Powerful & Flexible",
-        "ambitions-description": "Stop running from one starter to the next. With Relivator, you'll have unlimited possibilities. You can create anything you want; all the tools are already prepared, just for you."
+        "ambitions-description": "Stop running from one starter to the next. With Relivator, you'll have unlimited possibilities. You can create anything you want; all the tools are already prepared, just for you.",
+        "title-v2": "Stripe Subscriptions: Powerful & Flexible",
+        "description-v2": "Implemented a robust subscription system, both free and paid plans are supported, optimized for efficiency and scalability. Learn README.md of the project to learn more."
       },
       "files": {
         "description": "Deploy a versatile authentication system using NextAuth.js and Clerk, tailored for your application’s needs. Learn more in .env.example file, and you're ready to go.",
         "title": "User Authentication: Secure & Conditional",
         "on-the-fly": "Full On The Fly Customization",
         "roadmap": "Huge Ambitions: Limitless Possibilities",
-        "on-the-fly-description": "Dive into an extensive list of features in our project repository. Effortlessly switch between Clerk/NextAuth.js and MySQL/PostgreSQL to suit your project requirements."
+        "on-the-fly-description": "Dive into an extensive list of features in our project repository. Effortlessly switch between Clerk/NextAuth.js and MySQL/PostgreSQL to suit your project requirements.",
+        "title-v2": "User Authentication: Secure & Conditional",
+        "description-v2": "Deploy a versatile authentication system using NextAuth.js and Clerk, tailored for your application’s needs. Learn more in .env.example file, and you're ready to go."
       },
       "subtitle": "From code to design, Relivator has functionalities that supercharge your web projects.",
       "text": {
         "description": "Effortlessly manipulate your app with both Server and Client Components. Utilize advanced hooks and explore a range of additional features for a smoother development experience.",
-        "title": "React 18: Streamlined Modern Development"
+        "title": "React 18: Streamlined Modern Development",
+        "title-v2": "React 18: Streamlined Modern Development\t",
+        "description-v2": "Effortlessly manipulate your app with both Server and Client Components. Utilize advanced hooks and explore a range of additional features for a smoother development experience."
       },
       "title": "Features"
     },
@@ -234,7 +246,12 @@
     "things": {
       "linkText": "Go to list"
     },
-    "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you."
+    "title": "Discover the paramount tools for React, Next.js, and beyond. Tailored especially for you.",
+    "footer-cta": "Do you want to sell your products?",
+    "get-started-btn": "Get Started",
+    "sell-now": "Sell Now",
+    "buy-now": "Buy Now",
+    "main-cta": "Download Starter"
   },
   "LanguageSwitch": {
     "choose-language": "Language"
@@ -741,5 +758,27 @@
       "summary": "Is it possible to speed up the release of Relivator v2.0?",
       "details": "Developing something as ambitious as Relivator obviously takes a lot of time, especially since the project is primarily developed by just one person. The development could be significantly accelerated by hiring additional developers. Therefore, I, @blefnk Nazarii Korniienko, would be immensely grateful to anyone who could donate to the project in any amount. Please refer to the repository page to see Patreon and other platforms as well. A big thank you to everyone in advance!"
     }
+  },
+  "demo": {
+    "launch": "Launch Demo",
+    "aria-label-goto": "Go to"
+  },
+  "metadata": {
+    "title": {
+      "home": "Home"
+    }
+  },
+  "checkout": {
+    "backToCart": "Back to cart",
+    "notConnectedHeading": "Store is not connected to Stripe",
+    "notConnectedDescription": "Store owner needs to connect their store to Stripe to accept payments",
+    "Pay": "Pay",
+    "Demo": "Test data can be used: 4242424242424242 | 12/34 | 567",
+    "Title": "Checkout",
+    "Description": "Checkout with your cart items",
+    "EmptyCartHeading": "Your cart is empty",
+    "EmptyCartDescription": "Add items to your cart to checkout",
+    "CartDetails": "Details",
+    "backToCartSingle": "Back"
   }
 }

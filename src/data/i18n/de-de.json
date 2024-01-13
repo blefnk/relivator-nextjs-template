@@ -165,32 +165,44 @@
     "features": {
       "clock": {
         "description": "Bleiben Sie mit Drizzle ORM auf dem Laufenden. Eingesetzt auf Vercel, Railway, Neon usw.",
-        "title": "Datenbank"
+        "title": "Datenbank",
+        "description-v2": "Sorgen Sie mit Drizzle ORM für Spitzenleistung, indem Sie MySQL und Postgres im laufenden Betrieb wechseln. \nProfitieren Sie von flexiblen Bereitstellungsoptionen, darunter Planetscale, Vercel, Railway, Neon und mehr.",
+        "title-v2": "Datenbankintegration: Robust und vielseitig"
       },
       "cryptography": {
         "description": "Nutzen Sie App-Verzeichnis, Routing, Layouts, Lade-UI, API-Routen und mehr.",
-        "title": "Next.js 14"
+        "title": "Next.js 14",
+        "description-v2": "Erleben Sie nahtlose Navigation mit erweiterten Funktionen wie App Router, Layouts und Loading UI. \nNutzen Sie leistungsstarke API-Routen und erkunden Sie innovative Funktionen, die über die Grundlagen hinausgehen.",
+        "title-v2": "Next.js 14: Verbesserte Benutzererfahrung"
       },
       "currency": {
         "description": "UI-Komponenten, die mit Radix UI erstellt und mit Tailwind CSS gestaltet wurden.",
-        "title": "Komponenten"
+        "title": "Komponenten",
+        "description-v2": "Erstellen Sie eine atemberaubende Benutzeroberfläche mit Komponenten, die auf der Benutzeroberfläche von Radix und Shadcn basieren und mit Tailwind CSS für eine moderne Ästhetik wunderschön gestaltet sind. \nVSCode wird für ein umfassendes Immersionserlebnis empfohlen.",
+        "title-v2": "Komponenten: Elegant"
       },
       "devtools": {
         "description": "Kostenlose und kostenpflichtige Abonnements mit Stripe.",
         "title": "Abonnements",
-        "ambitions-description": "Hören Sie auf, von einem Anlasser zum nächsten zu rennen. Mit Relivator haben Sie unbegrenzte Möglichkeiten. Sie können alles erstellen, was Sie wollen; Alle Werkzeuge sind bereits für Sie vorbereitet."
+        "ambitions-description": "Hören Sie auf, von einem Anlasser zum nächsten zu rennen. Mit Relivator haben Sie unbegrenzte Möglichkeiten. Sie können alles erstellen, was Sie wollen; Alle Werkzeuge sind bereits für Sie vorbereitet.",
+        "description-v2": "Implementierung eines robusten Abonnementsystems, das sowohl kostenlose als auch kostenpflichtige Pläne unterstützt und auf Effizienz und Skalierbarkeit optimiert ist. \nLesen Sie README.md des Projekts, um mehr zu erfahren.",
+        "title-v2": "Stripe-Abonnements: Leistungsstark"
       },
       "files": {
         "description": "Middleware-Authentifizierung mit NextAuth.js.",
         "title": "Authentifizierung",
         "on-the-fly": "Vollständige On-the-Fly-Anpassung",
         "on-the-fly-description": "Tauchen Sie ein in eine umfangreiche Liste von Funktionen in unserem Projekt-Repository. Wechseln Sie mühelos zwischen Clerk/NextAuth.js und MySQL/PostgreSQL, um Ihren Projektanforderungen gerecht zu werden.",
-        "roadmap": "Große Ambitionen: Grenzenlose Möglichkeiten"
+        "roadmap": "Große Ambitionen: Grenzenlose Möglichkeiten",
+        "description-v2": "Stellen Sie mit NextAuth.js und Clerk ein vielseitiges Authentifizierungssystem bereit, das auf die Anforderungen Ihrer Anwendung zugeschnitten ist. \nErfahren Sie mehr in der Datei .env.example, und schon kann es losgehen.",
+        "title-v2": "Benutzerauthentifizierung: Sicher"
       },
       "subtitle": "Vom Code bis zum Design verfügt Relivator über Funktionen, die Ihre Webprojekte auf ein neues Niveau bringen.",
       "text": {
         "description": "Bearbeiten Sie die App mühelos mit Server- und Client-Komponenten. Haken verwenden. Und mehr.",
-        "title": "Reaktion 18"
+        "title": "Reaktion 18",
+        "description-v2": "Bearbeiten Sie Ihre App mühelos mit Server- und Client-Komponenten. \nNutzen Sie erweiterte Hooks und erkunden Sie eine Reihe zusätzlicher Funktionen für eine reibungslosere Entwicklungserfahrung.",
+        "title-v2": "Reaktion 18: Optimierte moderne Entwicklung"
       },
       "title": "Funktionen"
     },
@@ -215,7 +227,12 @@
     "things": {
       "linkText": "Zur Liste gehen"
     },
-    "title": "Entdecken Sie die wichtigsten tools für React, Next.js und mehr. Speziell auf Sie zugeschnitten."
+    "title": "Entdecken Sie die wichtigsten tools für React, Next.js und mehr. Speziell auf Sie zugeschnitten.",
+    "buy-now": "Kaufe jetzt",
+    "footer-cta": "Möchten Sie Ihre Produkte verkaufen?",
+    "get-started-btn": "Loslegen",
+    "main-cta": "Laden Sie Starter herunter",
+    "sell-now": "Jetzt verkaufen"
   },
   "LanguageSwitch": {
     "choose-language": "Sprache"
@@ -727,5 +744,41 @@
   },
   "contact": {
     "submit": "Einreichen"
+  },
+  "faq": {
+    "1": {
+      "details": "Bitte besuchen Sie die Datei README.md im GitHub-Repository von Relivator. Dort finden Sie immer die aktuellsten Informationen zum Projekt sowie einfache Installationsanweisungen.",
+      "summary": "Wie kann ich alles installieren und sofort loslegen?"
+    },
+    "2": {
+      "details": "Die Antwort ist einfach: um zu verhindern, dass Sie zwischen verschiedenen Startern wechseln. \nTatsächlich können Sie jetzt mit der Suche aufhören. \nMit Relivator stehen Ihnen unbegrenzte Möglichkeiten zur Verfügung. \nSie können alles erstellen, was Sie möchten; \nAlle notwendigen Werkzeuge sind bereits für Sie vorbereitet.",
+      "summary": "Warum sollte ich Relivator als Starter für Next.js 14 wählen?"
+    },
+    "3": {
+      "details": "Etwas so Ehrgeiziges wie Relivator zu entwickeln nimmt natürlich viel Zeit in Anspruch, zumal das Projekt in erster Linie von nur einer Person entwickelt wird. \nDurch die Einstellung zusätzlicher Entwickler könnte die Entwicklung deutlich beschleunigt werden. \nDaher wäre ich, @blefnk Nazarii Korniienko, jedem, der in beliebiger Höhe für das Projekt spenden könnte, außerordentlich dankbar. \nWeitere Informationen zu Patreon und anderen Plattformen finden Sie auf der Repository-Seite. \nEin großes Dankeschön an alle im Voraus!",
+      "summary": "Ist es möglich, die Veröffentlichung von Relivator v2.0 zu beschleunigen?"
+    }
+  },
+  "demo": {
+    "aria-label-goto": "Gehe zu",
+    "launch": "Demo starten"
+  },
+  "metadata": {
+    "title": {
+      "home": "Heim"
+    }
+  },
+  "checkout": {
+    "CartDetails": "Einzelheiten",
+    "Demo": "Testdaten können verwendet werden: 4242424242424242 | \n12/34 | \n567",
+    "Description": "Bezahlen Sie mit Ihren Warenkorbartikeln",
+    "EmptyCartDescription": "Fügen Sie Artikel zu Ihrem Warenkorb hinzu, um zur Kasse zu gehen",
+    "EmptyCartHeading": "Ihr Warenkorb ist leer",
+    "Pay": "Zahlen",
+    "Title": "Kasse",
+    "backToCart": "Zurück zum Warenkorb",
+    "backToCartSingle": "Zurück",
+    "notConnectedDescription": "Der Ladenbesitzer muss seinen Laden mit Stripe verbinden, um Zahlungen zu akzeptieren",
+    "notConnectedHeading": "Der Store ist nicht mit Stripe verbunden"
   }
 }

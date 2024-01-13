@@ -46,7 +46,7 @@ export async function getCartId(): Promise<number | undefined> {
   }
 }
 
-export async function getCart(cartId: number) {
+export async function getCartItems(cartId: number) {
   const dbCartItemsObj =
     Number.isNaN(Number(cartId)) ?
       []

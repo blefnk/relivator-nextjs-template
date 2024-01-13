@@ -1,31 +1,26 @@
 "use server";
 
-import { log } from "console";
-
 import { revalidatePath } from "next/cache";
-import type { CartItem, CartLineItem } from "~/types";
+import type { CartLineItem } from "~/types";
 import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
 import type { z } from "zod";
 
 import { db } from "~/data/db";
 import type { User } from "~/data/db/schema";
-import { carts, products, stores, users, type Cart } from "~/data/db/schema";
+import { carts, products, stores, users } from "~/data/db/schema";
 import {
   cartItemSchema,
   deleteCartItemSchema,
   deleteCartItemsSchema,
 } from "~/data/validations/cart";
 import { env } from "~/env.mjs";
-import { StoreSwitcher } from "~/islands/navigation/pagination/store-switcher";
 import { getCartId } from "~/server/cart";
 import { getServerAuthSession } from "~/utils/auth/users";
 
 export async function getCartAction(storeId?: number): Promise<CartLineItem[]> {
-  // console.log("⏳ awaiting getCartId for getCartAction...");
   const cartId = await getCartId();
 
   if (!cartId || Number.isNaN(Number(cartId))) return [];
-  // console.log("get `cartId` (1):", cartId);
 
   const cart = await db.query.carts.findFirst({
     columns: { items: true },
@@ -102,18 +97,6 @@ export async function getUniqueStoreIdsDeprecated() {
   }
 
   try {
-    // console.log("Querying for cartId:", cartId, typeof cartId);
-
-    /* const cart = await db
-      .selectDistinct({ storeId: products.storeId })
-      .from(carts)
-      .leftJoin(
-        products,
-        // sql`JSON_CONTAINS(carts.items, JSON_OBJECT('productId', products.id))`,
-      )
-      .groupBy(products.storeId)
-      .where(eq(carts.id, Number(cartId))); */
-
     const cart = await db
       .select({ storeId: products.storeId })
       .from(carts)
@@ -126,13 +109,9 @@ export async function getUniqueStoreIdsDeprecated() {
       .groupBy(products.storeId)
       .where(eq(carts.id, cartId));
 
-    // console.log("Queried cart:", cart);
-
     const storeIds = cart
       .map((item) => Number(item.storeId))
       .filter((id) => id);
-
-    // console.log("Queried storeIds:", storeIds);
 
     const uniqueStoreIds = [...new Set(storeIds)] as number[];
 
@@ -140,8 +119,6 @@ export async function getUniqueStoreIdsDeprecated() {
       console.error("uniqueStoreIds are empty.");
       return [];
     }
-
-    // console.log("Queried uniqueStoreIds:", uniqueStoreIds);
 
     return uniqueStoreIds;
   } catch (error) {
@@ -170,10 +147,7 @@ export async function getCartItemsAction(input: { cartId?: number }) {
 export async function addToCartAction(
   rawInput: z.infer<typeof cartItemSchema>,
 ) {
-  // console.log("rawInput:", rawInput);
   const input = cartItemSchema.parse(rawInput);
-
-  // console.log("input:", input);
 
   const session = await getServerAuthSession();
   if (!session) throw new Error("No session found.");
@@ -225,24 +199,9 @@ export async function addToCartAction(
     );
   }
 
-  // If cart is closed, delete it and create a new one
   if (cart.closed) {
+    // If cart is closed, delete it and create a new one
     await db.delete(carts).where(eq(carts.id, Number(cartId)));
-
-    /* const cartDb = await db.query.carts.findFirst({
-      where: eq(carts.email, user.email),
-    });
-
-    // console.log("cartDb:", cartDb);
-
-    if (!cartDb) {
-      const newCart = await db.insert(carts).values({
-        userId: session.id,
-        email: user.email,
-        items: [input],
-      });
-      // if (newCart) console.log("newCart:", newCart);
-    } */
   }
 
   const cartItem = cart.items?.find(
@@ -250,10 +209,8 @@ export async function addToCartAction(
   );
 
   if (cartItem) {
-    // console.log("cartItem:", cartItem);
     cartItem.quantity += input.quantity;
   } else {
-    // console.log("cartItem:", cartItem);
     cart.items?.push(input);
   }
 
@@ -261,8 +218,6 @@ export async function addToCartAction(
     .update(carts)
     .set({ items: cart.items })
     .where(eq(carts.id, Number(cartId)));
-
-  // console.log("...cartId:", cartId);
 
   return revalidatePath("/");
 }
@@ -272,10 +227,7 @@ export async function updateCartItemAction(
 ) {
   const input = cartItemSchema.parse(rawInput);
 
-  // console.log("⏳ awaiting getCartId for updateCartItemAction...");
   const cartId = await getCartId();
-
-  // console.log("get `cartId` (4):", cartId);
 
   if (!cartId) throw new Error("(1) cartId is not found");
 
@@ -321,9 +273,7 @@ export async function updateCartItemAction(
 }
 
 export async function deleteCartAction() {
-  // console.log("⏳ awaiting getCartId for deleteCartAction...");
   const cartId = await getCartId();
-  // console.log("get `cartId` (5):", cartId);
 
   if (cartId === undefined) throw new Error("(2) cartId is not found");
   if (typeof cartId !== "number" || Number.isNaN(cartId))
@@ -341,7 +291,6 @@ export async function deleteCartItemAction(
 ) {
   const input = deleteCartItemSchema.parse(rawInput);
 
-  // console.log("⏳ awaiting getCartId for deleteCartItemAction...");
   const cartId = await getCartId();
 
   if (!cartId) {
@@ -378,9 +327,7 @@ export async function deleteCartItemsAction(
 ) {
   const input = deleteCartItemsSchema.parse(rawInput);
 
-  // console.log("⏳ awaiting getCartId for deleteCartItemsAction...");
   const cartId = await getCartId();
-  // console.log("get `cartId` (7):", cartId);
 
   if (!cartId) {
     throw new Error("(4) cartId is not found");

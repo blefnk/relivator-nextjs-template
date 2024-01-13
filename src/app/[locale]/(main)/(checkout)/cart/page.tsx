@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { cn } from "~/utils";
-import { and, eq } from "drizzle-orm";
+import { getTranslations } from "next-intl/server";
 
-import { db } from "~/data/db";
-import { products } from "~/data/db/schema";
 import { env } from "~/env.mjs";
 import { Icons } from "~/islands/icons";
 import { CheckoutCard } from "~/islands/modules/cards/checkout-card";
@@ -14,8 +12,9 @@ import {
 } from "~/islands/navigation/page-header";
 import { buttonVariants } from "~/islands/primitives/button";
 import { Shell } from "~/islands/wrappers/shell-variants";
-import { Link } from "~/navigation";
-import { getUniqueStoreIds } from "~/server/actions/cart";
+import { Link, redirect } from "~/navigation";
+import { getCartAction, getUniqueStoreIds } from "~/server/actions/cart";
+import { getCartId } from "~/server/cart";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
@@ -24,9 +23,57 @@ export const metadata: Metadata = {
 };
 
 export default async function CartPage() {
-  // console.log("⏳ awaiting getUniqueStoreIds for uniqueStoreIds...");
+  const t = await getTranslations();
+
+  // getUniqueStoreIds returns an array of store IDs
   const uniqueStoreIds = await getUniqueStoreIds();
-  // console.log("...uniqueStoreIds:", uniqueStoreIds);
+
+  // Check for a valid cartId
+  const cartId = await getCartId();
+  if (!cartId || Number.isNaN(Number(cartId))) {
+    console.error("cartId is invalid or missed");
+    return redirect("/");
+  }
+
+  // Map over uniqueStoreIds and fetch
+  // the cart line items for each store
+  const storeCarts = await Promise.all(
+    uniqueStoreIds.map(async (storeId) => {
+      const cartLineItems = await getCartAction(storeId);
+
+      // Calculations for totalQuantity and
+      // totalPrice for each store's cart
+      let totalQuantity = 0;
+
+      try {
+        totalQuantity = cartLineItems.reduce(
+          (acc, item) => acc + (item.quantity ?? 0),
+          0,
+        );
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error("❌ Error calculating total quantity:", error.message);
+          totalQuantity = 0; // Set default variable value in case of an error
+        } else {
+          // If for any reason something else was
+          // thrown that wasn't an Error, handle it
+          console.error("❌ An unexpected error occurred:", error);
+        }
+      }
+
+      // Return an object that contains
+      // the storeId and its cart data
+      return {
+        storeId,
+        totalQuantity,
+      };
+    }),
+  );
+
+  // Filter out stores with no items in cart
+  const nonEmptyStoreCarts = storeCarts.filter(
+    (storeCart) => storeCart.totalQuantity > 0,
+  );
 
   return (
     <Shell>
@@ -34,14 +81,13 @@ export default async function CartPage() {
         aria-labelledby="cart-page-header-heading"
         id="cart-page-header"
       >
-        <PageHeaderHeading size="sm">Checkout</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("checkout.Title")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          Checkout with your cart items
+          {t("checkout.Description")}
         </PageHeaderDescription>
       </PageHeader>
-
-      {uniqueStoreIds.length > 0 ?
-        uniqueStoreIds.map((storeId) => (
+      {nonEmptyStoreCarts.length > 0 ?
+        nonEmptyStoreCarts.map(({ storeId }) => (
           <CheckoutCard storeId={storeId} key={storeId} />
         ))
       : <section
@@ -54,7 +100,7 @@ export default async function CartPage() {
             aria-hidden="true"
           />
           <div className="text-xl font-medium text-muted-foreground">
-            Your cart is empty
+            {t("checkout.EmptyCartHeading")}
           </div>
           <Link
             className={cn(
@@ -64,10 +110,10 @@ export default async function CartPage() {
                 size: "sm",
               }),
             )}
-            aria-label="Add items to your cart to checkout"
+            aria-label={t("checkout.EmptyCartDescription")}
             href="/products"
           >
-            Add items to your cart to checkout
+            {t("checkout.EmptyCartDescription")}
           </Link>
         </section>
       }

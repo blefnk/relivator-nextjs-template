@@ -12,7 +12,6 @@ import { titleCase } from "string-ts";
 
 import { type Product } from "~/data/db/schema";
 import { env } from "~/env.mjs";
-import { IntlMessage } from "~/islands/message";
 import {
   PageHeader,
   PageHeaderDescription,

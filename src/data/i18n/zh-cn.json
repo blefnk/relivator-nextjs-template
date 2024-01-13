@@ -9,32 +9,44 @@
     "features": {
       "clock": {
         "description": "通过即时切换 MySQL 和 Postgres, 使用 Drizzle ORM 保持最佳性能。\n享受灵活的部署选项, 包括 Planetscale、Vercel、Railway、Neon 等。",
-        "title": "数据库集成: 强大且多功能"
+        "title": "数据库集成: 强大且多功能",
+        "description-v2": "通过即时切换 MySQL 和 Postgres，使用 Drizzle ORM 保持最佳性能。\n享受灵活的部署选项，包括 Planetscale、Vercel、Railway、Neon 等。",
+        "title-v2": "数据库集成：强大且多功能"
       },
       "cryptography": {
         "description": "通过 App Router、布局和加载 UI 等高级功能体验无缝导航。\n利用强大的 API 路线并探索基础之外的创新功能。",
-        "title": "Next.js 14: 增强的用户体验"
+        "title": "Next.js 14: 增强的用户体验",
+        "description-v2": "通过 App Router、布局和加载 UI 等高级功能体验无缝导航。\n利用强大的 API 路线并探索基础之外的创新功能。",
+        "title-v2": "Next.js 14：增强的用户体验"
       },
       "currency": {
         "description": "使用基于 Radix 和 Shadcn UI 的组件制作令人惊叹的 UI, 并使用 Tailwind CSS 进行精美的设计, 以实现现代美学。\n建议使用 VSCode 以获得完整的沉浸式体验。",
-        "title": "组成部分: 优雅"
+        "title": "组成部分: 优雅",
+        "description-v2": "使用基于 Radix 和 Shadcn UI 的组件制作令人惊叹的 UI，并使用 Tailwind CSS 进行精美的设计，以实现现代美学。\n建议使用 VSCode 以获得完整的沉浸式体验。",
+        "title-v2": "组成部分：优雅"
       },
       "devtools": {
         "ambitions-description": "停止从一个启动器运行到下一个启动器。\n有了 Relivator, 您将拥有无限的可能性。\n你可以创造任何你想要的东西；\n所有的工具都已经为您准备好了。",
         "description": "实施了强大的订阅系统, 支持免费和付费计划, 并针对效率和可扩展性进行了优化。\n学习该项目的 README.md 以了解更多信息。",
-        "title": "Stripe 订阅: 功能强大"
+        "title": "Stripe 订阅: 功能强大",
+        "description-v2": "实施了强大的订阅系统，支持免费和付费计划，并针对效率和可扩展性进行了优化。\n学习该项目的 README.md 以了解更多信息。",
+        "title-v2": "Stripe 订阅：功能强大"
       },
       "files": {
         "description": "使用 NextAuth.js 和 Clerk 部署多功能身份验证系统, 根据您的应用程序需求量身定制。\n在 .env.example 文件中了解更多信息, 然后您就可以开始了。",
         "on-the-fly": "完全动态定制",
         "on-the-fly-description": "深入了解我们项目存储库中的广泛功能列表。\n轻松在 Clerk/NextAuth.js 和 MySQL/PostgreSQL 之间切换, 以满足您的项目需求。",
         "roadmap": "远大的抱负: 无限的可能性",
-        "title": "用户身份验证: 安全"
+        "title": "用户身份验证: 安全",
+        "description-v2": "使用 NextAuth.js 和 Clerk 部署多功能身份验证系统，根据您的应用程序需求量身定制。\n在 .env.example 文件中了解更多信息，然后您就可以开始了。",
+        "title-v2": "用户身份验证：安全"
       },
       "subtitle": "从代码到设计, Relivator 的功能可以增强您的 Web 项目。",
       "text": {
         "description": "使用服务器和客户端组件轻松操作您的应用程序。\n利用高级挂钩并探索一系列附加功能, 以获得更流畅的开发体验。",
-        "title": "React 18: 简化的现代开发"
+        "title": "React 18: 简化的现代开发",
+        "description-v2": "使用服务器和客户端组件轻松操作您的应用程序。\n利用高级挂钩并探索一系列附加功能，以获得更流畅的开发体验。",
+        "title-v2": "React 18：简化的现代开发"
       },
       "title": "特征"
     },
@@ -58,7 +70,12 @@
     "things": {
       "linkText": "前往列表"
     },
-    "title": "探索 React、Next.js 等的重要工具。\n专为您量身定制。"
+    "title": "探索 React、Next.js 等的重要工具。\n专为您量身定制。",
+    "buy-now": "立即购买",
+    "footer-cta": "您想出售您的产品吗？",
+    "get-started-btn": "开始使用",
+    "main-cta": "下载入门版",
+    "sell-now": "立即出售"
   },
   "DataTable": {
     "block": "堵塞",
@@ -727,5 +744,41 @@
   },
   "contact": {
     "submit": "提交"
+  },
+  "faq": {
+    "1": {
+      "details": "请访问 Relivator GitHub 存储库中的 README.md 文件，您始终可以在其中找到有关该项目的最新信息以及简单的安装说明。",
+      "summary": "如何安装所有内容并立即开始？"
+    },
+    "2": {
+      "details": "答案很简单：防止你在不同的首发之间跳来跳去。\n事实上，您现在可以停止搜索。\n有了 Relivator，您将拥有无限的可能性。\n你可以创造任何你想要的东西；\n所有必要的工具都已经为您准备好了。",
+      "summary": "为什么我应该选择 Relivator 作为我的 Next.js 14 入门版？"
+    },
+    "3": {
+      "details": "开发像 Relivator 这样雄心勃勃的项目显然需要花费大量时间，特别是因为该项目主要由一个人开发。\n通过雇用更多的开发人员可以显着加快开发速度。\n因此，我，@blefnk Nazarii Korniienko，将非常感谢任何能够为该项目捐赠任何金额的人。\n请参阅存储库页面以查看 Patreon 和其他平台。\n提前向大家表示衷心的感谢！",
+      "summary": "是否可以加快 Relivator v2.0 的发布速度？"
+    }
+  },
+  "demo": {
+    "aria-label-goto": "去",
+    "launch": "启动演示"
+  },
+  "metadata": {
+    "title": {
+      "home": "家"
+    }
+  },
+  "checkout": {
+    "CartDetails": "细节",
+    "Demo": "可用测试数据：4242424242424242 | \n12/34 | 12/34\n第567章",
+    "Description": "结帐您的购物车商品",
+    "EmptyCartDescription": "将商品添加到购物车以结账",
+    "EmptyCartHeading": "您的购物车是空的",
+    "Pay": "支付",
+    "Title": "查看",
+    "backToCart": "返回购物车",
+    "backToCartSingle": "后退",
+    "notConnectedDescription": "店主需要将他们的商店连接到 Stripe 才能接受付款",
+    "notConnectedHeading": "商店未连接到 Stripe"
   }
 }

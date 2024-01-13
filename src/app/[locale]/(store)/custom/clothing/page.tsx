@@ -4,7 +4,6 @@ import { cn } from "~/utils";
 import { getTranslations } from "next-intl/server";
 
 import { fullURL } from "~/data/meta/builder";
-import { env } from "~/env.mjs";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -51,10 +50,7 @@ export default async function CustomClothesPage({
 
   const pageCount = Math.ceil(productsTransaction.count / limit);
 
-  // Get cart items
-  // console.log("⏳ awaiting getCartId for CustomClothesPage...");
   const cartId = await getCartId();
-  // console.log("get custom clothing's `cartId`:", cartId);
   const cartItems = await getCartItemsAction({ cartId: Number(cartId) });
 
   return (

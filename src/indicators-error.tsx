@@ -154,7 +154,6 @@ export function ShowInfo({
                   </span>{" "}
                   {isImportantVarsWithoutKeys.map((varName, index) => (
                     <span
-                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                       key={index}
                       className="text-sm text-red-900 dark:text-red-400"
                     >

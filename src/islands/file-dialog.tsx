@@ -180,7 +180,6 @@ export function FileDialog<TFieldValues extends FieldValues>({
           <div className="grid gap-5">
             {files?.map((file, i) => (
               <FileCard
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 key={i}
                 i={i}
                 files={files}

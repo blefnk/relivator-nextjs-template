@@ -13,12 +13,11 @@ import { Separator } from "~/islands/primitives/separator";
 import { Link } from "~/navigation";
 import { getCartAction } from "~/server/actions/cart";
 
-interface CheckoutCardProperties {
+type CheckoutCardProperties = {
   storeId: number;
-}
+};
 
 export async function CheckoutCard({ storeId }: CheckoutCardProperties) {
-  // console.log("CheckoutCard's await getCartAction");
   const cartLineItems = await getCartAction(storeId);
 
   let totalQuantity = 0;
@@ -56,8 +55,10 @@ export async function CheckoutCard({ storeId }: CheckoutCardProperties) {
     }
   }
 
-  // console.log("totalQuantity:", totalQuantity);
-  // console.log("totalPrice:", totalPrice);
+  // If totalQuantity is 0, don't render the card
+  if (totalQuantity === 0) {
+    return null;
+  }
 
   return (
     <Card

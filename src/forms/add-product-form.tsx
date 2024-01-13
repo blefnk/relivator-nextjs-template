@@ -292,7 +292,6 @@ export function AddProductForm({ storeId }: AddProductFormProps) {
           {files?.length ?
             <div className="flex items-center gap-2">
               {files.map((file, i) => (
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <Zoom key={i}>
                   <Image
                     src={file.preview}

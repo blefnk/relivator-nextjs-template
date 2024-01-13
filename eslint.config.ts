@@ -23,13 +23,8 @@
 import antfu from "@antfu/eslint-config";
 import { FlatCompat } from "@eslint/eslintrc";
 import eslintJsPlugin from "@eslint/js";
-import importAliasPlugin from "@limegrass/eslint-plugin-import-alias";
 import nextPlugin from "@next/eslint-plugin-next";
 import stylisticPlugin from "@stylistic/eslint-plugin";
-import tanstackQueryPlugin from "@tanstack/eslint-plugin-query";
-import tsEslintPlugin from "@typescript-eslint/eslint-plugin";
-import tsEslintParser from "@typescript-eslint/parser";
-import { Linter } from "eslint";
 import * as airbnbBestPracticesConfig from "eslint-config-airbnb-base/rules/best-practices";
 import * as airbnbErrorsConfig from "eslint-config-airbnb-base/rules/errors";
 import * as airbnbES6Config from "eslint-config-airbnb-base/rules/es6";
@@ -37,33 +32,21 @@ import * as airbnbNodeConfig from "eslint-config-airbnb-base/rules/node";
 import * as airbnbStyleConfig from "eslint-config-airbnb-base/rules/style";
 import * as airbnbVariablesConfig from "eslint-config-airbnb-base/rules/variables";
 import prettierConfigPlugin from "eslint-config-prettier";
-import deprecationPlugin from "eslint-plugin-deprecation";
-import drizzlePlugin from "eslint-plugin-drizzle";
 import commentsPlugin from "eslint-plugin-eslint-comments";
-import formatPlugin from "eslint-plugin-format";
 import functionalPlugin from "eslint-plugin-functional";
-import importPlugin from "eslint-plugin-import";
 import jestPlugin from "eslint-plugin-jest";
-import jestExtendedPlugin from "eslint-plugin-jest-extended";
-import jestFormattingPlugin from "eslint-plugin-jest-formatting";
-import jsoncPlugin from "eslint-plugin-jsonc";
 import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
-import nodePlugin from "eslint-plugin-n";
-import noBarrelFilesPlugin from "eslint-plugin-no-barrel-files";
 import noSecretsPlugin from "eslint-plugin-no-secrets";
 import promisePlugin from "eslint-plugin-promise";
 import reactPlugin from "eslint-plugin-react";
 import reactHooksPlugin from "eslint-plugin-react-hooks";
-import reactRefreshPlugin from "eslint-plugin-react-refresh";
 import reactPluginConfigsRecommended from "eslint-plugin-react/configs/recommended";
 import redundantUndefinedPlugin from "eslint-plugin-redundant-undefined";
-import sonarjsPlugin from "eslint-plugin-sonarjs";
 import tailwindcssPlugin from "eslint-plugin-tailwindcss";
 import tsdocPlugin from "eslint-plugin-tsdoc";
 import unicornPlugin from "eslint-plugin-unicorn";
 import writeGoodCommentsPlugin from "eslint-plugin-write-good-comments";
 import xssPlugin from "eslint-plugin-xss";
-import jsoncParser from "jsonc-eslint-parser";
 
 const compat = new FlatCompat();
 
@@ -109,98 +92,33 @@ export default antfu(
       ...airbnbStyleConfig.rules,
       ...airbnbNodeConfig.rules,
       ...airbnbES6Config.rules,
-      // https://eslint.style/packages/default#rules
-      "max-len": "off",
-      "@stylistic/max-len": [
-        // https://eslint.style/rules/default/max-len
-        "off",
-        {
-          "code": 1000,
-          "ignoreComments": true,
-          "ignoreTrailingComments": true,
-        },
-      ],
-      "@stylistic/max-statements-per-line": [
-        // https://eslint.style/rules/default/max-statements-per-line
-        "off",
-        { "max": 1 },
-      ],
-      "@stylistic/keyword-spacing": [
-        // https://eslint.style/rules/default/keyword-spacing
-        "off",
-        { "before": true, "after": true },
-      ],
-      "@stylistic/semi": "off",
-      "@stylistic/quotes": "off",
-      "@stylistic/indent": "off",
-      "@stylistic/quote-props": "off",
-      "@stylistic/operator-linebreak": "off",
-      "@stylistic/member-delimiter-style": "off",
       "@stylistic/arrow-parens": "off",
       "@stylistic/brace-style": "off",
+      "@stylistic/comma-dangle": "off",
+      "@stylistic/eol-last": "off",
       "@stylistic/indent-binary-ops": "off",
+      "@stylistic/indent": "off",
       "@stylistic/jsx-closing-tag-location": "off",
       "@stylistic/jsx-curly-newline": "off",
+      "@stylistic/jsx-indent-props": "off",
       "@stylistic/jsx-indent": "off",
       "@stylistic/jsx-one-expression-per-line": "off",
       "@stylistic/jsx-wrap-multilines": "off",
+      "@stylistic/keyword-spacing": ["off", { "before": true, "after": true }],
+      "@stylistic/max-statements-per-line": ["off", { "max": 1 }],
+      "@stylistic/member-delimiter-style": "off",
       "@stylistic/multiline-ternary": "off",
+      "@stylistic/no-multi-spaces": "off",
+      "@stylistic/no-multiple-empty-lines": "off",
+      "@stylistic/no-tabs": "off",
+      "@stylistic/no-trailing-spaces": "off",
+      "@stylistic/operator-linebreak": "off",
+      "@stylistic/padded-blocks": "off",
+      "@stylistic/quote-props": "off",
+      "@stylistic/quotes": "off",
+      "@stylistic/semi-spacing": "off",
+      "@stylistic/semi": "off",
       "@stylistic/spaced-comment": "off",
-      "@stylistic/eol-last": "off",
-      "max-lines-per-function": ["off", 437],
-      "max-nested-callbacks": ["off", 4],
-      "max-statements": ["off", 76],
-      "max-params": ["off", 5],
-      "complexity": ["off", 63],
-      "computed-property-spacing": [
-        "off",
-        "never",
-        { "enforceForClassMembers": true },
-      ],
-      "sort-imports": [
-        "off",
-        { "ignoreCase": true, "ignoreDeclarationSort": false },
-      ],
-      "space-before-function-paren": [
-        "off",
-        { "anonymous": "always", "named": "never", "asyncArrow": "always" },
-      ],
-      "unicorn/numeric-separators-style": [
-        "off",
-        { "onlyIfContainsSeparator": true },
-      ],
-      "jsdoc/require-jsdoc": [
-        "off",
-        {
-          publicOnly: true,
-          require: {
-            FunctionDeclaration: true,
-            FunctionExpression: true,
-            ArrowFunctionExpression: true,
-            ClassDeclaration: true,
-            ClassExpression: true,
-            MethodDefinition: true,
-          },
-          contexts: [
-            "VariableDeclaration",
-            "TSTypeAliasDeclaration",
-            "TSPropertySignature",
-          ],
-          enableFixer: true,
-        },
-      ],
-      "react/jsx-key": [
-        "off",
-        {
-          checkFragmentShorthand: true,
-          checkKeyMustBeforeSpread: true,
-          warnOnDuplicates: true,
-        },
-      ],
-      "no-multiple-empty-lines": [
-        "off",
-        { "max": 1, "maxBOF": 0, "maxEOF": 1 },
-      ],
       "antfu/consistent-list-newline": "off",
       "antfu/if-newline": "off",
       "antfu/top-level-function": "off",
@@ -216,21 +134,14 @@ export default antfu(
       "comma-dangle": ["off", "only-multiline"],
       "comma-spacing": ["off", { "before": false, "after": true }],
       "comma-style": ["off", "last"],
+      "complexity": ["off", 63],
       "consistent-return": "off",
-      "style/quotes": "off",
       "curly": "off",
-      "style/jsx-indent-props": "off",
-      "@stylistic/jsx-indent-props": "off",
       "default-case-last": "off",
       "default-case": "off",
-      "@stylistic/no-trailing-spaces": "off",
-      "@stylistic/no-multiple-empty-lines": "off",
       "default-param-last": ["off"],
       "dot-location": ["off", "property"],
       "dot-notation": "off",
-      "style/semi": "off",
-      "style/comma-dangle": "off",
-      "@stylistic/comma-dangle": "off",
       "eol-last": ["off", "always"],
       "eqeqeq": ["off", "always"],
       "eslint-plugin-jsx-a11y/blob": "off",
@@ -255,6 +166,7 @@ export default antfu(
       "jsdoc/check-access": "off",
       "jsdoc/check-alignment": "off",
       "jsdoc/check-indentation": "off",
+      "jsdoc/check-param-names": "off",
       "jsdoc/check-syntax": "off",
       "jsdoc/check-tag-names": "off",
       "jsdoc/no-blank-blocks": "off",
@@ -280,6 +192,11 @@ export default antfu(
       "linebreak-style": "off",
       "lines-around-directive": "off",
       "lines-between-class-members": ["off", "always"],
+      "max-len": "off",
+      "max-lines-per-function": ["off", 437],
+      "max-nested-callbacks": ["off", 4],
+      "max-params": ["off", 5],
+      "max-statements": ["off", 76],
       "new-cap": "off",
       "new-parens": "off",
       "no-alert": "off",
@@ -290,9 +207,11 @@ export default antfu(
       "no-confusing-arrow": "off",
       "no-console": "off",
       "no-constant-condition": "off",
+      "no-duplicate-selectors": "off",
       "no-else-return": "off",
       "no-eval": "off",
       "no-extra-semi": "off",
+      "no-irregular-whitespace": "warn",
       "no-lonely-if": "off",
       "no-multi-assign": "off",
       "no-multi-spaces": ["off", { "ignoreEOLComments": true }],
@@ -329,6 +248,7 @@ export default antfu(
       "one-var": "off",
       "operator-assignment": "off",
       "operator-linebreak": "off",
+      "padded-blocks": "off",
       "perfectionist/sort-array-includes": "off",
       "perfectionist/sort-imports": "off",
       "perfectionist/sort-interfaces": "off",
@@ -389,7 +309,7 @@ export default antfu(
       "rules/anchor-is-valid": "off",
       "semi-spacing": "off",
       "semi-style": ["off", "last"],
-      semi: "off",
+      "semi": "off",
       "sonarjs/cognitive-complexity": "off",
       "sonarjs/no-all-duplicated-branches": "off",
       "sonarjs/no-duplicate-string": "off",
@@ -402,20 +322,28 @@ export default antfu(
       "spaced-comment": "off",
       "style/arrow-parens": "off",
       "style/brace-style": "off",
+      "style/comma-dangle": "off",
       "style/eol-last": "off",
       "style/indent-binary-ops": "off",
       "style/indent": "off",
       "style/jsx-closing-tag-location": "off",
       "style/jsx-curly-newline": "off",
+      "style/jsx-indent-props": "off",
       "style/jsx-indent": "off",
       "style/jsx-one-expression-per-line": "off",
       "style/jsx-wrap-multilines": "off",
       "style/member-delimiter-style": "off",
       "style/multiline-ternary": "off",
+      "style/no-multi-spaces": "off",
       "style/no-multiple-empty-lines": "off",
+      "style/no-tabs": "off",
       "style/no-trailing-spaces": "off",
       "style/operator-linebreak": "off",
+      "style/padded-blocks": "off",
       "style/quote-props": "off",
+      "style/quotes": "off",
+      "style/semi-spacing": "off",
+      "style/semi": "off",
       "style/spaced-comment": "off",
       "switch-colon-spacing": "off",
       "tailwindcss/no-custom-classname": "off",
@@ -464,6 +392,63 @@ export default antfu(
       "xss/no-mixed-html": "off",
       "yaml/block-sequence": "off",
       "yaml/plain-scalar": "off",
+      "@stylistic/max-len": [
+        "off",
+        {
+          "code": 1000,
+          "ignoreComments": true,
+          "ignoreTrailingComments": true,
+        },
+      ],
+      "computed-property-spacing": [
+        "off",
+        "never",
+        { "enforceForClassMembers": true },
+      ],
+      "sort-imports": [
+        "off",
+        { "ignoreCase": true, "ignoreDeclarationSort": false },
+      ],
+      "space-before-function-paren": [
+        "off",
+        { "anonymous": "always", "named": "never", "asyncArrow": "always" },
+      ],
+      "unicorn/numeric-separators-style": [
+        "off",
+        { "onlyIfContainsSeparator": true },
+      ],
+      "jsdoc/require-jsdoc": [
+        "off",
+        {
+          publicOnly: true,
+          require: {
+            FunctionDeclaration: true,
+            FunctionExpression: true,
+            ArrowFunctionExpression: true,
+            ClassDeclaration: true,
+            ClassExpression: true,
+            MethodDefinition: true,
+          },
+          contexts: [
+            "VariableDeclaration",
+            "TSTypeAliasDeclaration",
+            "TSPropertySignature",
+          ],
+          enableFixer: true,
+        },
+      ],
+      "react/jsx-key": [
+        "off",
+        {
+          checkFragmentShorthand: true,
+          checkKeyMustBeforeSpread: true,
+          warnOnDuplicates: true,
+        },
+      ],
+      "no-multiple-empty-lines": [
+        "off",
+        { "max": 1, "maxBOF": 0, "maxEOF": 1 },
+      ],
     },
   },
   ...compat.config({
@@ -486,16 +471,6 @@ export default antfu(
       "plugin:sonarjs/recommended",
     ],
     rules: {
-      "prefer-arrow-functions/prefer-arrow-functions": [
-        "off",
-        {
-          "allowNamedFunctions": false,
-          "classPropertiesAllowed": false,
-          "disallowPrototype": false,
-          "returnStyle": "unchanged",
-          "singleReturnOnly": false,
-        },
-      ],
       "@limegrass/import-alias/import-alias": "off",
       "@tanstack/query/exhaustive-deps": "off",
       "@tanstack/query/no-rest-destructuring": "off",
@@ -506,6 +481,16 @@ export default antfu(
       "no-barrel-files/no-barrel-files": "off",
       "no-secrets/no-secrets": "off",
       "react-refresh/only-export-components": "off",
+      "prefer-arrow-functions/prefer-arrow-functions": [
+        "off",
+        {
+          "allowNamedFunctions": false,
+          "classPropertiesAllowed": false,
+          "disallowPrototype": false,
+          "returnStyle": "unchanged",
+          "singleReturnOnly": false,
+        },
+      ],
     },
   }),
   {
@@ -515,27 +500,13 @@ export default antfu(
       "eslint-plugin-jest": jestPlugin,
     },
     rules: {
-      "ts/space-before-function-paren": [
-        "off",
-        {
-          "asyncArrow": "always",
-          "anonymous": "always",
-          "named": "never",
-        },
-      ],
-      "ts/prefer-literal-enum-member": [
-        "off",
-        { "allowBitwiseExpressions": true },
-      ],
-      // ========= dup
-      "jsx-a11y/no-autofocus": "off",
       "jsx-a11y/heading-has-content": "off",
+      "jsx-a11y/no-autofocus": "off",
       "sonarjs/cognitive-complexity": "off",
       "sonarjs/no-all-duplicated-branches": "off",
       "sonarjs/no-duplicate-string": "off",
       "sonarjs/no-nested-template-literals": "off",
       "sonarjs/prefer-immediate-return": "off",
-      // ========= dup
       "test/consistent-test-it": "off",
       "ts/array-type": ["off", { "default": "array" }],
       "ts/ban-ts-comment": "off",
@@ -616,6 +587,18 @@ export default antfu(
       "ts/type-annotation-spacing": ["off"],
       "ts/unified-signatures": ["off"],
       "tsdoc/syntax": "off",
+      "ts/space-before-function-paren": [
+        "off",
+        {
+          "asyncArrow": "always",
+          "anonymous": "always",
+          "named": "never",
+        },
+      ],
+      "ts/prefer-literal-enum-member": [
+        "off",
+        { "allowBitwiseExpressions": true },
+      ],
     },
   },
 );

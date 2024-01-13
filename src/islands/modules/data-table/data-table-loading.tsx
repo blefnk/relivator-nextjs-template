@@ -41,10 +41,8 @@ export function DataTableLoading({
         <Table className="min-w-[640px]">
           <TableHeader>
             {Array.from({ length: 1 }).map((_, i) => (
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <TableRow key={i} className="hover:bg-transparent">
                 {Array.from({ length: columnCount }).map((_, i) => (
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   <TableHead key={i}>
                     <Skeleton className="h-6 w-full" />
                   </TableHead>
@@ -54,10 +52,8 @@ export function DataTableLoading({
           </TableHeader>
           <TableBody>
             {Array.from({ length: rowCount }).map((_, i) => (
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
               <TableRow key={i} className="hover:bg-transparent">
                 {Array.from({ length: columnCount }).map((_, i) => (
-                  // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                   <TableCell key={i}>
                     <Skeleton className="h-6 w-full" />
                   </TableCell>

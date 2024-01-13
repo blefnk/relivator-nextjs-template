@@ -5,6 +5,7 @@
 
 import { ArrowRight, Download, ShoppingCart, Store } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Balancer } from "react-wrap-balancer";
 
 import { REPOSITORY_URL, siteConfig } from "~/app";
@@ -21,7 +22,13 @@ import { Link as NavLink } from "~/navigation";
 import { Features, GithubStarsPlugin } from "~/plugins/islands/github/stars";
 import { productCategories } from "~/server/config/products";
 
-export const metadata = seo({ title: `Home – ${siteConfig.name}` });
+export async function generateMetadata({ params }) {
+  const t = await getTranslations();
+  const metadata = seo({
+    title: `${t("metadata.title.home")} – ${siteConfig.name}`,
+  });
+  return metadata;
+}
 
 export default function HomePage() {
   // useTranslations works both on the server and client
@@ -57,11 +64,11 @@ export default function HomePage() {
                 variant="secondary"
               >
                 <Download className="mr-2 h-4 w-4" />
-                Download Starter
+                {t("landing.main-cta")}
               </Link>
             : <Link href="/products" size="lg" variant="secondary">
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                Buy Now
+                {t("landing.buy-now")}
               </Link>
             }
 
@@ -72,7 +79,9 @@ export default function HomePage() {
               variant="outline"
             >
               <Store className="mr-2 h-4 w-4" />
-              {env.DEV_DEMO_NOTES === "true" ? "Launch Demo" : "Sell Now"}
+              {env.DEV_DEMO_NOTES === "true" ?
+                `${t("demo.launch")}`
+              : `${t("landing.sell-now")}`}
             </Link>
           </div>
         </section>
@@ -87,7 +96,7 @@ export default function HomePage() {
           <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
             {productCategories.map((category) => (
               <NavLink
-                aria-label={`Go to ${category.title}`}
+                aria-label={`${t("demo.aria-label-goto")} ${category.title}`}
                 href={`/categories/${category.title}`}
                 key={category.title}
               >
@@ -109,10 +118,10 @@ export default function HomePage() {
           id="create-a-store-banner"
         >
           <div className="text-xl font-medium sm:text-2xl">
-            Do you want to sell your products?
+            {t("landing.footer-cta")}
           </div>
           <Link href="/dashboard/stores" size="lg" variant="secondary">
-            Get Started
+            {t("landing.get-started-btn")}
             <ArrowRight className="ml-2 h-4 w-4" />
           </Link>
         </section>

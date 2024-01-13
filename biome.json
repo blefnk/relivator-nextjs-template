@@ -1,15 +1,28 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "organizeImports": { "enabled": false },
-  "files": { "ignore": ["node_modules"] },
+  "organizeImports": {
+    "enabled": false
+  },
+  "files": {
+    "ignore": ["node_modules"]
+  },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "style": { "noUselessElse": "off" },
-      "suspicious": { "noExplicitAny": "off" },
-      "correctness": { "useExhaustiveDependencies": "off" },
-      "complexity": { "useLiteralKeys": "off" }
+      "style": {
+        "noUselessElse": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noArrayIndexKey": "off"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
+      "complexity": {
+        "useLiteralKeys": "off"
+      }
     }
   }
 }

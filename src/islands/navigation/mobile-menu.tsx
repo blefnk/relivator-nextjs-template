@@ -59,7 +59,6 @@ export function MobileMenu({
           <div className="pl-1 pr-7">
             <Accordion type="single" collapsible className="w-full">
               {MainMenuItems?.map((item, index) => (
-                // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <AccordionItem value={item.title} key={index}>
                   <AccordionTrigger className="text-sm capitalize">
                     {item.title}
@@ -69,7 +68,6 @@ export function MobileMenu({
                       {item.items?.map((subItem, index) =>
                         subItem.href ?
                           <MobileLink
-                            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                             key={index}
                             href={String(subItem.href)}
                             pathname={pathname}
@@ -79,7 +77,6 @@ export function MobileMenu({
                             {subItem.title}
                           </MobileLink>
                         : <div
-                            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                             key={index}
                             className="text-foreground/70 transition-colors"
                           >
@@ -99,7 +96,6 @@ export function MobileMenu({
                     {sidebarNavItems?.map((item, index) =>
                       item.href ?
                         <MobileLink
-                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           key={index}
                           href={String(item.href)}
                           pathname={pathname}
@@ -109,7 +105,6 @@ export function MobileMenu({
                           {item.title}
                         </MobileLink>
                       : <div
-                          // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                           key={index}
                           className="text-foreground/70 transition-colors"
                         >
