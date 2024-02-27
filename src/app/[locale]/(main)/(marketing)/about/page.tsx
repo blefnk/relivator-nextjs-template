@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -6,10 +7,11 @@ import { cnBase } from "tailwind-variants";
 
 import { siteConfig } from "~/app";
 import { Link as ButtonLink } from "~/core/link";
-import { seo } from "~/data/meta";
+// import { seo } from "~/data/meta";
 import { typography } from "~/server/text";
 
-export const metadata = seo({ title: "About" });
+// export const metadata = seo({ title: "About" });
+export const metadata: Metadata = { title: "About" };
 
 export default function Page() {
   const t = useTranslations();

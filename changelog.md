@@ -2,14 +2,37 @@
 
 <!-- https://github.com/blefnk/relivator/blob/main/changelog.md -->
 
-❄️ [Check Project Features](https://github.com/blefnk/relivator#project-features-checklist) | 🌐 [Launch Relivator's Demo](https://relivator.bleverse.com)
+❄️ [Check Project Features](https://github.com/blefnk/relivator#project-features-checklist) | 🌐 [Launch Relivator's Demo](https://relivator.bleverse.com) | 📖 [Read the Docs](https://docs.bleverse.com)
+
+<details>
+  <summary>1.2.5 | 26.02.2024</summary>
+
+➤ [How to Install and Get Started](https://github.com/blefnk/relivator#readme)
+
+[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/1.2.5)
+
+</details>
+
+<details>
+  <summary>1.2.4 | 13.01.2024</summary>
+
+➤ [How to Install and Get Started](https://github.com/blefnk/relivator#readme)
+
+**Commits:**
+
+- [add i18n faq component and fix clerk dep issue](https://github.com/blefnk/relivator/commit/a7e5db0c2f9fc2319ec9f21192742d6819a3c8c6)
+- [fix checkout page, add missing i18n strings, improve dx](https://github.com/blefnk/relivator/commit/ac67fd9bb89f860bfe6c3e8edf14d4aeb8383bbc)
+
+[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/1.2.4)
+
+</details>
 
 <details>
   <summary>1.2.3 | 12.01.2024</summary>
 
 Just a small hotfix to improve the developer experience.
 
-[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/edit/1.2.3)
+[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/1.2.3)
 
 </details>
 
@@ -22,7 +45,7 @@ Remember, Relivator is designed to be beginner-friendly, so quite a lot of ESLin
 
 These turn-offs will be gradually eliminated as we move towards the massive 2.0.0, which will significantly raise the project's standards, being professional, will be even more convenient for beginners.
 
-[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/edit/1.2.2)
+[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/1.2.2)
 
 </details>
 
@@ -35,7 +58,7 @@ Update v1.2.1 adds Chinese localization, and among other things, work has begun 
 
 p.s. 1.2.1 is the first commit to the Relivator repository that no longer contains an emoji at the beginning of its name. Thanks to this, contributors to Relivator/Reliverse will no longer have to spend time inventing a suitable emoji.
 
-[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/edit/1.2.1)
+[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/1.2.1)
 
 </details>
 
@@ -79,7 +102,7 @@ Among many other new and fixed things, Stripe is now fully functional and comes 
 
 Please check out the updated list of project features in the project's README. Enjoy and please share your feedback!
 
-[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/edit/1.1.0)
+[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/1.1.0)
 
 </details>
 
@@ -88,6 +111,6 @@ Please check out the updated list of project features in the project's README. E
 
 How to Install and Get Started? Please visit [the project's README](https://github.com/blefnk/relivator#readme), where you can always find up-to-date information about the project and how to install it easily.
 
-[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/edit/1.0.0)
+[Visit release page to learn more...](https://github.com/blefnk/relivator/releases/1.0.0)
 
 </details>

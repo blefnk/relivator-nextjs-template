@@ -9,6 +9,7 @@
 import "~/styles/globals.css";
 
 import type { PropsWithChildren } from "react";
+import { type Metadata } from "next";
 import localFont from "next/font/local";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
@@ -19,7 +20,7 @@ import { Flowbite, ThemeModeScript } from "flowbite-react";
 
 import { siteConfig } from "~/app";
 import { TRPC } from "~/core/trpc/react";
-import { seo } from "~/data/meta";
+// import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
 import { ReactHotToasts } from "~/islands/application/overlays/notifications/react-hot-toast";
 import LoglibAnalytics from "~/islands/loglib-analytics";
@@ -34,7 +35,8 @@ import { Room } from "~/plugins/million/islands/room";
 
 // Every page in the app will have this metadata, You can override it by
 // defining the `metadata` in the `page.tsx` or in children `layout.tsx`
-export const metadata = seo({
+// export const metadata = seo({
+export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: {
     default: siteConfig.name,
@@ -88,7 +90,8 @@ export const metadata = seo({
   other: {
     "darkreader-lock": "true",
   },
-});
+};
+// });
 
 const fontSans = localFont({
   src: "../../styles/fonts/inter.woff2",

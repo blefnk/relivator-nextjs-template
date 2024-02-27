@@ -112,27 +112,27 @@ export async function SiteHeader({
             />
           )}
 
-          {authProvider === "clerk" ?
-            env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && env.CLERK_SECRET_KEY ?
+          {authProvider === "clerk" ? (
+            env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY && env.CLERK_SECRET_KEY ? (
               <UserMenu />
-            : <ButtonPlaceholder
+            ) : (
+              <ButtonPlaceholder
                 text="Sign In"
                 auth_provider={authProvider}
                 tNextAuthError={t("environments.auth-button-placeholder")}
               />
-
-          : (
-            (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) ||
+            )
+          ) : (env.GITHUB_CLIENT_ID && env.GITHUB_CLIENT_SECRET) ||
             (env.GOOGLE_CLIENT_ID && env.GOOGLE_CLIENT_SECRET) ||
-            (env.DISCORD_CLIENT_ID && env.DISCORD_CLIENT_SECRET)
-          ) ?
+            (env.DISCORD_CLIENT_ID && env.DISCORD_CLIENT_SECRET) ? (
             <UserMenu />
-          : <ButtonPlaceholder
+          ) : (
+            <ButtonPlaceholder
               text="Sign In"
               auth_provider={authProvider}
               tNextAuthError={t("environments.auth-button-placeholder")}
             />
-          }
+          )}
         </div>
       </nav>
     </header>

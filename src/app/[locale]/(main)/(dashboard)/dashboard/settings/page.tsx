@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { getProviders } from "next-auth/react";
 
-import { seo } from "~/data/meta";
+// import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
 import {
   PageHeader,
@@ -18,11 +19,12 @@ import {
 } from "~/islands/primitives/card";
 import { Shell } from "~/islands/wrappers/shell-variants";
 
-export const metadata = seo({
+// export const metadata = seo({
+export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Settings",
   description: "Manage your website and account preferences.",
-});
+};
 
 export default async function ProfilesPage() {
   // const session = await getServerSession(authOptions);

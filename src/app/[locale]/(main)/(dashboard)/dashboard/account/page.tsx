@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { UserProfileClerk } from "~/core/auth/clerkjs/islands/user-profile-clerk";
-import { seo } from "~/data/meta";
+// import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
 import { env } from "~/env.mjs";
 import {
@@ -13,11 +14,12 @@ import {
 import { Shell } from "~/islands/wrappers/shell-variants";
 import { getServerAuthSession } from "~/utils/auth/users";
 
-export const metadata = seo({
+// export const metadata = seo({
+export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Link Accounts",
   description: "Link your accounts",
-});
+};
 
 export default async function ProfilesPage() {
   const debug = process.env.NODE_ENV === "development";

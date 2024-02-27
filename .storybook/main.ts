@@ -8,7 +8,6 @@ import type { StorybookConfig } from "@storybook/nextjs";
 const config: StorybookConfig = {
   stories: [],
   staticDirs: ["../src/public"],
-  features: { experimentalNextRSC: true },
   framework: { name: "@storybook/nextjs", options: {} },
 };
 

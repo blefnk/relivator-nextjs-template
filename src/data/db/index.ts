@@ -55,25 +55,33 @@ try {
     if (databaseUrl?.startsWith("mysql://")) dbProvider = "planetscale";
     else if (databaseUrl?.startsWith("postgres://")) dbProvider = "neon";
   }
+
   switch (dbProvider) {
-    case "planetscale":
-      db = drizzlePlanetscale(
-        new ClientPlanetscale({ url: csMysql }).connection(),
-        { schema: schemaMysql, logger: false },
-      );
+    case "planetscale": {
+      const clientPlanetscale = new ClientPlanetscale({
+        host: process.env["DATABASE_HOST"],
+        username: process.env["DATABASE_USERNAME"],
+        password: process.env["DATABASE_PASSWORD"],
+      });
+      db = drizzlePlanetscale(clientPlanetscale, {
+        schema: schemaMysql,
+        logger: false,
+      });
       break;
+    }
     case "railway":
     case "vercel":
-    case "neon":
+    case "neon": {
       db = drizzlePostgres(postgres(csPgsql, { ssl: "allow", max: 1 }), {
         schema: schemaPgsql,
         logger: false,
       });
       break;
+    }
     default:
       throw new Error(
-        `❌ Unsupported NEXT_PUBLIC_DB_PROVIDER "${dbProvider}".\
-          Please check your environment configuration.`,
+        `❌ Unsupported NEXT_PUBLIC_DB_PROVIDER "${dbProvider}". \
+        Please check your environment configuration.`,
       );
   }
 } catch (error) {

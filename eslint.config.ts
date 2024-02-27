@@ -31,7 +31,6 @@ import * as airbnbES6Config from "eslint-config-airbnb-base/rules/es6";
 import * as airbnbNodeConfig from "eslint-config-airbnb-base/rules/node";
 import * as airbnbStyleConfig from "eslint-config-airbnb-base/rules/style";
 import * as airbnbVariablesConfig from "eslint-config-airbnb-base/rules/variables";
-import prettierConfigPlugin from "eslint-config-prettier";
 import commentsPlugin from "eslint-plugin-eslint-comments";
 import functionalPlugin from "eslint-plugin-functional";
 import jestPlugin from "eslint-plugin-jest";
@@ -74,7 +73,6 @@ export default antfu(
       "functional": functionalPlugin,
       "react-hooks": reactHooksPlugin,
       "tailwindcss": tailwindcssPlugin,
-      "prettier": prettierConfigPlugin,
     },
     rules: {
       ...nextPlugin.configs.recommended.rules,
@@ -145,7 +143,6 @@ export default antfu(
       "eol-last": ["off", "always"],
       "eqeqeq": ["off", "always"],
       "eslint-plugin-jsx-a11y/blob": "off",
-      "format/prettier": "off",
       "func-call-spacing": ["off", "never"],
       "func-names": "off",
       "func-style": ["off", "declaration"],

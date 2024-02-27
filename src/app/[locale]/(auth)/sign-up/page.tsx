@@ -1,20 +1,22 @@
+import type { Metadata } from "next";
 import { currentUser } from "@clerk/nextjs";
 import { getProviders } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import { AuthPagesContent } from "~/core/auth/shared/islands/auth-pages-content";
-import { seo } from "~/data/meta";
+// import { seo } from "~/data/meta";
 import { fullURL } from "~/data/meta/builder";
 import { env } from "~/env.mjs";
 import { redirect } from "~/navigation";
 import { getCurrentUser } from "~/utils/auth/users";
 
-export const metadata = seo({
+// export const metadata = seo({
+export const metadata: Metadata = {
   metadataBase: fullURL(),
   title: "Sign Up",
   description: "Register to have full website access",
-});
+};
 
 export default async function SignUpPage() {
   const t = await getTranslations();

@@ -1,69 +1,69 @@
-# Contributing to Relivator
+# Contributing to Bleverse Relivator
 
 [![Join the Bleverse Discord](https://discordapp.com/api/guilds/1075533942096150598/widget.png?style=banner2)][bleverse-discord]
 
-Thank you for your interest in contributing to Bleverse Relivator. Your involvement is fundamental to the success of this open-source project!
+Welcome, and thank you for considering contributing to Bleverse Relivator! Your involvement is vital to the growth and success of this open-source initiative.
 
 ## Getting Started
 
-- **Fork and Setup**: Begin by forking the repository. For setup instructions, see [README.md](/README.MD).
-- **Code of Conduct**: Please read our [Code of Conduct](./CODE_OF_CONDUCT.md). We expect all participants to adhere to it.
+- **Fork and Setup**: Initiate your contribution journey by forking the repository. Follow the setup instructions in [README.md](/README.MD) for guidance.
+- **Code of Conduct**: Familiarize yourself with our [Code of Conduct](./CODE_OF_CONDUCT.md). Adherence to these principles is expected from all community members.
 
-## How to Contribute
+## Contribution Guidelines
 
-### Legal Requirements
+### Legal Compliance
 
-- **Authorship**: Ensure you have authored 100% of the content you contribute.
-- **Rights**: Confirm that you have the necessary rights to your contributions.
-- **License**: Contributions are provided under the project's license.
+- **Originality**: Ensure that your contributions are entirely your original work.
+- **Rights**: Verify that you hold the necessary rights to your contributions.
+- **License Adherence**: All contributions must align with the project's licensing terms.
 
-### Pull Requests
+### Pull Request Protocol
 
-- **UI Changes**: Use the [UI Pull Request Template](.github/issue_template/2.feature_request.yml). Attach screenshots for easier review.
-- **Other Contributions**: For non-UI changes, use the [Other Template](.github/issue_template/2.feature_request.yml). Be thorough in your description.
+- **UI Contributions**: For UI-related changes, utilize the [UI Pull Request Template](.github/issue_template/2.feature_request.yml). Include screenshots to facilitate the review process.
+- **General Contributions**: For other types of contributions, employ the [General Template](.github/issue_template/2.feature_request.yml). Provide a detailed description of your contribution.
 
-### Reporting Bugs
+### Bug Reporting Process
 
-#### Before Submitting
+#### Preliminary Steps
 
-- **Research**: Ensure your bug hasn't already been reported.
-- **Information**: Gather all relevant information to describe the issue comprehensively.
+- **Research**: Confirm that the bug has not been reported already.
+- **Comprehensive Information**: Compile all relevant details to accurately depict the issue.
 
-#### Submitting a Bug Report
+#### How to Submit a Bug Report
 
-- **Use GitHub Issues**: Report bugs via [GitHub Issues](/issues/new).
-- **Describe**: Clearly explain the expected and actual behaviors, and provide steps to reproduce.
-- **Privacy**: Do not report security vulnerabilities here. Email [blefnk@gmail.com](mailto:blefnk@gmail.com) for sensitive issues.
+- **GitHub Issues**: Utilize [GitHub Issues](https://github.com/blefnk/relivator/issues/new) for reporting bugs.
+- **Clarity and Detail**: Clearly articulate both the expected and actual behaviors, and describe the steps to replicate the bug.
+- **Security Concerns**: For reporting security vulnerabilities, please contact us directly at [blefnk@gmail.com](mailto:blefnk@gmail.com) instead of using public channels.
 
-### Suggesting Enhancements
+### Enhancement Proposals
 
-#### Before Suggesting
+#### Preliminary Considerations
 
-- **Latest Version**: Verify you're using the most recent version.
-- **Search**: Check if the enhancement has been previously suggested in [GitHub Issues](/issues) or our [Suggestions Channel on Discord](https://discord.com/channels/796594544980000808/1143947327892103188).
-- **Relevance**: Ensure your suggestion aligns with the project's goals.
+- **Version Check**: Ensure you're working with the latest version of the software.
+- **Existing Suggestions**: Search [GitHub Issues](https://github.com/blefnk/relivator/issues?q=) and our [Discord Suggestions Channel](https://discord.com/channels/1075533942096150598/1196425440777224212) to see if your suggestion has already been made.
+- **Project Alignment**: Assess whether your suggestion is in line with the project's objectives.
 
-#### Submitting an Enhancement
+#### How to Suggest Enhancements
 
-- **Title**: Use a clear, descriptive title.
-- **Details**: Provide a step-by-step description of the enhancement.
-- **Rationale**: Explain why this enhancement would be beneficial.
+- **Descriptive Title**: Choose a title that succinctly describes the enhancement.
+- **Detailed Proposal**: Provide a step-by-step breakdown of the suggested enhancement.
+- **Justification**: Explain why this enhancement would be valuable to the project.
 
-### Your First Code Contribution
+### Making Your First Code Contribution
 
-1. **Select an Issue**: Pick an issue from [GitHub issues](/issues) and get it assigned to you.
-2. **Fork and Branch**: Fork the repo and create a branch. Include the issue number in the branch name.
-3. **Commit**: Follow a clear commit style, referencing the issue in the PR or commit message.
-4. **Pull Request**: Submit a PR from your forked repository.
+1. **Issue Selection**: Choose an issue from [GitHub issues](https://github.com/blefnk/relivator/issues?q=) and request its assignment.
+2. **Fork and Branch Creation**: Fork the repository and create a new branch, naming it after the issue number.
+3. **Committing Changes**: Adhere to a clear commit style, referencing the issue in your PR or commit message.
+4. **Submitting a Pull Request**: Propose your changes through a pull request from your forked repository.
 
-## Helpful Resources
+## Additional Resources
 
-### Commit Examples
+### Examples of Effective Commit Names
 
-| ✅ Good Example                                       | ❌ Poor Example  |
-| ----------------------------------------------------- | ---------------- |
-| 🌐 add(i18n): add internationalization support to rsc | YOOOOOO          |
-| 🛒 fix(uiux): move the cart to right for user habits  | fixing the thing |
-| 📚 upd(docs): improve some typos in the readme file   | Trust me bro     |
+| 🟢 Effective Example                                | 🟡 Less Effective Example | 🔴 Poor Example    |
+| --------------------------------------------------- | ------------------------- | ------------------ |
+| add(i18n): add internationalization support for RSC | added new stuff           | YOOOOOO            |
+| reposition cart for user convenience                | fixing cart issue         | fixing the thing   |
+| 📚 upd(docs): fix typos in README                   | doc updates               | (docs)Trust me bro |
 
 [bleverse-discord]: https://discord.gg/Pb8uKbwpsJ

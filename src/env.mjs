@@ -62,6 +62,8 @@ export const env = createEnv({
     UPLOADTHING_SECRET: z.string().optional(),
     UPSTASH_REDIS_REST_TOKEN: z.string().optional(),
     UPSTASH_REDIS_REST_URL: z.string().optional(),
+    EMAIL_FROM_ADDRESS: z.string().optional(),
+    RESEND_API_KEY: z.string().optional(),
   },
 
   /**
@@ -117,6 +119,8 @@ export const env = createEnv({
     UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
     UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
     UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
+    EMAIL_FROM_ADDRESS: process.env.EMAIL_FROM_ADDRESS,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
 
     // Specify client-side environment variables here:
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,

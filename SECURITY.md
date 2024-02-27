@@ -12,7 +12,7 @@ Our commitment to security extends to the following version of the project:
 
 We greatly value the security community's efforts in helping keep our project safe. If you've discovered a security vulnerability, your responsible disclosure is crucial for us. Here's how you can report it:
 
-1. **Contact Method**: Email us at [hello@bleverse.com](mailto:hello@bleverse.com).
+1. **Contact Method**: Email us at [blefnk@gmail.com](mailto:blefnk@gmail.com).
 2. **Email Subject**: Please use a concise yet descriptive subject, such as "Security Vulnerability Found".
 3. **Vulnerability Details**: Provide a comprehensive description of the vulnerability. Include reproduction steps, and any other information that might help us understand and resolve the issue effectively.
 4. **Proof of Concept**: Attach any proof-of-concept or sample code if available. Please ensure that your research does not involve destructive testing or violate any laws.

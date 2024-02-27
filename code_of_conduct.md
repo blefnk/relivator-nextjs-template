@@ -37,7 +37,7 @@ This Code of Conduct applies within all project spaces, and also when an individ
 
 ## Enforcement Process
 
-Inappropriate behavior can be reported to community leaders at [hello@bleverse.com](mailto:hello@bleverse.com). All complaints will be reviewed and investigated and will result in a response deemed necessary and appropriate to the circumstances.
+Inappropriate behavior can be reported to community leaders at [blefnk@gmail.com](mailto:blefnk@gmail.com). All complaints will be reviewed and investigated and will result in a response deemed necessary and appropriate to the circumstances.
 
 ## Enforcement Guidelines
 

@@ -4,7 +4,7 @@
  */
 
 import createMDX from "@next/mdx";
-import million from "million/compiler";
+// import million from "million/compiler";
 import nextIntlPlugin from "next-intl/plugin";
 import { createSecureHeaders } from "next-secure-headers";
 import remarkGfm from "remark-gfm";
@@ -129,15 +129,15 @@ const nextConfig = {
       ];
     }
   },
-  /**
-   * Dangerously allow builds to successfully complete
-   * even if your project has the types/eslint errors.
-   *
-   * [Good to know if you want to toggle because `next build` errors]:
-   * Next.js has built-in support for TypeScript, using its own plugin.
-   * But while you use `pnpm build`, it stops on the first type errors.
-   * So you can use `pnpm typecheck` to check all type warns/errors at once.
-   */
+  //
+  // Dangerously allow builds to successfully complete
+  // even if your project has the types/eslint errors.
+  //
+  // [Good to know if you want to toggle because `next build` errors]:
+  // Next.js has built-in support for TypeScript, using its own plugin.
+  // But while you use `pnpm build`, it stops on the first type errors.
+  // So you can use `pnpm typecheck` to check all type warns/errors at once.
+  //
   typescript: { ignoreBuildErrors: false },
   eslint: { ignoreDuringBuilds: false },
 };
@@ -161,9 +161,11 @@ const withNextIntl = nextIntlPlugin(
  * Send merged Next.js config to server.
  * @see https://million.dev/docs/install
  */
-export default million.next(withNextIntl(withMDX(nextConfig)), {
-  auto: { rsc: true },
-});
+// @ ts-expect-error ⚠️ v1.2.5
+// export default million.next(withNextIntl(withMDX(nextConfig)), {
+//   auto: { rsc: true },
+// });
+export default withNextIntl(withMDX(nextConfig));
 
 /* ========================================================== */
 // For the Future Consideration

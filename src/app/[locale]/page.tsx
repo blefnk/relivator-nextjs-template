@@ -3,6 +3,7 @@
  * @see https://github.com/blefnk/relivator#readme
  */
 
+import type { Metadata } from "next";
 import { ArrowRight, Download, ShoppingCart, Store } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
@@ -10,7 +11,8 @@ import { Balancer } from "react-wrap-balancer";
 
 import { REPOSITORY_URL, siteConfig } from "~/app";
 import { Link } from "~/core/link";
-import { seo } from "~/data/meta";
+import { fullURL } from "~/data/meta/builder";
+// import { seo } from "~/data/meta";
 import { env } from "~/env.mjs";
 import { FeaturedStoreItems } from "~/islands/commerce/featured-store-items";
 import { HeroSection } from "~/islands/marketing/hero-section";
@@ -24,9 +26,9 @@ import { productCategories } from "~/server/config/products";
 
 export async function generateMetadata({ params }) {
   const t = await getTranslations();
-  const metadata = seo({
+  const metadata: Metadata = {
     title: `${t("metadata.title.home")} – ${siteConfig.name}`,
-  });
+  };
   return metadata;
 }
 
@@ -56,7 +58,7 @@ export default function HomePage() {
           </Balancer>
 
           <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
-            {env.DEV_DEMO_NOTES === "true" ?
+            {env.DEV_DEMO_NOTES === "true" ? (
               <Link
                 href={REPOSITORY_URL}
                 size="lg"
@@ -66,11 +68,12 @@ export default function HomePage() {
                 <Download className="mr-2 h-4 w-4" />
                 {t("landing.main-cta")}
               </Link>
-            : <Link href="/products" size="lg" variant="secondary">
+            ) : (
+              <Link href="/products" size="lg" variant="secondary">
                 <ShoppingCart className="mr-2 h-4 w-4" />
                 {t("landing.buy-now")}
               </Link>
-            }
+            )}
 
             <Link
               className="border-2 border-zinc-900 dark:border-zinc-800"
@@ -79,9 +82,9 @@ export default function HomePage() {
               variant="outline"
             >
               <Store className="mr-2 h-4 w-4" />
-              {env.DEV_DEMO_NOTES === "true" ?
-                `${t("demo.launch")}`
-              : `${t("landing.sell-now")}`}
+              {env.DEV_DEMO_NOTES === "true"
+                ? `${t("demo.launch")}`
+                : `${t("landing.sell-now")}`}
             </Link>
           </div>
         </section>

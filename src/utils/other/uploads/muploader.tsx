@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+// @ts-expect-error ⚠️ v1.2.5
 import type { FileWithPath } from "@uploadthing/react";
 import { useDropzone } from "@uploadthing/react/hooks";
 import { generateClientDropzoneAccept } from "uploadthing/client";

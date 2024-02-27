@@ -4,7 +4,7 @@
 
 🌐 [Relivator Demo](https://relivator.bleverse.com)
 
-<!-- **TŁUMACZENIE NIE JEST AKTUALNE Z v1.2.4 [WERSJI ANGLOJĘZYCZNEJ README.MD](https://github.com/blefnk/relivator#readme)!** -->
+<!-- **TŁUMACZENIE NIE JEST AKTUALNE Z v1.2.5 [WERSJI ANGLOJĘZYCZNEJ README.MD](https://github.com/blefnk/relivator#readme)!** -->
 
 **Uwaga: Poniższy tekst jest w większości maszynowym tłumaczeniem pliku [README.md](https://github.com/blefnk/relivator#readme). Aktywnie pracujemy nad jego ulepszeniem. Prosimy o zapoznanie się z oryginałem, jeśli niektóre fragmenty tekstu są niejasne.**
 
@@ -14,7 +14,7 @@ Naszym celem jest stworzenie najbardziej bogatego w funkcje i globalnego starter
 
 1. **Niezbędne narzędzia**: Upewnij się, że [_VSCode_](https://code.visualstudio.com), [_Git_](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git), _GitHub Desktop_ ([Windows/macOS](https://desktop.github.com/) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)) i _Node.js LTS_ ([Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis)) są zainstalowane.
 2. **Klonowanie projektu**: [_Utwórz nowy fork_](https://github.com/blefnk/relivator/fork) i użyj GitHub Desktop, aby go pobrać.
-3. **Konfiguracja**: Otwórz VSCode i załaduj folder projektu. Naciśnij `Ctrl+Shift+P` i wyszukaj `>Create New Terminal`. Zainstaluj _PNPM_ używając `corepack enable`. Następnie wpisz `pnpm install`, aby zainstalować pakiety. Następnie skopiuj plik `.env.example` do nowego pliku `.env` i wypełnij przynajmniej pola `NEXT_PUBLIC_DB_PROVIDER` i `DATABASE_URL`. Na koniec wyślij schemat bazy danych do swojej bazy danych za pomocą `pnpm mysql:push` lub `pnpm pg:push`.
+3. **Konfiguracja**: Otwórz VSCode i załaduj folder projektu. Naciśnij `Ctrl+Shift+P` i wyszukaj `>Create New Terminal`. Zainstaluj _PNPM_ używając `corepack enable pnpm`. Następnie wpisz `pnpm install`, aby zainstalować pakiety. Następnie skopiuj plik `.env.example` do nowego pliku `.env` i wypełnij przynajmniej pola `NEXT_PUBLIC_DB_PROVIDER` i `DATABASE_URL`. Na koniec wyślij schemat bazy danych do swojej bazy danych za pomocą `pnpm mysql:push` lub `pnpm pg:push`.
 4. **Run, Stop, Build**: Użyj `pnpm dev` by uruchomić aplikację (odwiedź <http://localhost:3000> by to sprawdzić). Zatrzymaj ją, skupiając się na konsoli i naciskając `Ctrl+C`. Po wprowadzeniu zmian, zbuduj aplikację używając `pnpm build`. W porządku, jeśli zobaczysz ostrzeżenia Clerk.
 5. **Commit and Deploy**: Prześlij projekt do swojego profilu GitHub za pomocą GitHub Desktop. Następnie wdróż go, importując projekt do [Vercel](https://vercel.com/new), dzięki czemu Twoja witryna będzie publicznie dostępna w Internecie. Jeśli chcesz podzielić się swoją pracą, uzyskać opinię lub poprosić o pomoc, możesz to zrobić [na naszym serwerze Discord](https://discord.gg/Pb8uKbwpsJ) lub [za pośrednictwem dyskusji GitHub](https://github.com/blefnk/relivator/discussions).
 

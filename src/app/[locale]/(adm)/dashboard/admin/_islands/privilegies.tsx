@@ -8,12 +8,12 @@ import { changeUserPrivilegies } from "~/core/adm/actions";
 import { Button } from "~/islands/primitives/button";
 
 type ButtonSetPrivilegiesProps = {
-  role: "user" | "admin";
+  newRole: "user" | "admin";
   userId: string;
 };
 
 export default function ButtonSetPrivilegies({
-  role,
+  newRole,
   userId,
 }: ButtonSetPrivilegiesProps) {
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -22,7 +22,7 @@ export default function ButtonSetPrivilegies({
       async function changePrivileges() {
         try {
           const session = await changeUserPrivilegies({
-            role,
+            role: newRole,
             userId,
           });
           if (session !== undefined) {

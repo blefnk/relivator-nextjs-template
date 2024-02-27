@@ -35,6 +35,7 @@ export function TRPC(props: { children: React.ReactNode; data: Headers }) {
 
   const [trpcClient] = useState(() =>
     api.createClient({
+      // @ts-expect-error ⚠️ v1.2.5
       transformer: superjson,
       links: [
         loggerLink({
@@ -42,6 +43,7 @@ export function TRPC(props: { children: React.ReactNode; data: Headers }) {
             process.env.NODE_ENV === "development" ||
             (opts.direction === "down" && opts.result instanceof Error),
         }),
+        // @ts-expect-error
         unstable_httpBatchStreamLink({
           url: `${getBaseUrl()}/api/trpc`,
           headers() {

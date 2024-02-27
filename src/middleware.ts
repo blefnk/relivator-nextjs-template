@@ -75,8 +75,8 @@ async function rateMiddleware(
   if (env.UPSTASH_REDIS_REST_URL) {
     const ip = request.ip ?? "127.0.0.1";
     const { success } = await ratelimit.limit(ip);
-    return success ?
-        NextResponse.next()
+    return success
+      ? NextResponse.next()
       : NextResponse.redirect(new URL("/block", request.url));
   } else {
     return NextResponse.next();
@@ -110,9 +110,9 @@ export default async function middleware(
         const { headers, nextUrl } = request;
         headers.set("x-pathname", nextUrl.pathname);
         if (rateResponse) intlResponse = await intlMiddleware(request);
-        return intlResponse && rateResponse ? intlResponse : (
-            NextResponse.next()
-          );
+        return intlResponse && rateResponse
+          ? intlResponse
+          : NextResponse.next();
       },
       async afterAuth(auth, request) {
         if (auth.isPublicRoute) return NextResponse.next();
