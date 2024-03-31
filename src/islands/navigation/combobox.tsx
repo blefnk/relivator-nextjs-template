@@ -3,10 +3,10 @@
 import { useCallback, useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "~/utils";
-import { Circle, File, Laptop, Moon, Sun } from "lucide-react";
+import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
-import { type Product } from "~/data/db/schema";
+import type { Product } from "~/data/db/schema";
 import { useDebounce } from "~/hooks/use-debounce";
 import { useHotkeys } from "~/hooks/use-hotkeys";
 import { Icons } from "~/islands/icons";
@@ -66,15 +66,15 @@ export function Combobox({
   }, [debouncedQuery]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setIsOpen((isOpen) => !isOpen);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      setIsOpen(true);
+    }
+  };
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, []);
 
   const handleSelect = useCallback((callback: () => unknown) => {
     setIsOpen(false);
