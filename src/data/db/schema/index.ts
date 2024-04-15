@@ -20,10 +20,15 @@ const selectedSchema = (() => {
   let dbProvider = env.NEXT_PUBLIC_DB_PROVIDER || "";
 
   if (!dbProvider) {
-    dbProvider = "planetscale";
-    console.error(
-      "❌ NEXT_PUBLIC_DB_PROVIDER is not set (refer to .env.example)",
-    );
+    const databaseUrl = process.env.DATABASE_URL;
+    if (!databaseUrl){
+      console.error(
+        "❌ DATABASE_URL is not set (refer to .env.example)",
+      );
+    }else{
+    if (databaseUrl?.startsWith("mysql://")) dbProvider = "private-mysql";
+    else if (databaseUrl?.startsWith("postgres://")) dbProvider = "private-postgres";
+    }
 
     // Set default DB provider based on DATABASE_URL
     // if NEXT_PUBLIC_DB_PROVIDER is not specified
@@ -38,9 +43,9 @@ const selectedSchema = (() => {
   }
 
   // Assign schema based on the dbProvider
-  if (dbProvider === "planetscale") {
+  if (["planetscale","private-mysql"].includes(dbProvider)) {
     return schemaMysql;
-  } else if (["railway", "vercel", "neon"].includes(dbProvider)) {
+  } else if (["railway", "vercel", "neon","private-postgres"].includes(dbProvider)) {
     return schemaPgsql;
   } else {
     console.error("❌ selectedSchema(): Unknown NEXT_PUBLIC_DB_PROVIDER");
