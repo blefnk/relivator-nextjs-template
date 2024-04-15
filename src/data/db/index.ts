@@ -24,12 +24,12 @@ import * as schemaPgsql from "./schema/pgsql";
 
 // Connection strings for MySQL and PostgreSQL
 // Add the ssl query parameter if it's missing
-const csMysql: string = addQueryParamIfMissed(
+let csMysql: string = addQueryParamIfMissed(
   env.DATABASE_URL,
   "ssl",
   JSON.stringify({ rejectUnauthorized: true }),
 );
-const csPgsql: string = addQueryParamIfMissed(
+let csPgsql: string = addQueryParamIfMissed(
   env.DATABASE_URL,
   "sslmode",
   "require",
@@ -43,6 +43,8 @@ let db:
   | PostgresJsDatabase<typeof schemaPgsql>
   | any;
 
+let postgresOption:postgres.Options<{}> = { ssl: "allow", max: 1 };
+
 let dbProvider = env.NEXT_PUBLIC_DB_PROVIDER;
 
 // Configure this based on the database provider.
@@ -52,11 +54,19 @@ try {
   // if NEXT_PUBLIC_DB_PROVIDER is not specified
   if (!dbProvider) {
     const databaseUrl = process.env.DATABASE_URL;
-    if (databaseUrl?.startsWith("mysql://")) dbProvider = "planetscale";
-    else if (databaseUrl?.startsWith("postgres://")) dbProvider = "neon";
+    if (databaseUrl?.startsWith("mysql://")) {
+      dbProvider = "private-mysql";
+      csMysql = env.DATABASE_URL;
+    }
+    else if (databaseUrl?.startsWith("postgres://")){
+      dbProvider = "private-postgres";
+      postgresOption = {};
+      csPgsql = env.DATABASE_URL;
+    }
   }
 
   switch (dbProvider) {
+    case "private-mysql":
     case "planetscale": {
       const clientPlanetscale = new ClientPlanetscale({
         host: process.env["DATABASE_HOST"],
@@ -71,8 +81,9 @@ try {
     }
     case "railway":
     case "vercel":
-    case "neon": {
-      db = drizzlePostgres(postgres(csPgsql, { ssl: "allow", max: 1 }), {
+    case "neon":
+    case "private-postgres": {
+      db = drizzlePostgres(postgres(csPgsql, postgresOption), {
         schema: schemaPgsql,
         logger: false,
       });

@@ -19,9 +19,11 @@ import { env } from "~/env.mjs";
 const getMigrationsFolder = (provider: string): string => {
   switch (provider) {
     case "planetscale":
+    case "private-mysql":
       return "drizzle/mysql";
     case "railway":
     case "vercel":
+    case "private-postgres":
     case "neon":
       return "drizzle/pgsql";
     default:
