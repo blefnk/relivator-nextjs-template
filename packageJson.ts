@@ -31,7 +31,7 @@ import semver from "semver";
 // 🟡 utils ▶️ pnpm deps:info (or: pnpm deps:updates)
 // 🟡 utils ▶️ pnpm deps:check (checks for unregistered packages)
 // 🟡 utils ▶️ pnpm deps:locations (checks for incorrectly placed packages)
-// 🟡 utils ▶️ pnpm deps:use-next-15 (or: pnpm tsx packageJson.ts use next-15-unstable)
+// 🟡 utils ▶️ pnpm deps:use-next-15-rc (or: deps:use-next-15 (or: pnpm tsx packageJson.ts use next-15-unstable))
 //
 // 🔵 modules ▶️ pnpm deps:install install-basic-packages
 // 🔵 modules ▶️ pnpm deps:install install-eslint-basic-packages
@@ -65,10 +65,11 @@ const flags = [
   "use",
 ] as const;
 
-// [usage example] ▶️ pnpm deps:use-next-15
+// [usage example] ▶️ pnpm deps:use-next-15-rc (or: deps:use-next-15)
 // (or: pnpm tsx packageJson.ts use next-15-unstable)
 const useFlags = [
   "next-14",
+  "next-15-rc",
   "next-15-unstable",
   "react-18",
   "react-19-unstable",
@@ -263,6 +264,7 @@ const basicDependencies: string[] = [
     "remotion",
     "resend",
     "semver",
+    "sharp",
     "slate-history",
     "slate-react",
     "slate",
@@ -444,7 +446,8 @@ function displayWelcomeMessage(): void {
     "💡 Usage example 8: pnpm deps:install find-incorrectly-placed-packages (alternative: pnpm deps:locations)",
   );
   log.step(
-    `💡 Usage example 9: pnpm deps:use-next-15 (or: pnpm tsx packageJson.ts use ${useFlags.join(" / ")})`,
+    // eslint-disable-next-line @stylistic/max-len
+    `💡 Usage example 9: pnpm deps:use-next-15-rc (or: deps:use-next-15 (or: pnpm tsx packageJson.ts use ${useFlags.join(" / ")}))`,
   );
   log.info(
     `⭐ Full list of available flags (NOTE: 'use' flag has its own flags): ${flags.join(" / ")}\n`,
@@ -1038,7 +1041,7 @@ async function checkIncorrectlyPlacedPackages() {
   }
 }
 
-// [usage example] ▶️ pnpm deps:use-next-15
+// [usage example] ▶️ pnpm deps:use-next-15-rc (or: deps:use-next-15)
 // eslint-disable-next-line max-lines-per-function, complexity
 async function handleUseFlags(flag: UseFlag) {
   const reactStable = ["react", "react-dom"];
@@ -1046,6 +1049,7 @@ async function handleUseFlags(flag: UseFlag) {
 
   const reactRC = ["react@rc", "react-dom@rc"];
   const nextCanary = [...reactRC, "next@canary"];
+  const nextRC = [...reactRC, "next@rc"];
 
   const tailwindStable = ["tailwindcss", "postcss", "autoprefixer"];
   const tailwindNext = [
@@ -1228,10 +1232,30 @@ async function handleUseFlags(flag: UseFlag) {
 
         break;
 
+      case "next-15-rc":
+        if (
+          await checkAndInstall(
+            nextStable,
+            addDependency,
+            speed,
+            "Next.js 15 RC",
+          )
+        ) {
+          spinner.stop();
+          log.info("Switched to: Next.js 15 RC");
+          log.info(`Installed: ${nextStable.join(" ")}`);
+          log.info("💡 https://nextjs.org/blog/next-15-rc");
+        } else {
+          spinner.stop();
+          log.info("Next.js 15 RC is already installed.");
+        }
+
+        break;
+
       case "next-15-unstable":
         if (
           await checkAndInstall(
-            nextCanary,
+            nextRC,
             addDependency,
             speed,
             "Next.js 15 (unstable)",
@@ -1330,7 +1354,8 @@ async function handleUseFlags(flag: UseFlag) {
           log.error("⛔ The 'use' functional flag requires a secondary flag.");
           log.info(`💡 Available secondary flags: ${useFlags.join(", ")}`);
           log.info(
-            "💡 Example: pnpm deps:use-next-15 (or: pnpm tsx packageJson.ts use [secondary-flag])",
+            // eslint-disable-next-line @stylistic/max-len
+            "💡 Example: pnpm deps:use-next-15-rc (or: deps:use-next-15 (or: pnpm tsx packageJson.ts use [secondary-flag]))",
           );
           break;
         }
@@ -1347,6 +1372,10 @@ async function handleUseFlags(flag: UseFlag) {
     switch (flag) {
       case "next-14":
         packagesToInstall = nextStable.map((package_) => `${package_}@latest`);
+        break;
+
+      case "next-15-rc":
+        packagesToInstall = nextStable.map((package_) => `${package_}@rc`);
         break;
 
       case "next-15-unstable":
@@ -1382,8 +1411,8 @@ async function handleUseFlags(flag: UseFlag) {
 
     const packagesToInstallString = packagesToInstall.join(" ");
 
-    console.error(`Error during handleUseFlags: ${String(error)}`);
-    console.info(
+    log.error(`Error during handleUseFlags: ${String(error)}`);
+    log.step(
       `Please install package manually: npx nypm add ${packagesToInstallString}`,
     );
 
@@ -1409,7 +1438,7 @@ if (isFlag(flag)) {
   } else if (flag === "find-incorrectly-placed-packages") {
     await checkIncorrectlyPlacedPackages(); // ▶️ pnpm deps:locations
   } else if (flag === "use" && isUseFlag(secondaryFlag)) {
-    await handleUseFlags(secondaryFlag); // ▶️ pnpm deps:use-next-15
+    await handleUseFlags(secondaryFlag); // ▶️ pnpm deps:use-next-15-rc (or: deps:use-next-15)
   } else {
     main(); // ▶️ pnpm deps:install (with other flags)
   }

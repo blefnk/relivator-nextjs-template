@@ -80,7 +80,11 @@ function DiscordLink() {
           size: "icon",
           variant: "outline",
         }),
-        "",
+        `
+          hidden
+
+          sm:flex
+        `,
       )}
       href="https://discord.gg/TK2SpfXfTB"
       rel="noreferrer noopener"

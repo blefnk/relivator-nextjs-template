@@ -103,7 +103,7 @@ export default function JoinNewsletterForm() {
       onSubmit={form.handleSubmit(onSubmit)}
     >
       <div className="relative">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email" aria-label="Email" />
         <Input
           className="pr-12"
           placeholder="Enter your email to subscribe to Reliverse Weekly..."

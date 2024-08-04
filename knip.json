@@ -18,7 +18,6 @@
     "src/cluster/onboard.tsx",
     "src/components/{Account,Common,Forms,Modules,Navigation,Playground,Primitives,Sections}/index.tsx",
     "src/components/Account/{ActionButton,AuthPagesContentClient,AuthPagesContentServer,AuthjsUser,authjs-button-action,AuthjsV5Test,AuthProvider,AuthRequired,LogoutButtons,SessionData,SigninLink,SsoCallback,UserLogin}.tsx",
-    "src/components/Application//ReliverseToolbar.tsx",
     "src/components/Application/ApplicationShells/{SidebarLayouts/{index,SidebarWithHeader}.tsx,StackedLayouts/{index,NavWithCompactPageHeader}.tsx}",
     "src/components/Application/Experimental/{index,RxjsSignalsTest}.tsx",
     "src/components/Application/Experimental/Admin/{card,column,board}.tsx",
@@ -70,6 +69,7 @@
     "src/utils/execa/{execute,index,test}.ts"
   ],
   "ignore": [
+    "addons/browser/reliverse/tools/components/ReliverseToolbar.tsx",
     "addons/browser/reliverse/ui/Alert-Dialog.tsx",
     "addons/browser/reliverse/ui/Badge.tsx",
     "addons/browser/reliverse/ui/Calendar.tsx",
@@ -94,7 +94,6 @@
     "addons/browser/shared/utils/math.ts",
     "addons/cluster/reliverse/components/Onboarding.tsx",
     "addons/cluster/reliverse/ui/cluster-readme.tsx",
-    "addons/reliverse/toolbar/components/ReliverseToolbar.tsx",
     "addons/reliverse/toolbar/index.tsx",
     "addons/server/reliverse/errors/helpers/field.ts",
     "addons/server/reliverse/errors/plugin.ts",
@@ -161,6 +160,8 @@
     "@tailwindcss/.+",
     "@types/eslint",
     "@types/try-catch",
+    "@vercel/flags",
+    "@vercel/toolbar",
     "@xyflow/react",
     "autoprefixer",
     "commander",
@@ -178,6 +179,7 @@
     "postcss",
     "react-day-picker",
     "remark-.+",
+    "sharp",
     "try-catch",
     "ufo"
   ]

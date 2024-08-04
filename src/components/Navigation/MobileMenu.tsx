@@ -56,7 +56,13 @@ export function MobileMenu({
         >
           <Icons.menu className="size-6" />
           <span className="sr-only">Toggle Menu</span>
-          <span className="ml-2 font-medium tracking-wide">
+          <span
+            className={`
+              ml-2 hidden font-medium tracking-wide
+
+              sm:flex
+            `}
+          >
             {siteConfig.name}
           </span>
         </Button>

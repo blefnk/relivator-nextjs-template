@@ -44,7 +44,7 @@ const nextConfig = {
     // reactCompiler: false,
     mdxRs: true,
     optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
-    ppr: true,
+    ppr: false, // true - supported by next@canary only
     swcPlugins: [
       [
         "next-superjson-plugin",

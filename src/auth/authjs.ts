@@ -21,7 +21,7 @@ const GuestSession = async (): Promise<User> => ({
   age: 18,
   createdAt: new Date("2024-07-10T00:00:00.000Z"),
   currentCartId: "guestCurrentCartId",
-  email: "guest@example.com",
+  email: "guest@email.com",
   emailVerified: new Date("2024-07-10T00:00:00.000Z"),
   hashedPassword: "guestHashedPassword",
   image: "https://relivator.bleverse.com/logo.png",

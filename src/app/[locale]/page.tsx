@@ -29,7 +29,15 @@ export default function HomePage() {
     <>
       <SiteHeader />
       <HomeHeroSection />
-      <Shell>
+      <Shell
+        className={`
+          px-10
+
+          2xl:px-32
+
+          lg:20
+        `}
+      >
         <HomeFeaturedItems />
         <HomeMainSection />
         <Features />

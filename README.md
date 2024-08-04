@@ -48,9 +48,9 @@ Our goal is to create the world's most feature-rich and globally accessible Next
     <span>
       <a href="https://relivator.bleverse.com">
         <picture>
-            <source media="(prefers-color-scheme: dark)" srcset="public/internal/screenshot-dark.png" />
-            <source media="(prefers-color-scheme: light)" srcset="public/internal/screenshot-light.png" />
-            <img alt="Shows the landing page of Relivator Next.js template, with its logo and the phrase 'Relivator Empowers Your eCommerce with the Power of Next.js'." src="/public/internal/screenshot-light.png" width="53%" />
+            <source media="(prefers-color-scheme: dark)" srcset="public/screenshot-dark.png" />
+            <source media="(prefers-color-scheme: light)" srcset="public/screenshot-light.png" />
+            <img alt="Shows the landing page of Relivator Next.js template, with its logo and the phrase 'Relivator Empowers Your eCommerce with the Power of Next.js'." src="/public/screenshot-light.png" width="53%" />
         </picture>
       </a>
     </span>
@@ -117,13 +117,14 @@ Developing something as ambitious as Relivator obviously takes a lot of time, es
 
 *Love using this project? If you find this project useful, I'd appreciate a cup of coffee. You'll get Reliverse Pro, access to some private repositories, pre-release downloads, and the ability to influence my project planning. Please click on the donation platforms above to learn more. Thank you, everyone, for any kind of support!*
 
-- [mfpiano](https://youtube.com/@mfpiano)
+- @devmarauda *(Discord: kongkong86)*
 - @svict4
+- [@mfpiano](https://youtube.com/@mfpiano)
 
 ### 💜 [Discord Server Boost](https://discord.gg/C4Z46fHKQ8)
 
-- @demiroo
-- @Saif-V
+- @Saif-V *(Discord: Gh0st)*
+- @demiroo *(Discord: demiroezkan)*
 
 ## 🖥️ Hire Me
 
@@ -476,7 +477,7 @@ pip freeze > requirements.txt
 
 🌐 <https://relivator.bleverse.com>
 
-<img src="/public/internal/screenshot-dark.png" width="600" alt="Screenshot showing the main page of the Relivator project">
+<img src="/public/screenshot-dark.png" width="600" alt="Screenshot showing the main page of the Relivator project">
 
 We've laid the groundwork—now it's time to dive in and accelerate development. And yeah, have fun! Think of Relivator and Reliverse as a sandbox! It's like Minecraft; with Relivator, you can build anything, as creativity knows no bounds! Explore all the new features of Next.js 13-15 and many other web technologies right here, right now—with Relivator.
 
@@ -1069,6 +1070,18 @@ Happy coding! Embark on the coding adventure, learn, iterate, and most important
 
 Check out [our other free Next.js 15 starter](https://github.com/blefnk/reliverse). This monorepo provides the tech used in the current starter and adds: Turborepo/Turbopack, Prisma, Valibot, Lucia, Clerk, and much more, as we experimentally attempt to combine all vital and widely-used tech. Think of it as: Reliverse (WordPress) + Relivator (WooCommerce) = 😍. So, start right now! Start today with Relivator!
 
+<p>
+  <span>
+    <a href="https://github.com/blefnk/relivator-nextjs-template/blob/main/public/reliverse.png">
+      <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="public/reliverse.png" />
+          <source media="(prefers-color-scheme: light)" srcset="public/reliverse.png" />
+          <img alt="Reliverse" src="/public/reliverse.png" width="35%" />
+      </picture>
+    </a>
+  </span>
+</p>
+
 > 🚀 **Ready to launch?** Start building your project with Relivator and Reliverse as soon as possible! With one-click deploy on Vercel:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fblefnk%2Frelivator-nextjs-template\&project-name=relivator\&repository-name=relivator)
@@ -1081,7 +1094,17 @@ git clone https://github.com/blefnk/relivator.git
 
 [2023-2024 © Nazar Kornienko / Nazar Kornienko / blefnk](https://github.com/blefnk) (<https://relivator.bleverse.com>)
 
-![Relivator OG Image](public/og.png)
+<p>
+  <span>
+    <a href="https://github.com/blefnk/relivator-nextjs-template/blob/main/public/og.png">
+      <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="public/og.png" />
+          <source media="(prefers-color-scheme: light)" srcset="public/og.png" />
+          <img alt="Relivator OG Image" src="/public/og.png" width="35%" />
+      </picture>
+    </a>
+  </span>
+</p>
 
 [![Join the Relivator Discord](https://discordapp.com/api/guilds/1075533942096150598/widget.png?style=banner2)][badge-discord]
 

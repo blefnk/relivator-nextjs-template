@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
+import { authProvider } from "reliverse.config";
+
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
 import { LogOutButtons } from "~/components/Account/LogoutButtons";
 import {
   PageHeader,
@@ -16,9 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default async function SignOutPage() {
-  const session = await authjs();
+  const session = authProvider === "clerk" ? await clerk() : await authjs();
 
-  if (!session) {
+  if (!session || session.email === "guest@email.com") {
     return redirect("/");
   }
 

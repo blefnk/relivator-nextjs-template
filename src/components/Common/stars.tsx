@@ -27,8 +27,20 @@ export async function GithubStarsBadge() {
         variant="outline"
       >
         <Github aria-label="GitHub" className="mr-2 size-3.5" />
-        Star Relivator v1.2.6 on GitHub ⭐{" "}
-        {repoGithubStarsNumber && `${repoGithubStarsNumber}/1,500`}
+        Star Relivator v1.3.0
+        <span
+          className={`
+            mr-1 hidden
+
+            md:flex
+          `}
+        >
+          -canary.0
+        </span>
+        <span className="ml-1">
+          on GitHub ⭐{" "}
+          {repoGithubStarsNumber && `${repoGithubStarsNumber}/1,500`}
+        </span>
       </Badge>
     </Link>
   );

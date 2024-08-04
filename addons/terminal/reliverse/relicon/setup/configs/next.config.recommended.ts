@@ -56,7 +56,7 @@ const nextConfig = {
       "date-fns",
     ],
     optimizeServerReact: true,
-    ppr: true,
+    ppr: false, // true - supported by next@canary only
     serverMinification: true,
   },
   images: {

@@ -29,7 +29,7 @@ export default function HomeHeroSection() {
       <Balancer
         as="p"
         className={`
-          max-w-5xl text-base leading-normal text-primary/90
+          max-w-5xl text-sm leading-normal text-primary/90
 
           sm:text-lg sm:leading-7
         `}

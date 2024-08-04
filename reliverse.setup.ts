@@ -1,7 +1,6 @@
 import { runReliverseSetup } from "@/terminal/reliverse/relicon/setup";
 import { config as reliverse } from "@reliverse/core";
 import consola from "consola";
-import nextConfig from "next.config.js";
 import pc from "picocolors";
 import {
   authProvider,
@@ -72,11 +71,12 @@ if (help || details) {
         "Unstable: try 'pnpm dev:i' & faster build with 'pnpm build:i': https://turbo.build/repo",
       );
 
-      if (nextConfig.experimental?.reactCompiler) {
-        consola.info(
-          "The reactCompiler is enabled in next.config.js (it uses webpack now, so builds take longer).",
-        );
-      }
+      // import nextConfig from "next.config.js";
+      // if (nextConfig.experimental?.reactCompiler) {
+      //   consola.info(
+      //     "The reactCompiler is enabled in next.config.js (it uses webpack now, so builds take longer).",
+      //   );
+      // }
 
       if (semver.gt(reliverse.framework.version, frameworkVersion)) {
         consola.warn(
