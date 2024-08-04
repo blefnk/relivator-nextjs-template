@@ -1,0 +1,101 @@
+import type { User } from "~/db/schema";
+
+import { currentUser as ClerkAuth, clerkClient } from "@clerk/nextjs/server";
+import consola from "consola";
+import NextAuth from "next-auth";
+import GitHub from "next-auth/providers/github";
+
+import { env } from "~/env";
+
+const fakeSession = async (): Promise<User> => ({
+  id: "fakeId",
+  name: "fakeName",
+  currentCartId: "fakeCurrentCartId",
+  email: "fake@example.com",
+  emailVerified: new Date("2024-07-10T00:00:00.000Z"),
+  hashedPassword: "fakeHashedPassword",
+  image: "https://relivator.bleverse.com/logo.png",
+  mode: "seller",
+  role: "user",
+  stripeCurrentPeriodEnd: "fakeStripeCurrentPeriodEnd",
+  stripeCustomerId: "fakeStripeCustomerId",
+  stripePriceId: "fakeStripePriceId",
+  stripeSubscriptionId: "fakeStripeSubscriptionId",
+  createdAt: "fakeCreatedAt",
+  updatedAt: "fakeUpdatedAt",
+});
+
+const clerkSession = async (): Promise<User> => {
+  try {
+    const user = await ClerkAuth();
+    const fake = await fakeSession();
+
+    if (!user) {
+      return fake;
+    }
+
+    const emailResponse = await clerkClient.emailAddresses.getEmailAddress(
+      user.primaryEmailAddressId || "",
+    );
+
+    return {
+      ...fake,
+      id: user.id,
+      name: `${user.firstName} ${user.lastName}`.trim(),
+      email: emailResponse.emailAddress,
+      image: user.imageUrl,
+    };
+  } catch (error) {
+    consola.error("Error fetching Clerk user:", error);
+
+    return await fakeSession();
+  }
+};
+
+const authjsSession = async (): Promise<User> => {
+  try {
+    const { auth } = NextAuth({ providers: [GitHub] });
+
+    const user = await auth();
+    const fake = await fakeSession();
+
+    if (!user || !user.user) {
+      return fake;
+    }
+
+    return {
+      ...fake,
+      id: user.user.id || "",
+      name: user.user.name || "",
+      email: user.user.email || "",
+      image: user.user.image || "",
+    };
+  } catch (error) {
+    consola.error("Error fetching Auth.js user:", error);
+
+    return await fakeSession();
+  }
+};
+
+export async function auth(): Promise<User> {
+  if (!env.DATABASE_URL) {
+    return await fakeSession();
+  }
+
+  if (!env.NEXT_PUBLIC_AUTH_PROVIDER) {
+    consola.warn(
+      "Please set or correct NEXT_PUBLIC_AUTH_PROVIDER in your .env file to enable user authentication with real data. The app is currently using fake data.",
+    );
+
+    return await fakeSession();
+  }
+
+  switch (env.NEXT_PUBLIC_AUTH_PROVIDER) {
+    case "authjs":
+      return await authjsSession();
+    case "clerk":
+      return await clerkSession();
+    default:
+      return await fakeSession();
+  }
+}

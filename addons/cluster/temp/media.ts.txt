@@ -1,0 +1,64 @@
+import type { FileRouter } from "uploadthing/next";
+
+import { createUploadthing } from "uploadthing/next";
+
+const noop = () => {};
+const f = createUploadthing();
+
+type ValidFileTypes = "audio" | "blob" | "image" | "video";
+
+type FileRouterInput =
+  | Record<
+      ValidFileTypes,
+      {
+        maxFileCount: number;
+        maxFileSize: "4MB";
+      }
+    >
+  | ValidFileTypes[];
+
+// Control the file sizes for all file types
+const DEFAULT_IMAGE_UPLOAD_PARAMS: FileRouterInput = {
+  audio: {
+    maxFileCount: 1,
+    maxFileSize: "4MB",
+  },
+  blob: {
+    maxFileCount: 1,
+    maxFileSize: "4MB",
+  },
+  image: {
+    maxFileCount: 3,
+    maxFileSize: "4MB",
+  },
+  video: {
+    maxFileCount: 1,
+    maxFileSize: "4MB",
+  },
+};
+
+// FileRouter for the app, can contain multiple FileRoutes
+// Set permissions and file types for this FileRoute
+// TODO: FIX MYSQL-PLANETSCALE-CLERK
+// .middleware(async () => {
+//     const user = await auth();
+//     // If throw, the user will not be able to upload
+//     if (!user?.id) throw new Error("Unauthorized");
+//     // Whatever is returned is accessible in onUploadComplete as `metadata`
+//     return { userId: user.id };
+// })
+export const ourFileRouter = {
+  // We can define here as many FileRoutes as we like, each with a unique routeSlug
+  // productImage: f({ image: { maxFileSize: "4MB", maxFileCount: 3 } }) // simplified
+  // todo: currently `accept` param has priority from src/components/file-dialog.ts file
+  imageUploader: f({
+    "image/jpeg": DEFAULT_IMAGE_UPLOAD_PARAMS.image,
+    "image/png": DEFAULT_IMAGE_UPLOAD_PARAMS.image,
+  })
+    .onUploadError(({ error }) => {
+      throw new Error(error.message);
+    })
+    .onUploadComplete(noop),
+} satisfies FileRouter;
+
+export type OurFileRouter = typeof ourFileRouter;

@@ -1,0 +1,31 @@
+// 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
+// Starting Relivator 1.3.0, it can be added by using pnpm reliverse ||
+// ================================================================= ||
+
+const wallabyConfig = (/** @type {any} */ _wallaby) => ({
+  // env: { type: "node", params: { runner: "--experimental-vm-modules" } },
+  // files: ["!src/tests/jest/**/*.test.ts", "package.json"],
+  autoDetect: true,
+  delays: {
+    run: 2000,
+  },
+
+  // tests: ["src/tests/jest/**/*.test.ts"],
+  maxConsoleMessagesPerTest: 10000,
+  maxTraceSteps: 2000000,
+  reportConsoleErrorAsError: true,
+  testFramework: "jest",
+  workers: {
+    restart: true,
+  },
+
+  // compilers: {
+  //   "**/*.ts?(x)": wallaby.compilers.typeScript({
+  //     module: "es2017",
+  //     target: "esnext",
+  //     jsx: "React",
+  //   }),
+  // },
+});
+
+module.exports = wallabyConfig;

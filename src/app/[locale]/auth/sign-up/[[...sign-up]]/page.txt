@@ -1,0 +1,59 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+
+import { getTranslations } from "next-intl/server";
+
+import { authProvider } from "~/auth";
+import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { AuthPagesContentServer } from "~/components/Account/AuthPagesContentServer";
+
+// export const metadata = seo({
+export const metadata: Metadata = {
+  description: "Register to have full website access",
+  title: "Sign Up",
+};
+
+export default async function SignUpPage() {
+  const t = await getTranslations();
+
+  // let NextAuthProviders: unknown;
+  const user = authProvider === "clerk" ? await clerk() : await authjs();
+
+  // NextAuthProviders = await getProviders();
+  // if (!NextAuthProviders) {
+  // consola.error(
+  // "❌ Specify at least one NextAuth.js provider or switch to Clerk (refer to .env.example)",
+  // );
+  // return redirect("/");
+  // }
+  if (user && user.id) {
+    return redirect("/auth");
+  }
+
+  return (
+    <AuthPagesContentServer
+      isRegPage
+      tAnd={t("auth.legal-and")}
+      tAuthLegal={t("auth.legal")}
+      tCallback={t("auth.error.default")}
+      tDefault={t("auth.error.unknown")}
+      tEmailCreateAccount={t("auth.error.default")}
+      tHaveAccount={t("RegisterForm.have-account")}
+      tNoAccount={t("LoginForm.no-account")}
+      tOAuthAccountNotLinked={t("auth.error.oauthNotLinked")}
+      tOAuthCallback={t("auth.error.default")}
+      tOAuthCreateAccount={t("auth.error.email")}
+      tOAuthSignin={t("auth.error.default")}
+      tPleaseWait={t("auth-provider.please-wait")}
+      tPrivacy={t("auth.legal-privacy")}
+      tSignin={t("auth.error.default")}
+      tSignInHere={t("RegisterForm.signin")}
+      tSignInLink={t("LoginForm.title")}
+      tSignUpHere={t("LoginForm.signup")}
+      tSignUpLink={t("RegisterForm.title")}
+      tTerms={t("auth.legal-terms")}
+      tUnknownError={t("auth.error.unknown-error")}
+    />
+  );
+}

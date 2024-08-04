@@ -1,0 +1,80 @@
+/* eslint-disable no-relative-import-paths/no-relative-import-paths */
+// import { createSecureHeaders } from "next-secure-headers";
+
+import corsPolicyString from "./csp.js";
+import { env } from "./env.js";
+
+export async function getHeaders() {
+  // Please note: it is still experimental, so
+  // NEXT_PUBLIC_CSP_XSS is "false" by default
+
+  if (env.NEXT_PUBLIC_CSP_XSS === "true") {
+    const headers = [];
+
+    // Prevent search engines from indexing the site if it is not live
+    // This is useful for staging environments before they are ready to go live
+    if (env.NEXT_PUBLIC_IS_LIVE === "false") {
+      // To allow robots to crawl the site, use the NEXT_PUBLIC_IS_LIVE env variable
+      // You may want to also use this variable to conditionally render any tracking scripts
+      headers.push({
+        // @see https://github.com/payloadcms/payload/blob/main/templates/ecommerce/next.config.js
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex",
+          },
+        ],
+        source: "/:path*",
+      });
+    }
+
+    // Set the Content-Security-Policy header as a security measure to prevent XSS attacks
+    // It works by explicitly whitelisting trusted sources of content for the website
+    headers.push({
+      // todo: make it more stable | currently too much things are allowed than needed
+      headers: [
+        {
+          // todo: looks like we need to specify some policies
+          // todo: here & some in images.contentSecurityPolicy
+          key: "Content-Security-Policy",
+          value: corsPolicyString,
+        },
+        {
+          key: "Access-Control-Allow-Credentials",
+          value: "true",
+        },
+        {
+          key: "Access-Control-Allow-Origin",
+          value: "*",
+        },
+        {
+          key: "Access-Control-Allow-Methods",
+          value: "GET,DELETE,PATCH,POST,PUT",
+        },
+        {
+          key: "Access-Control-Allow-Headers",
+          value:
+            // eslint-disable-next-line @stylistic/max-len
+            "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+        },
+      ],
+
+      // todo: @see src/core/cors/csp.js for more details | work in progress | not fully tested
+      // This will block all inline scripts and styles except for those that are allowed
+      source: "/(.*)",
+    });
+
+    // Note: to apply CSP changes while dev runtime,
+    //Cmd/Ctrl+S this file, to reload Next.js' server.
+    return headers;
+  } else {
+    return [
+      // default option: using next-secure-headers csp library
+      // @see https://github.com/jagaapple/next-secure-headers
+      {
+        // headers: createSecureHeaders(),
+        source: "/(.*)",
+      },
+    ];
+  }
+}

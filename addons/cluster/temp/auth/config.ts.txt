@@ -1,0 +1,55 @@
+import { DefaultSession, NextAuthConfig } from "next-auth";
+
+declare module "next-auth" {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions, @typescript-eslint/naming-convention
+  interface Session {
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      image?: string;
+    } & DefaultSession["user"];
+  }
+}
+
+export type Session = {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    image?: string;
+  } & DefaultSession["user"];
+};
+
+export const authConfig = {
+  callbacks: {
+    // @ts-expect-error TODO: fix
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth && auth.user;
+      const isOnBoards = nextUrl.pathname.startsWith("/boards");
+
+      if (isOnBoards) {
+        return isLoggedIn;
+      }
+
+      return true;
+    },
+    session: async ({ session, token }) => {
+      if (token && token.sub) {
+        session.id = token.sub;
+      }
+
+      return session;
+    },
+  },
+  experimental: {
+    enableWebAuthn: true,
+  },
+  pages: {
+    signIn: "/",
+  },
+  providers: [],
+  session: {
+    strategy: "jwt",
+  },
+} satisfies NextAuthConfig;

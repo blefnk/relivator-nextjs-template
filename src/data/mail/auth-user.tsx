@@ -1,17 +1,10 @@
 export type SignInEmailProps = {
-  existingUser?: boolean;
   emailAddress: string;
+  existingUser?: boolean;
   url: string;
 };
 
-export default function SignInEmail({
-  url,
-  emailAddress,
-  existingUser = false,
-}: SignInEmailProps) {
-  return (
-    <>
-      <div />
-    </>
-  );
+// export default function SignInEmail({ emailAddress, existingUser = false, url }: SignInEmailProps) {
+export default function SignInEmail() {
+  return <div>Sign In Email</div>;
 }

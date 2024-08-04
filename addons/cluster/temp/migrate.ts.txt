@@ -1,0 +1,88 @@
+// 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
+// use instead: pnpm db:migrate                                      ||
+// ================================================================= ||
+
+/**
+ * utils/db/migrate.ts
+ * ===================
+ *
+ * Migrates the database to the current version using 'pnpm db:migrate-old'.
+ * @see https://authjs.dev/getting-started/adapters/drizzle
+ *
+ * More details and inspirations:
+ * @see https://youtu.be/qCLV0Iaq9zU
+ * @see https://orm.drizzle.team/docs/sql-schema-declaration
+ * @see https://github.com/georgwittberger/next-app-router-template
+ * @see https://discord.com/channels/1043890932593987624/1151081762584285238
+ */
+
+import { databasePrefix, dbProvider } from "~/../drizzle.config";
+import { migrate as sqliteMigrate } from "drizzle-orm/better-sqlite3/migrator";
+import { migrate as mysqlMigrate } from "drizzle-orm/mysql2/migrator";
+import { migrate as postgresMigrate } from "drizzle-orm/postgres-js/migrator";
+
+import { db as mysqlDb } from "~/db/mysql";
+import { db as postgresDb } from "~/db/postgres";
+import { db as sqliteDb } from "~/db/sqlite";
+
+import "dotenv/config";
+
+const getMigrationsFolder = (provider: string): string => {
+  switch (provider) {
+    case "planetscale":
+    case "private-mysql":
+      return `drizzle/${databasePrefix}/mysql`;
+    case "railway":
+      if (dbProvider === "railway-mysql") {
+        return `drizzle/${databasePrefix}/mysql`;
+      } else if (dbProvider === "railway-pg") {
+        return `drizzle/${databasePrefix}/pgsql`;
+      } else {
+        throw new Error(`Unsupported railwayMode '${railwayMode}'. Check the drizzle.config.ts file.`);
+      }
+    case "vercel":
+    case "neon":
+    case "private-pg":
+      return `drizzle/${databasePrefix}/pgsql`;
+    default:
+      throw new Error(`Unsupported DB provider '${provider}'. Check the environment configuration.`);
+  }
+};
+
+const main = async () => {
+  try {
+    if (typeof dbProvider !== "string") {
+      throw new TypeError(String.raw`Environment variable 'NEXT_PUBLIC_DB_PROVIDER' is not set.\ Please refer to .env.example file for the instructions.`);
+    }
+
+    const migrationsFolder = getMigrationsFolder(dbProvider);
+    const start = Date.now();
+
+    if (dbProvider === "neon" || dbProvider === "vercel" || dbProvider === "private-pg" || dbProvider === "railway-pg") {
+      await postgresMigrate(postgresDb, {
+        migrationsFolder,
+      });
+    } else if (dbProvider === "private-mysql" || dbProvider === "railway-mysql") {
+      await mysqlMigrate(mysqlDb, {
+        migrationsFolder,
+      });
+    } else {
+      sqliteMigrate(sqliteDb, {
+        migrationsFolder,
+      });
+    }
+
+    const end = Date.now();
+
+    console.info("[⏳] Database migration script executed.");
+    console.info(`💡 Using '${migrationsFolder}' for migration as '${dbProvider}' is set.`);
+    console.info(` ✓ Database migration completed in ${end - start} ms.`);
+    console.info('💡 Use "pnpm db:studio" to check the current db.');
+  } catch (error) {
+    consola.error("❌ Database migration failed:", error);
+
+    process.exit(1);
+  }
+};
+
+main();

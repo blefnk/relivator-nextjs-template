@@ -1,0 +1,184 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+
+import { CartLineItems } from "~/components/Checkout/CartLineItems";
+import { Icons } from "~/components/Common/Icons";
+import { Badge } from "~/components/Primitives";
+import { Separator } from "~/components/Primitives";
+import {
+  Sheet,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "~/components/Primitives";
+import { Button } from "~/components/Primitives/ui/Button";
+import { buttonVariants } from "~/components/Primitives";
+import { getCartAction } from "@/server/reliverse/actions/cart";
+import { cn, formatPrice } from "~/utils";
+
+type CartItem = {
+  id: number;
+  storeId: number;
+  name: string;
+  category: "accessories" | "clothing" | "furniture" | "tech";
+  images?: { id: string; name: string; url: string }[] | null;
+  inventory: number;
+  price: string;
+  quantity: number;
+  storeName?: null | string;
+  subcategory?: string;
+};
+
+export default function CartSheet() {
+  const t = useTranslations();
+  const [cartLineItems, setCartLineItems] = useState<CartItem[]>([]);
+  const [itemCount, setItemCount] = useState(0);
+  const [cartTotal, setCartTotal] = useState(0);
+
+  useEffect(() => {
+    const fetchCartData = async () => {
+      try {
+        const cartItems = await getCartAction();
+
+        setCartLineItems(cartItems);
+
+        const itemCount = cartItems.reduce(
+          (total, item) => total + Number(item.quantity) || 0,
+          0,
+        );
+
+        const cartTotal = cartItems.reduce(
+          (total, item) => total + item.quantity * Number(item.price) || 0,
+          0,
+        );
+
+        setItemCount(itemCount);
+        setCartTotal(cartTotal);
+      } catch (error) {
+        setItemCount(0);
+        setCartTotal(0);
+      }
+    };
+
+    fetchCartData();
+  }, []);
+
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button
+          aria-label="Open cart"
+          className={`
+            relative
+
+            ${itemCount > 0 ? "border border-primary/40" : ""}
+          `}
+          size="icon"
+          variant="outline"
+        >
+          {itemCount > 0 && (
+            <Badge
+              className={`
+                absolute -right-2 -top-2 size-6 justify-center rounded-full
+                border-4 border-primary/20 p-2.5 text-sm text-primary/70
+              `}
+              variant="secondary"
+            >
+              {itemCount}
+            </Badge>
+          )}
+          <Icons.cart aria-hidden="true" className="size-4" />
+        </Button>
+      </SheetTrigger>
+      <SheetContent
+        className={`
+          flex w-full flex-col pr-0
+
+          sm:max-w-lg
+        `}
+      >
+        <SheetHeader className="space-y-2.5 pr-6">
+          <SheetTitle>
+            {t("checkout.cart")} {itemCount > 0 && `(${itemCount})`}
+          </SheetTitle>
+          <Separator />
+        </SheetHeader>
+        {itemCount > 0 ? (
+          <>
+            <CartLineItems className="flex-1" items={cartLineItems} />
+            <div className="space-y-4 pr-6">
+              <Separator />
+              <div className="space-y-1.5 text-sm">
+                <div className="flex">
+                  <span className="flex-1">{t("checkout.shipping")}</span>
+                  <span>{t("checkout.free")}</span>
+                </div>
+                <div className="flex">
+                  <span className="flex-1">{t("checkout.taxes")}</span>
+                  <span>{t("checkout.calculated")}</span>
+                </div>
+                <div className="flex">
+                  <span className="flex-1">{t("checkout.total")}</span>
+                  <span>{formatPrice(cartTotal.toFixed(2))}</span>
+                </div>
+              </div>
+              <SheetFooter>
+                <SheetTrigger>
+                  <Link
+                    aria-label={t("checkout.viewTheCart")}
+                    className={buttonVariants({
+                      className: "w-full",
+                      size: "sm",
+                    })}
+                    href="/cart"
+                  >
+                    {t("checkout.viewTheCart")}
+                  </Link>
+                </SheetTrigger>
+              </SheetFooter>
+            </div>
+          </>
+        ) : (
+          <div
+            className={`
+              flex h-full flex-col items-center justify-center space-y-1
+            `}
+          >
+            <Icons.cart
+              aria-hidden="true"
+              className="mb-4 size-16 text-muted-foreground"
+            />
+            <div
+              className={`
+              text-xl font-medium text-muted-foreground
+            `}
+            >
+              {t("checkout.cartIsEmpty")}
+            </div>
+            <SheetTrigger>
+              <Link
+                aria-label={t("checkout.continueShopping")}
+                className={cn(
+                  buttonVariants({
+                    className: "text-sm text-muted-foreground",
+                    size: "sm",
+                    variant: "link",
+                  }),
+                )}
+                href="/products"
+              >
+                {t("checkout.continueShopping")}
+              </Link>
+            </SheetTrigger>
+          </div>
+        )}
+      </SheetContent>
+    </Sheet>
+  );
+}

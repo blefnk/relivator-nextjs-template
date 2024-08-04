@@ -1,0 +1,152 @@
+/** @see https://github.com/aidenybai/million/blob/main/website/components/live.tsx */
+
+import { useEffect } from "react";
+
+import { useRouter } from "next/router";
+
+import { Cursor } from "~/components/Common/cursor";
+import {
+  RoomProvider,
+  useOthers,
+  useUpdateMyPresence,
+} from "~/config/liveblocks.config";
+
+const COLORS = [
+  "#E57373",
+  "#9575CD",
+  "#4FC3F7",
+  "#81C784",
+  "#FFF176",
+  "#FF8A65",
+  "#F06292",
+  "#7986CB",
+];
+
+function useLiveCursors( ) {
+  const updateMyPresence = useUpdateMyPresence( );
+
+  useEffect(( ) => {
+    const scroll = {
+      x: window.scrollX,
+      y: window.scrollY,
+    };
+
+    let lastPosition: { x: number; y: number } | null = null;
+
+    function transformPosition(cursor: { x: number; y: number }) {
+      return {
+        x: cursor.x / window.innerWidth,
+        y: cursor.y,
+      };
+    }
+
+    function onPointerMove(event: PointerEvent) {
+      // event.preventDefault();
+      const position = {
+        x: event.pageX,
+        y: event.pageY,
+      };
+
+      lastPosition = position;
+      updateMyPresence({
+        cursor: transformPosition(position),
+      });
+    }
+
+    function onPointerLeave( ) {
+      lastPosition = null;
+      updateMyPresence({
+        cursor: null,
+      });
+    }
+
+    function onDocumentScroll( ) {
+      if (lastPosition) {
+        const offsetX = window.scrollX - scroll.x;
+        const offsetY = window.scrollY - scroll.y;
+        const position = {
+          x: lastPosition.x + offsetX,
+          y: lastPosition.y + offsetY,
+        };
+
+        lastPosition = position;
+        updateMyPresence({
+          cursor: transformPosition(position),
+        });
+      }
+
+      scroll.x = window.scrollX;
+      scroll.y = window.scrollY;
+    }
+
+    document.addEventListener("scroll", onDocumentScroll);
+    document.addEventListener("pointermove", onPointerMove);
+    document.addEventListener("pointerleave", onPointerLeave);
+
+    return ( ) => {
+      document.removeEventListener("scroll", onDocumentScroll);
+      document.removeEventListener("pointermove", onPointerMove);
+      document.removeEventListener("pointerleave", onPointerLeave);
+    };
+  }, [updateMyPresence]);
+
+  const others = useOthers( );
+
+  const cursors: {
+    connectionId: number;
+    x: number;
+    y: number;
+  }[] = [];
+
+  for (const { connectionId, presence } of others) {
+    if (presence.cursor) {
+      cursors.push({
+        connectionId,
+        x: presence.cursor.x * window.innerWidth,
+        y: presence.cursor.y,
+      });
+    }
+  }
+
+  return cursors;
+}
+
+export function Cursors( ) {
+  const cursors = useLiveCursors( );
+
+  return (
+    <>
+      {cursors.map(({ connectionId, x, y }) =>
+        (
+          <Cursor
+            color={COLORS[connectionId % COLORS.length] || ""}
+            key={connectionId}
+            x={x}
+            y={y}
+          />
+        ))}
+    </>
+  );
+}
+
+export function getCount( ) {
+  const others = useOthers( );
+
+  return others.length;
+}
+
+export function LiveProvider({ children }: { children: ReactNode }) {
+  const { pathname } = useRouter( );
+
+  return (
+    <RoomProvider
+      id={`million-${pathname}`}
+      initialPresence={{
+        cursor: null,
+      }}
+    >
+      {children}
+      <Cursors />
+    </RoomProvider>
+  );
+}

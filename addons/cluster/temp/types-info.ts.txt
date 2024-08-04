@@ -1,0 +1,61 @@
+import { readdirSync, statSync } from "fs";
+
+import path from "pathe";
+
+// This script sets up the basic structure but leaves the implementation of analyzeTypeScriptFile function open.
+// This function should analyze the AST of each TypeScript file to extract type information.
+// This is a complex task because we need to understand the structure of the TypeScript AST and
+// identify how different types (interfaces, types, classes, etc.) are represented in it.
+type TypeInfo = {
+  fileName: string;
+  location: string;
+  typeName: string;
+};
+
+// const csvWriter = createCsvWriter.createArrayCsvWriter({
+//   header: ["File Name", "Type Name", "Location"],
+//   path: csvFilePath,
+// });
+function findTSFiles(directory: string, files_: string[] = []) {
+  for (const file of readdirSync(directory)) {
+    const filePath = path.join(directory, file);
+
+    if (statSync(filePath).isDirectory()) {
+      findTSFiles(filePath, files_);
+    } else if (filePath.endsWith(".ts") || filePath.endsWith(".tsx")) {
+      files_.push(filePath);
+    }
+  }
+
+  return files_;
+}
+
+function analyzeTypeScriptFile(): TypeInfo[] {
+  // const ast = parse(content, {
+  //   loc: true,
+  //   // Other relevant options as needed
+  // });
+  // TODO: Analyze AST and extract type information
+  // This part requires in-depth knowledge of TypeScript AST
+  return [];
+}
+
+// Return array of TypeInfo
+function main() {
+  const allTypeInfo: TypeInfo[] = [];
+
+  const typesInFile = analyzeTypeScriptFile();
+
+  allTypeInfo.push(...typesInFile);
+}
+
+// csvWriter
+//   .writeRecords(
+//     allTypeInfo.map((typeInfo) => [
+//       typeInfo.fileName,
+//       typeInfo.typeName,
+//       typeInfo.location,
+//     ]),
+//   )
+//   .then(() => console.info("CSV file was written successfully"));
+main();

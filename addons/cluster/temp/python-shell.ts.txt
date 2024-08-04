@@ -1,0 +1,77 @@
+import type { Options } from "python-shell";
+
+import { defineTask } from "@/shared/utils";
+import consola from "consola";
+import { PythonShell } from "python-shell";
+
+import { env } from "~/env";
+
+export function validatePythonInstallation() {
+  if (env.PYTHON_INSTALLED === "false") {
+    consola.error(
+      "[@reliverse/addons-relimter/python] Set PYTHON_INSTALLED to 'true' in .env file to run 'ruff' (Python) addon.",
+    );
+    process.exit(1);
+  }
+}
+
+// @see https://github.com/extrabacon/python-shell#readme
+function echoStringPython(script: string) {
+  const options: Options = {
+    mode: "text",
+    pythonOptions: ["-u"],
+  };
+
+  PythonShell.runString(script, options).then((messages) => {
+    if (messages.length === 0) {
+      consola.error("no messages");
+    } else {
+      for (const message of messages) {
+        // eslint-disable-next-line no-restricted-syntax
+        consola.log(message);
+      }
+    }
+  });
+}
+
+// @see https://github.com/extrabacon/python-shell#readme
+export function runScriptPython(
+  filename: string,
+  successMessage: string,
+  pathVenv: string,
+  pathTasks: string,
+  scriptIndex: number,
+) {
+  const options: Options = {
+    mode: "text",
+    pythonOptions: ["-u"],
+    pythonPath: pathVenv,
+    scriptPath: pathTasks,
+  };
+
+  // consola.warn("pathVenv: %s\n", pathVenv);
+  // consola.warn("pathTasks: %s\n", pathTasks);
+  // consola.warn("options: %j", options);
+  const task = defineTask(
+    "🐍",
+    `@reliverse/addons-relimter/ruff/tasks/${filename}`,
+    "selected script fully processed your codebase",
+  );
+
+  PythonShell.run(filename, options).then((messages) => {
+    consola.info(task);
+
+    if (messages.length === 0) {
+      consola.error("no messages");
+    } else {
+      for (const message of messages) {
+        consola.info(message);
+      }
+    }
+
+    consola.success(
+      `${successMessage}, --${scriptIndex} flag, successfully executed!`,
+    );
+    echoStringPython("print(' ')");
+  });
+}

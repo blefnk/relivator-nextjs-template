@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Academy Questions Schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "description": "The unique identifier for the question",
+        "type": "string"
+      },
+      "question": {
+        "description": "The text of the question",
+        "type": "string"
+      },
+      "options": {
+        "description": "List of answer options",
+        "type": "array",
+        "items": {
+          "description": "A possible answer option for the question",
+          "type": "string"
+        },
+        "minItems": 2
+      },
+      "answer": {
+        "description": "The hashed or encrypted answer to the question",
+        "type": "string"
+      },
+      "difficulty": {
+        "description": "The difficulty level of the question",
+        "type": "string",
+        "enum": ["easy", "hard", "medium"]
+      },
+      "hint": {
+        "description": "Optional hint for the question",
+        "type": "string",
+        "nullable": true
+      },
+      "points": {
+        "description": "The number of points the question is worth",
+        "type": "number"
+      }
+    },
+    "required": ["id", "question", "options", "answer", "difficulty", "points"]
+  }
+}

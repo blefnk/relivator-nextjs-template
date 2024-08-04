@@ -1,0 +1,26 @@
+// @see https://nextjs.org/docs/app/building-the-application/optimizing/instrumentation
+
+export async function register() {
+  // @see https://baselime.io/docs/sending-data/languages/next.js
+  // eslint-disable-next-line no-restricted-props
+  if (process.env.NEXT_RUNTIME === "nodejs") {
+    const { BaselimeSDK, BetterHttpInstrumentation, VercelPlugin } = await import("@baselime/node-opentelemetry");
+
+    const sdk = new BaselimeSDK({
+      instrumentations: [
+        new BetterHttpInstrumentation({
+          plugins: [
+            // We need to add the Vercel plugin to enable correlation
+            // between logs and traces for projects deployed on Vercel
+            new VercelPlugin(),
+          ],
+        }),
+      ],
+
+      serverless: true,
+      service: "my-service",
+    });
+
+    sdk.start();
+  }
+}

@@ -1,0 +1,311 @@
+// [app.ts] Main App Configuration
+// TODO: Restructure this file in Relivator 1.3.0.
+// ===============================
+import type { Icons } from "~/components/Common/Icons";
+import type { MainMenuItem } from "~/types";
+
+import { productCategories } from "~/config/products";
+import { slugify } from "~/utils";
+
+export const starterIsFree: boolean | undefined = true;
+
+type FooterItem = {
+  title: string;
+  items: {
+    title: string;
+    external?: boolean;
+    href: string;
+  }[];
+};
+
+// TODO: parse this from clerk's dashboard
+// TODO: instead of hardcoding it here
+export const oauthProvidersClerk = [
+  {
+    name: "Google",
+    icon: "view",
+    strategy: "oauth_google",
+  },
+  {
+    name: "Discord",
+    icon: "discord",
+    strategy: "oauth_discord",
+  },
+] satisfies {
+  name: string;
+  icon: keyof typeof Icons;
+  strategy:
+    | "oauth_discord"
+    | "oauth_facebook"
+    | "oauth_github"
+    | "oauth_google"
+    | "oauth_microsoft";
+}[];
+
+const appts = {
+  name: "Relivator",
+  debug: false,
+  version: "1.2.6",
+};
+
+export default appts;
+
+const links = {
+  discord: "https://discord.gg/Pb8uKbwpsJ",
+  facebook: "https://facebook.com/groups/bleverse",
+  github: "https://github.com/blefnk/relivator-nextjs-template",
+  githubAccount: "https://github.com/blefnk",
+  twitter: "https://x.com/blefnk",
+};
+
+export const contactConfig = {
+  email: "blefnk@gmail.com",
+};
+
+const REPOSITORY_OWNER = "blefnk";
+
+export const settings = {
+  themeToggleEnabled: true,
+};
+
+export const siteConfig = {
+  description: // eslint-disable-next-line @stylistic/max-len
+    "Build More Efficient, Engaging, and Profitable Online Stores: Relivator Empowers your eCommerce with the Power of Next.js",
+  name: "Relivator",
+  author: "Nazar Kornienko",
+  company: {
+    name: "Relivator",
+    email: "blefnk@gmail.com",
+    link: "https://github.com/blefnk/relivator-nextjs-template",
+    twitter: "@blefnk",
+  },
+  footerNav: [
+    // {
+    //   title: "Bleverse",
+    //   items: config.internal.map((item) => ({
+    //     title: item.title,
+    //     external: true,
+    //     href: item.link,
+    //   })),
+    // },
+    {
+      title: "Help",
+      items: [
+        {
+          title: "Contact",
+          external: false,
+          href: "/contact",
+        },
+        {
+          title: "Privacy",
+          external: false,
+          href: "/privacy",
+        },
+        {
+          title: "Terms",
+          external: false,
+          href: "/terms",
+        },
+        {
+          title: "About",
+          external: false,
+          href: "/about",
+        },
+      ],
+    },
+    {
+      title: "Social",
+      items: [
+        {
+          title: "Github",
+          external: true,
+          href: links.githubAccount,
+        },
+        {
+          title: "Discord",
+          external: true,
+          href: links.discord,
+        },
+        {
+          title: "Twitter",
+          external: true,
+          href: links.twitter,
+        },
+        {
+          title: "Facebook",
+          external: true,
+          href: links.facebook,
+        },
+      ],
+    },
+    {
+      title: "Github",
+      items: [
+        {
+          title: "@reliverse",
+          external: true,
+          href: "https://github.com/orgs/reliverse/repositories",
+        },
+        {
+          title: "@blefnk",
+          external: true,
+          href: "https://github.com/blefnk",
+        },
+        {
+          title: "Relivator",
+          external: true,
+          href: "https://github.com/blefnk/relivator-nextjs-template",
+        },
+        {
+          title: "Reliverse",
+          external: true,
+          href: "https://github.com/blefnk/reliverse-website-builder",
+        },
+      ],
+    },
+    {
+      title: "Support",
+      items: [
+        {
+          title: "GitHub Sponsors",
+          external: true,
+          href: "https://github.com/sponsors/blefnk",
+        },
+        {
+          title: "Buy Me a Coffee",
+          external: true,
+          href: "https://buymeacoffee.com/blefnk",
+        },
+        {
+          title: "Patreon",
+          external: true,
+          href: "https://patreon.com/blefnk",
+        },
+        {
+          title: "PayPal",
+          external: true,
+          href: "https://paypal.me/blefony",
+        },
+      ],
+    },
+  ] satisfies FooterItem[],
+  handles: {
+    twitter: "@blefnk",
+  },
+  keywords: [
+    "App Router",
+    "Blefonix",
+    "Bleverse",
+    "Drizzle Orm",
+    "Landing Page",
+    "Next.js 15",
+    "Nextjs",
+    "Open Source",
+    "Parallel Routes",
+    "PostgreSQL",
+    "Radix Ui",
+    "React",
+    "Relivator",
+    "Server Actions",
+    "Server Components",
+    "shadcn/ui",
+    "Starter",
+    "Stripe",
+    "T3 Stack",
+    "Tailwind Css",
+    "Template",
+    "Tools",
+    "Utils",
+  ],
+  links,
+  mainNav: [
+    {
+      title: "Catalogue",
+      href: "/",
+      items: [
+        {
+          description: "All the products we have to offer.",
+          title: "Products",
+          href: "/products",
+          items: [],
+        },
+        {
+          description: "Build the own custom clothes.",
+          title: "Build a Look",
+          href: "/custom/clothing",
+          items: [],
+        },
+        {
+          description: "Read our latest blog posts.",
+          title: "Blog",
+          href: "/blog",
+          items: [],
+        },
+      ],
+    },
+    ...productCategories.map((category) => ({
+      title: category.title,
+      href: `/categories/${slugify(category.title)}`,
+      items: [
+        {
+          description: `All ${category.title}.`,
+          title: "All",
+          href: `/categories/${slugify(category.title)}`,
+          items: [],
+        },
+        ...category.subcategories.map((subcategory) => ({
+          description: subcategory.description,
+          title: subcategory.title,
+          href: `/categories/${slugify(category.title)}/${subcategory.slug}`,
+          items: [],
+        })),
+      ],
+    })),
+  ] satisfies MainMenuItem[],
+  shortName: "Relivator",
+  url: {
+    author: REPOSITORY_OWNER,
+  },
+  version: "1.2.6",
+};
+
+export const companyName = siteConfig.company.name;
+
+export const siteName = siteConfig.name;
+
+// ==============================================
+// DEPRECATED AND WILL BE REMOVED IN 1.3.0
+// ==============================================
+// const emailAddress = config.social.email;
+// export const emailWithoutMailto = emailAddress.replace(/^mailto:/i, "");
+// const REPOSITORY_NAME = "relivator";
+// const REPOSITORY_URL = config.framework.repo;
+// export const DISCORD_URL = "https://discord.gg/Pb8uKbwpsJ";
+// export const BASE_URL =
+//   process.env.NODE_ENV === "production" ? getBaseUrl : "http://localhost:3000";
+// export const BRAND_NAME = "Relivator";
+// export const BRAND_DESCRIPTION =
+//   "Next.js 15 free store and dashboard template.
+// It helps you build great eCommerce and SaaS apps faster than ever. Get it!";
+// export const OWNER_ROLE = "owner";
+// export const ADMIN_ROLE = "admin";
+// export const MEMBER_ROLE = "member";
+// export const TRIAL_LENGTH_IN_DAYS = 7;
+// export const ROLES = [OWNER_ROLE, ADMIN_ROLE, MEMBER_ROLE] as const;
+// const appts = {
+// name: "Relivator",
+// debug: false,
+// version: "1.2.6",
+// social: networks({
+//   youtube: "@bleverse_com",
+//   discord: "Pb8uKbwpsJ",
+//   facebook: "groups/bleverse",
+//   twitter: "blefnk",
+//   github: "blefnk",
+// }),
+// };
+// export const DATABASE_URL =
+//   env.DATABASE_URL ||
+//   process.env.DATABASE_URL ||
+//   "username:password@hostname";
+// export const debugAfterLogs = process.env.NODE_ENV === "development";

@@ -1,28 +1,24 @@
-// This is the RootLayout component: A wrapper for the app.
-// Navigate to "app/[locale]/layout.tsx" for the main layout file.
+import type { ReactNode } from "react";
 
-type RootLayoutProperties = { children: React.ReactNode };
+import { defaultLocale } from "~/navigation";
 
-export default function RootLayout({ children }: RootLayoutProperties) {
-  return children;
+// This is the root layout component that wraps the entire application
+// Please navigate to src/app/layout.tsx to see inner main app layout
+// Displays ./page.tsx
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: ReactNode;
+}>) {
+  if (defaultLocale) {
+    return children;
+  }
+
+  return (
+    <html lang="en">
+      <body>
+        <main>{children}</main>
+      </body>
+    </html>
+  );
 }
-
-/**
- *
- * 🛠️ Current "component" primarily passes its children through. However, its existence
- * resolves an issue in Next.js where link clicks that change the locale might
- * otherwise be disregarded.
- *
- * 📚 Reference:
- * - Next.js Documentation: Pages and Layouts:
- *   @see https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts
- *
- * 💡 Good to Know: `type` vs. `interface` in TypeScript
- *
- * - `type`: Preferred for simpler, local type definitions, or when union/intersection types are needed.
- * - `interface`: Ideal for declaration merging or when creating a type that will be extended.
- *
- * 📚 Reference:
- * - Understanding the difference between `type` and `interface`:
- *   @see https://levelup.gitconnected.com/typescript-what-is-the-difference-between-type-and-interface-9085b88ee531
- */

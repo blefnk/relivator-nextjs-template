@@ -1,0 +1,228 @@
+/* eslint-disable complexity */
+import type { User } from "@clerk/nextjs/server";
+import type { Session } from "next-auth";
+
+import { currentUser } from "@clerk/nextjs/server";
+
+import { auth } from "~/auth";
+import { revalidateUser } from "~/core/server/populate-user-auth";
+import { env } from "~/env";
+
+type SellerProps = {
+  id: string;
+  name?: string;
+  slug?: string;
+  domains?: {
+    slug: string;
+  }[];
+  logo?: string;
+  users?: {
+    role: "admin" | "buyer" | "seller";
+  }[];
+  createdAt?: Date;
+};
+
+// Temporary wrapper for `revalidateUser`
+// `revalidateUser` function handles user authentication and session validation.
+// Tasks: verify user sessions, revalidate user data, delegate authentication.
+// logic to provider-specific functions based on the configured authentication provider.
+// It ensures user data consistency across the application by handling cases where
+// data might be absent or outdated due to database updates.
+export async function getDeprecatedServerAuthSession() {
+  // TODO: FIX
+  // const user = await revalidateUser();
+  // return user;
+  const authProvider = env.NEXT_PUBLIC_AUTH_PROVIDER || "authjs";
+
+  if (authProvider === "authjs") {
+    const session = await auth();
+
+    return session;
+  }
+
+  if (authProvider === "clerk") {
+    // const session = await clerkClient.users.getUser(userId);
+    // return session;
+    return currentUser();
+  }
+
+  throw new Error(
+    "❌ [getDeprecatedServerAuthSession()] Allowed values for 'NEXT_PUBLIC_AUTH_PROVIDER' are 'authjs' and 'clerk'",
+  );
+}
+
+// eslint-disable-next-line sonar/function-name
+export async function сurrentUser() {
+  // const session = await auth();
+  // return session?.user;
+  return await revalidateUser();
+}
+
+// export const getUserById = async (userId: string) => {
+// const user = await db
+// .select()
+// .from(users)
+// .where(eq(users.id, userId))
+// .then((res) => res[0] || null);
+// return user;
+// };
+// export function getUserEmail(user: User | null) {
+// const email =
+// user?.emailAddresses?.find((e) => e.id === user.primaryEmailAddressId)
+// ?.emailAddress || "";
+// return email;
+// }
+type UserDataFields = {
+  email?: string;
+  image?: string;
+  initials?: string;
+  username?: string;
+};
+
+type UserDataOptions = {
+  [K in keyof UserDataFields]?: boolean;
+};
+
+export async function getUserData(
+  user: User | null,
+  dataTypes: UserDataOptions = {
+    email: true,
+    image: true,
+    initials: true,
+    username: true,
+  },
+): Promise<UserDataFields> {
+  const res: UserDataFields = {
+    //
+  };
+
+  const authProvider = env.NEXT_PUBLIC_AUTH_PROVIDER || "authjs";
+
+  if (authProvider === "clerk") {
+    if (dataTypes.email) {
+      res.email =
+        (user &&
+          user.emailAddresses &&
+          user.emailAddresses.find(
+            (event_: {
+              id: unknown;
+            }) => event_.id === user.primaryEmailAddressId,
+          ) && // @ts-expect-error TODO: fix
+          user.emailAddresses.find(
+            (event_: {
+              id: unknown;
+            }) => event_.id === user.primaryEmailAddressId,
+          ).emailAddress) ||
+        "";
+    }
+
+    if (dataTypes.initials) {
+      // eslint-disable-next-line @stylistic/max-len
+      res.initials = `${(user && user.firstName && user.firstName.charAt(0)) || ""} ${(user && user.lastName && user.lastName.charAt(0)) || ""}`;
+    }
+
+    if (dataTypes.username) {
+      res.username = `${(user && user.firstName) || ""} ${(user && user.lastName) || ""}`;
+    }
+
+    if (dataTypes.image) {
+      res.image = (user && user.imageUrl) || "";
+    }
+  } else if (authProvider === "authjs") {
+    const session = await auth();
+
+    if (dataTypes.email) {
+      res.email = (session.email) || "";
+    }
+
+    if (dataTypes.username) {
+      res.username = String(
+        (session.name) || "",
+      );
+    }
+
+    if (dataTypes.initials) {
+      res.initials = String(
+        (session &&
+          session &&
+          session.name &&
+          session.name.charAt(0)) ||
+          "",
+      );
+    }
+
+    if (dataTypes.image) {
+      res.image = (session.image) || "";
+    }
+  } else {
+    throw new Error("❌ [users.ts] Invalid auth provider.");
+  }
+
+  return res;
+}
+
+function getSearchParameters(url: string) {
+  const parameters: Record<string, string> = {
+    //
+  };
+
+  for (const [key, value] of new URL(url).searchParams.entries()) {
+    parameters[key] = value;
+  }
+
+  return parameters;
+}
+
+type WithAuthHandler = ({
+  domain,
+  headers,
+  params,
+  req,
+  searchParams,
+  seller,
+  session,
+}: {
+  domain?: string;
+  headers?: Record<string, string>;
+  params?: Record<string, string>;
+  req?: Request;
+  searchParams?: Record<string, string>;
+  seller?: SellerProps;
+  session?: Session | undefined;
+}) => Promise<Response>;
+
+// This file is used to wrap API routes with auth.
+// TODO: Not finished yet and not used anywhere.
+// @see https://github.com/steven-tey/dub/blob/main/apps/web/lib/auth/index.ts
+export const withAuth =
+  (handler: WithAuthHandler) =>
+  (
+    request: Request,
+    {
+      params,
+    }: {
+      params: Record<string, string> | undefined;
+    },
+  ) => {
+    const searchParameters = getSearchParameters(request.url);
+
+    // const { domain, linkId, slug } =
+    // params ||
+    // {
+    //
+    // };
+    let session: Session | undefined;
+    const seller: SellerProps | undefined = undefined;
+
+    return handler({
+      params:
+        params ||
+        {
+          //
+        },
+      req: request,
+      searchParams: searchParameters,
+      seller,
+      session,
+    });
+  };

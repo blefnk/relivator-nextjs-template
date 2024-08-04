@@ -1,0 +1,123 @@
+[
+  {
+    "id": "unique-id-1",
+    "answer": "Bill Gates",
+    "difficulty": "easy",
+    "options": ["Bill Gates", "Steve Jobs", "Larry Page", "Mark Zuckerberg"],
+    "points": 10,
+    "question": "Who founded the company that develops the Windows OS?"
+  },
+  {
+    "id": "unique-id-2",
+    "answer": "Linus Torvalds",
+    "difficulty": "medium",
+    "options": [
+      "Linus Torvalds",
+      "Richard Stallman",
+      "Tim Berners-Lee",
+      "Jeff Bezos"
+    ],
+    "points": 20,
+    "question": "Who is the creator of the Linux operating system?"
+  },
+  {
+    "id": "unique-id-3",
+    "answer": "Elon Musk",
+    "difficulty": "hard",
+    "options": ["Elon Musk", "Bill Gates", "Jeff Bezos", "Mark Zuckerberg"],
+    "points": 30,
+    "question": "Who is the CEO of SpaceX and Tesla?"
+  },
+  {
+    "id": "unique-id-4",
+    "answer": "Albert Einstein",
+    "difficulty": "hard",
+    "options": [
+      "Albert Einstein",
+      "Isaac Newton",
+      "Niels Bohr",
+      "Galileo Galilei"
+    ],
+    "points": 30,
+    "question": "Who developed the theory of relativity?"
+  },
+  {
+    "id": "unique-id-5",
+    "answer": "Leonardo da Vinci",
+    "difficulty": "medium",
+    "options": ["Leonardo da Vinci", "Michelangelo", "Raphael", "Donatello"],
+    "points": 20,
+    "question": "Who painted the Mona Lisa?"
+  },
+  {
+    "id": "unique-id-6",
+    "answer": "Mount Everest",
+    "difficulty": "hard",
+    "options": ["Mount Everest", "K2", "Kangchenjunga", "Lhotse", "Hoverla"],
+    "points": 30,
+    "question": "What is the highest mountain in the world?"
+  },
+  {
+    "id": "unique-id-7",
+    "answer": "Pacific Ocean",
+    "difficulty": "easy",
+    "options": [
+      "Pacific Ocean",
+      "Atlantic Ocean",
+      "Indian Ocean",
+      "Arctic Ocean"
+    ],
+    "points": 10,
+    "question": "Which is the largest ocean on Earth?"
+  },
+  {
+    "id": "unique-id-8",
+    "answer": "George Washington",
+    "difficulty": "medium",
+    "options": [
+      "George Washington",
+      "Thomas Jefferson",
+      "John Adams",
+      "James Madison"
+    ],
+    "points": 20,
+    "question": "Who was the first President of the United States?"
+  },
+  {
+    "id": "unique-id-9",
+    "answer": "J.K. Rowling",
+    "difficulty": "hard",
+    "options": [
+      "J.K. Rowling",
+      "J.R.R. Tolkien",
+      "George R.R. Martin",
+      "C.S. Lewis"
+    ],
+    "points": 30,
+    "question": "Who is the author of the Harry Potter series?"
+  },
+  {
+    "id": "unique-id-10",
+    "answer": "Nile",
+    "difficulty": "easy",
+    "options": ["Nile", "Amazon", "Yangtze", "Mississippi"],
+    "points": 10,
+    "question": "What is the longest river in the world?"
+  },
+  {
+    "id": "unique-id-11",
+    "answer": "Paris",
+    "difficulty": "medium",
+    "options": ["Paris", "Rome", "London", "Berlin"],
+    "points": 20,
+    "question": "What is the capital city of France?"
+  },
+  {
+    "id": "unique-id-12",
+    "answer": "Mercury",
+    "difficulty": "hard",
+    "options": ["Mercury", "Venus", "Earth", "Mars"],
+    "points": 30,
+    "question": "Which is the smallest planet in our solar system?"
+  }
+]

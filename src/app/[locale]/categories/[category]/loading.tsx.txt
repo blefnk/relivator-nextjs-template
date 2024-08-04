@@ -1,0 +1,5 @@
+import ProductsLoading from "~/app/[locale]/products-old/loading";
+
+export default function CategoryLoading() {
+  return <ProductsLoading />;
+}

@@ -1,0 +1,125 @@
+import { Locale } from "~/navigation";
+import { MiddlewareConfig, NextRequest } from "next/server";
+
+import { NextResponse } from "next/server";
+import createIntlMiddleware from "next-intl/middleware";
+
+import { au authConfig } from "~/auth/config";
+import { env } from "~/env";
+import { defaultLocale, localePrefix, locales } from "~/navigation";
+
+export const runtime = "nodejs";
+
+// Next.js currently only supports the "edge" runtime in middleware, which is not
+// compatible with `bcrypt` lib, so we need to initialise auth without providers
+// const { auth: authMiddleware } = NextAuth(authConfig);
+
+// const i18nMiddleware = createI18nMiddleware({
+//   defaultLocale,
+//   localePrefix,
+//   locales,
+// });
+
+const redirectPath = (request: NextRequest, newPath: string) => {
+  const url = request.nextUrl.clone();
+
+  url.pathname = newPath;
+
+  return NextResponse.redirect(url);
+};
+
+const cspMiddleware = (request: NextRequest, response: NextResponse) => {
+  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+  const cspHeader = `
+    default-src 'self';
+    style-src 'self' 'unsafe-inline' ${env.NEXT_PUBLIC_APP_URL} data:;
+    img-src 'self' 'https://*.googleusercontent.com';
+    font-src 'self' cdnjs.cloudflare.com ${env.NEXT_PUBLIC_APP_URL} data:;
+    script-src 'self' ${env.NODE_ENV !== "production" ? "'unsafe-eval'" : ""} 'nonce-${nonce}' 'strict-dynamic' cdn.jsdelivr.net;
+    script-src-elem 'self' 'nonce-${nonce}';
+    object-src 'none';
+    connect-src 'self' https://google-analytics.com;
+    base-uri 'self';
+    form-action 'self';
+    frame-ancestors 'none';
+    manifest-src 'self';
+`;
+  // Replace newline characters and spaces
+  const contentSecurityPolicyHeaderValue = cspHeader.replace(/\s{2,}/g, " ").trim();
+
+  request.headers.set("x-nonce", nonce);
+  request.headers.set("Content-Security-Policy", contentSecurityPolicyHeaderValue);
+
+  response.headers.set("x-nonce", nonce);
+  response.headers.set("Content-Security-Policy", contentSecurityPolicyHeaderValue);
+
+  return response;
+};
+
+const i18nMiddleware = async (request: NextRequest, path: string, defaultLocale: string) => {
+  const handleI18nRouting = await createIntlMiddleware(locales as any);
+  const response = handleI18nRouting(request);
+
+  // return cspMiddleware(request, response);
+  return response;
+};
+
+/* const withAuthApiMiddleware = async (request: NextRequest, path: string, defaultLocale: string) => {
+  const session = await auth();
+  const response = NextResponse.next();
+
+  // private page
+  if (!session && /\/protected/.test(path)) {
+    return NextResponse.json({ message: "Login required." }, { status: 401 });
+  }
+
+  return response;
+}; */
+
+const withAuthMiddleware = async (request: NextRequest, path: string, defaultLocale: string) => {
+  const session = await auth();
+
+  if (path.endsWith("/auth/sign-in")) {
+    // after login
+    if (session) {
+      return redirectPath(request, "/contact");
+    }
+
+    // before login
+    return i18nMiddleware(request, path, defaultLocale);
+  }
+
+  // private page
+  if (!session) {
+    return redirectPath(request, "/login");
+  }
+
+  return i18nMiddleware(request, path, defaultLocale);
+};
+
+export async function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
+  const defaultLocale = request.headers.get("x-the-custom-locale") || ("en-us" as Locale);
+
+  // if (path.startsWith("/api")) {
+  //   return withAuthApiMiddleware(request, path, defaultLocale);
+  // }
+
+  // if (/\/protected/.test(path) || path.endsWith("/login")) {
+  //   return withAuthMiddleware(request, path, defaultLocale);
+  // }
+
+  return i18nMiddleware(request, path, defaultLocale);
+}
+
+// export default authMiddleware((request) => {
+// export default function middleware(request: NextRequest) {
+// if (request.nextUrl.pathname.startsWith("/api/")) {
+// Do not add locale prefixes to api routes, in case they
+// are included in the middleware `matcher` configuration
+// return;
+// }
+
+// return i18nMiddleware(request);
+// }
+

@@ -1,0 +1,9 @@
+import ProtectedServerActionPageClient from "~/app/[locale]/admin/playground/features/protected/server-action/client";
+
+export default function ProtectedServerActionPage() {
+  return (
+    <div>
+      <ProtectedServerActionPageClient />
+    </div>
+  );
+}

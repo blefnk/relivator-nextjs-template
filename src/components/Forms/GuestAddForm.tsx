@@ -1,0 +1,67 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+
+import { Button } from "@/browser/reliverse/ui/Button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/browser/reliverse/ui/Form";
+import { Input } from "@/browser/reliverse/ui/Input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { setCookie } from "cookies-next";
+import * as z from "zod";
+
+import { useGuestEmailSubmit } from "~/components/Forms/Context/GuestAddFormContext";
+
+const guestEmailSchema = z.object({
+  email: z.string().min(1).email({
+    message: "Invalid email address",
+  }),
+});
+
+export default function AddToCartGuestForm() {
+  const { onEmailSubmit } = useGuestEmailSubmit();
+
+  const form = useForm<z.infer<typeof guestEmailSchema>>({
+    defaultValues: {
+      email: "",
+    },
+    resolver: zodResolver(guestEmailSchema),
+  });
+
+  const onSubmit = (values: z.infer<typeof guestEmailSchema>) => {
+    setCookie("GUEST_EMAIL", values.email);
+    onEmailSubmit(values.email);
+  };
+
+  return (
+    <Form {...form}>
+      <form
+        className="w-full space-y-4 py-8"
+        onSubmit={form.handleSubmit(onSubmit)}
+      >
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="Enter the email" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button className="w-full" type="submit">
+          Submit
+        </Button>
+      </form>
+    </Form>
+  );
+}

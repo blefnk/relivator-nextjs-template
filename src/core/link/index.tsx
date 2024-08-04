@@ -1,39 +1,44 @@
-import React from "react";
-import { cn } from "~/utils";
+import type { AnchorHTMLAttributes, FC } from "react";
+
+import Link from "next/link";
+
 import type { VariantProps } from "class-variance-authority";
 
-import { buttonVariants } from "~/islands/primitives/button";
-import { Link as BaseLink } from "~/navigation";
+import { buttonVariants } from "@/browser/reliverse/ui/Button";
+
+import { cn } from "~/utils";
 
 // Extending the types of the Link component to include variant
-type ExtendedLinkProps = VariantProps<typeof buttonVariants> &
-  React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type ExtendedLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &
+  VariantProps<typeof buttonVariants>;
 
-const ExtendedLink: React.FC<ExtendedLinkProps> = ({
+const ExtendedLink: FC<ExtendedLinkProps> = ({
   className,
-  variant,
-  size,
   href,
+  size,
+  variant,
   ...props
 }) => {
   // Get the classes for the variant
-  const variantClasses = buttonVariants({ variant, size });
+  const variantClasses = buttonVariants({
+    size,
+    variant,
+  });
 
   // Provide a default href if undefined
-  const linkHref = href ?? "/";
+  const linkHref = href || "/";
 
   // Return the customized Link component
   // with the additional classes applied
   return (
-    <BaseLink
+    <Link
       {...props}
-      href={linkHref}
       className={cn(variantClasses, className)}
+      href={linkHref}
     />
   );
 };
 
 export { ExtendedLink as Link };
-
-// TODO: If it possible, implement a feature to parse the user's current
-// TODO: URL. Then, we can redirect them to this URL after they log in.
+// eslint-disable-next-line @stylistic/max-len
+// TODO: If it possible, implement a feature to parse the user's current// TODO: URL. Then, we can redirect them to this URL after they log in.

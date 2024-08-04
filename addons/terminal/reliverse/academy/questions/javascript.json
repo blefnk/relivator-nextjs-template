@@ -1,0 +1,286 @@
+[
+  {
+    "id": "1",
+    "question": "What is a closure in JavaScript?",
+    "difficulty": "hard",
+    "hint": "It involves functions and their scope. Think about the function's memory.",
+    "answer": "A function that remembers the environment in which it was created, even after the outer function has finished running",
+    "options": [
+      "A function that calls itself recursively",
+      "A function that is immediately invoked",
+      "A function that remembers the environment in which it was created, even after the outer function has finished running",
+      "A function that is used to manipulate the DOM",
+      "A function that can only access its own variables",
+      "A function that can only run once",
+      "A function that forgets its parent scope after execution",
+      "None of the above"
+    ],
+    "points": 20
+  },
+  {
+    "id": "2",
+    "question": "Why can a closure still access variables from its parent function even after the parent function has finished running?",
+    "options": [
+      "Because JavaScript saves the closure's state in the heap memory",
+      "Because the closure copies the variables",
+      "Because the parent function never finishes running",
+      "Because the variables are global"
+    ],
+    "answer": "Because JavaScript saves the closure's state in the heap memory",
+    "difficulty": "hard",
+    "hint": "Consider where JavaScript stores the function's context.",
+    "points": 15
+  },
+  {
+    "id": "3",
+    "question": "Where does JavaScript store the state of a closure?",
+    "options": [
+      "In local storage",
+      "In session storage",
+      "In the heap memory",
+      "In the stack memory"
+    ],
+    "answer": "In the heap memory",
+    "difficulty": "medium",
+    "hint": "Think about where JavaScript stores data.",
+    "points": 10
+  },
+  {
+    "id": "4",
+    "question": "What is one useful feature of closures?",
+    "options": [
+      "They allow functions to run faster",
+      "They enable the creation of private variables",
+      "They make code shorter",
+      "They prevent errors"
+    ],
+    "answer": "They enable the creation of private variables",
+    "difficulty": "easy",
+    "hint": "Consider what closures help you achieve in terms of variable scope.",
+    "points": 5
+  },
+  {
+    "id": "5",
+    "question": "What is 'hoisting' in JavaScript?",
+    "options": [
+      "A JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution",
+      "A technique to improve performance by loading functions first",
+      "A method to prioritize certain scripts over others",
+      "A way to call functions before they are defined"
+    ],
+    "answer": "A JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution",
+    "difficulty": "medium",
+    "hint": "Think about how JavaScript initializes variables and functions.",
+    "points": 10
+  },
+  {
+    "id": "6",
+    "question": "What is 'event bubbling' in JavaScript?",
+    "options": [
+      "An event propagation method where the event starts from the target element and bubbles up to the root",
+      "An event propagation method where the event starts from the root and goes down to the target element",
+      "A way to prioritize events in the event queue",
+      "A technique to handle multiple events at once"
+    ],
+    "answer": "An event propagation method where the event starts from the target element and bubbles up to the root",
+    "difficulty": "medium",
+    "hint": "Consider the direction of event propagation.",
+    "points": 10
+  },
+  {
+    "id": "7",
+    "question": "What is the difference between '==' and '===' in JavaScript?",
+    "options": [
+      "'==' compares both value and type, while '===' compares only value",
+      "'===' compares both value and type, while '==' compares only value",
+      "'==' is used for assignment, while '===' is used for comparison",
+      "There is no difference between them"
+    ],
+    "answer": "'===' compares both value and type, while '==' compares only value",
+    "difficulty": "easy",
+    "hint": "Think about strict equality.",
+    "points": 5
+  },
+  {
+    "id": "8",
+    "question": "What is the purpose of the 'async' keyword in JavaScript?",
+    "options": [
+      "To declare a function that returns a promise",
+      "To pause the execution of a function",
+      "To handle synchronous code",
+      "To immediately resolve a promise"
+    ],
+    "answer": "To declare a function that returns a promise",
+    "difficulty": "medium",
+    "hint": "Consider how async functions work with promises.",
+    "points": 10
+  },
+  {
+    "id": "9",
+    "question": "What does the 'this' keyword refer to in JavaScript?",
+    "options": [
+      "The current function",
+      "The global object",
+      "The object that is executing the current function",
+      "The parent object"
+    ],
+    "answer": "The object that is executing the current function",
+    "difficulty": "hard",
+    "hint": "It depends on the execution context.",
+    "points": 15
+  },
+  {
+    "id": "10",
+    "question": "How do you create a class in JavaScript?",
+    "options": [
+      "Using the 'class' keyword",
+      "Using the 'function' keyword",
+      "Using the 'createClass' method",
+      "Using the 'constructor' keyword"
+    ],
+    "answer": "Using the 'class' keyword",
+    "difficulty": "easy",
+    "hint": "Think about ES6 syntax.",
+    "points": 5
+  },
+  {
+    "id": "11",
+    "question": "What is the purpose of the 'map' method in JavaScript?",
+    "options": [
+      "To filter elements in an array",
+      "To create a new array with the results of calling a provided function on every element in the array",
+      "To find an element in an array",
+      "To reduce the array to a single value"
+    ],
+    "answer": "To create a new array with the results of calling a provided function on every element in the array",
+    "difficulty": "medium",
+    "hint": "Think about transforming arrays.",
+    "points": 10
+  },
+  {
+    "id": "12",
+    "question": "What is the 'typeof' operator used for?",
+    "options": [
+      "To determine the data type of a value",
+      "To convert a value to a different type",
+      "To check if a value is an object",
+      "To compare two values"
+    ],
+    "answer": "To determine the data type of a value",
+    "difficulty": "easy",
+    "hint": "Think about type checking.",
+    "points": 5
+  },
+  {
+    "id": "13",
+    "question": "What is a promise in JavaScript?",
+    "options": [
+      "An object representing the eventual completion or failure of an asynchronous operation",
+      "A function that is called when an event occurs",
+      "A method to iterate over arrays",
+      "A way to declare variables"
+    ],
+    "answer": "An object representing the eventual completion or failure of an asynchronous operation",
+    "difficulty": "medium",
+    "hint": "Think about handling asynchronous operations.",
+    "points": 10
+  },
+  {
+    "id": "14",
+    "question": "What does the 'bind' method do in JavaScript?",
+    "options": [
+      "Creates a new function that, when called, has its 'this' keyword set to the provided value",
+      "Immediately calls a function with the provided value",
+      "Creates a copy of an object",
+      "Merges two objects together"
+    ],
+    "answer": "Creates a new function that, when called, has its 'this' keyword set to the provided value",
+    "difficulty": "medium",
+    "hint": "Think about 'this' context.",
+    "points": 10
+  },
+  {
+    "id": "15",
+    "question": "What is the difference between 'null' and 'undefined' in JavaScript?",
+    "options": [
+      "'null' means a variable has been declared but has not yet been assigned a value, while 'undefined' means a variable has been assigned a value of 'null'",
+      "'undefined' means a variable has been declared but has not yet been assigned a value, while 'null' is an assignment value that represents no value",
+      "'null' and 'undefined' are identical and can be used interchangeably",
+      "'undefined' is used for global variables, while 'null' is used for local variables"
+    ],
+    "answer": "'undefined' means a variable has been declared but has not yet been assigned a value, while 'null' is an assignment value that represents no value",
+    "difficulty": "hard",
+    "hint": "Consider their types and uses.",
+    "points": 15
+  },
+  {
+    "id": "16",
+    "question": "What is the purpose of the 'reduce' method in JavaScript?",
+    "options": [
+      "To filter elements in an array",
+      "To transform each element in an array and return a new array",
+      "To reduce an array to a single value by applying a function to each element",
+      "To concatenate multiple arrays into one"
+    ],
+    "answer": "To reduce an array to a single value by applying a function to each element",
+    "difficulty": "medium",
+    "hint": "Think about accumulation.",
+    "points": 10
+  },
+  {
+    "id": "17",
+    "question": "What does 'NaN' stand for in JavaScript?",
+    "options": [
+      "Not a Number",
+      "Not a Null",
+      "No active Network",
+      "New Array Number"
+    ],
+    "answer": "Not a Number",
+    "difficulty": "easy",
+    "hint": "It's related to number operations.",
+    "points": 5
+  },
+  {
+    "id": "18",
+    "question": "What does 'strict mode' do in JavaScript?",
+    "options": [
+      "Enforces stricter parsing and error handling in your code",
+      "Allows you to use modern JavaScript features",
+      "Prevents variable hoisting",
+      "Disables type coercion"
+    ],
+    "answer": "Enforces stricter parsing and error handling in your code",
+    "difficulty": "medium",
+    "hint": "Think about enforcing rules.",
+    "points": 10
+  },
+  {
+    "id": "19",
+    "question": "How do you define a constant in JavaScript?",
+    "options": [
+      "Using the 'const' keyword",
+      "Using the 'let' keyword",
+      "Using the 'var' keyword",
+      "Using the 'define' keyword"
+    ],
+    "answer": "Using the 'const' keyword",
+    "difficulty": "easy",
+    "hint": "Think about ES6 syntax.",
+    "points": 5
+  },
+  {
+    "id": "20",
+    "question": "What is the 'spread' operator in JavaScript?",
+    "options": [
+      "A syntax for expanding an array or object into individual elements",
+      "A method to spread event listeners across multiple elements",
+      "A way to apply styles to multiple elements",
+      "A function to handle asynchronous code"
+    ],
+    "answer": "A syntax for expanding an array or object into individual elements",
+    "difficulty": "medium",
+    "hint": "Think about arrays and objects.",
+    "points": 10
+  }
+]

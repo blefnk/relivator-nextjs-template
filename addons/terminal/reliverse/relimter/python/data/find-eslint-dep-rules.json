@@ -1,0 +1,634 @@
+{
+  "@eslint/js": [
+    {
+      "rule": "no-native-reassign",
+      "why": "Replaced by no-global-assign (https://eslint.org/docs/latest/rules/no-global-assign)"
+    },
+    {
+      "rule": "no-negated-in-lhs",
+      "why": "Replaced by no-unsafe-negation (https://eslint.org/docs/latest/rules/no-unsafe-negation)"
+    },
+    {
+      "rule": "no-new-object",
+      "why": "Replaced by no-object-constructor (https://eslint.org/docs/latest/rules/no-object-constructor)"
+    },
+    {
+      "rule": "no-new-symbol",
+      "why": "Replaced by no-new-native-nonconstructor (https://eslint.org/docs/latest/rules/no-new-native-nonconstructor)"
+    },
+    {
+      "rule": "no-catch-shadow",
+      "why": "Replaced by no-shadow (https://eslint.org/docs/latest/rules/no-shadow)"
+    },
+    {
+      "rule": "id-blacklist",
+      "why": "Replaced by id-denylist (https://eslint.org/docs/latest/rules/id-denylist)"
+    },
+    {
+      "rule": "--------------------------------------------------------------",
+      "why": "----------------------------------------------------------------"
+    },
+    {
+      "rule": "prefer-reflect",
+      "why": "Replaced by unicorn/prefer-reflect-apply (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-reflect-apply.md)"
+    },
+    {
+      "rule": "no-return-await",
+      "why": "Replaced by unicorn/no-unnecessary-await (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-unnecessary-await.md)"
+    },
+    {
+      "rule": "no-process-exit",
+      "why": "Replaced by n/no-process-exit unicorn/no-process-exit (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-process-exit.md) AND (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-process-exit.md)"
+    },
+    {
+      "rule": "--------------------------------------------------------------",
+      "why": "----------------------------------------------------------------"
+    },
+    {
+      "rule": "no-sync",
+      "why": "Replaced by n/no-sync (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-sync.md)"
+    },
+    {
+      "rule": "no-new-require",
+      "why": "Replaced by n/no-new-require (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-new-require.md)"
+    },
+    {
+      "rule": "no-path-concat",
+      "why": "Replaced by n/no-path-concat (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-path-concat.md)"
+    },
+    {
+      "rule": "no-process-env",
+      "why": "Replaced by n/no-process-env (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-process-env.md)"
+    },
+    {
+      "rule": "no-restricted-modules",
+      "why": "Replaced by n/no-restricted-modules (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-restricted-modules.md)"
+    },
+    {
+      "rule": "no-mixed-requires",
+      "why": "Replaced by n/no-mixed-requires (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-mixed-requires.md)"
+    },
+    {
+      "rule": "no-buffer-constructor",
+      "why": "Replaced by n/no-buffer-constructor (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-buffer-constructor.md)"
+    },
+    {
+      "rule": "global-require",
+      "why": "Replaced by n/global-require (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/global-require.md)"
+    },
+    {
+      "rule": "handle-callback-err",
+      "why": "Replaced by n/handle-callback-err (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/handle-callback-err.md)"
+    },
+    {
+      "rule": "callback-return",
+      "why": "Replaced by n/callback-return (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/callback-return.md)"
+    },
+    {
+      "rule": "--------------------------------------------------------------",
+      "why": "----------------------------------------------------------------"
+    },
+    {
+      "rule": "array-bracket-newline",
+      "why": "Replaced by @stylistic/array-bracket-newline (https://eslint.style/rules/default/array-bracket-newline)"
+    },
+    {
+      "rule": "array-bracket-spacing",
+      "why": "Replaced by @stylistic/array-bracket-spacing (https://eslint.style/rules/default/array-bracket-spacing)"
+    },
+    {
+      "rule": "array-element-newline",
+      "why": "Replaced by @stylistic/array-element-newline (https://eslint.style/rules/default/array-element-newline)"
+    },
+    {
+      "rule": "arrow-parens",
+      "why": "Replaced by @stylistic/arrow-parens (https://eslint.style/rules/default/arrow-parens)"
+    },
+    {
+      "rule": "arrow-spacing",
+      "why": "Replaced by @stylistic/arrow-spacing (https://eslint.style/rules/default/arrow-spacing)"
+    },
+    {
+      "rule": "block-spacing",
+      "why": "Replaced by @stylistic/block-spacing (https://eslint.style/rules/default/block-spacing)"
+    },
+    {
+      "rule": "brace-style",
+      "why": "Replaced by @stylistic/brace-style (https://eslint.style/rules/default/brace-style)"
+    },
+    {
+      "rule": "comma-dangle",
+      "why": "Replaced by @stylistic/comma-dangle (https://eslint.style/rules/default/comma-dangle)"
+    },
+    {
+      "rule": "comma-spacing",
+      "why": "Replaced by @stylistic/comma-spacing (https://eslint.style/rules/default/comma-spacing)"
+    },
+    {
+      "rule": "comma-style",
+      "why": "Replaced by @stylistic/comma-style (https://eslint.style/rules/default/comma-style)"
+    },
+    {
+      "rule": "computed-property-spacing",
+      "why": "Replaced by @stylistic/computed-property-spacing (https://eslint.style/rules/default/computed-property-spacing)"
+    },
+    {
+      "rule": "dot-location",
+      "why": "Replaced by @stylistic/dot-location (https://eslint.style/rules/default/dot-location)"
+    },
+    {
+      "rule": "eol-last",
+      "why": "Replaced by @stylistic/eol-last (https://eslint.style/rules/default/eol-last)"
+    },
+    {
+      "rule": "func-call-spacing",
+      "why": "Replaced by @stylistic/function-call-spacing (https://eslint.style/rules/default/function-call-spacing)"
+    },
+    {
+      "rule": "function-call-argument-newline",
+      "why": "Replaced by @stylistic/function-call-argument-newline (https://eslint.style/rules/default/function-call-argument-newline)"
+    },
+    {
+      "rule": "function-paren-newline",
+      "why": "Replaced by @stylistic/function-paren-newline (https://eslint.style/rules/default/function-paren-newline)"
+    },
+    {
+      "rule": "generator-star-spacing",
+      "why": "Replaced by @stylistic/generator-star-spacing (https://eslint.style/rules/default/generator-star-spacing)"
+    },
+    {
+      "rule": "implicit-arrow-linebreak",
+      "why": "Replaced by @stylistic/implicit-arrow-linebreak (https://eslint.style/rules/default/implicit-arrow-linebreak)"
+    },
+    {
+      "rule": "indent",
+      "why": "Replaced by @stylistic/indent (https://eslint.style/rules/default/indent)"
+    },
+    {
+      "rule": "indent-legacy",
+      "why": "Replaced by @stylistic/indent (https://eslint.style/rules/default/indent)"
+    },
+    {
+      "rule": "jsx-quotes",
+      "why": "Replaced by @stylistic/jsx-quotes (https://eslint.style/rules/default/jsx-quotes)"
+    },
+    {
+      "rule": "key-spacing",
+      "why": "Replaced by @stylistic/key-spacing (https://eslint.style/rules/default/key-spacing)"
+    },
+    {
+      "rule": "keyword-spacing",
+      "why": "Replaced by @stylistic/keyword-spacing (https://eslint.style/rules/default/keyword-spacing)"
+    },
+    {
+      "rule": "line-comment-position",
+      "why": "Replaced by @stylistic/line-comment-position (https://eslint.style/rules/default/line-comment-position)"
+    },
+    {
+      "rule": "linebreak-style",
+      "why": "Replaced by @stylistic/linebreak-style (https://eslint.style/rules/default/linebreak-style)"
+    },
+    {
+      "rule": "lines-around-comment",
+      "why": "Replaced by @stylistic/lines-around-comment (https://eslint.style/rules/default/lines-around-comment)"
+    },
+    {
+      "rule": "lines-between-class-members",
+      "why": "Replaced by @stylistic/lines-between-class-members (https://eslint.style/rules/default/lines-between-class-members)"
+    },
+    {
+      "rule": "max-len",
+      "why": "Replaced by @stylistic/max-len (https://eslint.style/rules/default/max-len)"
+    },
+    {
+      "rule": "max-statements-per-line",
+      "why": "Replaced by @stylistic/max-statements-per-line (https://eslint.style/rules/default/max-statements-per-line)"
+    },
+    {
+      "rule": "multiline-comment-style",
+      "why": "Replaced by @stylistic/multiline-comment-style (https://eslint.style/rules/default/multiline-comment-style)"
+    },
+    {
+      "rule": "multiline-ternary",
+      "why": "Replaced by @stylistic/multiline-ternary (https://eslint.style/rules/default/multiline-ternary)"
+    },
+    {
+      "rule": "new-parens",
+      "why": "Replaced by @stylistic/new-parens (https://eslint.style/rules/default/new-parens)"
+    },
+    {
+      "rule": "newline-per-chained-call",
+      "why": "Replaced by @stylistic/newline-per-chained-call (https://eslint.style/rules/default/newline-per-chained-call)"
+    },
+    {
+      "rule": "no-confusing-arrow",
+      "why": "Replaced by @stylistic/no-confusing-arrow (https://eslint.style/rules/default/no-confusing-arrow)"
+    },
+    {
+      "rule": "no-extra-parens",
+      "why": "Replaced by @stylistic/no-extra-parens (https://eslint.style/rules/default/no-extra-parens)"
+    },
+    {
+      "rule": "no-extra-semi",
+      "why": "Replaced by @stylistic/no-extra-semi (https://eslint.style/rules/default/no-extra-semi)"
+    },
+    {
+      "rule": "no-floating-decimal",
+      "why": "Replaced by @stylistic/no-floating-decimal (https://eslint.style/rules/default/no-floating-decimal)"
+    },
+    {
+      "rule": "no-mixed-operators",
+      "why": "Replaced by @stylistic/no-mixed-operators (https://eslint.style/rules/default/no-mixed-operators)"
+    },
+    {
+      "rule": "no-mixed-spaces-and-tabs",
+      "why": "Replaced by @stylistic/no-mixed-spaces-and-tabs (https://eslint.style/rules/default/no-mixed-spaces-and-tabs)"
+    },
+    {
+      "rule": "no-multi-spaces",
+      "why": "Replaced by @stylistic/no-multi-spaces (https://eslint.style/rules/default/no-multi-spaces)"
+    },
+    {
+      "rule": "no-multiple-empty-lines",
+      "why": "Replaced by @stylistic/no-multiple-empty-lines (https://eslint.style/rules/default/no-multiple-empty-lines)"
+    },
+    {
+      "rule": "no-tabs",
+      "why": "Replaced by @stylistic/no-tabs (https://eslint.style/rules/default/no-tabs)"
+    },
+    {
+      "rule": "no-trailing-spaces",
+      "why": "Replaced by @stylistic/no-trailing-spaces (https://eslint.style/rules/default/no-trailing-spaces)"
+    },
+    {
+      "rule": "no-whitespace-before-property",
+      "why": "Replaced by @stylistic/no-whitespace-before-property (https://eslint.style/rules/default/no-whitespace-before-property)"
+    },
+    {
+      "rule": "nonblock-statement-body-position",
+      "why": "Replaced by @stylistic/nonblock-statement-body-position (https://eslint.style/rules/default/nonblock-statement-body-position)"
+    },
+    {
+      "rule": "object-curly-newline",
+      "why": "Replaced by @stylistic/object-curly-newline (https://eslint.style/rules/default/object-curly-newline)"
+    },
+    {
+      "rule": "object-curly-spacing",
+      "why": "Replaced by @stylistic/object-curly-spacing (https://eslint.style/rules/default/object-curly-spacing)"
+    },
+    {
+      "rule": "object-property-newline",
+      "why": "Replaced by @stylistic/object-property-newline (https://eslint.style/rules/default/object-property-newline)"
+    },
+    {
+      "rule": "one-var-declaration-per-line",
+      "why": "Replaced by @stylistic/one-var-declaration-per-line (https://eslint.style/rules/default/one-var-declaration-per-line)"
+    },
+    {
+      "rule": "operator-linebreak",
+      "why": "Replaced by @stylistic/operator-linebreak (https://eslint.style/rules/default/operator-linebreak)"
+    },
+    {
+      "rule": "padded-blocks",
+      "why": "Replaced by @stylistic/padded-blocks (https://eslint.style/rules/default/padded-blocks)"
+    },
+    {
+      "rule": "padding-line-between-statements",
+      "why": "Replaced by @stylistic/padding-line-between-statements (https://eslint.style/rules/default/padding-line-between-statements)"
+    },
+    {
+      "rule": "quote-props",
+      "why": "Replaced by @stylistic/quote-props (https://eslint.style/rules/default/quote-props)"
+    },
+    {
+      "rule": "quotes",
+      "why": "Replaced by @stylistic/quotes (https://eslint.style/rules/default/quotes)"
+    },
+    {
+      "rule": "rest-spread-spacing",
+      "why": "Replaced by @stylistic/rest-spread-spacing (https://eslint.style/rules/default/rest-spread-spacing)"
+    },
+    {
+      "rule": "semi",
+      "why": "Replaced by @stylistic/semi (https://eslint.style/rules/default/semi)"
+    },
+    {
+      "rule": "semi-spacing",
+      "why": "Replaced by @stylistic/semi-spacing (https://eslint.style/rules/default/semi-spacing)"
+    },
+    {
+      "rule": "semi-style",
+      "why": "Replaced by @stylistic/semi-style (https://eslint.style/rules/default/semi-style)"
+    },
+    {
+      "rule": "space-before-blocks",
+      "why": "Replaced by @stylistic/space-before-blocks (https://eslint.style/rules/default/space-before-blocks)"
+    },
+    {
+      "rule": "space-before-function-paren",
+      "why": "Replaced by @stylistic/space-before-function-paren (https://eslint.style/rules/default/space-before-function-paren)"
+    },
+    {
+      "rule": "space-in-parens",
+      "why": "Replaced by @stylistic/space-in-parens (https://eslint.style/rules/default/space-in-parens)"
+    },
+    {
+      "rule": "space-infix-ops",
+      "why": "Replaced by @stylistic/space-infix-ops (https://eslint.style/rules/default/space-infix-ops)"
+    },
+    {
+      "rule": "space-unary-ops",
+      "why": "Replaced by @stylistic/space-unary-ops (https://eslint.style/rules/default/space-unary-ops)"
+    },
+    {
+      "rule": "spaced-comment",
+      "why": "Replaced by @stylistic/spaced-comment (https://eslint.style/rules/default/spaced-comment)"
+    },
+    {
+      "rule": "switch-colon-spacing",
+      "why": "Replaced by @stylistic/switch-colon-spacing (https://eslint.style/rules/default/switch-colon-spacing)"
+    },
+    {
+      "rule": "template-curly-spacing",
+      "why": "Replaced by @stylistic/template-curly-spacing (https://eslint.style/rules/default/template-curly-spacing)"
+    },
+    {
+      "rule": "template-tag-spacing",
+      "why": "Replaced by @stylistic/template-tag-spacing (https://eslint.style/rules/default/template-tag-spacing)"
+    },
+    {
+      "rule": "wrap-iife",
+      "why": "Replaced by @stylistic/wrap-iife (https://eslint.style/rules/default/wrap-iife)"
+    },
+    {
+      "rule": "wrap-regex",
+      "why": "Replaced by @stylistic/wrap-regex (https://eslint.style/rules/default/wrap-regex)"
+    },
+    {
+      "rule": "yield-star-spacing",
+      "why": "Replaced by @stylistic/yield-star-spacing (https://eslint.style/rules/default/yield-star-spacing)"
+    },
+    {
+      "rule": "no-spaced-func",
+      "why": "Replaced by @stylistic/function-call-spacing (https://eslint.style/rules/default/function-call-spacing)"
+    },
+    {
+      "rule": "newline-after-var",
+      "why": "Replaced by @stylistic/padding-line-between-statements (https://eslint.style/rules/default/padding-line-between-statements)"
+    },
+    {
+      "rule": "newline-before-return",
+      "why": "Replaced by @stylistic/padding-line-between-statements (https://eslint.style/rules/default/padding-line-between-statements)"
+    },
+    {
+      "rule": "lines-around-directive",
+      "why": "Replaced by @stylistic/padding-line-between-statements (https://eslint.style/rules/default/padding-line-between-statements)"
+    }
+  ],
+  "@stylistic": [
+    {
+      "rule": "@stylistic/func-call-spacing",
+      "why": "Replaced by @stylistic/function-call-spacing (https://eslint.style/rules/default/function-call-spacing)"
+    }
+  ],
+  "@typescript-eslint": [
+    {
+      "rule": "@typescript-eslint/prefer-ts-expect-error",
+      "why": "Replaced by @typescript-eslint/ban-ts-comment (https://typescript-eslint.io/rules/ban-ts-comment)"
+    },
+    {
+      "rule": "@typescript-eslint/no-var-requires",
+      "why": "Replaced by @typescript-eslint/no-require-imports (https://typescript-eslint.io/rules/no-require-imports)"
+    },
+    {
+      "rule": "@typescript-eslint/no-useless-template-literals",
+      "why": "Replaced by @typescript-eslint/no-unnecessary-template-expression (https://typescript-eslint.io/rules/no-unnecessary-template-expression)"
+    },
+    {
+      "rule": "@typescript-eslint/no-type-alias",
+      "why": "Replaced by @typescript-eslint/consistent-type-definitions (https://typescript-eslint.io/rules/consistent-type-definitions)"
+    },
+    {
+      "rule": "@typescript-eslint/no-throw-literal",
+      "why": "Learn the details here: https://typescript-eslint.io/rules/ban-types"
+    },
+    {
+      "rule": "@typescript-eslint/ban-types",
+      "why": "Replaced by @typescript-eslint/only-throw-error (https://typescript-eslint.io/rules/only-throw-error)"
+    },
+    {
+      "rule": "@typescript-eslint/no-empty-interface",
+      "why": "Replaced by @typescript-eslint/no-empty-object-type (https://typescript-eslint.io/rules/no-empty-object-type)"
+    },
+    {
+      "rule": "--------------------------------------------------------------",
+      "why": "----------------------------------------------------------------"
+    },
+    {
+      "rule": "@typescript-eslint/no-loss-of-precision",
+      "why": "Replaced by no-loss-of-precision (https://eslint.org/docs/latest/rules/no-loss-of-precision)"
+    },
+    {
+      "rule": "--------------------------------------------------------------",
+      "why": "----------------------------------------------------------------"
+    },
+    {
+      "rule": "@typescript-eslint/sort-type-constituents",
+      "why": "Replaced by perfectionist/sort-intersection-types (https://perfectionist.dev/rules/sort-intersection-types) AND perfectionist/sort-union-types (https://perfectionist.dev/rules/sort-union-types)"
+    },
+    {
+      "rule": "--------------------------------------------------------------",
+      "why": "----------------------------------------------------------------"
+    },
+    {
+      "rule": "@typescript-eslint/block-spacing",
+      "why": "Replaced by @stylistic/block-spacing (https://eslint.style/rules/default/block-spacing)"
+    },
+    {
+      "rule": "@typescript-eslint/brace-style",
+      "why": "Replaced by @stylistic/brace-style (https://eslint.style/rules/default/brace-style)"
+    },
+    {
+      "rule": "@typescript-eslint/comma-dangle",
+      "why": "Replaced by @stylistic/comma-dangle (https://eslint.style/rules/default/comma-dangle)"
+    },
+    {
+      "rule": "@typescript-eslint/comma-spacing",
+      "why": "Replaced by @stylistic/comma-spacing (https://eslint.style/rules/default/comma-spacing)"
+    },
+    {
+      "rule": "@typescript-eslint/func-call-spacing",
+      "why": "Replaced by @stylistic/function-call-spacing (https://eslint.style/rules/default/function-call-spacing)"
+    },
+    {
+      "rule": "@typescript-eslint/indent",
+      "why": "Replaced by @stylistic/indent (https://eslint.style/rules/default/indent)"
+    },
+    {
+      "rule": "@typescript-eslint/key-spacing",
+      "why": "Replaced by @stylistic/key-spacing (https://eslint.style/rules/default/key-spacing)"
+    },
+    {
+      "rule": "@typescript-eslint/keyword-spacing",
+      "why": "Replaced by @stylistic/keyword-spacing (https://eslint.style/rules/default/keyword-spacing)"
+    },
+    {
+      "rule": "@typescript-eslint/lines-around-comment",
+      "why": "Replaced by @stylistic/lines-around-comment (https://eslint.style/rules/default/lines-around-comment)"
+    },
+    {
+      "rule": "@typescript-eslint/lines-between-class-members",
+      "why": "Replaced by @stylistic/lines-between-class-members (https://eslint.style/rules/default/lines-between-class-members)"
+    },
+    {
+      "rule": "@typescript-eslint/member-delimiter-style",
+      "why": "Replaced by @stylistic/member-delimiter-style (https://eslint.style/rules/default/member-delimiter-style)"
+    },
+    {
+      "rule": "@typescript-eslint/no-extra-parens",
+      "why": "Replaced by @stylistic/no-extra-parens (https://eslint.style/rules/default/no-extra-parens)"
+    },
+    {
+      "rule": "@typescript-eslint/no-extra-semi",
+      "why": "Replaced by @stylistic/no-extra-semi (https://eslint.style/rules/default/no-extra-semi)"
+    },
+    {
+      "rule": "@typescript-eslint/object-curly-spacing",
+      "why": "Replaced by @stylistic/object-curly-spacing (https://eslint.style/rules/default/object-curly-spacing)"
+    },
+    {
+      "rule": "@typescript-eslint/padding-line-between-statements",
+      "why": "Replaced by @stylistic/padding-line-between-statements (https://eslint.style/rules/default/padding-line-between-statements)"
+    },
+    {
+      "rule": "@typescript-eslint/quotes",
+      "why": "Replaced by @stylistic/quotes (https://eslint.style/rules/default/quotes)"
+    },
+    {
+      "rule": "@typescript-eslint/semi",
+      "why": "Replaced by @stylistic/semi (https://eslint.style/rules/default/semi)"
+    },
+    {
+      "rule": "@typescript-eslint/space-before-blocks",
+      "why": "Replaced by @stylistic/space-before-blocks (https://eslint.style/rules/default/space-before-blocks)"
+    },
+    {
+      "rule": "@typescript-eslint/space-before-function-paren",
+      "why": "Replaced by @stylistic/space-before-function-paren (https://eslint.style/rules/default/space-before-function-paren)"
+    },
+    {
+      "rule": "@typescript-eslint/space-infix-ops",
+      "why": "Replaced by @stylistic/space-infix-ops (https://eslint.style/rules/default/space-infix-ops)"
+    },
+    {
+      "rule": "@typescript-eslint/type-annotation-spacing",
+      "why": "Replaced by @stylistic/type-annotation-spacing (https://eslint.style/rules/default/type-annotation-spacing)"
+    }
+  ],
+  "n": [
+    {
+      "rule": "n/no-hide-core-modules",
+      "why": "Removed (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-hide-core-modules.md)"
+    },
+    {
+      "rule": "n/shebang",
+      "why": "Replaced by n/hashbang (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/hashbang.md)"
+    }
+  ],
+  "regexp": [
+    {
+      "rule": "regexp/no-assertion-capturing-group",
+      "why": "Replaced by regexp/no-empty-capturing-group (https://ota-meshi.github.io/eslint-plugin-regexp/rules/no-empty-capturing-group.html)"
+    },
+    {
+      "rule": "regexp/no-useless-exactly-quantifier",
+      "why": "Replaced by regexp/no-empty-capturing-group (https://ota-meshi.github.io/eslint-plugin-regexp/rules/no-useless-quantifier.html) AND regexp/no-zero-quantifier (https://ota-meshi.github.io/eslint-plugin-regexp/rules/no-zero-quantifier.html)"
+    },
+    {
+      "rule": "regexp/no-useless-non-greedy",
+      "why": "Replaced by regexp/regexp/no-useless-lazy (https://ota-meshi.github.io/eslint-plugin-regexp/rules/no-useless-lazy.html)"
+    },
+    {
+      "rule": "regexp/order-in-character-class",
+      "why": "Replaced by regexp/sort-character-class-elements (https://ota-meshi.github.io/eslint-plugin-regexp/rules/sort-character-class-elements.html)"
+    },
+    {
+      "rule": "regexp/prefer-t",
+      "why": "Replaced by regexp/control-character-escape (https://ota-meshi.github.io/eslint-plugin-regexp/rules/control-character-escape.html)"
+    }
+  ],
+  "unicorn": [
+    {
+      "rule": "unicorn/prefer-dataset",
+      "why": "Replaced by unicorn/prefer-dom-node-dataset (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-dataset.md)"
+    },
+    {
+      "rule": "unicorn/import-index",
+      "why": "This rule is outdated. JavaScript modules (ESM) do not support importing a directory."
+    },
+    {
+      "rule": "unicorn/no-array-instanceof",
+      "why": "This rule was renamed to unicorn/no-instanceof-array to be more correct (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-instanceof-array.md)"
+    },
+    {
+      "rule": "unicorn/no-fn-reference-in-iterator",
+      "why": "This rule was renamed to unicorn/no-array-callback-reference to avoid using the abbreviation fn in the name (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-callback-reference.md)"
+    },
+    {
+      "rule": "unicorn/no-reduce",
+      "why": "This rule was renamed to unicorn/no-array-reduce to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-array-reduce to be.md)"
+    },
+    {
+      "rule": "unicorn/no-unsafe-regex",
+      "why": "This rule was removed due to bugs (https://github.com/sindresorhus/eslint-plugin-unicorn/issues/153)"
+    },
+    {
+      "rule": "unicorn/prefer-dataset",
+      "why": "This rule was renamed to unicorn/prefer-dom-node-dataset to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-dataset.md)"
+    },
+    {
+      "rule": "unicorn/prefer-event-key",
+      "why": "This rule was renamed to unicorn/prefer-keyboard-event-key to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-keyboard-event-key.md)"
+    },
+    {
+      "rule": "unicorn/prefer-exponentiation-operator",
+      "why": "This rule was deprecated in favor of the built-in ESLint prefer-exponentiation-operator rule."
+    },
+    {
+      "rule": "unicorn/prefer-flat-map",
+      "why": "This rule was renamed to unicorn/prefer-array-flat-map to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-array-flat-map.md)"
+    },
+    {
+      "rule": "unicorn/prefer-node-append",
+      "why": "This rule was renamed to unicorn/prefer-dom-node-append to be less ambiguous (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-append.md)"
+    },
+    {
+      "rule": "unicorn/prefer-node-remove",
+      "why": "This rule was renamed to unicorn/prefer-dom-node-remove to be less ambiguous (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-remove.md)"
+    },
+    {
+      "rule": "unicorn/prefer-object-has-own",
+      "why": "This rule was deprecated in favor of the built-in ESLint prefer-object-has-own rule."
+    },
+    {
+      "rule": "unicorn/prefer-replace-all",
+      "why": "This rule was renamed to unicorn/prefer-string-replace-all to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-replace-all.md)"
+    },
+    {
+      "rule": "unicorn/prefer-starts-ends-with",
+      "why": "This rule was renamed to unicorn/prefer-string-starts-ends-with to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-starts-ends-with.md)"
+    },
+    {
+      "rule": "unicorn/prefer-text-content",
+      "why": "This rule was renamed to unicorn/prefer-dom-node-text-content to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-dom-node-text-content.md)"
+    },
+    {
+      "rule": "unicorn/prefer-trim-start-end",
+      "why": "This rule was renamed to unicorn/prefer-string-trim-start-end to be more specific (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prefer-string-trim-start-end.md)"
+    },
+    {
+      "rule": "unicorn/regex-shorthand",
+      "why": "This rule was renamed to unicorn/better-regex as it does more than just preferring the shorthand (https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/better-regex.md)"
+    }
+  ]
+}

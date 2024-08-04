@@ -1,12 +1,15 @@
-/**
- * We need this file so that we can render internationalized 404 page
- * @see https://next-intl-docs.vercel.app/docs/environments/error-files
- * @see https://nextjs.org/docs/app/api-reference/file-conventions/not-found
- * @see https://next-intl-docs.vercel.app/docs/environments/server-client-components
- */
+import { redirect } from "next/navigation";
 
-import { notFound } from "next/navigation";
+import { useLocale } from "next-intl";
 
+// import consola from "consola";
+// import { notFound } from "next/navigation";
 export default function CatchAllPage() {
-  notFound();
+  // TODO: fix locale switcher url issue
+  // notFound();
+  // "✋ 404 (src/app/not-found.tsx ➞ [...rest]/page.tsx ➞ CatchAllPage())",
+  // consola.info("✋ 404");
+  const locale = useLocale();
+
+  redirect(`/${locale}`);
 }

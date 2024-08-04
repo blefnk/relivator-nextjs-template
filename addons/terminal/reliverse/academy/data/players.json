@@ -1,0 +1,23 @@
+{
+  "players": [
+    {
+      "id": "62ebc698-1627-4d6d-985f-ca54ccbc9d4f",
+      "name": "blefnk",
+      "achievements": [
+        {
+          "name": "First Steps",
+          "unlockedAt": "2024-07-21T23:20:51.204Z"
+        },
+        {
+          "name": "Quick Learner",
+          "unlockedAt": "2024-07-21T23:20:51.204Z"
+        }
+      ],
+      "scores": {
+        "eslint": 85,
+        "bonus": 20,
+        "react": 10
+      }
+    }
+  ]
+}

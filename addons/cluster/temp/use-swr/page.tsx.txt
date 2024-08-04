@@ -1,0 +1,25 @@
+import { SWRConfig } from "swr";
+
+import { Pokemon } from "~/components/Playground/Pokemon";
+import { getPokemon } from "~/data/other/use-swr";
+
+export default function UseSwrPage() {
+  return (
+    <SWRConfig
+      value={{
+        fallback: {
+          // Note that there is no `await` here,
+          // so it only blocks rendering of components that
+          // actually rely on this data.
+          pikachu: getPokemon("pikachu"),
+        },
+      }}
+    >
+      <section>
+        <h1>Pokemon Info</h1>
+        {/* We can have a Suspense boundary here for the loading state */}
+        <Pokemon />
+      </section>
+    </SWRConfig>
+  );
+}

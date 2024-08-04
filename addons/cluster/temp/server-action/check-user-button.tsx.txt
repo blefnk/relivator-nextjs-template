@@ -1,0 +1,23 @@
+import { useState } from "react";
+
+export default function ProtectedButton({
+  protectedAction,
+}: {
+  protectedAction: () => Promise<string>;
+}) {
+  const [name, setName] = useState<string | undefined>();
+
+  return (
+    <div>
+      <button
+        onClick={async () => {
+          setName(await protectedAction());
+        }}
+        type="button"
+      >
+        Protected Action Example
+      </button>
+      {name && <div>You are {name}</div>}
+    </div>
+  );
+}

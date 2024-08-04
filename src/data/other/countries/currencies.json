@@ -1,0 +1,3513 @@
+[
+  {
+    "cca2": "AW",
+    "currencies": {
+      "AWG": {
+        "name": "Aruban florin",
+        "symbol": "ƒ"
+      }
+    },
+    "flag": "🇦🇼",
+    "languages": {
+      "nld": "Dutch",
+      "pap": "Papiamento"
+    }
+  },
+  {
+    "cca2": "AF",
+    "currencies": {
+      "AFN": {
+        "name": "Afghan afghani",
+        "symbol": "؋"
+      }
+    },
+    "flag": "🇦🇫",
+    "languages": {
+      "prs": "Dari",
+      "pus": "Pashto",
+      "tuk": "Turkmen"
+    }
+  },
+  {
+    "cca2": "AO",
+    "currencies": {
+      "AOA": {
+        "name": "Angolan kwanza",
+        "symbol": "Kz"
+      }
+    },
+    "flag": "🇦🇴",
+    "languages": {
+      "por": "Portuguese"
+    }
+  },
+  {
+    "cca2": "AI",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇦🇮",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "AX",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇦🇽",
+    "languages": {
+      "swe": "Swedish"
+    }
+  },
+  {
+    "cca2": "AL",
+    "currencies": {
+      "ALL": {
+        "name": "Albanian lek",
+        "symbol": "L"
+      }
+    },
+    "flag": "🇦🇱",
+    "languages": {
+      "sqi": "Albanian"
+    }
+  },
+  {
+    "cca2": "AD",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇦🇩",
+    "languages": {
+      "cat": "Catalan"
+    }
+  },
+  {
+    "cca2": "AE",
+    "currencies": {
+      "AED": {
+        "name": "United Arab Emirates dirham",
+        "symbol": "د.إ"
+      }
+    },
+    "flag": "🇦🇪",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "AR",
+    "currencies": {
+      "ARS": {
+        "name": "Argentine peso",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇦🇷",
+    "languages": {
+      "grn": "Guaraní",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "AM",
+    "currencies": {
+      "AMD": {
+        "name": "Armenian dram",
+        "symbol": "֏"
+      }
+    },
+    "flag": "🇦🇲",
+    "languages": {
+      "hye": "Armenian"
+    }
+  },
+  {
+    "cca2": "AS",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇦🇸",
+    "languages": {
+      "eng": "English",
+      "smo": "Samoan"
+    }
+  },
+  {
+    "cca2": "AQ",
+    "currencies": [],
+    "flag": "🇦🇶",
+    "languages": {}
+  },
+  {
+    "cca2": "TF",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇹🇫",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "AG",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇦🇬",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "AU",
+    "currencies": {
+      "AUD": {
+        "name": "Australian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇦🇺",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "AT",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇦🇹",
+    "languages": {
+      "bar": "Austro-Bavarian German"
+    }
+  },
+  {
+    "cca2": "AZ",
+    "currencies": {
+      "AZN": {
+        "name": "Azerbaijani manat",
+        "symbol": "₼"
+      }
+    },
+    "flag": "🇦🇿",
+    "languages": {
+      "aze": "Azerbaijani",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "BI",
+    "currencies": {
+      "BIF": {
+        "name": "Burundian franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇧🇮",
+    "languages": {
+      "fra": "French",
+      "run": "Kirundi"
+    }
+  },
+  {
+    "cca2": "BE",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇧🇪",
+    "languages": {
+      "deu": "German",
+      "fra": "French",
+      "nld": "Dutch"
+    }
+  },
+  {
+    "cca2": "BJ",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇧🇯",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "BF",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇧🇫",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "BD",
+    "currencies": {
+      "BDT": {
+        "name": "Bangladeshi taka",
+        "symbol": "৳"
+      }
+    },
+    "flag": "🇧🇩",
+    "languages": {
+      "ben": "Bengali"
+    }
+  },
+  {
+    "cca2": "BG",
+    "currencies": {
+      "BGN": {
+        "name": "Bulgarian lev",
+        "symbol": "лв"
+      }
+    },
+    "flag": "🇧🇬",
+    "languages": {
+      "bul": "Bulgarian"
+    }
+  },
+  {
+    "cca2": "BH",
+    "currencies": {
+      "BHD": {
+        "name": "Bahraini dinar",
+        "symbol": ".د.ب"
+      }
+    },
+    "flag": "🇧🇭",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "BS",
+    "currencies": {
+      "BSD": {
+        "name": "Bahamian dollar",
+        "symbol": "$"
+      },
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇧🇸",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "BA",
+    "currencies": {
+      "BAM": {
+        "name": "Bosnia and Herzegovina convertible mark",
+        "symbol": ""
+      }
+    },
+    "flag": "🇧🇦",
+    "languages": {
+      "bos": "Bosnian",
+      "hrv": "Croatian",
+      "srp": "Serbian"
+    }
+  },
+  {
+    "cca2": "BL",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇧🇱",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "SH",
+    "currencies": {
+      "GBP": {
+        "name": "Pound sterling",
+        "symbol": "£"
+      },
+      "SHP": {
+        "name": "Saint Helena pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇸🇭",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "BY",
+    "currencies": {
+      "BYN": {
+        "name": "Belarusian ruble",
+        "symbol": "Br"
+      }
+    },
+    "flag": "🇧🇾",
+    "languages": {
+      "bel": "Belarusian",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "BZ",
+    "currencies": {
+      "BZD": {
+        "name": "Belize dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇧🇿",
+    "languages": {
+      "bjz": "Belizean Creole",
+      "eng": "English",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "BM",
+    "currencies": {
+      "BMD": {
+        "name": "Bermudian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇧🇲",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "BO",
+    "currencies": {
+      "BOB": {
+        "name": "Bolivian boliviano",
+        "symbol": "Bs."
+      }
+    },
+    "flag": "🇧🇴",
+    "languages": {
+      "aym": "Aymara",
+      "grn": "Guaraní",
+      "que": "Quechua",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "BQ",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "",
+    "languages": {
+      "eng": "English",
+      "nld": "Dutch",
+      "pap": "Papiamento"
+    }
+  },
+  {
+    "cca2": "BR",
+    "currencies": {
+      "BRL": {
+        "name": "Brazilian real",
+        "symbol": "R$"
+      }
+    },
+    "flag": "🇧🇷",
+    "languages": {
+      "por": "Portuguese"
+    }
+  },
+  {
+    "cca2": "BB",
+    "currencies": {
+      "BBD": {
+        "name": "Barbadian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇧🇧",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "BN",
+    "currencies": {
+      "BND": {
+        "name": "Brunei dollar",
+        "symbol": "$"
+      },
+      "SGD": {
+        "name": "Singapore dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇧🇳",
+    "languages": {
+      "msa": "Malay"
+    }
+  },
+  {
+    "cca2": "BT",
+    "currencies": {
+      "BTN": {
+        "name": "Bhutanese ngultrum",
+        "symbol": "Nu."
+      },
+      "INR": {
+        "name": "Indian rupee",
+        "symbol": "₹"
+      }
+    },
+    "flag": "🇧🇹",
+    "languages": {
+      "dzo": "Dzongkha"
+    }
+  },
+  {
+    "cca2": "BV",
+    "currencies": [],
+    "flag": "🇧🇻",
+    "languages": {
+      "nor": "Norwegian"
+    }
+  },
+  {
+    "cca2": "BW",
+    "currencies": {
+      "BWP": {
+        "name": "Botswana pula",
+        "symbol": "P"
+      }
+    },
+    "flag": "🇧🇼",
+    "languages": {
+      "eng": "English",
+      "tsn": "Tswana"
+    }
+  },
+  {
+    "cca2": "CF",
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇨🇫",
+    "languages": {
+      "fra": "French",
+      "sag": "Sango"
+    }
+  },
+  {
+    "cca2": "CA",
+    "currencies": {
+      "CAD": {
+        "name": "Canadian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇨🇦",
+    "languages": {
+      "eng": "English",
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "CC",
+    "currencies": {
+      "AUD": {
+        "name": "Australian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇨🇨",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "CH",
+    "currencies": {
+      "CHF": {
+        "name": "Swiss franc",
+        "symbol": "Fr."
+      }
+    },
+    "flag": "🇨🇭",
+    "languages": {
+      "fra": "French",
+      "gsw": "Swiss German",
+      "ita": "Italian",
+      "roh": "Romansh"
+    }
+  },
+  {
+    "cca2": "CL",
+    "currencies": {
+      "CLP": {
+        "name": "Chilean peso",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇨🇱",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "CN",
+    "currencies": {
+      "CNY": {
+        "name": "Chinese yuan",
+        "symbol": "¥"
+      }
+    },
+    "flag": "🇨🇳",
+    "languages": {
+      "zho": "Chinese"
+    }
+  },
+  {
+    "cca2": "CI",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇨🇮",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "CM",
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇨🇲",
+    "languages": {
+      "eng": "English",
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "CD",
+    "currencies": {
+      "CDF": {
+        "name": "Congolese franc",
+        "symbol": "FC"
+      }
+    },
+    "flag": "🇨🇩",
+    "languages": {
+      "fra": "French",
+      "kon": "Kikongo",
+      "lin": "Lingala",
+      "lua": "Tshiluba",
+      "swa": "Swahili"
+    }
+  },
+  {
+    "cca2": "CG",
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇨🇬",
+    "languages": {
+      "fra": "French",
+      "kon": "Kikongo",
+      "lin": "Lingala"
+    }
+  },
+  {
+    "cca2": "CK",
+    "currencies": {
+      "CKD": {
+        "name": "Cook Islands dollar",
+        "symbol": "$"
+      },
+      "NZD": {
+        "name": "New Zealand dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇨🇰",
+    "languages": {
+      "eng": "English",
+      "rar": "Cook Islands Māori"
+    }
+  },
+  {
+    "cca2": "CO",
+    "currencies": {
+      "COP": {
+        "name": "Colombian peso",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇨🇴",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "KM",
+    "currencies": {
+      "KMF": {
+        "name": "Comorian franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇰🇲",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French",
+      "zdj": "Comorian"
+    }
+  },
+  {
+    "cca2": "CV",
+    "currencies": {
+      "CVE": {
+        "name": "Cape Verdean escudo",
+        "symbol": "Esc"
+      }
+    },
+    "flag": "🇨🇻",
+    "languages": {
+      "por": "Portuguese"
+    }
+  },
+  {
+    "cca2": "CR",
+    "currencies": {
+      "CRC": {
+        "name": "Costa Rican colón",
+        "symbol": "₡"
+      }
+    },
+    "flag": "🇨🇷",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "CU",
+    "currencies": {
+      "CUC": {
+        "name": "Cuban convertible peso",
+        "symbol": "$"
+      },
+      "CUP": {
+        "name": "Cuban peso",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇨🇺",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "CW",
+    "currencies": {
+      "ANG": {
+        "name": "Netherlands Antillean guilder",
+        "symbol": "ƒ"
+      }
+    },
+    "flag": "🇨🇼",
+    "languages": {
+      "eng": "English",
+      "nld": "Dutch",
+      "pap": "Papiamento"
+    }
+  },
+  {
+    "cca2": "CX",
+    "currencies": {
+      "AUD": {
+        "name": "Australian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇨🇽",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "KY",
+    "currencies": {
+      "KYD": {
+        "name": "Cayman Islands dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇰🇾",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "CY",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇨🇾",
+    "languages": {
+      "ell": "Greek",
+      "tur": "Turkish"
+    }
+  },
+  {
+    "cca2": "CZ",
+    "currencies": {
+      "CZK": {
+        "name": "Czech koruna",
+        "symbol": "Kč"
+      }
+    },
+    "flag": "🇨🇿",
+    "languages": {
+      "ces": "Czech",
+      "slk": "Slovak"
+    }
+  },
+  {
+    "cca2": "DE",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇩🇪",
+    "languages": {
+      "deu": "German"
+    }
+  },
+  {
+    "cca2": "DJ",
+    "currencies": {
+      "DJF": {
+        "name": "Djiboutian franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇩🇯",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "DM",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇩🇲",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "DK",
+    "currencies": {
+      "DKK": {
+        "name": "Danish krone",
+        "symbol": "kr"
+      }
+    },
+    "flag": "🇩🇰",
+    "languages": {
+      "dan": "Danish"
+    }
+  },
+  {
+    "cca2": "DO",
+    "currencies": {
+      "DOP": {
+        "name": "Dominican peso",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇩🇴",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "DZ",
+    "currencies": {
+      "DZD": {
+        "name": "Algerian dinar",
+        "symbol": "د.ج"
+      }
+    },
+    "flag": "🇩🇿",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "EC",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇪🇨",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "EG",
+    "currencies": {
+      "EGP": {
+        "name": "Egyptian pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇪🇬",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "ER",
+    "currencies": {
+      "ERN": {
+        "name": "Eritrean nakfa",
+        "symbol": "Nfk"
+      }
+    },
+    "flag": "🇪🇷",
+    "languages": {
+      "ara": "Arabic",
+      "eng": "English",
+      "tir": "Tigrinya"
+    }
+  },
+  {
+    "cca2": "EH",
+    "currencies": {
+      "DZD": {
+        "name": "Algerian dinar",
+        "symbol": "دج"
+      },
+      "MAD": {
+        "name": "Moroccan dirham",
+        "symbol": "DH"
+      },
+      "MRU": {
+        "name": "Mauritanian ouguiya",
+        "symbol": "UM"
+      }
+    },
+    "flag": "🇪🇭",
+    "languages": {
+      "ber": "Berber",
+      "mey": "Hassaniya",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "ES",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇪🇸",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "EE",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇪🇪",
+    "languages": {
+      "est": "Estonian"
+    }
+  },
+  {
+    "cca2": "ET",
+    "currencies": {
+      "ETB": {
+        "name": "Ethiopian birr",
+        "symbol": "Br"
+      }
+    },
+    "flag": "🇪🇹",
+    "languages": {
+      "amh": "Amharic"
+    }
+  },
+  {
+    "cca2": "FI",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇫🇮",
+    "languages": {
+      "fin": "Finnish",
+      "swe": "Swedish"
+    }
+  },
+  {
+    "cca2": "FJ",
+    "currencies": {
+      "FJD": {
+        "name": "Fijian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇫🇯",
+    "languages": {
+      "eng": "English",
+      "fij": "Fijian",
+      "hif": "Fiji Hindi"
+    }
+  },
+  {
+    "cca2": "FK",
+    "currencies": {
+      "FKP": {
+        "name": "Falkland Islands pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇫🇰",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "FR",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇫🇷",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "FO",
+    "currencies": {
+      "DKK": {
+        "name": "Danish krone",
+        "symbol": "kr"
+      },
+      "FOK": {
+        "name": "Faroese króna",
+        "symbol": "kr"
+      }
+    },
+    "flag": "🇫🇴",
+    "languages": {
+      "dan": "Danish",
+      "fao": "Faroese"
+    }
+  },
+  {
+    "cca2": "FM",
+    "currencies": [],
+    "flag": "🇫🇲",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "GA",
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇬🇦",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "GB",
+    "currencies": {
+      "GBP": {
+        "name": "British pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇬🇧",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "GE",
+    "currencies": {
+      "GEL": {
+        "name": "lari",
+        "symbol": "₾"
+      }
+    },
+    "flag": "🇬🇪",
+    "languages": {
+      "kat": "Georgian"
+    }
+  },
+  {
+    "cca2": "GG",
+    "currencies": {
+      "GBP": {
+        "name": "British pound",
+        "symbol": "£"
+      },
+      "GGP": {
+        "name": "Guernsey pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇬🇬",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "nfr": "Guernésiais"
+    }
+  },
+  {
+    "cca2": "GH",
+    "currencies": {
+      "GHS": {
+        "name": "Ghanaian cedi",
+        "symbol": "₵"
+      }
+    },
+    "flag": "🇬🇭",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "GI",
+    "currencies": {
+      "GIP": {
+        "name": "Gibraltar pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇬🇮",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "GN",
+    "currencies": {
+      "GNF": {
+        "name": "Guinean franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇬🇳",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "GP",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇬🇵",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "GM",
+    "currencies": {
+      "GMD": {
+        "name": "dalasi",
+        "symbol": "D"
+      }
+    },
+    "flag": "🇬🇲",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "GW",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇬🇼",
+    "languages": {
+      "por": "Portuguese",
+      "pov": "Upper Guinea Creole"
+    }
+  },
+  {
+    "cca2": "GQ",
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇬🇶",
+    "languages": {
+      "fra": "French",
+      "por": "Portuguese",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "GR",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇬🇷",
+    "languages": {
+      "ell": "Greek"
+    }
+  },
+  {
+    "cca2": "GD",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇬🇩",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "GL",
+    "currencies": {
+      "DKK": {
+        "name": "krone",
+        "symbol": "kr."
+      }
+    },
+    "flag": "🇬🇱",
+    "languages": {
+      "kal": "Greenlandic"
+    }
+  },
+  {
+    "cca2": "GT",
+    "currencies": {
+      "GTQ": {
+        "name": "Guatemalan quetzal",
+        "symbol": "Q"
+      }
+    },
+    "flag": "🇬🇹",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "GF",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇬🇫",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "GU",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇬🇺",
+    "languages": {
+      "cha": "Chamorro",
+      "eng": "English",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "GY",
+    "currencies": {
+      "GYD": {
+        "name": "Guyanese dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇬🇾",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "HK",
+    "currencies": {
+      "HKD": {
+        "name": "Hong Kong dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇭🇰",
+    "languages": {
+      "eng": "English",
+      "zho": "Chinese"
+    }
+  },
+  {
+    "cca2": "HM",
+    "currencies": [],
+    "flag": "🇭🇲",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "HN",
+    "currencies": {
+      "HNL": {
+        "name": "Honduran lempira",
+        "symbol": "L"
+      }
+    },
+    "flag": "🇭🇳",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "HR",
+    "currencies": {
+      "HRK": {
+        "name": "Croatian kuna",
+        "symbol": "kn"
+      }
+    },
+    "flag": "🇭🇷",
+    "languages": {
+      "hrv": "Croatian"
+    }
+  },
+  {
+    "cca2": "HT",
+    "currencies": {
+      "HTG": {
+        "name": "Haitian gourde",
+        "symbol": "G"
+      }
+    },
+    "flag": "🇭🇹",
+    "languages": {
+      "fra": "French",
+      "hat": "Haitian Creole"
+    }
+  },
+  {
+    "cca2": "HU",
+    "currencies": {
+      "HUF": {
+        "name": "Hungarian forint",
+        "symbol": "Ft"
+      }
+    },
+    "flag": "🇭🇺",
+    "languages": {
+      "hun": "Hungarian"
+    }
+  },
+  {
+    "cca2": "ID",
+    "currencies": {
+      "IDR": {
+        "name": "Indonesian rupiah",
+        "symbol": "Rp"
+      }
+    },
+    "flag": "🇮🇩",
+    "languages": {
+      "ind": "Indonesian"
+    }
+  },
+  {
+    "cca2": "IM",
+    "currencies": {
+      "GBP": {
+        "name": "British pound",
+        "symbol": "£"
+      },
+      "IMP": {
+        "name": "Manx pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇮🇲",
+    "languages": {
+      "eng": "English",
+      "glv": "Manx"
+    }
+  },
+  {
+    "cca2": "IN",
+    "currencies": {
+      "INR": {
+        "name": "Indian rupee",
+        "symbol": "₹"
+      }
+    },
+    "flag": "🇮🇳",
+    "languages": {
+      "eng": "English",
+      "hin": "Hindi",
+      "tam": "Tamil"
+    }
+  },
+  {
+    "cca2": "IO",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇮🇴",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "IE",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇮🇪",
+    "languages": {
+      "eng": "English",
+      "gle": "Irish"
+    }
+  },
+  {
+    "cca2": "IR",
+    "currencies": {
+      "IRR": {
+        "name": "Iranian rial",
+        "symbol": "﷼"
+      }
+    },
+    "flag": "🇮🇷",
+    "languages": {
+      "fas": "Persian (Farsi)"
+    }
+  },
+  {
+    "cca2": "IQ",
+    "currencies": {
+      "IQD": {
+        "name": "Iraqi dinar",
+        "symbol": "ع.د"
+      }
+    },
+    "flag": "🇮🇶",
+    "languages": {
+      "ara": "Arabic",
+      "arc": "Aramaic",
+      "ckb": "Sorani"
+    }
+  },
+  {
+    "cca2": "IS",
+    "currencies": {
+      "ISK": {
+        "name": "Icelandic króna",
+        "symbol": "kr"
+      }
+    },
+    "flag": "🇮🇸",
+    "languages": {
+      "isl": "Icelandic"
+    }
+  },
+  {
+    "cca2": "IL",
+    "currencies": {
+      "ILS": {
+        "name": "Israeli new shekel",
+        "symbol": "₪"
+      }
+    },
+    "flag": "🇮🇱",
+    "languages": {
+      "ara": "Arabic",
+      "heb": "Hebrew"
+    }
+  },
+  {
+    "cca2": "IT",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇮🇹",
+    "languages": {
+      "ita": "Italian"
+    }
+  },
+  {
+    "cca2": "JM",
+    "currencies": {
+      "JMD": {
+        "name": "Jamaican dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇯🇲",
+    "languages": {
+      "eng": "English",
+      "jam": "Jamaican Patois"
+    }
+  },
+  {
+    "cca2": "JE",
+    "currencies": {
+      "GBP": {
+        "name": "British pound",
+        "symbol": "£"
+      },
+      "JEP": {
+        "name": "Jersey pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇯🇪",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "nrf": "Jèrriais"
+    }
+  },
+  {
+    "cca2": "JO",
+    "currencies": {
+      "JOD": {
+        "name": "Jordanian dinar",
+        "symbol": "د.ا"
+      }
+    },
+    "flag": "🇯🇴",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "JP",
+    "currencies": {
+      "JPY": {
+        "name": "Japanese yen",
+        "symbol": "¥"
+      }
+    },
+    "flag": "🇯🇵",
+    "languages": {
+      "jpn": "Japanese"
+    }
+  },
+  {
+    "cca2": "KZ",
+    "currencies": {
+      "KZT": {
+        "name": "Kazakhstani tenge",
+        "symbol": "₸"
+      }
+    },
+    "flag": "🇰🇿",
+    "languages": {
+      "kaz": "Kazakh",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "KE",
+    "currencies": {
+      "KES": {
+        "name": "Kenyan shilling",
+        "symbol": "Sh"
+      }
+    },
+    "flag": "🇰🇪",
+    "languages": {
+      "eng": "English",
+      "swa": "Swahili"
+    }
+  },
+  {
+    "cca2": "KG",
+    "currencies": {
+      "KGS": {
+        "name": "Kyrgyzstani som",
+        "symbol": "с"
+      }
+    },
+    "flag": "🇰🇬",
+    "languages": {
+      "kir": "Kyrgyz",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "KH",
+    "currencies": {
+      "KHR": {
+        "name": "Cambodian riel",
+        "symbol": "៛"
+      },
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇰🇭",
+    "languages": {
+      "khm": "Khmer"
+    }
+  },
+  {
+    "cca2": "KI",
+    "currencies": {
+      "AUD": {
+        "name": "Australian dollar",
+        "symbol": "$"
+      },
+      "KID": {
+        "name": "Kiribati dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇰🇮",
+    "languages": {
+      "eng": "English",
+      "gil": "Gilbertese"
+    }
+  },
+  {
+    "cca2": "KN",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇰🇳",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "KR",
+    "currencies": {
+      "KRW": {
+        "name": "South Korean won",
+        "symbol": "₩"
+      }
+    },
+    "flag": "🇰🇷",
+    "languages": {
+      "kor": "Korean"
+    }
+  },
+  {
+    "cca2": "XK",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇽🇰",
+    "languages": {
+      "sqi": "Albanian",
+      "srp": "Serbian"
+    }
+  },
+  {
+    "cca2": "KW",
+    "currencies": {
+      "KWD": {
+        "name": "Kuwaiti dinar",
+        "symbol": "د.ك"
+      }
+    },
+    "flag": "🇰🇼",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "LA",
+    "currencies": {
+      "LAK": {
+        "name": "Lao kip",
+        "symbol": "₭"
+      }
+    },
+    "flag": "🇱🇦",
+    "languages": {
+      "lao": "Lao"
+    }
+  },
+  {
+    "cca2": "LB",
+    "currencies": {
+      "LBP": {
+        "name": "Lebanese pound",
+        "symbol": "ل.ل"
+      }
+    },
+    "flag": "🇱🇧",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "LR",
+    "currencies": {
+      "LRD": {
+        "name": "Liberian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇱🇷",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "LY",
+    "currencies": {
+      "LYD": {
+        "name": "Libyan dinar",
+        "symbol": "ل.د"
+      }
+    },
+    "flag": "🇱🇾",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "LC",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇱🇨",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "LI",
+    "currencies": {
+      "CHF": {
+        "name": "Swiss franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇱🇮",
+    "languages": {
+      "deu": "German"
+    }
+  },
+  {
+    "cca2": "LK",
+    "currencies": {
+      "LKR": {
+        "name": "Sri Lankan rupee",
+        "symbol": "Rs  රු"
+      }
+    },
+    "flag": "🇱🇰",
+    "languages": {
+      "sin": "Sinhala",
+      "tam": "Tamil"
+    }
+  },
+  {
+    "cca2": "LS",
+    "currencies": {
+      "LSL": {
+        "name": "Lesotho loti",
+        "symbol": "L"
+      },
+      "ZAR": {
+        "name": "South African rand",
+        "symbol": "R"
+      }
+    },
+    "flag": "🇱🇸",
+    "languages": {
+      "eng": "English",
+      "sot": "Sotho"
+    }
+  },
+  {
+    "cca2": "LT",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇱🇹",
+    "languages": {
+      "lit": "Lithuanian"
+    }
+  },
+  {
+    "cca2": "LU",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇱🇺",
+    "languages": {
+      "deu": "German",
+      "fra": "French",
+      "ltz": "Luxembourgish"
+    }
+  },
+  {
+    "cca2": "LV",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇱🇻",
+    "languages": {
+      "lav": "Latvian"
+    }
+  },
+  {
+    "cca2": "MO",
+    "currencies": {
+      "MOP": {
+        "name": "Macanese pataca",
+        "symbol": "P"
+      }
+    },
+    "flag": "🇲🇴",
+    "languages": {
+      "por": "Portuguese",
+      "zho": "Chinese"
+    }
+  },
+  {
+    "cca2": "MF",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇲🇫",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "MA",
+    "currencies": {
+      "MAD": {
+        "name": "Moroccan dirham",
+        "symbol": "د.م."
+      }
+    },
+    "flag": "🇲🇦",
+    "languages": {
+      "ara": "Arabic",
+      "ber": "Berber"
+    }
+  },
+  {
+    "cca2": "MC",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇲🇨",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "MD",
+    "currencies": {
+      "MDL": {
+        "name": "Moldovan leu",
+        "symbol": "L"
+      }
+    },
+    "flag": "🇲🇩",
+    "languages": {
+      "ron": "Moldavian"
+    }
+  },
+  {
+    "cca2": "MG",
+    "currencies": {
+      "MGA": {
+        "name": "Malagasy ariary",
+        "symbol": "Ar"
+      }
+    },
+    "flag": "🇲🇬",
+    "languages": {
+      "fra": "French",
+      "mlg": "Malagasy"
+    }
+  },
+  {
+    "cca2": "MV",
+    "currencies": {
+      "MVR": {
+        "name": "Maldivian rufiyaa",
+        "symbol": ".ރ"
+      }
+    },
+    "flag": "🇲🇻",
+    "languages": {
+      "div": "Maldivian"
+    }
+  },
+  {
+    "cca2": "MX",
+    "currencies": {
+      "MXN": {
+        "name": "Mexican peso",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇲🇽",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "MH",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇲🇭",
+    "languages": {
+      "eng": "English",
+      "mah": "Marshallese"
+    }
+  },
+  {
+    "cca2": "MK",
+    "currencies": {
+      "MKD": {
+        "name": "denar",
+        "symbol": "den"
+      }
+    },
+    "flag": "🇲🇰",
+    "languages": {
+      "mkd": "Macedonian"
+    }
+  },
+  {
+    "cca2": "ML",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇲🇱",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "MT",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇲🇹",
+    "languages": {
+      "eng": "English",
+      "mlt": "Maltese"
+    }
+  },
+  {
+    "cca2": "MM",
+    "currencies": {
+      "MMK": {
+        "name": "Burmese kyat",
+        "symbol": "Ks"
+      }
+    },
+    "flag": "🇲🇲",
+    "languages": {
+      "mya": "Burmese"
+    }
+  },
+  {
+    "cca2": "ME",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇲🇪",
+    "languages": {
+      "cnr": "Montenegrin"
+    }
+  },
+  {
+    "cca2": "MN",
+    "currencies": {
+      "MNT": {
+        "name": "Mongolian tögrög",
+        "symbol": "₮"
+      }
+    },
+    "flag": "🇲🇳",
+    "languages": {
+      "mon": "Mongolian"
+    }
+  },
+  {
+    "cca2": "MP",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇲🇵",
+    "languages": {
+      "cal": "Carolinian",
+      "cha": "Chamorro",
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "MZ",
+    "currencies": {
+      "MZN": {
+        "name": "Mozambican metical",
+        "symbol": "MT"
+      }
+    },
+    "flag": "🇲🇿",
+    "languages": {
+      "por": "Portuguese"
+    }
+  },
+  {
+    "cca2": "MR",
+    "currencies": {
+      "MRU": {
+        "name": "Mauritanian ouguiya",
+        "symbol": "UM"
+      }
+    },
+    "flag": "🇲🇷",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "MS",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇲🇸",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "MQ",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇲🇶",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "MU",
+    "currencies": {
+      "MUR": {
+        "name": "Mauritian rupee",
+        "symbol": "₨"
+      }
+    },
+    "flag": "🇲🇺",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "mfe": "Mauritian Creole"
+    }
+  },
+  {
+    "cca2": "MW",
+    "currencies": {
+      "MWK": {
+        "name": "Malawian kwacha",
+        "symbol": "MK"
+      }
+    },
+    "flag": "🇲🇼",
+    "languages": {
+      "eng": "English",
+      "nya": "Chewa"
+    }
+  },
+  {
+    "cca2": "MY",
+    "currencies": {
+      "MYR": {
+        "name": "Malaysian ringgit",
+        "symbol": "RM"
+      }
+    },
+    "flag": "🇲🇾",
+    "languages": {
+      "eng": "English",
+      "msa": "Malay"
+    }
+  },
+  {
+    "cca2": "YT",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇾🇹",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "NA",
+    "currencies": {
+      "NAD": {
+        "name": "Namibian dollar",
+        "symbol": "$"
+      },
+      "ZAR": {
+        "name": "South African rand",
+        "symbol": "R"
+      }
+    },
+    "flag": "🇳🇦",
+    "languages": {
+      "afr": "Afrikaans",
+      "deu": "German",
+      "eng": "English",
+      "her": "Herero",
+      "hgm": "Khoekhoe",
+      "kwn": "Kwangali",
+      "loz": "Lozi",
+      "ndo": "Ndonga",
+      "tsn": "Tswana"
+    }
+  },
+  {
+    "cca2": "NC",
+    "currencies": {
+      "XPF": {
+        "name": "CFP franc",
+        "symbol": "₣"
+      }
+    },
+    "flag": "🇳🇨",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "NE",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇳🇪",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "NF",
+    "currencies": {
+      "AUD": {
+        "name": "Australian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇳🇫",
+    "languages": {
+      "eng": "English",
+      "pih": "Norfuk"
+    }
+  },
+  {
+    "cca2": "NG",
+    "currencies": {
+      "NGN": {
+        "name": "Nigerian naira",
+        "symbol": "₦"
+      }
+    },
+    "flag": "🇳🇬",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "NI",
+    "currencies": {
+      "NIO": {
+        "name": "Nicaraguan córdoba",
+        "symbol": "C$"
+      }
+    },
+    "flag": "🇳🇮",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "NU",
+    "currencies": {
+      "NZD": {
+        "name": "New Zealand dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇳🇺",
+    "languages": {
+      "eng": "English",
+      "niu": "Niuean"
+    }
+  },
+  {
+    "cca2": "NL",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇳🇱",
+    "languages": {
+      "nld": "Dutch"
+    }
+  },
+  {
+    "cca2": "NO",
+    "currencies": {
+      "NOK": {
+        "name": "Norwegian krone",
+        "symbol": "kr"
+      }
+    },
+    "flag": "🇳🇴",
+    "languages": {
+      "nno": "Norwegian Nynorsk",
+      "nob": "Norwegian Bokmål",
+      "smi": "Sami"
+    }
+  },
+  {
+    "cca2": "NP",
+    "currencies": {
+      "NPR": {
+        "name": "Nepalese rupee",
+        "symbol": "₨"
+      }
+    },
+    "flag": "🇳🇵",
+    "languages": {
+      "nep": "Nepali"
+    }
+  },
+  {
+    "cca2": "NR",
+    "currencies": {
+      "AUD": {
+        "name": "Australian dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇳🇷",
+    "languages": {
+      "eng": "English",
+      "nau": "Nauru"
+    }
+  },
+  {
+    "cca2": "NZ",
+    "currencies": {
+      "NZD": {
+        "name": "New Zealand dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇳🇿",
+    "languages": {
+      "eng": "English",
+      "mri": "Māori",
+      "nzs": "New Zealand Sign Language"
+    }
+  },
+  {
+    "cca2": "OM",
+    "currencies": {
+      "OMR": {
+        "name": "Omani rial",
+        "symbol": "ر.ع."
+      }
+    },
+    "flag": "🇴🇲",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "PK",
+    "currencies": {
+      "PKR": {
+        "name": "Pakistani rupee",
+        "symbol": "₨"
+      }
+    },
+    "flag": "🇵🇰",
+    "languages": {
+      "eng": "English",
+      "urd": "Urdu"
+    }
+  },
+  {
+    "cca2": "PA",
+    "currencies": {
+      "PAB": {
+        "name": "Panamanian balboa",
+        "symbol": "B/."
+      },
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇵🇦",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "PN",
+    "currencies": {
+      "NZD": {
+        "name": "New Zealand dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇵🇳",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "PE",
+    "currencies": {
+      "PEN": {
+        "name": "Peruvian sol",
+        "symbol": "S/."
+      }
+    },
+    "flag": "🇵🇪",
+    "languages": {
+      "aym": "Aymara",
+      "que": "Quechua",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "PH",
+    "currencies": {
+      "PHP": {
+        "name": "Philippine peso",
+        "symbol": "₱"
+      }
+    },
+    "flag": "🇵🇭",
+    "languages": {
+      "eng": "English",
+      "fil": "Filipino"
+    }
+  },
+  {
+    "cca2": "PW",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇵🇼",
+    "languages": {
+      "eng": "English",
+      "pau": "Palauan"
+    }
+  },
+  {
+    "cca2": "PG",
+    "currencies": {
+      "PGK": {
+        "name": "Papua New Guinean kina",
+        "symbol": "K"
+      }
+    },
+    "flag": "🇵🇬",
+    "languages": {
+      "eng": "English",
+      "hmo": "Hiri Motu",
+      "tpi": "Tok Pisin"
+    }
+  },
+  {
+    "cca2": "PL",
+    "currencies": {
+      "PLN": {
+        "name": "Polish złoty",
+        "symbol": "zł"
+      }
+    },
+    "flag": "🇵🇱",
+    "languages": {
+      "eng": "English",
+      "pol": "Polish",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "PR",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇵🇷",
+    "languages": {
+      "eng": "English",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "KP",
+    "currencies": {
+      "KPW": {
+        "name": "North Korean won",
+        "symbol": "₩"
+      }
+    },
+    "flag": "🇰🇵",
+    "languages": {
+      "kor": "Korean"
+    }
+  },
+  {
+    "cca2": "PT",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇵🇹",
+    "languages": {
+      "por": "Portuguese"
+    }
+  },
+  {
+    "cca2": "PY",
+    "currencies": {
+      "PYG": {
+        "name": "Paraguayan guaraní",
+        "symbol": "₲"
+      }
+    },
+    "flag": "🇵🇾",
+    "languages": {
+      "grn": "Guaraní",
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "PS",
+    "currencies": {
+      "EGP": {
+        "name": "Egyptian pound",
+        "symbol": "E£"
+      },
+      "ILS": {
+        "name": "Israeli new shekel",
+        "symbol": "₪"
+      },
+      "JOD": {
+        "name": "Jordanian dinar",
+        "symbol": "JD"
+      }
+    },
+    "flag": "🇵🇸",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "PF",
+    "currencies": {
+      "XPF": {
+        "name": "CFP franc",
+        "symbol": "₣"
+      }
+    },
+    "flag": "🇵🇫",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "QA",
+    "currencies": {
+      "QAR": {
+        "name": "Qatari riyal",
+        "symbol": "ر.ق"
+      }
+    },
+    "flag": "🇶🇦",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "RE",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇷🇪",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "RO",
+    "currencies": {
+      "RON": {
+        "name": "Romanian leu",
+        "symbol": "lei"
+      }
+    },
+    "flag": "🇷🇴",
+    "languages": {
+      "ron": "Romanian"
+    }
+  },
+  {
+    "cca2": "RU",
+    "currencies": {
+      "RUB": {
+        "name": "Blood money",
+        "symbol": "💩"
+      }
+    },
+    "flag": "💩",
+    "languages": {
+      "rus": "Bullshit"
+    }
+  },
+  {
+    "cca2": "RW",
+    "currencies": {
+      "RWF": {
+        "name": "Rwandan franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇷🇼",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "kin": "Kinyarwanda"
+    }
+  },
+  {
+    "cca2": "SA",
+    "currencies": {
+      "SAR": {
+        "name": "Saudi riyal",
+        "symbol": "ر.س"
+      }
+    },
+    "flag": "🇸🇦",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "SD",
+    "currencies": {
+      "SDG": {
+        "name": "Sudanese pound",
+        "symbol": ""
+      }
+    },
+    "flag": "🇸🇩",
+    "languages": {
+      "ara": "Arabic",
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "SN",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇸🇳",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "SG",
+    "currencies": {
+      "SGD": {
+        "name": "Singapore dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇸🇬",
+    "languages": {
+      "eng": "English",
+      "msa": "Malay",
+      "tam": "Tamil",
+      "zho": "Chinese"
+    }
+  },
+  {
+    "cca2": "GS",
+    "currencies": {
+      "SHP": {
+        "name": "Saint Helena pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇬🇸",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "SJ",
+    "currencies": {
+      "NOK": {
+        "name": "krone",
+        "symbol": "kr"
+      }
+    },
+    "flag": "🇸🇯",
+    "languages": {
+      "nor": "Norwegian"
+    }
+  },
+  {
+    "cca2": "SB",
+    "currencies": {
+      "SBD": {
+        "name": "Solomon Islands dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇸🇧",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "SL",
+    "currencies": {
+      "SLL": {
+        "name": "Sierra Leonean leone",
+        "symbol": "Le"
+      }
+    },
+    "flag": "🇸🇱",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "SV",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇸🇻",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "SM",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇸🇲",
+    "languages": {
+      "ita": "Italian"
+    }
+  },
+  {
+    "cca2": "SO",
+    "currencies": {
+      "SOS": {
+        "name": "Somali shilling",
+        "symbol": "Sh"
+      }
+    },
+    "flag": "🇸🇴",
+    "languages": {
+      "ara": "Arabic",
+      "som": "Somali"
+    }
+  },
+  {
+    "cca2": "PM",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇵🇲",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "RS",
+    "currencies": {
+      "RSD": {
+        "name": "Serbian dinar",
+        "symbol": "дин."
+      }
+    },
+    "flag": "🇷🇸",
+    "languages": {
+      "srp": "Serbian"
+    }
+  },
+  {
+    "cca2": "SS",
+    "currencies": {
+      "SSP": {
+        "name": "South Sudanese pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇸🇸",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "ST",
+    "currencies": {
+      "STN": {
+        "name": "São Tomé and Príncipe dobra",
+        "symbol": "Db"
+      }
+    },
+    "flag": "🇸🇹",
+    "languages": {
+      "por": "Portuguese"
+    }
+  },
+  {
+    "cca2": "SR",
+    "currencies": {
+      "SRD": {
+        "name": "Surinamese dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇸🇷",
+    "languages": {
+      "nld": "Dutch"
+    }
+  },
+  {
+    "cca2": "SK",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇸🇰",
+    "languages": {
+      "slk": "Slovak"
+    }
+  },
+  {
+    "cca2": "SI",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇸🇮",
+    "languages": {
+      "slv": "Slovene"
+    }
+  },
+  {
+    "cca2": "SE",
+    "currencies": {
+      "SEK": {
+        "name": "Swedish krona",
+        "symbol": "kr"
+      }
+    },
+    "flag": "🇸🇪",
+    "languages": {
+      "swe": "Swedish"
+    }
+  },
+  {
+    "cca2": "SZ",
+    "currencies": {
+      "SZL": {
+        "name": "Swazi lilangeni",
+        "symbol": "L"
+      },
+      "ZAR": {
+        "name": "South African rand",
+        "symbol": "R"
+      }
+    },
+    "flag": "🇸🇿",
+    "languages": {
+      "eng": "English",
+      "ssw": "Swazi"
+    }
+  },
+  {
+    "cca2": "SX",
+    "currencies": {
+      "ANG": {
+        "name": "Netherlands Antillean guilder",
+        "symbol": "ƒ"
+      }
+    },
+    "flag": "🇸🇽",
+    "languages": {
+      "eng": "English",
+      "fra": "French",
+      "nld": "Dutch"
+    }
+  },
+  {
+    "cca2": "SC",
+    "currencies": {
+      "SCR": {
+        "name": "Seychellois rupee",
+        "symbol": "₨"
+      }
+    },
+    "flag": "🇸🇨",
+    "languages": {
+      "crs": "Seychellois Creole",
+      "eng": "English",
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "SY",
+    "currencies": {
+      "SYP": {
+        "name": "Syrian pound",
+        "symbol": "£"
+      }
+    },
+    "flag": "🇸🇾",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "TC",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇹🇨",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "TD",
+    "currencies": {
+      "XAF": {
+        "name": "Central African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇹🇩",
+    "languages": {
+      "ara": "Arabic",
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "TG",
+    "currencies": {
+      "XOF": {
+        "name": "West African CFA franc",
+        "symbol": "Fr"
+      }
+    },
+    "flag": "🇹🇬",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "TH",
+    "currencies": {
+      "THB": {
+        "name": "Thai baht",
+        "symbol": "฿"
+      }
+    },
+    "flag": "🇹🇭",
+    "languages": {
+      "tha": "Thai"
+    }
+  },
+  {
+    "cca2": "TJ",
+    "currencies": {
+      "TJS": {
+        "name": "Tajikistani somoni",
+        "symbol": "ЅМ"
+      }
+    },
+    "flag": "🇹🇯",
+    "languages": {
+      "tgk": "Tajik",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "TK",
+    "currencies": {
+      "NZD": {
+        "name": "New Zealand dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇹🇰",
+    "languages": {
+      "eng": "English",
+      "smo": "Samoan",
+      "tkl": "Tokelauan"
+    }
+  },
+  {
+    "cca2": "TM",
+    "currencies": {
+      "TMT": {
+        "name": "Turkmenistan manat",
+        "symbol": "m"
+      }
+    },
+    "flag": "🇹🇲",
+    "languages": {
+      "tuk": "Turkmen",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "TL",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇹🇱",
+    "languages": {
+      "por": "Portuguese",
+      "tet": "Tetum"
+    }
+  },
+  {
+    "cca2": "TO",
+    "currencies": {
+      "TOP": {
+        "name": "Tongan paʻanga",
+        "symbol": "T$"
+      }
+    },
+    "flag": "🇹🇴",
+    "languages": {
+      "eng": "English",
+      "ton": "Tongan"
+    }
+  },
+  {
+    "cca2": "TT",
+    "currencies": {
+      "TTD": {
+        "name": "Trinidad and Tobago dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇹🇹",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "TN",
+    "currencies": {
+      "TND": {
+        "name": "Tunisian dinar",
+        "symbol": "د.ت"
+      }
+    },
+    "flag": "🇹🇳",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "TR",
+    "currencies": {
+      "TRY": {
+        "name": "Turkish lira",
+        "symbol": "₺"
+      }
+    },
+    "flag": "🇹🇷",
+    "languages": {
+      "tur": "Turkish"
+    }
+  },
+  {
+    "cca2": "TV",
+    "currencies": {
+      "AUD": {
+        "name": "Australian dollar",
+        "symbol": "$"
+      },
+      "TVD": {
+        "name": "Tuvaluan dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇹🇻",
+    "languages": {
+      "eng": "English",
+      "tvl": "Tuvaluan"
+    }
+  },
+  {
+    "cca2": "TW",
+    "currencies": {
+      "TWD": {
+        "name": "New Taiwan dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇹🇼",
+    "languages": {
+      "zho": "Chinese"
+    }
+  },
+  {
+    "cca2": "TZ",
+    "currencies": {
+      "TZS": {
+        "name": "Tanzanian shilling",
+        "symbol": "Sh"
+      }
+    },
+    "flag": "🇹🇿",
+    "languages": {
+      "eng": "English",
+      "swa": "Swahili"
+    }
+  },
+  {
+    "cca2": "UG",
+    "currencies": {
+      "UGX": {
+        "name": "Ugandan shilling",
+        "symbol": "Sh"
+      }
+    },
+    "flag": "🇺🇬",
+    "languages": {
+      "eng": "English",
+      "swa": "Swahili"
+    }
+  },
+  {
+    "cca2": "UA",
+    "currencies": {
+      "UAH": {
+        "name": "Ukrainian hryvnia",
+        "symbol": "₴"
+      }
+    },
+    "flag": "🇺🇦",
+    "languages": {
+      "eng": "English",
+      "pol": "Polish",
+      "ukr": "Ukrainian"
+    }
+  },
+  {
+    "cca2": "UM",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇺🇲",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "UY",
+    "currencies": {
+      "UYU": {
+        "name": "Uruguayan peso",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇺🇾",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "US",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇺🇸",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "UZ",
+    "currencies": {
+      "UZS": {
+        "name": "Uzbekistani soʻm",
+        "symbol": "so'm"
+      }
+    },
+    "flag": "🇺🇿",
+    "languages": {
+      "ukr": "Ukrainian",
+      "uzb": "Uzbek"
+    }
+  },
+  {
+    "cca2": "VA",
+    "currencies": {
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      }
+    },
+    "flag": "🇻🇦",
+    "languages": {
+      "ita": "Italian",
+      "lat": "Latin"
+    }
+  },
+  {
+    "cca2": "VC",
+    "currencies": {
+      "XCD": {
+        "name": "Eastern Caribbean dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇻🇨",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "VE",
+    "currencies": {
+      "VES": {
+        "name": "Venezuelan bolívar soberano",
+        "symbol": "Bs.S."
+      }
+    },
+    "flag": "🇻🇪",
+    "languages": {
+      "spa": "Spanish"
+    }
+  },
+  {
+    "cca2": "VG",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇻🇬",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "VI",
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇻🇮",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "VN",
+    "currencies": {
+      "VND": {
+        "name": "Vietnamese đồng",
+        "symbol": "₫"
+      }
+    },
+    "flag": "🇻🇳",
+    "languages": {
+      "vie": "Vietnamese"
+    }
+  },
+  {
+    "cca2": "VU",
+    "currencies": {
+      "VUV": {
+        "name": "Vanuatu vatu",
+        "symbol": "Vt"
+      }
+    },
+    "flag": "🇻🇺",
+    "languages": {
+      "bis": "Bislama",
+      "eng": "English",
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "WF",
+    "currencies": {
+      "XPF": {
+        "name": "CFP franc",
+        "symbol": "₣"
+      }
+    },
+    "flag": "🇼🇫",
+    "languages": {
+      "fra": "French"
+    }
+  },
+  {
+    "cca2": "WS",
+    "currencies": {
+      "WST": {
+        "name": "Samoan tālā",
+        "symbol": "T"
+      }
+    },
+    "flag": "🇼🇸",
+    "languages": {
+      "eng": "English",
+      "smo": "Samoan"
+    }
+  },
+  {
+    "cca2": "YE",
+    "currencies": {
+      "YER": {
+        "name": "Yemeni rial",
+        "symbol": "﷼"
+      }
+    },
+    "flag": "🇾🇪",
+    "languages": {
+      "ara": "Arabic"
+    }
+  },
+  {
+    "cca2": "ZA",
+    "currencies": {
+      "ZAR": {
+        "name": "South African rand",
+        "symbol": "R"
+      }
+    },
+    "flag": "🇿🇦",
+    "languages": {
+      "afr": "Afrikaans",
+      "eng": "English",
+      "nbl": "Southern Ndebele",
+      "nso": "Northern Sotho",
+      "sot": "Southern Sotho",
+      "ssw": "Swazi",
+      "tsn": "Tswana",
+      "tso": "Tsonga",
+      "ven": "Venda",
+      "xho": "Xhosa",
+      "zul": "Zulu"
+    }
+  },
+  {
+    "cca2": "ZM",
+    "currencies": {
+      "ZMW": {
+        "name": "Zambian kwacha",
+        "symbol": "ZK"
+      }
+    },
+    "flag": "🇿🇲",
+    "languages": {
+      "eng": "English"
+    }
+  },
+  {
+    "cca2": "ZW",
+    "currencies": {
+      "BWP": {
+        "name": "Botswana pula",
+        "symbol": "P"
+      },
+      "CNY": {
+        "name": "Chinese yuan",
+        "symbol": "¥"
+      },
+      "EUR": {
+        "name": "Euro",
+        "symbol": "€"
+      },
+      "GBP": {
+        "name": "British pound",
+        "symbol": "£"
+      },
+      "INR": {
+        "name": "Indian rupee",
+        "symbol": "₹"
+      },
+      "JPY": {
+        "name": "Japanese yen",
+        "symbol": "¥"
+      },
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      },
+      "ZAR": {
+        "name": "South African rand",
+        "symbol": "Rs"
+      },
+      "ZWB": {
+        "name": "Zimbabwean bonds",
+        "symbol": "$"
+      }
+    },
+    "flag": "🇿🇼",
+    "languages": {
+      "bwg": "Chibarwe",
+      "eng": "English",
+      "kck": "Kalanga",
+      "khi": "Khoisan",
+      "ndc": "Ndau",
+      "nde": "Northern Ndebele",
+      "nya": "Chewa",
+      "sna": "Shona",
+      "sot": "Sotho",
+      "toi": "Tonga",
+      "tsn": "Tswana",
+      "tso": "Tsonga",
+      "ven": "Venda",
+      "xho": "Xhosa",
+      "zib": "Zimbabwean Sign Language"
+    }
+  }
+]

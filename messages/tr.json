@@ -1,0 +1,160 @@
+{
+  "LoginForm": {
+    "no-account": "Hesabınız yok mu?",
+    "signup": "Buradan kayıt olun.",
+    "title": "Giriş Yap",
+    "welcome-back": "Tekrar hoşgeldiniz"
+  },
+  "RegisterForm": {
+    "have-account": "Zaten bir hesabınız mı var?",
+    "signin": "Buradan giriş yapın.",
+    "title": "Kayıt Ol"
+  },
+  "account-page": {
+    "Settings": "Ayarlar",
+    "loggedIn": "Giriş yapıldı",
+    "loggedOut": "Çıkış yapıldı",
+    "login": "Giriş yap",
+    "logout": "Çıkış Yap",
+    "title": "Hesap"
+  },
+  "auth": {
+    "error": {
+      "default": "Farklı bir hesapla giriş yapın.",
+      "email": "E-posta bulunamadı. Farklı bir sağlayıcı deneyin.",
+      "oauthNotLinked": "Kimliğinizi doğrulamak için orijinal hesabınızla giriş yapın.",
+      "unknown": "Bir hata oluştu. Tekrar deneyin.",
+      "unknown-error": "Bir şeyler yanlış gitti. Destek için /contact sayfasını ziyaret edin."
+    },
+    "legal": "Bu düğmeleri kullanarak kabul edersiniz",
+    "legal-and": "ve",
+    "legal-privacy": "Gizlilik Politikası",
+    "legal-terms": "Kullanım Şartları"
+  },
+  "auth-provider": {
+    "please-wait": "Lütfen bekleyin..."
+  },
+  "checkout": {
+    "CartDetails": "Detaylar",
+    "Demo": "Test verileri: 4242424242424242 | 12/34 | 567",
+    "Description": "Sepetle ödeme yapın",
+    "EmptyCartDescription": "Ödeme yapmak için ürün ekleyin",
+    "EmptyCartHeading": "Sepetiniz boş",
+    "Pay": "Ödeme Yap",
+    "Title": "Ödeme",
+    "backToCart": "Sepete geri dön",
+    "backToCartSingle": "Geri",
+    "calculated": "Ödemede hesaplanır",
+    "cart": "Sepet",
+    "cartIsEmpty": "Sepetiniz boş",
+    "continueShopping": "Alışverişe devam et",
+    "free": "Ücretsiz",
+    "notConnectedDescription": "Stripe ödemeleri kabul etmek için mağazanızı bağlayın",
+    "notConnectedHeading": "Mağaza Stripe'a bağlı değil",
+    "shipping": "Kargo",
+    "taxes": "Vergiler",
+    "total": "Toplam",
+    "viewTheCart": "Sepeti Görüntüle"
+  },
+  "components": {
+    "command": {
+      "dark": "Karanlık",
+      "light": "Aydınlık",
+      "system": "Sistem",
+      "theme": "Tema"
+    },
+    "search": {
+      "placeholder": "Ara...",
+      "title": "Ara"
+    }
+  },
+  "contact": {
+    "submit": "Gönder"
+  },
+  "demo": {
+    "aria-label-goto": "Git",
+    "launch": "Dashboard"
+  },
+  "faq": {
+    "1": {
+      "details": "Proje hakkında en güncel bilgiler ve kurulum talimatları için Relivator GitHub deposundaki README.md dosyasını ziyaret edin.",
+      "summary": "Nasıl hızlı kurabilir ve başlayabilirim?"
+    },
+    "2": {
+      "details": "Relivator sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
+      "summary": "Next.js 15 ve React 19 için neden Relivator'u seçmeliyim?"
+    },
+    "3": {
+      "details": "Geliştirme genellikle bir kişi tarafından yapılır. Bağışlar süreci hızlandırabilir. Bağış yapmak için aşağıya tıklayın. Destek için teşekkürler! 🩷",
+      "summary": "Relivator v1.3.0'ı hızlandırmak mümkün mü?"
+    }
+  },
+  "landing": {
+    "about": "En zengin özelliklere sahip global Next.js starter'ı oluşturma hedefi. Özelliklerimizi keşfedin. Koddan fazlası, bu bir yolculuk. Kararlı ve üretime hazır.",
+    "buy-now": "Katalog",
+    "features": {
+      "auth": {
+        "description": "NextAuth.js ve Clerk kullanarak çok yönlü bir kimlik doğrulama sistemi dağıtın. Detaylar için .env.example'a bakın.",
+        "title": "Kimlik Doğrulama: Güvenli ve Esnek"
+      },
+      "database": {
+        "description": "Drizzle ORM ile performansı koruyun, MySQL ve Postgres'i anında değiştirin. Planetscale, Vercel, Railway, Neon ve daha fazlası ile dağıtım yapın.",
+        "title": "Veritabanı Entegrasyonu: Sağlam ve Esnek"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
+        "description": "Güçlü abonelik sistemi, ücretsiz ve ücretli planlarla. Detaylar için README.md'yi inceleyin.",
+        "title": "Stripe Abonelikleri: Güçlü ve Esnek"
+      },
+      "interface": {
+        "description": "Flowbite ve Shadcn UI bileşenleri ile, Radix ve Tailwind CSS kullanarak harika UI oluşturun. VSCode önerilir.",
+        "title": "Bileşenler: Şık ve İşlevsel"
+      },
+      "nextjs": {
+        "description": "App Router, Layouts ve Loading UI ile sorunsuz gezinme. Güçlü API yollarını keşfedin.",
+        "title": "Next.js 15: Gelişmiş Deneyim"
+      },
+      "text": {
+        "description": "Sunucu ve istemci bileşenleri ile uygulamayı kolayca yönetin. Gelişmiş kancalar ve ek özellikler ile sorunsuz geliştirme.",
+        "title": "React 19: Modern Geliştirme"
+      }
+    },
+    "footer-cta": "Başlamak için hazır mısınız?",
+    "get-started-button": "Dashboard",
+    "main-cta": "GitHub",
+    "sell-now": "Dashboard"
+  },
+  "metadata": {
+    "description": "Relivator ile e-Ticaretinizi geliştirin: shadcn/ui, Next.js 15 ve React 19 gücü",
+    "title": {
+      "home": "Anasayfa"
+    }
+  },
+  "pages": {
+    "not-found": {
+      "description": "Kaynak taşınmış, yeniden adlandırılmış veya var olmamış olabilir. URL'yi kontrol edin veya menüyü kullanın.",
+      "go-home": "Ana Sayfaya Dön",
+      "title": "🫠 Sayfa bulunamadı! 🥲"
+    }
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "En iyi mağazalardan {category} satın alın",
+      "buyTheBest": "En iyi {category}"
+    },
+    "products": {
+      "addToCart": "Sepete ekle",
+      "buyProductsFromOurStores": "Mağazalarımızdan satın alın",
+      "catalogue": "Katalog",
+      "description": "Açıklama",
+      "moreProductsFrom": "{storeName}'dan daha fazla",
+      "noDescription": "Açıklama yok.",
+      "products": "Ürünler",
+      "productsCatalogue": "Ürün Kataloğu"
+    },
+    "stores": {
+      "buy-products": "Mağazalarımızdan satın alın",
+      "stores": "Mağazalar"
+    }
+  }
+}

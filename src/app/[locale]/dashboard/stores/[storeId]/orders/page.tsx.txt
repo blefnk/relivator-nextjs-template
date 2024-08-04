@@ -1,0 +1,38 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import { eq } from "drizzle-orm";
+
+import { db } from "~/db";
+import { stores } from "~/db/schema";
+
+export const metadata: Metadata = {
+  description: "Manage the orders",
+  title: "Orders",
+};
+
+type OrdersPageProps = {
+  params: {
+    storeId: string;
+  };
+  searchParams: Record<string, string | string[] | undefined>;
+};
+
+export default async function OrdersPage({ params }: OrdersPageProps) {
+  const { storeId } = params;
+
+  const store = await db.query.stores.findFirst({
+    columns: {
+      id: true,
+      name: true,
+    },
+    where: eq(stores.id, storeId),
+  });
+
+  if (!store) {
+    notFound();
+  }
+
+  // Number of items per page
+  return <h1>Orders</h1>;
+}

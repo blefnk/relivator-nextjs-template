@@ -1,0 +1,19 @@
+const almostEqual = (a: unknown, b: unknown) => Math.abs(a - b) < 0.00000001 * Math.abs(a + b);
+
+const calcSlope = (x1: unknown, y1: unknown, x2: unknown, y2: unknown) => {
+  if (x2 === x1) {
+    return 0;
+  }
+
+  return (y2 - y1) / (x2 - x1);
+};
+
+const add = (a: unknown, b: unknown) => a + b;
+
+const multiply = (a: unknown, b: unknown) => a * b;
+
+export { add, almostEqual, calcSlope, multiply };
+
+export const sum = (a: number, b: number) => a + b;
+
+export const subtract = (a: number, b: number) => a - b;

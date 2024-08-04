@@ -1,0 +1,337 @@
+"use client";
+
+import { ChangeEvent, ReactNode } from "react";
+import { useRef, useState, useTransition } from "react";
+
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+
+import { labels, locales } from "~/config/navigation";
+import { useIsClient } from "@uidotdev/usehooks";
+import { Button } from "~/components/Primitives/ui/Button";
+import { cn } from "~/utils";
+
+import "~/styles/flags/flags.min.css";
+
+type Props = {
+  children: ReactNode;
+  defaultValue: string;
+  label: string;
+};
+
+type LocaleFlagIconProps = {
+  locale: string;
+};
+
+export function LanguageSwitcherSelect({
+  children,
+  defaultValue,
+  label,
+}: Props) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
+  const parameters = useParams();
+
+  function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
+    const nextLocale = event.target.value;
+
+    startTransition(() => {
+      router.replace(
+        // @ts-expect-error TODO: fix
+        {
+          params: parameters,
+          pathname,
+        },
+        {
+          locale: nextLocale,
+        },
+      );
+    });
+  }
+
+  return (
+    <label
+      className={cn(
+        "relative text-gray-400",
+        isPending &&
+          `
+            transition-opacity
+
+            [&:disabled]:opacity-30
+          `,
+      )}
+    >
+      <p className="sr-only">{label}</p>
+      <select
+        className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-6"
+        defaultValue={defaultValue}
+        disabled={isPending}
+        onChange={onSelectChange}
+      >
+        {children}
+      </select>
+      <span className="pointer-events-none absolute right-2 top-[8px]">⌄</span>
+    </label>
+  );
+}
+
+export function LocaleSwitcher() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const isMounted = mounted();
+  const currentLocale = useLocale();
+  const [isOptionsExpanded, setIsOptionsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const optionsContainerRef = useRef<HTMLDivElement | null>(null);
+
+  if (!isMounted) {
+    return (
+      <div aria-label="Language Switcher" className="rounded-lg border">
+        <span
+          className={`
+            hidden
+
+            sm:block
+          `}
+        >
+          <LocaleFlagIcon locale={currentLocale} />
+          {labels[currentLocale as keyof typeof labels]}
+        </span>
+        <span
+          className={`
+            -mr-2 block
+
+            sm:hidden
+          `}
+        >
+          <LocaleFlagIcon locale={currentLocale} />
+        </span>
+      </div>
+    );
+  }
+
+  type Option = {
+    code: string;
+    country: string;
+  };
+
+  const options = locales.map((locale) => ({
+    code: locale,
+    country: labels[locale],
+  })) satisfies Option[];
+
+  const setOption = (option: Option) => {
+    setIsOptionsExpanded(false);
+    const pathSegments = (pathname || "")
+      .split("/")
+      .filter((segment) => segment.trim() !== "");
+    let newPath = `/${option.code}`;
+
+    if (
+      pathSegments.length > 0 &&
+      options.some((opt) => opt.code === pathSegments[0])
+    ) {
+      pathSegments[0] = option.code;
+      newPath = `/${pathSegments.join("/")}`;
+    } else {
+      newPath += pathname !== "/" ? pathname : "";
+    }
+
+    router.push(newPath);
+  };
+
+  /**
+    Error: Rendered more hooks than during the previous render.
+    Warning: React has detected a change in the order of Hooks called by LocaleSwitcher. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://react.dev/link/rules-of-hooks
+
+      Previous render            Next render
+      ------------------------------------------------------
+    1. useContext                 useContext
+    2. useContext                 useContext
+    3. useState                   useState
+    4. useEffect                  useEffect
+    5. useContext                 useContext
+    6. useContext                 useContext
+    7. useState                   useState
+    8. useRef                     useRef
+    9. useRef                     useRef
+    10. undefined                 useEffect
+  */
+  /* useEffect(() => {
+    const optionsContainer = optionsContainerRef.current;
+
+    if (optionsContainer) {
+      if (isOptionsExpanded) {
+        optionsContainer.style.display = "block";
+        requestAnimationFrame(() => {
+          optionsContainer.style.opacity = "1";
+          optionsContainer.style.transform = "scaleY(1)";
+        });
+      } else {
+        optionsContainer.style.opacity = "0";
+        optionsContainer.style.transform = "scaleY(0)";
+        optionsContainer.addEventListener(
+          "transitionend",
+          () => {
+            if (optionsContainer.style.opacity === "0") {
+              optionsContainer.style.display = "none";
+            }
+          },
+          { once: true },
+        );
+      }
+    }
+  }, [isOptionsExpanded]); */
+
+  return (
+    <div className="flex items-center justify-center">
+      <div className="relative text-sm" ref={containerRef}>
+        <div>
+          <Button
+            className={`
+              inline-flex items-center justify-between rounded-lg px-6 py-2.5
+              text-center text-sm font-medium
+            `}
+            onBlur={() => setIsOptionsExpanded(false)}
+            onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}
+            variant="outline"
+          >
+            <span className="flex">
+              <LocaleFlagIcon locale={currentLocale} />
+              <span
+                className={`
+                  hidden
+
+                  md:block
+                `}
+              >
+                &nbsp;{labels[currentLocale as keyof typeof labels]}
+              </span>
+            </span>
+            <svg
+              className={`
+                size-4 transition-transform duration-200 ease-in-out
+
+                ${isOptionsExpanded ? "rotate-180" : "rotate-0"}
+              `}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <title>Arrow</title>
+              <path
+                d="M19 9l-7 7-7-7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+              />
+            </svg>
+          </Button>
+        </div>
+        <div
+          className={`
+            absolute inset-x-0 mb-4 divide-y overflow-hidden rounded-lg
+            shadow-lg transition-all duration-500 ease-in-out
+          `}
+          ref={optionsContainerRef}
+          style={{
+            display: "none",
+            opacity: 0,
+            transform: "scaleY(0)",
+            transformOrigin: "top",
+          }}
+        >
+          <ul className="mt-4">
+            {options.map((locale, index) => (
+              <li
+                className={cn(
+                  `
+                    flex cursor-pointer items-center bg-slate-50 px-3 py-2
+                    transition-colors duration-300
+
+                    dark:bg-zinc-900 dark:hover:bg-zinc-900
+
+                    hover:bg-slate-100
+                  `,
+                )}
+                key={index}
+                onClick={() => setIsOptionsExpanded(false)}
+                onMouseDown={(event_) => {
+                  event_.preventDefault();
+                  setOption(locale);
+                }}
+              >
+                <span
+                  className={`
+                    hidden
+
+                    md:block
+                  `}
+                >
+                  <LocaleFlagIcon locale={locale.code} />
+                </span>
+                &nbsp;&nbsp;{locale.country}
+                {pathname === `/${locale.code}` && (
+                  <svg
+                    className="ml-auto size-7"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Locale Switcher Arrow Icon</title>
+                    <path
+                      d="M5 13l4 4L19 7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={3}
+                    />
+                  </svg>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LocaleFlagIcon({ locale }: LocaleFlagIconProps) {
+  const flagIcon = locale;
+
+  if (flagIcon === "en") {
+    return <span aria-hidden="true" className="fi fi-gb" />;
+  } else if (flagIcon === "uk") {
+    return <span aria-hidden="true" className="fi fi-ua" />;
+  } else if (flagIcon === "pl") {
+    return (
+      <span
+        aria-hidden="true"
+        className={`
+          fi fi-pl border border-b-0 border-zinc-200
+
+          dark:border-none
+        `}
+      />
+    );
+  } else if (flagIcon === "hi") {
+    return <span aria-hidden="true" className="fi fi-in" />;
+  } else if (flagIcon === "fa") {
+    return <span aria-hidden="true" className="fi fi-ir" />;
+  } else if (flagIcon === "zh") {
+    return <span aria-hidden="true" className="fi fi-cn" />;
+  }
+
+  return (
+    <span
+      aria-hidden="true"
+      className={`
+        fi
+
+        fi-${flagIcon}
+      `}
+    />
+  );
+}

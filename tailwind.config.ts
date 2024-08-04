@@ -1,16 +1,34 @@
-import flowbitePlugin from "flowbite/plugin";
-import { type Config } from "tailwindcss";
+import type { Config } from "tailwindcss";
+
 import { fontFamily } from "tailwindcss/defaultTheme";
+import animate from "tailwindcss-animate";
 import { withUt } from "uploadthing/tw";
 
-export default withUt({
+// ========================================================
+//
+// Tailwind CSS v3 Configuration File
+// Note: Tailwind CSS v4 does not use this configuration.
+// v4 only relies on variables in `src/styles/globals.css`.
+// See: https://tailwindcss.com/blog/tailwindcss-v4-alpha
+//
+// ========================================================
+//
+// Alpha Switcher Commands:
+// `pnpm deps:use-tailwind-[3|4]` and `pnpm tw:[v4|v3]`
+//
+// - We are currently using [Tailwind CSS v3](https://tailwindcss.com).
+// - These commands allow you to switch between [stable v3](https://tailwindcss.com/docs/guides/nextjs) and alpha v4.
+// - After running these commands, please open `postcss.config.js` and toggle comments there as needed.
+// - NOTE: Relivator 1.2.6 is currently not fully compatible with Tailwind CSS v4.
+// - Some manual adjustments may be needed.
+//
+// ========================================================
+//
+const config = withUt({
+  content: ["./{addons,src}/**/*.{ts,tsx}"],
   darkMode: ["class"],
-  content: [
-    "./node_modules/flowbite-react/lib/esm/**/*.js",
-    "./node_modules/flowbite/**/*.js",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./public/**/*.html",
-  ],
+  plugins: [animate],
+  prefix: "",
   theme: {
     container: {
       center: true,
@@ -20,81 +38,66 @@ export default withUt({
       },
     },
     extend: {
-      screens: {
-        xs: "480px",
-        xxs: "380px",
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
-      flex: {
-        full: "0 0 100%",
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+        background: "hsl(var(--background))",
+        border: "hsl(var(--border))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+        foreground: "hsl(var(--foreground))",
+        input: "hsl(var(--input))",
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
         },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
-        warning: "hsl(var(--warning))",
-        "warning-foreground": "hsl(var(--warning-foreground))",
-      },
-      borderRadius: {
-        // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
-        lg: `var(--radius)`,
-        // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
-        md: `calc(var(--radius) - 2px)`,
-        // biome-ignore lint/style/noUnusedTemplateLiteral: <explanation>
-        sm: `calc(var(--radius) - 4px)`,
+        ring: "hsl(var(--ring))",
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
       },
       fontFamily: {
+        mono: ["var(--font-mono)", ...fontFamily.mono],
         sans: ["var(--font-sans)", ...fontFamily.sans],
-        heading: ["var(--font-heading)", ...fontFamily.sans],
       },
       keyframes: {
         "accordion-down": {
-          from: { height: "0px" },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0px" },
+          to: { height: "0" },
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
-  plugins: [
-    flowbitePlugin,
-    require("tailwindcss-animate"),
-    require("@tailwindcss/typography"),
-  ],
 }) satisfies Config;
+
+export default config;

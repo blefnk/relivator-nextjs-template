@@ -1,0 +1,160 @@
+{
+  "LoginForm": {
+    "no-account": "Kein Konto?",
+    "signup": "Hier registrieren.",
+    "title": "Anmelden",
+    "welcome-back": "Willkommen zurück"
+  },
+  "RegisterForm": {
+    "have-account": "Konto vorhanden?",
+    "signin": "Hier anmelden.",
+    "title": "Registrieren"
+  },
+  "account-page": {
+    "Settings": "Einstellungen",
+    "loggedIn": "Eingeloggt",
+    "loggedOut": "Abgemeldet",
+    "login": "Anmelden",
+    "logout": "Abmelden",
+    "title": "Konto"
+  },
+  "auth": {
+    "error": {
+      "default": "Versuchen Sie ein anderes Konto.",
+      "email": "E-Mail nicht gefunden. Versuchen Sie einen anderen Anbieter.",
+      "oauthNotLinked": "Melden Sie sich mit Ihrem ursprünglichen Konto an, um die Identität zu bestätigen.",
+      "unknown": "Ein Fehler ist aufgetreten. Versuchen Sie es erneut.",
+      "unknown-error": "Etwas ist schiefgelaufen. Besuchen Sie /contact, um den Support zu informieren."
+    },
+    "legal": "Durch die Nutzung dieser Schaltflächen stimmen Sie unseren",
+    "legal-and": "und",
+    "legal-privacy": "Datenschutzrichtlinien",
+    "legal-terms": "Nutzungsbedingungen"
+  },
+  "auth-provider": {
+    "please-wait": "Bitte warten..."
+  },
+  "checkout": {
+    "CartDetails": "Einzelheiten",
+    "Demo": "Verwenden Sie Testdaten: 4242424242424242 | 12/34 | 567",
+    "Description": "Bezahlen mit Warenkorbartikeln",
+    "EmptyCartDescription": "Fügen Sie Artikel zum Warenkorb hinzu, um zur Kasse zu gehen",
+    "EmptyCartHeading": "Warenkorb ist leer",
+    "Pay": "Zahlen",
+    "Title": "Kasse",
+    "backToCart": "Zurück zum Warenkorb",
+    "backToCartSingle": "Zurück",
+    "calculated": "An der Kasse berechnet",
+    "cart": "Warenkorb",
+    "cartIsEmpty": "Ihr Warenkorb ist leer",
+    "continueShopping": "Einkauf fortsetzen",
+    "free": "Kostenlos",
+    "notConnectedDescription": "Verbinden Sie den Laden mit Stripe, um Zahlungen zu akzeptieren",
+    "notConnectedHeading": "Laden nicht mit Stripe verbunden",
+    "shipping": "Versand",
+    "taxes": "Steuern",
+    "total": "Gesamt",
+    "viewTheCart": "Warenkorb anzeigen"
+  },
+  "components": {
+    "command": {
+      "dark": "Dunkel",
+      "light": "Hell",
+      "system": "System",
+      "theme": "Thema"
+    },
+    "search": {
+      "placeholder": "Suchen...",
+      "title": "Suche"
+    }
+  },
+  "contact": {
+    "submit": "Einreichen"
+  },
+  "demo": {
+    "aria-label-goto": "Gehe zu",
+    "launch": "Dashboard"
+  },
+  "faq": {
+    "1": {
+      "details": "Schauen Sie im README.md im GitHub-Repository von Relivator nach den neuesten Informationen und Installationsanweisungen.",
+      "summary": "Wie kann ich installieren und schnell loslegen?"
+    },
+    "2": {
+      "details": "Relivator bietet unbegrenzte Möglichkeiten mit allen notwendigen Werkzeugen bereit.",
+      "summary": "Warum Relivator für Next.js 15 & React 19 wählen?"
+    },
+    "3": {
+      "details": "Die Entwicklung erfolgt hauptsächlich durch eine Person. Spenden können den Prozess beschleunigen. Klicken Sie unten, um zu spenden. Danke für Ihre Unterstützung! 🩷",
+      "summary": "Kann die Veröffentlichung von Relivator v1.3.0 beschleunigt werden?"
+    }
+  },
+  "landing": {
+    "about": "Der funktionsreichste und globalste Next.js-Starter. Entdecken Sie unsere Funktionen. Mehr als nur Code, es ist eine Reise. Stabil und produktionsbereit.",
+    "buy-now": "Katalog",
+    "features": {
+      "auth": {
+        "description": "Verwenden Sie NextAuth.js und Clerk für ein vielseitiges Authentifizierungssystem. Details siehe .env.example.",
+        "title": "Benutzerauthentifizierung: Sicher & Flexibel"
+      },
+      "database": {
+        "description": "Leistung mit Drizzle ORM beibehalten, MySQL und Postgres nahtlos wechseln. Bereitstellung mit Planetscale, Vercel, Railway, Neon und mehr.",
+        "title": "Datenbankintegration: Robust & Vielseitig"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator bietet unbegrenzte Möglichkeiten mit allen Werkzeugen bereit.",
+        "description": "Robustes Abonnementsystem mit kostenlosen und kostenpflichtigen Plänen. Lesen Sie README.md für mehr.",
+        "title": "Stripe-Abonnements: Leistungsstark & Flexibel"
+      },
+      "interface": {
+        "description": "Erstellen Sie beeindruckende UI mit Flowbite und Shadcn UI Komponenten, gestaltet mit Radix und Tailwind CSS. VSCode empfohlen.",
+        "title": "Komponenten: Elegant & Funktional"
+      },
+      "nextjs": {
+        "description": "Nahtlose Navigation mit App Router, Layouts und Loading UI. Leistungsstarke API-Routen und mehr erkunden.",
+        "title": "Next.js 15: Verbesserte Erfahrung"
+      },
+      "text": {
+        "description": "App mit Server- und Client-Komponenten manipulieren. Erweiterte Hooks und zusätzliche Funktionen für eine reibungslose Entwicklung nutzen.",
+        "title": "React 19: Moderne Entwicklung"
+      }
+    },
+    "footer-cta": "Bereit zu starten?",
+    "get-started-button": "Dashboard",
+    "main-cta": "GitHub",
+    "sell-now": "Dashboard"
+  },
+  "metadata": {
+    "description": "Verbessern Sie Ihr E-Commerce mit Relivator: Power von shadcn/ui, Next.js 15 und React 19",
+    "title": {
+      "home": "Startseite"
+    }
+  },
+  "pages": {
+    "not-found": {
+      "description": "Die Ressource wurde möglicherweise verschoben, umbenannt oder existiert nicht. URL überprüfen oder Menü verwenden.",
+      "go-home": "Zurück zur Startseite",
+      "title": "🫠 Seite nicht gefunden! 🥲"
+    }
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "Kaufen Sie {category} in Top-Geschäften",
+      "buyTheBest": "Beste {category}"
+    },
+    "products": {
+      "addToCart": "In den Warenkorb",
+      "buyProductsFromOurStores": "In unseren Geschäften kaufen",
+      "catalogue": "Katalog",
+      "description": "Beschreibung",
+      "moreProductsFrom": "Mehr von {storeName}",
+      "noDescription": "Keine Beschreibung verfügbar.",
+      "products": "Produkte",
+      "productsCatalogue": "Produktkatalog"
+    },
+    "stores": {
+      "buy-products": "In unseren Geschäften kaufen",
+      "stores": "Geschäfte"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Schema for tracking progress of various items.",
+  "patternProperties": {
+    "^[a-zA-Z0-9_-]+$": {
+      "type": "object",
+      "description": "Object where keys are identifiers for different categories or groups.",
+      "patternProperties": {
+        "^[a-zA-Z0-9_-]+$": {
+          "type": "array",
+          "description": "Array of strings where each string represents a progress entry within the category or group.",
+          "items": {
+            "type": "string",
+            "description": "A progress entry."
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,177 @@
+import type { ApptsConfig } from "@/reliverse/relicon/setup/types";
+
+import { writeFile } from "fs/promises";
+
+import { confirm, text } from "@clack/prompts";
+import { loadConfig } from "c12";
+import consola from "consola";
+
+// !! TODO: UNFINISHED !! PLEASE CHECK `../appts.ts` FILE FOR .TS VERSION
+export async function configureApptsJson({ apptsConfig }: ApptsConfig) {
+  const { config: currentConfig } = await loadConfig({
+    name: "appts", // Should match config file name without extension
+    cwd: apptsConfig,
+    dotenv: true,
+  });
+
+  if (!currentConfig) {
+    consola.error(
+      "Something went wrong! Configuration file `src/config/json/appts.json` was not found!",
+    );
+
+    return;
+  }
+
+  const proceed = await confirm({
+    initialValue: false,
+    message:
+      "[⚙️  Advanced]: Do you want to configure the appts.json file? (NOTE: this file is currently unused by the app)",
+  });
+
+  if (typeof proceed !== "boolean" || !proceed) {
+    return;
+  }
+
+  const handle = await askForHandle(currentConfig.author?.handle);
+
+  const prompts = [
+    {
+      key: "name",
+      default: "Relivator",
+      message: "What is the short name of the app?",
+    },
+    {
+      key: "appNameDesc",
+      default: "Relivator: Next.js 15 and React 19 template by Reliverse",
+      message: "What is the SEO name of the app?",
+    },
+    {
+      key: "appPublisher",
+      default: "Reliverse",
+      message: "Who is the publisher of the app?",
+    },
+    {
+      key: "appVersion",
+      default: "1.2.6",
+      message: "What is the version of the app?",
+    },
+    {
+      key: "authorEmail",
+      default: "blefnk@gmail.com",
+      message: "What is the author's email?",
+    },
+    {
+      key: "authorFullName",
+      default: "Nazar Kornienko",
+      message: "What is the author's full name?",
+    },
+    {
+      key: "authorUrl",
+      default: "https://github.com/blefnk",
+      message: "What is the author's URL?",
+    },
+  ];
+
+  const results: Record<string, string> = {};
+
+  for (const prompt of prompts) {
+    results[prompt.key] = await askForText(
+      prompt.message,
+      currentConfig[prompt.key] ?? prompt.default,
+    );
+  }
+
+  const {
+    name,
+    appNameDesc,
+    appPublisher,
+    appVersion,
+    authorEmail,
+    authorFullName,
+    authorUrl,
+  } = results;
+
+  if (
+    [
+      handle,
+      name,
+      appNameDesc,
+      appPublisher,
+      appVersion,
+      authorEmail,
+      authorFullName,
+      authorUrl,
+    ].some((value) => typeof value !== "string")
+  ) {
+    return;
+  }
+
+  await updateFile(apptsConfig, {
+    name: name as string,
+    appNameDesc: appNameDesc as string,
+    appPublisher: appPublisher as string,
+    appVersion: appVersion as string,
+    authorEmail: authorEmail as string,
+    authorFullName: authorFullName as string,
+    authorUrl: authorUrl as string,
+    handle: handle as string,
+  });
+}
+
+async function askForHandle(currentHandle: string): Promise<string> {
+  return (await text({
+    message:
+      // eslint-disable-next-line @stylistic/max-len
+      "Let's customize the Relivator Next.js template according to your needs. The `src/config/json/appts.json` file contains the main configuration for your product. Let's get acquainted! What's your handle (without the @ symbol)? Example:",
+    placeholder: currentHandle || "blefnk",
+    validate: (value) => {
+      if (value && !/^[\da-z]+$/i.test(value)) {
+        return "Please use only English letters and numbers.";
+      }
+    },
+  })) as string;
+}
+
+async function askForText(
+  message: string,
+  placeholder: string,
+): Promise<string> {
+  return (
+    ((await text({
+      message,
+      placeholder,
+      validate: (value) => {
+        if (value === undefined || value === null) {
+          return `Please enter ${message.toLowerCase()}.`;
+        }
+      },
+    })) as string) || placeholder
+  );
+}
+
+async function updateFile(filePath: string, config: Record<string, string>) {
+  try {
+    const updatedConfig = {
+      name: config.name,
+      appNameDesc: config.appNameDesc,
+      appPublisher: config.appPublisher,
+      appVersion: config.appVersion,
+      author: {
+        email: config.authorEmail,
+        fullName: config.authorFullName,
+        handle: config.handle,
+        handleAt: `@${config.handle}`,
+        url: config.authorUrl,
+      },
+    };
+
+    const fileContent = JSON.stringify(updatedConfig, null, 2);
+
+    await writeFile(filePath, fileContent, "utf8");
+    consola.success(
+      "Configuration has been edited successfully! Please visit the file later to make any additional changes.",
+    );
+  } catch (error) {
+    consola.error("Error updating configuration file content:", error);
+  }
+}

@@ -1,0 +1,257 @@
+// 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
+// ================================================================= ||
+
+'use strict';
+
+/**
+ * Everything starts here. This is the main Next.js configuration file.
+ * @see https://nextjs.org/docs/app/building-the-application/configuring
+ * NOTE - Do not change this file to .mjs (some libs like contentlayer require js ext)
+ * @see https://github.com/contentlayerdev/contentlayer/issues/313#issuecomment-1305424923
+ */
+
+import { fileURLToPath } from "url";
+
+import bundleAnalyzer from "@next/bundle-analyzer";
+import createMDX from "@next/mdx";
+import createJiti from "jiti";
+import { next as million } from "million/compiler";
+import nextIntlPlugin from "next-intl/plugin";
+import { createSecureHeaders } from "next-secure-headers";
+import remarkGfm from "remark-gfm";
+
+import corsPolicyString from "./src/core/cors/csp.js";
+
+/**
+ * If you need, you can very dangerously run build or dev with SKIP_ENV_VALIDATION.
+ * It skips environment vars validation. This is especially useful for Docker builds.
+ * @example !process.env.SKIP_ENV_VALIDATION && (await import("./src/env"));
+ */
+// await import("./src/env.js");
+
+// Import env files to validate at build time.
+// Use jiti so we can load .ts files in here.
+// @see https://github.com/unjs/jiti/tree/main
+createJiti(fileURLToPath(import.meta.url))("./src/env");
+
+// const corsPolicyString = String(
+//   createJiti(fileURLToPath(import.meta.url))("./src/core/cors/csp"),
+// );
+
+/**
+ * The whitelist list of domains,
+ * that are allowed to show media.
+ */
+const hostnames = [
+  "*.githubusercontent.com",
+  "*.googleusercontent.com",
+  "api.dicebear.com",
+  "cdn.discordapp.com",
+  "discordapp.com",
+  "githubusercontent.com",
+  "googleusercontent.com",
+  "i.imgur.com",
+  "images.unsplash.com",
+  "img.youtube.com",
+  "pbs.twimg.com",
+  "res.cloudinary.com",
+  "utfs.io",
+  "www.gravatar.com",
+  "images.clerk.com",
+];
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  ...million({/**/}, { auto: { rsc: true }, rsc: true }),
+
+  ...(process.env.NODE_ENV === "production" && {
+    compiler: { removeConsole: { exclude: ["error"] } },
+  }),
+
+  experimental: {
+    mdxRs: true,
+    optimisticClientCache: true,
+    optimizePackageImports: [
+      "recharts",
+      "lucide-react",
+      "@radix-ui/react-icons",
+      "@radix-ui/react-avatar",
+      "@radix-ui/react-select",
+      "date-fns",
+    ],
+    optimizeServerReact: true,
+    reactCompiler: true,
+    serverMinification: true,
+    turbo: {
+      resolveExtensions: [".ts", ".tsx", ".js", ".jsx"],
+    },
+  },
+
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: hostnames.map((hostname) => ({
+      protocol: "https",
+      hostname,
+    })),
+    contentSecurityPolicy:
+      process.env.NEXT_PUBLIC_CSP_XSS === "true"
+        ? `default-src 'self'; frame-src 'none'; img-src 'https://*.googleusercontent.com'; font-src 'self', ${process.env.NEXT_PUBLIC_APP_URL}; sandbox;`
+        : undefined,
+  },
+
+  compress: true,
+  // modularizeImports: {
+  //   lodash: {
+  //     transform: "lodash/{{member}}",
+  //     preventFullImport: true,
+  //   },
+  // },
+  // transpilePackages: ["lodash"],
+  serverExternalPackages: ["mysql2"], // next@14.3.0
+
+  //
+  // Dangerously allow builds to successfully complete
+  // even if the project has the types/eslint errors.
+  //
+  // [Good to know if you want to toggle because `next build` errors]:
+  // Next.js has built-in support for TypeScript, using its own plugin.
+  // But while you use `pnpm build`, it stops on the first type errors.
+  // So you can use `pnpm typecheck` to check all type warns/errors at once.
+  //
+  typescript: { ignoreBuildErrors: false },
+  eslint: { ignoreDuringBuilds: false },
+
+  async headers() {
+    // todo: Please note: it is still experimental, so
+    // todo: NEXT_PUBLIC_CSP_XSS is "false" by default
+    if (process.env.NEXT_PUBLIC_CSP_XSS === "true") {
+      const headers = [];
+
+      // Prevent search engines from indexing the site if it is not live
+      // This is useful for staging environments before they are ready to go live
+      // To allow robots to crawl the site, use the NEXT_PUBLIC_IS_LIVE env variable
+      // You may want to also use this variable to conditionally render any tracking scripts
+      // @see https://github.com/payloadcms/payload/blob/main/templates/ecommerce/next.config.js
+      if (process.env.NEXT_PUBLIC_IS_LIVE === "false") {
+        headers.push({
+          headers: [
+            {
+              key: "X-Robots-Tag",
+              value: "noindex",
+            },
+          ],
+          source: "/:path*",
+        });
+      }
+
+      // Set the Content-Security-Policy header as a security measure to prevent XSS attacks
+      // It works by explicitly whitelisting trusted sources of content for the website
+      // This will block all inline scripts and styles except for those that are allowed
+      // todo: @see src/core/cors/csp.js for more details | work in progress | not fully tested
+      // todo: make it more stable | currently too much things are allowed than needed
+      headers.push({
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            // todo: looks like we need to specify some policies
+            // todo: here & some in images.contentSecurityPolicy
+            value: corsPolicyString,
+          },
+          {
+            key: "Access-Control-Allow-Credentials",
+            value: "true",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
+          },
+          {
+            key: "Access-Control-Allow-Methods",
+            value: "GET,DELETE,PATCH,POST,PUT",
+          },
+          {
+            key: "Access-Control-Allow-Headers",
+            value:
+              "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+          },
+        ],
+      });
+
+      // Note: to apply CSP changes while dev runtime,
+      //Cmd/Ctrl+S this file, to reload Next.js' server.
+      return headers;
+    } else {
+      // @see https://github.com/jagaapple/next-secure-headers
+      // default option: using next-secure-headers csp library
+      return [
+        {
+          source: "/(.*)",
+          headers: createSecureHeaders(),
+        },
+      ];
+    }
+  },
+
+  // webpack: (config, { webpack, isServer }) => {
+  // React Compiler triggers the Babel and Webpack, they throw errors while building
+  // So, we use `browser` in package.json and the following piece to fix those errors
+  // We need to remove it when the issue is fixed; alternative is: npx nypm add pg@8.11.0
+  // @see https://github.com/vercel/next.js/discussions/50177#discussioncomment-5972779
+  // UPD1. Setting `"node": { "net": "empty", "tls": "empty", "perf_hooks": "empty", "fs": "empty" },
+  // or: "browser": { "net": false, "tls": false, "perf_hooks": false, "fs": false }, in `package.json`
+  // or: if (!isServer) { config.node = { net: "empty", tls: "empty", fs: "empty", "perf_hooks": "empty", }; }
+  // setting right here in the webpack config also doesn't help...
+  //
+  // UPD2. The reason of issue was found. Please read the Frequently Asked Questions in the Relivator's README.md
+  // Just keeping it here for the future reference. It is not needed anymore. And will be removed in v1.3.0.
+  //
+  // UPD3. And looks like Million.js doesn't work correctly if Webpack config is present here. When Babel warns as well.
+  //
+  // config.plugins.push(
+  //   new webpack.IgnorePlugin({
+  //     resourceRegExp: /^pg-native$|^node:stream$|^cloudflare:sockets$/,
+  //   }),
+  // );
+  //
+  // Next.js Webpack Bundler does not know how to handle `.mjs` files on `node_modules`
+  // This is not an issue when using Turbopack as it uses SWC and it is ESM-only
+  // Once Next.js uses Turbopack for their build process we can remove this
+  // config.module.rules.push({
+  // test: /\.m?js$/,
+  // type: 'javascript/auto',
+  // resolve: { fullySpecified: false },
+  // });
+  // return config;
+  // },
+};
+
+/**
+ * Create a config wrapper required to integrate a modern Nextjs MDX support.
+ * @see https://nextjs.org/docs/app/building-the-application/configuring/mdx
+ */
+const withMDX = createMDX({ options: { remarkPlugins: [remarkGfm] } });
+
+/**
+ * Create configuration wrapper required for using next-intl with React Server Components.
+ * @see https://next-intl-docs.vercel.app/docs/getting-started/app-router-server-components
+ */
+const withNextIntlConfig = nextIntlPlugin("./src/i18n.ts");
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+  openAnalyzer: false,
+});
+
+export default withBundleAnalyzer(withNextIntlConfig(withMDX(nextConfig)));
+
+// FOR DEBUG PURPOSES ======================
+// @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+//   experimental: {
+//     reactCompiler: true,
+//   },
+// };
+// export default nextConfig;

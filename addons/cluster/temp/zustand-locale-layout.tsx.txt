@@ -1,0 +1,162 @@
+import type { Metadata, Viewport } from "next";
+
+import type { ReactNode } from "react";
+
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+import { Fira_Sans } from "next/font/google";
+import localFont from "next/font/local";
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
+import { extractRouterConfig } from "uploadthing/server";
+
+import { ShowInfo } from "~/components/Common/indicators-error";
+import LoglibAnalytics from "~/components/Common/loglib-analytics";
+import { TailwindScreens } from "~/components/Common/tailwind-indicator";
+import ZustandProvider from "~/components/Modules/Zustand/ZuProvider";
+import AuthProvider from "~/components/Providers/AuthProvider";
+import { NextThemesProvider } from "~/components/Providers/ThemeProvider";
+import { TooltipProvider } from "~/components/Providers/Tooltip";
+import { Toaster } from "~/components/Wrappers/Toaster";
+import { siteConfig } from "~/app";
+import { defaultLocale, locales } from "~/config/navigation";
+import { TRPC } from "~/core/trpc/react";
+import { ourFileRouter } from "@/server/reliverse/api/uploadthing/core";
+import { cn } from "~/utils";
+
+import "@radix-ui/themes/styles.css";
+import "~/styles/globals.css";
+
+// Each page in the app will have the following metadata, you can override
+// them by defining the metadata in the page.tsx or in children layout.tsx
+// useTranslations works both on the server and client
+// we only need the getTranslations on async components
+export async function generateMetadata() {
+  const t = await getTranslations();
+
+  const metadata: Metadata = {
+    description: String(t("metadata.description")),
+    title: {
+      default: siteConfig.name,
+      template: `%s - ${siteConfig.name}`,
+    },
+    applicationName: siteConfig.name,
+    authors: [
+      {
+        name: siteConfig.author,
+        url: siteConfig.url.author,
+      },
+    ],
+    creator: siteConfig.author,
+    icons: {
+      icon: "/favicon.ico",
+    },
+    metadataBase: new URL(getBaseUrl()),
+    openGraph: {
+      type: "website",
+      description: siteConfig.description,
+      title: siteConfig.name,
+      alternateLocale: locales.filter((locale) => locale !== defaultLocale),
+      images: [
+        {
+          alt: `${siteConfig.name} Website OG Image`,
+          height: 1350,
+          url: "/og-image.png",
+          width: 2400,
+        },
+      ],
+      locale: defaultLocale,
+      siteName: siteConfig.name,
+      url: siteConfig.url.base,
+    },
+    other: {
+      "darkreader-lock": "meta",
+    },
+    publisher: siteConfig.author,
+    robots: "index, follow",
+    twitter: {
+      description: siteConfig.description,
+      title: siteConfig.name,
+      card: "summary_large_image",
+      creator: siteConfig.author,
+      images: [`${siteConfig.url.base}/og-image.png`],
+      site: siteConfig.handles.twitter,
+    },
+  };
+
+  return metadata;
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    {
+      color: "white",
+      media: "(prefers-color-scheme: light)",
+    },
+    {
+      color: "black",
+      media: "(prefers-color-scheme: dark)",
+    },
+  ],
+};
+
+const fontSans = Fira_Sans({
+  subsets: ["latin", "cyrillic-ext"],
+  variable: "--font-sans",
+  weight: "400",
+});
+
+// Fix Chromium flags emoji issue on Windows
+const twemoji = localFont({
+  display: "swap",
+  src: "../../styles/fonts/twemoji.woff2",
+  variable: "--font-twemoji",
+});
+
+// This is the "root" layout. It checks for valid locales,
+// sets up the fonts, themes, analytics, providers, & more
+// This file serves as the primary entry point for the app
+// @see https://github.com/blefnk/relivator
+export default function LocaleLayout({
+  children,
+  params: { locale },
+}: {
+  children: ReactNode;
+  params: { locale: string };
+}) {
+  if (!locales.includes(locale)) {
+    return notFound();
+  }
+
+  polyfillCountryFlagEmojis();
+
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          twemoji.variable,
+          fontSans.variable,
+        )}
+      >
+        <TRPC data={headers()}>
+          <NextThemesProvider>
+            <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
+            <TooltipProvider>
+              <ZustandProvider>
+                <AuthProvider>
+                  <ShowInfo />
+                  {children}
+                  <Toaster />
+                </AuthProvider>
+              </ZustandProvider>
+            </TooltipProvider>
+            <TailwindScreens />
+            <LoglibAnalytics />
+          </NextThemesProvider>
+        </TRPC>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,276 @@
+// next-auth v5 | https://authjs.dev
+
+
+
+import { nanoid } from "nanoid";
+import NextAuth, { AuthError } from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import Discord from "next-auth/providers/discord";
+import GitHub from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
+
+import { db } from "~/db";
+import { users } from "~/db/schema";
+
+import "next-auth/jwt";
+
+
+
+// export type {
+//   Account,
+//   DefaultSession,
+//   Profile,
+//   Session,
+//   User,
+// } from "@auth/core/types";
+
+/**
+ * Options for NextAuth.js used to configure adapters, providers, callbacks, etc.
+ *
+ * @see https://authjs.dev/getting-started/installation#configure
+ */
+// const config = {/**/} satisfies NextAuthConfig;
+export const { auth, handlers, signIn, signOut } = NextAuth({
+  // adapter: DrizzleAdapter(db),
+  // env.DATABASE_URL.includes("postgres") ? pgTable : env.DATABASE_URL.includes("mysql") ? mysqlTable : sqliteTable,
+  // ) as Adapter, // TODO: node:stream error
+  basePath: "/api/auth",
+  callbacks: {
+    session: async ({ session, token }) => {
+      session.id = token.sub!;
+
+      return session;
+    },
+    signIn: async ({ account, user: userProvider }) => {
+      try {
+        if (account?.provider === "google") {
+          const { name, email, image } = userProvider;
+
+          if (!email) {
+            throw new AuthError("Failed to sign in");
+          }
+
+          const isUserExist = (await db.select().from(users)).find((user) => user.email === email);
+
+          if (!isUserExist) {
+            // create password and you mail it to user as temporary password
+            // so user can login with email and password too.
+            const password = nanoid();
+            // const id = createId();
+
+            await db
+              .insert(users)
+              // @ts-expect-error TODO: Fix ts
+              .values({
+                name: name as string,
+                email,
+                image: image as string,
+                password,
+              })
+              .returning();
+          }
+
+          return true;
+        } else if (account?.provider === "credentials") {
+          return true;
+        }
+
+        return false;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
+        throw new AuthError("Failed to sign in");
+      }
+    },
+  },
+  pages: {
+    signIn: "/auth/sign-in",
+  },
+
+  // adapter: DrizzleAdapter(db, createTable) as Adapter,
+  providers: [
+    Discord({
+      allowDangerousEmailAccountLinking: true,
+    }),
+    GitHub({
+      allowDangerousEmailAccountLinking: true,
+    }),
+    Google({
+      allowDangerousEmailAccountLinking: true,
+    }),
+    Credentials({
+      name: "Credentials",
+      credentials: {
+        id: {
+          /**/
+        },
+        name: {
+          /**/
+        },
+        email: {
+          /**/
+        },
+      },
+
+      // authorize(credentials, request) {
+      // },
+      // authorize: async ({ email, id, name }) => {
+      //   const data = {
+      //     email: email as string,
+      //     id: id as string,
+      //     name: name as string,
+      //   };
+      //   return data;
+      // },
+    }),
+  ],
+
+  theme: {
+    logo: "/logo.png",
+  },
+
+  // ============================================================
+  // callbacks: {
+  // authorized({ request, auth }) {
+  //   const { pathname } = request.nextUrl;
+  //   if (pathname === "/middleware-example") return !!auth;
+  //   return true;
+  // },
+  // authorized: ({ request: { nextUrl }, auth: midAuth }) => {
+  //   const isLoggedIn = Boolean(midAuth?.user);
+  //
+  //   console.info("isLoggedIn:", isLoggedIn);
+  //
+  //   const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
+  //   if (isOnDashboard) {
+  //   Redirect unauthenticated users to the login page
+  //     return isLoggedIn;
+  //   } else if (isLoggedIn) {
+  //   Redirect authenticated users to the dashboard
+  //     return Response.redirect(new URL("/", nextUrl));
+  //   }
+  //   Allow unauthenticated users to access other pages
+  //   return true;
+  // },
+  // jwt({ token, trigger, session, account }) {
+  //   if (trigger === "update") token.name = session.name;
+  //   if (account?.provider === "github") {
+  //     return { ...token, accessToken: account.access_token };
+  //   }
+  //   return token;
+  // },
+  // session: ({ session, user }) => ({
+  // }),
+  // session({ session, token, user }) {
+  // `session.address` is now a valid property, and will be type-checked
+  // in places like `useSession().data.user` or `auth().user`
+  // session.id = user.id;
+  // =============================================
+  // ...session,
+  // user: {
+  // 	...session,
+  // 	id: user.id,
+  // },
+  // =============================================
+  // if (token?.accessToken) {
+  //   session.accessToken = token.accessToken;
+  // }
+  // return session;
+  // =============================================
+  //   ...session,
+  //   user: { ...session, id: user.id },
+  // return {
+  //   ...session,
+  //   user: {
+  //     ...session,
+  //     id: user.id,
+  //   },
+  // };
+  // },
+  // },
+});
+
+/**
+ * Module augmentation for `next-auth` types.
+ * Allows us to add custom props to the
+ * `session` object and keep type safety.
+ *
+ * Returned by useSession, getSession and received
+ * as a prop on the SessionProvider React Context
+ *
+ * @see https://authjs.dev/getting-started/typescript#module-augmentation
+ */
+/* declare module "next-auth" {
+  interface Session extends DefaultSession {
+    user: {
+      id: string;
+      name: string;
+      email: string;
+      image?: string;
+      accessToken?: string;
+      // ...other props
+      // role: UserRole;
+    } & DefaultSession["user"];
+  }
+  // interface User {
+  // }
+}
+*/
+// declare module "next-auth" {
+//   /**
+//    * The shape of the user object returned in the OAuth providers' `profile` callback,
+//    * or the second parameter of the `session` callback, when using a database.
+//    */
+//   interface User {
+//     role: UserRole;
+//   }
+
+//   /**
+//    * The shape of the account object returned in the OAuth providers' `account` callback,
+//    * Usually contains information about the provider being used, like OAuth tokens (`access_token`, etc).
+//    */
+//   interface Account {
+//     /**/
+//   }
+
+/**
+ * Returned by `useSession`, `auth`, contains information about the active session.
+ * Is received as a prop on the `SessionProvider` React Context.
+ */
+//   interface Session extends DefaultSession {
+//     accessToken?: string;
+//     user: {
+//       /** The user's postal address. */
+//       address: string;
+//       email: string;
+//       id: string;
+//       image?: string;
+
+//       // ...other props
+//       // role: UserRole;
+//       name: string;
+
+//       /**
+//        * By default, TypeScript merges new interface props and overwrites existing ones.
+//        * In this case, the default session user props will be overwritten,
+//        * with the new ones defined above. To keep the default session user props,
+//        * you need to add them back into the newly declared interface.
+//        */
+//     } & DefaultSession["user"];
+//   }
+// }
+
+// declare module "next-auth/jwt" {
+//   // The main `JWT` interface can be found in the `next-auth/jwt` submodule
+//   /** Returned by the `jwt` callback and `auth`, when using JWT sessions */
+//   interface JWT {
+//     accessToken?: string;
+
+//     /** OpenID ID Token */
+//     idToken?: string;
+//   }
+// }
+
+// FOR DEBUG PURPOSES ONLY
+// const debugConfig = {
+//   providers: [],
+// } satisfies NextAuthConfig;

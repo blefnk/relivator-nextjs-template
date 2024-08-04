@@ -1,0 +1,105 @@
+import { FlatCompat } from "@eslint/eslintrc";// const compat = new FlatCompat({ baseDirectory: String(currentDirname) });// @see https://npmjs.com/package/@types/eslint__eslintrc// const getPutoutConfig = (/** @type {string} */ name) =>//  compat.config(putout.configs[name]);// ====================================================// import {safeAlign} from 'eslint-plugin-putout/config';// import { matchToFlat, createESLintConfig } from '@putout/eslint-flat';// const match = { "**/*.{ts,tsx,js,jsx}": { 'n/no-unsupported-features/node-builtins': 'off' } };// const putout = createESLintConfig([safeAlign, matchToFlat(match)]);// extends { ...putout }// ====================================================// @see https://dev.to/favourmark05/writing-clean-code-best-practices-and-principles-3amh// @see https://eslint.org/docs/latest/extend/custom-rules#profile-rule-performance// @see https://kittygiraudel.com/2024/06/01/from-eslint-and-prettier-to-biome// @see https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29// @see https://dev.to/thawkin3/eslint-warnings-are-an-anti-pattern-33np// @see https://freecodecamp.org/news/how-to-write-clean-code// @see https://sonarsource.com/solutions/clean-code// @see https://biomejs.dev/internals/philosophy
+
+////////////////////////////////////////////////////////////////////////////////
+
+// ====================================================// ? The content below is deprecated/experimental,// ? and planned to be removed or added in v1.3.0// ====================================================// import json from "eslint-plugin-json";// @see https://npmjs.com/package/eslint-plugin-json// {//   ...json.configs.recommended,//   files: ["**/*.json"],//   name: "@reliverse/config-eslint/json",//   plugins: { json: json },//   processor: "json/json",//   rules: { "json/*": ["error", { allowComments: false }] },// },// ====================================================/* "jsonc/sort-array-values": [
+  "error",
+  {
+    order: { type: "asc" },
+    // Hits the files property
+    pathPattern: "^files$",
+  },
+  {
+    order: [
+      "eslint",
+      "eslintplugin",
+      "eslint-plugin",
+      {
+        // Fallback order
+        order: { type: "asc" },
+      },
+    ],
+    pathPattern: "^keywords$", // Hits the keywords property
+  },
+], */
+// "jsonc/sort-array-values": [//   "error",//   {//     order: { type: "asc" },//     pathPattern: "^files$",//   },// ],// ====================================================// TODO: putout adds `/js/`, but we're using `default`/*
+"@stylistic/js/array-bracket-spacing": "off",
+"@stylistic/js/arrow-spacing": "off",
+"@stylistic/js/brace-style": "off",
+"@stylistic/js/comma-dangle": ["off", "always-multiline"],
+"@stylistic/js/comma-spacing": "off",
+"@stylistic/js/eol-last": ["off", "always"],
+"@stylistic/js/func-call-spacing": "off",
+"@stylistic/js/function-paren-newline": ["off", "multiline-arguments"],
+"@stylistic/js/implicit-arrow-linebreak": "off",
+"@stylistic/js/indent": ["off", 4],
+"@stylistic/js/key-spacing": "off",
+"@stylistic/js/linebreak-style": ["off", "unix"],
+"@stylistic/js/lines-between-class-members": "off",
+"@stylistic/js/newline-per-chained-call": "off",
+"@stylistic/js/no-extra-parens": [
+  "off",
+  "all",
+  {
+    enforceForSequenceExpressions: false,
+  },
+],
+"@stylistic/js/no-extra-semi": "off",
+"@stylistic/js/no-multi-spaces": "off",
+"@stylistic/js/no-multiple-empty-lines": [
+  "off",
+  {
+    max: 1,
+    maxBOF: 0,
+  },
+],
+"@stylistic/js/no-trailing-spaces": [
+  "off",
+  {
+    skipBlankLines: true,
+  },
+],
+"@stylistic/js/object-curly-spacing": "off",
+"@stylistic/js/operator-linebreak": [
+  "off",
+  "after",
+  {
+    overrides: {
+      ":": "before",
+      "=": "none",
+      "?": "before",
+      "|": "before",
+      "||": "before",
+    },
+  },
+],
+"@stylistic/js/padded-blocks": ["off", "never"],
+"@stylistic/js/padding-line-between-statements": "off",
+"@stylistic/js/quote-props": ["off", "consistent-as-needed"],
+"@stylistic/js/quotes": [
+  "off",
+  "single",
+  {
+    allowTemplateLiterals: true,
+  },
+],
+"@stylistic/js/semi": "off",
+"@stylistic/js/space-before-blocks": "off",
+"@stylistic/js/space-before-function-paren": [
+  "off",
+  {
+    anonymous: "never",
+    asyncArrow: "always",
+    named: "never",
+  },
+],
+"@stylistic/js/space-in-parens": "off",
+"@stylistic/js/space-infix-ops": [
+  "off",
+  {
+    int32Hint: false,
+  },
+],
+
+////////////////////////////////////////////////////////////////////////////////
+

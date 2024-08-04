@@ -1,0 +1,25 @@
+import { processFileAnswers } from "@/reliverse/academy/fileProcessor";
+import consola from "consola";
+
+import { errorMessage } from "~/utils";
+
+// import {  decryptAnswer, encryptAnswer, hashAnswer } from "@/reliverse/academy/crypto";
+
+export const processAnswers = async (
+  processFunction: (answer: string) => string,
+): Promise<void> => {
+  try {
+    await processFileAnswers("questions", processFunction);
+    consola.success("Answers processed successfully.");
+  } catch (error) {
+    consola.error(`Failed to process answers: ${errorMessage(error)} `);
+  }
+};
+
+// No need to export these functions as they won't be used
+// export const hashAll = (): Promise<void> =>
+//   processAnswers((answer) => hashAnswer(decryptAnswer(answer)));
+
+// export const encryptAll = (): Promise<void> => processAnswers(encryptAnswer);
+
+// export const decryptAll = (): Promise<void> => processAnswers(decryptAnswer);

@@ -1,10 +1,4 @@
-import { z } from "zod";
-
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
-} from "~/core/trpc/trpc";
+import { createTRPCRouter, protectedProcedure } from "~/core/trpc/trpc";
 
 export const productRouter = createTRPCRouter({
   getProduct: protectedProcedure.query(({ ctx }) => {

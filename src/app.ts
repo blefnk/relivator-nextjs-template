@@ -1,311 +1,215 @@
-/**
- * [app.ts] App Configuration
- * ==========================
- *
- * To reduce the number of config files, we aim to
- * combine as much as possible into a single file.
- */
+import type { Icons } from "~/components/Common/Icons";
+import type { FooterItem, MainMenuItem } from "~/types";
 
-import type { OAuthStrategy } from "@clerk/types";
-import type { ContentSection, FooterItem, MainMenuItem } from "~/types";
+import metadata from "~/constants/metadata";
+import { productCategories } from "~/constants/products";
 import { slugify } from "~/utils";
 
-import { productCategories } from "~/server/config/products";
-import { networks } from "~/server/config/socials";
-
-import { env } from "./env.mjs";
-import { Icons } from "./islands/icons";
-
-// todo: parse this from clerk's dashboard instead of hardcoding it
-export const oauthProvidersClerk = [
-  { name: "Google", strategy: "oauth_google", icon: "google" },
-  { name: "Discord", strategy: "oauth_discord", icon: "discord" },
-  // { name: "Microsoft", strategy: "oauth_microsoft", icon: "microsoft" },
-  // { name: "Facebook", strategy: "oauth_facebook", icon: "facebook" },
-  // { name: "Github", strategy: "oauth_github", icon: "gitHub" },
-] satisfies {
-  name: string;
-  icon: keyof typeof Icons;
-  strategy: OAuthStrategy;
-}[];
-
-export const appts = {
-  name: "Relivator",
-  debug: false,
-  social: networks({
-    youtube: "@bleverse_com",
-    discord: "Pb8uKbwpsJ",
-    facebook: "groups/bleverse",
-    twitter: "blefnk",
-    github: "blefnk",
-  }),
-};
-
-export default appts;
-
-const links = {
-  twitter: "https://x.com/blefnk",
-  github: "https://github.com/blefnk/relivator",
-  githubAccount: "https://github.com/blefnk",
+const socialLinks = {
   discord: "https://discord.gg/Pb8uKbwpsJ",
   facebook: "https://facebook.com/groups/bleverse",
+  github: "https://github.com/blefnk/relivator-nextjs-template",
+  githubAccount: "https://github.com/blefnk",
+  twitter: "https://x.com/blefnk",
 };
 
-export const contactConfig = {
-  email: "blefnk@gmail.com",
-};
-
-export const REPOSITORY_OWNER = "blefnk";
-export const REPOSITORY_NAME = "relivator";
-export const REPOSITORY_URL = `https://github.com/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`;
-export const DISCORD_URL = "https://discord.gg/Pb8uKbwpsJ";
-export const baseUrl = new URL(
-  env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-);
-
-export const BASE_URL =
-  process.env.NODE_ENV === "production" ? baseUrl : "http://localhost:3000";
-export const BRAND_NAME = "Relivator";
-export const BRAND_DESCRIPTION =
-  "Next.js 14 free store and dashboard template. It helps you build great eCommerce and SaaS apps faster than ever. Get it now!";
-
-export const OWNER_ROLE = "owner";
-export const ADMIN_ROLE = "admin";
-export const MEMBER_ROLE = "member";
-
-export const TRIAL_LENGTH_IN_DAYS = 7;
-export const ROLES = [OWNER_ROLE, ADMIN_ROLE, MEMBER_ROLE] as const;
-
-export const settings = {
-  themeToggleEnabled: true,
-};
-
+// Did you know that you can edit some settings of this file headlessly?
+// Just run pnpm reli:setup and configure the advanced settings. Perfect!
 export const siteConfig = {
-  name: "Relivator",
-  shortName: "Relivator",
-  author: "Nazarii Korniienko",
-  description:
-    "NextJS 14 free starter: store, landing, dashboard. It helps you build great eCommerce and SaaS apps faster than ever. Get it!",
-  company: {
-    name: "Nazarii Korniienko",
-    link: "https://github.com/blefnk/relivator",
-    email: "blefnk@gmail.com",
-    twitter: "@blefnk",
+  name: metadata.name,
+  appNameDesc: metadata.appNameDesc,
+  appPublisher: metadata.appPublisher,
+  appVersion: metadata.appVersion,
+  author: {
+    email: metadata.author.email,
+    fullName: metadata.author.fullName,
+    handle: metadata.author.handle,
+    handleAt: metadata.author.handleAt,
+    url: metadata.author.url,
   },
-  handles: {
-    twitter: "@blefnk",
-  },
-  keywords: [
-    "App Router",
-    "Blefonix",
-    "Bleverse",
-    "Drizzle Orm",
-    "Landing Page",
-    "Next.js 14",
-    "Nextjs",
-    "Open Source",
-    "Parallel Routes",
-    "PostgreSQL",
-    "Radix Ui",
-    "React",
-    "Relivator",
-    "Server Actions",
-    "Server Components",
-    "Shadcn/UI",
-    "Starter",
-    "Stripe",
-    "T3 Stack",
-    "Tailwind Css",
-    "Template",
-    "Tools",
-    "Utils",
-  ],
-  url: {
-    base: env.NEXT_PUBLIC_APP_URL,
-    author: REPOSITORY_OWNER,
-  },
-  ogImage: `${env.NEXT_PUBLIC_APP_URL}/og-image.png`,
-  mainNav: [
-    {
-      title: "Lobby",
-      items: [
-        {
-          title: "Products",
-          href: "/products",
-          description: "All the products we have to offer.",
-          items: [],
-        },
-        {
-          title: "Build a Look",
-          href: "/custom/clothing",
-          description: "Build your own custom clothes.",
-          items: [],
-        },
-        {
-          title: "Blog",
-          href: "/blog",
-          description: "Read our latest blog posts.",
-          items: [],
-        },
-      ],
-    },
-    ...productCategories.map((category) => ({
-      title: category.title,
-      items: [
-        {
-          title: "All",
-          href: `/categories/${slugify(category.title)}`,
-          description: `All ${category.title}.`,
-          items: [],
-        },
-        ...category.subcategories.map((subcategory) => ({
-          title: subcategory.title,
-          href: `/categories/${slugify(category.title)}/${subcategory.slug}`,
-          description: subcategory.description,
-          items: [],
-        })),
-      ],
-    })),
-  ] satisfies MainMenuItem[],
-  links,
   footerNav: [
     {
-      title: "Bleverse",
       items: [
         {
-          title: "Community",
-          href: "https://bleverse.com",
-          external: true,
-        },
-        {
-          title: "MF Piano",
-          href: "https://mfpiano.org",
-          external: true,
-        },
-        {
-          title: "Peresfer",
-          href: "https://peresfer.com",
-          external: true,
-        },
-        {
-          title: "Relivator",
-          href: "https://relivator.bleverse.com",
-          external: true,
-        },
-      ],
-    },
-    {
-      title: "Help",
-      items: [
-        {
-          title: "Contact",
+          external: false,
           href: "/contact",
-          external: false,
+          title: "Contact",
         },
         {
-          title: "Privacy",
+          external: false,
           href: "/privacy",
-          external: false,
+          title: "Privacy",
         },
         {
-          title: "Terms",
+          external: false,
           href: "/terms",
-          external: false,
+          title: "Terms",
         },
         {
-          title: "About",
+          external: false,
           href: "/about",
-          external: false,
+          title: "About",
         },
       ],
+      title: "Help",
     },
     {
-      title: "Social",
       items: [
         {
+          external: true,
+          href: socialLinks.githubAccount,
           title: "Github",
-          href: links.githubAccount,
-          external: true,
         },
         {
+          external: true,
+          href: socialLinks.discord,
           title: "Discord",
-          href: links.discord,
-          external: true,
         },
         {
+          external: true,
+          href: socialLinks.twitter,
           title: "Twitter",
-          href: links.twitter,
-          external: true,
         },
         {
-          title: "Facebook",
-          href: links.facebook,
           external: true,
+          href: socialLinks.facebook,
+          title: "Facebook",
         },
       ],
+      title: "Social",
     },
     {
-      title: "Github",
       items: [
         {
+          external: true,
+          href: "https://github.com/orgs/reliverse/repositories",
+          title: "@reliverse",
+        },
+        {
+          external: true,
+          href: socialLinks.githubAccount,
+          title: "@blefnk",
+        },
+        {
+          external: true,
+          href: socialLinks.github,
           title: "Relivator",
-          href: "https://github.com/blefnk/relivator",
-          external: true,
         },
         {
+          external: true,
+          href: "https://github.com/blefnk/reliverse-website-builder",
           title: "Reliverse",
-          href: "https://github.com/blefnk/reliverse",
-          external: true,
-        },
-        {
-          title: "Blefnk",
-          href: "https://github.com/blefnk",
-          external: true,
-        },
-        {
-          title: "Utils",
-          href: "https://github.com/blefnk/utils",
-          external: true,
         },
       ],
+      title: "Github",
+    },
+    {
+      items: [
+        {
+          external: true,
+          href: "https://github.com/sponsors/blefnk",
+          title: "GitHub Sponsors",
+        },
+        {
+          external: true,
+          href: "https://buymeacoffee.com/blefnk",
+          title: "Buy Me a Coffee",
+        },
+        {
+          external: true,
+          href: "https://patreon.com/blefnk",
+          title: "Patreon",
+        },
+        {
+          external: true,
+          href: "https://paypal.me/blefony",
+          title: "PayPal",
+        },
+      ],
+      title: "Support",
     },
   ] satisfies FooterItem[],
-};
-
-export const featureCards: ContentSection = {
-  header: "Powered by",
-  subheader: "What Makes Relivator Possible",
-  content: [
+  images: [
     {
-      text: "Next.js",
-      subtext: "The React Framework",
-    },
-    {
-      text: "shadcn/ui",
-      subtext: "Beautifully Designed Components",
-    },
-    {
-      text: "Vercel",
-      subtext: "Develop. Preview. Ship.",
+      // eslint-disable-next-line @stylistic/max-len
+      alt: "Shows the cover image of Relivator Next.js template, with the phrase: Relivator Empowers Your eCommerce with the Power of Next.js",
+      url: "/og-image.png",
     },
   ],
-};
+  keywords: ["next js shadcn ecommerce template"] as string[],
+  links: socialLinks,
+  mainNav: [
+    {
+      href: "/",
+      items: [
+        {
+          description: "All the products we have to offer",
+          href: "/products",
+          items: [],
+          title: "Products",
+        },
+        {
+          description: "Build your own custom clothes",
+          href: "/custom/clothing",
+          items: [],
+          title: "Build a Look",
+        },
+        {
+          description: "Read our latest blog posts",
+          href: "/blog",
+          items: [],
+          title: "Blog",
+        },
+      ],
+      title: "Catalogue",
+    },
+    ...productCategories.map((category) => ({
+      href: `/categories/${slugify(category.title)}`,
+      items: [
+        {
+          description: `All ${category.title}.`,
+          href: `/categories/${slugify(category.title)}`,
+          items: [],
+          title: "All",
+        },
+        ...category.subcategories.map((subcategory) => ({
+          description: subcategory.description,
+          href: `/categories/${slugify(category.title)}/${subcategory.slug}`,
+          items: [],
+          title: subcategory.title,
+        })),
+      ],
+      title: category.title,
+    })),
+  ] satisfies MainMenuItem[],
+  socialLinks: {
+    discord: "https://discord.gg/Pb8uKbwpsJ",
+    facebook: "https://facebook.com/groups/bleverse",
+    github: "https://github.com/blefnk/relivator-nextjs-template",
+    githubAccount: "https://github.com/blefnk",
+    twitter: "https://x.com/blefnk",
+  },
+  themeToggleEnabled: true,
+} as const;
 
-export const features: ContentSection = {
-  header: "Features",
-  subheader: "Why You Need to Download Relivator",
-  content: [
-    {
-      text: "SEO Optimized",
-      subtext: "Improved website visibility on search engines",
-    },
-    {
-      text: "Highly Performant",
-      subtext: "Fast loading times and smooth performance",
-    },
-    {
-      text: "Easy Customization",
-      subtext: "Change your content and layout with little effort",
-    },
-  ],
-};
+export const oauthProvidersClerk = [
+  {
+    name: "Google",
+    icon: "view",
+    strategy: "oauth_google",
+  },
+  {
+    name: "Discord",
+    icon: "discord",
+    strategy: "oauth_discord",
+  },
+] satisfies {
+  strategy:
+    | "oauth_discord"
+    | "oauth_facebook"
+    | "oauth_github"
+    | "oauth_google"
+    | "oauth_microsoft";
+  icon: keyof typeof Icons;
+  name: string;
+}[];

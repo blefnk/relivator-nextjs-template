@@ -1,0 +1,136 @@
+// 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
+// ================================================================= ||
+
+/**
+ * Unified Schema Exporter for Multiple Databases
+ * ==============================================
+ * Please check the "schema/index.ts" file for
+ * instructions, resources, inspirations, etc.
+ */
+
+import { Client as ClientPlanetscale } from "@planetscale/database";
+import {
+  drizzle as drizzlePlanetscale,
+  type PlanetScaleDatabase,
+} from "drizzle-orm/planetscale-serverless";
+import {
+  drizzle as drizzlePostgres,
+  type PostgresJsDatabase,
+} from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+
+import { env } from "~/env";
+import { addQueryParamIfMissed } from "~/utils";
+
+import * as schemaMysql from "./schema/mysql";
+import * as schemaPgsql from "./schema/pgsql";
+
+// Connection strings for MySQL and PostgreSQL
+// Add the ssl query parameter if it's missing
+let csMysql: string = addQueryParamIfMissed(
+  env.DATABASE_URL,
+  "ssl",
+  JSON.stringify({ rejectUnauthorized: true }),
+);
+let csPgsql: string = addQueryParamIfMissed(
+  env.DATABASE_URL,
+  "sslmode",
+  "require",
+);
+
+// todo: we need to figure out
+// todo: how to type db properly
+let db:
+  | PlanetScaleDatabase<typeof schemaMysql>
+  | PostgresJsDatabase<typeof schemaPgsql>
+  | any;
+
+let dbProvider = env.NEXT_PUBLIC_DB_PROVIDER;
+
+let postgresOption:postgres.Options<{/**/}> = { ssl: "allow", max: 1 };
+
+// Configure this based on the database provider.
+// Feel free to add/remove/edit things if needed.
+try {
+  // Set default DB provider based on DATABASE_URL
+  // if NEXT_PUBLIC_DB_PROVIDER is not specified
+  if (!dbProvider) {
+    const databaseUrl = env.DATABASE_URL;
+    if (databaseUrl?.startsWith("mysql://")) {
+      dbProvider = "private-mysql";
+      csMysql = env.DATABASE_URL;
+    }
+    else if (databaseUrl?.startsWith("postgres://")){
+      dbProvider = "private-postgres";
+      postgresOption = {/**/};
+      csPgsql = env.DATABASE_URL;
+    }
+  }
+
+  switch (dbProvider) {
+    case "private-mysql":
+    case "planetscale":
+      const clientPlanetscale = new ClientPlanetscale({
+        host: process.env["DATABASE_HOST"],
+        username: process.env["DATABASE_USERNAME"],
+        password: process.env["DATABASE_PASSWORD"],
+      });
+      db = drizzlePlanetscale(clientPlanetscale, {
+        schema: schemaMysql,
+        logger: false,
+      });
+      break;
+    }
+    case "railway": {
+      if (env.DATABASE_URL?.startsWith("mysql://")) {
+        const clientPlanetscale = new ClientPlanetscale({
+          host: process.env["DATABASE_HOST"],
+          username: process.env["DATABASE_USERNAME"],
+          password: process.env["DATABASE_PASSWORD"],
+        });
+        db = drizzlePlanetscale(clientPlanetscale, {
+          schema: schemaMysql,
+          logger: false,
+        });
+      } else if (env.DATABASE_URL?.startsWith("postgres://")) {
+        db = drizzlePostgres(postgres(csPgsql, { ssl: "allow", max: 1 }), {
+          schema: schemaPgsql,
+          logger: false,
+        });
+      } else {
+        throw new Error(
+          `❌ Unsupported DATABASE_URL for NEXT_PUBLIC_DB_PROVIDER 'railway'. \
+          Verify the environment configuration.`,
+        );
+      }
+      break;
+    }
+    case "railway":
+    case "vercel":
+    case "neon":
+    case "private-postgres": {
+      db = drizzlePostgres(postgres(csPgsql, { ssl: "allow", max: 1 }), {
+        schema: schemaPgsql,
+        logger: false,
+      });
+      break;
+    }
+    default:
+      throw new Error(
+        `❌ Unsupported NEXT_PUBLIC_DB_PROVIDER "${dbProvider}". \
+        Please check the environment configuration.`,
+      );
+  }
+} catch (error) {
+  if (error instanceof Error) {
+    consola.error(error.message);
+    process.exit(1);
+  } else {
+    // If for any reason something else was
+    // thrown that wasn't an Error, handle it
+    consola.error("❌ An unexpected error occurred:", error);
+    process.exit(1); // Exits the process with a failure code
+  }
+}
+
+export { db };

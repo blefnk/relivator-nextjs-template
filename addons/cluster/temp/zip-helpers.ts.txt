@@ -1,0 +1,358 @@
+import type { Buffer } from "node:buffer";
+
+import { log } from "@clack/prompts";
+import { readPackageSync } from "@mnrendra/read-package";
+import AdmZip from "adm-zip";
+import destr from "destr";
+import JSZip from "jszip";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { platform as osPlatform } from "node:os";
+import { join, sep } from "node:path";
+import { cwd } from "node:process";
+import { detectPackageManager } from "nypm";
+import prettyjson from "prettyjson";
+
+import { getCurrentDirname, getRootDirname } from "~/utils/files";
+
+type PackageJson = {
+  dependencies?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+};
+
+export type ArrayElement<ArrayType extends readonly unknown[]> =
+  ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
+
+export const findPackageManagerType = (
+  path = ".",
+  defaultPackageManager = "unknown",
+) => {
+  const bunPath = `${path}/bun.lockb`;
+  const pnpmPath = `${path}/pnpm-lock.yaml`;
+  const yarnPath = `${path}/yarn.lock`;
+  const npmPath = `${path}/package-lock.json`;
+
+  if (existsSync(bunPath)) {
+    return "bun";
+  }
+
+  if (existsSync(pnpmPath)) {
+    return "pnpm";
+  }
+
+  if (existsSync(yarnPath)) {
+    return "yarn";
+  }
+
+  if (existsSync(npmPath)) {
+    return "npm";
+  }
+
+  return defaultPackageManager;
+};
+
+export const findInstallCommand = (
+  packageManagerType = findPackageManagerType(),
+  prefix = false,
+) => {
+  switch (packageManagerType) {
+    case "bun":
+      return prefix ? "bun install" : "install";
+    case "npm":
+      return prefix ? "npm install" : "install";
+    case "pnpm":
+      return prefix ? "pnpm install" : "install";
+    case "unknown":
+      return prefix ? "unknown unknown" : "unknown";
+    case "yarn":
+      return prefix ? "yarn install" : "install";
+    default:
+      return prefix ? "npm install" : "install";
+  }
+};
+
+export const findPackageManagerRunner = (
+  path = ".",
+  defaultPackageManagerRunner = "npx",
+) => {
+  const bunPath = `${path}/bun.lockb`;
+  const pnpmPath = `${path}/pnpm-lock.yaml`;
+  const yarnPath = `${path}/yarn.lock`;
+  const npmPath = `${path}/package-lock.json`;
+
+  if (existsSync(bunPath)) {
+    return "bunx";
+  }
+
+  if (existsSync(pnpmPath)) {
+    return "pnpm exec";
+  }
+
+  if (existsSync(yarnPath)) {
+    return "yarn dlx";
+  }
+
+  if (existsSync(npmPath)) {
+    return "npx";
+  }
+
+  return defaultPackageManagerRunner;
+};
+
+export type PackageManagerType = "bun" | "npm" | "pnpm" | "unknown" | "yarn";
+
+export type InstallCommand = "add" | "install";
+
+export type PackageManagerRunner = "bunx" | "npx" | "pnpm exec" | "yarn dlx";
+
+// eslint-disable-next-line @stylistic/max-len
+// export function findPackageManagerType (path?: string, defaultPackageManager?: PackageManagerType): PackageManagerType;
+// export function findInstallCommand (packageManagerType?: PackageManagerType): InstallCommand;
+// export function findPackageManagerRunner (path?: string, defaultPackageManagerRunner?: PackageManagerRunner);
+
+export const formatError = (error: any) =>
+  error ? `\n${prettyjson.render(error)}` : "";
+
+export function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export async function readPackageJson(): Promise<PackageJson> {
+  const packageJsonPath = join(cwd(), "package.json");
+  const packageJson = readFileSync(packageJsonPath, "utf8");
+
+  return destr(packageJson) as PackageJson;
+}
+
+export function getInstalledDependencies(): {
+  dependenciesArray: string[];
+  dependenciesObject: Record<string, string>;
+  dependenciesString: string;
+} {
+  const { dependencies, devDependencies } = readPackageSync();
+
+  const dependenciesObject: Record<string, string> = {
+    ...dependencies,
+    ...devDependencies,
+  };
+
+  const dependenciesArray = Object.keys(dependenciesObject);
+  const dependenciesString = dependenciesArray.join(" ");
+
+  return { dependenciesArray, dependenciesObject, dependenciesString };
+}
+
+export async function zipFile(filePath: string): Promise<Buffer> {
+  return osPlatform() === "win32"
+    ? zipFileWindows(filePath)
+    : zipFileUnix(filePath);
+}
+
+export function zipFileUnix(filePath: string) {
+  const zip = new AdmZip();
+
+  zip.addLocalFolder(filePath);
+
+  return zip.toBuffer();
+}
+
+async function addToZip(folderPath: string, zipPath: string, zip: JSZip) {
+  const items = readdirSync(folderPath);
+
+  for (const item of items) {
+    const itemPath = join(folderPath, item);
+    const stats = statSync(itemPath);
+
+    if (stats.isFile()) {
+      const fileContent = readFileSync(itemPath);
+
+      zip.file(join(zipPath, item).split(sep).join("/"), fileContent);
+    } else if (stats.isDirectory()) {
+      await addToZip(itemPath, join(zipPath, item), zip);
+    }
+  }
+}
+
+export async function zipFileWindows(filePath: string): Promise<Buffer> {
+  log.info("Zipping file windows mode");
+  const zip = new JSZip();
+
+  await addToZip(filePath, "", zip);
+
+  return zip.generateAsync({
+    compression: "DEFLATE",
+    compressionOptions: { level: 6 },
+    platform: "UNIX",
+    type: "nodebuffer",
+  });
+}
+
+export function getHumanDate(createdAt: null | string) {
+  const date = new Date(createdAt || "");
+
+  return date.toLocaleString();
+}
+
+let pmFetched = false;
+let pm: PackageManagerType = "npm";
+let pmCommand: InstallCommand = "install";
+let pmRunner: PackageManagerRunner = "npx";
+
+export function getPMAndCommand() {
+  if (pmFetched) {
+    return {
+      command: pmCommand,
+      installCommand: `${pm} ${pmCommand}`,
+      pm,
+      runner: pmRunner,
+    };
+  }
+
+  const dir = getRootDirname(getCurrentDirname(import.meta.url), 2);
+
+  pm = findPackageManagerType(dir, "npm") as PackageManagerType;
+  pmCommand = findInstallCommand(pm) as InstallCommand;
+  pmFetched = true;
+  pmRunner = findPackageManagerRunner(dir) as PackageManagerRunner;
+
+  return {
+    command: pmCommand,
+    installCommand: `${pm} ${pmCommand}`,
+    pm,
+    runner: pmRunner,
+  };
+}
+
+function readDirRecursively(dir: string): string[] {
+  const entries = readdirSync(dir, { withFileTypes: true });
+
+  return entries.flatMap((entry) => {
+    const fullPath = join(dir, entry.name);
+
+    return entry.isDirectory() ? readDirRecursively(fullPath) : [fullPath];
+  });
+}
+
+export async function getLocalDependencies() {
+  const packageJsonPath = join(cwd(), "package.json");
+
+  if (!existsSync(packageJsonPath)) {
+    log.error("Missing package.json");
+    return [];
+  }
+
+  let packageJson: PackageJson = {};
+
+  const dependencies = packageJson.dependencies ?? {};
+
+  try {
+    packageJson = await readPackageJson();
+  } catch (err) {
+    log.error("Invalid package.json, JSON parsing failed");
+    console.error("json parse error: ", err);
+    return [];
+  }
+
+  if (Object.keys(dependencies).length === 0) {
+    log.error("Missing dependencies section in package.json");
+    return [];
+  }
+
+  for (const [key, value] of Object.entries(dependencies)) {
+    if (typeof value !== "string") {
+      log.error(
+        `Invalid dependency ${key}: ${value}, expected string, got ${typeof value}`,
+      );
+      return [];
+    }
+  }
+
+  const nodeModulesPath = join(cwd(), "node_modules");
+
+  if (!existsSync(nodeModulesPath)) {
+    const pm = findPackageManagerType(
+      getRootDirname(import.meta.url, 2),
+      "npm",
+    );
+    const installCmd = findInstallCommand(pm);
+
+    log.error(`Missing node_modules folder, please run ${pm} ${installCmd}`);
+    return [];
+  }
+
+  let anyInvalid = false;
+  const dependenciesObject = await Promise.all(
+    Object.entries(dependencies).map(async ([key, value]) => {
+      const dependencyFolderPath = join(nodeModulesPath, key);
+
+      if (!existsSync(dependencyFolderPath)) {
+        anyInvalid = true;
+        const pm = findPackageManagerType(
+          getRootDirname(import.meta.url, 2),
+          "npm",
+        );
+        const installCmd = findInstallCommand(pm);
+
+        log.error(`Missing dependency ${key}, please run ${pm} ${installCmd}`);
+
+        return { name: key, version: value };
+      }
+
+      try {
+        const files = readDirRecursively(dependencyFolderPath);
+      } catch (error) {
+        log.error(`Error reading node_modules files for ${key} package`);
+        console.error(error);
+        return null;
+      }
+
+      return {
+        name: key,
+        version: value,
+      };
+    }),
+  ).catch(() => []);
+
+  if (anyInvalid) {
+    console.error("Some dependencies are missing", dependenciesObject || []);
+    return [];
+  }
+
+  return dependenciesObject as {
+    name: string;
+    native: boolean;
+    version: string;
+  }[];
+}
+
+export async function removeDependencies(
+  dependenciesToRemove: string[],
+  cwd: string,
+) {
+  const { dependencies } = readPackageSync();
+
+  const filteredDependencies = Object.keys(dependencies ?? {}).filter((key) =>
+    dependenciesToRemove.includes(key),
+  );
+
+  const filteredDependenciesString = filteredDependencies.join(" ");
+
+  const packageManager = await detectPackageManager(cwd);
+
+  const removeUninstall =
+    packageManager?.name === "npm" ? "uninstall" : "remove";
+
+  if (packageManager && filteredDependencies.length > 0) {
+    console.info(
+      "\n🧼 Please run the following command to clean up your project by removing unused dependencies: \n👇",
+    );
+
+    console.info(
+      `${packageManager?.name || "npm"} ${removeUninstall} ${filteredDependenciesString}\n`,
+    );
+  }
+
+  // TODO: implement automatic removal; the 'nypm' removes one-by-one, which is not ideal
+  // for (const dependency of dependencies) {
+  //   await removeDependency(dependency);
+  // }
+}

@@ -5,40 +5,43 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/core/trpc/trpc";
-import { todos } from "~/data/db/schema";
+import { todos } from "~/db/schema";
 
 export const todoRouter = createTRPCRouter({
-  hello: publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
-    }),
-
   create: protectedProcedure
-    .input(z.object({ name: z.string().min(1) }))
-    .mutation(async ({ ctx, input }) => {
+    .input(
+      z.object({
+        name: z.string().min(1),
+      }),
+    ) // .mutation(async ({ ctx, input }) => {
+    .mutation(async ({ ctx }) => {
       // const todos = await getTodos();
-
       // simulate a slow db call
       await new Promise((resolve) => setTimeout(resolve, 1000));
-
+      // @ts-expect-error TODO: fix ts
       await ctx.db.insert(todos).values({
-        name: input.name,
-        createdById: ctx.session.id,
+        userId: ctx.session.id,
       });
-    }),
-
-  getLatest: publicProcedure.query(async ({ ctx }) => {
+    }), // name: input.name,
+  // createdById: ctx.session.id,
+  getLatest: publicProcedure.query(({ ctx }) => {
     // const todos = await getTodos();
-
     return ctx.db.query.todos.findFirst({
       orderBy: (todos, { desc }) => [desc(todos.createdAt)],
     });
   }),
 
-  getSecretMessage: protectedProcedure.query(() => {
-    return "you can now see this secret message!";
-  }),
+  getSecretMessage: protectedProcedure.query(
+    () => "you can now see this secret message!",
+  ),
+
+  hello: publicProcedure
+    .input(
+      z.object({
+        text: z.string(),
+      }),
+    )
+    .query(({ input }) => ({
+      greeting: `Hello ${input.text}`,
+    })),
 });

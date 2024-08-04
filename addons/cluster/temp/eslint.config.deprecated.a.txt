@@ -1,0 +1,742 @@
+// 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
+// ================================================================= ||
+
+/**
+ * Blefnk's ESLint Configuration for Relivator 1.2.0
+ * =================================================
+ *
+ * Remember to run `>ESLint: Restart ESLint Server`
+ * command after making changes and the file saving.
+ * Tip: Open `>Keyboard Shortcuts` and bind restart.
+ *
+ * When using ESLint VSCode extension, make sure you
+ * have `Use Flat Config` option enabled in settings.
+ * Bonus tip: When using Relivator, use `pnpm appts`.
+ *
+ * Note: antfu already includes the following plugins:
+ * typescript, stylistic, perfectionist, jsonc, react,
+ * unicorn, unocss, vue, yaml, toml, jsdoc, markdown.
+ * Go to `export default antfu` to see actual config.
+ *
+ * @see https://github.com/antfu/eslint-config#antfueslint-config
+ * @see https://eslint.org/docs/latest/use/configure/configuration-files-new
+ * @see https://github.com/blefnk/relivator-nextjs-template#readme <== get config updates
+ */
+
+import antfu from "@antfu/eslint-config";
+import { FlatCompat } from "@eslint/eslintrc";
+import eslintJsPlugin from "@eslint/js";
+import nextPlugin from "@next/eslint-plugin-next";
+import stylisticPlugin from "@stylistic/eslint-plugin";
+import * as airbnbBestPracticesConfig from "eslint-config-airbnb-base/rules/best-practices";
+import * as airbnbErrorsConfig from "eslint-config-airbnb-base/rules/errors";
+import * as airbnbES6Config from "eslint-config-airbnb-base/rules/es6";
+import * as airbnbNodeConfig from "eslint-config-airbnb-base/rules/node";
+import * as airbnbStyleConfig from "eslint-config-airbnb-base/rules/style";
+import * as airbnbVariablesConfig from "eslint-config-airbnb-base/rules/variables";
+import commentsPlugin from "eslint-plugin-eslint-comments";
+import functionalPlugin from "eslint-plugin-functional";
+import jestPlugin from "eslint-plugin-jest";
+import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
+import noSecretsPlugin from "eslint-plugin-no-secrets";
+import promisePlugin from "eslint-plugin-promise";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import reactPluginConfigsRecommended from "eslint-plugin-react/configs/recommended";
+import redundantUndefinedPlugin from "eslint-plugin-redundant-undefined";
+// @ts-expect-error - no types // todo: tw v3 only
+import tailwindcss from "eslint-plugin-tailwindcss";
+import tsdocPlugin from "eslint-plugin-tsdoc";
+import writeGoodCommentsPlugin from "eslint-plugin-write-good-comments";
+import xssPlugin from "eslint-plugin-xss";
+
+// @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigFile} */
+// const config = [];
+// export default tseslint.config(...config);
+
+const compat = new FlatCompat();
+
+// @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigFile} */
+// TODO: With `export default []`, ESLint doesn't work, but with `tseslint.config`, VSCode hot-reload works slowly looks like
+
+export default antfu(
+  {
+    ignores: [".next", "build"],
+    typescript: { tsconfigPath: "tsconfig.json" },
+    stylistic: { quotes: "double", semi: true },
+    settings: { react: { version: "detect" } },
+    formatters: { css: true },
+    react: true,
+    vue: false,
+    plugins: {
+      "redundant-undefined": redundantUndefinedPlugin,
+      "write-good-comments": writeGoodCommentsPlugin,
+      "eslint-comments": commentsPlugin,
+      "no-secrets": noSecretsPlugin,
+      "jsx-a11y": jsxA11yPlugin,
+      "xss": xssPlugin,
+      "react": reactPlugin,
+      "@next/next": nextPlugin,
+      "promise": promisePlugin,
+      "@stylistic": stylisticPlugin,
+      "functional": functionalPlugin,
+      "react-hooks": reactHooksPlugin,
+      "tailwindcss": tailwindcssPlugin,
+    },
+    rules: {
+      ...nextPlugin.configs.recommended.rules,
+      ...reactPluginConfigsRecommended.rules,
+      ...promisePlugin.configs.recommended.rules,
+      ...eslintJsPlugin.configs.recommended.rules,
+      ...tailwindcssPlugin.configs.recommended.rules,
+      ...stylisticPlugin.configs["recommended-flat"].rules,
+      ...reactHooksPlugin.configs.recommended.rules,
+      ...xssPlugin.configs.recommended.rules,
+      ...airbnbBestPracticesConfig.rules,
+      ...airbnbVariablesConfig.rules,
+      ...airbnbErrorsConfig.rules,
+      ...airbnbStyleConfig.rules,
+      ...airbnbNodeConfig.rules,
+      ...airbnbES6Config.rules,
+      "antfu/consistent-list-newline": "off",
+      "antfu/if-newline": "off",
+      "antfu/top-level-function": "off",
+      "array-bracket-newline": ["off", "consistent"],
+      "array-bracket-spacing": ["off", "never"],
+      "arrow-body-style": ["off", "always"],
+      "arrow-parens": "off",
+      "arrow-spacing": "off",
+      "block-scoped-var": "off",
+      "block-spacing": ["off", "always"],
+      "brace-style": ["off", "1tbs", { "allowSingleLine": true }],
+      "camelcase": "off",
+      "comma-dangle": ["off", "only-multiline"],
+      "comma-spacing": ["off", { "before": false, "after": true }],
+      "comma-style": ["off", "last"],
+      "complexity": ["off", 63],
+      "curly": "off",
+      "default-case-last": "off",
+      "default-case": "off",
+      "default-param-last": ["off"],
+      "dot-location": ["off", "property"],
+      "dot-notation": "off",
+      "eol-last": ["off", "always"],
+      "eqeqeq": ["off", "always"],
+      "eslint-plugin-jsx-a11y/blob": "off",
+      "func-names": "off",
+      "func-style": ["off", "declaration"],
+      "function-call-argument-newline": ["off", "consistent"],
+      "function-paren-newline": ["off", "consistent"],
+      "global-require": "off",
+      "implicit-arrow-linebreak": "off",
+      "import/no-absolute-path": "off",
+      "import/no-cycle": "off",
+      "import/no-duplicates": "off",
+      "import/no-dynamic-require": "off",
+      "import/no-extraneous-dependencies": "off",
+      "import/no-mutable-exports": "off",
+      "import/no-named-as-default": "off",
+      "import/order": ["off"],
+      "import/prefer-default-export": "off",
+      "indent": ["off", 2],
+      "jsdoc/check-access": "off",
+      "jsdoc/check-alignment": "off",
+      "jsdoc/check-indentation": "off",
+      "jsdoc/check-param-names": "off",
+      "jsdoc/check-syntax": "off",
+      "jsdoc/check-tag-names": "off",
+      "jsdoc/no-blank-blocks": "off",
+      "jsdoc/no-types": "off",
+      "jsdoc/no-undefined-types": "off",
+      "jsdoc/require-asterisk-prefix": "off",
+      "jsdoc/require-description": "off",
+      "jsdoc/require-hyphen-before-param-description": "off",
+      "jsdoc/require-param-type": "off",
+      "jsdoc/require-param": ["off", { checkDestructuredRoots: false }],
+      "jsdoc/require-returns-type": "off",
+      "jsdoc/require-returns": "off",
+      "jsdoc/require-throws": "off",
+      "jsdoc/sort-tags": "off",
+      "jsdoc/tag-lines": ["off", "never", { startLines: 1 }],
+      "jsonc/sort-keys": "off",
+      "jsx-a11y/anchor-has-content": "off",
+      "jsx-a11y/anchor-is-valid": "off",
+      "jsx-a11y/heading-has-content": "off",
+      "key-spacing": "off",
+      "linebreak-style": "off",
+      "lines-around-directive": "off",
+      "max-lines-per-function": ["off", 437],
+      "max-nested-callbacks": ["off", 4],
+      "max-statements": ["off", 76],
+      "new-cap": "off",
+      "new-parens": "off",
+      "no-alert": "off",
+      "no-array-constructor": "off",
+      "no-await-in-loop": "off",
+      "no-bitwise": "off",
+      "no-case-declarations": "off",
+      "no-confusing-arrow": "off",
+      "no-console": "off",
+      "no-constant-condition": "off",
+      "no-duplicate-selectors": "off",
+      "no-else-return": "off",
+      "no-eval": "off",
+      "no-irregular-whitespace": "warn",
+      "no-lonely-if": "off",
+      "no-multi-assign": "off",
+      "no-multi-spaces": ["off", { "ignoreEOLComments": true }],
+      "no-multi-str": "off",
+      "no-nested-ternary": "off",
+      "no-param-reassign": "off",
+      "no-plusplus": "off",
+      "no-promise-executor-return": "off",
+      "no-redeclare": "off",
+      "no-restricted-globals": "off",
+      "no-return-assign": "off",
+      "no-return-await": "off",
+      "no-tabs": "off",
+      "no-template-curly-in-string": "off",
+      "no-trailing-spaces": "off",
+      "no-undef": "off",
+      "no-unneeded-ternary": "off",
+      "no-unused-vars": "off",
+      "no-use-before-define": "off",
+      "no-useless-return": "off",
+      "no-var": "off",
+      "no-void": "off",
+      "no-whitespace-before-property": "off",
+      "node/prefer-global/process": "off",
+      "nonblock-statement-body-position": "off",
+      "object-curly-newline": ["off", { consistent: true }],
+      "object-curly-spacing": ["off", "always"],
+      "object-shorthand": "off",
+      "one-var": "off",
+      "operator-assignment": "off",
+      "operator-linebreak": "off",
+      "padded-blocks": "off",
+      "perfectionist/sort-array-includes": "off",
+      "perfectionist/sort-imports": "off",
+      "perfectionist/sort-interfaces": "off",
+      "perfectionist/sort-jsx-props": "off",
+      "perfectionist/sort-named-exports": "off",
+      "perfectionist/sort-named-imports": "off",
+      "perfectionist/sort-object-types": "off",
+      "perfectionist/sort-objects": "off",
+      "perfectionist/sort-union-types": "off",
+      "prefer-arrow-callback": "off",
+      "prefer-const": "off",
+      "prefer-destructuring": "off",
+      "prefer-exponentiation-operator": "off",
+      "prefer-rest-params": "off",
+      "prefer-template": "off",
+      "quote-props": "off",
+      "quotes": ["off", "single", { "allowTemplateLiterals": true }],
+      "radix": "off",
+      "react-hooks/rules-of-hooks": "off",
+      "react/button-has-type": "off",
+      "react/destructuring-assignment": "off",
+      "react/display-name": "off",
+      "react/function-component-definition": "off",
+      "react/jsx-boolean-value": "off",
+      "react/jsx-curly-brace-presence": "off",
+      "react/jsx-fragments": "off",
+      "react/jsx-max-depth": ["off", { max: 7 }],
+      "react/jsx-no-bind": "off",
+      "react/jsx-no-constructed-context-values": "off",
+      "react/jsx-no-leaked-render": ["off", { validStrategies: ["ternary"] }],
+      "react/jsx-no-script-url": "off",
+      "react/jsx-one-expression-per-line": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/jsx-sort-props": "off",
+      "react/jsx-uses-react": "off",
+      "react/jsx-uses-vars": "off",
+      "react/no-array-index-key": "off",
+      "react/no-children-prop": "off",
+      "react/no-danger-with-children": "off",
+      "react/no-danger": "off",
+      "react/no-typos": "off",
+      "react/no-unescaped-entities": "off",
+      "react/no-unknown-property": "off",
+      "react/no-unstable-nested-components": "off",
+      "react/no-unused-prop-types": "off",
+      "react/prefer-stateless-function": "off",
+      "react/prop-types": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/require-default-props": "off",
+      "react/self-closing-comp": "off",
+      "rest-spread-spacing": ["off", "never"],
+      "rules/anchor-is-valid": "off",
+      "semi-spacing": "off",
+      "semi-style": ["off", "last"],
+      "semi": "off",
+      "space-before-blocks": "off",
+      "space-in-parens": ["off", "never"],
+      "space-unary-ops": "off",
+      "spaced-comment": "off",
+      "style/arrow-parens": "off",
+      "style/brace-style": "off",
+      "style/comma-dangle": "off",
+      "style/eol-last": "off",
+      "style/indent-binary-ops": "off",
+      "style/indent": "off",
+      "style/jsx-closing-tag-location": "off",
+      "style/jsx-curly-newline": "off",
+      "style/jsx-indent-props": "off",
+      "style/jsx-indent": "off",
+      "style/jsx-one-expression-per-line": "off",
+      "style/jsx-wrap-multilines": "off",
+      "style/member-delimiter-style": "off",
+      "style/multiline-ternary": "off",
+      "style/no-multi-spaces": "off",
+      "style/no-multiple-empty-lines": "off",
+      "style/no-tabs": "off",
+      "style/no-trailing-spaces": "off",
+      "style/operator-linebreak": "off",
+      "style/padded-blocks": "off",
+      "style/quote-props": "off",
+      "style/quotes": "off",
+      "style/semi-spacing": "off",
+      "style/semi": "off",
+      "style/spaced-comment": "off",
+      "switch-colon-spacing": "off",
+      "tailwindcss/no-custom-classname": "off",
+      "template-curly-spacing": ["off", "never"],
+      "unused-imports/no-unused-imports": "off",
+      "unused-imports/no-unused-vars": "off",
+      "write-good-comments/write-good-comments": "off",
+      "xss/no-location-href-assign": "off",
+      "xss/no-mixed-html": "off",
+      "yaml/block-sequence": "off",
+      "yaml/plain-scalar": "off",
+      "computed-property-spacing": [
+        "off",
+        "never",
+        { "enforceForClassMembers": true },
+      ],
+      "sort-imports": [
+        "off",
+        { "ignoreCase": true, "ignoreDeclarationSort": false },
+      ],
+      "space-before-function-paren": [
+        "off",
+        { "anonymous": "always", "named": "never", "asyncArrow": "always" },
+      ],
+      "jsdoc/require-jsdoc": [
+        "off",
+        {
+          publicOnly: true,
+          require: {
+            FunctionDeclaration: true,
+            FunctionExpression: true,
+            ArrowFunctionExpression: true,
+            ClassDeclaration: true,
+            ClassExpression: true,
+            MethodDefinition: true,
+          },
+          contexts: [
+            "VariableDeclaration",
+            "TSTypeAliasDeclaration",
+            "TSPropertySignature",
+          ],
+          enableFixer: true,
+        },
+      ],
+      "react/jsx-key": [
+        "off",
+        {
+          checkFragmentShorthand: true,
+          checkKeyMustBeforeSpread: true,
+          warnOnDuplicates: true,
+        },
+      ],
+      "no-multiple-empty-lines": [
+        "off",
+        { "max": 1, "maxBOF": 0, "maxEOF": 1 },
+      ],
+    },
+  },
+  ...compat.config({
+    plugins: [
+      "@limegrass/import-alias",
+      "prefer-arrow-functions",
+      "no-barrel-files",
+      "no-secrets",
+      "jsx-a11y",
+      "drizzle",
+      "react-refresh",
+      "@tanstack/query",
+    ],
+    extends: [
+      "plugin:@tanstack/eslint-plugin-query/recommended",
+      "plugin:deprecation/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:drizzle/recommended",
+    ],
+    rules: {
+      "@limegrass/import-alias/import-alias": "off",
+      "@tanstack/query/exhaustive-deps": "off",
+      "@tanstack/query/no-rest-destructuring": "off",
+      "@tanstack/query/stable-query-client": "off",
+      "deprecation/deprecation": "off",
+      "drizzle/enforce-delete-with-where": "off",
+      "drizzle/enforce-update-with-where": "off",
+      "no-barrel-files/no-barrel-files": "off",
+      "no-secrets/no-secrets": "off",
+      "react-refresh/only-export-components": "off",
+      "prefer-arrow-functions/prefer-arrow-functions": [
+        "off",
+        {
+          "allowNamedFunctions": false,
+          "classPropertiesAllowed": false,
+          "disallowPrototype": false,
+          "returnStyle": "unchanged",
+          "singleReturnOnly": false,
+        },
+      ],
+    },
+  }),
+  {
+    files: ["**/*.?(*)ts?(x)", ".test.ts(x)"],
+    plugins: {
+      "eslint-plugin-tsdoc": tsdocPlugin,
+      "eslint-plugin-jest": jestPlugin,
+    },
+    rules: {
+      "jsx-a11y/heading-has-content": "off",
+      "test/consistent-test-it": "off",
+      "tsdoc/syntax": "off",
+      "@typescript-eslint/space-before-function-paren": [
+        "off",
+        {
+          "asyncArrow": "always",
+          "anonymous": "always",
+          "named": "never",
+        },
+      ],
+      "@typescript-eslint/prefer-literal-enum-member": [
+        "off",
+        { "allowBitwiseExpressions": true },
+      ],
+    },
+  },
+);
+
+
+// ////////////////////////////////////////////////////////////////
+
+// import globals from "globals";
+// import react from "eslint-plugin-react/configs/recommended.js";
+// import path from "pathe";
+// import { fileURLToPath } from "url";
+// import { FlatCompat } from "@eslint/eslintrc";
+// import js from "@eslint/js";
+// import tseslint from "typescript-eslint";
+// Mimic CommonJS variables to be used in ES module
+// const esModuleFilename = fileURLToPath(import.meta.url);
+// const esModuleDirname = path.dirname(esModuleFilename);
+// @see https://eslint.org/docs/latest/use/configure/migration-guide#using-eslintrc-configs-in-flat-config
+// const compat = new FlatCompat({
+//   baseDirectory: esModuleDirname,
+//   recommendedConfig: js.configs.recommended,
+// });
+// /* export default [
+//   {
+//     // languageOptions: {
+//     // globals: { ...globals.browser, ...globals.node },
+//     // parser: tseslint.parser,
+//     // parserOptions: {
+//     //   project: ["./tsconfig.json"],
+//     //   tsconfigRootDir: esModuleDirname,
+//     // },
+//     // },
+//   },
+//   // { ignores: [".github", "build", "dist", "node_modules"] },
+//   {
+//     languageOptions: {
+//       globals: { ...globals.browser, ...globals.node },
+//       parser: tseslint.parser,
+//       parserOptions: {
+//         project: "./tsconfig.json",
+//         // project: ["./tsconfig.json"],
+//         // tsconfigRootDir: esModuleDirname,
+//       },
+//     },
+//   },
+//   // ...compat.extends("xo-typescript"),
+//   // ...tseslint.configs.recommendedTypeChecked,
+//   // ...tseslint.configs.stylisticTypeChecked,
+//   // react,
+// ]; */
+// const config = tseslint.config(
+//   {
+//     ignores: ["build/", "dist/", "node_modules/"],
+//   },
+//   eslint.configs.recommended,
+//   ...tseslint.configs.recommendedTypeChecked,
+//   {
+//     files: ["**/*.test.ts"],
+//     rules: {
+//       "@typescript-eslint/require-await": "off",
+//     },
+//   },
+//   {
+//     languageOptions: {
+//       parserOptions: {
+//         parser: tseslint.parser,
+//         project: ["./tsconfig.json"],
+//         tsconfigRootDir: import.meta.dirname,
+//       },
+//     },
+//     plugins: {/**/},
+//     rules: {
+//       "@typescript-eslint/no-unused-vars": [0, { argsIgnorePattern: "^_" }],
+//     },
+//   },
+// );
+// export default config;
+
+// /////////////////////////////////////////////////////////////////////////////
+
+// @type {import("eslint").Linter.Config} */
+// const config = {
+//   extends: [
+//     "eslint:recommended",
+//     "next/core-web-vitals",
+//     "plugin:perfectionist/recommended-natural",
+//   ],
+//   ignorePatterns: ["**/node_modules/", "**/.next/"],
+//   parserOptions: { project: true },
+//   plugins: ["@typescript-eslint", "drizzle", "perfectionist"],
+//   rules: {
+//     complexity: ["off", 10],
+//     "drizzle/enforce-delete-with-where": [
+//       "off",
+//       {
+//         drizzleObjectName: ["db"],
+//       },
+//     ],
+//     "drizzle/enforce-update-with-where": [
+//       "off",
+//       {
+//         drizzleObjectName: ["db"],
+//       },
+//     ],
+//     eqeqeq: ["off", "smart"],
+//     "import/extensions": "off",
+//     "import/namespace": "off",
+//     "import/no-duplicates": "off",
+//     "import/no-extraneous-dependencies": [
+//       "off",
+//       {
+//         devDependencies: true,
+//         optionalDependencies: false,
+//         peerDependencies: false,
+//       },
+//     ],
+//     "import/no-named-as-default": "off",
+//     "import/no-named-as-default-member": "off",
+//     "import/no-unresolved": "off",
+//     "import/prefer-default-export": "off",
+//     "max-depth": ["off", 3],
+//     "max-lines": ["off", 300],
+//     "no-shadow": [
+//       "off",
+//       {
+//         hoist: "all",
+//       },
+//     ],
+//     "prefer-arrow/prefer-arrow-functions": [
+//       "off",
+//       {
+//         classPropertiesAllowed: false,
+//         disallowPrototype: true,
+//         singleReturnOnly: false,
+//       },
+//     ],
+//     "prefer-const": "off",
+//     "react/no-unescaped-entities": "off",
+//     "react-hooks/exhaustive-deps": "off",
+//     "react-hooks/rules-of-hooks": "off",
+//   },
+// };
+// module.exports = config;
+
+
+/**
+ * Resources and Inspirations
+ * @see https://github.com/blefnk/relivator-nextjs-template
+ * ==========================
+ * @see https://typescript-eslint.io typescript
+ * @see https://eslint.org/docs/latest/rules eslint
+ * @see https://github.com/import-js/eslint-plugin-import#rules import
+ * @see https://github.com/antfu/eslint-ts-patch/#readme eslint-ts-patch
+ * @see https://github.com/sindresorhus/eslint-plugin-unicorn#rules unicorn
+ * @see https://github.com/ArnaudBarre/eslint-plugin-react-refresh react-refresh
+ * @see https://github.com/art0rz/eslint-plugin-no-barrel-files#rules no-barrel-files
+ * @see https://github.com/Anparasan3/core-js/blob/master/eslint.config.js inspirations
+ * @see https://mysticatea.github.io/eslint-plugin-eslint-comments/rules eslint-comments
+ * @see https://github.com/Limegrass/eslint-plugin-import-alias#configuration import-alias
+ * @see https://github.com/nirv-ai/tinkerbuntune/blob/develop/eslint.config.js inspirations
+ * @see https://github.com/eslint-functional/eslint-plugin-functional#supported-rules functional
+ * @see https://github.com/a-tarasyuk/eslint-plugin-redundant-undefined#usage redundant-undefined
+ */
+
+
+// ////////////////////////////////////////////////////////////////
+
+// import globals from "globals";
+// @ts-expect-error missing types
+// import react from "eslint-plugin-react/configs/recommended.js";
+// import path from "pathe";
+// import { fileURLToPath } from "url";
+// import { FlatCompat } from "@eslint/eslintrc";
+// import js from "@eslint/js";
+// import tseslint from "typescript-eslint";
+// Mimic CommonJS variables to be used in ES module
+// const esModuleFilename = fileURLToPath(import.meta.url);
+// const esModuleDirname = path.dirname(esModuleFilename);
+// @see https://eslint.org/docs/latest/use/configure/migration-guide#using-eslintrc-configs-in-flat-config
+// const compat = new FlatCompat({
+//   baseDirectory: esModuleDirname,
+//   recommendedConfig: js.configs.recommended,
+// });
+// /* export default [
+//   {
+//     // languageOptions: {
+//     // globals: { ...globals.browser, ...globals.node },
+//     // parser: tseslint.parser,
+//     // parserOptions: {
+//     //   project: ["./tsconfig.json"],
+//     //   tsconfigRootDir: esModuleDirname,
+//     // },
+//     // },
+//   },
+//   // { ignores: [".github", "build", "dist", "node_modules"] },
+//   {
+//     languageOptions: {
+//       globals: { ...globals.browser, ...globals.node },
+//       parser: tseslint.parser,
+//       parserOptions: {
+//         project: "./tsconfig.json",
+//         // project: ["./tsconfig.json"],
+//         // tsconfigRootDir: esModuleDirname,
+//       },
+//     },
+//   },
+//   // ...compat.extends("xo-typescript"),
+//   // ...tseslint.configs.recommendedTypeChecked,
+//   // ...tseslint.configs.stylisticTypeChecked,
+//   // react,
+// ]; */
+// const config = tseslint.config(
+//   {
+//     ignores: ["build/", "dist/", "node_modules/"],
+//   },
+//   eslint.configs.recommended,
+//   ...tseslint.configs.recommendedTypeChecked,
+//   {
+//     files: ["**/*.test.ts"],
+//     rules: {
+//       "@typescript-eslint/require-await": "off",
+//     },
+//   },
+//   {
+//     languageOptions: {
+//       parserOptions: {
+//         parser: tseslint.parser,
+//         project: ["./tsconfig.json"],
+//         tsconfigRootDir: import.meta.dirname,
+//       },
+//     },
+//     plugins: {/**/},
+//     rules: {
+//       "@typescript-eslint/no-unused-vars": [0, { argsIgnorePattern: "^_" }],
+//     },
+//   },
+// );
+// export default config;
+
+// /////////////////////////////////////////////////////////////////////////////
+
+// @type {import("eslint").Linter.Config} */
+// const config = {
+//   extends: [
+//     "eslint:recommended",
+//     "next/core-web-vitals",
+//     "plugin:perfectionist/recommended-natural",
+//   ],
+//   ignorePatterns: ["**/node_modules/", "**/.next/"],
+//   parserOptions: { project: true },
+//   plugins: ["@typescript-eslint", "drizzle", "perfectionist"],
+//   rules: {
+//     complexity: ["off", 10],
+//     "drizzle/enforce-delete-with-where": [
+//       "off",
+//       {
+//         drizzleObjectName: ["db"],
+//       },
+//     ],
+//     "drizzle/enforce-update-with-where": [
+//       "off",
+//       {
+//         drizzleObjectName: ["db"],
+//       },
+//     ],
+//     eqeqeq: ["off", "smart"],
+//     "import/extensions": "off",
+//     "import/namespace": "off",
+//     "import/no-duplicates": "off",
+//     "import/no-extraneous-dependencies": [
+//       "off",
+//       {
+//         devDependencies: true,
+//         optionalDependencies: false,
+//         peerDependencies: false,
+//       },
+//     ],
+//     "import/no-named-as-default": "off",
+//     "import/no-named-as-default-member": "off",
+//     "import/no-unresolved": "off",
+//     "import/prefer-default-export": "off",
+//     "max-depth": ["off", 3],
+//     "max-lines": ["off", 300],
+//     "no-restricted-imports": [
+//       "off",
+//       {
+//         paths: [
+//           {
+//             message: "Please use lodash/{module} import instead",
+//             name: "lodash",
+//           },
+//           {
+//             message: "Please use aws-sdk/{module} import instead",
+//             name: "aws-sdk",
+//           },
+//           {
+//             message: "Please use explicit import file",
+//             name: ".",
+//           },
+//         ],
+//       },
+//     ],
+//     "no-shadow": [
+//       "off",
+//       {
+//         hoist: "all",
+//       },
+//     ],
+//     "prefer-arrow/prefer-arrow-functions": [
+//       "off",
+//       {
+//         classPropertiesAllowed: false,
+//         disallowPrototype: true,
+//         singleReturnOnly: false,
+//       },
+//     ],
+//     "prefer-const": "off",
+//     "react/no-unescaped-entities": "off",
+//     "react-hooks/exhaustive-deps": "off",
+//     "react-hooks/rules-of-hooks": "off",
+//   },
+// };
+// module.exports = config;

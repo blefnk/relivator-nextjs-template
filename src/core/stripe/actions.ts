@@ -1,98 +1,102 @@
 "use server";
 
-import { clerkClient } from "@clerk/nextjs";
-import type { UserSubscriptionPlan } from "~/types";
-import { type CheckoutItem } from "~/types";
-import { absoluteUrl, calculateOrderAmount, ERR } from "~/utils";
+import { redirect } from "next/navigation";
+
+import type Stripe from "stripe";
+import type { z } from "zod";
+
+import { getCartId } from "@/server/reliverse/cart";
+import { userPrivateMetadataSchema } from "@/server/reliverse/validations/auth";
 import dayjs from "dayjs";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
+import superjson from "superjson";
 
-import { getNextAuthServerSession } from "~/core/auth/authjs";
-import { stripe } from "~/core/stripe/connect";
-import {
+import type {
   createPaymentIntentSchema,
   getPaymentIntentSchema,
   getPaymentIntentsSchema,
   getStripeAccountSchema,
-  manageSubscriptionSchema,
 } from "~/core/stripe/zod";
-import { db } from "~/data/db";
-import { carts, payments, stores, users, type User } from "~/data/db/schema";
-import { userPrivateMetadataSchema } from "~/data/validations/auth";
-import { env } from "~/env.mjs";
-import { redirect } from "~/navigation";
-import { getCartId } from "~/server/cart";
-import { storeSubscriptionPlans } from "~/server/config/subscriptions";
-import { getServerAuthSession, getUserData } from "~/utils/auth/users";
+import type { CheckoutItem, UserSubscriptionPlan } from "~/types";
+
+import { authjs } from "~/auth/authjs";
+import { stripe } from "~/core/stripe/connect";
+import { storeSubscriptionPlans } from "~/core/stripe/subs";
+import { manageSubscriptionSchema } from "~/core/stripe/zod";
+import { db } from "~/db";
+import { carts, payments, stores, users } from "~/db/schema";
+import { env } from "~/env";
+import { calculateOrderAmount } from "~/utils";
+
+const absoluteUrl = (path: string) => {
+  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
+};
 
 // Getting the subscription plan for a user
 export async function getSubscriptionPlanAction(
   userId: string,
-): Promise<UserSubscriptionPlan | null> {
+): Promise<null | UserSubscriptionPlan> {
   try {
     let userPrivateMetadata: z.infer<typeof userPrivateMetadataSchema> = {};
+    const session = await authjs();
 
-    if (env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk") {
-      const session = await clerkClient.users.getUser(userId);
-      if (!session) redirect("/auth");
-
-      userPrivateMetadata = userPrivateMetadataSchema.parse(
-        session.privateMetadata,
-      );
-    } else if (env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs") {
-      const session = await getNextAuthServerSession();
-      if (!session?.user) redirect("/auth");
-
-      const user = await db
-        .select()
-        .from(users)
-        .where(eq(users.id, userId))
-        .then((res: User[]) => res[0] ?? null);
-
-      userPrivateMetadata = userPrivateMetadataSchema.parse(user);
+    if (!session) {
+      redirect("/auth");
     }
+
+    const user = await db
+      .select()
+      .from(users)
+      .where(eq(users.id, userId))
+      .then((res) => res[0] || null);
+
+    userPrivateMetadata = userPrivateMetadataSchema.parse(user);
 
     // Check if user is subscribed
     const ONE_DAY_MS = 86_400_000;
-    const isSubscribed =
-      !!userPrivateMetadata.stripePriceId &&
-      dayjs(userPrivateMetadata.stripeCurrentPeriodEnd).valueOf() + ONE_DAY_MS >
-        Date.now();
 
-    const plan =
-      isSubscribed ?
-        storeSubscriptionPlans.find(
+    const isSubscribed =
+      userPrivateMetadata.stripePriceId &&
+      Date.now() <
+        dayjs(userPrivateMetadata.stripeCurrentPeriodEnd).valueOf() +
+          ONE_DAY_MS;
+
+    // Set default to "Starter" subscription
+    const plan = isSubscribed
+      ? storeSubscriptionPlans.find(
           (plan) => plan.stripePriceId === userPrivateMetadata.stripePriceId,
         )
-      : storeSubscriptionPlans[0]; // Set default to "Starter" subscription
+      : storeSubscriptionPlans[0];
 
     // Check if user has canceled subscription
     let isCanceled = false;
+
     if (isSubscribed && !!userPrivateMetadata.stripeSubscriptionId) {
       const stripePlan = await stripe.subscriptions.retrieve(
         userPrivateMetadata.stripeSubscriptionId,
       );
+
       isCanceled = stripePlan.cancel_at_period_end;
     }
 
     if (plan) {
       return {
         ...plan,
+
+        // @ts-expect-error TODO: fix
+        isActive: isSubscribed && !isCanceled,
         isCanceled,
+        // @ts-expect-error TODO: fix
         isSubscribed,
         stripeCurrentPeriodEnd:
-          userPrivateMetadata.stripeCurrentPeriodEnd ?? "",
-        stripeSubscriptionId: userPrivateMetadata.stripeSubscriptionId,
+          userPrivateMetadata.stripeCurrentPeriodEnd || "",
         stripeCustomerId: userPrivateMetadata.stripeCustomerId,
-        isActive: isSubscribed && !isCanceled,
+        stripeSubscriptionId: userPrivateMetadata.stripeSubscriptionId,
       };
-    } else {
-      console.error("Plan not found");
-      return null;
     }
-  } catch (err) {
-    console.error(err);
+
+    return null;
+  } catch {
     return null;
   }
 }
@@ -105,15 +109,16 @@ export async function manageSubscriptionAction(
 
   const billingUrl = absoluteUrl("/dashboard/billing");
 
-  const session = await getServerAuthSession();
-  if (!session) return redirect("/auth");
+  const session = await authjs();
 
-  const data = await getUserData(session);
-  const email = data.email;
+  if (!session) {
+    return redirect("/auth");
+  }
 
+  // const { email } = await getUserData(session);
   // If the user is already subscribed to a plan, we redirect them to the Stripe billing portal
   if (input.isSubscribed && input.stripeCustomerId && input.isCurrentPlan) {
-    // todo: fix stripe creating billing portal issue on dev and production
+    // todo: fix stripe creating billing portal issue
     // const stripeSession = await stripe.billingPortal.sessions.create({
     //   customer: input.stripeCustomerId,
     //   return_url: billingUrl,
@@ -124,69 +129,76 @@ export async function manageSubscriptionAction(
 
   // If the user is not subscribed to a plan, we create a Stripe Checkout session
   const stripeSession = await stripe.checkout.sessions.create({
-    success_url: billingUrl,
-    cancel_url: billingUrl,
-    mode: "subscription",
-    customer_email: email,
-    payment_method_types: ["card"],
     billing_address_collection: "auto",
-    metadata: { userId: session?.id ?? "" },
-    line_items: [{ price: input.stripePriceId ?? "", quantity: 1 }],
+    cancel_url: billingUrl,
+    customer_email: session.email,
+    line_items: [
+      {
+        price: input.stripePriceId || "",
+        quantity: 1,
+      },
+    ],
+    metadata: {
+      userId: session.id,
+    },
+    mode: "subscription",
+    payment_method_types: ["card"],
+    success_url: billingUrl,
   });
 
-  const user: User = await db
+  const user = await db
     .select()
     .from(users)
     .where(eq(users.id, session.id))
-    .then((res: User[]) => res[0] ?? null);
+    .then((res) => res[0] || null);
 
   if (user) {
     await db
       .update(users)
       .set({
         mode: "seller",
-      } as User)
+      })
       .where(eq(users.id, user.id));
   }
 
-  return { url: stripeSession.url };
+  return {
+    url: stripeSession.url,
+  };
 }
 
 // TODO: This is a hacky and wrong way to clear the subscription,
 // TODO: we need also clear the subscription on the Stripe side.
-export async function manageDowngradeToStarterAction(
-  rawInput: z.infer<typeof manageSubscriptionSchema>,
-) {
-  const input = manageSubscriptionSchema.parse(rawInput);
+// rawInput: z.infer<typeof manageSubscriptionSchema>,
+export async function manageDowngradeToStarterAction() {
+  // const input = manageSubscriptionSchema.parse(rawInput);
+  const session = await authjs();
 
-  const session = await getServerAuthSession();
-  if (!session) return redirect("/auth");
+  if (!session) {
+    return redirect("/auth");
+  }
 
-  const data = await getUserData(session);
-  const email = data.email;
-
-  const user: User = await db
+  const user = await db
     .select()
     .from(users)
-    .where(eq(users.id, session.id))
-    .then((res: User[]) => res[0] ?? null);
+    .where(eq(users.id, session.id || ""))
+    .then((res) => res[0] || null);
 
   if (user) {
     await db
       .update(users)
       .set({
+        currentCartId: null,
         mode: "buyer",
+        stripeCurrentPeriodEnd: null,
         stripeCustomerId: null,
         stripePriceId: null,
-        stripeCurrentPeriodEnd: null,
         stripeSubscriptionId: null,
-        currentCartId: null,
-      } as User)
+      })
       .where(eq(users.id, user.id));
 
-    return { success: "Your subscription has been downgraded." };
-  } else {
-    return console.error("❌ User not found (manageDowngradeToStarterAction)");
+    return {
+      success: "The subscription has been downgraded.",
+    };
   }
 }
 
@@ -194,11 +206,11 @@ export async function manageDowngradeToStarterAction(
 export async function getStripeAccountAction(
   input: z.infer<typeof getStripeAccountSchema>,
 ) {
-  const retrieveAccount = input.retrieveAccount ?? true;
+  const retrieveAccount = input.retrieveAccount || true;
 
   const falsyReturn = {
-    isConnected: false,
     account: null,
+    isConnected: false,
     payment: null,
   };
 
@@ -207,31 +219,39 @@ export async function getStripeAccountAction(
       columns: {
         stripeAccountId: true,
       },
+      // @ts-expect-error TODO: Fix id type
       where: eq(stores.id, input.storeId),
     });
 
-    if (!store) return falsyReturn;
+    if (!store) {
+      return falsyReturn;
+    }
 
     const payment = await db.query.payments.findFirst({
       columns: {
-        stripeAccountId: true,
         detailsSubmitted: true,
+        stripeAccountId: true,
       },
       where: eq(payments.storeId, input.storeId),
     });
 
-    if (!payment || !payment.stripeAccountId) return falsyReturn;
+    if (!payment?.stripeAccountId) {
+      return falsyReturn;
+    }
 
-    if (!retrieveAccount)
+    if (!retrieveAccount) {
       return {
-        isConnected: true,
         account: null,
+        isConnected: true,
         payment,
       };
+    }
 
     const account = await stripe.accounts.retrieve(payment.stripeAccountId);
 
-    if (!account) return falsyReturn;
+    if (!account) {
+      return falsyReturn;
+    }
 
     // If the account details have been submitted, we update the store and payment records
     if (account.details_submitted && !payment.detailsSubmitted) {
@@ -247,20 +267,21 @@ export async function getStripeAccountAction(
         await tx
           .update(stores)
           .set({
-            stripeAccountId: account.id,
             active: true,
-          })
+            stripeAccountId: account.id,
+          }) // @ts-expect-error TODO: Fix id type
           .where(eq(stores.id, input.storeId));
       });
     }
 
     return {
-      isConnected: payment.detailsSubmitted,
       account: account.details_submitted ? account : null,
+      isConnected: payment.detailsSubmitted,
       payment,
     };
-  } catch (err) {
-    err instanceof Error && console.error(err.message);
+  } catch (error) {
+    error instanceof Error;
+
     return falsyReturn;
   }
 }
@@ -269,7 +290,7 @@ export async function getStripeAccountAction(
 export async function createAccountLinkAction(
   input: z.infer<typeof getStripeAccountSchema>,
 ) {
-  const { isConnected, payment, account } = await getStripeAccountAction(input);
+  const { account, isConnected, payment } = await getStripeAccountAction(input);
 
   if (isConnected) {
     throw new Error("Store already connected to Stripe.");
@@ -281,9 +302,9 @@ export async function createAccountLinkAction(
   }
 
   const stripeAccountId =
-    payment?.stripeAccountId ?? (await createStripeAccount());
+    (payment && payment.stripeAccountId) || (await createStripeAccount());
 
-  const accountLink = await stripe.accountLinks.create({
+  const accountLink: Stripe.AccountLink = await stripe.accountLinks.create({
     account: stripeAccountId,
     refresh_url: absoluteUrl(`/dashboard/stores/${input.storeId}`),
     return_url: absoluteUrl(`/dashboard/stores/${input.storeId}`),
@@ -294,10 +315,13 @@ export async function createAccountLinkAction(
     throw new Error("Error creating Stripe account link, please try again.");
   }
 
-  return { url: accountLink.url };
-
+  return {
+    url: accountLink.url,
+  };
   async function createStripeAccount(): Promise<string> {
-    const account = await stripe.accounts.create({ type: "standard" });
+    const account = await stripe.accounts.create({
+      type: "standard",
+    });
 
     if (!account) {
       throw new Error("Error creating Stripe account.");
@@ -305,9 +329,12 @@ export async function createAccountLinkAction(
 
     // If payment record exists, we update it with the new account id
     if (payment) {
-      await db.update(payments).set({
-        stripeAccountId: account.id,
-      });
+      await db
+        .update(payments)
+        .set({
+          stripeAccountId: account.id,
+        })
+        .where(eq(payments.storeId, input.storeId));
     } else {
       await db.insert(payments).values({
         storeId: input.storeId,
@@ -327,32 +354,31 @@ export async function createCheckoutSessionAction(
     const { isConnected, payment } = await getStripeAccountAction(input);
 
     if (!isConnected || !payment) {
-      return { error: "Store not connected to Stripe." };
+      return {
+        error: "Store not connected to Stripe.",
+      };
     }
 
     if (!payment.stripeAccountId) {
-      return { error: "Stripe account not found." };
+      return {
+        error: "Stripe account not found.",
+      };
     }
 
     const cartId = await getCartId();
 
     const checkoutItems: CheckoutItem[] = input.items.map((item) => ({
-      productId: item.id,
       price: Number(item.price),
-      storeId: Number(item.storeId),
+      productId: item.id,
       quantity: item.quantity,
+      storeId: item.storeId,
       subcategory: item.subcategory,
     }));
 
     // Create a checkout session
     const checkoutSession = await stripe.checkout.sessions.create(
       {
-        success_url: absoluteUrl(
-          `/checkout/success/?store_id=${input.storeId}`,
-        ),
         cancel_url: absoluteUrl("/checkout"),
-        payment_method_types: ["card"],
-        mode: "payment",
         line_items: input.items.map((item) => ({
           price_data: {
             currency: "usd",
@@ -364,91 +390,110 @@ export async function createCheckoutSessionAction(
           quantity: item.quantity,
         })),
         metadata: {
-          cartId: Number(cartId) ?? null,
-          items: JSON.stringify(checkoutItems),
+          cartId: Number(cartId) || null,
+          items: superjson.stringify(checkoutItems),
         },
+        mode: "payment",
+        payment_method_types: ["card"],
+        success_url: absoluteUrl(
+          `/checkout/success/?store_id=${input.storeId}`,
+        ),
       },
-      { stripeAccount: payment.stripeAccountId },
+      {
+        stripeAccount: payment.stripeAccountId,
+      },
     );
 
     // Update the cart with the checkout session id
     await db
       .update(carts)
       .set({
-        checkoutSessionId: checkoutSession.id,
         paymentIntentId: String(checkoutSession.payment_intent),
-      })
-      .where(eq(carts.id, Number(cartId)));
+      }) // @ts-expect-error TODO: Fix id type
+      .where(eq(carts.id, cartId));
 
     return {
       id: checkoutSession.id,
-      url: checkoutSession.url ?? "/checkout",
+      url: checkoutSession.url || "/checkout",
     };
-  } catch (error) {
-    console.error(error);
-    return { error: "An error occurred while creating the checkout session." };
+  } catch {
+    return {
+      error: "An error occurred while creating the checkout session.",
+    };
   }
 }
 
 // Creating a payment intent for a store
 export async function createPaymentIntentAction(
   input: z.infer<typeof createPaymentIntentSchema>,
-): Promise<{ clientSecret: string | null; error?: string }> {
+): Promise<{
+  clientSecret: null | string;
+  error?: string;
+}> {
   try {
     const { isConnected, payment } = await getStripeAccountAction(input);
 
     if (!isConnected || !payment) {
-      return { error: "Store not connected to Stripe.", clientSecret: null };
+      return {
+        clientSecret: null,
+        error: "Store not connected to Stripe.",
+      };
     }
 
     if (!payment.stripeAccountId) {
-      return { error: "Stripe account not found.", clientSecret: null };
+      return {
+        clientSecret: null,
+        error: "Stripe account not found.",
+      };
     }
 
     const cartId = await getCartId();
 
     const checkoutItems: CheckoutItem[] = input.items.map((item) => ({
-      productId: item.id,
       price: Number(item.price),
-      storeId: Number(item.storeId),
+      productId: item.id,
       quantity: item.quantity,
+      storeId: item.storeId,
       subcategory: item.subcategory,
     }));
 
     const metadata = {
-      cartId: Number(cartId) ?? null,
-      items: JSON.stringify(checkoutItems),
+      cartId: Number(cartId) || null,
+      items: superjson.stringify(checkoutItems),
     };
 
-    const { total, fee } = calculateOrderAmount(input.items);
+    const { fee, total } = calculateOrderAmount(input.items);
 
     const paymentIntent = await stripe.paymentIntents.create(
       {
-        metadata,
         amount: total,
-        currency: "usd",
         application_fee_amount: fee,
-        automatic_payment_methods: { enabled: true },
+        automatic_payment_methods: {
+          enabled: true,
+        },
+        currency: "usd",
+        metadata,
       },
-      { stripeAccount: payment.stripeAccountId },
+      {
+        stripeAccount: payment.stripeAccountId,
+      },
     );
 
     await db
       .update(carts)
       .set({
-        paymentIntentId: paymentIntent.id,
         clientSecret: paymentIntent.client_secret,
-      })
-      .where(eq(carts.id, Number(cartId)));
+        paymentIntentId: paymentIntent.id,
+      }) // @ts-expect-error TODO: Fix id type
+      .where(eq(carts.id, cartId));
 
     return {
       clientSecret: paymentIntent.client_secret,
     };
-  } catch (error) {
-    console.error(error);
+  } catch {
     return {
-      error: "An error occurred while creating the payment intent.",
       clientSecret: null,
+      error: "An error occurred while creating the payment intent.",
     };
   }
 }
@@ -459,8 +504,8 @@ export async function getPaymentIntentsAction(
 ) {
   try {
     const { isConnected, payment } = await getStripeAccountAction({
-      storeId: input.storeId,
       retrieveAccount: false,
+      storeId: input.storeId,
     });
 
     if (!isConnected || !payment) {
@@ -472,24 +517,23 @@ export async function getPaymentIntentsAction(
     }
 
     const paymentIntents = await stripe.paymentIntents.list({
-      limit: input.limit ?? 10,
+      limit: input.limit || 10,
       ...input,
     });
 
     return {
+      hasMore: paymentIntents.has_more,
       paymentIntents: paymentIntents.data.map((item) => ({
         id: item.id,
         amount: item.amount,
-        created: item.created,
         cartId: Number(item.metadata.cartId),
+        created: item.created,
       })),
-      hasMore: paymentIntents.has_more,
     };
-  } catch (err) {
-    console.error(err);
+  } catch {
     return {
-      paymentIntents: [],
       hasMore: false,
+      paymentIntents: [],
     };
   }
 }
@@ -502,8 +546,8 @@ export async function getPaymentIntentAction(
     const cartId = await getCartId();
 
     const { isConnected, payment } = await getStripeAccountAction({
-      storeId: input.storeId,
       retrieveAccount: false,
+      storeId: input.storeId,
     });
 
     if (!isConnected || !payment) {
@@ -527,6 +571,7 @@ export async function getPaymentIntentAction(
 
     if (
       paymentIntent.metadata.cartId !== cartId
+
       // && paymentIntent.shipping?.address?.postal_code?.split(" ").join("") !== input.deliveryPostalCode
     ) {
       // throw new Error("CartId or delivery postal code does not match.");
@@ -536,25 +581,13 @@ export async function getPaymentIntentAction(
     }
 
     return {
-      paymentIntent,
       isVerified: true,
+      paymentIntent,
     };
-  } catch (err) {
-    console.error(err);
+  } catch {
     return {
-      paymentIntent: null,
       isVerified: false,
+      paymentIntent: null,
     };
   }
-}
-
-/**
- * Learning Resources and Inspirations:
- * ------------------------------------
- *
- * @see https://github.com/steven-tey/dub/blob/main/apps/web/lib/stripe
- * @see https://github.com/alissonsleal/brapi/blob/main/services/stripe
- * @see https://github.com/sadmann7/skateshop/blob/main/src/app/_actions/stripe.ts
- * @see https://github.com/sadmann7/skateshop/blob/main/src/app/api/webhooks/stripe/route.ts
- * @see https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts
- */
+} /// / Learning Resources and Inspirations:// ------------------------------------// @see https://github.com/steven-tey/dub/blob/main/apps/web/lib/stripe// @see https://github.com/alissonsleal/brapi/blob/main/services/stripe// @see https://github.com/sadmann7/skateshop/blob/main/src/app/_actions/stripe.ts// @see https://github.com/sadmann7/skateshop/blob/main/src/app/api/webhooks/stripe/route.ts// @see https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts//

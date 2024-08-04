@@ -1,0 +1,94 @@
+import {
+  Adapter,
+  AdapterAccount,
+  AdapterAuthenticator,
+} from "next-auth/adapters";
+
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { and, eq } from "drizzle-orm";
+import { randomUUID } from "uncrypto";
+
+import { db } from "~/db";
+import {
+  accounts,
+  authenticators,
+  sessions,
+  users,
+  verificationTokens,
+} from "~/db/schema";
+
+// Drizzle Adapter with Passkey
+export const drizzleAdapter = {
+  ...DrizzleAdapter(db, {
+    accountsTable: accounts,
+    sessionsTable: sessions,
+    usersTable: users,
+    verificationTokensTable: verificationTokens,
+  }),
+  createAuthenticator: async (data) => {
+    const id = randomUUID();
+
+    await db.insert(authenticators).values({
+      id,
+      ...data,
+    });
+    const [authenticator] = await db
+      .select()
+      .from(authenticators)
+      .where(eq(authenticators.id, id));
+
+    // @ts-expect-error TODO: Fix
+    const { id: _, transports, ...rest } = authenticator;
+
+    return {
+      ...rest,
+      transports: transports || undefined,
+    };
+  },
+  getAccount: async (providerAccountId, provider) => {
+    const [account] = await db
+      .select()
+      .from(accounts)
+      .where(
+        and(
+          eq(accounts.provider, provider),
+          eq(accounts.providerAccountId, providerAccountId),
+        ),
+      );
+
+    return (account as AdapterAccount) || null;
+  },
+  getAuthenticator: async (credentialId) => {
+    const [authenticator] = await db
+      .select()
+      .from(authenticators)
+      .where(eq(authenticators.credentialID, credentialId));
+
+    return (authenticator as AdapterAuthenticator) || null;
+  },
+  listAuthenticatorsByUserId: async (userId) => {
+    const authenticator = await db
+      .select()
+      .from(authenticators)
+      .where(eq(authenticators.userId, userId));
+
+    return authenticator.map((a: unknown) => ({
+      ...a,
+      transports: a.transports || undefined,
+    }));
+  },
+  updateAuthenticatorCounter: async (credentialId, counter) => {
+    await db
+      .update(authenticators)
+      .set({
+        counter,
+      })
+      .where(eq(authenticators.credentialID, credentialId));
+    const [authenticator] = await db
+      .select()
+      .from(authenticators)
+      .where(eq(authenticators.credentialID, credentialId));
+
+    return (authenticator as AdapterAuthenticator) || null;
+  },
+} satisfies Adapter;

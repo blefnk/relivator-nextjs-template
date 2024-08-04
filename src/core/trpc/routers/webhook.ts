@@ -1,15 +1,10 @@
-/**
- * (this file is not finished and currently not in use anywhere)
- * @see https://github.com/openstatusHQ/openstatus/blob/main/packages/api/src/router/clerk/webhook.ts
- */
-
+import consola from "consola";
 import { eq } from "drizzle-orm";
 import * as z from "zod";
 
-import { users } from "~/data/db/schema";
-
-import { createTRPCRouter, publicProcedure } from "../trpc";
-import { clerkEvent } from "./type";
+import { clerkEvent } from "~/core/trpc/routers/type";
+import { createTRPCRouter, publicProcedure } from "~/core/trpc/trpc";
+import { users } from "~/db/schema";
 
 export const webhookProcedure = publicProcedure.input(
   z.object({
@@ -18,43 +13,52 @@ export const webhookProcedure = publicProcedure.input(
 );
 
 export const webhookRouter = createTRPCRouter({
-  userCreated: webhookProcedure.mutation(async (opts) => {
-    if (opts.input.data.type === "user.created") {
+  userCreated: webhookProcedure.mutation(async (options) => {
+    if (options.input.data.type === "user.created") {
       // There's no primary key with drizzle orm,
       // the tenant is not already in the database
-      const alreadyExists = await opts.ctx.db
-        .select({ id: users.id })
+      const alreadyExists = await options.ctx.db
+        .select({
+          id: users.id,
+        })
         .from(users)
-        .where(eq(users.id, opts.input.data.data.id))
-        .get();
-      if (alreadyExists) return;
-      const userResult = await opts.ctx.db
-        .insert(users)
+        .where(eq(users.id, options.input.data.data.id));
+
+      if (alreadyExists) {
+        return;
+      }
+
+      await options.ctx.db
+        .insert(users) // @ts-expect-error TODO: Fix
         .values({
           email:
-            opts?.input?.data?.data?.email_addresses[0]?.email_address || "",
-          tenantId: opts.input.data.data.id,
-          firstName: opts.input.data.data.first_name,
-          lastName: opts.input.data.data.last_name || "",
+            options?.input?.data?.data?.email_addresses[0]?.email_address || "",
+          // eslint-disable-next-line @stylistic/max-len
+        }) // tenantId: opts.input.data.data.id,            // firstName: opts.input.data.data.first_name,            // lastName: opts.input.data.data.last_name || "",
+        .returning();
+    }
+  }),
+  userSignedIn: webhookProcedure.mutation(async (options) => {
+    if (options.input.data.type === "session.created") {
+      const currentUser = await options.ctx.db
+        .select({
+          id: users.id,
+          email: users.email,
         })
-        .returning()
-        .get();
-    }
-  }),
-  userUpdated: webhookProcedure.mutation(async (opts) => {
-    if (opts.input.data.type === "user.updated") {
-      // We should do something
-    }
-  }),
-  userSignedIn: webhookProcedure.mutation(async (opts) => {
-    if (opts.input.data.type === "session.created") {
-      const currentUser = await opts.ctx.db
-        .select({ id: users.id, email: users.email })
         .from(users)
-        .where(eq(users.id, opts.input.data.data.user_id))
-        .get();
-      // Then it's the new user it might be null
-      if (!currentUser) return;
+        .where(eq(users.id, options.input.data.data.user_id));
+
+      if (
+        // Then it's the new user it might be null
+        !currentUser
+      ) {
+        return;
+      }
+    }
+  }),
+  userUpdated: webhookProcedure.mutation((options) => {
+    if (options.input.data.type === "user.updated") {
+      consola.info("User updated", options.input.data.data);
     }
   }),
 });

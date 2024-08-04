@@ -1,0 +1,249 @@
+import type { Icons } from "~/components/Common/Icons";
+import type { FooterItem, MainMenuItem } from "~/types";
+
+import { config } from "@reliverse/core";
+import { loadConfig } from "c12";
+import consola from "consola";
+import { join } from "pathe";
+
+import { productCategories } from "~/config/products";
+import { getCurrentDirname, slugify } from "~/utils";
+
+const currentDirname = getCurrentDirname(import.meta.url);
+const apptsJson = join(currentDirname, "json/appts");
+
+// Load configuration using c12
+const loadSiteConfig = async () => {
+  const { config: configData } = await loadConfig({
+    name: "appts", // Should match config file name without extension
+    cwd: apptsJson,
+    dotenv: true,
+  });
+
+  if (!configData) {
+    consola.error(
+      "Something went wrong! Configuration file `src/config/json/appts.json` was not found!",
+    );
+
+    return;
+  }
+
+  // Default values for the site configuration
+  const defaultConfig = {
+    name: "Relivator",
+    appNameDesc: "Relivator: Next.js 15 and React 19 template by Reliverse",
+    appPublisher: "Reliverse",
+    appVersion: "1.2.6",
+    author: {
+      email: "blefnk@gmail.com",
+      fullName: "Nazar Kornienko",
+      handle: "blefnk",
+      handleAt: "@blefnk",
+      url: config.social.github,
+    },
+    debug: false,
+    footerNav: [
+      {
+        title: "Help",
+        items: [
+          { title: "Contact", external: false, href: "/contact" },
+          { title: "Privacy", external: false, href: "/privacy" },
+          { title: "Terms", external: false, href: "/terms" },
+          { title: "About", external: false, href: "/about" },
+        ],
+      },
+      {
+        title: "Social",
+        items: [
+          {
+            title: "Github",
+            external: true,
+            href: "https://github.com/blefnk",
+          },
+          {
+            title: "Discord",
+            external: true,
+            href: "https://discord.gg/Pb8uKbwpsJ",
+          },
+          { title: "Twitter", external: true, href: "https://x.com/blefnk" },
+          {
+            title: "Facebook",
+            external: true,
+            href: "https://facebook.com/groups/bleverse",
+          },
+        ],
+      },
+      {
+        title: "Github",
+        items: [
+          {
+            title: "@reliverse",
+            external: true,
+            href: "https://github.com/orgs/reliverse/repositories",
+          },
+          {
+            title: "@blefnk",
+            external: true,
+            href: "https://github.com/blefnk",
+          },
+          {
+            title: "Relivator",
+            external: true,
+            href: "https://github.com/blefnk/relivator-nextjs-template",
+          },
+          {
+            title: "Reliverse",
+            external: true,
+            href: "https://github.com/blefnk/reliverse-website-builder",
+          },
+        ],
+      },
+      {
+        title: "Support",
+        items: [
+          {
+            title: "GitHub Sponsors",
+            external: true,
+            href: "https://github.com/sponsors/blefnk",
+          },
+          {
+            title: "Buy Me a Coffee",
+            external: true,
+            href: "https://buymeacoffee.com/blefnk",
+          },
+          {
+            title: "Patreon",
+            external: true,
+            href: "https://patreon.com/blefnk",
+          },
+          {
+            title: "PayPal",
+            external: true,
+            href: "https://paypal.me/blefony",
+          },
+        ],
+      },
+    ] satisfies FooterItem[],
+    images: [
+      {
+        alt: "Shows the cover image with the phrase: Relivator Empowers Your eCommerce with the Power of Next.js",
+        url: "/og-image.png",
+      },
+    ],
+    keywords: ["next js shadcn ecommerce template"] as string[],
+    links: {
+      discord: "https://discord.gg/Pb8uKbwpsJ",
+      facebook: "https://facebook.com/groups/bleverse",
+      github: "https://github.com/blefnk/relivator-nextjs-template",
+      githubAccount: "https://github.com/blefnk",
+      twitter: "https://x.com/blefnk",
+    },
+    mainNav: [
+      {
+        title: "Catalogue",
+        href: "/",
+        items: [
+          {
+            description: "All the products we have to offer",
+            title: "Products",
+            href: "/products",
+            items: [],
+          },
+          {
+            description: "Build your own custom clothes",
+            title: "Build a Look",
+            href: "/custom/clothing",
+            items: [],
+          },
+          {
+            description: "Read our latest blog posts",
+            title: "Blog",
+            href: "/blog",
+            items: [],
+          },
+        ],
+      },
+      ...productCategories.map((category) => ({
+        title: category.title,
+        href: `/categories/${slugify(category.title)}`,
+        items: [
+          {
+            description: `All ${category.title}.`,
+            title: "All",
+            href: `/categories/${slugify(category.title)}`,
+            items: [],
+          },
+          ...category.subcategories.map((subcategory) => ({
+            description: subcategory.description,
+            title: subcategory.title,
+            href: `/categories/${slugify(category.title)}/${subcategory.slug}`,
+            items: [],
+          })),
+        ],
+      })),
+    ] satisfies MainMenuItem[],
+    themeToggleEnabled: true,
+  };
+
+  // Merge the parsed configuration with the default configuration
+  return {
+    ...defaultConfig,
+    ...configData,
+    author: {
+      ...defaultConfig.author,
+      ...configData.author,
+    },
+  };
+};
+
+const socialLinks = {
+  discord: "https://discord.gg/Pb8uKbwpsJ",
+  facebook: "https://facebook.com/groups/bleverse",
+  github: "https://github.com/blefnk/relivator-nextjs-template",
+  githubAccount: "https://github.com/blefnk",
+  twitter: "https://x.com/blefnk",
+};
+
+// Load the site configuration
+let siteConfig: Awaited<ReturnType<typeof loadSiteConfig>> | undefined;
+
+// Load the configuration asynchronously and export it
+const initializeConfig = async () => {
+  siteConfig = await loadSiteConfig();
+
+  if (!siteConfig) {
+    consola.error("Failed to load site configuration");
+  }
+};
+
+initializeConfig();
+
+const getSiteConfig = async () => {
+  if (!siteConfig) {
+    await initializeConfig();
+  }
+
+  if (!siteConfig) {
+    throw new Error("Failed to load site configuration");
+  }
+
+  return siteConfig;
+};
+
+export { getSiteConfig, socialLinks };
+
+// OAuth Providers Configuration
+export const oauthProvidersClerk = [
+  { name: "Google", icon: "view", strategy: "oauth_google" },
+  { name: "Discord", icon: "discord", strategy: "oauth_discord" },
+] satisfies {
+  name: string;
+  icon: keyof typeof Icons;
+  strategy:
+    | "oauth_discord"
+    | "oauth_facebook"
+    | "oauth_github"
+    | "oauth_google"
+    | "oauth_microsoft";
+}[];
+

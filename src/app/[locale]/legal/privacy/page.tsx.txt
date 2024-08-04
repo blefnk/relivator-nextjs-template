@@ -1,0 +1,40 @@
+import { Card, CardContent, CardHeader } from "~/components/Primitives";
+import { Button } from "~/components/Primitives/ui/Button";
+
+// eslint-disable-next-line no-relative-import-paths/no-relative-import-paths
+import Content from "./content.mdx";
+
+// export const dynamic = "force-static";
+export default function PrivacyPage() {
+  return (
+    <article
+      className={`
+        prose pb-8
+
+        dark:prose-invert
+
+        lg:prose-xl
+      `}
+    >
+      // <Content />
+      <Link href="/legal/terms/policy">Privacy Policy</Link>
+      <hr />
+      <Card>
+        <CardHeader>Cookie Management</CardHeader>
+        <CardContent>
+          <p>
+            We use cookies to improve the experience on our website. Cookies are
+            stored only in the browser. By browsing this website, you agree to
+            our use of cookies.
+          </p>
+          <p>
+            {/* You can remove stored cookies by clicking the button below. */}
+            You can disallow cookie storing in the browser settings. However,
+            this may affect the ability to use our website.
+          </p>
+          <Button variant="destructive">Remove Stored Cookies</Button>
+        </CardContent>
+      </Card>
+    </article>
+  );
+}

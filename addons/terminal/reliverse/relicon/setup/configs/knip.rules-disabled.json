@@ -1,0 +1,10 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "{index,next,remotion}.config.{ts,js}",
+    "{next,eslint}.config.{recommended,minimal,rules-disabled}.{ts,js}"
+  ],
+  "ignore": ["{addons,src}/**/*.{ts,tsx}"],
+  "ignoreBinaries": [".+"],
+  "ignoreDependencies": [".+"]
+}

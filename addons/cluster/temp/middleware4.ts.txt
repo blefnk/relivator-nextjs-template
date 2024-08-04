@@ -1,0 +1,190 @@
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import createMiddleware from "next-intl/middleware";
+
+const intlMiddleware = createMiddleware({
+  defaultLocale: "en",
+  localePrefix: "always",
+  locales: ["de", "en", "es", "fa", "fr", "hi", "it", "pl", "tr", "uk", "zh"],
+});
+
+// const isProtectedRoute = createRouteMatcher([
+//    'dashboard/(.*)',
+// ]);
+
+const isProtectedRoute = createRouteMatcher([
+  "/dashboard(.*)",
+
+  // "/:locale/dashboard(.*)",
+  "/admin(.*)",
+
+  // "/:locale/admin(.*)",
+]);
+
+export default clerkMiddleware((_auth, req) => {
+  // if (isProtectedRoute(req)) auth().protect();
+
+  return intlMiddleware(req);
+});
+
+export const config = {
+  matcher: [
+    // Exclude files with an extension (e.g., .js, .css), as these are usually static files.
+    // Also exclude files in the _next directory, which are Next.js internal files.
+    "/((?!.+\\.[\\w]+$|_next).*)",
+
+    // Include any files in the api or trpc folders, even if they have an extension.
+    "/(api|trpc)(.*)",
+  ],
+};
+
+/* import type {
+  MiddlewareConfig,
+  NextFetchEvent,
+  NextRequest,
+} from "next/server";
+
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import createMiddleware from "next-intl/middleware";
+import { authProvider } from "reliverse.config";
+
+const intlMiddleware = createMiddleware({
+  defaultLocale: "en",
+  localePrefix: "always",
+  locales: ["de", "en", "es", "fa", "fr", "hi", "it", "pl", "tr", "uk", "zh"],
+});
+
+const isProtectedRoute = createRouteMatcher([
+  "/dashboard(.*)",
+  "/:locale/dashboard(.*)",
+  "/admin(.*)",
+  "/:locale/admin(.*)",
+]);
+
+// @see https://nextjs.org/docs/app/building-the-application/routing/middleware
+export default function middleware(req: NextRequest, event: NextFetchEvent) {
+  // Process auth middleware only on auth pages and on protected routes.
+  if (
+    req.nextUrl.pathname.includes("/auth/sign-in") ||
+    req.nextUrl.pathname.includes("/auth/sign-up") ||
+    isProtectedRoute(req)
+  ) {
+    if (authProvider === "clerk") {
+      return clerkMiddleware((auth, req) => {
+        if (isProtectedRoute(req)) {
+          const locale =
+            req.nextUrl.pathname.match(/(\/.*)\/dashboard/)?.at(1) ?? "";
+
+          const signInUrl = new URL(`${locale}/auth/sign-in`, req.url);
+
+          auth().protect({
+            // unauthenticatedUrl fixes error - Unable to find next-intl
+            // locale because the middleware didn't run on this request.
+            unauthenticatedUrl: signInUrl.toString(),
+          });
+        }
+
+        return intlMiddleware(req);
+      })(req, event);
+    }
+
+    // If authProvider is "authjs" or not provided.
+    return intlMiddleware(req);
+  }
+
+  // Process only intl middleware on all other routes.
+  return intlMiddleware(req);
+}
+
+export const config: MiddlewareConfig = {
+  // Don't run middleware.ts on any file extension
+  // or _next paths, match the root and api/trpc
+  // matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"], // Alternative matcher for more control:
+  matcher: [
+    "/",
+    "/(de|en|es|fa|fr|hi|it|pl|tr|uk|zh)/:path*",
+    "/((?!api|_next/static|_next/image|_vercel|favicon\\.ico|.*\\.(?:png|jpg|jpeg|gif|webp|svg)$).*)",
+    "/unauthorized(.*)",
+    "/auth/(.*)",
+  ],
+}; */
+
+// import type {
+//   MiddlewareConfig,
+//   NextFetchEvent,
+//   NextRequest,
+// } from "next/server";
+
+// ✅✅✅✅✅✅✅✅✅
+/* import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import createMiddleware from "next-intl/middleware";
+import { authProvider } from "reliverse.config";
+
+const intlMiddleware = createMiddleware({
+  defaultLocale: "en",
+  localePrefix: "as-needed",
+  locales: ["de", "en", "es", "fa", "fr", "hi", "it", "pl", "tr", "uk", "zh"],
+});
+
+const isProtectedRoute = createRouteMatcher([
+  "/dashboard(.*)",
+  "/:locale/dashboard(.*)",
+  "/admin(.*)",
+  "/:locale/admin(.*)",
+]);
+
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req)) {
+    auth().protect();
+  }
+});
+
+// export const config = {
+//   matcher: ["/((?!.*\\..*|_next).*)", "/"],
+// };
+
+export const config: MiddlewareConfig = {
+  // Don't run middleware.ts on any file extension
+  // or _next paths, match the root and api/trpc
+  // matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"], // Alternative matcher for more control:
+  matcher: [
+    "/",
+    "/(de|en|es|fa|fr|hi|it|pl|tr|uk|zh)/:path*",
+    "/((?!api|_next/static|_next/image|_vercel|favicon\\.ico|.*\\.(?:png|jpg|jpeg|gif|webp|svg)$).*)",
+    "/unauthorized(.*)",
+    "/auth/(.*)",
+  ],
+}; */
+
+/// /////////////////////////////////////////////////////
+
+// import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+
+// const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
+
+// export default clerkMiddleware((auth, req) => {
+//   if (isProtectedRoute(req)) {
+//     const url = new URL(req.nextUrl.origin);
+
+//     auth().protect({
+//       unauthenticatedUrl: `${url.origin}/signin`,
+//       unauthorizedUrl: `${url.origin}/dashboard/stores`,
+//     });
+//   }
+// });
+
+// export const config = {
+//   matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+// };
+
+/// /////////////////////////////////////////////////////
+// import { clerkMiddleware } from "@clerk/nextjs/server";
+
+// export default clerkMiddleware();
+
+// export const config = {
+//   matcher: [
+// eslint-disable-next-line @stylistic/max-len
+//     "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+//     "/(api|trpc)(.*)",
+//   ],
+// };

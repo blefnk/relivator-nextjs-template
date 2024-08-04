@@ -1,0 +1,184 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "include": [
+      "./**/*.js",
+      "./**/*.ts",
+      "./**/*.jsx",
+      "./**/*.tsx",
+      "./**/*.css",
+      "./**/*.json"
+    ]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "noNonNullAssertion": "off",
+        "noUselessElse": "off",
+        "useEnumInitializers": "off",
+        "useExportType": "off",
+        "useImportType": "off",
+        "useNamingConvention": "off",
+        "useShorthandFunctionType": "off",
+        "useWhile": "off",
+        "useNumberNamespace": "off",
+        "useNodejsImportProtocol": "off"
+      },
+      "complexity": {
+        "useLiteralKeys": "off",
+        "noForEach": "off",
+        "useArrowFunction": "off",
+        "useFlatMap": "off",
+        "useOptionalChain": "off",
+        "useRegexLiterals": "off",
+        "useSimpleNumberKeys": "off",
+        "noUselessLoneBlockStatements": "off",
+        "noBannedTypes": "off",
+        "noUselessFragments": "off"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "noBlankTarget": "off",
+        "useKeyWithClickEvents": "off",
+        "noNoninteractiveElementToInteractiveRole": "off"
+      },
+      "performance": {
+        "noAccumulatingSpread": "off"
+      },
+      "suspicious": {
+        "noImplicitAnyLet": "off",
+        "noArrayIndexKey": "off",
+        "noAssignInExpressions": "off",
+        "noApproximativeNumericConstant": "off",
+        "noCommentText": "off",
+        "noCompareNegZero": "off",
+        "noConstEnum": "off",
+        "noDoubleEquals": "off",
+        "noDuplicateObjectKeys": "off",
+        "noEmptyInterface": "off",
+        "noExplicitAny": "off",
+        "noExtraNonNullAssertion": "off",
+        "noGlobalIsFinite": "off",
+        "noGlobalIsNan": "off",
+        "noMisleadingCharacterClass": "off",
+        "noMisrefactoredShorthandAssign": "off",
+        "noSelfCompare": "off",
+        "noSparseArray": "off",
+        "noUnsafeNegation": "off",
+        "useIsArray": "off",
+        "useNamespaceKeyword": "off",
+        "useValidTypeof": "off",
+        "noConfusingLabels": "off"
+      },
+      "correctness": {
+        "noChildrenProp": "off",
+        "noEmptyPattern": "off",
+        "noInvalidConstructorSuper": "off",
+        "noInvalidNewBuiltin": "off",
+        "noInvalidUseBeforeDeclaration": "off",
+        "noPrecisionLoss": "off",
+        "noRenderReturnValue": "off",
+        "noStringCaseMismatch": "off",
+        "noSwitchDeclarations": "off",
+        "noUndeclaredVariables": "off",
+        "noUnnecessaryContinue": "off",
+        "noUnreachable": "off",
+        "noUnreachableSuper": "off",
+        "noUnsafeFinally": "off",
+        "noUnsafeOptionalChaining": "off",
+        "noUnusedLabels": "off",
+        "noUnusedPrivateClassMembers": "off",
+        "noUnusedVariables": "off",
+        "noVoidElementsWithChildren": "off",
+        "noVoidTypeReturn": "off",
+        "useExhaustiveDependencies": "off",
+        "useHookAtTopLevel": "off",
+        "useIsNan": "off",
+        "useValidForDirection": "off",
+        "useYield": "off"
+      }
+    },
+    "ignore": [
+      ".million/",
+      ".next/",
+      ".turbo/",
+      "node_modules/",
+      "drizzle/",
+      "src/styles/globals.css"
+    ]
+  },
+  "organizeImports": {
+    "enabled": false
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "attributePosition": "auto",
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "ignore": [
+      ".million/",
+      ".next/",
+      ".turbo/",
+      "node_modules/",
+      "drizzle/",
+      "src/styles/globals.css"
+    ]
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProps": "asNeeded",
+      "lineWidth": 80,
+      "semicolons": "always",
+      "trailingCommas": "all",
+      "attributePosition": "auto",
+      "indentStyle": "space",
+      "lineEnding": "lf",
+      "quoteStyle": "single",
+      "enabled": false,
+      "indentWidth": 2
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "quoteStyle": "double",
+      "indentWidth": 2,
+      "lineEnding": "lf",
+      "lineWidth": 80
+    },
+    "linter": {
+      "enabled": true
+    },
+    "parser": {
+      "allowWrongLineComments": false,
+      "cssModules": true
+    }
+  },
+  "json": {
+    "formatter": {
+      "enabled": true,
+      "trailingCommas": "none",
+      "indentWidth": 2,
+      "lineWidth": 80,
+      "indentStyle": "space",
+      "lineEnding": "lf"
+    },
+    "parser": {
+      "allowComments": false,
+      "allowTrailingCommas": false
+    },
+    "linter": {
+      "enabled": true
+    }
+  }
+}

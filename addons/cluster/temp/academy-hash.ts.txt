@@ -1,0 +1,37 @@
+import {
+  decryptAnswer,
+  encryptAnswer,
+  hashAnswer,
+} from "@/reliverse/academy/cryptoHandler";
+import { processFileAnswers } from "@/reliverse/academy/fileProcessor";
+import consola from "consola";
+
+import { errorMessage } from "~/utils";
+
+const processAnswers = async (
+  processFunction: (answer: string) => string,
+): Promise<void> => {
+  try {
+    await processFileAnswers("questions", processFunction);
+    consola.success("Answers processed successfully.");
+  } catch (error) {
+    consola.error(`Failed to process answers: ${errorMessage(error)} `);
+  }
+};
+
+export const encryptAll = (): Promise<void> => processAnswers(encryptAnswer);
+
+export const hashAll = (): Promise<void> =>
+  processAnswers((answer) => hashAnswer(decryptAnswer(answer)));
+
+// Run encryption before hashing
+const runEncryptionAndHashing = async (): Promise<void> => {
+  try {
+    await encryptAll();
+    await hashAll();
+  } catch (error) {
+    consola.error(`Failed to encrypt and hash answers: ${errorMessage(error)}`);
+  }
+};
+
+runEncryptionAndHashing().catch(consola.error);

@@ -1,0 +1,466 @@
+{
+  "[appts.reliverse]": {
+    "vscodePreset": "default"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json5]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "biome.enabled": true,
+  "breadcrumbs.enabled": true,
+  "cSpell.enabled": true,
+  "cSpell.userWords": [
+    "Menlo",
+    "Monaspace",
+    "astro",
+    "biomejs",
+    "dotjs",
+    "mjml",
+    "pwsh",
+    "quickfix",
+    "rgba",
+    "tson"
+  ],
+  "cSpell.words": ["callout", "combobox", "reliverse", "utapi"],
+  "chat.editor.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "css.lint.important": "ignore",
+  "css.lint.unknownAtRules": "ignore",
+  "debug.console.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "debug.toolBarLocation": "docked",
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.codeActionsOnSave": {
+    "quickfix.biome": "explicit",
+    "source.addMissingImports": "never",
+    "source.fixAll": "never",
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never",
+    "source.organizeImports.biome": "never",
+    "source.removeUnused": "never"
+  },
+  "editor.codeLensFontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "editor.colorDecorators": true,
+  "editor.cursorBlinking": "phase",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorStyle": "line",
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.detectIndentation": false,
+  "editor.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.fontVariations": true,
+  "editor.fontWeight": "normal",
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.formatOnType": false,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.indentation": false,
+  "editor.hideCursorInOverviewRuler": false,
+  "editor.inlayHints.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "editor.inlineSuggest.enabled": true,
+  "editor.inlineSuggest.showToolbar": "always",
+  "editor.insertSpaces": true,
+  "editor.linkedEditing": true,
+  "editor.minimap.autohide": false,
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.multiCursorModifier": "alt",
+  "editor.rulers": [54, 74, 119],
+  "editor.smoothScrolling": true,
+  "editor.snippets.codeActions.enabled": true,
+  "editor.stickyScroll.enabled": true,
+  "editor.suggest.insertMode": "insert",
+  "editor.suggestSelection": "recentlyUsed",
+  "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {
+    "comments": "#746f68"
+  },
+  "editor.unicodeHighlight.allowedCharacters": {
+    "a": true,
+    "І": true,
+    "А": true,
+    "В": true,
+    "Е": true,
+    "З": true,
+    "Н": true,
+    "О": true,
+    "Р": true,
+    "С": true,
+    "Т": true,
+    "У": true,
+    "а": true,
+    "б": true,
+    "г": true,
+    "е": true,
+    "з": true,
+    "н": true,
+    "о": true,
+    "р": true,
+    "с": true,
+    "у": true,
+    "і": true,
+    "ا": true,
+    "ه": true,
+    "–": true
+  },
+  "editor.unicodeHighlight.allowedLocales": {
+    "tr": true
+  },
+  "editor.wordWrap": "on",
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.ignoreUntitled": true,
+  "eslint.lintTask.enable": true,
+  "eslint.lintTask.options": ".",
+  "eslint.probe": [
+    "MDX",
+    "astro",
+    "github-actions-workflow",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "json5",
+    "jsonc",
+    "markdown",
+    "toml",
+    "typescript",
+    "typescriptreact",
+    "yaml"
+  ],
+  "eslint.rules.customizations": [
+    {
+      "rule": "@typescript-eslint/consistent-type-imports",
+      "severity": "off"
+    },
+    {
+      "rule": "import-x/newline-after-import",
+      "severity": "off"
+    },
+    {
+      "rule": "readable-tailwind/*",
+      "severity": "off"
+    },
+    {
+      "rule": "import-x/no-duplicates",
+      "severity": "off"
+    },
+    {
+      "rule": "perfectionist/*",
+      "severity": "off"
+    },
+    {
+      "rule": "@stylistic/*",
+      "severity": "off"
+    },
+    {
+      "rule": "curly",
+      "severity": "off"
+    },
+    {
+      "rule": "no-lonely-if",
+      "severity": "off"
+    },
+    {
+      "rule": "@stylistic/linebreak-style",
+      "severity": "off"
+    },
+    {
+      "rule": "jsonc/indent",
+      "severity": "off"
+    },
+    {
+      "rule": "RULES-BELOW-ARE-NOT-AUTOFIXABLE",
+      "severity": "default"
+    },
+    {
+      "rule": "@typescript-eslint/no-unused-vars",
+      "severity": "info"
+    },
+    {
+      "rule": "@stylistic/no-tabs",
+      "severity": "error"
+    },
+    {
+      "rule": "@stylistic/no-mixed-spaces-and-tabs",
+      "severity": "error"
+    },
+    {
+      "rule": "@stylistic/no-mixed-operators",
+      "severity": "error"
+    },
+    {
+      "rule": "@stylistic/max-statements-per-line",
+      "severity": "error"
+    },
+    {
+      "rule": "@stylistic/max-len",
+      "severity": "info"
+    },
+    {
+      "rule": "@stylistic/line-comment-position",
+      "severity": "error"
+    },
+    {
+      "rule": "@stylistic/jsx-pascal-case",
+      "severity": "error"
+    },
+    {
+      "rule": "@stylistic/jsx-child-element-spacing",
+      "severity": "error"
+    }
+  ],
+  "eslint.timeBudget.onFixes": {
+    "error": 25000,
+    "warn": 25000
+  },
+  "eslint.timeBudget.onValidation": {
+    "error": 25000,
+    "warn": 25000
+  },
+  "eslint.validate": [
+    "MDX",
+    "astro",
+    "github-actions-workflow",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "json5",
+    "jsonc",
+    "markdown",
+    "toml",
+    "typescript",
+    "typescriptreact",
+    "yaml"
+  ],
+  "extensions.ignoreRecommendations": false,
+  "files.associations": {
+    "*.json": "json",
+    "*.mdx": "mdx",
+    "*.toml": "properties",
+    "*.txt": "plaintext",
+    ".env.example": "properties"
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.openRepositoryInParentFolders": "never",
+  "github.copilot.editor.enableAutoCompletions": true,
+  "html.format.indentInnerHtml": true,
+  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.enabledFrameworks": ["general", "next-intl", "react"],
+  "i18n-ally.keysInUse": [
+    "faq.1.details",
+    "faq.1.summary",
+    "faq.2.details",
+    "faq.2.summary",
+    "faq.3.details",
+    "faq.3.summary"
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["src/messages"],
+  "i18n-ally.sourceLanguage": "en",
+  "indentRainbow.colors": [
+    "rgba(58, 12, 163,0.15)",
+    "rgba(63, 55, 201,0.05)",
+    "rgba(63, 55, 201,0.025)",
+    "rgba(63, 55, 201,0.1)",
+    "rgba(63, 55, 201,0.15)",
+    "rgba(72, 12, 168,0.15)",
+    "rgba(86, 11, 173,0.15)",
+    "rgba(114, 9, 183, 0.15)",
+    "rgba(181, 23, 158,0.15)",
+    "rgba(247, 37, 133,0.15)"
+  ],
+  "javascript.format.semicolons": "insert",
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "json.validate.enable": false,
+  "markdown.extension.preview.autoShowPreviewToSide": false,
+  "markdown.preview.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "markdown.preview.scrollEditorWithPreview": true,
+  "markdown.preview.scrollPreviewWithEditor": true,
+  "markdownlint.config": {
+    "MD033": false,
+    "MD041": false
+  },
+  "mdx.server.enable": true,
+  "notebook.output.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "openMultipleFiles.exclude": [
+    "**/*.gif",
+    "**/*.jpeg",
+    "**/*.png",
+    "**/*.svg",
+    "**/.git",
+    "**/.idea",
+    "**/.million",
+    "**/.next",
+    "**/.nyc_output",
+    "**/.pnp.*",
+    "**/.turbo",
+    "**/.venv",
+    "**/.yarn",
+    "**/build",
+    "**/coverage",
+    "**/dist",
+    "**/dist-dev",
+    "**/fixture",
+    "**/node_modules",
+    "**/package-lock.json",
+    "**/public",
+    "**/target",
+    "**/yarn.lock",
+    "**/yarn-error.log",
+    "addons/.output"
+  ],
+  "openMultipleFiles.ignore": [".gitignore"],
+  "openMultipleFiles.limit": 1000,
+  "outline.problems.badges": false,
+  "pop-icon-theme.files.associations": {
+    "*.astro": "astro",
+    "*.hbs": "handlebars",
+    "*.tson": "typescript",
+    "*.txt": "plaintext",
+    ".env.example": "properties",
+    "error.tsx": "console",
+    "layout.tsx": "mjml",
+    "loading.tsx": "dotjs",
+    "package.json": "json",
+    "page.tsx": "url"
+  },
+  "pop-icon-theme.hidesExplorerArrows": true,
+  "prettify-ts.viewNestedTypes": true,
+  "problems.defaultViewMode": "table",
+  "problems.showCurrentInStatus": true,
+  "problems.sortOrder": "position",
+  "ruff.lineLength": 88,
+  "ruff.nativeServer": true,
+  "scm.inputFontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "tailwindCSS.classAttributes": ["class", "className", "classNames"],
+  "tailwindCSS.experimental.classRegex": [
+    ["(?:'|\"|`)([^']*)(?:'|\"|`)", "cx\\(([^)]*)\\)"],
+    ["[\"'`]([^\"'`]*).*?[\"'`]", "cva\\(([^)]*)\\)"]
+  ],
+  "terminal.integrated.allowedLinkSchemes": [
+    "C",
+    "file",
+    "http",
+    "https",
+    "mailto",
+    "vscode",
+    "vscode-insiders"
+  ],
+  "terminal.integrated.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.smoothScrolling": true,
+  "totalTypeScript.hideAllTips": true,
+  "totalTypeScript.hideBasicTips": true,
+  "tsEssentialPlugins.arrayMethodsSnippets.enable": true,
+  "tsEssentialPlugins.fixSuggestionsSorting": true,
+  "tsEssentialPlugins.globalLibCompletions.action": "mark",
+  "tsEssentialPlugins.jsxEmmet.modernize": true,
+  "tsEssentialPlugins.outline.arraysTuplesNumberedItems": true,
+  "tsEssentialPlugins.patchOutline": true,
+  "tsEssentialPlugins.renameImportNameOfFileRename": true,
+  "tsEssentialPlugins.signatureHelp.excludeBlockScope": true,
+  "tsEssentialPlugins.skipNodeModulesReferences": true,
+  "tsEssentialPlugins.suggestions.localityBonus": true,
+  "tsEssentialPlugins.tupleHelpSignature": true,
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.format.semicolons": "insert",
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "next/dist/client/router.d.ts",
+    "next/router.d.ts"
+  ],
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.referencesCodeLens.enabled": true,
+  "typescript.reportStyleChecksAsWarnings": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.validate.enable": true,
+  "window.autoDetectColorScheme": true,
+  "window.commandCenter": true,
+  "window.title": "${dirty}${folderName}${separator}${activeEditorMedium}",
+  "workbench.colorCustomizations": {
+    "terminal.ansiBlack": "#21222c",
+    "terminal.ansiBlue": "#bd93f9",
+    "terminal.ansiBrightBlack": "#8d92ff",
+    "terminal.ansiBrightBlue": "#bd93f9",
+    "terminal.ansiBrightCyan": "#2cccff",
+    "terminal.ansiBrightGreen": "#20E3B2",
+    "terminal.ansiBrightMagenta": "#ff6bcb",
+    "terminal.ansiBrightRed": "#ff7979",
+    "terminal.ansiBrightWhite": "#ffffff",
+    "terminal.ansiBrightYellow": "#EAC394",
+    "terminal.ansiCyan": "#8be9fd",
+    "terminal.ansiGreen": "#20e3b2",
+    "terminal.ansiMagenta": "#ff6bcb",
+    "terminal.ansiRed": "#ff5555",
+    "terminal.ansiWhite": "#f8f8f2",
+    "terminal.ansiYellow": "#fde181",
+    "terminalCursor.background": "#868690",
+    "terminalCursor.foreground": "#43444D"
+  },
+  "workbench.colorTheme": "Houston",
+  "workbench.editor.enablePreview": false,
+  "workbench.iconTheme": "pop-icon-theme",
+  "workbench.layoutControl.enabled": true,
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.preferredDarkColorTheme": "Houston",
+  "workbench.preferredHighContrastColorTheme": "GitHub Dark High Contrast",
+  "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
+  "workbench.preferredLightColorTheme": "GitHub Light",
+  "workbench.sideBar.location": "left",
+  "workbench.statusBar.visible": true
+}

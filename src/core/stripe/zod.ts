@@ -1,38 +1,37 @@
+import { cartLineItemSchema } from "@/server/reliverse/validations/cart";
 import * as z from "zod";
 
-import { cartLineItemSchema } from "~/data/validations/cart";
-
 export const manageSubscriptionSchema = z.object({
-  mapPlanId: z.string().optional(),
-  stripePriceId: z.string().optional(),
-  stripeCustomerId: z.string().optional().nullable(),
-  stripeSubscriptionId: z.string().optional().nullable(),
-  isSubscribed: z.boolean().optional(),
   isCurrentPlan: z.boolean().optional(),
+  isSubscribed: z.boolean().optional(),
+  mapPlanId: z.string().optional(),
+  stripeCustomerId: z.string().optional().nullable(),
+  stripePriceId: z.string().optional(),
+  stripeSubscriptionId: z.string().optional().nullable(),
 });
 
 export const getStripeAccountSchema = z.object({
-  storeId: z.number(),
   retrieveAccount: z.boolean().default(true).optional(),
+  storeId: z.number(),
 });
 
 export const createPaymentIntentSchema = z.object({
-  storeId: z.number(),
   items: z.array(cartLineItemSchema),
+  storeId: z.number(),
 });
 
 export const getPaymentIntentsSchema = z.object({
-  storeId: z.number(),
+  created: z.number().optional(),
+  customer: z.string().optional(),
+  ending_before: z.string().optional(),
+  expand: z.array(z.string()).optional(),
   limit: z.number().optional(),
   starting_after: z.string().optional(),
-  ending_before: z.string().optional(),
-  customer: z.string().optional(),
-  expand: z.array(z.string()).optional(),
-  created: z.number().optional(),
+  storeId: z.number(),
 });
 
 export const getPaymentIntentSchema = z.object({
-  storeId: z.number(),
-  paymentIntentId: z.string(),
   deliveryPostalCode: z.string().optional().nullable(),
+  paymentIntentId: z.string(),
+  storeId: z.number(),
 });

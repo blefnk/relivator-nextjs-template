@@ -1,0 +1,18 @@
+"use server";
+
+import { auth } from "~/auth";
+import ProtectedButton from "~/core/auth/authjs/components/check-user-button";
+
+export default async function ProtectedButtonSerialization() {
+  const handleProtectedAction = async () => {
+    const session = await auth();
+
+    return session?.user?.name || "Not Logged In";
+  };
+
+  return (
+    <div>
+      <ProtectedButton protectedAction={handleProtectedAction} />
+    </div>
+  );
+}

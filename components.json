@@ -1,17 +1,17 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
-  "rsc": true,
-  "tsx": true,
   "aliases": {
-    "utils": "~/utils",
-    "components": "~/islands/primitives"
+    "components": "@/browser/reliverse",
+    "utils": "@/browser/shared/utils"
   },
+  "rsc": true,
+  "style": "default",
   "tailwind": {
-    "css": "src/styles/globals.css",
-    "config": "tailwind.config.ts",
-    "cssVariables": true,
     "baseColor": "zinc",
+    "config": "tailwind.config.ts",
+    "css": "src/styles/globals.css",
+    "cssVariables": true,
     "prefix": ""
-  }
+  },
+  "tsx": true
 }

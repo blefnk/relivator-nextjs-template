@@ -1,0 +1,197 @@
+[
+  {
+    "id": "1",
+    "question": "What is the use of hooks in React?",
+    "options": [
+      "None of the above",
+      "To make API calls",
+      "To style components",
+      "To use state and other React features without writing a class"
+    ],
+    "answer": "To use state and other React features without writing a class",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "2",
+    "question": "What is JSX?",
+    "options": [
+      "A database query language",
+      "A new type of CSS",
+      "A syntax extension for JavaScript",
+      "None of the above"
+    ],
+    "answer": "A syntax extension for JavaScript",
+    "difficulty": "easy",
+    "points": 5
+  },
+  {
+    "id": "3",
+    "question": "What is the purpose of the 'key' prop in React?",
+    "options": [
+      "To identify elements in a list",
+      "To style elements",
+      "To add event listeners",
+      "To create a new component"
+    ],
+    "answer": "To identify elements in a list",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "4",
+    "question": "What is the difference between 'props' and 'state' in React?",
+    "options": [
+      "Props are immutable, while state is mutable",
+      "Props are mutable, while state is immutable",
+      "Props are used for data that can change, while state is used for data that is static",
+      "Props are used for data that is static, while state is used for data that can change"
+    ],
+    "answer": "Props are used for data that is static, while state is used for data that can change",
+    "difficulty": "hard",
+    "points": 15
+  },
+  {
+    "id": "5",
+    "question": "What is the purpose of the 'useEffect' hook in React?",
+    "options": [
+      "To create a new component",
+      "To fetch data from an API",
+      "To manage component lifecycle and side effects",
+      "To style components"
+    ],
+    "answer": "To manage component lifecycle and side effects",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "6",
+    "question": "What is the virtual DOM in React?",
+    "options": [
+      "A direct representation of the actual DOM",
+      "A lightweight copy of the actual DOM used to optimize updates",
+      "A method for managing application state",
+      "A new type of database"
+    ],
+    "answer": "A lightweight copy of the actual DOM used to optimize updates",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "7",
+    "question": "What does lifting state up mean in React?",
+    "options": [
+      "Moving state to a higher component in the hierarchy to share it between multiple components",
+      "Moving state to a lower component in the hierarchy to reduce re-renders",
+      "Moving state to a separate file",
+      "None of the above"
+    ],
+    "answer": "Moving state to a higher component in the hierarchy to share it between multiple components",
+    "difficulty": "hard",
+    "points": 15
+  },
+  {
+    "id": "8",
+    "question": "What is a React fragment?",
+    "options": [
+      "A way to return multiple elements from a component without adding extra nodes to the DOM",
+      "A way to create a new context",
+      "A method for optimizing performance",
+      "A new way to define component props"
+    ],
+    "answer": "A way to return multiple elements from a component without adding extra nodes to the DOM",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "9",
+    "question": "How can you optimize performance in a large React application?",
+    "options": [
+      "Using memoization techniques such as React.memo and useMemo",
+      "Avoiding the use of hooks",
+      "Rendering all components at once",
+      "Using as many global variables as possible"
+    ],
+    "answer": "Using memoization techniques such as React.memo and useMemo",
+    "difficulty": "hard",
+    "points": 15
+  },
+  {
+    "id": "10",
+    "question": "What is the Context API in React?",
+    "options": [
+      "A way to pass data through the component tree without having to pass props down manually at every level",
+      "A method for managing component lifecycle",
+      "A new way to style components",
+      "A technique for handling forms"
+    ],
+    "answer": "A way to pass data through the component tree without having to pass props down manually at every level",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "11",
+    "question": "What is the use of the 'useReducer' hook in React?",
+    "options": [
+      "To manage component lifecycle events",
+      "To perform side effects in function components",
+      "To manage more complex state logic in function components",
+      "To fetch data from an API"
+    ],
+    "answer": "To manage more complex state logic in function components",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "12",
+    "question": "What is the significance of the 'componentDidMount' lifecycle method in React class components?",
+    "options": [
+      "It is invoked immediately after a component is destroyed",
+      "It is invoked immediately after a component is mounted",
+      "It is invoked before a component is rendered",
+      "It is invoked during the component's update phase"
+    ],
+    "answer": "It is invoked immediately after a component is mounted",
+    "difficulty": "hard",
+    "points": 20
+  },
+  {
+    "id": "13",
+    "question": "How do you handle events in React?",
+    "options": [
+      "By using traditional HTML event attributes",
+      "By using JavaScript event listeners",
+      "By passing a function as a prop and attaching it to an event attribute",
+      "By using inline event handlers"
+    ],
+    "answer": "By passing a function as a prop and attaching it to an event attribute",
+    "difficulty": "easy",
+    "points": 5
+  },
+  {
+    "id": "14",
+    "question": "What does 'prop drilling' refer to in React?",
+    "options": [
+      "Passing props through multiple levels of components to reach a deeply nested component",
+      "Using props to drill into the state of a component",
+      "Using props to navigate through the component tree",
+      "None of the above"
+    ],
+    "answer": "Passing props through multiple levels of components to reach a deeply nested component",
+    "difficulty": "medium",
+    "points": 10
+  },
+  {
+    "id": "15",
+    "question": "What is the use of the 'useRef' hook in React?",
+    "options": [
+      "To directly access and modify the DOM elements",
+      "To manage component state",
+      "To perform side effects",
+      "To create a new context"
+    ],
+    "answer": "To directly access and modify the DOM elements",
+    "difficulty": "medium",
+    "points": 10
+  }
+]

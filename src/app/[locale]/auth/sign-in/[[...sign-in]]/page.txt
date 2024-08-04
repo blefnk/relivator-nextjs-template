@@ -1,0 +1,124 @@
+import { Suspense } from "react";
+
+import type { Metadata } from "next";
+
+import { Spinner } from "@radix-ui/themes";
+import { Columns4 } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+
+import { SignedIn } from "~/components/Account/AuthjsUser";
+import { BoardList } from "~/components/Playground/Boards/BoardList";
+import { SubmitButton } from "~/components/Playground/Boards/SubmitButton";
+
+// import { SignedIn, SignedOut } from "~/components/Account/AuthjsUser";
+// import { AddPassKey, SignInForm } from "~/components/Playground/Boards/SignIn";
+// import { env } from "~/env";
+export const metadata: Metadata = {
+  description: "Sign into the account",
+  title: "Sign In",
+};
+
+export default async function SignInPage() {
+  const t = await getTranslations();
+
+  return (
+    <>
+      <section className="grid h-full grow">
+        <Suspense
+          fallback={
+            <div
+              className={`
+              relative h-max w-full max-w-sm
+              place-self-center
+            `}
+            >
+              <div
+                className={`
+                  absolute inset-0 z-40 grid rounded-2xl bg-primary
+                `}
+              >
+                <Spinner className="z-50 place-self-center" size="3" />
+              </div>
+              {/* <SignInForm githubEnabled={false} /> */}
+            </div>
+          }
+        >
+          <SignedIn>
+            {({ user }) => (
+              <div
+                className={`
+                  flex h-max min-h-[437px] w-full max-w-sm flex-col gap-8
+                  place-self-center rounded-2xl bg-zinc-900 p-8 shadow-lg
+                `}
+              >
+                <div
+                  className={`
+                  flex flex-col items-center justify-center
+                  gap-2
+                `}
+                >
+                  <Columns4 className="size-6" />
+                  <span
+                    className={`
+                    text-center text-lg font-bold
+                  `}
+                  >
+                    {t("LoginForm.welcome-back")}, {user?.name || "Guest"}
+                  </span>
+                </div>
+                <Suspense fallback={<BoardList.Loading />}>
+                  <BoardList />
+                </Suspense>
+                <div className="flex flex-col gap-2">
+                  {/* <AddPassKey /> */}
+                  <form
+
+                  // action={async () => {
+
+                  //   "use server";
+
+                  //   await SignOut();
+
+                  // }}
+                  >
+                    <SubmitButton>Sign out</SubmitButton>
+                  </form>
+                </div>
+              </div>
+            )}
+          </SignedIn>
+          {/* <SignedOut>
+            <SignInForm
+              githubEnabled={!!(env.AUTH_GITHUB_ID && env.AUTH_GITHUB_SECRET)}
+            />
+          </SignedOut> */}
+        </Suspense>
+      </section>
+      {/* import { AuthPagesContentServer } from
+      "-~/core/auth/shared/components/auth-pages-content-server"; */}
+      {/* <AuthPagesContentServer
+        isRegPage={false}
+        tAnd={t("auth.legal-and")}
+        tAuthLegal={t("auth.legal")}
+        tCallback={t("auth.error.default")}
+        tDefault={t("auth.error.unknown")}
+        tEmailCreateAccount={t("auth.error.default")}
+        tHaveAccount={t("RegisterForm.have-account")}
+        tNoAccount={t("LoginForm.no-account")}
+        tOAuthAccountNotLinked={t("auth.error.oauthNotLinked")}
+        tOAuthCallback={t("auth.error.default")}
+        tOAuthCreateAccount={t("auth.error.email")}
+        tOAuthSignin={t("auth.error.default")}
+        tPleaseWait={t("auth-provider.please-wait")}
+        tPrivacy={t("auth.legal-privacy")}
+        tSignInHere={t("RegisterForm.signin")}
+        tSignInLink={t("LoginForm.title")}
+        tSignUpHere={t("LoginForm.signup")}
+        tSignUpLink={t("RegisterForm.title")}
+        tSignin={t("auth.error.default")}
+        tTerms={t("auth.legal-terms")}
+        tUnknownError={t("auth.error.unknown-error")}
+      /> */}
+    </>
+  );
+}

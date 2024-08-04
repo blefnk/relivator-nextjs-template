@@ -1,0 +1,1614 @@
+[
+  {
+    "altSpellings": ["VI", "Virgin Islands, U.S."],
+    "area": 347,
+    "capital": ["Charlotte Amalie"],
+    "capitalInfo": {
+      "latlng": [-64.93, 18.35]
+    },
+    "car": {
+      "side": "right",
+      "signs": ["USA"]
+    },
+    "cca2": "VI",
+    "cca3": "VIR",
+    "ccn3": "850",
+    "cioc": "ISV",
+    "coatOfArms": {},
+    "continents": ["North America"],
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "demonyms": {
+      "eng": {
+        "f": "Virgin Islander",
+        "m": "Virgin Islander"
+      }
+    },
+    "fifa": "VIR",
+    "flag": "🇻🇮",
+    "flags": {
+      "png": "https://flagcdn.com/w320/vi.png",
+      "svg": "https://flagcdn.com/vi.svg"
+    },
+    "idd": {
+      "root": "+1",
+      "suffixes": ["340"]
+    },
+    "independent": false,
+    "landlocked": false,
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [-64.933333, 18.35],
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/mBfreywj8dor6q4m9",
+      "openStreetMaps": "openstreetmap.org/relation/286898"
+    },
+    "name": {
+      "common": "United States Virgin Islands",
+      "nativeName": {
+        "eng": {
+          "common": "United States Virgin Islands",
+          "official": "Virgin Islands of the United States"
+        }
+      },
+      "official": "Virgin Islands of the United States"
+    },
+    "population": 106290,
+    "region": "Americas",
+    "startOfWeek": "monday",
+    "status": "officially-assigned",
+    "subregion": "Caribbean",
+    "timezones": ["UTC-04:00"],
+    "tld": [".vi"],
+    "translations": {
+      "ara": {
+        "common": "جزر العذراء الامريكية",
+        "official": "جزر العذراء الامريكية"
+      },
+      "bre": {
+        "common": "Inizi Gwerc'h ar Stadoù-Unanet",
+        "official": "Inizi Gwerc'h ar Stadoù-Unanet"
+      },
+      "ces": {
+        "common": "Americké Panenské ostrovy",
+        "official": "Americké Panenské ostrovy"
+      },
+      "cym": {
+        "common": "United States Virgin Islands",
+        "official": "Virgin Islands of the United States"
+      },
+      "deu": {
+        "common": "Amerikanische Jungferninseln",
+        "official": "Amerikanische Jungferninseln"
+      },
+      "est": {
+        "common": "Neitsisaared, USA",
+        "official": "Ühendriikide Neitsisaared"
+      },
+      "fin": {
+        "common": "Neitsytsaaret",
+        "official": "Yhdysvaltain Neitsytsaaret"
+      },
+      "fra": {
+        "common": "Îles Vierges des États-Unis",
+        "official": "Îles Vierges des États-Unis"
+      },
+      "hrv": {
+        "common": "Američki Djevičanski Otoci",
+        "official": "Djevičanski Otoci SAD"
+      },
+      "hun": {
+        "common": "Amerikai Virgin-szigetek",
+        "official": "Amerikai Virgin-szigetek"
+      },
+      "ita": {
+        "common": "Isole Vergini americane",
+        "official": "Isole Vergini degli Stati Uniti"
+      },
+      "jpn": {
+        "common": "アメリカ領ヴァージン諸島",
+        "official": "米国のバージン諸島"
+      },
+      "kor": {
+        "common": "미국령 버진아일랜드",
+        "official": "미국령 버진아일랜드"
+      },
+      "nld": {
+        "common": "Amerikaanse Maagdeneilanden",
+        "official": "Maagdeneilanden van de Verenigde Staten"
+      },
+      "per": {
+        "common": "جزایر ویرجین ایالات متحده آمریکا",
+        "official": "جزایر ویرجین ایالات متحده آمریکا"
+      },
+      "pol": {
+        "common": "Wyspy Dziewicze Stanów Zjednoczonych",
+        "official": "Wyspy Dziewicze Stanów Zjednoczonych"
+      },
+      "por": {
+        "common": "Ilhas Virgens dos Estados Unidos",
+        "official": "Ilhas Virgens dos Estados Unidos"
+      },
+      "slk": {
+        "common": "Americké Panenské ostrovy",
+        "official": "Americké Panenské ostrovy"
+      },
+      "spa": {
+        "common": "Islas Vírgenes de los Estados Unidos",
+        "official": "Islas Vírgenes de los Estados Unidos"
+      },
+      "srp": {
+        "common": "Америчка Девичанска Острва",
+        "official": "Америчка Девичанска Острва"
+      },
+      "swe": {
+        "common": "Amerikanska Jungfruöarna",
+        "official": "Amerikanska Jungfruöarna"
+      },
+      "tur": {
+        "common": "ABD Virjin Adaları",
+        "official": "Amerika Birleşik Devletleri Virjin Adaları"
+      },
+      "ukr": {
+        "common": "Віргінські Острови",
+        "official": "Віргінські острови Сполучених Штатів"
+      },
+      "urd": {
+        "common": "امریکی جزائر ورجن",
+        "official": "امریکی جزائر ورجن"
+      },
+      "zho": {
+        "common": "美属维尔京群岛",
+        "official": "美属维尔京群岛"
+      }
+    },
+    "unMember": false
+  },
+  {
+    "altSpellings": ["US", "USA", "United States of America"],
+    "area": 9372610,
+    "borders": ["CAN", "MEX"],
+    "capital": ["Washington, D.C."],
+    "capitalInfo": {
+      "latlng": [-77.05, 38.89]
+    },
+    "car": {
+      "side": "right",
+      "signs": ["USA"]
+    },
+    "cca2": "US",
+    "cca3": "USA",
+    "ccn3": "840",
+    "cioc": "USA",
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/us.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/us.svg"
+    },
+    "continents": ["North America"],
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "demonyms": {
+      "eng": {
+        "f": "American",
+        "m": "American"
+      },
+      "fra": {
+        "f": "Américaine",
+        "m": "Américain"
+      }
+    },
+    "fifa": "USA",
+    "flag": "🇺🇸",
+    "flags": {
+      "alt": "The flag of the United States of America is composed of thirteen equal horizontal bands of red alternating with white. A blue rectangle, bearing fifty small five-pointed white stars arranged in nine rows where rows of six stars alternate with rows of five stars, is superimposed in the canton.",
+      "png": "https://flagcdn.com/w320/us.png",
+      "svg": "https://flagcdn.com/us.svg"
+    },
+    "gini": {
+      "2018": 41.4
+    },
+    "idd": {
+      "root": "+1",
+      "suffixes": [
+        "201",
+        "202",
+        "203",
+        "205",
+        "206",
+        "207",
+        "208",
+        "209",
+        "210",
+        "212",
+        "213",
+        "214",
+        "215",
+        "216",
+        "217",
+        "218",
+        "219",
+        "220",
+        "224",
+        "225",
+        "227",
+        "228",
+        "229",
+        "231",
+        "234",
+        "239",
+        "240",
+        "248",
+        "251",
+        "252",
+        "253",
+        "254",
+        "256",
+        "260",
+        "262",
+        "267",
+        "269",
+        "270",
+        "272",
+        "274",
+        "276",
+        "281",
+        "283",
+        "301",
+        "302",
+        "303",
+        "304",
+        "305",
+        "307",
+        "308",
+        "309",
+        "310",
+        "312",
+        "313",
+        "314",
+        "315",
+        "316",
+        "317",
+        "318",
+        "319",
+        "320",
+        "321",
+        "323",
+        "325",
+        "327",
+        "330",
+        "331",
+        "334",
+        "336",
+        "337",
+        "339",
+        "346",
+        "347",
+        "351",
+        "352",
+        "360",
+        "361",
+        "364",
+        "380",
+        "385",
+        "386",
+        "401",
+        "402",
+        "404",
+        "405",
+        "406",
+        "407",
+        "408",
+        "409",
+        "410",
+        "412",
+        "413",
+        "414",
+        "415",
+        "417",
+        "419",
+        "423",
+        "424",
+        "425",
+        "430",
+        "432",
+        "434",
+        "435",
+        "440",
+        "442",
+        "443",
+        "447",
+        "458",
+        "463",
+        "464",
+        "469",
+        "470",
+        "475",
+        "478",
+        "479",
+        "480",
+        "484",
+        "501",
+        "502",
+        "503",
+        "504",
+        "505",
+        "507",
+        "508",
+        "509",
+        "510",
+        "512",
+        "513",
+        "515",
+        "516",
+        "517",
+        "518",
+        "520",
+        "530",
+        "531",
+        "534",
+        "539",
+        "540",
+        "541",
+        "551",
+        "559",
+        "561",
+        "562",
+        "563",
+        "564",
+        "567",
+        "570",
+        "571",
+        "573",
+        "574",
+        "575",
+        "580",
+        "585",
+        "586",
+        "601",
+        "602",
+        "603",
+        "605",
+        "606",
+        "607",
+        "608",
+        "609",
+        "610",
+        "612",
+        "614",
+        "615",
+        "616",
+        "617",
+        "618",
+        "619",
+        "620",
+        "623",
+        "626",
+        "628",
+        "629",
+        "630",
+        "631",
+        "636",
+        "641",
+        "646",
+        "650",
+        "651",
+        "657",
+        "660",
+        "661",
+        "662",
+        "667",
+        "669",
+        "678",
+        "681",
+        "682",
+        "701",
+        "702",
+        "703",
+        "704",
+        "706",
+        "707",
+        "708",
+        "712",
+        "713",
+        "714",
+        "715",
+        "716",
+        "717",
+        "718",
+        "719",
+        "720",
+        "724",
+        "725",
+        "727",
+        "730",
+        "731",
+        "732",
+        "734",
+        "737",
+        "740",
+        "743",
+        "747",
+        "754",
+        "757",
+        "760",
+        "762",
+        "763",
+        "765",
+        "769",
+        "770",
+        "772",
+        "773",
+        "774",
+        "775",
+        "779",
+        "781",
+        "785",
+        "786",
+        "801",
+        "802",
+        "803",
+        "804",
+        "805",
+        "806",
+        "808",
+        "810",
+        "812",
+        "813",
+        "814",
+        "815",
+        "816",
+        "817",
+        "818",
+        "828",
+        "830",
+        "831",
+        "832",
+        "843",
+        "845",
+        "847",
+        "848",
+        "850",
+        "854",
+        "856",
+        "857",
+        "858",
+        "859",
+        "860",
+        "862",
+        "863",
+        "864",
+        "865",
+        "870",
+        "872",
+        "878",
+        "901",
+        "903",
+        "904",
+        "906",
+        "907",
+        "908",
+        "909",
+        "910",
+        "912",
+        "913",
+        "914",
+        "915",
+        "916",
+        "917",
+        "918",
+        "919",
+        "920",
+        "925",
+        "928",
+        "929",
+        "930",
+        "931",
+        "934",
+        "936",
+        "937",
+        "938",
+        "940",
+        "941",
+        "947",
+        "949",
+        "951",
+        "952",
+        "954",
+        "956",
+        "959",
+        "970",
+        "971",
+        "972",
+        "973",
+        "975",
+        "978",
+        "979",
+        "980",
+        "984",
+        "985",
+        "989"
+      ]
+    },
+    "independent": true,
+    "landlocked": false,
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [-97, 38],
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/e8M246zY4BSjkjAv6",
+      "openStreetMaps": "https://openstreetmap.org/relation/148838#map=2/20.6/-85.8"
+    },
+    "name": {
+      "common": "United States",
+      "nativeName": {
+        "eng": {
+          "common": "United States",
+          "official": "United States of America"
+        }
+      },
+      "official": "United States of America"
+    },
+    "population": 329484123,
+    "postalCode": {
+      "format": "#####-####",
+      "regex": "^\\d{5}(-\\d{4})?$"
+    },
+    "region": "Americas",
+    "startOfWeek": "sunday",
+    "status": "officially-assigned",
+    "subregion": "North America",
+    "timezones": [
+      "UTC+10:00",
+      "UTC+12:00",
+      "UTC-04:00",
+      "UTC-05:00",
+      "UTC-06:00",
+      "UTC-07:00",
+      "UTC-08:00",
+      "UTC-09:00",
+      "UTC-10:00",
+      "UTC-11:00",
+      "UTC-12:00"
+    ],
+    "tld": [".us"],
+    "translations": {
+      "ara": {
+        "common": "الولايات المتحدة",
+        "official": "الولايات المتحدة الامريكية"
+      },
+      "bre": {
+        "common": "Stadoù-Unanet",
+        "official": "Stadoù-Unanet Amerika"
+      },
+      "ces": {
+        "common": "Spojené státy",
+        "official": "Spojené státy americké"
+      },
+      "cym": {
+        "common": "United States",
+        "official": "United States of America"
+      },
+      "deu": {
+        "common": "Vereinigte Staaten",
+        "official": "Vereinigte Staaten von Amerika"
+      },
+      "est": {
+        "common": "Ameerika Ühendriigid",
+        "official": "Ameerika Ühendriigid"
+      },
+      "fin": {
+        "common": "Yhdysvallat",
+        "official": "Amerikan yhdysvallat"
+      },
+      "fra": {
+        "common": "États-Unis",
+        "official": "Les états-unis d'Amérique"
+      },
+      "hrv": {
+        "common": "Sjedinjene Američke Države",
+        "official": "Sjedinjene Države Amerike"
+      },
+      "hun": {
+        "common": "Amerikai Egyesült Államok",
+        "official": "Amerikai Egyesült Államok"
+      },
+      "ita": {
+        "common": "Stati Uniti d'America",
+        "official": "Stati Uniti d'America"
+      },
+      "jpn": {
+        "common": "アメリカ合衆国",
+        "official": "アメリカ合衆国"
+      },
+      "kor": {
+        "common": "미국",
+        "official": "아메리카 합중국"
+      },
+      "nld": {
+        "common": "Verenigde Staten",
+        "official": "Verenigde Staten van Amerika"
+      },
+      "per": {
+        "common": "ایالات متحده آمریکا",
+        "official": "ایالات متحده آمریکا"
+      },
+      "pol": {
+        "common": "Stany Zjednoczone",
+        "official": "Stany Zjednoczone Ameryki"
+      },
+      "por": {
+        "common": "Estados Unidos",
+        "official": "Estados Unidos da América"
+      },
+      "slk": {
+        "common": "Spojené štáty americké",
+        "official": "Spojené štáty Americké"
+      },
+      "spa": {
+        "common": "Estados Unidos",
+        "official": "Estados Unidos de América"
+      },
+      "srp": {
+        "common": "Сједињене Америчке Државе",
+        "official": "Сједињене Америчке Државе"
+      },
+      "swe": {
+        "common": "USA",
+        "official": "Amerikas förenta stater"
+      },
+      "tur": {
+        "common": "Amerika Birleşik Devletleri",
+        "official": "Amerika Birleşik Devletleri"
+      },
+      "ukr": {
+        "common": "Сполучені Штати Америки",
+        "official": "Сполучені Штати Америки"
+      },
+      "urd": {
+        "common": "ریاستہائے متحدہ",
+        "official": "ریاستہائے متحدہ امریکا"
+      },
+      "zho": {
+        "common": "美国",
+        "official": "美利坚合众国"
+      }
+    },
+    "unMember": true
+  },
+  {
+    "altSpellings": ["AE", "Emirates", "UAE"],
+    "area": 83600,
+    "borders": ["OMN", "SAU"],
+    "capital": ["Abu Dhabi"],
+    "capitalInfo": {
+      "latlng": [24.47, 54.37]
+    },
+    "car": {
+      "side": "right",
+      "signs": ["UAE"]
+    },
+    "cca2": "AE",
+    "cca3": "ARE",
+    "ccn3": "784",
+    "cioc": "UAE",
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/ae.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/ae.svg"
+    },
+    "continents": ["Asia"],
+    "currencies": {
+      "AED": {
+        "name": "United Arab Emirates dirham",
+        "symbol": "د.إ"
+      }
+    },
+    "demonyms": {
+      "eng": {
+        "f": "Emirati",
+        "m": "Emirati"
+      },
+      "fra": {
+        "f": "Emirienne",
+        "m": "Emirien"
+      }
+    },
+    "fifa": "UAE",
+    "flag": "🇦🇪",
+    "flags": {
+      "alt": "The flag of United Arab Emirates features a red vertical band on its hoist side that takes up about one-fourth the width of the field and three equal horizontal bands of green, white and black adjoining the vertical band.",
+      "png": "https://flagcdn.com/w320/ae.png",
+      "svg": "https://flagcdn.com/ae.svg"
+    },
+    "gini": {
+      "2018": 26
+    },
+    "idd": {
+      "root": "+9",
+      "suffixes": ["71"]
+    },
+    "independent": true,
+    "landlocked": false,
+    "languages": {
+      "ara": "Arabic"
+    },
+    "latlng": [24, 54],
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/AZZTDA6GzVAnKMVd8",
+      "openStreetMaps": "https://openstreetmap.org/relation/307763"
+    },
+    "name": {
+      "common": "United Arab Emirates",
+      "nativeName": {
+        "ara": {
+          "common": "دولة الإمارات العربية المتحدة",
+          "official": "الإمارات العربية المتحدة"
+        }
+      },
+      "official": "United Arab Emirates"
+    },
+    "population": 9890400,
+    "region": "Asia",
+    "startOfWeek": "sunday",
+    "status": "officially-assigned",
+    "subregion": "Western Asia",
+    "timezones": ["UTC+04:00"],
+    "tld": [".ae", "امارات."],
+    "translations": {
+      "ara": {
+        "common": "دولة الإمارات العربية المتحدة",
+        "official": "الإمارات العربية المتحدة"
+      },
+      "bre": {
+        "common": "Emirelezhioù Arab Unanet",
+        "official": "Emirelezhioù Arab Unanet"
+      },
+      "ces": {
+        "common": "Arabské emiráty",
+        "official": "Spojené arabské emiráty"
+      },
+      "cym": {
+        "common": "United Arab Emirates",
+        "official": "United Arab Emirates"
+      },
+      "deu": {
+        "common": "Vereinigte Arabische Emirate",
+        "official": "Vereinigte Arabische Emirate"
+      },
+      "est": {
+        "common": "Araabia Ühendemiraadid",
+        "official": "Araabia Ühendemiraadid"
+      },
+      "fin": {
+        "common": "Arabiemiraatit",
+        "official": "Yhdistyneet arabiemiirikunnat"
+      },
+      "fra": {
+        "common": "Émirats arabes unis",
+        "official": "Émirats arabes unis"
+      },
+      "hrv": {
+        "common": "Arapski Emirati",
+        "official": "Ujedinjeni Arapski Emirati"
+      },
+      "hun": {
+        "common": "Egyesült Arab Emírségek",
+        "official": "Egyesült Arab Emírségek"
+      },
+      "ita": {
+        "common": "Emirati Arabi Uniti",
+        "official": "Emirati Arabi Uniti"
+      },
+      "jpn": {
+        "common": "アラブ首長国連邦",
+        "official": "アラブ首長国連邦"
+      },
+      "kor": {
+        "common": "아랍에미리트",
+        "official": "아랍 토후국 연방"
+      },
+      "nld": {
+        "common": "Verenigde Arabische Emiraten",
+        "official": "Verenigde Arabische Emiraten"
+      },
+      "per": {
+        "common": "امارات",
+        "official": "امارات متحده عربی"
+      },
+      "pol": {
+        "common": "Emiraty Arabskie",
+        "official": "Zjednoczone Emiraty Arabskie"
+      },
+      "por": {
+        "common": "Emirados Árabes Unidos",
+        "official": "Emirados Árabes Unidos"
+      },
+      "slk": {
+        "common": "Arabské emiráty",
+        "official": "Spojené arabské emiráty"
+      },
+      "spa": {
+        "common": "Emiratos Árabes Unidos",
+        "official": "Emiratos Árabes Unidos"
+      },
+      "srp": {
+        "common": "Уједињени Арапски Емирати",
+        "official": "Уједињени Арапски Емирати"
+      },
+      "swe": {
+        "common": "Förenade Arabemiraten",
+        "official": "Förenade Arabemiraten"
+      },
+      "tur": {
+        "common": "Birleşik Arap Emirlikleri",
+        "official": "Birleşik Arap Emirlikleri"
+      },
+      "ukr": {
+        "common": "Об'єднані Арабські Емірати",
+        "official": "Об'єднані Арабські Емірати"
+      },
+      "urd": {
+        "common": "متحدہ عرب امارات",
+        "official": "متحدہ عرب امارات"
+      },
+      "zho": {
+        "common": "阿拉伯联合酋长国",
+        "official": "阿拉伯联合酋长国"
+      }
+    },
+    "unMember": true
+  },
+  {
+    "altSpellings": ["UM"],
+    "area": 34.2,
+    "capital": ["Washington DC"],
+    "capitalInfo": {},
+    "car": {
+      "side": "right",
+      "signs": [""]
+    },
+    "cca2": "UM",
+    "cca3": "UMI",
+    "ccn3": "581",
+    "coatOfArms": {},
+    "continents": ["Oceania"],
+    "currencies": {
+      "USD": {
+        "name": "United States dollar",
+        "symbol": "$"
+      }
+    },
+    "demonyms": {
+      "eng": {
+        "f": "American Islander",
+        "m": "American Islander"
+      }
+    },
+    "flag": "🇺🇲",
+    "flags": {
+      "png": "https://flagcdn.com/w320/um.png",
+      "svg": "https://flagcdn.com/um.svg"
+    },
+    "idd": {
+      "root": "+2",
+      "suffixes": ["68"]
+    },
+    "independent": false,
+    "landlocked": false,
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [19.3, 166.633333],
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/hZKnrzgeK69dDyPF8",
+      "openStreetMaps": "https://openstreetmap.org/relation/6430384"
+    },
+    "name": {
+      "common": "United States Minor Outlying Islands",
+      "nativeName": {
+        "eng": {
+          "common": "United States Minor Outlying Islands",
+          "official": "United States Minor Outlying Islands"
+        }
+      },
+      "official": "United States Minor Outlying Islands"
+    },
+    "population": 300,
+    "region": "Americas",
+    "startOfWeek": "monday",
+    "status": "officially-assigned",
+    "subregion": "North America",
+    "timezones": ["UTC+12:00", "UTC-10:00", "UTC-11:00"],
+    "tld": [".us"],
+    "translations": {
+      "ara": {
+        "common": "جزر الولايات المتحدة الصغيرة النائية",
+        "official": "جزر الولايات المتحدة الصغيرة النائية"
+      },
+      "bre": {
+        "common": "Inizi Minor A-bell Stadoù-Unanet",
+        "official": "Inizi Minor A-bell Stadoù-Unanet"
+      },
+      "ces": {
+        "common": "Menší odlehlé ostrovy USA",
+        "official": "Menší odlehlé ostrovy Spojených států amerických"
+      },
+      "cym": {
+        "common": "United States Minor Outlying Islands",
+        "official": "United States Minor Outlying Islands"
+      },
+      "deu": {
+        "common": "Kleinere Inselbesitzungen der Vereinigten Staaten",
+        "official": "USA, kleinere ausgelagerte Inseln"
+      },
+      "est": {
+        "common": "Ühendriikide hajasaared",
+        "official": "Ühendriikide väikesed hajasaared"
+      },
+      "fin": {
+        "common": "Yhdysvaltain asumattomat saaret",
+        "official": "Yhdysvaltain asumattomat saaret"
+      },
+      "fra": {
+        "common": "Îles mineures éloignées des États-Unis",
+        "official": "Îles mineures éloignées des États-Unis"
+      },
+      "hrv": {
+        "common": "Mali udaljeni otoci SAD-a",
+        "official": "Mali udaljeni otoci SAD-a"
+      },
+      "hun": {
+        "common": "Az Amerikai Egyesült Államok lakatlan külbirtokai",
+        "official": "Az Amerikai Egyesült Államok lakatlan külbirtokai"
+      },
+      "ita": {
+        "common": "Isole minori esterne degli Stati Uniti d'America",
+        "official": "Stati Uniti Isole Minori"
+      },
+      "jpn": {
+        "common": "合衆国領有小離島",
+        "official": "アメリカ合衆国外諸島"
+      },
+      "kor": {
+        "common": "미국령 군소 제도",
+        "official": "미국령 군소 제도"
+      },
+      "nld": {
+        "common": "Kleine afgelegen eilanden van de Verenigde Staten",
+        "official": "Kleine afgelegen eilanden van de Verenigde Staten"
+      },
+      "per": {
+        "common": "جزایر کوچک حاشیه‌ای ایالات متحده آمریکا",
+        "official": "جزایر کوچک حاشیه‌ای ایالات متحده آمریکا"
+      },
+      "pol": {
+        "common": "Dalekie Wyspy Mniejsze Stanów Zjednoczonych",
+        "official": "Dalekie Wyspy Mniejsze Stanów Zjednoczonych"
+      },
+      "por": {
+        "common": "Ilhas Menores Distantes dos Estados Unidos",
+        "official": "Estados Unidos Ilhas Menores Distantes"
+      },
+      "slk": {
+        "common": "Menšie odľahlé ostrovy USA",
+        "official": "Menšie odľahlé ostrovy Spjoených štátov"
+      },
+      "spa": {
+        "common": "Islas Ultramarinas Menores de Estados Unidos",
+        "official": "Estados Unidos Islas menores alejadas de"
+      },
+      "srp": {
+        "common": "Мала спољна острва Сједињених Америчких Држава",
+        "official": "Мала спољна острва Сједињених Америчких Држава"
+      },
+      "swe": {
+        "common": "Förenta staternas mindre öar i Oceanien och Västindien",
+        "official": "Förenta staternas mindre öar i Oceanien och Västindien"
+      },
+      "tur": {
+        "common": "Amerika Birleşik Devletleri Küçük Dış Adaları",
+        "official": "Amerika Birleşik Devletleri Küçük Dış Adaları"
+      },
+      "ukr": {
+        "common": "Зовнішні малі острови США",
+        "official": "Зовнішні малі острови США"
+      },
+      "urd": {
+        "common": "امریکی چھوٹے بیرونی جزائر",
+        "official": "امریکی چھوٹے بیرونی جزائر"
+      },
+      "zho": {
+        "common": "美国本土外小岛屿",
+        "official": "美国本土外小岛屿"
+      }
+    },
+    "unMember": false
+  },
+  {
+    "altSpellings": [
+      "Estados Unidos Mexicanos",
+      "MX",
+      "Mexicanos",
+      "United Mexican States"
+    ],
+    "area": 1964375,
+    "borders": ["BLZ", "GTM", "USA"],
+    "capital": ["Mexico City"],
+    "capitalInfo": {
+      "latlng": [-99.13, 19.43]
+    },
+    "car": {
+      "side": "right",
+      "signs": ["MEX"]
+    },
+    "cca2": "MX",
+    "cca3": "MEX",
+    "ccn3": "484",
+    "cioc": "MEX",
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/mx.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/mx.svg"
+    },
+    "continents": ["North America"],
+    "currencies": {
+      "MXN": {
+        "name": "Mexican peso",
+        "symbol": "$"
+      }
+    },
+    "demonyms": {
+      "eng": {
+        "f": "Mexican",
+        "m": "Mexican"
+      },
+      "fra": {
+        "f": "Mexicaine",
+        "m": "Mexicain"
+      }
+    },
+    "fifa": "MEX",
+    "flag": "🇲🇽",
+    "flags": {
+      "alt": "The flag of Mexico is composed of three equal vertical bands of green, white and red, with the national coat of arms centered in the white band.",
+      "png": "https://flagcdn.com/w320/mx.png",
+      "svg": "https://flagcdn.com/mx.svg"
+    },
+    "gini": {
+      "2018": 45.4
+    },
+    "idd": {
+      "root": "+5",
+      "suffixes": ["2"]
+    },
+    "independent": true,
+    "landlocked": false,
+    "languages": {
+      "spa": "Spanish"
+    },
+    "latlng": [-102, 23],
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/s5g7imNPMDEePxzbA",
+      "openStreetMaps": "https://openstreetmap.org/relation/114686"
+    },
+    "name": {
+      "common": "Mexico",
+      "nativeName": {
+        "spa": {
+          "common": "México",
+          "official": "Estados Unidos Mexicanos"
+        }
+      },
+      "official": "United Mexican States"
+    },
+    "population": 128932753,
+    "postalCode": {
+      "format": "#####",
+      "regex": "^(\\d{5})$"
+    },
+    "region": "Americas",
+    "startOfWeek": "monday",
+    "status": "officially-assigned",
+    "subregion": "North America",
+    "timezones": ["UTC-06:00", "UTC-07:00", "UTC-08:00"],
+    "tld": [".mx"],
+    "translations": {
+      "ara": {
+        "common": "المسكيك",
+        "official": "الولايات المتحدة المكسيكية"
+      },
+      "bre": {
+        "common": "Mec'hiko",
+        "official": "Stadoù-Unanet Mec'hiko"
+      },
+      "ces": {
+        "common": "Mexiko",
+        "official": "Spojené státy mexické"
+      },
+      "cym": {
+        "common": "Mexico",
+        "official": "United Mexican States"
+      },
+      "deu": {
+        "common": "Mexiko",
+        "official": "Vereinigte Mexikanische Staaten"
+      },
+      "est": {
+        "common": "Mehhiko",
+        "official": "Mehhiko Ühendriigid"
+      },
+      "fin": {
+        "common": "Meksiko",
+        "official": "Meksikon yhdysvallat"
+      },
+      "fra": {
+        "common": "Mexique",
+        "official": "États-Unis du Mexique"
+      },
+      "hrv": {
+        "common": "Meksiko",
+        "official": "Sjedinjene Meksičke Države"
+      },
+      "hun": {
+        "common": "Mexikó",
+        "official": "Mexikói Egyesült Államok"
+      },
+      "ita": {
+        "common": "Messico",
+        "official": "Stati Uniti del Messico"
+      },
+      "jpn": {
+        "common": "メキシコ",
+        "official": "メキシコ合衆国"
+      },
+      "kor": {
+        "common": "멕시코",
+        "official": "멕시코 합중국"
+      },
+      "nld": {
+        "common": "Mexico",
+        "official": "Verenigde Mexicaanse Staten"
+      },
+      "per": {
+        "common": "مکزیک",
+        "official": "ایالات متحد مکزیک"
+      },
+      "pol": {
+        "common": "Meksyk",
+        "official": "Meksykańskie Stany Zjednoczone"
+      },
+      "por": {
+        "common": "México",
+        "official": "Estados Unidos Mexicanos"
+      },
+      "slk": {
+        "common": "Mexiko",
+        "official": "Spojené štášy mexické"
+      },
+      "spa": {
+        "common": "México",
+        "official": "Estados Unidos Mexicanos"
+      },
+      "srp": {
+        "common": "Мексико",
+        "official": "Сједињене Мексичке Државе"
+      },
+      "swe": {
+        "common": "Mexiko",
+        "official": "Mexikos förenta stater"
+      },
+      "tur": {
+        "common": "Meksika",
+        "official": "Birleşik Meksika Devletleri"
+      },
+      "ukr": {
+        "common": "Мексика",
+        "official": "Мексиканські Сполучені Штати"
+      },
+      "urd": {
+        "common": "میکسیکو",
+        "official": "ریاستہائے متحدہ میکسیکو"
+      },
+      "zho": {
+        "common": "墨西哥",
+        "official": "墨西哥合众国"
+      }
+    },
+    "unMember": true
+  },
+  {
+    "altSpellings": [
+      "Jamhuri ya Muungano wa Tanzania",
+      "TZ",
+      "Tanzania, United Republic of",
+      "United Republic of Tanzania"
+    ],
+    "area": 945087,
+    "borders": ["BDI", "COD", "KEN", "MOZ", "MWI", "RWA", "UGA", "ZMB"],
+    "capital": ["Dodoma"],
+    "capitalInfo": {
+      "latlng": [-6.16, 35.75]
+    },
+    "car": {
+      "side": "left",
+      "signs": ["EAT"]
+    },
+    "cca2": "TZ",
+    "cca3": "TZA",
+    "ccn3": "834",
+    "cioc": "TAN",
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/tz.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/tz.svg"
+    },
+    "continents": ["Africa"],
+    "currencies": {
+      "TZS": {
+        "name": "Tanzanian shilling",
+        "symbol": "Sh"
+      }
+    },
+    "demonyms": {
+      "eng": {
+        "f": "Tanzanian",
+        "m": "Tanzanian"
+      },
+      "fra": {
+        "f": "Tanzanienne",
+        "m": "Tanzanien"
+      }
+    },
+    "fifa": "TAN",
+    "flag": "🇹🇿",
+    "flags": {
+      "alt": "The flag of Tanzania features a yellow-edged black diagonal band that extends from the lower hoist-side corner to the upper fly-side corner of the field. Above and beneath this band are a green and light blue triangle respectively.",
+      "png": "https://flagcdn.com/w320/tz.png",
+      "svg": "https://flagcdn.com/tz.svg"
+    },
+    "gini": {
+      "2017": 40.5
+    },
+    "idd": {
+      "root": "+2",
+      "suffixes": ["55"]
+    },
+    "independent": true,
+    "landlocked": false,
+    "languages": {
+      "eng": "English",
+      "swa": "Swahili"
+    },
+    "latlng": [-6, 35],
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/NWYMqZYXte4zGZ2Q8",
+      "openStreetMaps": "https://openstreetmap.org/relation/195270"
+    },
+    "name": {
+      "common": "Tanzania",
+      "nativeName": {
+        "eng": {
+          "common": "Tanzania",
+          "official": "United Republic of Tanzania"
+        },
+        "swa": {
+          "common": "Tanzania",
+          "official": "Jamhuri ya Muungano wa Tanzania"
+        }
+      },
+      "official": "United Republic of Tanzania"
+    },
+    "population": 59734213,
+    "region": "Africa",
+    "startOfWeek": "monday",
+    "status": "officially-assigned",
+    "subregion": "Eastern Africa",
+    "timezones": ["UTC+03:00"],
+    "tld": [".tz"],
+    "translations": {
+      "ara": {
+        "common": "تنزانيا",
+        "official": "جمهورية تنزانيا الاتحادية"
+      },
+      "bre": {
+        "common": "Tanzania",
+        "official": "Republik Unanet Tanzania"
+      },
+      "ces": {
+        "common": "Tanzanie",
+        "official": "Sjednocená tanzanská republika"
+      },
+      "cym": {
+        "common": "Tanzania",
+        "official": "United Republic of Tanzania"
+      },
+      "deu": {
+        "common": "Tansania",
+        "official": "Vereinigte Republik Tansania"
+      },
+      "est": {
+        "common": "Tansaania",
+        "official": "Tansaania Ühendvabariik"
+      },
+      "fin": {
+        "common": "Tansania",
+        "official": "Tansanian yhdistynyt tasavalta"
+      },
+      "fra": {
+        "common": "Tanzanie",
+        "official": "République -Unie de Tanzanie"
+      },
+      "hrv": {
+        "common": "Tanzanija",
+        "official": "Ujedinjena Republika Tanzanija"
+      },
+      "hun": {
+        "common": "Tádzsikisztán",
+        "official": "Tádzsik Köztársaság"
+      },
+      "ita": {
+        "common": "Tanzania",
+        "official": "Repubblica Unita di Tanzania"
+      },
+      "jpn": {
+        "common": "タンザニア",
+        "official": "タンザニア連合共和国"
+      },
+      "kor": {
+        "common": "탄자니아",
+        "official": "탄자니아 연합 공화국"
+      },
+      "nld": {
+        "common": "Tanzania",
+        "official": "Verenigde Republiek Tanzania"
+      },
+      "per": {
+        "common": "تانزانیا",
+        "official": "جمهوری متحد تانزانیا"
+      },
+      "pol": {
+        "common": "Tanzania",
+        "official": "Zjednoczona Republika Tanzanii"
+      },
+      "por": {
+        "common": "Tanzânia",
+        "official": "República Unida da Tanzânia"
+      },
+      "slk": {
+        "common": "Tanzánia",
+        "official": "Tanzánijská zjednotená republika"
+      },
+      "spa": {
+        "common": "Tanzania",
+        "official": "República Unida de Tanzania"
+      },
+      "srp": {
+        "common": "Танзанија",
+        "official": "Уједињена Република Танзанија"
+      },
+      "swe": {
+        "common": "Tanzania",
+        "official": "Förenade republiken Tanzania"
+      },
+      "tur": {
+        "common": "Tanzanya",
+        "official": "Tanzanya Birleşik Cumhuriyeti"
+      },
+      "ukr": {
+        "common": "Танзанія",
+        "official": "Об'єднана Республіка Танзанія"
+      },
+      "urd": {
+        "common": "تنزانیہ",
+        "official": "متحدہ جمہوریہ تنزانیہ"
+      },
+      "zho": {
+        "common": "坦桑尼亚",
+        "official": "坦桑尼亚联合共和国"
+      }
+    },
+    "unMember": true
+  },
+  {
+    "altSpellings": ["GB", "Great Britain", "UK"],
+    "area": 242900,
+    "borders": ["IRL"],
+    "capital": ["London"],
+    "capitalInfo": {
+      "latlng": [-0.08, 51.5]
+    },
+    "car": {
+      "side": "left",
+      "signs": ["GB"]
+    },
+    "cca2": "GB",
+    "cca3": "GBR",
+    "ccn3": "826",
+    "cioc": "GBR",
+    "coatOfArms": {
+      "png": "https://mainfacts.com/media/images/coats_of_arms/gb.png",
+      "svg": "https://mainfacts.com/media/images/coats_of_arms/gb.svg"
+    },
+    "continents": ["Europe"],
+    "currencies": {
+      "GBP": {
+        "name": "British pound",
+        "symbol": "£"
+      }
+    },
+    "demonyms": {
+      "eng": {
+        "f": "British",
+        "m": "British"
+      },
+      "fra": {
+        "f": "Britannique",
+        "m": "Britannique"
+      }
+    },
+    "flag": "🇬🇧",
+    "flags": {
+      "alt": "The flag of the United Kingdom — the Union Jack — has a blue field. It features the white-edged red cross of Saint George superimposed on the diagonal red cross of Saint Patrick which is superimposed on the diagonal white cross of Saint Andrew.",
+      "png": "https://flagcdn.com/w320/gb.png",
+      "svg": "https://flagcdn.com/gb.svg"
+    },
+    "gini": {
+      "2017": 35.1
+    },
+    "idd": {
+      "root": "+4",
+      "suffixes": ["4"]
+    },
+    "independent": true,
+    "landlocked": false,
+    "languages": {
+      "eng": "English"
+    },
+    "latlng": [-2, 54],
+    "maps": {
+      "googleMaps": "https://goo.gl/maps/FoDtc3UKMkFsXAjHA",
+      "openStreetMaps": "https://openstreetmap.org/relation/62149"
+    },
+    "name": {
+      "common": "United Kingdom",
+      "nativeName": {
+        "eng": {
+          "common": "United Kingdom",
+          "official": "United Kingdom of Great Britain and Northern Ireland"
+        }
+      },
+      "official": "United Kingdom of Great Britain and Northern Ireland"
+    },
+    "population": 67215293,
+    "postalCode": {
+      "format": "@# #@@|@## #@@|@@# #@@|@@## #@@|@#@ #@@|@@#@ #@@|GIR0AA",
+      "regex": "^(([A-Z]\\d{2}[A-Z]{2})|([A-Z]\\d{3}[A-Z]{2})|([A-Z]{2}\\d{2}[A-Z]{2})|([A-Z]{2}\\d{3}[A-Z]{2})|([A-Z]\\d[A-Z]\\d[A-Z]{2})|([A-Z]{2}\\d[A-Z]\\d[A-Z]{2})|(GIR0AA))$"
+    },
+    "region": "Europe",
+    "startOfWeek": "monday",
+    "status": "officially-assigned",
+    "subregion": "Northern Europe",
+    "timezones": [
+      "UTC",
+      "UTC+01:00",
+      "UTC+02:00",
+      "UTC+06:00",
+      "UTC-02:00",
+      "UTC-03:00",
+      "UTC-04:00",
+      "UTC-05:00",
+      "UTC-08:00"
+    ],
+    "tld": [".uk"],
+    "translations": {
+      "ara": {
+        "common": "المملكة المتحدة",
+        "official": "المملكة المتحدة لبريطانيا العظمى وايرلندا الشمالية"
+      },
+      "bre": {
+        "common": "Rouantelezh-Unanet",
+        "official": "Rouantelezh-Unanet Breizh-Veur ha Norzhiwerzhon"
+      },
+      "ces": {
+        "common": "Spojené království",
+        "official": "Spojené království Velké Británie a Severního Irska"
+      },
+      "cym": {
+        "common": "United Kingdom",
+        "official": "United Kingdom of Great Britain and Northern Ireland"
+      },
+      "deu": {
+        "common": "Vereinigtes Königreich",
+        "official": "Vereinigtes Königreich Großbritannien und Nordirland"
+      },
+      "est": {
+        "common": "Suurbritannia",
+        "official": "Suurbritannia ja Põhja-Iiri Ühendkuningriik"
+      },
+      "fin": {
+        "common": "Yhdistynyt kuningaskunta",
+        "official": "Ison-Britannian ja Pohjois-Irlannin yhdistynyt kuningaskunta"
+      },
+      "fra": {
+        "common": "Royaume-Uni",
+        "official": "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord"
+      },
+      "hrv": {
+        "common": "Ujedinjeno Kraljevstvo",
+        "official": "Ujedinjeno Kraljevstvo Velike Britanije i Sjeverne Irske"
+      },
+      "hun": {
+        "common": "Egyesült Királyság",
+        "official": "Nagy-Britannia és Észak-Írország Egyesült Királysága"
+      },
+      "ita": {
+        "common": "Regno Unito",
+        "official": "Regno Unito di Gran Bretagna e Irlanda del Nord"
+      },
+      "jpn": {
+        "common": "イギリス",
+        "official": "グレート·ブリテンおよび北アイルランド連合王国"
+      },
+      "kor": {
+        "common": "영국",
+        "official": "그레이트브리튼 북아일랜드 연합 왕국"
+      },
+      "nld": {
+        "common": "Verenigd Koninkrijk",
+        "official": "Verenigd Koninkrijk van Groot-Brittannië en Noord-Ierland"
+      },
+      "per": {
+        "common": "انگلیس",
+        "official": "پادشاهی متحد بریتانیای کبیر و ایرلند شمالی"
+      },
+      "pol": {
+        "common": "Zjednoczone Królestwo",
+        "official": "Zjednoczone Królestwo Wielkiej Brytanii i Irlandii Północnej"
+      },
+      "por": {
+        "common": "Reino Unido",
+        "official": "Reino Unido da Grã-Bretanha e Irlanda do Norte"
+      },
+      "slk": {
+        "common": "Veľká Británia (Spojené kráľovstvo)",
+        "official": "Spojené kráľovstvo Veľkej Británie a SevernéhoÌrska"
+      },
+      "spa": {
+        "common": "Reino Unido",
+        "official": "Reino Unido de Gran Bretaña e Irlanda del Norte"
+      },
+      "srp": {
+        "common": "Уједињено Краљевство",
+        "official": "Уједињено Краљевство Велике Британије и Северне Ирске"
+      },
+      "swe": {
+        "common": "Storbritannien",
+        "official": "Förenade konungariket Storbritannien och Nordirland"
+      },
+      "tur": {
+        "common": "Birleşik Krallık",
+        "official": "Büyük Britanya ve Kuzey İrlanda Birleşik Krallığı"
+      },
+      "ukr": {
+        "common": "Велика Британія",
+        "official": "Сполучене Королівство Великої Британії та Північної Ірландії"
+      },
+      "urd": {
+        "common": "مملکتِ متحدہ",
+        "official": "مملکتِ متحدہ برطانیہ عظمی و شمالی آئرلینڈ"
+      },
+      "zho": {
+        "common": "英国",
+        "official": "大不列颠及北爱尔兰联合王国"
+      }
+    },
+    "unMember": true
+  }
+]

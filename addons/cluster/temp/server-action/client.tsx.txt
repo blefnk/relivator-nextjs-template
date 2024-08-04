@@ -1,0 +1,11 @@
+"use client";
+
+import ProtectedButtonSerialization from "~/core/auth/authjs/components/clerk-user-button-server";
+
+export default function ProtectedServerActionPageClient() {
+  return (
+    <div>
+      <ProtectedButtonSerialization />
+    </div>
+  );
+}

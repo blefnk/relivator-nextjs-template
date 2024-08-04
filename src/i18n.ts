@@ -1,67 +1,58 @@
-import deepmerge from "deepmerge";
+import { notFound } from "next/navigation";
+
 import type { AbstractIntlMessages } from "next-intl";
+
+import de_de from "~/../messages/de.json";
+import en_us from "~/../messages/en.json";
+import es_es from "~/../messages/es.json";
+import fa_ir from "~/../messages/fa.json";
+import fr_fr from "~/../messages/fr.json";
+import hi_in from "~/../messages/hi.json";
+import it_it from "~/../messages/it.json";
+import pl_pl from "~/../messages/pl.json";
+import tr_tr from "~/../messages/tr.json";
+import uk_ua from "~/../messages/uk.json";
+import zh_cn from "~/../messages/zh.json";
+import deepmerge from "deepmerge";
 import { getRequestConfig } from "next-intl/server";
 
-// Import all the locale JSON files
-import de_de from "~/data/i18n/de-de.json";
-import en_us from "~/data/i18n/en-us.json";
-import es_es from "~/data/i18n/es-es.json";
-import fa_ir from "~/data/i18n/fa-ir.json";
-import fr_fr from "~/data/i18n/fr-fr.json";
-import hi_in from "~/data/i18n/hi-in.json";
-import it_it from "~/data/i18n/it-it.json";
-import pl_pl from "~/data/i18n/pl-pl.json";
-import tr_tr from "~/data/i18n/tr-tr.json";
-import uk_ua from "~/data/i18n/uk-ua.json";
-import zh_cn from "~/data/i18n/zh-cn.json";
+import { locales } from "~/navigation";
 
 // Create a mapping from locale identifiers
 // to the specific imported JSON modules
-const localeMessages = {
-  "de-de": de_de,
-  "en-us": en_us,
-  "es-es": es_es,
-  "fa-ir": fa_ir,
-  "fr-fr": fr_fr,
-  "hi-in": hi_in,
-  "it-it": it_it,
-  "pl-pl": pl_pl,
-  "tr-tr": tr_tr,
-  "uk-ua": uk_ua,
-  "zh-cn": zh_cn,
-};
+const localesList = {
+  de: de_de,
+  en: en_us,
+  es: es_es,
+  fa: fa_ir,
+  fr: fr_fr,
+  hi: hi_in,
+  it: it_it,
+  pl: pl_pl,
+  tr: tr_tr,
+  uk: uk_ua,
+  zh: zh_cn,
+} as const;
 
 // Exporting default function that asynchronously receives
 // the locale object and returns the configuration object
-export default getRequestConfig(({ locale }) => {
+export default getRequestConfig(async ({ locale }) => {
+  if (!locales.includes(locale)) {
+    notFound();
+  }
+
   // Load messages for the current locale
   const primaryMessages: AbstractIntlMessages =
-    localeMessages[locale] || localeMessages["en-us"];
+    // @ts-expect-error TODO: fix
+    (await localesList[locale]) || localesList.en;
 
   // Load messages for the fallback locale
-  const fallbackMessages: AbstractIntlMessages = localeMessages["en-us"];
+  const fallbackMessages: AbstractIntlMessages = localesList.en;
 
   // Merge primary locale messages with fallback locale messages
   const messages = deepmerge(fallbackMessages, primaryMessages);
 
-  // When using Turbopack we enable HMR for locale
-  // This approach also works fine without --turbo
-  return { messages };
+  return {
+    messages,
+  };
 });
-
-// When not using next dev --turbo, we can simplify imports:
-// export default getRequestConfig(async ({ locale }) => ({
-//   messages: (await import(`./data/i18n/${locale}.json`)).default,
-// }));
-
-/**
- * Learn more and resources
- * ========================
- * @see https://next-intl-docs.vercel.app/docs/environments/server-client-components
- * @see https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md
- * @see https://next-intl-docs.vercel.app/docs/getting-started/app-router
- * @see https://github.com/amannn/next-intl/issues?q=turbo
- * @see https://github.com/amannn/next-intl/issues/718
- * @see https://github.com/amannn/next-intl/pull/641
- * @see https://github.com/vercel/turbo/issues/2372
- */

@@ -1,0 +1,264 @@
+/**
+ * Next.js Middleware Configuration
+ * ================================
+ * This middleware file handles core app logic, conditionally applying the
+ * authentication and internationalization, based on environment variables.
+ */
+
+import { NextRequest } from "next/server";
+import createIntlMiddleware from "next-intl/middleware";
+import { defaultLocale, localePrefix, locales } from "~/navigation";
+
+// todo: Instead of using this, we need to specify
+// todo: only disallowed routes, e.g `/dashboard(.*)`
+export const authjsPublicPages = [
+  "/",
+  "/blog",
+  "/contact",
+  "/about",
+  "/help",
+  "/privacy",
+  "/terms",
+  "/categories",
+  "/product(.*)",
+  "/products",
+  "/stores",
+  "/error",
+  "/404",
+];
+
+export const authjsAuthPages = ["/auth", "/auth/block", "/auth/sign-in", "/auth/sign-out", "/auth/sign-up"];
+
+// const publicRoutes = ["/(.*)"];
+// const isPublicRoute = createRouteMatcher(["/", "/auth/(.*)"]);
+// const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
+// const isApiRoute = createRouteMatcher(["/api/(.*)"]);
+
+// type AuthProviderType = "authjs" | "clerk" | undefined;
+// type IntlProviderType = "next-international" | "next-intl" | undefined;
+// const authProvider = env.NEXT_PUBLIC_AUTH_PROVIDER as AuthProviderType;
+
+const testPathnameRegex = (pages: string[], pathName: string): boolean => {
+  return new RegExp(`^(/(${locales.join("|")}))?(${pages.flatMap((p) => (p === "/" ? ["", "/"] : p)).join("|")})/?$`, "i").test(pathName);
+};
+
+const intlMiddleware = createIntlMiddleware({
+  defaultLocale,
+  localePrefix,
+  locales,
+});
+
+// const authMiddleware = auth((req) => { // TODO: Fix `next 14.3.canary` compatibility
+// const authMiddleware = (req: NextRequest) => {
+// const isAuthPage = testPathnameRegex(authjsAuthPages, req.nextUrl.pathname);
+// const session = req.auth;
+// Redirect to sign-in page if not authenticated
+// if (!session && !isAuthPage) {
+//   return NextResponse.redirect(new URL("/auth/sign-in", req.nextUrl));
+// }
+// Redirect to special `auth` page if authenticated and trying to access auth pages
+// This `auth` page helps add missing values to user in the database when needed
+// if (session && isAuthPage) {
+//   // return NextResponse.redirect(new URL("/auth", req.nextUrl));
+//   return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
+// }
+// return intlMiddleware(req);
+// return NextResponse.next();
+// };
+
+export default function middleware(req: NextRequest) {
+  // todo: fix /api/[...rest] route
+  // const isApiRoute = testPathnameRegex(["/api"], req.nextUrl.pathname);
+  const isPublicPage = testPathnameRegex(authjsPublicPages, req.nextUrl.pathname);
+  const isAuthPage = testPathnameRegex(authjsAuthPages, req.nextUrl.pathname);
+
+  if (isAuthPage) {
+    return intlMiddleware(req);
+    // return (authMiddleware as any)(req);
+    // return NextResponse.next();
+  } else if (isPublicPage) {
+    return intlMiddleware(req);
+    // return NextResponse.next();
+  } else {
+    // return (authMiddleware as any)(req);
+    return intlMiddleware(req);
+    // return NextResponse.next();
+  }
+}
+
+// =============================================== ***
+
+/* const authMiddleware = withAuth( */
+// Note that this callback is only invoked if
+// `authorized` callback has returned `true`
+// and not for pages listed in `pages` dir
+
+/* (req) => intlMiddleware(req),
+  {
+    callbacks: {
+      authorized: ({ token }) => token != null,
+    },
+    pages: {
+      newUser: `/auth`,
+      signIn: `/auth/sign-in`,
+      signOut: `/auth/sign-out`,
+    },
+  }, */
+
+/*   function onSuccess(req) {
+    return intlMiddleware(req);
+  },
+  {
+    callbacks: {
+      authorized: ({ token }) => token != null,
+    },
+    pages: {
+      newUser: `/auth`,
+      signIn: `/auth/sign-in`,
+      signOut: `/auth/sign-out`,
+    },
+  },
+); */
+
+/* export default function middleware(req: NextRequest) {
+  const publicPathnameRegex = new RegExp(
+    `^(/(${locales.join("|")}))?(${publicPages
+      .flatMap((p) => (p === "/" ? ["", "/"] : p))
+      .join("|")})/?$`,
+    "i",
+  );
+  const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+
+  if (isPublicPage) {
+    return intlMiddleware(req);
+  } else {
+    return (authMiddleware as any)(req);
+  }
+} */
+
+// export default clerkMiddleware(async (auth, req, event_) => {
+//   if (isApiRoute(req)) {
+//     return NextResponse.next();
+//   }
+
+//   // const { protect, redirectToSignIn, userId } = auth();
+//   // const isPublic = isPublicRoute(req);
+
+//   // const clerkEmail = userId ? await clerkClient.emailAddresses.getEmailAddress(userId) : null;
+
+//   // if (userId && clerkEmail) {
+//   //   console.info("userId", userId);
+//   //   console.info("clerkEmail", clerkEmail);
+
+//   //   // TODO: update user in db, add clerkId to user
+//   // }
+//   const locale = getLocale(req);
+//   if (locale) setCookie("NEXT_LOCALE", locale);
+
+//   if (authProvider === "clerk" && isProtectedRoute(req)) {
+//     const url = new URL(req.nextUrl.origin);
+
+//     auth().protect({
+//       unauthenticatedUrl: `${url.origin}/auth/sign-in`,
+//       unauthorizedUrl: `${url.origin}/dashboard/stores`,
+//     });
+
+//     return intlMiddleware()(req);
+//   } else {
+//     const publicPathnameRegex = new RegExp(
+//       `^(/(${locales.join("|")}))?(${publicRoutes.join("|")})?/?$`,
+//       "i",
+//     );
+//     const isPublicRoute = publicPathnameRegex.test(req.nextUrl.pathname);
+//     if (isPublicRoute) {
+//       req.headers.set("x-pathname", req.nextUrl.pathname);
+//       const intlResponse = await intlMiddleware()(req);
+
+//       return intlResponse || NextResponse.next();
+//     } else {
+//       return withNextAuth((req) => intlMiddleware()(req), {
+//         callbacks: { authorized: ({ token }) => token !== undefined },
+//         pages: {
+//           newUser: `/${locale}/auth`,
+//           signIn: `/${locale}/auth/sign-in`,
+//           signOut: `/${locale}/auth/sign-out`,
+//         },
+//       })(req as NextRequestWithAuth, event_);
+//     }
+//   }
+
+//   // if (!userId && !isPublic) {
+//   //   redirectToSignIn();
+//   // }
+
+//   // if (!isPublic) {
+//   //   protect();
+//   // }
+
+//   // return intlMiddleware()(req); // return NextResponse.next();
+// });
+
+// const authMiddleware = clerkMiddleware();
+// export const middleware = async (
+//   request: NextRequest,
+// ): Promise<NextResponse> => {
+//   const intlRes = intlMiddleware(request);
+//   const authRes = await authMiddleware(request);
+//   return authRes;
+// };
+
+export const config = {
+  matcher: [
+    /**
+     * Skip all paths that should
+     * not be internationalized:
+     * 1. /api/ (includes trpc there)
+     * 2. /_next/ (Next.js internals)
+     * 3. /_proxy/ (OG tags proxying)
+     * 4. /_vercel (Vercel internals)
+     * 5. /_static (inside of /public)
+     * 6. /favicon.ico, /sitemap.xml, /robots.txt (static files)
+     * 7. The paths containing a file extension (e.g., .jpg, .png, etc.)
+     * @see https://nextjs.org/docs/app/building-the-application/routing/middleware#matcher
+     */
+    "/((?!api/|_next/|_proxy/|_vercel|_static|favicon.ico|sitemap.xml|robots.txt|.*\\..*).*)",
+    // ["/((?!.+.[w]+$|_next).*)"] // TODO: Learn more if this pattern makes sense for out app
+  ],
+};
+
+// export const config = {
+// };
+
+/**
+ * Learning Resources
+ * ==================
+ * @see https://authjs.dev/guides/basics/securing-pages-and-api-routes
+ * @see https://clerk.com/docs/refs/nextjs/auth-middleware
+ * @see https://console.upstash.com
+ * @see https://github.com/amannn/next-intl/blob/main/examples/example-next-13-next-auth/src/middleware.tsx
+ * @see https://github.com/amannn/next-intl/blob/main/packages/next-intl/src/middleware/middleware.tsx
+ * @see https://github.com/enalmada/nextjs-boilerplate/blob/develop/src/middleware.ts
+ * @see https://github.com/GodHermit/survival-manual/blob/main/src/_store/middlewares/settingsMiddleware.ts
+ * @see https://github.com/noodle-run/noodle/blob/main/src/middleware.ts
+ * @see https://github.com/sanity-io/demo-course-platform/blob/main/web/middleware.ts
+ * @see https://github.com/search?q=bot%7Ccrawl%7Cslurp%7Cspider&type=code
+ * @see https://github.com/sinamics/ztnet/blob/main/src/middleware.ts
+ * @see https://github.com/steven-tey/dub/blob/main/apps/web/middleware.ts
+ * @see https://github.com/svobik7/next-roots/blob/master/examples/with-preferred-language-middleware/middleware.ts
+ * @see https://github.com/vercel/examples/tree/main/edge-middleware/geolocation
+ * @see https://github.com/vercel/next.js/issues/43704
+ * @see https://next-intl-docs.vercel.app/docs/getting-started/app-router
+ * @see https://next-intl-docs.vercel.app/docs/routing/middleware
+ * @see https://next-intl-docs.vercel.app/docs/routing/middleware#example-auth-js
+ * @see https://next-intl-docs.vercel.app/docs/routing/middleware#unable-to-find-locale
+ * @see https://nextjs.org/docs/app/building-the-application/routing/middleware
+ *
+ * @see https://github.com/amannn/next-intl/issues/596#issuecomment-1857635793
+ * @see https://github.com/amannn/next-intl/issues/596#issuecomment-1964870647
+ * @see https://github.com/nextauthjs/next-auth/issues/9536#issuecomment-1880180450
+ */
+
+// FOR DEBUG PURPOSES ================================
+// export default function middleware(req: NextRequest) {
+//   return NextResponse.next();
+// }

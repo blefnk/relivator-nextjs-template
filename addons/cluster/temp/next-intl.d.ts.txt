@@ -1,0 +1,14 @@
+// 🟡 DEPRECATED AND POSSIBLY WILL BE UPDATED IN RELIVATOR 1.3.0 🟡 ||
+// ================================================================= ||
+
+/**
+ * This file is used to declare global i18n IDE types.
+ * They are then automatically imported into project.
+ */
+
+type CommonMessages = typeof import("~/messages/en-us.json");
+// type AccountMessages = typeof import("../../messages/en-us/account.json");
+
+// declare interface IntlMessages extends CommonMessages, AccountMessages {/**/}
+// declare type IntlMessages = CommonMessages & {/**/}
+declare type IntlMessages = CommonMessages;

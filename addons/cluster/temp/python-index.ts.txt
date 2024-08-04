@@ -1,0 +1,168 @@
+import {
+  getFlags,
+  getScriptFiles,
+  instructions,
+} from "@/reliverse/relimter/python/utils/helpers";
+import {
+  runScriptPython,
+  validatePythonInstallation,
+} from "@/reliverse/relimter/python/utils/shell";
+import { defineAddon } from "@/shared/utils";
+import * as p from "@clack/prompts";
+import { defineCommand, runMain } from "citty";
+import consola from "consola";
+import { join } from "pathe";
+import { isWindows } from "std-env";
+
+import { getCurrentDirname } from "~/utils";
+
+// More stable alternative of this script manager is Python
+// version: `reli:manager` or py addons/reliverse/relimter/python/main.py
+// Please note that both script managers implementations are not fully finished and not fully tested.
+
+// Ensure you've the ".venv" folder located in the "addons/reliverse/relimter/python/tasks" folder:
+// [1] Install https://astral.sh and run "venv" inside that folder.
+// [2] Install the Python and Ruff extensions for VSCode.
+// [3] Press "Ctrl+Shift+P" in VSCode --> ">Python: Select Interpreter" --> set this path:
+// ".venv/Scripts/python.exe"
+// [4] Run .venv/Scripts/activate from the root to activate virtual environment.
+// [5] Navigate to the "addons/reliverse/relimter/python/tasks" directory by using the "cd" command in the terminal.
+// [6] And, finally, run "pip sync requirements.txt" command.
+// Almost all scripts are untested. Please commit your code before running any script, just in case.
+// No worries! We'll test if you have everything set up correctly.
+// Please visit https://discord.gg/Pb8uKbwpsJ if you need any help.
+// Before running script manager, please make your VSCode terminal window size higher to avoid some UI glitches.
+
+// How to activate the virtual environment and install dependencies if required:
+// source .venv/Scripts/activate (on bash execute it with 'source')
+// pip sync requirements.txt
+// [if required] pip install click InquirerPy
+// pip freeze | pip compile - -o requirements.txt
+
+// If you need to remove something, example:
+// pip uninstall torch
+// pip freeze | pip compile - -o requirements.txt
+
+const currentDirname = getCurrentDirname(import.meta.url);
+
+const rootDirectory = join(currentDirname, "../../../..");
+
+const pathVenv = join(
+  rootDirectory,
+  isWindows ? ".venv/Scripts/python.exe" : ".venv/bin/python3",
+);
+
+const pathTasks = join(currentDirname, "tasks");
+
+const scriptFiles = getScriptFiles(pathTasks);
+const flags = getFlags(scriptFiles);
+const withFlag = flags.some((flag: string) => process.argv.includes(flag));
+
+const main = defineCommand({
+  meta: {
+    description: "@reliverse/addons-relimter/python",
+    name: "codemod",
+    version: "0.0.0-canary.0",
+  },
+
+  args: scriptFiles.reduce((arguments_, script) => {
+    // We're using 'arguments_', because TypeScript linter tells:
+    // Invalid use of 'arguments'. Modules are automatically in strict mode.
+    // @ts-expect-error TODO: fix
+    arguments_[script.file.replace(/\.py$/, "")] = {
+      type: "boolean",
+      description: `@reliverse/addons-relimter/python/tasks/${script.file}`,
+    };
+
+    return arguments_;
+  }, {}),
+  async run() {
+    const accepted = await p.confirm({
+      initialValue: true,
+      message: instructions(pathVenv),
+    });
+
+    if (accepted) {
+      consola.info(
+        defineAddon(
+          "🐍",
+          "@reliverse/addons-relimter/python",
+          "python script to run",
+          "<enter>",
+        ),
+      );
+
+      const selected = await p.select({
+        maxItems: 5,
+        message: "Select the Python script to run",
+        options: [
+          {
+            hint: "You can use Cmd/Ctrl+C anywhere to exit",
+            label: "0. Exit from script manager",
+            value: "exit",
+          },
+          ...scriptFiles.map((script) => ({
+            hint: script.hint || "No description available",
+            label: `${script.index}. ${script.name}`,
+            value: script.file,
+          })),
+        ],
+      });
+
+      if (selected === "exit") {
+        consola.info("Exited.");
+        process.exit(0);
+      }
+
+      validatePythonInstallation();
+
+      const selectedScript = scriptFiles.find(
+        (script) => script.file === selected,
+      );
+
+      if (selectedScript) {
+        runScriptPython(
+          selectedScript.file,
+          selectedScript.name,
+          pathVenv,
+          pathTasks,
+          selectedScript.index,
+        );
+      }
+    }
+  },
+});
+
+async function withArgument() {
+  const accepted = await p.confirm({
+    initialValue: true,
+    message: instructions(pathVenv),
+  });
+
+  if (accepted) {
+    const flagged = process.argv[2] as string;
+    const flagIndex = Number.parseInt(flagged.replace("--", ""), 10);
+
+    const selectedScript = scriptFiles.find(
+      (script) => script.index === flagIndex,
+    );
+
+    if (selectedScript) {
+      runScriptPython(
+        selectedScript.file,
+        selectedScript.name,
+        pathVenv,
+        pathTasks,
+        selectedScript.index,
+      );
+    }
+  }
+}
+
+if (withFlag) {
+  await withArgument();
+} else {
+  runMain(main);
+}
+
+export default main;

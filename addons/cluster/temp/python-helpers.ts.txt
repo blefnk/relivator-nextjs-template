@@ -1,0 +1,76 @@
+import fs from "fs-extra";
+import { join } from "pathe";
+import pc from "picocolors";
+import { isWindows } from "std-env";
+
+export const instructions = (pathVenv: string): string => {
+  const pathVenvTrimmed = isWindows
+    ? pathVenv.replace(/\/python\.exe$/, "")
+    : pathVenv.replace(/\/python3$/, "");
+
+  const relativePathVenv = pathVenvTrimmed.replace(
+    /^.*addons\/reliverse\/relimter\/python\/tasks\//,
+    "addons/reliverse/relimter/python/tasks/",
+  );
+
+  const activateCommand = isWindows
+    ? ".venv/Scripts/activate"
+    : `source ${relativePathVenv}/activate`;
+
+  return `${pc.bold(`Ensure you've the ".venv" folder located in the "addons/reliverse/relimter/python/tasks" folder:`)}
+    [1] Install https://astral.sh and run "venv" inside that folder.
+    [2] Install the Python and Ruff extensions for VSCode.
+    [3] Press "Ctrl+Shift+P" in VSCode --> ">Python: Select Interpreter" --> set this path: "${pc.green(pathVenv)}"
+    [4] Run ${pc.green(activateCommand)} from the project root to activate new virtual environment.
+    [5] Navigate to the "addons/reliverse/relimter/python/tasks" directory by using the "cd" command in the terminal.
+    [6] And, finally, run "pip sync requirements.txt" command.
+    ${pc.red("Almost all scripts are untested. Please commit your code before running any script, just in case.")}
+    ${pc.magenta("Try to increase your VSCode terminal window size to avoid UI glitches if you get any.")}
+    ${pc.bold("Are you ready? No worries! We'll test if you have everything set up correctly.")}
+    Please visit https://discord.gg/Pb8uKbwpsJ if you need any help.
+    ${pc.dim(pc.italic("Please make your VSCode terminal window size higher to avoid some UI glitches."))}
+    ${pc.dim(pc.italic("More stable version of this script: py addons/reliverse/relimter/python/index.py"))}\n`;
+};
+
+// Function to convert filename to readable name
+export function toReadableName(filename: string) {
+  return filename
+    .replace(/-/g, " ")
+    .replace(/\.py$/, "")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+// Function to extract the first comment from a Python file
+export function extractFirstComment(filePath: string) {
+  const fileContent = fs.readFileSync(filePath, "utf8");
+  const lines = fileContent.split("\n");
+
+  for (const line of lines) {
+    if (line.trim().startsWith("#")) {
+      // Remove the '#' and any leading whitespace
+      return line.replace(/^#\s*/, "");
+    }
+  }
+
+  return "";
+}
+
+// Return an empty string if no comment is found
+
+// Read all .py files from the tasks folder
+export function getScriptFiles(pathTasks: string) {
+  return fs
+    .readdirSync(pathTasks)
+    .filter((file) => file.endsWith(".py"))
+    .map((file, index) => ({
+      name: toReadableName(file),
+      file,
+      hint: extractFirstComment(join(pathTasks, file)),
+      index: index + 1,
+    }));
+}
+
+// Generate dynamic flags
+export function getFlags(scriptFiles: ReturnType<typeof getScriptFiles>) {
+  return scriptFiles.map((script) => `--${script.index}` as const);
+}

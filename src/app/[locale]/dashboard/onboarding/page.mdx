@@ -1,0 +1,53 @@
+import { config } from "@reliverse/core";
+
+export const metadata = {
+  title: "Developer Onboarding",
+  author: "Nazar Kornienko"
+  ,
+}
+
+## Developer Onboarding
+
+_Last updated: August 4, 2024_
+
+Welcome to Relivator 1.2.6, a project created by @blefnk Nazar Kornienko.
+
+🚀 Yay! Congrats on the installation! If you like it, please [give us a star](https://github.com/blefnk/relivator-nextjs-template) on GitHub! 🙏
+
+This text comes from a component in the special folder called `cluster`. **This text can only be seen in development mode.** You can read about this folder at the end of this onboarding tutorial. Thank you for installing Relivator!
+
+RECOMMENDED STEPS
+
+Click on everything you see in the app to learn how it works.
+
+Go to <a href={`${config.framework.repo}#readme`}>{config.framework.name}'s README.md</a>; and read the latest documentation.
+
+Read the `The Cluster Folder` section below. Create the own component.
+
+Join the project's <a href="https://discord.gg/Pb8uKbwpsJ">Discord server</a>. Star Relivator's <a href={config.framework.repo}>GitHub repo</a>.
+
+Contribute to the project or <a href={`${config.framework.repo}/issues`}>create a new issue</a>, and grab some gifts.
+
+THE CLUSTER FOLDER
+
+The `cluster` folder is for the own components and files that you can store in it, ensuring they will not be overwritten when new Relivator updates are released.
+
+You can also use the `cluster` folder to override the default components and files that come with Relivator. This is useful if you want to make changes to the default components and files provided by Relivator.
+
+For example, if you want to override the default `app.ts` file, you can place an `app.ts` file in the cluster folder. The `app.ts` file in the cluster folder will override the default `app.ts` file that comes with Relivator.
+
+The same applies to any other component or file that you want to override. **Make sure to replace the paths in the original files** with the paths to the cluster folder when overriding the original components and files.
+
+Additionally, you can easily migrate to Relivator by placing specific parts or the entire current React project in this folder and then incrementally adopting it to work with Relivator.
+
+HAVE ANY QUESTIONS OR ISSUES?
+
+If you have any questions or issues regarding this project, please contact us:
+
+By visiting our <a href="https://discord.gg/Pb8uKbwpsJ">Discord server</a>
+By email: <a href={config.social.email}>blefnk@gmail.com</a>
+By creating a <a href={`${config.framework.repo}/issues`}>new issue</a>
+
+HOW TO DISABLE THIS MESSAGE?
+
+This message is disabled by default in production. To disable also for development, you can just remove  and  files in the  folder.

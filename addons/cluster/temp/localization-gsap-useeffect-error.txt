@@ -1,0 +1,548 @@
+"use client";
+
+import { ButtonProps } from "~/components/primitives";
+
+import { ChangeEvent, ReactNode } from "react";
+import { useRef, useState, useTransition } from "react";
+
+import clsx from "clsx";
+import { useParams, usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
+
+import { labels, locales } from "~/config/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "~/components/Primitives/ui/dropdown";
+import { Button } from "~/components/Primitives/ui/Button";
+import { cn } from "~/utils";
+
+import "~/styles/flags/flags.min.css";
+
+
+// TODO Fix: When closing dropdown on production the following error occurs:
+// `Application error: a client-side exception has occurred (see the browser console for more information).`
+// DOMException: Node.insertBefore: Child to insert before is not a child of this node
+
+type LocalizationMainSwitcherProps = {
+  tTitle: string;
+} & ButtonProps;
+
+type Props = {
+  children: ReactNode;
+  defaultValue: string;
+  label: string;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function LocalizationMainSwitcher({
+  tTitle,
+}: LocalizationMainSwitcherProps) {
+  const currentLocale = useLocale();
+
+  return (
+    <div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild className="outline-none">
+          <Button variant="outline">
+            <span>
+              <span
+                className={`
+                  hidden
+
+                  md:flex
+                `}
+              >
+                <LocaleFlagIcon locale={currentLocale} />
+                {/* <LocaleFlagIcon flag={currentAppLocale.flag} /> */}
+                {labels[currentLocale as keyof typeof labels]}
+                {/* {currentAppLocale.label} */}
+              </span>
+              <span
+                className={`
+                  block
+
+                  md:hidden
+                `}
+              >
+                <LocaleFlagIcon locale={currentLocale} />
+                {/* <LocaleFlagIcon flag={currentAppLocale.flag} /> */}
+              </span>
+            </span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel className="font-medium">
+            {tTitle}
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup
+            value={currentLocale}
+
+            // onValueChange={(val) => handleClick(val)}
+            // onValueChange={handleClick}
+          >
+            {locales.map((locale: string) => (
+              <DropdownMenuRadioItem
+                className="flex"
+                key={locale}
+                value={locale}
+
+                // value={locale.code}
+                // key={locale.code}
+              >
+                {/* <LocaleFlagIcon flag={locale.flag} /> */}
+                {/* ========================================== */}
+                {/* TODO: fix flags doesn't displaying in dropdown */}
+                {/* <LocaleFlagIcon locale={locale} /> */}
+                {/* ========================================== */}
+                {labels[locale as keyof typeof labels]}
+                {/* {locale.label} */}
+              </DropdownMenuRadioItem>
+            ))}
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
+  );
+}
+
+/** @see https://github.com/blefnk/relivator-nextjs-template/pull/3/commits */
+
+type LocaleFlagIconProps = {
+  locale: string;
+};
+
+/* export function LocaleFlagIconNew({ locale }: LocaleFlagIconProps) {
+  const baseLocale = locale.split("-")[0];
+  const classNameMap = {
+    en: "fi fi-gb",
+    uk: "fi fi-ua",
+    pl: "fi fi-pl border border-b-0 border-zinc-200 dark:border-none",
+    hi: "fi fi-in",
+    fa: "fi fi-ir",
+    zh: "fi fi-cn",
+  };
+  // } as Record<string, string>;
+  const className = classNameMap[baseLocale] || `fi fi-${baseLocale}`;
+
+  return <span aria-hidden="true" className={className} />;
+} */
+
+// function LocaleFlagIcon({ flag }: { flag: string }) {
+      // biome-ignore lint/style/useSelfClosingElements: <explanation>
+//   return <span aria-hidden="true" className={`mr-2 ${flag}`}></span>;
+// }
+
+export function LanguageSwitcherSelect({
+  children,
+  defaultValue,
+  label,
+}: Props) {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
+  const pathname = usePathname();
+  const parameters = useParams();
+
+  function onSelectChange(event: ChangeEvent<HTMLSelectElement>) {
+    const nextLocale = event.target.value;
+
+    startTransition(() => {
+      router.replace(
+        // @ts-expect-error -- TypeScript will validate that only known `params`
+        // are used in combination with a given `pathname`. Since the two will
+        // always match for the current route, we can skip runtime checks.
+        {
+          params: parameters,
+          pathname,
+        },
+        {
+          locale: nextLocale,
+        },
+      );
+    });
+  }
+
+  return (
+    <label
+      className={clsx(
+        "relative text-gray-400",
+        isPending &&
+          `
+            transition-opacity
+
+            [&:disabled]:opacity-30
+          `,
+      )}
+    >
+      <p className="sr-only">{label}</p>
+      <select
+        className="inline-flex appearance-none bg-transparent py-3 pl-2 pr-6"
+        defaultValue={defaultValue}
+        disabled={isPending}
+        onChange={onSelectChange}
+      >
+        {children}
+      </select>
+      <span className="pointer-events-none absolute right-2 top-[8px]">⌄</span>
+    </label>
+  );
+}
+
+// type LocaleSwitcherProps = {
+//   tTitle: string;
+//   translateLanguageNames: boolean;
+// };
+
+// TODO: Move mostly everything from LocalizationMainSwitcher to LocaleSwitcher
+// export function LocaleSwitcher({ tTitle, translateLanguageNames }: LocaleSwitcherProps) {
+export function LocaleSwitcher() {
+  // const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // const mounted = useIsClient();
+  const currentLocale = useLocale();
+  const [isOptionsExpanded, setIsOptionsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const optionsContainerRef = useRef<HTMLDivElement | null>(null);
+
+  // const arrowRef = useRef<SVGSVGElement | null>(null); // doesn't work
+
+  // gsap.registerPlugin(useGSAP); // 🐞
+
+  // TODO: Find the current app locale object or default to the first one
+  // const currentAppLocale =
+  //   locales.find((locale) => locale.code === currentLocale) ||
+  //   locales.find((locale) => locale.code === defaultLocale);
+
+  // TODO: In case locales array is empty
+  // if (!currentAppLocale) {
+  //   consola.error("currentAppLocale is undefined");
+  //   return null;
+  // }
+
+  // if (!mounted) {
+  //   return (
+  //     <Button
+  //       disabled
+  //       aria-label="Language Switcher"
+  //       className="rounded-lg border"
+  //       variant="ghost"
+  //       {...props}
+  //     >
+  //       <span className="hidden sm:block">
+  //         <LocaleFlagIcon locale={currentLocale} />
+  //         {/* <LocaleFlagIcon flag={currentAppLocale.flag} /> */}
+  //         {labels[currentLocale as keyof typeof labels]}
+  //         {/* {currentAppLocale.label} */}
+  //       </span>
+  //       <span className="-mr-2 block sm:hidden">
+  //         <LocaleFlagIcon locale={currentLocale} />
+  //         {/* <LocaleFlagIcon flag={currentAppLocale.flag} /> */}
+  //       </span>
+  //     </Button>
+  //   );
+  // }
+
+  type Option = {
+    code: string;
+    country: string;
+  };
+
+  const options = locales.map((locale) => ({
+    code: locale,
+    country: labels[locale],
+  })) satisfies Option[];
+
+  const setOption = (option: Option) => {
+    setIsOptionsExpanded(false);
+
+    const pathSegments = (pathname || "")
+      .split("/")
+      .filter((segment) => segment.trim() !== "");
+    let newPath = `/${option.code}`;
+
+    if (
+      pathSegments.length > 0 &&
+      options.some((opt) => opt.code === pathSegments[0])
+    ) {
+      pathSegments[0] = option.code;
+      newPath = `/${pathSegments.join("/")}`;
+    } else {
+      newPath += pathname !== "/" ? pathname : "";
+    }
+
+    router.push(newPath);
+  };
+
+  // const handleClick = (locale: string) => {
+  //   router.replace(
+  //     `${pathname}${locale ? `/${locale}` : ""}${
+  //       searchParams ? `/?${searchParams}` : ""
+  //     }`,
+  //     { scroll: true },
+  //   );
+  // router.replace(`${pathname}?${searchParams}`, { locale });
+  // router.replace(`${pathname}${locale ? `/${locale}` : `${pathname}`}`, {
+  //   scroll: true,
+  // });
+  // router.replace(`${pathname}?${searchParams}`, {
+  //   scroll: true,
+  // });
+  // redirect(`${pathname}?${searchParams}`);
+  // };
+
+  // Ensure GSAP animation works on the first interaction by setting
+  // the initial styles (they will be in the DOM but hidden).
+  // upd. Since CSS will handle the initial hidden state,
+  // we can remove the GSAP set method in the useEffect.
+  // TODO: Remove when we're sure it's no longer useful.
+  /* useEffect(() => {
+    gsap.set(optionsContainerRef.current, {
+      display: "none",
+      opacity: 0,
+      scaleY: 0,
+      transformOrigin: "top",
+    });
+    gsap.set(arrowRef.current, { // doesn't work
+      rotate: 0,
+    });
+  }, []); */
+
+  /* useGSAP( // 🐞
+    () => {
+      if (isOptionsExpanded) {
+        gsap.to(optionsContainerRef.current, {
+          display: "block",
+          duration: 0.5,
+          ease: "power2.inOut",
+          opacity: 1,
+          scaleY: 1,
+        });
+
+        // gsap.to(arrowRef.current, {
+        //   rotate: 180,
+        //   duration: 0.5,
+        //   ease: "expo.inOut",
+        // }); // doesn't work
+      } else {
+        gsap.to(optionsContainerRef.current, {
+          duration: 0.5,
+          ease: "power2.inOut",
+          onComplete: () => {
+            if (optionsContainerRef.current) {
+              optionsContainerRef.current.style.display = "none";
+            }
+          },
+          opacity: 0,
+          scaleY: 0,
+        });
+
+        // gsap.to(arrowRef.current, {
+        //   rotate: 0,
+        //   duration: 0.5,
+        //   ease: "power2.inOut",
+        // }); // doesn't work
+      }
+    },
+    {
+      dependencies: [isOptionsExpanded],
+      scope: containerRef,
+    },
+  ); */ // 🐞
+
+  // TODO: Fix dropdown items displaying
+  return (
+    <div className="flex items-center justify-center">
+      {/* <DropdownMenu> */}
+      <div className="relative text-sm" ref={containerRef}>
+        <div>
+          {/* <DropdownMenuTrigger asChild className="outline-none"> */}
+          <Button
+            className={`
+              inline-flex items-center justify-between rounded-lg px-6 py-2.5
+              text-center text-sm font-medium
+            `}
+            onBlur={() => setIsOptionsExpanded(false)}
+            onClick={() => setIsOptionsExpanded(!isOptionsExpanded)}
+            variant="outline"
+          >
+            <span className="flex">
+              <LocaleFlagIcon locale={currentLocale} />
+              <span
+                className={`
+                  hidden
+
+                  md:block
+                `}
+              >
+                &nbsp;{labels[currentLocale as keyof typeof labels]}
+              </span>
+            </span>
+            <svg
+              className={`
+                size-4 transition-transform duration-200
+
+                ease-in-out${isOptionsExpanded ? "rotate-180" : "rotate-0"}
+              `}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+
+              // TODO: GSAP:
+              // className="h-4 w-4 transform transition-transform duration-200 ease-in-out" // doesn't work
+            >
+              <title>Arrow</title>
+              <path
+                d="M19 9l-7 7-7-7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+              />
+            </svg>
+          </Button>
+        </div>
+        {/* </DropdownMenuTrigger> */}
+        {/* <DropdownMenuContent> */}
+        {/* <DropdownMenuLabel className="font-medium">{tTitle}</DropdownMenuLabel> */}
+        {/* <h2 className="font-medium">{tTitle}</h2> */}
+        {/* <DropdownMenuSeparator /> */}
+        {/* <DropdownMenuRadioGroup */}
+        <div
+          className={`
+            absolute inset-x-0 mb-4 divide-y overflow-hidden rounded-lg
+            shadow-lg
+          `}
+          ref={optionsContainerRef}
+          style={{
+            display: "none",
+            opacity: 0,
+            transform: "scaleY(0)",
+            transformOrigin: "top",
+          }}
+
+          // Useful in case with useEffect
+          // style={{
+          //   transformOrigin: "top",
+          //   display: isOptionsExpanded ? "block" : "none",
+          // ref={optionsContainerRef}
+          // }}
+        >
+          <ul className="mt-4">
+            {options.map((locale, index) => (
+              // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
+              <li
+                className={
+                  cn(
+                    `
+                      flex cursor-pointer items-center bg-slate-50 px-3 py-2
+                      transition-colors duration-300
+
+                      dark:bg-zinc-900 dark:hover:bg-zinc-900
+
+                      hover:bg-slate-100
+                    `,
+                  )
+
+                  // value={locale.code}
+                }
+                key={index}
+                onClick={() => setIsOptionsExpanded(false)}
+                onMouseDown={
+                  (event_) => {
+                    event_.preventDefault();
+                    setOption(locale);
+                  }
+
+                  // <DropdownMenuRadioItem
+                }
+              >
+                <span
+                  className={`
+                    hidden
+
+                    md:block
+                  `}
+                >
+                  <LocaleFlagIcon locale={locale.code} />
+                </span>
+                &nbsp;&nbsp;{locale.country}
+                {pathname === `/${locale.code}` && (
+                  <svg
+                    className="ml-auto size-7"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Locale Switcher Arrow Icon</title>
+                    <path
+                      d="M5 13l4 4L19 7"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={3}
+                    />
+                  </svg>
+                )}
+                {/* </DropdownMenuRadioItem> */}
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* </DropdownMenuRadioGroup> */}
+        {/* </DropdownMenuContent> */}
+      </div>
+      {/* </DropdownMenu> */}
+    </div>
+  );
+}
+
+function LocaleFlagIcon({ locale }: LocaleFlagIconProps) {
+  // const baseLocale = locale.split("-")[0];
+
+  const flagIcon = locale;
+
+  if (flagIcon === "en") {
+    return <span aria-hidden="true" className="fi fi-gb" />;
+  } else if (flagIcon === "uk") {
+    return <span aria-hidden="true" className="fi fi-ua" />;
+  } else if (flagIcon === "pl") {
+    return (
+      <span
+        aria-hidden="true"
+        className={`
+          fi fi-pl border border-b-0 border-zinc-200
+
+          dark:border-none
+        `}
+      />
+    );
+  } else if (flagIcon === "hi") {
+    return <span aria-hidden="true" className="fi fi-in" />;
+  } else if (flagIcon === "fa") {
+    return <span aria-hidden="true" className="fi fi-ir" />;
+  } else if (flagIcon === "zh") {
+    return <span aria-hidden="true" className="fi fi-cn" />;
+  }
+
+  return (
+    <>
+      {/* <span className="fi fi-ua"></span> */}
+      {/* &nbsp;{baseLocale} */}
+      <span
+        aria-hidden="true"
+        className={`
+          fi
+
+          fi-${flagIcon}
+        `}
+      />
+    </>
+  );
+}

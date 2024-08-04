@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "Schema for the players' data.",
+  "properties": {
+    "players": {
+      "type": "array",
+      "description": "List of players.",
+      "items": {
+        "type": "object",
+        "description": "Player information.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the player."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the player."
+          },
+          "achievements": {
+            "type": "array",
+            "description": "List of achievements unlocked by the player.",
+            "items": {
+              "type": "object",
+              "description": "Achievement details.",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the achievement."
+                },
+                "unlockedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timestamp when the achievement was unlocked."
+                }
+              },
+              "required": ["name", "unlockedAt"]
+            }
+          },
+          "scores": {
+            "type": "object",
+            "description": "Scores obtained by the player.",
+            "properties": {
+              "eslint": {
+                "type": "integer",
+                "description": "Score obtained in eslint."
+              },
+              "bonus": {
+                "type": "integer",
+                "description": "Bonus score obtained by the player."
+              }
+            }
+          }
+        },
+        "required": ["id", "name"]
+      }
+    }
+  },
+  "required": ["players"]
+}

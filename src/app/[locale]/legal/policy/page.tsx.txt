@@ -1,0 +1,21 @@
+// eslint-disable-next-line no-relative-import-paths/no-relative-import-paths
+import Link from "next/link";
+import Content from "./content.mdx";
+
+// export const dynamic = "force-static";
+export default function TermsPage() {
+  return (
+    <article
+      className={`
+        prose pb-8
+
+        dark:prose-invert
+
+        lg:prose-xl
+      `}
+    >
+      {/* <Content /> */}
+      <Link href="/legal/terms/policy">Terms of Service</Link>
+    </article>
+  );
+}

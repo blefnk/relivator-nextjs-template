@@ -1,0 +1,41 @@
+import { useLocale, useTranslations } from "next-intl";
+
+import { LanguageSwitcherSelect } from "~/components/Common/localization";
+import { locales, translateLanguageNames } from "~/config/navigation";
+
+export function LanguageSwitcher() {
+  const t = useTranslations("LocaleSwitcher");
+  const locale = useLocale();
+
+  return (
+    <LanguageSwitcherSelect defaultValue={locale} label={t("label")}>
+      {translateLanguageNames ? (
+        <>
+          {/* {locales.map((current) => (
+            <option key={current} value={current}>
+              {t("locale", { locale: current })}
+            </option>
+          ))} */}
+          {locales.map((current) => (
+            <option key={current} value={current}>
+              {t("locale", {
+                locale: current,
+              })}
+            </option>
+          ))}
+        </>
+      ) : (
+        <>
+          {locales.map((current) => (
+            <option key={current} value={current}>
+              {/* <LocaleFlagIcon locale={cur} /> */}
+              {t("locale", {
+                locale: current,
+              })}
+            </option>
+          ))}
+        </>
+      )}
+    </LanguageSwitcherSelect>
+  );
+}

@@ -1,0 +1,49 @@
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/browser/reliverse/ui/CardUI";
+import { baseUrl } from "@/browser/shared/utils/url";
+
+import { authProvider } from "~/auth";
+import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { ProductAddForm } from "~/components/Forms";
+
+export const metadata: Metadata = {
+  description: "Add a new product",
+  title: "New Product",
+};
+
+type NewProductPageProps = {
+  params: {
+    storeId: string;
+  };
+};
+
+export default async function NewProductPage({ params }: NewProductPageProps) {
+  const user = await authjs();
+
+  if (!user) {
+    redirect("/auth");
+  }
+
+  const { storeId } = params;
+
+  return (
+    <Card>
+      <CardHeader className="space-y-1">
+        <CardTitle className="text-2xl">Add product</CardTitle>
+        <CardDescription>Add a new product to the store</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ProductAddForm storeId={storeId} {...(null as any)} />
+      </CardContent>
+    </Card>
+  );
+}

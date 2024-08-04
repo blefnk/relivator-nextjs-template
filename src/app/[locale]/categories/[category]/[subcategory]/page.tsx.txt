@@ -1,0 +1,114 @@
+import type { Metadata } from "next";
+
+import { getProductsAction } from "@/server/reliverse/actions/product";
+import { getStoresAction } from "@/server/reliverse/actions/store";
+import { getTranslations } from "next-intl/server";
+import { titleCase } from "string-ts";
+
+import type { Product } from "~/db/schema";
+
+import { authjs } from "~/auth/authjs";
+import { Products } from "~/components/Common/products";
+import {
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "~/components/Navigation/PageNavMenu";
+import { Shell } from "~/components/Wrappers/ShellVariants";
+import { unslugify } from "~/utils";
+
+const isString = (a: unknown): a is string => typeof a === "string";
+
+type SubcategoryPageProps = {
+  params: {
+    category: Product["category"];
+    subcategory: string;
+  };
+  searchParams: Record<string, string | string[] | undefined>;
+};
+
+export function generateMetadata({ params }: SubcategoryPageProps): Metadata {
+  const subcategory = unslugify(params.subcategory);
+
+  return {
+    description: `Buy the best ${subcategory}`,
+
+    title: titleCase(subcategory),
+  };
+}
+
+export default async function SubcategoryPage({
+  params,
+  searchParams,
+}: SubcategoryPageProps) {
+  const { category, subcategory } = params;
+  const { page, per_page, price_range, sort, store_ids, store_page } =
+    searchParams;
+
+  const t = await getTranslations();
+
+  // Products transaction
+  const limit = isString(per_page) ? Number.parseInt(per_page) : 8;
+
+  const offset = isString(page) ? (Number.parseInt(page) - 1) * limit : 0;
+
+  const productsTransaction = await getProductsAction({
+    categories: category,
+    limit,
+    offset,
+    page: isString(page) ? Number.parseInt(page) : 1,
+    price_range: isString(price_range) ? price_range : null,
+    sort: isString(sort) ? sort : null,
+    store_ids: isString(store_ids) ? store_ids : null,
+    subcategories: subcategory,
+  });
+
+  const pageCount = Math.ceil(Number(productsTransaction.count) / limit);
+
+  // Stores transaction
+  const storesLimit = 25;
+
+  const storesOffset = isString(store_page)
+    ? (Number.parseInt(store_page) - 1) * storesLimit
+    : 0;
+
+  const storesTransaction = await getStoresAction({
+    limit: storesLimit,
+    offset: storesOffset,
+    sort: "productCount.desc",
+  });
+
+  const storePageCount = Math.ceil(
+    Number(storesTransaction.count) / storesLimit,
+  );
+
+  const session = await authjs();
+
+  return (
+    <Shell>
+      <PageHeader
+        aria-labelledby="subcategory-page-header-heading"
+        id="subcategory-page-header"
+      >
+        <PageHeaderHeading size="sm">
+          {titleCase(unslugify(subcategory))}
+        </PageHeaderHeading>
+        <PageHeaderDescription size="sm">
+          {t("store.categories.buyTheBest", {
+            category: unslugify(subcategory),
+          })}
+        </PageHeaderDescription>
+      </PageHeader>
+      <Products
+        aria-labelledby="subcategory-page-products-heading"
+        id="subcategory-page-products"
+        pageCount={pageCount}
+        products={productsTransaction.items}
+        session={session}
+        storePageCount={storePageCount}
+        stores={storesTransaction.items}
+        tAddToCart={t("store.products.addToCart")}
+      />
+    </Shell>
+  );
+}

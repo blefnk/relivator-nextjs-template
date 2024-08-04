@@ -1,0 +1,347 @@
+import type { FormEvent, Ref } from "react";
+import {
+  startTransition,
+  useActionState,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { flushSync } from "react-dom";
+
+import type { MakeAction } from "@/server/reliverse/actions/auth";
+
+import {
+  createColumn,
+  moveItem,
+  updateColumnName,
+} from "@/server/reliverse/actions/auth";
+import { Button } from "@radix-ui/themes";
+import consola from "consola";
+import { PlusIcon, Trash2Icon } from "lucide-react";
+import { customAlphabet } from "nanoid";
+
+import type { Item } from "~/db/schema";
+
+import {
+  Card,
+  NewCard,
+} from "~/components/Application/Experimental/Admin/card";
+import { EditableText } from "~/components/Playground/Boards/EditableText";
+import { cn, invariant, isCardTransfer, parseTransfer } from "~/utils";
+
+function genId(prefix: string) {
+  const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 10);
+
+  return [prefix, nanoid()].join("_");
+}
+
+// import { addDependency } from "nypm";
+// {deleteColumn} from "@/server/reliverse/actions/auth";
+type ColumnProps = {
+  props: {
+    name: string;
+    onCardAdd: (item: {
+      content: string;
+      id: string;
+      name: string;
+      order: number;
+    }) => void;
+    onCardDelete: (id: string) => void;
+    onCardMove: (cardId: string, toColumnId: string, order: number) => void;
+    onDelete: () => void;
+  };
+  boardId: string;
+  columnId: string;
+  items: Item[];
+  ref: Ref<HTMLDivElement>;
+};
+
+export const Column = ({
+  boardId,
+  columnId,
+  items,
+  props,
+  ref,
+}: ColumnProps) => {
+  const [acceptDrop, setAcceptDrop] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const itemRef = useCallback((node: HTMLElement | null) => {
+    node && node.scrollIntoView();
+  }, []);
+
+  const listRef = useRef<HTMLUListElement>(null);
+
+  function scrollList() {
+    if (listRef.current) {
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
+  }
+
+  // const initialState = {
+  //   name: "",
+  //   boardId,
+  // };
+  // const [state, dispatchDelete] = useActionState(
+  //   // @ts-expect-error TODO: fix
+  //   deleteColumn as MakeAction<typeof deleteColumn>,
+  //   addDependency,
+  //   initialState,
+  // );
+  // useEffect(() => {
+  //   if (state && state.error) {
+  //     consola.error(`Error deleting column: ${state.error}`);
+  //   }
+  // }, [state]);
+  return (
+    <div
+      className={cn(
+        `
+          flex max-h-full w-80 shrink-0 flex-col overflow-hidden rounded-xl
+          border-slate-400 bg-slate-100 shadow-sm shadow-slate-400
+        `,
+        acceptDrop && "outline outline-2 outline-red-500",
+      )}
+      onDragLeave={() => {
+        setAcceptDrop(false);
+      }}
+      onDragOver={(event) => {
+        if (items.length === 0 && isCardTransfer(event)) {
+          event.preventDefault();
+          setAcceptDrop(true);
+        }
+      }}
+      onDrop={async (event) => {
+        const transfer = parseTransfer(event.dataTransfer);
+
+        startTransition(() => {
+          props.onCardMove(transfer.id, columnId, 1);
+        });
+        await moveItem({
+          id: transfer.id,
+          boardId: boardId,
+          columnId: columnId,
+          order: 1,
+        });
+
+        setAcceptDrop(false);
+      }}
+      ref={ref}
+    >
+      <div className="flex items-center gap-2 p-2">
+        <EditableText
+          buttonClassName={`block rounded-lg text-left w-full border
+            border-transparent py-1 px-2 font-medium text-slate-600`}
+          buttonLabel={`Edit column "${props.name}" name`}
+          fieldName="name"
+          inputClassName="border border-slate-400 w-full rounded-lg py-1 px-2 font-medium text-black"
+          inputLabel="Edit column name" // @ts-expect-error TODO: Fix ts
+          onSubmit={async (newName: string) => {
+            await updateColumnName({
+              boardId: boardId,
+              columnId: columnId,
+              newName,
+            });
+          }}
+          value={props.name}
+        >
+          <input name="id" type="hidden" value={columnId} />
+        </EditableText>
+        <form
+          className="p-2"
+          onSubmit={(event: FormEvent) => {
+            event.preventDefault();
+            const fd = new FormData(event.currentTarget as HTMLFormElement);
+
+            props.onDelete();
+            // @ts-expect-error TODO: Fix ts
+            dispatchDelete(fd);
+          }}
+        >
+          <input name="boardId" type="hidden" value={boardId} />
+          <input name="columnId" type="hidden" value={columnId} />
+          <button
+            className={`
+              rounded border border-transparent p-1
+
+              hover:border-red-500 hover:text-red-500
+            `}
+            type="submit"
+          >
+            <Trash2Icon className="size-4" />
+          </button>
+        </form>
+      </div>
+      <ul className="grow overflow-auto" ref={listRef}>
+        {[...items]
+          .sort((a, b) => (a.order || 0) - (b.order || 0))
+          .map((item, index, items) => (
+            <Card
+              boardId={boardId}
+              columnId={columnId} // @ts-expect-error TODO: fix
+              content={item.content}
+              id={item.id}
+              key={item.id}
+              nextOrder={items[index + 1]?.order || (item.order || 0) + 1}
+              onDelete={() => {
+                props.onCardDelete(item.id);
+              }}
+              onMove={(cardId: string, toColumnId: string, order: number) => {
+                props.onCardMove(cardId, toColumnId, order);
+              }}
+              order={item.order}
+              previousOrder={items[index - 1]?.order || 0}
+              ref={itemRef}
+              title={item.title}
+            />
+          ))}
+      </ul>
+      {edit ? (
+        // @ts-expect-error TODO: Fix ts
+        <NewCard
+          boardId={boardId}
+          nextOrder={items.length === 0 ? 1 : (items.at(-1)?.order || 0) + 1}
+          onComplete={() => {
+            setEdit(false);
+          }}
+          onCreate={(item) => {
+            // @ts-expect-error TODO: Fix ts
+            props.onCardAdd(item);
+          }}
+        />
+      ) : (
+        <div className="p-2">
+          <button
+            className={`
+              flex w-full items-center gap-2 rounded-lg p-2 text-left
+              font-medium text-slate-500
+
+              focus:bg-slate-200
+
+              hover:bg-slate-200
+            `}
+            onClick={() => {
+              flushSync(() => {
+                setEdit(true);
+              });
+              scrollList();
+            }}
+            type="button"
+          >
+            <PlusIcon /> Add a card
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+type NewColumnProps = {
+  boardId: string;
+  editInitially: boolean;
+  onCreate: (col: {
+    id: string;
+    name: string;
+  }) => void;
+};
+
+export function NewColumn({
+  boardId,
+  editInitially,
+  onCreate,
+}: NewColumnProps) {
+  const [editing, setEditing] = useState(editInitially);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const initialState = {
+    name: "",
+    boardId,
+  };
+
+  const dependencies = {
+    name: "",
+    boardId,
+  };
+
+  const [state, dispatch] = useActionState(
+    // @ts-expect-error TODO: fix
+    createColumn as MakeAction<typeof createColumn>,
+    initialState,
+    dependencies,
+  );
+
+  useEffect(() => {
+    if (state?.error) {
+      consola.error(`Error creating column: ${state.error}`);
+    }
+  }, [state]);
+
+  return editing ? (
+    <form
+      className={`
+        flex max-h-full w-80 flex-col gap-5 overflow-hidden rounded-xl border
+        bg-slate-100 p-2 shadow
+      `}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          setEditing(false);
+        }
+      }}
+      onSubmit={(event: FormEvent) => {
+        event.preventDefault();
+        invariant(inputRef.current, "missing input ref");
+        const fd = new FormData(event.currentTarget as HTMLFormElement);
+
+        if (inputRef.current) {
+          inputRef.current.value = "";
+        }
+
+        onCreate({
+          id: fd.get("id") as string,
+          name: fd.get("name") as string,
+        });
+
+        dispatch();
+      }}
+    >
+      <input name="id" type="hidden" value={genId("col")} />
+      <input name="boardId" type="hidden" value={boardId} />
+      <input
+        className={`
+          w-full rounded-lg border border-slate-400 px-2 py-1 font-medium
+          text-black
+        `}
+        name="name"
+        ref={inputRef}
+        required
+        type="text"
+      />
+      <div className="flex justify-between">
+        <Button>Save Column</Button>
+        <Button
+          color="gray"
+          onClick={() => {
+            setEditing(false);
+          }}
+        >
+          Cancel
+        </Button>
+      </div>
+    </form>
+  ) : (
+    <button
+      aria-label="Add new column"
+      className={`
+        flex size-16 justify-center rounded-xl bg-black/20
+
+        hover:bg-black/10
+      `}
+      onClick={() => {
+        setEditing(true);
+      }}
+      type="button"
+    >
+      <PlusIcon className="size-8 self-center" />
+    </button>
+  );
+}

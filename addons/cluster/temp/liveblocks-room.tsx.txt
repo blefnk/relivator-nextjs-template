@@ -1,0 +1,37 @@
+"use client";
+
+import { ReactNode } from "react";
+
+import { ClientSideSuspense } from "@liveblocks/react";
+
+import { env } from "~/env";
+import { RoomProvider } from "~/config/liveblocks.config";
+
+// TODO: W.I.P.
+
+/** @see https://liveblocks.io/docs/get-started/nextjs */
+
+export function Room({ children }: { children: ReactNode }) {
+  return (
+    <>
+      {env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY ? (
+        <RoomProvider
+          id="my-room"
+          // @ts-expect-error TODO: Fix
+          initialPresence={
+            {
+              /* - */
+            }
+          }
+        >
+          {/* <ClientSideSuspense fallback={<div>Loading…</div>}> */}
+          {/* <ClientSideSuspense fallback={<FakeLoadingVariantOne />}> */}
+          <ClientSideSuspense fallback={<>...</>}>
+            {( ) =>
+              children}
+          </ClientSideSuspense>
+        </RoomProvider>
+      ) : null}
+    </>
+  );
+}

@@ -1,0 +1,42 @@
+import type { Metadata } from "next";
+
+import { getTranslations } from "next-intl/server";
+
+import { HomeFeaturedItems } from "~/components/Commerce/FeaturedStoreItems";
+import { Features } from "~/components/Common/features";
+import HomeBottomSection from "~/components/Marketing/BottomSection";
+import HomeHeroSection from "~/components/Marketing/HeroSection";
+import HomeMainSection from "~/components/Marketing/MainSection";
+import { SiteFooter } from "~/components/Navigation/SiteFooter";
+import { SiteHeader } from "~/components/Navigation/SiteHeader";
+import { FrequentlyAskedQuestions } from "~/components/Sections/Questions/Questions/Index";
+import { Shell } from "~/components/Wrappers/ShellVariants";
+import { siteConfig } from "~/app";
+
+export async function generateMetadata() {
+  const t = await getTranslations();
+
+  const metadata: Metadata = {
+    title: `${t("metadata.title.home")} - ${siteConfig.name}`,
+  };
+
+  return metadata;
+}
+
+// @see https://github.com/blefnk/relivator-nextjs-template
+export default function HomePage() {
+  return (
+    <>
+      <SiteHeader />
+      <Shell>
+        <HomeHeroSection />
+        <HomeFeaturedItems />
+        <HomeMainSection />
+        <Features />
+        <FrequentlyAskedQuestions />
+        <HomeBottomSection />
+      </Shell>
+      <SiteFooter />
+    </>
+  );
+} // ================================// ? The content below is deprecated/experimental,// ? and planned to be removed or added in v1.3.0// ================================// import { consola } from "consola";// import { unstable_after as after } from "next/server";// Secondary task after the page is rendered; return is the primary task// Next.js+tRPC | @see https://baselime.io/docs/sending-data/languages/next.js// @see https://nextjs.org/blog/next-15-rc#executing-code-after-a-response-with-nextafter-experimental// const debug = false;// after(() => {//   if (Math.floor(process.uptime()) > 3) {//     consola.warn("The home page took too long to render. Please try to optimize the performance.");//   } else if (debug) {//     consola.info(`The home page has been rendered in ${Math.floor(process.uptime())} seconds.`);//   }// });// ================================

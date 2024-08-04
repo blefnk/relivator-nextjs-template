@@ -1,0 +1,90 @@
+import { LocaleLayoutProps } from "~/types";
+import { Metadata, Viewport } from "next";
+
+import { polyfillCountryFlagEmojis } from "country-flag-emoji-polyfill";
+import localFont from "next/font/local";
+import { headers } from "next/headers";
+import { notFound } from "next/navigation";
+
+import { ShowInfo } from "~/components/Common/indicators-error";
+import LoglibAnalytics from "~/components/Common/loglib-analytics";
+import { TailwindScreens } from "~/components/Common/tailwind-indicator";
+import ZustandProvider from "~/components/Modules/Zustand/ZuProvider";
+import AuthProvider from "~/components/Providers/AuthProvider";
+import { NextThemesProvider } from "~/components/Providers/ThemeProvider";
+import { TooltipProvider } from "~/components/Providers/Tooltip";
+import { locales } from "~/config/navigation";
+import { TRPC } from "~/core/trpc/react";
+import { RootLayoutMetadata } from "~/data/meta";
+import { cn } from "~/utils";
+import { fontSans } from "~/utils/fonts";
+
+import "@radix-ui/themes/styles.css";
+import "~/styles/globals.css";
+
+// Each page in the app will have the following metadata, you can override
+// them by defining the metadata in the page.tsx or in children layout.tsx
+export const metadata: Metadata = RootLayoutMetadata;
+
+// @see https://nextjs.org/docs/app/api-ref/functions/generate-viewport
+export const viewport: Viewport = {
+  themeColor: [
+    {
+      color: "white",
+      media: "(prefers-color-scheme: light)",
+    },
+    {
+      color: "black",
+      media: "(prefers-color-scheme: dark)",
+    },
+  ],
+};
+
+const twemoji = localFont({
+  display: "swap",
+  src: "../../styles/fonts/twemoji.woff2",
+  variable: "--font-twemoji",
+});
+
+// This is the "root" layout. It checks for valid locales,
+// sets up the fonts, themes, analytics, providers, & more
+// This file serves as the primary entry point for the app
+// @see https://github.com/blefnk/relivator-nextjs-template#readme
+export default async function LocaleLayout({
+  children,
+  params: { locale },
+}: LocaleLayoutProps) {
+  if (!locales.includes(locale)) {
+    return notFound();
+  }
+
+  polyfillCountryFlagEmojis();
+
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          twemoji.variable,
+          fontSans.variable,
+        )}
+      >
+        <TRPC data={headers()}>
+          <NextThemesProvider>
+            <TooltipProvider>
+              <ZustandProvider>
+                <AuthProvider>
+                  <ShowInfo />
+                  {children}
+                  <Toaster />
+                </AuthProvider>
+              </ZustandProvider>
+            </TooltipProvider>
+            <TailwindScreens />
+            <LoglibAnalytics />
+          </NextThemesProvider>
+        </TRPC>
+      </body>
+    </html>
+  );
+} // =================================================================// ? The content below is deprecated/experimental,// ? and planned to be removed or added in v1.3.0// =================================================================// import { GeistSans } from "geist/font/sans";// const bodyStyle =//     locale === "en"//       ? cn(//           "container min-h-screen bg-background font-sans antialiased",//           fontHeading.variable,//           GeistSans.variable,//         )//       : cn(//           "container min-h-screen bg-background font-sans antialiased",//           fontHeading.variable,//           fontSans.variable,//         );// =================================================================// <body// className={cn("min-h-screen bg-background font-sans antialiased",// fontHeading.variable, locale === "en" ? GeistSans.variable : fontSans.variable)}// >// =================================================================// declare module "react" {// / eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style,// @typescript-eslint/consistent-type-definitions, @typescript-eslint/naming-convention// interface CSSProps {// Allow CSS custom props// [key: `--${string}`]: number | string;// }// }// =================================================================// import localFont from "next/font/local";// import { unstable_after as after } from "next/server";// import { Flowbite, ThemeModeScript } from "flowbite-react";// import { customTheme } from "~/components/Providers/FlowbiteTheme";// Secondary task after the page is rendered; return is the primary task// Next.js+tRPC | @see https://baselime.io/docs/sending-data/languages/next.js// @see https://nextjs.org/blog/next-15-rc#executing-code-after-a-response-with-nextafter-experimental// after(() => {//   if (Math.floor(process.uptime()) > 15) {//     console.warn(`LocaleLayout took too long to render (~${Math.floor(process.uptime())}s).`);//   } else if (debug) {//     console.info(`LocaleLayout has been rendered in ${Math.floor(process.uptime())} seconds.`);//   }// });// =================================================================// If you get `Failed to fetch `Roboto` from Google Fonts.`// The most popular reason is just broken internet connection.// You can try to use the local fonts instead of Google Fonts.// @example:// const interSans = localFont({//   src: "../../styles/fonts/inter.woff2",//   variable: "--font-sans",//   display: "swap",// });// const fontHeading = localFont({//   src: "../../styles/fonts/inter.woff2",//   variable: "--font-heading",//   weight: "600",//   display: "swap",// });// =================================================================// Uncomment if Flowbite is needed; currently shadcn/ui is used only// Remove Flowbite in the 1.3.0 version of Relivator// Can be added manually by running `reliverse` command// And do not forget to add the Flowbite provider to the layout:// <head><ThemeModeScript /></head>// <Flowbite theme={{ theme: customTheme }}>...</Flowbite>// =================================================================// import { Theme } from "@radix-ui/themes";// <Theme asChild radius="full">// </Theme>

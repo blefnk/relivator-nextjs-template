@@ -1,0 +1,112 @@
+import { setTimeout } from "timers/promises";
+
+import * as p from "@clack/prompts";
+import { config } from "@reliverse/core";
+import consola from "consola";
+import color from "picocolors";
+import { app } from "reliverse.config";
+
+// ? @reliverse/addons v0.0.0-canary.0
+// ? @see https://github.com/blefnk/reliverse-website-builder
+// TODO: Not finished and not used in the project yet.
+async function main() {
+  const appIsConfigured = false;
+
+  // await setTimeout(1000); // 🤔 Should we wait for the clearing?
+  p.intro(String(color.bgCyan(color.black(app.repoName))));
+
+  if (!appIsConfigured) {
+    const project = await p.group(
+      {
+        type: () =>
+          p.select({
+            initialValue: "ts",
+            maxItems: 5,
+            // eslint-disable-next-line @stylistic/max-len
+            message: `Let's configure your "${config.framework.name}" installation and addons! What kind of project things you want to configure?`,
+            options: [
+              {
+                label: "TypeScript",
+                value: "ts",
+              },
+              {
+                label: "Python",
+                value: "python",
+              },
+            ],
+          }),
+        api: () =>
+          p.password({
+            message: "Provide a Reliverse API key",
+            validate: (value) => {
+              if (!value) {
+                return "Please enter a Reliverse API key.";
+              }
+
+              if (value.length < 5) {
+                return "Reliverse API key should have at least 5 characters.";
+              }
+            },
+          }),
+        install: () =>
+          p.confirm({
+            initialValue: false,
+            message: "Do you already have dependencies installed?",
+          }),
+        tools: () =>
+          p.multiselect({
+            initialValues: ["biome", "eslint"],
+            message: "Select additional tools.",
+            options: [
+              {
+                hint: "recommended",
+                label: "Biome",
+                value: "biome",
+              },
+              {
+                hint: "recommended",
+                label: "ESLint",
+                value: "eslint",
+              },
+              {
+                label: "Stylelint",
+                value: "stylelint",
+              },
+              {
+                label: "GitHub Action",
+                value: "gh-action",
+              },
+            ],
+          }),
+      },
+      {
+        onCancel: () => {
+          p.cancel("Operation cancelled.");
+          process.exit(0);
+        },
+      },
+    );
+
+    if (project.install) {
+      const s = p.spinner();
+
+      s.start("Installing via @unjs/nypm");
+      await setTimeout(2500);
+      s.stop("Installed via @unjs/nypm");
+    }
+
+    const nextSteps = `${project.install ? "" : "npx nypm i\n"}pnpm dev`;
+
+    p.note(nextSteps, "Next steps.");
+
+    p.outro(
+      `Problems? ${color.underline(color.cyan("https://discord.gg/Pb8uKbwpsJ"))}`,
+    );
+  } else {
+    p.intro(
+      "You're ready to use @reliverse/addons. Which addon do you want to run?",
+    );
+  }
+}
+
+main().catch(consola.error);

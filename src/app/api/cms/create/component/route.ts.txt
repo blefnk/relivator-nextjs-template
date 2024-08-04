@@ -1,0 +1,73 @@
+/**
+ * Reliverse CMS v0.4.0 - CMS: Component Creation API
+ * ==================================================
+ * @see https://github.com/blefnk/reliverse
+ */
+
+import { type NextRequest, NextResponse } from "next/server";
+import path from "pathe";
+import task from "tasuku";
+import { logger } from "~/core/logs/winston";
+
+type RequestBody = {
+  title: string;
+};
+
+export async function POST(request: NextRequest) {
+  try {
+    // Parse and cast the request body to the expected type
+    const body = (await request.json()) as RequestBody;
+    const { title } = body;
+    const dir = path.join(process.cwd(), `src/app/[locale]/admin/cluster/${title}`);
+    const file = path.join(dir, "page.tsx");
+
+    await task(`Creating page for title: ${title}`, async ({ setTitle }) => {
+      // Check if the directory exists, create if not
+      if (!existsSync(dir)) {
+        await task("Creating directory", async () => {
+          mkdirSync(dir, { recursive: true });
+        });
+      }
+
+      // Check if the file already exists
+      if (existsSync(file)) {
+        setTitle("Page already exists");
+        return NextResponse.json({ message: "Page already exists" }, { status: 409 });
+      } else {
+        // Convert title to PascalCase for function name
+        const functionName = title
+          .split("-")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join("");
+
+        const content = `\
+import { GeneralShell } from "~/components/wrappers/general-shell";
+
+export default function ${functionName}() {
+  return (
+    <GeneralShell>
+      This is the "${title.replace(/-/g, " ")}" page.
+    </GeneralShell>
+  );
+};
+`;
+
+        await task("Writing file", async () => {
+          // Write the file with the chosen title and hardcoded content
+          writeFileSync(file, content, "utf8");
+        });
+
+        setTitle("Page created successfully");
+        logger.info(`Page created on the following path:\n${file}`);
+        return NextResponse.json({ message: "Page created successfully" });
+      }
+    });
+  } catch (error) {
+    logger.error(`Error creating page: ${(error as Error).message}`);
+    return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
+  }
+}
+
+export async function GET() {
+  return NextResponse.json({ message: "Method not allowed" }, { status: 405 });
+}

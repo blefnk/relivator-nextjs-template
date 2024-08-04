@@ -1,0 +1,272 @@
+import type { Metadata } from "next";
+import { revalidatePath } from "next/cache";
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+
+import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/browser/reliverse/ui/CardUI";
+import { Input } from "@/browser/reliverse/ui/Input";
+import { Label } from "@/browser/reliverse/ui/Label";
+import { Textarea } from "@/browser/reliverse/ui/Text-Area";
+import consola from "consola";
+import { and, eq, not } from "drizzle-orm";
+
+import { LoadingButton } from "~/components/Common/loading-button";
+import { getStripeAccountAction } from "~/core/stripe/actions";
+import { db } from "~/db";
+import { products, stores } from "~/db/schema";
+import { cn, formatDate } from "~/utils";
+
+// import { ConnectStoreToStripeButton } from "~/components/Common/stripe-button-connect";
+export const metadata: Metadata = {
+  description: "Manage the store",
+  title: "Manage Store",
+};
+
+type UpdateStorePageProps = {
+  params: {
+    storeId: string;
+  };
+};
+
+async function deleteStore(storeId: string) {
+  const store = await db.query.stores.findFirst({
+    columns: {
+      id: true,
+    },
+    where: eq(stores.id, storeId),
+  });
+
+  if (!store) {
+    throw new Error("Store not found");
+  }
+
+  await db.delete(stores).where(eq(stores.id, storeId));
+
+  // Delete all products of this store
+  // @ts-expect-error TODO: fix id type
+  await db.delete(products).where(eq(products.storeId, storeId));
+
+  const path = "/dashboard/stores";
+
+  revalidatePath(path);
+  redirect(path);
+}
+
+export default async function UpdateStorePage({
+  params,
+}: UpdateStorePageProps) {
+  const { storeId } = params;
+
+  async function updateStore(fd: FormData) {
+    const name = fd.get("name") as string;
+    const description = fd.get("description") as string;
+
+    const storeWithSameName = await db.query.stores.findFirst({
+      columns: {
+        id: true,
+      },
+      where: and(eq(stores.name, name), not(eq(stores.id, storeId))),
+    });
+
+    if (storeWithSameName) {
+      consola.error("Store name already taken.");
+
+      return;
+    }
+
+    await db
+      .update(stores)
+      .set({
+        name,
+        description,
+      })
+      .where(eq(stores.id, storeId));
+
+    revalidatePath(`/dashboard/stores/${storeId}`);
+  }
+
+  const store = await db.query.stores.findFirst({
+    columns: {
+      id: true,
+      name: true,
+      description: true,
+    },
+    where: eq(stores.id, storeId),
+  });
+
+  if (!store) {
+    notFound();
+  }
+
+  const { account: stripeAccount } = await getStripeAccountAction({
+    // @ts-expect-error TODO: fix id type
+    storeId,
+  });
+
+  return (
+    <div className="space-y-6">
+      {stripeAccount ? (
+        <Card
+          aria-labelledby="manage-stripe-account-heading"
+          id="manage-stripe-account"
+        >
+          <CardHeader className="space-y-1">
+            <CardTitle className="line-clamp-1 text-2xl">
+              Manage Stripe account
+            </CardTitle>
+            <CardDescription>
+              Manage the Stripe account and view the payouts
+            </CardDescription>
+          </CardHeader>
+          <CardContent
+            className={`
+              grid gap-5
+
+              sm:grid-cols-2
+            `}
+          >
+            <fieldset className="grid gap-2.5">
+              <Label htmlFor="stripe-account-email">Email</Label>
+              <Input
+                defaultValue={stripeAccount.email || "N/A"}
+                id="stripe-account-email"
+                name="stripeAccountEmail"
+                readOnly
+              />
+            </fieldset>
+            <fieldset className="grid gap-2.5">
+              <Label htmlFor="stripe-account-country">Country</Label>
+              <Input
+                defaultValue={stripeAccount.country}
+                id="stripe-account-country"
+                name="stripeAccountCountry"
+                readOnly
+              />
+            </fieldset>
+            <fieldset className="grid gap-2.5">
+              <Label htmlFor="stripe-account-currency">Currency</Label>
+              <Input
+                className="uppercase"
+                defaultValue={stripeAccount.default_currency}
+                id="stripe-account-currency"
+                name="stripeAccountCurrency"
+                readOnly
+              />
+            </fieldset>
+            <fieldset className="grid gap-2.5">
+              <Label htmlFor="stripe-account-created">Created</Label>
+              <Input
+                defaultValue={
+                  stripeAccount.created
+                    ? formatDate(stripeAccount.created * 1000)
+                    : "N/A"
+                }
+                id="stripe-account-created"
+                name="stripeAccountCreated"
+                readOnly
+              />
+            </fieldset>
+          </CardContent>
+          <CardFooter>
+            <Link
+              aria-label="Manage Stripe account"
+              className={cn(
+                buttonVariants({
+                  className: "text-center",
+                }),
+              )}
+              href="https://dashboard.stripe.com/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Manage Stripe account
+            </Link>
+          </CardFooter>
+        </Card>
+      ) : (
+        <Card
+          aria-labelledby="connect-to-stripe-heading"
+          id="connect-to-stripe"
+        >
+          <CardHeader className="space-y-1">
+            <CardTitle className="line-clamp-1 text-2xl">
+              Connect to Stripe
+            </CardTitle>
+            <CardDescription>
+              Connect the store to Stripe to start accepting payments
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {/* <ConnectStoreToStripeButton storeId={storeId} /> */}
+          </CardContent>
+        </Card>
+      )}
+      <Card aria-labelledby="update-store-heading" id="update-store">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl">Update the store</CardTitle>
+          <CardDescription>
+            Update the store name and description, or delete it
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form action={updateStore} className="grid w-full max-w-xl gap-5">
+            <fieldset className="grid gap-2.5">
+              <Label htmlFor="update-store-name">Name</Label>
+              <Input
+                aria-describedby="update-store-name-description"
+                defaultValue={store.name}
+                id="update-store-name"
+                maxLength={50}
+                minLength={3}
+                name="name"
+                placeholder="Type store name here."
+                required
+              />
+            </fieldset>
+            <fieldset className="grid gap-2.5">
+              <Label htmlFor="update-store-description">Description</Label>
+              <Textarea
+                aria-describedby="update-store-description-description"
+                defaultValue={store.description || ""}
+                id="update-store-description"
+                maxLength={255}
+                minLength={3}
+                name="description"
+                placeholder="Type store description here."
+              />
+            </fieldset>
+            <div
+              className={`
+                flex flex-col gap-2
+
+                xs:flex-row
+              `}
+            >
+              <LoadingButton>
+                Update store
+                <span className="sr-only">Update store</span>
+              </LoadingButton>
+              <LoadingButton
+                formAction={async () => {
+                  await deleteStore(storeId);
+                }}
+                variant="destructive"
+              >
+                Delete store
+                <span className="sr-only">Delete store</span>
+              </LoadingButton>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}

@@ -1,0 +1,288 @@
+import type { User } from "~/db/schema";
+
+import { currentUser } from "@clerk/nextjs/server";
+import { createId } from "@paralleldrive/cuid2";
+import { eq } from "drizzle-orm";
+
+import { auth } from "~/auth";
+import { db } from "~/db";
+import { users } from "~/db/schema";
+import { env } from "~/env";
+
+// const debug = process.env.NODE_ENV === "development";
+// This function handles user authentication and session validation.
+// It verifies user sessions, revalidate user data, and delegates authentication
+// logic to provider-specific functions based on the configured authentication provider.
+// It ensures user data consistency across the application by handling cases where
+// data might be absent or outdated due to database updates.
+export async function revalidateUser() {
+  if (env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs") {
+    return await populateAuthjsUser();
+  }
+
+  if (env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk") {
+    return await populateClerkUser();
+  }
+
+  return null;
+}
+
+// Populates the user data for the "authjs" authentication provider.
+//
+async function populateAuthjsUser() {
+  // try {
+  const session = await auth();
+
+  if (!session) {
+    return null;
+  }
+
+  // if (!user?.email) {
+  // await createNewUser("authjs", session);
+  // console.info(" ✓ New user successfully registered:", session.email);
+  // return newUser;
+  // }
+  // TODO: Looks like it doesn't work for "authjs" as expected.
+  // const updatedUser = await updateUserData(session, user, {
+  //   email: session.email,
+  //   name: session.name,
+  //   image: session.image,
+  // });
+  // if (updatedUser) {
+  //   console.info(" ✓ User data successfully updated:", updatedUser.email);
+  // }
+  // TODO: const userData = await getUserFromDatabase(session.id, "id");
+  // const userData = await db
+  //   .select()
+  //   .from(users)
+  //   .where(eq(users.id, session.id))
+  //   .then((res) => res[0] || null);
+  // console.info("userData:", userData ? userData : "not found");
+  // if (!userData || !userData.id) {
+  //   consola.error(
+  //     `\n🔴 User ${userData?.name || "not found"} not found after creation.\n`,
+  //   );
+  //   // return redirect(
+  //   //   `/error?message=user-not-found${debugEnabled ? "&techMessage=populateAuthjsUser" : ""}`,
+  //   // );
+  //   return null;
+  // }
+  // If we have a new database, but user already has
+  // Stripe metadata we need to get that data here.
+  // Thanks to it user doesn't lose the subscription.
+  // const userPlanInfo = await getSubscriptionPlanAction(userData.id);
+  // Combine the user data with the subscription plan data
+  // const updatedUserData: Partial<User> = {
+  //   ...userData,
+  //   // ...userPlanInfo,
+  // };
+  // await updateUserData(session, userData, updatedUserData);
+  // return user;
+  // }
+  // catch (error) {
+  //   consola.error(
+  //     "🔴 Error populating next-auth user:",
+  //     error instanceof Error ? `${error.message}` : String(error),
+  //   );
+  //   // return redirect(
+  //   //   `/error?message=authjs-error${debugEnabled ? "&techMessage=" +
+  // (error instanceof Error ? error.message : String(error)) : ""}`,
+  //   // );
+  //   return null;
+  // }
+}
+
+// Populates the user data for the "clerk" authentication provider.
+//
+async function populateClerkUser() {
+  // try {
+  const session = await currentUser();
+
+  if (!session) {
+    return null;
+  }
+
+  const user = await getUserFromDatabase(session.id, "id");
+
+  if (!user) {
+    await createNewUser("clerk", session);
+  }
+
+  // return newUser;
+  // consola.error("🔴 User not found:", session.id);
+  // return null;
+  // const data = await getUserData(session);
+  // const { userId } = authClerk();
+  // const clerkUser = await clerkClient.users.getUser(userId || session.id);
+  // const email = getUserEmail(clerkUser);
+  // const name = data.username;
+  // const image = data.image;
+  // const userPlanInfo = await getSubscriptionPlanAction(userId || session.id);
+  // if (!user && userId) {
+  //   await createNewUser({
+  //     id: userId,
+  //     name,
+  //     emailVerified: new Date(),
+  //     image,
+  //     role: "user",
+  //     mode: "buyer",
+  //     ...userPlanInfo,
+  //   });
+  //   // todo: implement single id for authjs and clerk
+  //   console.info(" ✓ New user successfully registered:", name);
+  // } else if (user && userId) {
+  //   await updateUserMetadata(userId, session.id, clerkUser);
+  //   await updateUserData(session, user, {
+  //     name,
+  //     image,
+  //     ...userPlanInfo,
+  //   });
+  // }
+  // return session;
+  // } catch (error) {
+  //   consola.error("Error populating Clerk user:", error);
+  //   // return redirect("/error?message=clerk-error");
+  //   return null;
+  // }
+  return user;
+}
+
+// Retrieves a user from the database based on the provided email or ID.
+//
+async function getUserFromDatabase(
+  userIdOrEmail: string,
+  valueType: "email" | "id",
+): Promise<User | null> {
+  try {
+    return await db
+      .select()
+      .from(users)
+      .where(eq(valueType === "id" ? users.id : users.email, userIdOrEmail))
+      .then((res) => res[0] || null);
+  } catch {
+    return null;
+  }
+}
+
+// Creates a new user in the database.
+//
+async function createNewUser(
+  provider: "authjs" | "clerk",
+  authjsSession?: unknown,
+  clerkSession?: unknown,
+  userData?: Partial<User>,
+) {
+  if (provider === "authjs") {
+    const id = createId();
+    const newUser = {
+      id,
+      // @ts-expect-error TODO: fix
+      name: (authjsSession && authjssession.name) || "",
+      // @ts-expect-error TODO: fix
+      email: (authjsSession && authjssession.email) || "",
+      // @ts-expect-error TODO: fix
+      image: (authjsSession && authjssession.image) || "",
+      ...userData,
+    };
+
+    await db.insert(users).values(newUser).execute();
+
+    // Simulate a delay to wait for the user to be created
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    return newUser;
+  }
+
+  if (provider === "clerk") {
+    const newUser = {
+      // @ts-expect-error TODO: fix
+      id: clerkSession.id || createId(),
+      // @ts-expect-error TODO: fix
+      name: clerksession.name || "",
+      // @ts-expect-error TODO: fix
+      email: clerksession.email || "",
+      // @ts-expect-error TODO: fix
+      image: clerksession.image || "",
+      ...userData,
+    };
+
+    await db.insert(users).values(newUser).execute();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    return newUser;
+  }
+}
+
+// Updates the user's data in the database
+// if there are specific fields to update.
+// TODO: Looks like it doesn't work for "authjs" as expected.
+// async function updateUserData(session: unknown, user: User, updateFields: Partial<User>) {
+//   const setFieldIfNull = (fieldName: string, newValue: unknown) => {
+//     if (user[fieldName] === null) {
+//       if (!updateFields) {
+//         // biome-ignore lint/style/noParameterAssign: <explanation>
+//         updateFields = {};
+//       }
+//       updateFields[fieldName] = newValue;
+//     }
+//   };
+//   const data = updateFields || {};
+//   // if (Object.keys(data).length > 0) {
+//   //   data.updatedAt = new Date(); // Set updatedAt to the current date/time
+//   //   await db.update(users).set(data).where(eq(users.id, session.id));
+//   // }
+//   // console.info("data:", data);
+//   // Check each field and add to updateFields if it's null
+//   setFieldIfNull("emailVerified", new Date());
+//   setFieldIfNull("role", "user");
+//   setFieldIfNull("mode", "buyer");
+//   // Add Stripe subscription details if available
+//   if (updateFields) {
+//     setFieldIfNull("stripeCurrentPeriodEnd", updateFields.stripeCurrentPeriodEnd);
+//     setFieldIfNull("stripeCustomerId", updateFields.stripeCustomerId);
+//     setFieldIfNull("stripePriceId", updateFields.stripePriceId);
+//     setFieldIfNull("stripeSubscriptionId", updateFields.stripeSubscriptionId);
+//   }
+//   // Update the user if there are fields to update
+//   if (Object.keys(data).length > 0) {
+//     data.updatedAt = new Date(); // Set updatedAt to the current date/time
+//     await db.update(users).set(data).where(eq(users.id, session.id));
+//     if (
+//       // todo: Trying to fix a strange "A resource is blocked by OpaqueResponseBlocking"
+//       // todo: error in browser console; We use a new generated image instead; We cannot
+//       // todo: re-upload original image because UploadThing need to downloaded it first.
+//       // todo: Note: This error happens only when NEXT_PUBLIC_CSP_XSS is set to "true".
+//       env.UPLOADTHING_SECRET &&
+//       env.NEXT_PUBLIC_CSP_XSS === "true" &&
+//       user.image?.includes("googleusercontent.com")
+//     ) {
+//       // const data = await getUserData(session);
+//       // const oldImageUrl = data.image || "";
+//       // const newImage = await utapi.uploadFilesFromUrl(new URL(oldImageUrl));
+//       // @see https://docs.uploadthing.com/api-ref/server#uploadfilesfromurl
+//       const uploadedImg = await utapi.uploadFilesFromUrl(
+//         new URL(
+//           `https://api.dicebear.com/7.x/lorelei/svg?seed=${session.id}`,
+//         ),
+//       );
+//       const newImageUrl = new URL(uploadedImg.data?.url || "");
+//       await db
+//         .update(users)
+//         .set({ image: newImageUrl })
+//         .where(eq(users.id, session.id));
+//     }
+//   }
+//   return user;
+// }
+// Updates the user's metadata in Clerk.
+// async function updateUserMetadata(userId: string, sessionId: string, clerkUser: unknown) {
+//   if (!clerkUser.privateMetadata.role) {
+//     await clerkClient.users.updateUserMetadata(userId || sessionId, {
+//       privateMetadata: {
+//         // Edit Clerk's own privateMetadata to
+//         // add the user's role if it's missing
+//         role: "user" satisfies UserRole,
+//       },
+//     });
+//   }
+// }

@@ -1,0 +1,550 @@
+[
+  {
+    "id": "1",
+    "question": "What is ESLint?",
+    "options": [
+      "A tool for checking the accessibility of web pages",
+      "A tool for linting and fixing JavaScript code",
+      "A library for testing JavaScript code",
+      "A framework for building web applications"
+    ],
+    "answer": "A tool for linting and fixing JavaScript code",
+    "difficulty": "easy",
+    "hint": "It helps you maintain code quality.",
+    "points": 5
+  },
+  {
+    "id": "2",
+    "question": "What is the purpose of a configuration file in ESLint?",
+    "options": [
+      "To define global variables",
+      "To specify rules and settings for linting",
+      "To list all dependencies of a project",
+      "To handle HTTP requests"
+    ],
+    "answer": "To specify rules and settings for linting",
+    "difficulty": "easy",
+    "hint": "Think about how ESLint knows what rules to apply.",
+    "points": 5
+  },
+  {
+    "id": "3",
+    "question": "In ESLint v9, which of the following is a valid configuration file format?",
+    "options": [
+      ".eslint.js",
+      ".eslint.yaml",
+      ".eslint.json",
+      "eslint.config.js",
+      "eslint.config.[js|mjs|cjs]",
+      "eslint.config.[js|mjs|cjs|ts]",
+      "All of the above"
+    ],
+    "answer": "eslint.config.[js|mjs|cjs]",
+    "difficulty": "medium",
+    "hint": "ESLint v9 supports flat configuration file formats.",
+    "points": 10
+  },
+  {
+    "id": "4",
+    "question": "Which ESLint version is the latest as of 2024?",
+    "options": ["v8", "v9", "v10", "v11"],
+    "answer": "v9",
+    "difficulty": "easy",
+    "hint": "package.json is your friend.",
+    "points": 5
+  },
+  {
+    "id": "5",
+    "question": "What is the purpose of the 'eslint --fix' command?",
+    "options": [
+      "To automatically fix linting errors",
+      "To uninstall ESLint",
+      "To update ESLint to the latest version",
+      "To display the current ESLint version"
+    ],
+    "answer": "To automatically fix linting errors",
+    "difficulty": "easy",
+    "hint": "It's a command to help you quickly resolve issues.",
+    "points": 5
+  },
+  {
+    "id": "6",
+    "question": "Which ESLint rule disallows the use of 'console.log' in the code?",
+    "options": ["no-console", "no-debugger", "no-alert", "no-log"],
+    "answer": "no-console",
+    "difficulty": "medium",
+    "hint": "It's a rule that targets a common debugging method.",
+    "points": 10
+  },
+  {
+    "id": "7",
+    "question": "How can you disable a specific ESLint rule for a single line in your code?",
+    "options": [
+      "Using a comment // eslint-disable-next-line rule-name",
+      "Using a comment /* eslint-disable rule-name */",
+      "Using a comment // eslint-disable rule-name",
+      "Using a comment /* eslint-disable-next-line rule-name */"
+    ],
+    "answer": "Using a comment // eslint-disable-next-line rule-name",
+    "difficulty": "medium",
+    "hint": "It's a special comment syntax.",
+    "points": 10
+  },
+  {
+    "id": "8",
+    "question": "What is the purpose of the 'extends' property in an ESLint configuration file?",
+    "options": [
+      "To extend the maximum line length",
+      "To include rules from a base configuration",
+      "To extend the functionality of ESLint",
+      "To add new global variables"
+    ],
+    "answer": "To include rules from a base configuration",
+    "difficulty": "easy",
+    "hint": "It helps you use pre-defined sets of rules.",
+    "points": 5
+  },
+  {
+    "id": "9",
+    "question": "How do you specify environments in an ESLint configuration file?",
+    "options": [
+      "Using the 'env' property",
+      "Using the 'globals' property",
+      "Using the 'rules' property",
+      "Using the 'extends' property"
+    ],
+    "answer": "Using the 'env' property",
+    "difficulty": "easy",
+    "hint": "It's a property that sets up global variables for specific environments.",
+    "points": 5
+  },
+  {
+    "id": "10",
+    "question": "What does the 'parserOptions' property in an ESLint configuration file do?",
+    "options": [
+      "It specifies the ECMAScript version and additional language features",
+      "It sets the parser to use for linting",
+      "It defines the global variables available",
+      "It configures the paths to lint"
+    ],
+    "answer": "It specifies the ECMAScript version and additional language features",
+    "difficulty": "medium",
+    "hint": "It's related to the language syntax and features.",
+    "points": 10
+  },
+  {
+    "id": "11",
+    "question": "What is the purpose of the 'plugins' property in an ESLint configuration file?",
+    "options": [
+      "To enable additional rules from third-party packages",
+      "To extend the functionality of ESLint with custom rules",
+      "To specify the environments for ESLint",
+      "To add new global variables"
+    ],
+    "answer": "To enable additional rules from third-party packages",
+    "difficulty": "medium",
+    "hint": "It's used to add extra linting capabilities.",
+    "points": 10
+  },
+  {
+    "id": "12",
+    "question": "How can you override specific ESLint rules in a configuration file?",
+    "options": [
+      "Using the 'overrides' property",
+      "Using the 'extends' property",
+      "Using the 'env' property",
+      "Using the 'globals' property"
+    ],
+    "answer": "Using the 'overrides' property",
+    "difficulty": "medium",
+    "hint": "It's a property that allows for rule customization.",
+    "points": 10
+  },
+  {
+    "id": "13",
+    "question": "Which command can you use to initialize an ESLint configuration file?",
+    "options": [
+      "eslint --init",
+      "eslint --start",
+      "eslint --config",
+      "eslint --new"
+    ],
+    "answer": "eslint --init",
+    "difficulty": "easy",
+    "hint": "It's a command to set up ESLint.",
+    "points": 5
+  },
+  {
+    "id": "14",
+    "question": "What does the 'rules' property in an ESLint configuration file specify?",
+    "options": [
+      "The parser options to use",
+      "The environments to use",
+      "The specific linting rules and their configurations",
+      "The files to lint"
+    ],
+    "answer": "The specific linting rules and their configurations",
+    "difficulty": "easy",
+    "hint": "It's the core of ESLint's configuration.",
+    "points": 5
+  },
+  {
+    "id": "15",
+    "question": "How can you ignore specific files or directories from being linted by ESLint?",
+    "options": [
+      "Using a .eslintignore file",
+      "Using the 'ignore' property in the configuration file",
+      "Using the 'exclude' property in the configuration file",
+      "Using a .eslintignore file or the 'ignore' property in the configuration file"
+    ],
+    "answer": "Using a .eslintignore file or the 'ignore' property in the configuration file",
+    "difficulty": "medium",
+    "hint": "There are multiple ways to ignore files.",
+    "points": 10
+  },
+  {
+    "id": "16",
+    "question": "What is the purpose of the 'globals' property in an ESLint configuration file?",
+    "options": [
+      "To define global variables that should be considered during linting",
+      "To specify the parser options",
+      "To set the environments",
+      "To extend the configuration with custom rules"
+    ],
+    "answer": "To define global variables that should be considered during linting",
+    "difficulty": "easy",
+    "hint": "It's used for global variables.",
+    "points": 5
+  },
+  {
+    "id": "17",
+    "question": "How can you run ESLint on a specific file or directory?",
+    "options": [
+      "eslint <path>",
+      "eslint run <path>",
+      "eslint lint <path>",
+      "eslint start <path>"
+    ],
+    "answer": "eslint <path>",
+    "difficulty": "easy",
+    "hint": "It's a basic ESLint command.",
+    "points": 5
+  },
+  {
+    "id": "18",
+    "question": "What is the purpose of the 'eslint-config' package?",
+    "options": [
+      "To provide sharable ESLint configurations",
+      "To install ESLint",
+      "To add plugins to ESLint",
+      "To update ESLint to the latest version"
+    ],
+    "answer": "To provide sharable ESLint configurations",
+    "difficulty": "medium",
+    "hint": "It's related to configuration sharing.",
+    "points": 10
+  },
+  {
+    "id": "19",
+    "question": "How do you extend an ESLint configuration from a popular style guide like Airbnb?",
+    "options": [
+      "Using the 'extends' property with the configuration name",
+      "Using the 'plugins' property with the configuration name",
+      "Using the 'rules' property with the configuration name",
+      "Using the 'globals' property with the configuration name"
+    ],
+    "answer": "Using the 'extends' property with the configuration name",
+    "difficulty": "easy",
+    "hint": "It's a common property for extending configurations.",
+    "points": 5
+  },
+  {
+    "id": "20",
+    "question": "Which ESLint rule ensures consistent use of single or double quotes in JavaScript code?",
+    "options": ["quotes", "quote-props", "string-quotes", "quote-style"],
+    "answer": "quotes",
+    "difficulty": "easy",
+    "hint": "It's directly related to quotes.",
+    "points": 5
+  },
+  {
+    "id": "21",
+    "question": "What is an Abstract Syntax Tree (AST)?",
+    "options": [
+      "A tree-like structure that represents the syntax of source code",
+      "A list of rules for formatting code",
+      "A configuration file for ESLint",
+      "A plugin for enhancing JavaScript"
+    ],
+    "answer": "A tree-like structure that represents the syntax of source code",
+    "difficulty": "medium",
+    "hint": "It's a structured representation of code syntax.",
+    "points": 10
+  },
+  {
+    "id": "22",
+    "question": "What is the ESTree format?",
+    "options": [
+      "A configuration format for ESLint",
+      "A library for parsing JavaScript",
+      "The format used by ESLint for representing JavaScript syntax as an AST",
+      "A style guide for JavaScript"
+    ],
+    "answer": "The format used by ESLint for representing JavaScript syntax as an AST",
+    "difficulty": "medium",
+    "hint": "It's related to how ESLint represents JavaScript syntax.",
+    "points": 10
+  },
+  {
+    "id": "23",
+    "question": "What is a Config File in ESLint?",
+    "options": [
+      "A file containing preferences for how ESLint should parse files and run rules",
+      "A list of global variables",
+      "A report of linting errors",
+      "A package that extends ESLint's functionality"
+    ],
+    "answer": "A file containing preferences for how ESLint should parse files and run rules",
+    "difficulty": "easy",
+    "hint": "It's essential for specifying ESLint's behavior.",
+    "points": 5
+  },
+  {
+    "id": "24",
+    "question": "What is the purpose of the ESQuery library in ESLint?",
+    "options": [
+      "To parse selector syntax for querying nodes in an AST",
+      "To format code according to style guides",
+      "To handle HTTP requests",
+      "To manage plugins"
+    ],
+    "answer": "To parse selector syntax for querying nodes in an AST",
+    "difficulty": "medium",
+    "hint": "It interprets CSS syntax for AST node properties.",
+    "points": 10
+  },
+  {
+    "id": "25",
+    "question": "What is a Fix in ESLint?",
+    "options": [
+      "A method for updating ESLint",
+      "An optional augmentation to a rule violation that describes how to automatically correct the violation",
+      "A report generated by ESLint",
+      "A plugin configuration"
+    ],
+    "answer": "An optional augmentation to a rule violation that describes how to automatically correct the violation",
+    "difficulty": "easy",
+    "hint": "It's related to how ESLint can fix code issues automatically.",
+    "points": 5
+  },
+  {
+    "id": "26",
+    "question": "What is a Flat Config in ESLint?",
+    "options": [
+      "A new configuration file format for ESLint",
+      "A deprecated configuration format",
+      "A plugin for ESLint",
+      "A global variable declaration"
+    ],
+    "answer": "A new configuration file format for ESLint",
+    "difficulty": "medium",
+    "hint": "It's the current configuration file format for ESLint.",
+    "points": 10
+  },
+  {
+    "id": "27",
+    "question": "What is the purpose of a Formatter in ESLint?",
+    "options": [
+      "To format source code according to a style guide",
+      "To present the report generated by ESLint",
+      "To configure ESLint rules",
+      "To manage global variables"
+    ],
+    "answer": "To present the report generated by ESLint",
+    "difficulty": "easy",
+    "hint": "It's related to how linting results are displayed.",
+    "points": 5
+  },
+  {
+    "id": "28",
+    "question": "What is a Global Declaration in ESLint?",
+    "options": [
+      "A description to ESLint of a JavaScript global variable that should exist at runtime",
+      "A configuration file format",
+      "A method for importing plugins",
+      "A way to format code"
+    ],
+    "answer": "A description to ESLint of a JavaScript global variable that should exist at runtime",
+    "difficulty": "easy",
+    "hint": "It's related to global variables in JavaScript.",
+    "points": 5
+  },
+  {
+    "id": "29",
+    "question": "What is the difference between a Linter and a Formatter?",
+    "options": [
+      "A linter checks code for errors, while a formatter formats code according to style rules",
+      "A linter formats code, while a formatter checks code for errors",
+      "A linter runs tests, while a formatter deploys code",
+      "There is no difference between them"
+    ],
+    "answer": "A linter checks code for errors, while a formatter formats code according to style rules",
+    "difficulty": "medium",
+    "hint": "Consider their main functions in code quality.",
+    "points": 10
+  },
+  {
+    "id": "30",
+    "question": "What is a Config Object in ESLint?",
+    "options": [
+      "A configuration file entry specifying all information ESLint needs to execute on a set of files",
+      "A list of global variables",
+      "A rule for checking code",
+      "A report format"
+    ],
+    "answer": "A configuration file entry specifying all information ESLint needs to execute on a set of files",
+    "difficulty": "medium",
+    "hint": "It's part of the configuration file structure.",
+    "points": 10
+  },
+  {
+    "id": "31",
+    "question": "What is the role of a Plugin in ESLint?",
+    "options": [
+      "To extend ESLint's functionality with additional rules, configurations, or processors",
+      "To format code according to style guides",
+      "To manage global variables",
+      "To handle HTTP requests"
+    ],
+    "answer": "To extend ESLint's functionality with additional rules, configurations, or processors",
+    "difficulty": "easy",
+    "hint": "Think about how you add custom rules to ESLint.",
+    "points": 5
+  },
+  {
+    "id": "32",
+    "question": "What does the 'env' property in an ESLint configuration file do?",
+    "options": [
+      "Specifies the environments that provide predefined global variables",
+      "Defines custom rules",
+      "Configures plugins",
+      "Formats the code"
+    ],
+    "answer": "Specifies the environments that provide predefined global variables",
+    "difficulty": "easy",
+    "hint": "It's related to predefined global variables.",
+    "points": 5
+  },
+  {
+    "id": "33",
+    "question": "What is the purpose of the 'parserOptions' property in an ESLint configuration file?",
+    "options": [
+      "Specifies the ECMAScript version and additional language features",
+      "Defines custom rules",
+      "Configures plugins",
+      "Formats the code"
+    ],
+    "answer": "Specifies the ECMAScript version and additional language features",
+    "difficulty": "easy",
+    "hint": "It's related to the language features and syntax.",
+    "points": 5
+  },
+  {
+    "id": "34",
+    "question": "What does the 'globals' property in an ESLint configuration file specify?",
+    "options": [
+      "Global variables that should be available during linting",
+      "Custom rules for linting",
+      "Plugins to be used by ESLint",
+      "Files and directories to be linted"
+    ],
+    "answer": "Global variables that should be available during linting",
+    "difficulty": "easy",
+    "hint": "It's related to global variables.",
+    "points": 5
+  },
+  {
+    "id": "35",
+    "question": "What is the difference between a Fix and a Suggestion in ESLint?",
+    "options": [
+      "A fix is applied automatically, while a suggestion is manually applied",
+      "A fix is for formatting, while a suggestion is for logic",
+      "A fix is for global variables, while a suggestion is for local variables",
+      "There is no difference between them"
+    ],
+    "answer": "A fix is applied automatically, while a suggestion is manually applied",
+    "difficulty": "medium",
+    "hint": "Consider how they are applied to code.",
+    "points": 10
+  },
+  {
+    "id": "36",
+    "question": "What does the 'no-undef' rule do in ESLint?",
+    "options": [
+      "Ensures all variables are defined before use",
+      "Disallows the use of undefined variables",
+      "Checks for global variables",
+      "Formats the code"
+    ],
+    "answer": "Disallows the use of undefined variables",
+    "difficulty": "easy",
+    "hint": "It's related to variable definition.",
+    "points": 5
+  },
+  {
+    "id": "37",
+    "question": "What is the 'prefer-const' rule in ESLint?",
+    "options": [
+      "Enforces the use of 'const' for variables that are never reassigned",
+      "Disallows the use of 'var'",
+      "Prefers the use of 'let' over 'var'",
+      "Ensures all variables are declared at the top of their scope"
+    ],
+    "answer": "Enforces the use of 'const' for variables that are never reassigned",
+    "difficulty": "easy",
+    "hint": "It's about using 'const' for certain variables.",
+    "points": 5
+  },
+  {
+    "id": "38",
+    "question": "What is a Shareable Config in ESLint?",
+    "options": [
+      "A module that provides a predefined set of configurations",
+      "A plugin for adding new rules",
+      "A format for reporting linting errors",
+      "A method for handling global variables"
+    ],
+    "answer": "A module that provides a predefined set of configurations",
+    "difficulty": "medium",
+    "hint": "It's used for sharing ESLint configurations.",
+    "points": 10
+  },
+  {
+    "id": "39",
+    "question": "What is the purpose of the 'eslint-config' package?",
+    "options": [
+      "To provide sharable ESLint configurations",
+      "To install ESLint",
+      "To add plugins to ESLint",
+      "To update ESLint to the latest version"
+    ],
+    "answer": "To provide sharable ESLint configurations",
+    "difficulty": "medium",
+    "hint": "It's related to configuration sharing.",
+    "points": 10
+  },
+  {
+    "id": "40",
+    "question": "What does the 'no-unused-vars' rule do in ESLint?",
+    "options": [
+      "Disallows variables that are declared but never used",
+      "Enforces the use of 'let' over 'var'",
+      "Prefers the use of 'const' for certain variables",
+      "Ensures all variables are declared at the top of their scope"
+    ],
+    "answer": "Disallows variables that are declared but never used",
+    "difficulty": "easy",
+    "hint": "It's related to unused variables.",
+    "points": 5
+  }
+]

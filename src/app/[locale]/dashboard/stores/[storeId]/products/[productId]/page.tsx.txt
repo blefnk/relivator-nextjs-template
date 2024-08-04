@@ -1,0 +1,71 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/browser/reliverse/ui/CardUI";
+import { baseUrl } from "@/browser/shared/utils/url";
+import { and, eq } from "drizzle-orm";
+
+import { ProductUpdForm } from "~/components/Forms";
+import { ProductPager } from "~/components/Navigation/Pagination/ProductPager";
+import { db } from "~/db";
+import { products } from "~/db/schema";
+
+export const metadata: Metadata = {
+  description: "Manage the product",
+  metadataBase: new URL(baseUrl || "http://localhost:3000"),
+  title: "Manage Product",
+};
+
+type UpdateProductPageProps = {
+  params: {
+    productId: string;
+    storeId: string;
+  };
+};
+
+export default async function UpdateProductPage({
+  params,
+}: UpdateProductPageProps) {
+  const { productId, storeId } = params;
+  const productIdNumber = Number(productId);
+  const storeIdNumber = Number(storeId);
+
+  if (Number.isNaN(productIdNumber) || Number.isNaN(storeIdNumber)) {
+    notFound();
+  }
+
+  const product = await db.query.products.findFirst({
+    where: and(
+      // @ts-expect-error TODO: fix
+      eq(products.id, productIdNumber),
+      eq(products.storeId, storeIdNumber),
+    ),
+  });
+
+  if (!product) {
+    notFound();
+  }
+
+  return (
+    <Card>
+      <CardHeader className="space-y-1">
+        <div className="flex items-center justify-between space-x-2">
+          <CardTitle className="text-2xl">Update product</CardTitle>
+          <ProductPager product={product} />
+        </div>
+        <CardDescription>
+          Update the product information, or delete it
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ProductUpdForm product={product} />
+      </CardContent>
+    </Card>
+  );
+}

@@ -1,0 +1,13 @@
+{
+  "appNameDesc": "Relivator: Next.js 15 and React 19 template by Reliverse",
+  "appPublisher": "Reliverse",
+  "appVersion": "1.2.6",
+  "author": {
+    "email": "blef@gmail.com",
+    "fullName": "Nazar Kornienko",
+    "handle": "blefnk",
+    "handleAt": "@blefnk",
+    "url": "https://github.com/blefnk"
+  },
+  "name": "Relivator"
+}

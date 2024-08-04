@@ -1,0 +1,110 @@
+// ? @reliverse/addons v0.0.1-canary.0
+// ? @see https://github.com/blefnk/reliverse-website-builder
+
+// A collection of addons for website templates bootstrapped with Reliverse CMS.
+// This addons/index.ts file exists to improve the DX (developer experience).
+// In the future, a menu with all addons will be presented here. At the moment,
+// only a few are included, so you have to run the others manually if you need them.
+
+import path from "pathe";
+
+import { getRandomQuote } from "@/reliverse/quotes/string";
+import { sortArgs } from "@/shared";
+import { defineCommand, runMain } from "citty";
+import consola from "consola";
+import pc from "picocolors";
+import task from "tasuku";
+
+const main = defineCommand({
+  meta: {
+    description:
+      "A collection of addons for the apps bootstrapped with @blefnk/reliverse",
+    name: "@reliverse/addons",
+    version: "0.0.1-canary.0",
+  },
+  args: sortArgs({
+    all: {
+      type: "boolean",
+      description: "Apply all optimizations from all addons without prompting",
+    },
+  }),
+  // eslint-disable-next-line complexity
+  async run({ args }) {
+    const ops = {
+      codemod: args.codemod || args.all || null,
+      details: args.details || args.all || null,
+      exit: args.exit || args.all || null,
+      putout: args.putout || args.all || null,
+      quotes: args.quotes || args.all || null,
+      relicon: args.relicon || args.all || null,
+      relimter: args.relimter || args.all || null,
+      remotion: args.remotion || args.all || null,
+    };
+
+    const addonsPath = path.resolve(import.meta.dirname, ".");
+
+    consola.info(`Addons path: ${addonsPath}`);
+
+    const addonFolders: Record<string, string> = {
+      codemod: "reliverse/relimter",
+      putout: "putout",
+      quotes: "reliverse/quotes",
+      relicon: "reliverse/relicon",
+      relimter: "reliverse/relimter",
+      remotion: "remotion",
+    };
+
+    if (Object.values(ops).every((op) => op === null)) {
+      const availableOptions = [
+        { label: "✋ Exit (Cmd/Ctrl+C)", value: "exit" },
+      ];
+
+      for (const [key, folder] of Object.entries(addonFolders)) {
+        const folderPath = path.join(addonsPath, folder);
+
+        if (existsSync(folderPath)) {
+          const labels: Record<string, string> = {
+            codemod: "💡 @reliverse/addons-relimter: Apply codebase optimizations",
+            putout: "🐊 @blefnk/putout: Supplement to the Putout linter",
+            quotes: "📖 @reliverse/quotes: Show a random helpful quote",
+            relicon: "🎨 @reliverse/relicon: VSCode presets and configs editor",
+            relimter: "🧩 @reliverse/addons-relimter: Supplement to the ESLint linter",
+            remotion: "🎥 @blefnk/remotion: Make videos programmatically",
+          };
+
+          const label = labels[key as keyof typeof labels];
+
+          if (label) {
+            availableOptions.push({ label, value: key });
+          }
+        }
+      }
+
+      const quote = await getRandomQuote();
+      const answer = await consola.prompt(
+        `Reliverse Addons 📦 | Choose which addon to run using ${pc.cyan("<enter>")} | ${quote}\n`,
+        {
+          type: "select",
+          options: availableOptions,
+        },
+      );
+
+      if (ops.exit || typeof answer === "symbol") {
+        process.exit(0);
+      }
+
+      if (answer.value === "relicon") {
+        await task(
+          "🎨 @reliverse/relicon: VSCode presets and configs editor",
+          async ({ setTitle }) => {
+            await import("@/reliverse/relicon");
+
+            setTitle("@reliverse/relicon\n");
+          },
+        );
+      }
+    }
+  },
+});
+
+runMain(main);

@@ -1,43 +1,57 @@
 "use client";
 
-import React from "react";
+import { Button } from "@/browser/reliverse/ui/Button";
 import { useQueryNormalizer } from "@normy/react-query";
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-  useSuspenseQuery,
-} from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import { Button } from "~/islands/primitives/button";
-import { getServerAuthSession } from "~/utils/auth/users";
-
-/** @see https://github.com/klis87/normy#readme */
-
+// @see https://github.com/klis87/normy#readme */
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 10));
 
 const TanstackProducts = () => {
   const { data: productsData = [] } = useQuery({
-    queryKey: ["products"],
     queryFn: () =>
       Promise.resolve([
-        { id: "0", name: "Product 0", seller: null },
-        { id: "1", name: "Product 1", seller: { id: "1000", name: "Store 1" } },
-        { id: "2", name: "Product 2", seller: { id: "1001", name: "Store 2" } },
+        {
+          id: "0",
+          name: "Product 0",
+          seller: null,
+        },
+        {
+          id: "1",
+          name: "Product 1",
+          seller: {
+            id: "1000",
+            name: "Store 1",
+          },
+        },
+        {
+          id: "2",
+          name: "Product 2",
+          seller: {
+            id: "1001",
+            name: "Store 2",
+          },
+        },
       ]),
+    queryKey: ["products"],
   });
 
   return (
     <div className="space-y-2">
       {productsData.map((product) => (
         <div
+          className={`
+            rounded bg-zinc-200 p-4 shadow
+
+            dark:bg-zinc-900
+          `}
           key={product.id}
-          className="rounded bg-zinc-200 p-4 shadow dark:bg-zinc-900"
         >
-          <span className="font-semibold">{product.name} </span>
+          <span className="font-semibold">{product.name}</span>
+          {}
           {product.seller && (
             <>
-              - <span className="opacity-70"> {product.seller.name}</span>
+              - <span className="opacity-70">{product.seller.name}</span>
             </>
           )}
         </div>
@@ -51,56 +65,81 @@ export default function ProductsAdminManagement() {
   const queryNormalizer = useQueryNormalizer();
 
   const { data: productData } = useQuery({
-    queryKey: ["product"],
     queryFn: () =>
       Promise.resolve({
         id: "1",
         name: "Product 1",
-        seller: { id: "1000", name: "Store 1" },
+        seller: {
+          id: "1000",
+          name: "Store 1",
+        },
       }),
-    select: (data) => ({ ...data, nameLong: data.name, name: undefined }),
+    queryKey: ["product"],
+    select: (data) => ({
+      ...data,
+      name: undefined,
+      nameLong: data.name,
+    }),
   });
+
   const updateProductNameMutation = useMutation({
     mutationFn: async () => {
       await sleep();
+
       return {
         id: "1",
         name: "Product 1 (Updated)",
       };
     },
   });
+
   const updateProductSellerMutation = useMutation({
     mutationFn: async () => {
       await sleep();
+
       return {
         id: "0",
-        seller: { id: "1004", name: "Store 4 (new)" },
+        seller: {
+          id: "1004",
+          name: "Store 4 (new)",
+        },
       };
     },
   });
+
   const addProductMutation = useMutation({
     mutationFn: async () => {
       await sleep();
+
       return {
         id: "3",
         name: "Product 3",
-        seller: { id: "1002", name: "Store 3" },
+        seller: {
+          id: "1002",
+          name: "Store 3",
+        },
       };
     },
     onSuccess: () => {
-      queryClient.setQueryData(["products"], (data) =>
+      queryClient.setQueryData(["products"], (data) => [
         // @ts-expect-error todo: fix this `unknown` type
-        // eslint-disable-next-line unicorn/prefer-spread
-        data.concat({
+        ...data,
+        {
           id: "3",
           name: "Product 3",
-          seller: { id: "1002", name: "Store 3" },
-        }),
-      );
+          seller: {
+            id: "1002",
+            name: "Store 3",
+          },
+        },
+      ]);
     },
   });
 
   const updateProductNameMutationOptimistic = useMutation({
+    meta: {
+      normalize: false,
+    },
     mutationFn: async () => {
       await sleep();
 
@@ -119,9 +158,6 @@ export default function ProductsAdminManagement() {
         name: "Product 1",
       },
     }),
-    meta: {
-      normalize: false,
-    },
   });
 
   return (
@@ -131,42 +167,53 @@ export default function ProductsAdminManagement() {
       </h1>
       <div>
         <Button
+          onClick={() => {
+            updateProductNameMutation.mutate();
+          }}
           type="button"
-          onClick={() => updateProductNameMutation.mutate()}
           variant="secondary"
         >
           Update product name{" "}
           {updateProductNameMutation.isPending && "loading....."}
         </Button>{" "}
         <Button
+          onClick={() => {
+            updateProductSellerMutation.mutate();
+          }}
           type="button"
-          onClick={() => updateProductSellerMutation.mutate()}
           variant="secondary"
         >
           Update product seller{" "}
           {updateProductSellerMutation.isPending && "loading....."}
         </Button>{" "}
         <Button
+          onClick={() => {
+            addProductMutation.mutate();
+          }}
           type="button"
-          onClick={() => addProductMutation.mutate()}
           variant="secondary"
         >
           Add product {addProductMutation.isPending && "loading....."}
         </Button>{" "}
         <Button
+          onClick={() => {
+            updateProductNameMutationOptimistic.mutate();
+          }}
           type="button"
-          onClick={() => updateProductNameMutationOptimistic.mutate()}
           variant="secondary"
         >
           Update product name optimistic
         </Button>
         <Button
-          type="button"
-          onClick={() =>
+          onClick={() => {
             queryNormalizer.setNormalizedData({
-              seller: { id: "1000", name: "Store 1 (Updated)" },
-            })
-          }
+              seller: {
+                id: "1000",
+                name: "Store 1 (Updated)",
+              },
+            });
+          }}
+          type="button"
           variant="secondary"
         >
           Update "Store 1" name manually
@@ -175,11 +222,19 @@ export default function ProductsAdminManagement() {
         <h2 className="mb-4 text-2xl font-bold">Products</h2>
         <TanstackProducts />
         <hr className="my-4" />
+        {}
         {productData && (
           <>
             <h2 className="mb-4 text-2xl font-bold">Product Details</h2>
-            <div className="rounded bg-zinc-200 p-4 shadow dark:bg-zinc-900">
+            <div
+              className={`
+                rounded bg-zinc-200 p-4 shadow
+
+                dark:bg-zinc-900
+              `}
+            >
               <span className="font-semibold">{productData.nameLong}</span>
+              {}
               {productData.seller && (
                 <span className="opacity-70"> - {productData.seller.name}</span>
               )}

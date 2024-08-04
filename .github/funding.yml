@@ -1,7 +1,6 @@
 github: blefnk
+patreon: blefnk
+buy_me_a_coffee: blefnk
 custom:
-  [
-    "https://patreon.com/blefnk",
-    "https://paypal.me/blefony",
-    "https://ko-fi.com/blefnk",
-  ]
+  - https://paypal.me/blefony
+  - https://ko-fi.com/blefnk

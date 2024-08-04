@@ -1,35 +1,40 @@
 [
   {
-    "include": ["src/**/*.test.{ts,tsx}"],
-    "projectPath": "./tsconfig.json",
-    "types": { "strictNullChecks": true },
+    "auth": [
+      {
+        "renameExtensions": false
+      }
+    ],
     "fixes": {
-      "strictNonNullAssertions": true,
       "incompleteTypes": true,
       "inferableTypes": true,
+      "noImplicitAny": true,
       "noImplicitThis": true,
-      "noImplicitAny": true
+      "strictNonNullAssertions": true
+    },
+    "projectPath": "./tsconfig.json",
+    "types": {
+      "strictNullChecks": true
     }
   },
   {
+    "fixes": {
+      "incompleteTypes": true,
+      "inferableTypes": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true
+    },
     "include": ["src/**/*.{ts,tsx}"],
-    "exclude": ["src/**/*.test.{ts,tsx}"],
-    "projectPath": "./tsconfig.json",
-    "fixes": {
-      "incompleteTypes": true,
-      "inferableTypes": true,
-      "noImplicitThis": true,
-      "noImplicitAny": true
-    }
+    "projectPath": "./tsconfig.json"
   },
   {
-    "include": ["src/**/*.test.{ts,tsx}", "src/**/*.{ts,tsx}"],
-    "projectPath": "./tsconfig.json",
     "fixes": {
       "incompleteTypes": true,
       "inferableTypes": true,
-      "noImplicitThis": true,
-      "noImplicitAny": true
-    }
+      "noImplicitAny": true,
+      "noImplicitThis": true
+    },
+    "include": ["src/**/*.{ts,tsx}"],
+    "projectPath": "./tsconfig.json"
   }
 ]

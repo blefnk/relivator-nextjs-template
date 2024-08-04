@@ -1,0 +1,38 @@
+// 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
+// Starting Relivator 1.3.0, it can be added by using pnpm reliverse ||
+// ================================================================= ||
+
+{
+  "depcheck": {
+    "ignoreMatches": [
+      "~",
+      "@clerk/localizations",
+      "@clerk/nextjs",
+      "@clerk/themes",
+      "@clerk/types",
+      "@cspell/dict-companies",
+      "@cspell/dict-de-de",
+      "@cspell/dict-es-es",
+      "@cspell/dict-fr-fr",
+      "@cspell/dict-fullstack",
+      "@cspell/dict-it-it",
+      "@cspell/dict-markdown",
+      "@cspell/dict-npm",
+      "@cspell/dict-pl_pl",
+      "@cspell/dict-tr-tr",
+      "@cspell/dict-typescript",
+      "@cspell/dict-uk-ua",
+      "@tanstack/react-query",
+      "@types/node",
+      "autoprefixer",
+      "cspell",
+      "dotenv",
+      "flag-icons",
+      "drizzle.config",
+      "eslint-interactive",
+      "international-types",
+      "next-international",
+      "postcss"
+    ]
+  }
+}

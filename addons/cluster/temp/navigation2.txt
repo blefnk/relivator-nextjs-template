@@ -1,0 +1,52 @@
+// @see https://next-intl-docs.vercel.app/docs/routing/navigation
+import { createSharedPathnamesNavigation } from "next-intl/navigation";
+
+export const translateLanguageNames = true;
+
+// export const locales = ["de-de", "en-us", "es-es", "fa-ir", "fr-fr",
+// "hi-in", "it-it", "pl-pl", "tr-tr", "uk-ua", "zh-cn"] as const;
+export const locales = [
+  "de",
+  "en",
+  "es",
+  "fa",
+  "fr",
+  "hi",
+  "it",
+  "pl",
+  "tr",
+  "uk",
+  "zh",
+] as const;
+
+// Labels for each supported locale, used
+// for displaying human-readable names
+export const labels = {
+  de: "German",
+  en: "English",
+  es: "Spanish",
+  fa: "Persian",
+  fr: "French",
+  hi: "Hindi",
+  it: "Italian",
+  pl: "Polish",
+  tr: "Turkish",
+  uk: "Ukrainian",
+  zh: "Chinese",
+} as const;
+
+// Type representing valid locale strings
+export type Locale = (typeof locales)[number];
+
+// Default locale for the application
+// export const defaultLocale = "en-us";
+export const defaultLocale: Locale = "en" as const;
+
+// Navigation utilities configured for the defined locales. // TODO: error when using `Next.js 15.3.0-canary.65`
+// export const { Link, getPathname, redirect,
+// usePathname, useRouter } = createLocalizedPathnamesNavigation({ localePrefix, locales, pathnames });
+export const { Link, redirect, usePathname, useRouter } =
+  createSharedPathnamesNavigation({
+    localePrefix: "always",
+    locales,
+  }); // =========================================================// ? The content below is deprecated/experimental,// ? and planned to be removed or added in v1.3.0// =========================================================// TODO: Implement// TODO: https://next-intl-docs.vercel.app/docs/routing/navigation#localized-pathnames// The `pathnames` object holds pairs of internal// and external paths, separated by locale// export const pathnames = {// "/": "/",// "/about": {// "de-de": "/ueber-uns",// "en-us": "/about",// },// "/blog": "/blog",// "/categories/[...slug]": {// "de-de": "/kategorien/[...slug]",// "en-us": "/categories/[...slug]",// },// "/news/[articleSlug]-[articleId]": {// "de-de": "/neuigkeiten/[articleSlug]-[articleId]",// "en-us": "/news/[articleSlug]-[articleId]",// },// } satisfies Pathnames<typeof locales>;// export const labels = {// "de-de": "German",// "en-us": "English",// "es-es": "Spanish",// "fa-ir": "Persian",// "fr-fr": "French",// "hi-in": "Hindi",// "it-it": "Italian",// "pl-pl": "Polish",// "tr-tr": "Turkish",// "uk-ua": "Ukrainian",// "zh-cn": "Chinese",// } as const;

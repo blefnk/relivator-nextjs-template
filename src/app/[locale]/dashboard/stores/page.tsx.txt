@@ -1,0 +1,148 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/browser/reliverse/ui/Alert";
+import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { baseUrl } from "@/browser/shared/utils/url";
+import { getDashboardRedirectPath, getPlanFeatures } from "@/server";
+import { RocketIcon } from "@radix-ui/react-icons";
+import { desc, eq, sql } from "drizzle-orm";
+import { StoreIcon } from "lucide-react";
+
+import { authProvider } from "~/auth";
+import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { StoreCard } from "~/components/Modules/Cards/StoreCardDashboard";
+import {
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "~/components/Navigation/PageNavMenu";
+import { Shell } from "~/components/Wrappers/ShellVariants";
+import { getSubscriptionPlanAction } from "~/core/stripe/actions";
+import { db } from "~/db";
+import { products, stores } from "~/db/schema";
+import { cn } from "~/utils";
+
+export const metadata: Metadata = {
+  description: "Manage the stores",
+  metadataBase: new URL(baseUrl || "http://localhost:3000"),
+  title: "Stores",
+};
+
+export default async function StoresPage() {
+  // const user = await revalidateUser();
+  const user = authProvider === "clerk" ? await clerk() : await authjs();
+
+  if (!user) {
+    redirect("/auth");
+  }
+
+  // consola.info(user);
+  // try {
+  const allStores = await db
+    .select({
+      id: stores.id,
+      name: stores.name,
+      description: stores.description,
+      stripeAccountId: stores.stripeAccountId,
+    })
+    .from(stores)
+    .leftJoin(products, eq(products.storeId, stores.id))
+    .groupBy(stores.id)
+    .orderBy(desc(stores.stripeAccountId), desc(sql`count(*)`))
+    .where(eq(stores.userId, user.id));
+
+  const subscriptionPlan = await getSubscriptionPlanAction(user.id || "");
+
+  const { maxProductCount, maxStoreCount } = getPlanFeatures(
+    // @ts-expect-error TODO: fix
+    subscriptionPlan && subscriptionPlan.id,
+  );
+
+  // } catch (error) {
+  //   if (error instanceof Error) consola.error(`🔴 ${error.message}`);
+  //   else consola.error("🔴 An unknown error occurred in dashboard/stores page");
+  // }
+  return (
+    <Shell variant="sidebar">
+      <PageHeader
+        aria-labelledby="dashboard-stores-page-header-heading"
+        id="dashboard-stores-page-header"
+      >
+        <div className="flex space-x-4">
+          <PageHeaderHeading className="flex-1" size="sm">
+            Stores
+          </PageHeaderHeading>
+          <Link
+            aria-label="Create store"
+            className={cn(
+              buttonVariants({
+                size: "sm",
+              }),
+            )}
+            href={getDashboardRedirectPath({
+              storeCount: allStores.length,
+              subscriptionPlan,
+            })}
+          >
+            Create store
+          </Link>
+        </div>
+        <PageHeaderDescription size="sm">
+          Manage the stores
+        </PageHeaderDescription>
+      </PageHeader>
+      <Alert
+        aria-labelledby="dashboard-stores-page-alert-heading"
+        id="dashboard-stores-page-alert"
+      >
+        <RocketIcon aria-hidden="true" className="size-4" />
+        <AlertTitle>Heads up!</AlertTitle>
+        <AlertDescription>
+          the current plan is{" "}
+          <span className="font-semibold">
+            {(subscriptionPlan && subscriptionPlan.name) || "Starter"}
+          </span>
+          . It allows you to create{" "}
+          <span className="font-semibold">up to {maxStoreCount} stores</span>{" "}
+          and include{" "}
+          <span className="font-semibold">
+            up to {maxProductCount} products
+          </span>{" "}
+          per store.
+        </AlertDescription>
+      </Alert>
+      <section
+        aria-labelledby="dashboard-stores-page-stores-heading"
+        className={`
+          grid gap-4
+
+          lg:grid-cols-3
+
+          sm:grid-cols-2
+        `}
+        id="dashboard-stores-page-stores"
+      >
+        {allStores.map((store) => (
+          <StoreCard
+            href={`/dashboard/stores/${store.id}`}
+            key={store.id}
+            store={store}
+          />
+        ))}
+      </section>
+      {allStores.length === 0 && (
+        <div className="flex flex-col items-center justify-center">
+          <StoreIcon aria-hidden="true" className="mb-2 size-6" />
+          <p className="text-lg font-semibold">No stores yet</p>
+        </div>
+      )}
+    </Shell>
+  );
+}

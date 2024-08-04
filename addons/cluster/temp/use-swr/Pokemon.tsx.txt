@@ -1,0 +1,29 @@
+"use client";
+
+// TODO: Move to Reliverse's Repository
+// @see https://twitter.com/shuding_/status/1794461568505352693
+import Image from "next/image";
+
+import useSWR from "swr";
+
+import { getPokemon } from "~/data/other/use-swr";
+
+// TODO: This is just a placeholder, and exists for the future ideas.
+export function Pokemon() {
+  const { data } = useSWR("pikachu", getPokemon);
+
+  // As we always provide the Pokemon in the parent
+  // component via `fallback`, there's no need to
+  // handle the loading state here.
+  // To make TypeScript happy, let's add a guard.
+  if (!data) {
+    throw new Error("Data must be available.");
+  }
+
+  return (
+    <div>
+      <Image alt={data.name} height={200} src={data.image} width={200} />
+      <h2>I'm {data.name}</h2>
+    </div>
+  );
+}

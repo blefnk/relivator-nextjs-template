@@ -1,0 +1,21 @@
+import { cutEnv, run } from "madrun";
+
+const env = {
+  CI: 1,
+};
+
+export default {
+  "env:lint": () => [env, "putout .vscode/presets"],
+  "fix:lint": async () =>
+    await run("lint", "--fix", {
+      NODE_ENV: "development",
+    }),
+  lint: () => "putout .vscode/presets",
+  "lint:env": () => [
+    "putout .vscode/presets",
+    {
+      CI: 1,
+    },
+  ],
+  "lint:no-env": async () => await cutEnv("lint:env"),
+};

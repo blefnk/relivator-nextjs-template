@@ -1,0 +1,198 @@
+// 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
+// ================================================================= ||
+
+const publicRoutes = ["/(.*)"];
+const intlProvider = env.NEXT_PUBLIC_INTL_PROVIDER as IntlProviderType;
+
+let intlMiddleware: (request: NextRequest) => Promise<Response | undefined>;
+if (intlProvider === "next-intl" || intlProvider === undefined) {
+  intlMiddleware = (request: NextRequest) =>
+    Promise.resolve(
+      nextIntlMiddleware({
+        localePrefix: "as-needed",
+        defaultLocale,
+        locales,
+      })(request),
+    );
+} else if (intlProvider === "next-international") {
+  intlMiddleware = (request: NextRequest) =>
+    Promise.resolve(
+      createI18nMiddleware({
+        urlMappingStrategy: "rewrite",
+        defaultLocale,
+        locales,
+      })(request),
+    );
+}
+
+let redis: Redis;
+let ratelimit: Ratelimit;
+if (env.UPSTASH_REDIS_REST_URL) {
+  redis = new Redis({
+    url: env.UPSTASH_REDIS_REST_URL || "",
+    token: env.UPSTASH_REDIS_REST_TOKEN || "",
+  });
+  ratelimit = new Ratelimit({
+    redis: redis,
+    limiter: Ratelimit.slidingWindow(20, "3 s"),
+  });
+}
+async function rateMiddleware(
+  request: NextRequest,
+): Promise<Response | undefined> {
+  if (env.UPSTASH_REDIS_REST_URL) {
+    const ip = request.ip || "127.0.0.1";
+    const { success } = await ratelimit.limit(ip);
+    return success ?
+        NextResponse.next()
+      : NextResponse.redirect(new URL("/auth/block", request.url));
+  } else {
+    return NextResponse.next();
+  }
+}
+
+export default async function middleware(
+  request: NextRequest,
+  event_: NextFetchEvent,
+) {
+  if (env.CHECK_BOT_ACTIVITY === "true") {
+    const userAgent = request.headers.get("user-agent") || "";
+    const { isGeneralBot, isLighthouseBot, isSearchBot } =
+      checkIfPageRequestComesFromBot(userAgent);
+    if (isSearchBot || isGeneralBot || isLighthouseBot) {
+      console.info(`🤖 Bot detected: ${userAgent}`);
+    }
+  }
+  const locale = getLocale(request);
+  if (locale) setCookie("NEXT_LOCALE", locale);
+  if (authProvider === "clerk") {
+    return withClerk({
+      publicRoutes,
+      async beforeAuth(request: NextRequest) {
+        let intlResponse: Response | undefined;
+        const rateResponse = await rateMiddleware(request);
+        const { headers, nextUrl } = request;
+        headers.set("x-pathname", nextUrl.pathname);
+        if (rateResponse) intlResponse = await intlMiddleware(request);
+        return intlResponse && rateResponse ? intlResponse : (
+            NextResponse.next()
+          );
+      },
+      async afterAuth(auth, request) {
+        if (auth.isPublicRoute) return NextResponse.next();
+        const { origin } = request.nextUrl;
+        const url = new URL(origin);
+        if (!auth.userId) {
+          url.pathname = "/auth/sign-in";
+          return NextResponse.redirect(url);
+        }
+      },
+    })(request, event_);
+  } else {
+    const publicPathnameRegex = new RegExp(
+      `^(/(${locales.join("|")}))?(${publicRoutes.join("|")})?/?$`,
+      "i",
+    );
+    const isPublicRoute = publicPathnameRegex.test(request.nextUrl.pathname);
+    if (isPublicRoute) {
+      let intlResponse: Response | undefined;
+      const rateResponse = await rateMiddleware(request);
+      request.headers.set("x-pathname", request.nextUrl.pathname);
+      if (rateResponse) intlResponse = await intlMiddleware(request);
+      return intlResponse && rateResponse ? intlResponse : NextResponse.next();
+    } else {
+      return withNextAuth((request) => intlMiddleware(request), {
+        callbacks: { authorized: ({ token }) => token !== undefined },
+        pages: {
+          newUser: `/${locale}/auth`,
+          signIn: `/${locale}/auth/sign-in`,
+          signOut: `/${locale}/auth/sign-out`,
+        },
+      })(request as NextRequestWithAuth, event_);
+    }
+  }
+}
+
+/**
+ * Next.js Middleware Configuration
+ * ================================
+ *
+ * This middleware file handles app's core logic, conditionally applying the authentication and internationalization, based on the environment variables.
+ * - The middleware function first checks if the Clerk auth is enabled and configured correctly, where `else` for this means NextAuth.js.
+ *   If Clerk is enabled (determined by `authProvider`), the `withClerk` is applied.
+ * - This approach allows for a flexible and dynamic handling of routes based on authentication status and
+ * internationalization needs, adhering to the principles and capabilities of Next.js.
+ *
+ * Global Variables
+ * ================
+ *
+ * - `publicRoutes`: List of public pages that don't require authentication. Currently we rely on `if(!user)` so it set just to "/(.*)", but it can be extended in the future.
+ * - `intlMiddleware`: The middleware for internationalization. It is configured based on the `NEXT_PUBLIC_INTL_PROVIDER` env variable.
+ *
+ * Ratelimit Configuration
+ * =======================
+ *
+ * - `rateMiddleware`: The middleware checks if the `UPSTASH_REDIS_REST_URL` env variable is set. If so, it applies the rate limit to the requests.
+ *
+ * Bot Detection Implementation
+ * ============================
+ *
+ * - `checkForBots`: The middleware checks if the `CHECK_BOT_ACTIVITY` env variable is set to `true`. If so, it checks the user agent for the presence of the specified words e.g. "bot" or "crawl".
+ *  The middleware logs the bot activity and, if specified, takes actions, like blocking or redirecting.
+ * Current setup checks for general bots, Lighthouse, Google PageSpeed Insight or similar tools, and logs them as well.
+ *
+ * Clerk Authentication Configuration
+ * ==================================
+ *
+ * - In the Clerk middleware:
+ *   - `publicRoutes`: Defines routes that don't require authentication.
+ *   - `beforeAuth`: Executes before the authentication check. It uses `intlMiddleware` to set up internationalization
+ *     and also stores the current pathname in the request header. This can be useful for UI-related context, like setting the active menu or tab items.
+ *   - `afterAuth`: Executes after the authentication check. It handles redirection for users based on their
+ *     authentication status. Unauthenticated users trying to access private routes are redirected to the sign-in page.
+ *      If user tries to access a public route without being authenticated, we just do nothing and close middleware.
+ * - Please remember that Clerk fully works with third-party services like "Google PageSpeed Insight" only when domain and live keys are used.
+ *
+ * NextAuth.js Authentication Configuration
+ * ========================================
+ *
+ * - If Clerk authentication is not enabled, the NextAuth.js middleware then is applied, where it conditionally checks if the requested path is a public or private route
+ *   using a regular expression that incorporates the locales and publicly accessible pages.
+ *   - For public routes, `intlMiddleware` is applied for internationalization.
+ *   - For private routes, `withAuth`(withNextAuth) is configured firstly, where it is responsible for authentication and access (user is redirected to auth page if is not authenticated), and then `intlMiddleware` is applied as well.
+ *     Note that withAuth's callback is only invoked if the `authorized`. Where jwt token is not configured in auth.ts, private routes will not work.
+ *
+ * Internationalization Configuration
+ * ==================================
+ *
+ * The intlMiddleware intercepts requests to `/` redirects into one of the configured
+ * locales (e.g. `/en-us`). And, in the background, a cookies are set, that will remember
+ * locale of last page that the user has visited. Then sent resolved locale to components
+ * - locales: A list of all locales that are supported. In the future `locales: locales.map((locale) => locale.code)` possibly can be used instead of just `locales`.
+ * - defaultLocale: The default locale that will be used if no locale is specified in the URL
+ * - localePrefix / urlMappingStrategy: The strategy for adding the locale prefix to the URL. Currently, it is set to `as-needed`/`rewrite` to fix wrong Stripe redirect, but it can be set to `always` in the future.
+ *
+ * Middleware's Config()
+ * =====================
+ *
+ * - Matcher entries are linked with logical "or", therefore if one of them matches, the middleware will be invoked.
+ * - Skips all paths where the middleware configuration will be ignored.
+ * To improve i18n, every dot files was specified (e.g. favicon.ico).
+ * Possible addition from next-intl docs: ["/", "/(de|en)/:path*"]
+ *
+ * For the Consideration
+ * =====================
+ *
+ * import countries from "~/data/other/countries.json";
+ *
+ * const pathname = request.nextUrl.pathname;
+ *
+ * const PUBLIC_FILE = /\.(.*)$/;
+ * if (
+ *   request.nextUrl.pathname.startsWith("/_next") ||
+ *   request.nextUrl.pathname.includes("/api/") ||
+ *   PUBLIC_FILE.test(request.nextUrl.pathname)
+ * ) {
+ *   return;
+ * }
+ */

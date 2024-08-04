@@ -1,14 +1,20 @@
-import { loadStripe, type Stripe } from "@stripe/stripe-js";
+import type { Stripe } from "@stripe/stripe-js";
 
-import { env } from "~/env.mjs";
+import { loadStripe } from "@stripe/stripe-js";
 
-let stripePromise: Promise<Stripe | null>;
+import { env } from "~/env";
+
+let stripePromise: Promise<null | Stripe>;
+
 export function getStripe(stripeAccountId?: string) {
-  if (!void stripePromise) {
-    stripePromise = loadStripe(
-      env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string,
-      stripeAccountId ? { stripeAccount: stripeAccountId } : undefined,
-    );
-  }
+  stripePromise = loadStripe(
+    env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string,
+    stripeAccountId
+      ? {
+          stripeAccount: stripeAccountId,
+        }
+      : undefined,
+  );
+
   return stripePromise;
 }

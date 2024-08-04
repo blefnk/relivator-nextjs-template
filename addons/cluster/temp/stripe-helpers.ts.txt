@@ -1,0 +1,44 @@
+// @module helpers.ts (currently not used anywhere)
+import type { z } from "zod";
+
+import { auth } from "~/auth";
+import { eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
+
+import { userPrivateMetadataSchema } from "@/server/reliverse/validations/auth";
+import { db } from "~/db";
+import { users } from "~/db/schema";
+import { env } from "~/env";
+
+// todo: Helper function to fetch user private metadata
+export async function fetchUserPrivateMetadata(
+  userId: string,
+): Promise<z.infer<typeof userPrivateMetadataSchema>> {
+  if (env.NEXT_PUBLIC_AUTH_PROVIDER === "clerk") {
+    const session = await clerkClient.users.getUser(userId);
+
+    if (!session) {
+      redirect("/auth");
+    }
+
+    return userPrivateMetadataSchema.parse(session.privateMetadata);
+  }
+
+  if (env.NEXT_PUBLIC_AUTH_PROVIDER === "authjs") {
+    const session = await auth();
+
+    if (!session) {
+      redirect("/auth");
+    }
+
+    const user = await db
+      .select()
+      .from(users)
+      .where(eq(users.email, session.email))
+      .then((res) => res[0] || null);
+
+    return userPrivateMetadataSchema.parse(user);
+  }
+
+  throw new Error("Unsupported NEXT_PUBLIC_AUTH_PROVIDER in env");
+}

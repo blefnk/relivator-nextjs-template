@@ -1,0 +1,58 @@
+name: Stargazers
+on:
+  workflow_dispatch:
+    inputs:
+      repoOrg:
+        description: Repo Org
+        required: true
+        default: blefnk
+      repoName:
+        description: Repo Name
+        required: true
+        default: relivator-nextjs-template
+      starCount:
+        description: Star Count
+        required: true
+        default: "900"
+      duration:
+        description: Duration (seconds)
+        required: false
+        default: "15"
+jobs:
+  render:
+    name: Stargazers
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version:
+          - 20
+    steps:
+      - name: Run checkout
+        uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+      - name: Install Fallback fonts (fonts)
+        run: |
+          sudo apt-get update -yqq
+          sudo apt-get install -yq --no-install-recommends \
+            fonts-noto-core fonts-noto-cjk fonts-noto-color-emoji fonts-noto-mono
+      - name: Install dependencies from package.json
+        run: pnpm install --no-frozen-lockfile
+      - name: Define input props
+        run: echo $WORKFLOW_INPUT | tee input-props.json | jq -C '.'
+        env:
+          WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
+      - name: Stargazers
+        run: pnpm stargazers:build -- --props="./input-props.json"
+        env:
+          REMOTION_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload video
+        uses: actions/upload-artifact@v3
+        with:
+          name: stargazers.mp4
+          path: public/internal/stargazers.mp4

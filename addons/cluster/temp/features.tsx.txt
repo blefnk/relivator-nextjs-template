@@ -1,0 +1,376 @@
+import type { ElementType } from "react";
+import { Balancer } from "react-wrap-balancer";
+
+import { useTranslations } from "next-intl";
+
+import { Separator } from "~/components/Primitives";
+import { cn } from "~/utils";
+
+// export async function GithubStarsPlugin() {
+// const githubStars = await getGithubStars();
+// consola.log("githubStars", githubStars);
+// return (
+// <>
+// {githubStars ? (
+// <Link
+// href={siteConfig.links.github}
+// rel="noreferrer noopener"
+// target="_blank"
+// >
+// <Badge
+// className={`
+// rounded-lg border-2 border-zinc-900/10 px-3.5 py-1.5 text-sm
+// font-medium
+// dark:border-zinc-800
+// lg:text-base
+// `}
+// variant="outline"
+// >
+// <Github aria-label="GitHub" className="mr-2 size-3.5" />
+// Star Relivator v1.2.6 on GitHub ⭐ {githubStars}/1,500
+// </Badge>
+// </Link>
+// ) : (
+// <span>GitHub</span>
+// )}
+// </>
+// );
+// } */
+// function OssFeaturesSection({
+//   githubStars,
+// }: {
+//   githubStars: null | number;
+// }) {
+//   const t = useTranslations("landing");
+//   return (
+//     <section
+//       className={cn(
+//         "mx-auto",
+//         "my-14",
+//         "mt-4",
+//         "grid",
+//         "w-fit",
+//         "place-items-center",
+//         "items-center",
+//         "justify-center",
+//         "gap-6",
+//         "space-y-6",
+//         "rounded-lg",
+//         "border",
+//         "bg-card",
+//         "px-6",
+//         "py-14",
+//         "pb-20",
+//         "pt-4",
+//         "text-card-foreground",
+//         "shadow-sm",
+//         "transition-opacity",
+//         "hover:opacity-80",
+//       )}
+//       id="open-source-features"
+//     >
+//       <Balancer
+//         as="h2"
+//         className={cn(
+//           "mx-auto",
+//           "my-6",
+//           "flex",
+//           "max-w-xl",
+//           "font-medium",
+//           "text-lg",
+//           "font-medium",
+//           "leading-[1.1]",
+//           "tracking-tight",
+//           "text-muted-foreground",
+//           "sm:text-xl",
+//         )}
+//       >
+//         {t("open-source.title")}
+//       </Balancer>
+//       <Balancer
+//         as="p"
+//         className={cn(
+//           "mx-auto",
+//           "flex",
+//           "max-w-[85%]",
+//           "leading-normal",
+//           "text-muted-foreground",
+//           "sm:text-lg",
+//           "sm:leading-7",
+//         )}
+//       >
+//         {githubStars && (
+//           <Link href={config.framework.repo}>
+//             <span>
+//               {t("open-source.stars", {
+//                 count: githubStars,
+//               })}
+//             </span>
+//           </Link>
+//         )}{" "}
+//         {t("title")} {t("open-source.subtitle.first")} {t("features.subtitle")}{" "}
+//         {t("subtitle")}
+//         <br />
+//         {t("open-source.subtitle.second")}{" "}
+//         <Link
+//           className="underline underline-offset-4"
+//           href={config.framework.repo}
+//           rel="noreferrer noopener"
+//           target="_blank"
+//         >
+//           GitHub
+//         </Link>{" "}
+//         and visit our{" "}
+//         <Link
+//           className="underline underline-offset-4"
+//           href="https://discord.gg/Pb8uKbwpsJ"
+//           rel="noreferrer noopener"
+//           target="_blank"
+//         >
+//           Discord
+//         </Link>
+//         .
+//       </Balancer>
+//       <Features />
+//     </section>
+//   );
+// }
+import {
+  Clock,
+  Files,
+  LayoutDashboard,
+  PlaneTakeoff,
+  QrCode,
+  Server,
+  ShoppingBag,
+  ToggleRight,
+} from "lucide-react";
+
+// export async function GithubStarsPlugin() {
+// const githubStars = await getGithubStars();
+// consola.log("githubStars", githubStars);
+// return (
+// <>
+// {githubStars ? (
+// <Link
+// href={siteConfig.links.github}
+// rel="noreferrer noopener"
+// target="_blank"
+// >
+// <Badge
+// className={`
+// rounded-lg border-2 border-zinc-900/10 px-3.5 py-1.5 text-sm
+// font-medium
+// dark:border-zinc-800
+// lg:text-base
+// `}
+// variant="outline"
+// >
+// <Github aria-label="GitHub" className="mr-2 size-3.5" />
+// Star Relivator v1.2.6 on GitHub ⭐ {githubStars}/1,500
+// </Badge>
+// </Link>
+// ) : (
+// <span>GitHub</span>
+// )}
+// </>
+// );
+// } */
+// function OssFeaturesSection({
+//   githubStars,
+// }: {
+//   githubStars: null | number;
+// }) {
+//   const t = useTranslations("landing");
+//   return (
+//     <section
+//       className={cn(
+//         "mx-auto",
+//         "my-14",
+//         "mt-4",
+//         "grid",
+//         "w-fit",
+//         "place-items-center",
+//         "items-center",
+//         "justify-center",
+//         "gap-6",
+//         "space-y-6",
+//         "rounded-lg",
+//         "border",
+//         "bg-card",
+//         "px-6",
+//         "py-14",
+//         "pb-20",
+//         "pt-4",
+//         "text-card-foreground",
+//         "shadow-sm",
+//         "transition-opacity",
+//         "hover:opacity-80",
+//       )}
+//       id="open-source-features"
+//     >
+//       <Balancer
+//         as="h2"
+//         className={cn(
+//           "mx-auto",
+//           "my-6",
+//           "flex",
+//           "max-w-xl",
+//           "font-medium",
+//           "text-lg",
+//           "font-medium",
+//           "leading-[1.1]",
+//           "tracking-tight",
+//           "text-muted-foreground",
+//           "sm:text-xl",
+//         )}
+//       >
+//         {t("open-source.title")}
+//       </Balancer>
+//       <Balancer
+//         as="p"
+//         className={cn(
+//           "mx-auto",
+//           "flex",
+//           "max-w-[85%]",
+//           "leading-normal",
+//           "text-muted-foreground",
+//           "sm:text-lg",
+//           "sm:leading-7",
+//         )}
+//       >
+//         {githubStars && (
+//           <Link href={config.framework.repo}>
+//             <span>
+//               {t("open-source.stars", {
+//                 count: githubStars,
+//               })}
+//             </span>
+//           </Link>
+//         )}{" "}
+//         {t("title")} {t("open-source.subtitle.first")} {t("features.subtitle")}{" "}
+//         {t("subtitle")}
+//         <br />
+//         {t("open-source.subtitle.second")}{" "}
+//         <Link
+//           className="underline underline-offset-4"
+//           href={config.framework.repo}
+//           rel="noreferrer noopener"
+//           target="_blank"
+//         >
+//           GitHub
+//         </Link>{" "}
+//         and visit our{" "}
+//         <Link
+//           className="underline underline-offset-4"
+//           href="https://discord.gg/Pb8uKbwpsJ"
+//           rel="noreferrer noopener"
+//           target="_blank"
+//         >
+//           Discord
+//         </Link>
+//         .
+//       </Balancer>
+//       <Features />
+//     </section>
+//   );
+// }
+export function Features() {
+  const t = useTranslations("landing");
+
+  return (
+    <div
+      className={`
+        mx-auto grid justify-center gap-4
+
+        lg:grid-cols-4
+
+        md:grid-cols-2
+
+        sm:grid-cols-2
+      `}
+    >
+      <FeatureCard
+        description={t("features.devtools.ambitions-description")}
+        icon={Clock}
+        title={t("features.files.roadmap")}
+      />
+      <FeatureCard
+        description={t("features.files.on-the-fly-description")}
+        icon={PlaneTakeoff}
+        title={t("features.files.on-the-fly")}
+      />
+      <FeatureCard
+        description={t("features.cryptography.description")}
+        icon={QrCode}
+        title={t("features.cryptography.title")}
+      />
+      <FeatureCard
+        description={t("features.text.description")}
+        icon={ToggleRight}
+        title={t("features.text.title")}
+      />
+      <FeatureCard
+        description={t("features.files.description")}
+        icon={Files}
+        title={t("features.files.title")}
+      />
+      <FeatureCard
+        description={t("features.clock.description")}
+        icon={Server}
+        title={t("features.clock.title")}
+      />
+      <FeatureCard
+        description={t("features.currency.description")}
+        icon={LayoutDashboard}
+        title={t("features.currency.title")}
+      />
+      <FeatureCard
+        description={t("features.devtools.description")}
+        icon={ShoppingBag}
+        title={t("features.devtools.title")}
+      />
+    </div>
+  );
+}
+
+type FeatureCardProps = {
+  description: string;
+  title: string;
+  icon: ElementType;
+};
+
+function FeatureCard({
+  description,
+  title,
+  icon: Icon,
+}: FeatureCardProps) {
+  return (
+    <div
+      className={`
+      overflow-hidden rounded-lg border bg-background p-2
+      text-left
+    `}
+    >
+      <div className="flex flex-col justify-between rounded-lg p-6">
+        <div className="flex min-h-[64px] items-center space-x-4">
+          <Icon aria-hidden className="size-8" />
+          <Balancer
+            as="h2"
+            className={cn(`
+                text-lg font-medium tracking-tight text-muted-foreground
+
+                sm:text-xl
+              `)}
+          >
+            {title}
+          </Balancer>
+        </div>
+        <Separator className="my-4" />
+        <Balancer as="p" className="flex text-muted-foreground">
+          {description}
+        </Balancer>
+      </div>
+    </div>
+  );
+}

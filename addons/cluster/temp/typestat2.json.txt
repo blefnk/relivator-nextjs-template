@@ -1,0 +1,36 @@
+[
+  {
+    "fixes": {
+      "incompleteTypes": true,
+      "noImplicitAny": true,
+      "inferableTypes": true,
+      "noImplicitThis": true,
+      "strictNonNullAssertions": true
+    },
+    "include": ["src/**/*.test.{ts,tsx}"],
+    "projectPath": "./tsconfig.json",
+    "types": {
+      "strictNullChecks": true
+    }
+  },
+  {
+    "exclude": ["src/**/*.test.{ts,tsx}"],
+    "fixes": {
+      "incompleteTypes": true,
+      "noImplicitAny": true,
+      "inferableTypes": true,
+      "noImplicitThis": true
+    },
+    "projectPath": "./tsconfig.json"
+  },
+  {
+    "fixes": {
+      "incompleteTypes": true,
+      "noImplicitAny": true,
+      "inferableTypes": true,
+      "noImplicitThis": true
+    },
+    "include": ["src/**/*.test.{ts,tsx}", null],
+    "projectPath": "./tsconfig.json"
+  }
+]

@@ -1,0 +1,262 @@
+[
+  {
+    "id": "1",
+    "question": "What is TypeScript?",
+    "options": [
+      "A framework for building web applications",
+      "A library for JavaScript",
+      "A new programming language",
+      "A typed superset of JavaScript that compiles to plain JavaScript"
+    ],
+    "answer": "A typed superset of JavaScript that compiles to plain JavaScript",
+    "difficulty": "medium",
+    "hint": "It extends JavaScript by adding static types.",
+    "points": 10
+  },
+  {
+    "id": "2",
+    "question": "What percentage of common bugs can TypeScript spot according to research?",
+    "difficulty": "medium",
+    "hint": "It's a small but significant percentage.",
+    "answer": "15%",
+    "options": ["5%", "10%", "15%", "20%"],
+    "points": 10
+  },
+  {
+    "id": "3",
+    "question": "What additional benefits does TypeScript provide over JavaScript?",
+    "difficulty": "hard",
+    "hint": "It includes features that help with code quality and readability.",
+    "answer": "TypeScript adds static types, helps prevent runtime errors, and enhances code readability and predictability.",
+    "options": [
+      "TypeScript adds static types and new programming paradigms.",
+      "TypeScript helps in UI design and animation.",
+      "TypeScript adds static types, helps prevent runtime errors, and enhances code readability and predictability.",
+      "TypeScript is used for server-side rendering."
+    ],
+    "points": 15
+  },
+  {
+    "id": "4",
+    "question": "How do you extend an interface in TypeScript?",
+    "options": [
+      "By using the 'extends' keyword followed by the interface name",
+      "By using the 'implement' keyword",
+      "By using the 'include' keyword",
+      "By using the 'interface' keyword"
+    ],
+    "answer": "By using the 'extends' keyword followed by the interface name",
+    "difficulty": "easy",
+    "hint": "It's similar to how you extend a class in other languages.",
+    "points": 5
+  },
+  {
+    "id": "5",
+    "question": "What is the difference between an 'interface' and a 'type' in TypeScript?",
+    "options": [
+      "An interface defines a contract for the structure of an object, while a type can define various structures including primitives, unions, and intersections.",
+      "Interfaces can define only objects, types can define only primitives.",
+      "They are exactly the same in all use cases.",
+      "Types are used only for variables, interfaces are used only for classes."
+    ],
+    "answer": "An interface defines a contract for the structure of an object, while a type can define various structures including primitives, unions, and intersections.",
+    "difficulty": "hard",
+    "hint": "Think about the versatility of 'type' compared to 'interface'.",
+    "points": 15
+  },
+  {
+    "id": "6",
+    "question": "Where can you use type annotations in TypeScript?",
+    "options": [
+      "Any variable, function, or parameter can have an explicit type annotation.",
+      "Only function parameters can have type annotations.",
+      "Only variables can have type annotations.",
+      "Type annotations are not used in TypeScript."
+    ],
+    "answer": "Any variable, function, or parameter can have an explicit type annotation.",
+    "difficulty": "medium",
+    "hint": "Consider how TypeScript adds clarity and safety to your code.",
+    "points": 10
+  },
+  {
+    "id": "7",
+    "question": "What is optional chaining in TypeScript?",
+    "options": [
+      "Optional chaining allows you to chain multiple functions together.",
+      "Optional chaining allows you to safely access deeply nested properties without having to explicitly check if each reference in the chain is null or undefined.",
+      "Optional chaining is a feature to handle asynchronous operations.",
+      "Optional chaining is used to define optional parameters in functions."
+    ],
+    "answer": "Optional chaining allows you to safely access deeply nested properties without having to explicitly check if each reference in the chain is null or undefined.",
+    "difficulty": "easy",
+    "hint": "It helps you avoid errors when accessing properties that might not exist.",
+    "points": 5
+  },
+  {
+    "id": "8",
+    "question": "Which of the following is a correct way to define a tuple in TypeScript?",
+    "options": [
+      "let myTuple: [string, number] = ['hello', 10];",
+      "let myTuple = ['hello', 10];",
+      "let myTuple: (string, number) = ['hello', 10];",
+      "let myTuple: [string, number];"
+    ],
+    "answer": "let myTuple: [string, number] = ['hello', 10];",
+    "difficulty": "medium",
+    "hint": "A tuple is an array with a fixed number of elements whose types are known.",
+    "points": 10
+  },
+  {
+    "id": "9",
+    "question": "How can you define an enum in TypeScript?",
+    "options": [
+      "enum Direction { Up = 1, Down, Left, Right }",
+      "let Direction = { Up: 1, Down: 2, Left: 3, Right: 4 }",
+      "enum Direction = { Up = 1, Down, Left, Right }",
+      "enum Direction { 'Up' = 1, 'Down', 'Left', 'Right' }"
+    ],
+    "answer": "enum Direction { Up = 1, Down, Left, Right }",
+    "difficulty": "easy",
+    "hint": "An enum is a way of giving more friendly names to sets of numeric values.",
+    "points": 5
+  },
+  {
+    "id": "10",
+    "question": "What is the purpose of the 'unknown' type in TypeScript?",
+    "options": [
+      "'unknown' is similar to 'any' but is safer because TypeScript will ensure that you perform some type checking before operating on them.",
+      "'unknown' is used to define variables that can hold values of any type.",
+      "'unknown' is used to mark sections of code that are not yet implemented.",
+      "'unknown' is used to declare a variable with an unknown name."
+    ],
+    "answer": "'unknown' is similar to 'any' but is safer because TypeScript will ensure that you perform some type checking before operating on them.",
+    "difficulty": "hard",
+    "hint": "It provides a type-safe alternative to 'any'.",
+    "points": 15
+  },
+  {
+    "id": "11",
+    "question": "How do you define a readonly property in TypeScript?",
+    "options": [
+      "class MyClass { readonly myProperty: string; }",
+      "class MyClass { private readonly myProperty: string; }",
+      "class MyClass { myProperty: readonly string; }",
+      "class MyClass { static readonly myProperty: string; }"
+    ],
+    "answer": "class MyClass { readonly myProperty: string; }",
+    "difficulty": "easy",
+    "hint": "It prevents modification after the initial assignment.",
+    "points": 5
+  },
+  {
+    "id": "12",
+    "question": "What does 'as const' do in TypeScript?",
+    "options": [
+      "It tells the compiler to infer the narrowest type for a value.",
+      "It casts a value to a constant type.",
+      "It is used to define a constant variable.",
+      "It ensures a variable cannot be reassigned."
+    ],
+    "answer": "It tells the compiler to infer the narrowest type for a value.",
+    "difficulty": "medium",
+    "hint": "It is useful when dealing with literals.",
+    "points": 10
+  },
+  {
+    "id": "13",
+    "question": "What is the output of the following TypeScript code?\nlet a: [number, string];\na = [5, 'hello'];\na.push(true);",
+    "options": ["Compile-time error", "Runtime error", "No error", "5"],
+    "answer": "Compile-time error",
+    "difficulty": "hard",
+    "hint": "Consider the types allowed in a tuple.",
+    "points": 15
+  },
+  {
+    "id": "14",
+    "question": "Which utility type would you use to make all properties in a type optional?",
+    "options": ["Partial", "Optional", "Nullable", "AllOptional"],
+    "answer": "Partial",
+    "difficulty": "medium",
+    "hint": "It modifies each property to be optional.",
+    "points": 10
+  },
+  {
+    "id": "15",
+    "question": "How do you mark a class as abstract in TypeScript?",
+    "options": [
+      "abstract class MyClass {}",
+      "class abstract MyClass {}",
+      "class MyClass abstract {}",
+      "abstract MyClass class {}"
+    ],
+    "answer": "abstract class MyClass {}",
+    "difficulty": "easy",
+    "hint": "It is similar to other languages like Java or C#.",
+    "points": 5
+  },
+  {
+    "id": "16",
+    "question": "What is the purpose of type guards in TypeScript?",
+    "options": [
+      "To narrow down the type within a conditional block.",
+      "To enforce strict typing throughout the codebase.",
+      "To create new types from existing ones.",
+      "To protect variables from being overwritten."
+    ],
+    "answer": "To narrow down the type within a conditional block.",
+    "difficulty": "medium",
+    "hint": "They are often used with the 'typeof' or 'instanceof' operators.",
+    "points": 10
+  },
+  {
+    "id": "17",
+    "question": "What does the 'keyof' operator do in TypeScript?",
+    "options": [
+      "It creates a union of string literal types from the keys of an object type.",
+      "It returns the type of a key.",
+      "It creates a type alias for the keys of an object.",
+      "It iterates over the keys of an object."
+    ],
+    "answer": "It creates a union of string literal types from the keys of an object type.",
+    "difficulty": "hard",
+    "hint": "It's useful for type-safe key manipulation.",
+    "points": 15
+  },
+  {
+    "id": "18",
+    "question": "What is the difference between 'namespace' and 'module' in TypeScript?",
+    "options": [
+      "Namespaces are used for internal module organization, while modules are for external usage.",
+      "Namespaces are deprecated in favor of modules.",
+      "Modules can be merged, namespaces cannot.",
+      "There is no difference; they are synonyms."
+    ],
+    "answer": "Namespaces are used for internal module organization, while modules are for external usage.",
+    "difficulty": "hard",
+    "hint": "Think about how you organize your code within a project versus sharing it with others.",
+    "points": 15
+  },
+  {
+    "id": "19",
+    "question": "How do you declare a function that accepts an unknown number of arguments of the same type?",
+    "options": [
+      "function myFunc(...args: number[]): void",
+      "function myFunc(args: number[]): void",
+      "function myFunc(args: ...number): void",
+      "function myFunc(...args: [number]): void"
+    ],
+    "answer": "function myFunc(...args: number[]): void",
+    "difficulty": "medium",
+    "hint": "It uses rest parameters.",
+    "points": 10
+  },
+  {
+    "id": "20",
+    "question": "Which feature allows you to create a new type by selecting a subset of properties from an existing type?",
+    "options": ["Pick", "Omit", "Extract", "Exclude"],
+    "answer": "Pick",
+    "difficulty": "medium",
+    "hint": "It's often used to create a new type with fewer properties.",
+    "points": 10
+  }
+]
