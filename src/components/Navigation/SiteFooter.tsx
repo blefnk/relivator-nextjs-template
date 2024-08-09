@@ -2,17 +2,18 @@ import type { ReactNode } from "react";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { config } from "@reliverse/core";
-import { Coffee, Music, Store } from "lucide-react";
+import { Music, Store } from "lucide-react";
 
 import { siteConfig } from "~/app";
 import JoinNewsletterForm from "~/components/Forms/JoinNewsletterForm";
+import { DonateLink } from "~/components/Navigation/DonateLink";
 import { ThemesGeneralSwitcher } from "~/components/Switchers/ThemesGeneralSwitcher";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { env } from "~/env";
-import { cn } from "~/utils";
 
 type SocialIconLinkProps = {
   children: ReactNode;
@@ -85,9 +86,7 @@ export function SiteFooter() {
               >
                 <Music aria-hidden="true" className="size-4" />
               </SocialIconLink>
-              <SocialIconLink href={config.social.github} label="Patreon">
-                <Coffee aria-hidden="true" className="size-4" />
-              </SocialIconLink>
+              <DonateLink />
               <ThemesGeneralSwitcher />
             </div>
             <div className="text-sm">

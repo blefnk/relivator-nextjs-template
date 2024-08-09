@@ -1,0 +1,17 @@
+{
+  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.enabledFrameworks": ["general", "next-intl", "react"],
+  "i18n-ally.keysInUse": [
+    "faq.1.details",
+    "faq.1.summary",
+    "faq.2.details",
+    "faq.2.summary",
+    "faq.3.details",
+    "faq.3.summary"
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["addons/messages/reliverse"],
+  "i18n-ally.sourceLanguage": "en",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib"
+}

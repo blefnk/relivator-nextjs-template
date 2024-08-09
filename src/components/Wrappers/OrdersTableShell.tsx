@@ -2,16 +2,16 @@
 
 import { useMemo } from "react";
 
+import type { CheckoutItem } from "@/types";
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
+import { Badge } from "@/components/ui/badge";
+import { cn, formatDate, formatPrice } from "@/utils";
 
 import type { Order } from "~/db/schema";
-import type { CheckoutItem } from "~/types";
 
 import { DataTable } from "~/components/Modules/DataTable/DataTable";
 import { DataTableColumnHeader } from "~/components/Modules/DataTable/DataTableColumnHeader";
-import { cn, formatDate, formatPrice } from "~/utils";
 
 type OrdersTableShellProps = {
   data: Order[];

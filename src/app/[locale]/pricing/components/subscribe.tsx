@@ -1,7 +1,7 @@
 // TODO: This file is not finished yet. It needs to be reviewed and completed.
 import type { ReactElement } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 
 type ButtonSetSubscriptionProps = {
   isTemplateFree: boolean | undefined;

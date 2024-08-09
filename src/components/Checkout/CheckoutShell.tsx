@@ -5,10 +5,10 @@ import type { HTMLAttributes, ReactNode } from "react";
 
 import type { StripeElementsOptions } from "@stripe/stripe-js";
 
+import { cn } from "@/utils";
 import { Elements } from "@stripe/react-stripe-js";
 
 import { getStripe } from "~/core/stripe/getting";
-import { cn } from "~/utils";
 
 type CheckoutShellProps = {
   paymentIntent: Promise<{

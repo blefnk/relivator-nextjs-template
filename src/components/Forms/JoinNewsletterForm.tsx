@@ -5,15 +5,14 @@ import { useForm } from "react-hook-form";
 
 import type { z } from "zod";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { Input } from "@/browser/reliverse/ui/Input";
-import { ToastAction } from "@/browser/reliverse/ui/Toast";
-import { useToast } from "@/browser/reliverse/ui/use-toast";
-import { emailSchema } from "@/server/reliverse/validations/notification";
+import { emailSchema } from "@/actions/reliverse/validations/notification";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/hooks-react/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { config } from "@reliverse/core";
 import { ofetch } from "ofetch";
-import superjson from "superjson";
 import { randomUUID } from "uncrypto";
 
 import { Icons } from "~/components/Common/Icons";
@@ -35,7 +34,7 @@ export default function JoinNewsletterForm() {
     setLoading(true);
     try {
       const response = await ofetch("/api/mail/subscribe", {
-        body: superjson.stringify({
+        body: JSON.stringify({
           email: data.email,
           subject: `Nazar Kornienko: Welcome to ${config.engine.name} Weekly!`,
           token: randomUUID(),

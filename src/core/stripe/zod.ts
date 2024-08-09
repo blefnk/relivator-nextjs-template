@@ -1,4 +1,4 @@
-import { cartLineItemSchema } from "@/server/reliverse/validations/cart";
+import { cartLineItemSchema } from "@/actions/reliverse/validations/cart";
 import * as z from "zod";
 
 export const manageSubscriptionSchema = z.object({

@@ -1,11 +1,7 @@
 import Link from "next/link";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/browser/reliverse/ui/Avatar";
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +10,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
+} from "@/components/ui/dropdown";
+import { cn, getInitials } from "@/utils";
 import { SignedIn, SignInButton } from "@clerk/nextjs";
 import { debugEnabled } from "reliverse.config";
 
@@ -24,7 +21,6 @@ import { clerk } from "~/auth/clerk";
 import { Icons } from "~/components/Common/Icons";
 import { SignOutButton } from "~/core/auth/authjs/components/sign-out-button";
 import { env } from "~/env";
-import { cn, getInitials } from "~/utils";
 
 export default async function UserMenu() {
   const user = authProvider === "clerk" ? await clerk() : await authjs();

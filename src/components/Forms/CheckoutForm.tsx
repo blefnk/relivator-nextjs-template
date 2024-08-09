@@ -3,7 +3,8 @@
 import type { ComponentPropsWithoutRef, FormEvent, ReactElement } from "react";
 import { useEffect, useId, useState } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/utils";
 import {
   AddressElement,
   LinkAuthenticationElement,
@@ -15,7 +16,6 @@ import consola from "consola";
 
 import { Icons } from "~/components/Common/Icons";
 import { env } from "~/env";
-import { cn } from "~/utils";
 
 type CheckoutFormProps = {
   storeId: string;

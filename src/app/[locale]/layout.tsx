@@ -2,33 +2,33 @@ import type { ReactNode } from "react";
 
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 
-import { Toaster } from "@/browser/reliverse/ui/Toaster";
-import { cn } from "@/browser/shared/utils";
+import { Toaster } from "@/components/ui/toaster";
 import { ourFileRouter } from "@/server/reliverse/api/uploadthing/core";
-import { config } from "@reliverse/core";
+import { TRPCReactProvider } from "@/trpc/react";
+import { cn } from "@/utils";
+import { config as reliverse } from "@reliverse/core";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { hideTailwindIndicator } from "reliverse.config";
 import { extractRouterConfig } from "uploadthing/server";
 
 import { siteConfig } from "~/app";
-import { ComboboxProvider } from "~/components/Combobox/ComboboxContext";
 import { LoglibAnalytics } from "~/components/Common/loglib-analytics";
 import { TailwindScreens } from "~/components/Common/tailwind-indicator";
+import { SiteFooter } from "~/components/Navigation/SiteFooter";
+import { SiteHeader } from "~/components/Navigation/SiteHeader";
 import { AuthProvider } from "~/components/Providers/AuthProvider";
 import { ThemeProvider } from "~/components/Providers/ThemeProvider";
-import { TRPC } from "~/core/trpc/react";
 import { env } from "~/env";
 import { defaultLocale, locales } from "~/navigation";
 
 import "~/styles/globals.css";
 
+// @reliverse/themes (coming soon)
 // import "@radix-ui/themes/styles.css";
 // import "@xyflow/react/dist/style.css";
 //
@@ -36,19 +36,16 @@ import "~/styles/globals.css";
 // them by defining the metadata in the page.tsx or in children layout.tsx.
 // By the way, we only need the getTranslations on async components
 // useTranslations works both on the server and the client side.
-//
 const baseMetadataURL = env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
-const absoluteUrl = (path: string) => {
-  return `${env.NEXT_PUBLIC_APP_URL}${path}`;
-};
+// const absoluteUrl = (path: string) => {
+//   return `${env.NEXT_PUBLIC_APP_URL}${path}`;
+// };
 
 export async function generateMetadata() {
   const t = await getTranslations();
 
   const metadata: Metadata = {
-    // metadataBase: new URL(baseMetadataURL),
-    // openGraph: { images: ["/og.png"] },
     alternates: {
       canonical: new URL(baseMetadataURL),
     },
@@ -56,25 +53,28 @@ export async function generateMetadata() {
     authors: [
       {
         name: siteConfig.author.handle,
-        url: config.social.github,
+        url: reliverse.social.github,
       },
     ],
     creator: siteConfig.author.handle,
     description: t("metadata.description"),
-    icons: {
-      icon: `${baseMetadataURL}/logo.png`,
-    },
+    icons: [{ rel: "icon", url: "/favicon.ico" }],
+
+    // icons: {
+    //   icon: `${baseMetadataURL}/logo.png`,
+    // },
     keywords: siteConfig.keywords,
-    manifest: absoluteUrl("/site.webmanifest"),
     openGraph: {
       alternateLocale: locales.filter((locale) => locale !== defaultLocale),
       description: t("metadata.description"),
-      images: [
-        {
-          alt: siteConfig.images[0].alt,
-          url: `${baseMetadataURL}/og-image.png`,
-        },
-      ],
+      images: [`${baseMetadataURL}/og.png`],
+
+      // images: [
+      //   {
+      //     alt: siteConfig.images[0].alt,
+      //     url: `${baseMetadataURL}/og-image.png`,
+      //   },
+      // ],
       locale: defaultLocale,
       siteName: siteConfig.name,
       title: siteConfig.name,
@@ -143,9 +143,7 @@ const fontFlag = localFont({
 // This is the "root" layout. It checks for valid locales,
 // sets up the fonts, themes, analytics, providers, & more.
 // This file serves as the primary entry point for the app.
-//
-// @see https://github.com/blefnk/relivator
-export default async function LocaleLayout({
+export default async function RootLocaleLayout({
   children,
   params: { locale },
 }: Readonly<{
@@ -154,12 +152,15 @@ export default async function LocaleLayout({
   };
   children: ReactNode;
 }>) {
+  // @see https://github.com/blefnk/relivator
   if (!locales.includes(locale)) {
     return notFound();
   }
 
-  const messages = await getMessages();
-  const isTailwindIndicatorEnabled = hideTailwindIndicator === false;
+  // Uncomment if you want next-intl to be available on both client and server components.
+  // By default, it is available on server components, while for "use client" components it
+  // should be passed as props. If you uncomment, it may impact the project's performance.
+  // const messages = await getMessages(); // Uncomment NextIntlClientProvider as well.
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -173,17 +174,17 @@ export default async function LocaleLayout({
           )}
         >
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-          <TRPC data={headers()}>
+          <TRPCReactProvider>
             <ThemeProvider>
-              <NextIntlClientProvider messages={messages}>
-                <ComboboxProvider>
-                  {children}
-                  {/* <Reliverse /> */}
-                  {isTailwindIndicatorEnabled && <TailwindScreens />}
-                </ComboboxProvider>
-              </NextIntlClientProvider>
+              {/* <NextIntlClientProvider messages={messages}> */}
+              <SiteHeader />
+              {children}
+              <SiteFooter />
+              {/* <Reliverse /> */}
+              {hideTailwindIndicator === false && <TailwindScreens />}
+              {/* </NextIntlClientProvider> */}
             </ThemeProvider>
-          </TRPC>
+          </TRPCReactProvider>
           <Toaster />
           <LoglibAnalytics />
           <VercelAnalytics />

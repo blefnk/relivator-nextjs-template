@@ -1,4 +1,4 @@
-import { defineAddon } from "@/terminal/shared/utils";
+import { defineAddon } from "@/scripts/utils";
 import { defineCommand, runMain } from "citty";
 import consola from "consola";
 
@@ -49,7 +49,7 @@ const main = defineCommand({
     switch (selected) {
       case "Find deprecated rules":
         consola.info(
-          "💡 py addons/reliverse/relimter/python/tasks/find-eslint-dep-rules.py",
+          "💡 py addons/scripts/reliverse/relimter/python/tasks/find-eslint-dep-rules.py",
         );
         consola.info(
           "Ensure you've Python installed, learn more in the Scripts and Python sections of README.md file",
@@ -69,7 +69,7 @@ const main = defineCommand({
 
       case "Toggle all ESLint rules":
         consola.info(
-          "py addons/reliverse/relimter/python/tasks/toggle-all-eslint-rules.py",
+          "py addons/scripts/reliverse/relimter/python/tasks/toggle-all-eslint-rules.py",
         );
         consola.info(
           "Ensure you've Python installed, learn more in the Scripts and Python sections of README.md file",
@@ -96,7 +96,7 @@ function withArgument() {
 
     case "--deprecated":
       consola.info(
-        "💡 py addons/reliverse/relimter/python/tasks/find-eslint-dep-rules.py",
+        "💡 py addons/scripts/reliverse/relimter/python/tasks/find-eslint-dep-rules.py",
       );
       consola.info(
         "Ensure you've Python installed, learn more in the Scripts and Python sections of README.md file",
@@ -112,7 +112,7 @@ function withArgument() {
 
     case "--toggler":
       consola.info(
-        "💡 py addons/reliverse/relimter/python/tasks/toggle-all-eslint-rules.py",
+        "💡 py addons/scripts/reliverse/relimter/python/tasks/toggle-all-eslint-rules.py",
       );
       consola.info(
         "Ensure you've Python installed, learn more in the Scripts and Python sections of README.md file",

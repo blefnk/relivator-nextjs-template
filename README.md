@@ -1,12 +1,16 @@
 # Relivator 1.2.6: Next.js 15, React 19, TailwindCSS Template
 
-<!-- For those who are viewing the current markdown file using:
-- VSCode: Press F1 or Cmd/Ctrl+Shift+P and enter ">Markdown: Open Preview". It is recommended to install the "markdownlint" and "Markdown All in One" extensions.
-- GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1". -->
+<!--
+For those who are viewing the current markdown file using:
+ – VSCode: Press F1 or Cmd/Ctrl+Shift+P and enter ">Markdown: Open Preview". Please install the "markdownlint" and "Markdown All in One" extensions.
+ – GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1".
+-->
 
 <div align="center">
 
-[🌐 Demo](https://relivator.bleverse.com) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🩷 Sponsors](#sponsors) | [⚙️ Scripts](#scripts) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
+[🌐 Demo](https://relivator.bleverse.com) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🩷 Sponsors](#sponsors)
+
+[⚙️ Scripts](#scripts) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
 
 </div>
 
@@ -14,22 +18,33 @@
 
 <!-- 👉 https://github.com/blefnk/relivator-nextjs-template 🙏 -->
 
-Stop jumping from one starter to the next. With [Relivator](https://github.com/blefnk/relivator-nextjs-template#readme), your possibilities are endless! You can create anything you want; all the tools are ready and waiting for you. Please take a moment to read through the information below. You'll find helpful details about how everything works in the project, as well as an extensive list of features.
+Stop jumping from one starter to the next. With [Relivator](https://github.com/blefnk/relivator-nextjs-template#readme), your possibilities are endless! You can create anything you want; all the tools are ready and waiting for you.
 
 The entire Relivator project was developed by one person, [Nazar Kornienko (blefnk)](https://github.com/blefnk)! Some people have already contributed, and you’re welcome to do the same—any contributions at all are appreciated! Your contributions will not be forgotten; [our awesome community](https://discord.gg/Pb8uKbwpsJ) value them highly, and you might even receive financial gratitude from the project's creator in the future. Let's come together to create the most coolest Next.js template in the world! This will be a joint effort and a shared victory, a true win-win. Thank you all for your contributions and [financial support](#sponsors)!
+
+Please take a moment to read through the information below. You'll find helpful details about how everything works in the project, as well as an extensive list of features.
 
 <div align="center">
 
 <p>
-  <span>
-    <a href="https://github.com/blefnk/relivator-nextjs-template/blob/main/public/og.png">
-      <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="public/og.png" />
-          <source media="(prefers-color-scheme: light)" srcset="public/og.png" />
-          <img alt="Dark-themed image displaying various technologies and tools used in the Relivator project. The heading highlights Next.js 15, React 19, shadcn, and Tailwind Template. The image is divided into multiple sections listing technologies like shadcn, tailwind, next 15, react 19, clerk, authjs, drizzle, neon, ts 5.6, python, eslint 9, ts-eslint 8, knip, biome, unjs, and reliverse. The background features a grid layout with a minimalistic design, inspired by the Figma and Loading UI style." src="/public/og.png" width="35%" />
-      </picture>
-    </a>
-  </span>
+    <span>
+      <a href="https://relivator.bleverse.com">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="public/screenshot-dark.png" />
+            <source media="(prefers-color-scheme: light)" srcset="public/screenshot-light.png" />
+            <img alt="Shows the landing page of Relivator Next.js template, with its logo and the phrase 'Relivator Empowers Your eCommerce with the Power of Next.js'." src="/public/screenshot-light.png" width="40%" />
+        </picture>
+      </a>
+    </span>
+    <span>
+      <a href="https://github.com/blefnk/relivator-nextjs-template/blob/main/public/og.png">
+        <picture>
+            <source media="(prefers-color-scheme: dark)" srcset="public/og.png" />
+            <source media="(prefers-color-scheme: light)" srcset="public/og.png" />
+            <img alt="Dark-themed image displaying various technologies and tools used in the Relivator project. The heading highlights Next.js 15, React 19, shadcn, and Tailwind Template. The image is divided into multiple sections listing technologies like shadcn, tailwind, next 15, react 19, clerk, authjs, drizzle, neon, ts 5.6, python, eslint 9, ts-eslint 8, knip, biome, unjs, and reliverse. The background features a grid layout with a minimalistic design, inspired by the Figma and Loading UI style." src="/public/og.png" width="45%" />
+        </picture>
+      </a>
+    </span>
 </p>
 
 [![Discord chat][badge-discord]][link-discord]
@@ -42,28 +57,28 @@ The entire Relivator project was developed by one person, [Nazar Kornienko (blef
 
 > *«I couldn't find the ~~sports car~~ Next.js starter of my dreams, so I built it myself.»* © ~~Ferdinand Porsche~~ [@blefnk](https://github.com/blefnk)
 
-Our goal is to create the world's most feature-rich and globally accessible Next.js starter. It offers more than just code—it's an experience. It's stable and production-ready. Scroll down to see the impressive list of project features, including the ability to switch between Clerk/NextAuth.js and Drizzle's MySQL/PostgreSQL on the fly. Welcome to the Relivator starter and the Reliverse community!
+Our goal is to create the world's most feature-rich and globally accessible Next.js starter. It offers more than just code—it's an experience. Scroll down to see the impressive list of project features, including the ability to switch between Clerk/Auth.js (next-auth@beta/NextAuth.js) and Drizzle's MySQL/PostgreSQL on the fly. Welcome to the Relivator starter and the Reliverse community!
 
-<p>
+<!-- <p align="center">
     <span>
       <a href="https://relivator.bleverse.com">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="public/screenshot-dark.png" />
             <source media="(prefers-color-scheme: light)" srcset="public/screenshot-light.png" />
-            <img alt="Shows the landing page of Relivator Next.js template, with its logo and the phrase 'Relivator Empowers Your eCommerce with the Power of Next.js'." src="/public/screenshot-light.png" width="53%" />
+            <img alt="Shows the landing page of Relivator Next.js template, with its logo and the phrase 'Relivator Empowers Your eCommerce with the Power of Next.js'." src="/public/screenshot-light.png" width="50%" />
         </picture>
       </a>
     </span>
     <span>
       <a href="https://star-history.com/#blefnk/relivator-nextjs-template&Timeline">
-        <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=blefnk/relivator-nextjs-template&type=Timeline&theme=dark" />
-          <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=blefnk/relivator-nextjs-template&type=Timeline" />
-          <img alt="Chart which visualize the star history of Relivator repository." src="https://api.star-history.com/svg?repos=blefnk/relivator-nextjs-template&type=Timeline" width="45%" />
-        </picture>
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=blefnk/relivator-nextjs-template&type=Timeline&theme=dark" />
+        <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=blefnk/relivator-nextjs-template&type=Timeline" />
+        <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=blefnk/relivator-nextjs-template&type=Timeline" width="50%" />
+      </picture>
       </a>
     </span>
-</p>
+</p> -->
 
 ## Introduction
 
@@ -83,48 +98,52 @@ Relivator 1.2.6 was released on August 4, 2024! We are now actively working on t
 
 *The fastest released version will be called: Relivator v1.3.0-canary.0*.
 
-**🔥 [Important note]: Please note that currently, v1.2.6 requires specifying Clerk environment variables keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect, meaning something is broken somewhere, please let us know.**
+**🔥 Important Note:** Relivator currently requires specifying Clerk environment variable keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect and something is broken, please let us know.
 
 ## What About the Future?! Any News on 1.3.0?
 
-**🎉 The upcoming Relivator 1.3.0 will have as few dependencies as possible! Yeah, finally!**
+**🎉 The upcoming Relivator 1.3.0 will have as few dependencies as possible! Finally!**
 
-I'm ([blefnk](https://github.com/blefnk)) working to automate the Relivator's developer experience as much as possible, including the installation process. The upcoming version 1.3.0 will feature a significant automated installation. If you wish to try the initial alpha version of one of my many automation scripts, use the `pnpm deps:install` (or `pnpm deps:install-all`) command. This script already allows you to install and remove project packages, and it also works as a linter. You can check the comprehensive number of predefined commands configured inside the 'scripts' section of the 'package.json' file. However, before running this script, you should manually install the essentials:
+I'm ([blefnk](https://github.com/blefnk)) working to automate the Relivator's developer experience as much as possible, including the installation process. The upcoming version 1.3.0 will feature significant automated installation. If you wish to try the initial alpha version of one of my many automation scripts, use the `pnpm deps:install` (or `pnpm deps:install-all`) command. This script already allows you to install and remove project packages, and it also works as a linter. You can check the comprehensive number of predefined commands configured inside the 'scripts' section of the 'package.json' file. However, before running this script, you should manually install the essentials:
 
-- npx nypm add typescript tsx nypm @mnrendra/read-package @clack/prompts
-- npx nypm add pathe fast-npm-meta semver @types/semver redrun axios
-- bun|yarn|pnpm dlx jsr add @reliverse/core (or: npx jsr add @reliverse/core)
+- `npx npm add typescript tsx npm @mnrendra/read-package @clack/prompts`
+- `npx npm add pathe fast-npm-meta semver @types/semver redrun axios`
+- `bun|yarn|pnpm dlx jsr add @reliverse/core` (or: `npx jsr add @reliverse/core`)
 
-Thanks to @reliverse/addons, everything will now work seamlessly with minimal dependencies. Each specific functionality and component is separated into its own library and published on [npmjs](https://npmjs.com) and/or [jsr](https://jsr.io), allowing you to install only what you need. With Relivator 1.3.0, you can say goodbye to the frustration of unnecessary components in templates. You get the core package and can add functionality and UI components as needed.
+Thanks to @reliverse/addons, everything now works smoothly with fewer dependencies. In the future, each feature and component will be split into its own library and published on [npmjs](https://npmjs.com) and/or [jsr](https://jsr.io), so you can install only what you need. With the future Relivator 1.3.0 version, you won't have to deal with unnecessary components in web templates anymore. You get the core package and can add features and UI components as you need them.
 
-The 'addons' folder is divided into two contexts: the browser and the terminal. The 'terminal' folder contains functions used by the CLI, while the 'src' folder is dedicated exclusively to the browser context, as the browser doesn't support certain features. So, the 'terminal' supports everything what contains 'browser', but not vice versa, unfortunately.
+The 'addons' folder is divided into two parts: terminal context and browser context (it's everything, excluding the 'addons/scripts' folder). The 'addons/scripts' folder contains functions used by the CLI (command line interface), while the 'src' and 'addons/*' folders (excluding 'addons/scripts') are for the browser, since the browser doesn't support certain JS features. So, while 'addons/scripts' has everything needed for the whole app, not everything can import from 'addons/scripts'.
 
 You’ll have two installation options: the classic method using 'package.json' or a new approach inspired by shadcn/ui, where you keep all the content directly in your project (currently in test mode in Relivator 1.2.6—check the `addons` folder or run `pnpm addons`). While the classic method is recommended for most cases, feel free to explore the new approach!
 
 The 'addons' folder is already packed with many exciting features, especially related to codemods, and includes the **@reliverse/academy game**. This game allows you to test your knowledge of JavaScript/TypeScript, React/Next.js, Relivator/Reliverse (make food/tea/coffee before trying this test—it has a lot of questions!), and even ESLint v9 ecosystems. It features a leaderboard, enabling you to compete with others by sharing `data/players.json` and `data/progress.json` save files. Plus, an achievement system keeps you motivated!
 
-I can’t wait for you to experience the new and improved Relivator 1.3.0! By the way, the items in the [✅ Roadmap](#roadmap) section will finally be checked off! But to make 1.3.0 truly stable and great, let's first work together on Relivator v1.3.0-canary.0, which is coming soon! If you want to get it even faster, there is now a 'dev' branch. We recently opened the project pages on financial support platforms, and currently, any contribution grants you access to the 'dev' branch. Thank you for your attention!
+I can’t wait for you to experience the new and improved Relivator 1.3.0! By the way, the items in the [✅ Roadmap](#roadmap) section will finally be checked off! But to make 1.3.0 truly stable, production-ready, and just great, let's first work together on Relivator v1.3.0-canary.0, which is coming soon! If you want to get it even faster, there is now a 'dev' branch. We recently opened the project pages on financial support platforms, and currently, any contribution grants you access to the 'dev' branch. Thank you for your attention!
 
 ## Sponsors
 
 **[We're Growing Fast! A Huge Thanks to All Our Supporters!](https://github.com/blefnk/relivator-nextjs-template/stargazers)**
 
-Developing something as ambitious as Relivator obviously takes a lot of time, especially since the project is primarily developed by just one person. The development could be significantly accelerated by hiring additional developers. Therefore, @blefnk Nazar Kornienko, the author of this project, will be immensely grateful to anyone who can donate to the project in any amount. A big thank you to everyone in advance!
+Developing something as ambitious as Relivator takes a lot of time, especially since the project is primarily developed by just one person. The development could be significantly accelerated by hiring additional developers. Therefore, @blefnk (Nazar Kornienko), the author of this project, would be immensely grateful to anyone who can donate to the project in any amount. A big thank you to everyone in advance!
 
-*The Relivator is currently sponsored by the following awesome people/organizations:*
+**[Visit the "Donate to Relivator" page to learn more.](https://relivator.bleverse.com/en/donate)**
+
+*Relivator is currently sponsored by the following awesome people/organizations:*
 
 ### 💚 [GitHub Sponsors](https://github.com/sponsors/blefnk) 🩵 [PayPal](https://paypal.me/blefony) 🧡 [Patreon](https://patreon.com/blefnk) 💛 [Buy Me a Coffee](https://buymeacoffee.com/blefnk) 🩷 [Ko-fi](https://ko-fi.com/blefnk)
 
 *Love using this project? If you find this project useful, I'd appreciate a cup of coffee. You'll get Reliverse Pro, access to some private repositories, pre-release downloads, and the ability to influence my project planning. Please click on the donation platforms above to learn more. Thank you, everyone, for any kind of support!*
 
-- @devmarauda *(Discord: kongkong86)*
-- @svict4
-- [@mfpiano](https://youtube.com/@mfpiano)
+*I retrieve your data from donation and related platforms. If you do not wish for certain information about you to be included here, please contact me.*
+
+- [@devmarauda](https://github.com/devmarauda) *(Discord: kongkong86 | Name: Daniel Humphreys)*
+- [@svict4](https://github.com/svict4) *(Discord: svict4 | Name: Simon Victory)*
+- [@mfpiano](https://youtube.com/@mfpiano) *(Discord: mfpiano | Name: Petro Melnyk)*
 
 ### 💜 [Discord Server Boost](https://discord.gg/C4Z46fHKQ8)
 
-- @Saif-V *(Discord: Gh0st)*
-- @demiroo *(Discord: demiroezkan)*
+- [@Saif-V](https://github.com/Saif-V) *(Discord: Gh0st | Name: Saif Al-Hashar)*
+- [@demiroo](https://github.com/demiroo) *(Discord: demiroezkan | Name: Özkan Demir)*
 
 ## 🖥️ Hire Me
 
@@ -159,39 +178,43 @@ Currently, I’m in a challenging financial situation, so I would greatly apprec
 
 **By The Way:** *Sometimes, we gift [`Reliverse Pro: Backers` pledge](https://patreon.com/blefnk), which gives you early access to the Reliverse projects ecosystem, including Relivator, as well as upcoming plugins, to randomly selected individuals. We also give away other interesting things. Simply `star this repository` and [let us know how to reach you](https://forms.gle/NXZ6QHpwrxh52VA36). To join the discussion, hop into [the project's Discord](https://discord.gg/Pb8uKbwpsJ).*
 
-### One-click Installation
+### One-click Installation Method (**find recommended method below**)
 
-**🔥 [Important note]: Please note that currently, v1.2.6 requires specifying Clerk environment variables keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect, meaning something is broken somewhere, please let us know.**
+**🔥 Important Note:** Relivator currently requires specifying Clerk environment variable keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect and something is broken, please let us know.
 
 By using this method, you will get only the front-end, with all the functionality disabled (learn how to enable it by reading the manual instructions below):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fblefnk%2Frelivator-nextjs-template\&project-name=relivator\&repository-name=relivator)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fblefnk%2Frelivator-nextjs-template&project-name=relivator&repository-name=my-new-repository-name)
 
-**Please note, as of version 1.2.6, it is better to use Clerk as the authProvider (specified in the `reliverse.config.ts` file) since this version has been more thoroughly tested with Clerk. We are working on fixing and improving the stability of NextAuth.js as an authentication provider.**
+**Please note:** As of version 1.2.6 and 1.3.0 (dev and canary), it is recommended to use Clerk as the authProvider (specified in the `reliverse.config.ts` file) since this version has been more thoroughly tested with Clerk. We are working on fixing and improving the stability of Auth.js (next-auth@beta/NextAuth.js) as an authentication provider.
 
-### Manual Installation: Short Version (for speedrunners)
+### Manual Installation: Short Method (**find recommended method below**)
 
-1. **Tools**: Node.js LTS ([Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis)) ➞ `corepack enable pnpm` ➞ [*VSCode*](https://code.visualstudio.com) ➞ [*Git*](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git) ➞ *GitHub Desktop* ([Windows/macOS](https://desktop.github.com) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)) ➞ [Stripe CLI](https://docs.stripe.com/stripe-cli). Windows only: [PowerShell 7.4+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#installing-the-msi-package).
-2. **[Fork the repo](https://github.com/blefnk/relivator-nextjs-template/fork)**: Download your fork using GitHub Desktop.
-3. **Setup**: `pnpm install && install:global && pnpm reli:setup` ➞ `pnpm reli:vscode` ➞ `cp .env.example .env` ➞ fill in the values inside of `.env` ➞ `pnpm db:push` ➞ `reliverse.config.ts`.
-4. **Run, Build, Deploy**: Use `pnpm dev` to run the app. Stop with `Ctrl+C`. Build with `pnpm build`. Run `pnpm appts` to check the code. Upload to GitHub with GitHub Desktop. Deploy on [Vercel](https://vercel.com/new).
+**🔥 Important Note:** Relivator currently requires specifying Clerk environment variable keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect and something is broken, please let us know.
 
-### Manual Installation: Detailed Version (recommended)
+1. **Node.js LTS**: **(A)** classical method - [Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis); **(B)** nvm - [Windows](https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#install-nvm-windows) | [macOS/Linux](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating); **(C)** [fnm](https://github.com/Schniz/fnm#readme).
+2. **Tools**: `corepack enable pnpm` ➞ [*VSCode*](https://code.visualstudio.com) ➞ [*Git*](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git) ➞ *GitHub Desktop* ([Windows/macOS](https://desktop.github.com) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)) ➞ [Stripe CLI](https://docs.stripe.com/stripe-cli). Windows only: [PowerShell 7.4+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#installing-the-msi-package).
+3. **[Fork the repo](https://github.com/blefnk/relivator-nextjs-template/fork)**: Download your fork using GitHub Desktop.
+4. **Setup**: `pnpm install && install:global && pnpm reli:setup` ➞ `pnpm reli:vscode` ➞ `cp .env.example .env` ➞ fill in the values inside of `.env` ➞ `pnpm db:push` ➞ `reliverse.config.ts`.
+5. **Run, Build, Deploy**: Use `pnpm dev` to run the app. Stop with `Ctrl+C`. Build with `pnpm build`. Run `pnpm appts` to check the code. Upload to GitHub with GitHub Desktop. Deploy on [Vercel](https://vercel.com/new).
 
-**🔥 [Important note]: Please note that currently, v1.2.6 requires specifying Clerk environment variables keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect, meaning something is broken somewhere, please let us know.**
+### Manual Installation: Detailed Method (recommended)
+
+**🔥 Important Note:** Relivator currently requires specifying Clerk environment variable keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect and something is broken, please let us know.
 
 ▲ Hotline: [Email](mailto:blefnk@gmail.com) | [Discord](https://discord.gg/Pb8uKbwpsJ) | [Slack](https://join.slack.com/t/reliverse/shared_invite/zt-2mq703yro-hKnLmsgbIQul0wX~gLxRPA) | [Cal.com](https://cal.com/blefnk/reliverse)
 
 > I'm ([blefnk](https://github.com/blefnk)) working to automate the Relivator's installation process as much as possible. The upcoming version 1.3.0 will feature a significant automated installation. If you wish to try the alpha version of one of my many automation scripts, use the `pnpm deps:install` (or `pnpm deps:install-all`) command. However, before running this script, you should manually install the essentials (edit 'pnpm dlx jsr' if needed): `npx nypm add typescript tsx @clack/prompts @mnrendra/read-package nypm ora pathe fast-npm-meta semver @types/semver redrun && pnpm dlx jsr add @reliverse/core`.
 
-**Please note, as of version 1.2.6, it is better to use Clerk as the authProvider (specified in the `reliverse.config.ts` file) since this version has been more thoroughly tested with Clerk. We are working on fixing and improving the stability of NextAuth.js as an authentication provider.**
+**Please note**: As of version 1.2.6 and 1.3.0 (dev and canary), it is recommended to use Clerk as the authProvider (specified in the `reliverse.config.ts` file) since this version has been more thoroughly tested with Clerk. We are working on fixing and improving the stability of Auth.js (next-auth@beta/NextAuth.js) as an authentication provider.
 
-1. **Essential Tools**: Ensure you have *Node.js LTS* ([Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis)) installed. Then, run `corepack enable pnpm` to install [*pnpm*](https://pnpm.io/installation). Also, install [*VSCode*](https://code.visualstudio.com), [*Git*](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git), *GitHub Desktop* ([Windows/macOS](https://desktop.github.com) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)), and [Stripe CLI](https://docs.stripe.com/stripe-cli). If you're a Windows user: install [PowerShell 7.4+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#installing-the-msi-package) as well.
-2. **Project Cloning**: [*Fork the repository*](https://github.com/blefnk/relivator-nextjs-template/fork) or click on the `Use this template` button. Use GitHub Desktop to download it to your device. The project size is about 12MB, but ensure you have at least 7GB of disk space for comfortable work, as the `node_modules` and `.next` folders require it.
-3. **Configuration**: Open the project folder in VSCode. Install the recommended extensions from [.vscode/extensions.json](.vscode/extensions.json) and/or install the advanced VSCode configurations by using `pnpm reli:vscode` (choose the `default` preset for the best experience or the `ultimate` preset for the best experience). You can also refer to the [⚙️ Scripts](#scripts) and [🤔 FAQ](#faq) *RQ19* below to learn more about this script and its configurations. You can press `Cmd/Ctrl+F` and search for "`Q19`/`Q20`" if you want to install more extensions and settings (remember, more extensions mean slower VSCode). Then click `File > Exit` (VSCode will save all your open windows). Open VSCode again. Press `Ctrl+Shift+P` (or just `F1`) and search for `>Create New Terminal`, or just press **Cmd/Ctrl+Shift+~** *(on Windows make sure that it uses PowerShell 7.4+, click the arrow next to + ➞ Select Default Profile ➞ PowerShell)*. If VSCode prompts you to allow the usage of the project's TypeScript version, allow it if you're a Windows user. On other operating systems, you may or may not encounter path issues.
-4. **Environment**: Run `pnpm install` (or `npx nypm install`) and/or, optionally, `install:global` to install the required packages. It is also recommended to configure `reliverse.config.ts` file. Then, optionally, you can use `pnpm deps:install-all`—especially `pnpm deps:install-all` (*this is currently an alpha script*)—to unlock some additional features, like the `eslint.config.ultimate.ts` preset (which will have a `.txt` extension by default starting with Relivator v1.3.0). (NOTE: As of Relivator v1.2.6, the `ultimate` preset is configured by default, so no action is required). Next, configure Relivator to meet your needs using the `pnpm reli:setup` and/or `pnpm reli:vscode` commands, and relaunch VSCode. You have two options: deploy with zero values in the `.env` file (resulting in just the frontend without features related to auth, database, pricing, etc.), or copy the `.env.example` file to a new `.env` file and fill in the values you want (everything is optional starting with Relivator v1.2.6). It is highly recommended to fill in the `DATABASE_URL` field. Then, set the database provider in `drizzle.config.ts` and make changes in related files if needed. Finally, send the database schema to the database using `pnpm db:push`. You can learn more about databases below in the current `README.md` file.
-5. **Run, Stop, Build**: Run the app with `pnpm dev` or `pnpm turbo:dev` (interactive but unstable). Visit <http://localhost:3000> to check it out. Stop it by focusing on the console and pressing `Ctrl+C`. After making changes, build the app using `pnpm build` or `pnpm turbo:build`. *Don't worry if you see warnings related to Clerk, React Compiler, Babel, next-auth, etc. when running the build; these are known issues not related to Relivator.* Note that when using the pnpm [turbo:build](https://turbo.build) command, the VSCode terminal may not exit automatically. If this happens, press Cmd/Ctrl+C to close the process manually.
-6. **Check, Commit, Deploy**: To check if the current codebase meets [@reliverse/standard](https://github.com/reliverse/standard), run `pnpm appts` (or `pnpm appts:noputout`, or `pnpm turbo:appts`, or `pnpm appts:nobuild`). Learn more about project scripts in the next section. If everything is fine, upload the project to your GitHub profile using GitHub Desktop. Finally, deploy it by importing the project into [Vercel](https://vercel.com/new), making the website publicly accessible on the internet. Alternatively, you can use `pnpm deploy` or just `vercel` to preview and inspect the local deployment without committing to GitHub every time.
+1. **Node.js LTS**: Ensure you have *Node.js LTS* installed using: **(a)** classical method - [Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis); **(b)** nvm - [Windows](https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#install-nvm-windows) | [macOS/Linux](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating); **(c)** [fnm](https://github.com/Schniz/fnm#readme).
+2. **Essential Tools**: Then, run `corepack enable pnpm` to install [*pnpm*](https://pnpm.io/installation). Also, install [*VSCode*](https://code.visualstudio.com), [Git](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git), *GitHub Desktop* ([Windows/macOS](https://desktop.github.com) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)), and [Stripe CLI](https://docs.stripe.com/stripe-cli). If you're a Windows user: install [PowerShell 7.4+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#installing-the-msi-package) as well.
+3. **Project Cloning**: [*Fork the repository*](https://github.com/blefnk/relivator-nextjs-template/fork) or click on the `Use this template` button. Use GitHub Desktop to download it to your device. The project size is about 12MB, but ensure you have at least 7GB of disk space for comfortable work, as the `node_modules` and `.next` folders require it.
+4. **Configuration**: Open the project folder in VSCode. Install the recommended extensions from [.vscode/extensions.json](.vscode/extensions.json) and/or install the advanced VSCode configurations by using `pnpm reli:vscode` (choose the `default` preset for the best experience or the `ultimate` preset for the best experience). You can also refer to the [⚙️ Scripts](#scripts) and [🤔 FAQ](#faq) *RQ19* below to learn more about this script and its configurations. You can press `Cmd/Ctrl+F` and search for "`Q19`/`Q20`" if you want to install more extensions and settings (remember, more extensions mean slower VSCode). Then click `File > Exit` (VSCode will save all your open windows). Open VSCode again. Press `Ctrl+Shift+P` (or just `F1`) and search for `>Create New Terminal`, or just press **Cmd/Ctrl+Shift+~** *(on Windows make sure that it uses PowerShell 7.4+, click the arrow next to + ➞ Select Default Profile ➞ PowerShell)*. If VSCode prompts you to allow the usage of the project's TypeScript version, allow it if you're a Windows user. On other operating systems, you may or may not encounter path issues.
+5. **Environment**: Run `pnpm install` (or `npx nypm install`) and/or, optionally, `install:global` to install the required packages. It is also recommended to configure `reliverse.config.ts` file. Then, optionally, you can use `pnpm deps:install-all`—especially `pnpm deps:install-all` (*this is currently an alpha script*)—to unlock some additional features, like the `eslint.config.ultimate.ts` preset (which will have a `.txt` extension by default starting with Relivator v1.3.0). (NOTE: As of Relivator v1.2.6, the `ultimate` preset is configured by default, so no action is required). Next, configure Relivator to meet your needs using the `pnpm reli:setup` and/or `pnpm reli:vscode` commands, and relaunch VSCode. You have two options: deploy with zero values in the `.env` file (resulting in just the frontend without features related to auth, database, pricing, etc.), or copy the `.env.example` file to a new `.env` file and fill in the values you want (everything is optional starting with Relivator v1.2.6). It is highly recommended to fill in the `DATABASE_URL` field. Then, set the database provider in `drizzle.config.ts` and make changes in related files if needed. Finally, send the database schema to the database using `pnpm db:push`. You can learn more about databases below in the current `README.md` file.
+6. **Run, Stop, Build**: Run the app with `pnpm dev` or `pnpm turbo:dev` (interactive but unstable). Visit <http://localhost:3000> to check it out. Stop it by focusing on the console and pressing `Ctrl+C`. After making changes, build the app using `pnpm build` or `pnpm turbo:build`. *Don't worry if you see warnings related to Clerk, React Compiler, Babel, next-auth, etc. when running the build; these are known issues not related to Relivator.* Note that when using the pnpm [turbo:build](https://turbo.build) command, the VSCode terminal may not exit automatically. If this happens, press Cmd/Ctrl+C to close the process manually.
+7. **Check, Commit, Deploy**: To check if the current codebase meets [@reliverse/standard](https://github.com/reliverse/standard), run `pnpm appts` (or `pnpm appts:noputout`, or `pnpm turbo:appts`, or `pnpm appts:nobuild`). Learn more about project scripts in the next section. If everything is fine, upload the project to your GitHub profile using GitHub Desktop. Finally, deploy it by importing the project into [Vercel](https://vercel.com/new), making the website publicly accessible on the internet. Alternatively, you can use `pnpm deploy` or just `vercel` to preview and inspect the local deployment without committing to GitHub every time.
 
 **It is recommended:** From time to time, run `pnpm reli:prepare`. This script executes `pnpm install`, which checks for issues or installs/removes manually added/removed dependencies in your `package.json` file. It also executes `pnpm latest`, which installs the latest versions of project dependencies. Finally, it runs `pnpm appts`, which will do its best to improve your code and check for any errors. **Note:** Since `pnpm latest` updates all packages to their latest versions, be aware that something in the code might break, especially if considerable time has passed since the last version of Relivator was released. Therefore, you can use, for example, the VSCode extension `Open Multiple Files` to easily find and fix broken code, or reach out to the [Relivator Discord server](https://discord.gg/Pb8uKbwpsJ) for assistance, or create a [GitHub Issue](https://github.com/blefnk/relivator-nextjs-template/issues). You can learn more about those scripts and the mentioned extension below in the current `README.md` file.
 
@@ -206,8 +229,8 @@ By using this method, you will get only the front-end, with all the functionalit
 The project includes various scripts designed to enhance your developer experience. You can run any script using your terminal. Please note that some CLI scripts may require you to adjust the height of your terminal window to avoid UI anomalies. The Relivator allows you to use the following:
 
 1. **💪 Native Scripts**: These are commands configured in [package.json](package.json) and run by the package manager like [pnpm](https://pnpm.io), [bun](https://bun.sh), [yarn](https://yarnpkg.com), or [npm](https://nodejs.org/en/learn/getting-started/an-introduction-to-the-npm-package-manager). You can run these "native" scripts using commands like `pnpm [dev|build]` and `pnpm db:[push|studio]`.
-2. **⚙️ Custom-Built Scripts**: These scripts are written in TypeScript and Python by Reliverse and the community and are mostly located in the `addons` folder. 🔥 *Please be cautious when using transformation scripts, as they are all in their initial versions. Ensure you commit your changes to your [version control provider](https://about.gitlab.com/topics/version-control) (such as [GitHub](https://github.com)) before using any of them.* They can be executed via the command line using `[appts|addons|reli|lint|fix]:*` or manually via `pnpm tsx path/to/file` or `py path/to/file` (e.g., `py addons/reliverse/relimter/python/tasks/math-to-mathjs.py`).
-3. **🐍 Python Script Manager**: Can be executed using `reli:manager` or `py addons/reliverse/relimter/python/index.py`. Before running it, please read the [🐍 Python](#python) section below to learn how to prepare your workspace to run this manager.
+2. **⚙️ Custom-Built Scripts**: These scripts are written in TypeScript and Python by Reliverse and the community and are mostly located in the `addons` folder. 🔥 *Please be cautious when using transformation scripts, as they are all in their initial versions. Ensure you commit your changes to your [version control provider](https://about.gitlab.com/topics/version-control) (such as [GitHub](https://github.com)) before using any of them.* They can be executed via the command line using `[appts|addons|reli|lint|fix]:*` or manually via `pnpm tsx path/to/file` or `py path/to/file` (e.g., `py addons/scripts/reliverse/relimter/python/tasks/math-to-mathjs.py`).
+3. **🐍 Python Script Manager**: Can be executed using `reli:manager` or `py addons/scripts/reliverse/relimter/python/index.py`. Before running it, please read the [🐍 Python](#python) section below to learn how to prepare your workspace to run this manager.
 
 ### package.json
 
@@ -218,7 +241,7 @@ Below are some scripts configured in the `scripts` section of the `package.json`
 - **`pnpm db:[push|studio|generate|migrate]`**: `push` converts the TypeScript Drizzle schema to SQL and sends it to the DATABASE_URL; `studio` runs Drizzle Studio on <https://local.drizzle.studio>; `migrate` applies migrations generated by the `generate` command (you may not need this command anymore), based on the `drizzle.config.ts` file.
 - **`pnpm stripe:listen`**: Runs the Stripe webhook listener and helps set up Stripe environment variables. The [Stripe CLI](https://docs.stripe.com/stripe-cli) must be installed for this command to work.
 - **`pnpm addons`**: This command allows you to headlessly run some of the scripts located in the `addons` folder. Many scripts are still not added there, so please check the `addons` folder and run them manually using `pnpm tsx path/to/file` or `py path/to/file`. This also includes the game @reliverse/academy. In the future, it will have many different interesting features. Currently, it is a quiz with a leaderboard and achievements where you can test your knowledge of Relivator, JavaScript, TypeScript, React, and even ESLint.
-- **`reli:manager`**: Learn more in the [🐍 Python](#python) section below. This is the alias for the `py addons/reliverse/relimter/python/index.py` command.
+- **`reli:manager`**: Learn more in the [🐍 Python](#python) section below. This is the alias for the `py addons/scripts/reliverse/relimter/python/index.py` command.
 - **`pnpm latest`**: Updates all project packages to their latest stable versions, including some specific packages to their latest versions on rc/beta/alpha/next/canary branches.
 - **`pnpm reli:vscode [nothing|minimal|default|ultimate]`**: Enhances VSCode settings with presets by Reliverse. This script adjusts your `settings.json`, `extensions.json`, and `launch.json` files. It will prompt for confirmation before overriding current files. Use `RQ20` to learn more about `.vscode` presets and font installation for the `ultimate` preset, or use the `default` preset (which doesn't contain custom fonts and themes). Choose `default`, `minimal`, or `nothing` if your PC or virtual machine is very slow.
 - **`pnpm reli:help`**: Displays useful information about Relivator and Reliverse.
@@ -243,7 +266,7 @@ Below are some scripts configured in the `scripts` section of the `package.json`
 
 👋 Hello, dear friend! Nice to see you here! I (@blefnk Nazar Kornienko) have a dream of making the open-source world better and of higher quality. I aspire to leave my mark in history by ensuring people genuinely enjoy programming and create quality products. I'm particularly passionate about clean code. The book "Clean Code" by Robert Martin is a must-have!
 
-That's why I've developed numerous tools in Relivator. Over the past few months leading up to Relivator 1.2.6, I've learned a lot. To avoid manually rewriting code, I've developed a unified script manager. The current version of the manager is still very unstable. You can visit the `addons/reliverse/relimter/python/index.py` file to learn more about how this script manager works.
+That's why I've developed numerous tools in Relivator. Over the past few months leading up to Relivator 1.2.6, I've learned a lot. To avoid manually rewriting code, I've developed a unified script manager. The current version of the manager is still very unstable. You can visit the `addons/scripts/reliverse/relimter/python/index.py` file to learn more about how this script manager works.
 
 If you want to use this `Python Script Manager` (refer to [⚙️ Script](#scripts) to read the introduction), then please ensure your workspace is properly prepared for it. Please note that most scripts are largely untested. Commit your code before running any script. Increase your VSCode terminal window size to avoid UI glitches. Need help? Visit our [Discord](https://discord.gg/Pb8uKbwpsJ). Follow the steps below to get started (scroll down to learn even more Python commands):
 
@@ -254,7 +277,7 @@ If you want to use this `Python Script Manager` (refer to [⚙️ Script](#scrip
 3. Please note, VSCode's terminal automatically activates the environment after each launch. You can verify this by hovering over a [pwsh|bash|cmd] button in VSCode's terminal and looking for something like "`Python`: Activated environment for `.\.venv\Scripts\python.exe`". However, if you are using another IDE or an external terminal, you may need to activate the virtual environment manually: [Windows] `.venv/Scripts/activate`; [macOS/Linux] `source .venv/bin/activate`.
 4. Ensure all requirement are installed correctly, just run `pip install -r requirements.txt`.
 
-🐍 Everything ready? Nice! Congratulations! Try running the `Python Script Manager` now by executing: `reli:manager` or `py addons/reliverse/relimter/python/index.py`
+🐍 Everything ready? Nice! Congratulations! Try running the `Python Script Manager` now by executing: `reli:manager` or `py addons/scripts/reliverse/relimter/python/index.py`
 
 ### Useful Python Commands
 
@@ -316,13 +339,13 @@ pip freeze > requirements.txt
 
 - **RQ15:** How can I grant admin rights to myself or another user? **RA15:** Run `pnpm db:studio`, navigate to the `${databasePrefix}_user` table, and set `role: admin` for the desired user. In the future, if you have admin rights, you will be able to change user privileges directly from the frontend admin page.
 
-- **RQ16:** What does the `DEV_DEMO_NOTES` environment variable mean? **RA16:** Do not use it. It is only used on the official [Relivator demo website](https://relivator.bleverse.com) to showcase certain features that are not needed in real-world applications.
+- **RQ16:** What does the `DEMO_NOTES_ENABLED` environment variable mean? **RA16:** Do not use it. It is only used on the official [Relivator demo website](https://relivator.bleverse.com) to showcase certain features that are not needed in real-world applications.
 
 - **RQ17:** I'm using PlanetScale as my database provider. After taking a break from the project, I'm now encountering an "unable to connect to branch" error. How can I fix this? **RA17:** Go to the PlanetScale dashboard and click on the `wake up` button. Please contact us if the database is not asleep and the problem persists.
 
 - **RQ18:** I have build/runtime errors indicating that Node.js utilities like `net`, `tls`, `perf_hooks`, and `fs` are not found. What should I do? **RA18:** Do not install these utilities; it won't fix the issue. Remember, never keep code in the `utils` folder that *can only run on the server*. Otherwise, you will encounter anomalies during the project build. For example, an error like `node:` and `file:` not found, or the package `fs`, `crypto`, etc. not found. Want to see the error for yourself? Move the file `src/server/api/uploadthing/react.ts` to `src/utils`, import it in this file, run `pnpm build`, get scared, remove the import, and move the file back to its place. You may find on the web the solutions suggesting to add configurations like `"node": { "net": "empty", "tls": "empty", "perf_hooks": "empty", "fs": "empty" }` or `"browser": { "net": false, "tls": false, "perf_hooks": false, "fs": false }` into `package.json` or to the webpack config, but these may not help you. **The main issue likely lies in the following:** You've triggered client-side code. For example, you might have a hook file in the `utils` folder with a corresponding `useEffect` React hook. To debug, try using the global search functionality in the IDE. Note that commenting out the lines may not be the quickest solution in this case, unlike in other debugging scenarios.
 
-- **RQ19:** I love all kinds of interesting things! Can you recommend any cool VSCode extensions? **RA19:** Of course! Just replace the current code in `.vscode/extensions.json` with the one from `addons/reliverse/presets/vscode/[default|minimal|ultimate]/extensions.json`. Remember, performance issues are possible, so you can just install what you want. Alternatively, you can just run the `pnpm reli:vscode` command to switch easily, and use `Cmd/Ctrl+Shift+P` ➞ `>Extensions: Show Recommended Extensions`.
+- **RQ19:** I love all kinds of interesting things! Can you recommend any cool VSCode extensions? **RA19:** Of course! Just replace the current code in `.vscode/extensions.json` with the one from `addons/scripts/reliverse/presets/vscode/[default|minimal|ultimate]/extensions.json`. Remember, performance issues are possible, so you can just install what you want. Alternatively, you can just run the `pnpm reli:vscode` command to switch easily, and use `Cmd/Ctrl+Shift+P` ➞ `>Extensions: Show Recommended Extensions`.
 
   The best way to install this opinionated list of extensions, which are in the `ultimate` preset (although `default` is recommended by us), is to open the project folder in VSCode. Then, install them by using `Ctrl+Shift+P` (or just `F1`) and typing `>Extensions: Show Recommended Extensions`. Click on the cloud icon (`Install Workspace Recommended Extensions`). Wait for the completion. Click `File > Exit` (this will save all your open windows). Open VSCode again, and you are ready to go. The configuration for these extensions is already prepared for you. You can learn more about these extensions, which the `ultimate` preset contains, on the corresponding pages.
 
@@ -561,7 +584,7 @@ For development databases without important data, you can use `pnpm db:push`. Fo
 
 *The instructions below may be outdated, so please double-check them! We will fully update this README.md with the Relivator 1.3.0 release.*
 
-Relivator is designed to effortlessly support both MySQL and PostgreSQL databases. While PostgreSQL and [Neon](https://neon.tech) are the default configurations, switching to MySQL provided by [Railway](https://railway.app?referralCode=sATgpf) or [PlanetScale](https://planetscale.com), or to PostgreSQL provided by [Railway](https://railway.app?referralCode=sATgpf) or [Vercel](https://vercel.com/storage/postgres) is straightforward. Adjust the database configuration inside [drizzle.config.ts](./drizzle.config.ts) and the `src/db/*` files accordingly. Although Relivator is optimized for these providers, other providers compatible with Drizzle and NextAuth.js might also work with some additional setup. Full SQLite support is coming soon.
+Relivator is designed to effortlessly support both MySQL and PostgreSQL databases. While PostgreSQL and [Neon](https://neon.tech) are the default configurations, switching to MySQL provided by [Railway](https://railway.app?referralCode=sATgpf) or [PlanetScale](https://planetscale.com), or to PostgreSQL provided by [Railway](https://railway.app?referralCode=sATgpf) or [Vercel](https://vercel.com/storage/postgres) is straightforward. Adjust the database configuration inside [drizzle.config.ts](./drizzle.config.ts) and the `src/db/*` files accordingly. Although Relivator is optimized for these providers, other providers compatible with Drizzle and Auth.js (next-auth@beta/NextAuth.js) might also work with some additional setup. Full SQLite support is coming soon.
 
 To set up the `DATABASE_URL` in the `.env` file, refer to `.env.example`. Initiate a new database or propagate schema changes by executing the `pnpm db:push` command. This ensures that all changes made to the schema files in `src/db/*` are mirrored in the selected database provider.
 
@@ -790,7 +813,7 @@ Alternatively, check the GitHub docs on [how to create a pull request](https://h
 - [x] 8. Optimize the [Next.js Metadata API](https://nextjs.org/docs/app/building-the-application/optimizing/metadata) for SEO, integrating file-system handlers.
 - [x] 9. Integrate a TailwindCSS screen size indicator for local project runs.
 - [x] 10. Implement extensive internationalization in 11 languages (English, German, Spanish, Persian, French, Hindi, Italian, Polish, Turkish, Ukrainian, Chinese) using the [next-intl](https://next-intl-docs.vercel.app) library, which works on both server and client, and include support for `next dev --turbo`.
-- [x] 11. Implement authentication through **both [Clerk](https://clerk.com) and [NextAuth.js](https://authjs.dev)**.
+- [x] 11. Implement authentication through **both [Clerk](https://clerk.com) and [Auth.js (next-auth@beta/NextAuth.js)](https://authjs.dev)**.
 - [x] 12. Implement [tRPC](https://trpc.io) and [TanStack Query](https://tanstack.com/query) (with [React Normy](https://github.com/klis87/normy#readme)) for advanced server and client data fetching.
 - [x] 13. Establish a user subscription and checkout system using [Stripe](https://github.com/stripe/stripe-node#readme).
 - [x] 14. Ensure type-safety validations for project schemas and UI fields using the [zod](https://zod.dev) library.
@@ -813,7 +836,7 @@ Alternatively, check the GitHub docs on [how to create a pull request](https://h
 - [ ] 31. Optimize all app elements to improve dev cold start and build speeds.
 - [ ] 32. Move each related system to its special folder (into the `src/core` folder), so any system can be easily removed from the project as needed.
 - [ ] 33. Move component styles to .css or .scss files, or use packages that provide "syntactic sugar" for styles in .tsx files by using [tokenami](https://github.com/tokenami/tokenami#readme) CSS library. Implement possibility to implement [Figma Tokens System](https://blog.devgenius.io/link-figma-and-react-using-figma-tokens-89e6cc874b4d) to work seamlessly with the project. Tip: go to point #90 of this roadmap to learn more about new ways to use CSS-in-JS.
-- [ ] 34. Migrate to NextAuth.js' [next-auth@beta](https://npmjs.com/package/next-auth?activeTab=versions) ([discussions](https://github.com/nextauthjs/next-auth/releases/tag/next-auth%405.0.0-beta.4)), and to [React 19](https://19.react.dev/blog/2024/04/25/react-19).
+- [ ] 34. Migrate to Auth.js (next-auth@beta/NextAuth.js)' [next-auth@beta](https://npmjs.com/package/next-auth?activeTab=versions) ([discussions](https://github.com/nextauthjs/next-auth/releases/tag/next-auth%405.0.0-beta.4)), and to [React 19](https://19.react.dev/blog/2024/04/25/react-19).
 - [ ] 35. Manage email verification, newsletter sign-ups, and email marketing via [Resend](https://resend.com) and [React Email](https://react.email).
 - [ ] 36. Make sure each page and the middleware are green or yellow, but not red, upon build in the development terminal.
 - [ ] 37. Make each environment variable optional, allowing the app to operate without anything configured, simply omitting specific code sections as necessary.
@@ -909,7 +932,7 @@ We are excited to announce the release of Relivator 1.2.6! This version marks th
 
 ### Major Changes and Improvements
 
-- **Database Updates**: This is the last release that simultaneously supports PostgreSQL/MySQL and NextAuth.js/Clerk integrations.
+- **Database Updates**: This is the last release that simultaneously supports PostgreSQL/MySQL and Auth.js (next-auth@beta/NextAuth.js)/Clerk integrations.
 - **React 19 Preparation**: Work has commenced on upgrading from React 18 to React 19.
 - **Updated Libraries**: The project now uses next-auth v5, clerk v5 and optionally supports tailwindcss v4. Refer to the updated README.md for more details.
 
@@ -926,7 +949,7 @@ Neon PostgreSQL is now the default database instead of PlanetScale MySQL, as the
 ### Security and Code Improvements
 
 - **Type Safety and Editor Autocomplete**: This update enhances type safety and editor autocomplete for Drizzle ORM libraries.
-- **Prettier Replaced by Biome**: Prettier has been removed in favor of Biome. The Prettier config will be removed in the next version from the `addons\terminal\reliverse\relimter\core\temp` folder. You can re-add it by running the `reliverse` command starting from Relivator 1.3.0.
+- **Prettier Replaced by Biome**: Prettier has been removed in favor of Biome. The Prettier config will be removed in the next version from the `addons\scripts\reliverse\relimter\core\temp` folder. You can re-add it by running the `reliverse` command starting from Relivator 1.3.0.
 
 ### Reliverse Scripts Transition
 
@@ -1014,7 +1037,7 @@ p.s. 1.2.1 is the first commit to the Relivator repository that no longer contai
 
 In this version, significant attention was focused on stability, security, performance optimization, and a substantial improvements in design—both visually, UX, and the logic of how the app works. A lot was really done, too much to list everything! Be sure to install it and check it out!
 
-By the way, you can now enjoy a finely-tuned ESLint Flat Config! Also, it's worth noting that Clerk, since version 1.1.0, is no longer considered deprecated in the Relivator project. Thanks to 1.2.0, Clerk now works seamlessly with an easy switch to NextAuth.js when needed, all on the fly. Plus, full support for Turbopack (next dev --turbo) is finally here, even for next-intl!
+By the way, you can now enjoy a finely-tuned ESLint Flat Config! Also, it's worth noting that Clerk, since version 1.1.0, is no longer considered deprecated in the Relivator project. Thanks to 1.2.0, Clerk now works seamlessly with an easy switch to Auth.js (next-auth@beta/NextAuth.js) when needed, all on the fly. Plus, full support for Turbopack (next dev --turbo) is finally here, even for next-intl!
 
 As for next-intl, finally, we can now enjoy internationalization that works not only on the client-side but also on the server! Only the 404 page has client-side i18n messages, all other pages and components use i18n as server-first. And this is really cool!
 
@@ -1039,7 +1062,7 @@ Here it is! Relivator has been updated to version 1.1.0!
 
 **Now it's even more feature-rich, with cleaner code, and a more stable Next.js starter.**
 
-Ever dreamed of having both MySQL/PostgreSQL and Clerk/NextAuth.js in one project with the ability to switch on the fly? And even if you hadn't thought about it – now it's possible. Mix and match at will – even more possibilities for on-the-fly switching are coming soon in the next releases of Relivator.
+Ever dreamed of having both MySQL/PostgreSQL and Clerk/Auth.js (next-auth@beta/NextAuth.js) in one project with the ability to switch on the fly? And even if you hadn't thought about it – now it's possible. Mix and match at will – even more possibilities for on-the-fly switching are coming soon in the next releases of Relivator.
 
 Among many other new and fixed things, Stripe is now fully functional and comes with extensive docs in the form of comments within the relevant files.
 
@@ -1084,7 +1107,7 @@ Check out [our other free Next.js 15 starter](https://github.com/blefnk/relivers
 
 > 🚀 **Ready to launch?** Start building your project with Relivator and Reliverse as soon as possible! With one-click deploy on Vercel:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fblefnk%2Frelivator-nextjs-template\&project-name=relivator\&repository-name=relivator)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fblefnk%2Frelivator-nextjs-template&project-name=relivator&repository-name=my-new-repository-name)
 
 > 💻 **Prefer manual installation?** Refer to the [🏗️ Installation](#installation) section or just clone the project using the most classical way:
 

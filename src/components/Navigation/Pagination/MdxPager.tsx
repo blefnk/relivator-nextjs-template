@@ -2,10 +2,10 @@ import type { HTMLAttributes } from "react";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn, truncate } from "@/utils";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn, truncate } from "~/utils";
 
 type MdxPagerItem = {
   slug: string;

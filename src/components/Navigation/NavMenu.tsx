@@ -1,10 +1,9 @@
 import type { ReactNode } from "react";
 
+import { cn } from "@/utils";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
-
-import { cn } from "~/utils";
 
 type NavigationMenuProps = {
   children: ReactNode;

@@ -1,18 +1,18 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { getCartAction } from "@/actions/reliverse//cart";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/browser/reliverse/ui/CardUI";
-import { Separator } from "@/browser/reliverse/ui/Separator";
-import { getCartAction } from "@/server/reliverse/actions/cart";
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { cn, formatPrice } from "@/utils";
 
 import { CartLineItems } from "~/components/Checkout/CartLineItems";
-import { cn, formatPrice } from "~/utils";
 
 type CheckoutCardProps = {
   storeId: string;

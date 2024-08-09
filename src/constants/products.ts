@@ -1,5 +1,6 @@
+import type { Option } from "@/types";
+
 import type { Product } from "~/db/schema";
-import type { Option } from "~/types";
 
 export const sortOptions = [
   {

@@ -13,11 +13,6 @@ import {
   removeDependency,
 } from "nypm";
 import path, { normalize } from "pathe";
-import {
-  automaticPackageJsonDependenciesMover,
-  debugEnabled,
-  throwErrorOnFailedDepsCommand,
-} from "reliverse.config";
 import semver from "semver";
 
 // package.json CLI to manage packages
@@ -51,10 +46,23 @@ import semver from "semver";
 // - npx nypm add pathe fast-npm-meta semver @types/semver redrun axios
 // - bun|yarn|pnpm dlx jsr add @reliverse/core (or: npx jsr add @reliverse/core)
 //
+const localDebugEnabled = false;
+const throwErrorOnFailedDepsCommand = false; // related to: ▶️ pnpm deps (deps:check deps:locations)
+// To enable the following feature, 'localDebugEnabled' variable must also be set to 'true'.
+const automaticPackageJsonDependenciesMover = false; // This feature can be unstable currently.
+
+type PackageJson = {
+  [key: string]: any;
+  dependencies?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+};
+
 const flags = [
   "find-incorrectly-placed-packages",
   "find-unregistered-packages",
   "info",
+  "help",
+  "welcome",
   "install-all-packages",
   "install-basic-packages",
   "install-eslint-basic-packages",
@@ -92,11 +100,13 @@ const dependenciesShadcn: string[] = [
   "@radix-ui/react-checkbox",
   "@radix-ui/react-dialog",
   "@radix-ui/react-dropdown-menu",
+  "@radix-ui/react-hover-card",
   "@radix-ui/react-icons",
   "@radix-ui/react-label",
   "@radix-ui/react-menubar",
   "@radix-ui/react-navigation-menu",
   "@radix-ui/react-popover",
+  "@radix-ui/react-progress",
   "@radix-ui/react-scroll-area",
   "@radix-ui/react-select",
   "@radix-ui/react-separator",
@@ -107,6 +117,7 @@ const dependenciesShadcn: string[] = [
   "@radix-ui/react-toast",
   "@radix-ui/react-tooltip",
   "@radix-ui/themes",
+  "input-otp",
 ];
 
 const dependenciesUdecode: string[] = [
@@ -132,160 +143,157 @@ const dependenciesUdecode: string[] = [
 ];
 
 const basicDependencies: string[] = [
-  ...new Set([
-    ...dependenciesShadcn,
-    ...dependenciesUdecode,
-    "@atao60/fse-cli",
-    "@auth/core",
-    "@auth/drizzle-adapter",
-    "@clack/prompts",
-    "@clerk/localizations",
-    "@clerk/nextjs",
-    "@clerk/themes",
-    "@clerk/types",
-    "@faire/mjml-react",
-    "@faker-js/faker",
-    "@hookform/resolvers",
-    "@inquirer/prompts",
-    "@libsql/client",
-    "@loglib/tracker",
-    "@mdx-js/loader",
-    "@mdx-js/react",
-    "@metamask/utils",
-    "@million/lint",
-    "@mnrendra/read-package",
-    "@neondatabase/serverless",
-    "@next/bundle-analyzer",
-    "@next/mdx",
-    "@normy/react-query",
-    "@planetscale/database",
-    "@radix-ui/react-slot",
-    "@radix-ui/react-tooltip",
-    "@radix-ui/themes",
-    "@react-email/components",
-    "@react-email/head",
-    "@react-email/html",
-    "@react-email/img",
-    "@react-email/tailwind",
-    "@reliverse/core",
-    "@remotion/bundler",
-    "@remotion/cli",
-    "@remotion/renderer",
-    "@simplewebauthn/browser",
-    "@simplewebauthn/server",
-    "@stripe/react-stripe-js",
-    "@stripe/stripe-js",
-    "@t3-oss/env-nextjs",
-    "@tailwindcss/postcss",
-    "@tanstack/react-query-devtools",
-    "@tanstack/react-query-next-experimental",
-    "@tanstack/react-query",
-    "@tanstack/react-table",
-    "@trpc/client",
-    "@trpc/react-query",
-    "@trpc/server",
-    "@uidotdev/usehooks",
-    "@uploadthing/react",
-    "@vercel/analytics",
-    "@vercel/flags",
-    "@vercel/speed-insights",
-    "@vercel/toolbar",
-    "@xyflow/react",
-    "ajv-formats",
-    "ajv",
-    "axios",
-    "better-sqlite3",
-    "c12",
-    "citty",
-    "class-variance-authority",
-    "clsx",
-    "cmdk",
-    "commander",
-    "consola",
-    "cookies-next",
-    "cropperjs",
-    "dayjs",
-    "deepmerge",
-    "destr",
-    "dotenv-cli",
-    "dotenv",
-    "drizzle-orm",
-    "drizzle-zod",
-    "embla-carousel-react",
-    "execa",
-    "flowbite-react",
-    "fs-extra",
-    "glob",
-    "log4js",
-    "lucide-react",
-    "mathjs",
-    "mdx",
-    "million",
-    "minimatch",
-    "modern-errors-cli",
-    "modern-errors-serialize",
-    "modern-errors",
-    "montag",
-    "mysql2",
-    "nanoid",
-    "nanotar",
-    "next-auth@beta",
-    "next-intl",
-    "next-superjson-plugin",
-    "next-themes",
-    "next",
-    "nextjs-google-analytics",
-    "node-fetch-native",
-    "nodemailer",
-    "nuqs",
-    "nypm",
-    "ofetch",
-    "pathe",
-    "pg",
-    "pick-random-weighted",
-    "picocolors",
-    "postgres",
-    "prettyjson",
-    "radash",
-    "react-cropper",
-    "react-day-picker",
-    "react-dom",
-    "react-dropzone",
-    "react-hook-form",
-    "react-medium-image-zoom",
-    "react-syntax-highlighter",
-    "react-wrap-balancer",
-    "react",
-    "recharts",
-    "redrun",
-    "remark-frontmatter",
-    "remark-gfm",
-    "remark-mdx",
-    "remotion",
-    "resend",
-    "semver",
-    "sharp",
-    "slate-history",
-    "slate-react",
-    "slate",
-    "std-env",
-    "string-ts",
-    "stripe",
-    "superjson",
-    "tailwind-merge",
-    "tailwind-variants",
-    "tailwindcss-animate",
-    "tasuku",
-    "try-catch",
-    "try-to-catch",
-    "ufo",
-    "uncrypto",
-    "uploadthing",
-    "uuid",
-    "vaul",
-    "zod",
-    "zustand",
-  ]),
+  ...dependenciesShadcn,
+  ...dependenciesUdecode,
+  "@atao60/fse-cli",
+  "@auth/core",
+  "@auth/drizzle-adapter",
+  "@clack/prompts",
+  "@clerk/localizations",
+  "@clerk/nextjs",
+  "@clerk/themes",
+  "@clerk/types",
+  "@dicebear/collection",
+  "@dicebear/core",
+  "@faire/mjml-react",
+  "@faker-js/faker",
+  "@hookform/resolvers",
+  "@inquirer/prompts",
+  "@libsql/client",
+  "@loglib/tracker",
+  "@mdx-js/loader",
+  "@mdx-js/react",
+  "@metamask/utils",
+  "@million/lint",
+  "@mnrendra/read-package",
+  "@neondatabase/serverless",
+  "@next/bundle-analyzer",
+  "@next/mdx",
+  "@normy/react-query",
+  "@planetscale/database",
+  "@react-email/components",
+  "@react-email/head",
+  "@react-email/html",
+  "@react-email/img",
+  "@react-email/tailwind",
+  "@reliverse/core",
+  "@remotion/bundler",
+  "@remotion/cli",
+  "@remotion/renderer",
+  "@simplewebauthn/browser",
+  "@simplewebauthn/server",
+  "@stripe/react-stripe-js",
+  "@stripe/stripe-js",
+  "@t3-oss/env-nextjs",
+  "@tailwindcss/postcss",
+  "@tanstack/react-query-devtools",
+  "@tanstack/react-query-next-experimental",
+  "@tanstack/react-query",
+  "@tanstack/react-table",
+  "@trpc/client",
+  "@trpc/react-query",
+  "@trpc/server",
+  "@uidotdev/usehooks",
+  "@uploadthing/react",
+  "@vercel/analytics",
+  "@vercel/flags",
+  "@vercel/speed-insights",
+  "@vercel/toolbar",
+  "@xyflow/react",
+  "ajv-formats",
+  "ajv",
+  "axios",
+  "better-sqlite3",
+  "c12",
+  "citty",
+  "class-variance-authority",
+  "clsx",
+  "cmdk",
+  "commander",
+  "consola",
+  "cookies-next",
+  "cropperjs",
+  "dayjs",
+  "deepmerge",
+  "destr",
+  "dotenv-cli",
+  "dotenv",
+  "drizzle-orm",
+  "drizzle-zod",
+  "embla-carousel-react",
+  "flowbite-react",
+  "fs-extra",
+  "glob",
+  "log4js",
+  "lucide-react",
+  "mathjs",
+  "mdx",
+  "million",
+  "minimatch",
+  "modern-errors-cli",
+  "modern-errors-serialize",
+  "modern-errors",
+  "montag",
+  "mysql2",
+  "nanoid",
+  "nanotar",
+  "next-auth@beta",
+  "next-intl",
+  "next-superjson-plugin",
+  "next-themes",
+  "next",
+  "nextjs-google-analytics",
+  "node-fetch-native",
+  "nodemailer",
+  "nuqs",
+  "nypm",
+  "ofetch",
+  "pathe",
+  "pg",
+  "pick-random-weighted",
+  "picocolors",
+  "postgres",
+  "prettyjson",
+  "radash",
+  "react-cropper",
+  "react-day-picker",
+  "react-dom",
+  "react-dropzone",
+  "react-hook-form",
+  "react-medium-image-zoom",
+  "react-syntax-highlighter",
+  "react-wrap-balancer",
+  "react",
+  "recharts",
+  "redrun",
+  "remark-frontmatter",
+  "remark-gfm",
+  "remark-mdx",
+  "remotion",
+  "resend",
+  "semver",
+  "server-only",
+  "sharp",
+  "slate-history",
+  "slate-react",
+  "slate",
+  "std-env",
+  "string-ts",
+  "stripe",
+  "superjson",
+  "tailwind-merge",
+  "tailwind-variants",
+  "tailwindcss-animate",
+  "tasuku",
+  "try-catch",
+  "try-to-catch",
+  "ufo",
+  "uncrypto",
+  "uploadthing",
+  "uuid",
+  "vaul",
+  "zod",
+  "zustand",
 ];
 
 const dependenciesEslintBasic: string[] = [
@@ -382,48 +390,48 @@ const dependenciesTypes: string[] = [
 ];
 
 const basicDevDependencies: string[] = [
-  ...new Set([
-    ...dependenciesEslintBasic,
-    ...dependenciesPutout,
-    ...dependenciesCspell,
-    ...dependenciesTypes,
-    "@biomejs/biome",
-    "@stylistic/eslint-plugin",
-    "@tailwindcss/cli",
-    "@tanstack/eslint-plugin-query",
-    "@total-typescript/ts-reset",
-    "autoprefixer",
-    "codeup",
-    "cross-env",
-    "deadfile",
-    "drizzle-kit",
-    "envinfo",
-    "eslint",
-    "fast-npm-meta",
-    "knip",
-    "magicast",
-    "postcss",
-    "tailwindcss",
-    "tsx",
-    "turbo",
-    "typescript-eslint",
-    "typescript", // 🟦 Change to "typescript@beta" if you want to use beta TS 5.6.
-    "typestat",
-    "yargs",
-  ]),
+  ...dependenciesEslintBasic,
+  ...dependenciesPutout,
+  ...dependenciesCspell,
+  ...dependenciesTypes,
+  "@biomejs/biome",
+  "@stylistic/eslint-plugin",
+  "@tailwindcss/cli",
+  "@tanstack/eslint-plugin-query",
+  "@total-typescript/ts-reset",
+  "autoprefixer",
+  "codeup",
+  "cross-env",
+  "deadfile",
+  "drizzle-kit",
+  "envinfo",
+  "eslint",
+  "fast-npm-meta",
+  "knip",
+  "magicast",
+  "postcss",
+  "tailwindcss",
+  "tsx",
+  "turbo",
+  "typescript-eslint",
+  "typescript@beta", // 🟦 Change to "typescript" if you want to use Stable TS 5.5
+  "typestat",
+  "yargs",
 ];
 
 // 💡 Alternative to "pnpm latest:overrides".
-// 🟦 Add "typescript@beta" here as well if you
-// 🟦 have "typescript@beta" in basicDevDependencies.
-const rcBetaAlphaCanaryNextDepsDEV = ["next-auth@beta"];
+// 🟦 Remove "typescript@beta" from here if you
+// 🟦 have "typescript" in basicDevDependencies.
+// 🟦 After that re-run `pnpm deps:install-all`.
+const rcBetaAlphaCanaryNextDepsDEV = ["typescript@beta"];
+const rcBetaAlphaCanaryNextDeps = ["next-auth@beta"];
 
 const exclusionsUninstalling = [
   ...basicDependencies,
   ...basicDevDependencies,
 ].join(" ");
 
-function displayWelcomeMessage(): void {
+async function displayWelcomeMessage(): Promise<void> {
   log.info(
     "👋 Hello! This script helps improve your developer experience by installing and removing specific packages.",
   );
@@ -518,7 +526,30 @@ async function handleDependencies(
         if (name === undefined || version === undefined) {
           log.error(`❌ Invalid dependency: ${dep}`);
 
-          return;
+          return false;
+        }
+
+        if (name in allDependencies) {
+          const installedVersion = allDependencies[name];
+
+          if (installedVersion === undefined) {
+            log.error(`❌ Unable to find installed version for: ${name}`);
+
+            return false;
+          }
+
+          return installedVersion.includes(version);
+        }
+
+        return false;
+      }) &&
+      rcBetaAlphaCanaryNextDeps.every((dep) => {
+        const [name, version] = dep.split("@");
+
+        if (name === undefined || version === undefined) {
+          log.error(`❌ Invalid dependency: ${dep}`);
+
+          return false;
         }
 
         if (name in allDependencies) {
@@ -537,6 +568,10 @@ async function handleDependencies(
       });
 
     switch (flag) {
+      case "help":
+        await handleUseFlags(secondaryFlag);
+        break;
+
       case "install-all-packages":
         const allDepsToInstall = [
           ...basicDependencies,
@@ -545,7 +580,8 @@ async function handleDependencies(
           ...dependenciesEslintExtended,
         ]
           .filter((dep) => !allDependencies[dep])
-          .filter((dep) => !rcBetaAlphaCanaryNextDepsDEV.includes(dep));
+          .filter((dep) => !rcBetaAlphaCanaryNextDepsDEV.includes(dep))
+          .filter((dep) => !rcBetaAlphaCanaryNextDeps.includes(dep));
 
         if (
           allDepsToInstall.length === 0 &&
@@ -562,15 +598,21 @@ async function handleDependencies(
 
         if (!isBetaAlphaCanaryNextDepInstalled) {
           log.step(
-            `We are going to install: ${rcBetaAlphaCanaryNextDepsDEV.join(" ")}\n`,
+            // eslint-disable-next-line @stylistic/max-len
+            `The following packages will be installed: ${[...rcBetaAlphaCanaryNextDepsDEV, ...rcBetaAlphaCanaryNextDeps].join(" ")}\n`,
           );
           await addDevDependency(rcBetaAlphaCanaryNextDepsDEV, {
+            silent: true,
+          });
+          await addDependency(rcBetaAlphaCanaryNextDeps, {
             silent: true,
           });
         }
 
         if (allDepsToInstall.length > 0) {
-          log.step(`We are going to install: ${allDepsToInstall.join(" ")}\n`);
+          log.step(
+            `The following packages will be installed: ${allDepsToInstall.join(" ")}\n`,
+          );
           await addDependency(allDepsToInstall, { silent: true });
         }
 
@@ -589,11 +631,13 @@ async function handleDependencies(
       case "install-basic-packages":
         const basicDepsToInstall = basicDependencies
           .filter((dep) => !allDependencies[dep])
-          .filter((dep) => !rcBetaAlphaCanaryNextDepsDEV.includes(dep));
+          .filter((dep) => !rcBetaAlphaCanaryNextDepsDEV.includes(dep))
+          .filter((dep) => !rcBetaAlphaCanaryNextDeps.includes(dep));
 
         const basicDevDepsToInstall = basicDevDependencies
           .filter((dep) => !allDependencies[dep])
-          .filter((dep) => !rcBetaAlphaCanaryNextDepsDEV.includes(dep));
+          .filter((dep) => !rcBetaAlphaCanaryNextDepsDEV.includes(dep))
+          .filter((dep) => !rcBetaAlphaCanaryNextDeps.includes(dep));
 
         if (
           basicDepsToInstall.length === 0 &&
@@ -611,15 +655,20 @@ async function handleDependencies(
 
         if (!isBetaAlphaCanaryNextDepInstalled) {
           log.step(
-            `We are going to install: ${rcBetaAlphaCanaryNextDepsDEV.join(" ")}\n`,
+            // eslint-disable-next-line @stylistic/max-len
+            `The following packages will be installed: ${[...rcBetaAlphaCanaryNextDepsDEV, ...rcBetaAlphaCanaryNextDeps].join(" ")}\n`,
           );
           await addDevDependency(rcBetaAlphaCanaryNextDepsDEV, {
+            silent: true,
+          });
+          await addDependency(rcBetaAlphaCanaryNextDeps, {
             silent: true,
           });
         }
 
         log.step(
-          `We are going to install: ${basicDepsToInstall.join(" ")} ${basicDevDepsToInstall.join(" ")}\n`,
+          // eslint-disable-next-line @stylistic/max-len
+          `The following packages will be installed: ${basicDepsToInstall.join(" ")} ${basicDevDepsToInstall.join(" ")}\n`,
         );
 
         if (basicDepsToInstall.length > 0) {
@@ -696,12 +745,14 @@ async function handleDependencies(
         );
         break;
 
-      case "use":
-        await handleUseFlags(secondaryFlag);
+      case "welcome":
+        await displayWelcomeMessage();
         break;
 
       default:
-        displayWelcomeMessage();
+        // TODO: for some reason it is executed even without calling/importing ./packageJson.ts file
+        // await displayWelcomeMessage();
+        break;
     }
   } catch (error) {
     logError(error);
@@ -716,8 +767,8 @@ async function removeDependencies(
   const { dependencies, devDependencies } = readPackageSync();
 
   const allDependencies = [
-    ...Object.keys(dependencies ?? {}),
-    ...Object.keys(devDependencies ?? {}),
+    ...Object.keys(dependencies || {}),
+    ...Object.keys(devDependencies || {}),
   ];
 
   const filteredDependencies = allDependencies.filter((key) =>
@@ -804,7 +855,7 @@ async function info(): Promise<void> {
     for (const [dep, version] of Object.entries(dependenciesObject)) {
       const cleanedVersion = version.replace(/^\^/, "");
       const metadata = await getLatestVersion(dep);
-      const latestVersion = metadata.version ?? "Unknown";
+      const latestVersion = metadata.version || "Unknown";
 
       if (latestVersion === "Unknown") {
         log.error(`   ${dep}: ${version} (Unable to fetch latest version)`);
@@ -892,12 +943,6 @@ function findUnregisteredPackages(): void {
   }
 }
 
-type PackageJson = {
-  [key: string]: any;
-  dependencies?: Record<string, string>;
-  devDependencies?: Record<string, string>;
-};
-
 async function writePackageJson(packageJson: PackageJson): Promise<void> {
   const packageJsonPath = path.resolve(process.cwd(), "package.json");
 
@@ -962,7 +1007,7 @@ async function checkIncorrectlyPlacedPackages() {
     }
   }
 
-  if (automaticPackageJsonDependenciesMover && debugEnabled) {
+  if (automaticPackageJsonDependenciesMover && localDebugEnabled) {
     const updatedDependencies = { ...dependencies };
     const updatedDevDependencies = { ...devDependencies };
 
@@ -1098,7 +1143,7 @@ async function handleUseFlags(flag: UseFlag) {
         return fileSize / duration; // speed in KB/s
       } catch (error) {
         console.error(
-          `Failed to download from ${url}: ${String(error) ?? "Unknown error"}`,
+          `Failed to download from ${url}: ${String(error) || "Unknown error"}`,
         );
       }
     }
@@ -1123,7 +1168,7 @@ async function handleUseFlags(flag: UseFlag) {
         throw new Error(`Package size for '${packageName}' not found.`);
       }
 
-      return sum + (packageSizes[packageName] ?? 0);
+      return sum + (packageSizes[packageName] || 0);
     }, 0);
 
     return totalSize / speed; // time in seconds
@@ -1209,10 +1254,10 @@ async function handleUseFlags(flag: UseFlag) {
   }
 
   try {
-    const appDebugEnabled = debugEnabled;
+    const localDppDebugEnabled = localDebugEnabled;
     let speed = 600; // default speed
 
-    if (appDebugEnabled) {
+    if (localDppDebugEnabled) {
       speed = await measureDownloadSpeed();
     }
 
@@ -1425,9 +1470,10 @@ async function main(): Promise<void> {
     const cwd = getCurrentWorkingDirectory();
 
     await handleDependencies(flag as (typeof flags)[number], cwd);
-  } else {
-    displayWelcomeMessage();
   }
+
+  // TODO: for some reason it is executed even without calling/importing ./packageJson.ts file
+  // else { await displayWelcomeMessage(); }
 }
 
 if (isFlag(flag)) {

@@ -1,4 +1,4 @@
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { Separator } from "@/components/ui/separator";
 
 // This replacement system is still under development and may not be finalized. Please check back later.
 // For now, you can use this folder to simply store files that you don't want to be overwritten during an upgrade.

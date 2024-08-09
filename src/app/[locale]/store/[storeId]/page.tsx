@@ -1,106 +1,109 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-
-import { Separator } from "@/browser/reliverse/ui/Separator";
-import { getProductsAction } from "@/server/reliverse/actions/product";
-import { getStoresAction } from "@/server/reliverse/actions/store";
-import { eq } from "drizzle-orm";
-import { getTranslations } from "next-intl/server";
-import { authProvider } from "reliverse.config";
-
-import { authjs } from "~/auth/authjs";
-import { clerk } from "~/auth/clerk";
-import { Products } from "~/components/Common/products";
-import { Breadcrumbs } from "~/components/Navigation/Pagination/Breadcrumbs";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import { db } from "~/db";
-import { products, stores } from "~/db/schema";
 
-const isString = (a: unknown) => typeof a === "string";
+// import type { Metadata } from "next";
+// import { notFound } from "next/navigation";
 
-type StorePageProps = {
-  params: {
-    storeId: string;
-  };
-  searchParams: Record<string, string | string[] | undefined>;
-};
+// import { getProductsAction } from "@/actions/reliverse/product-old";
+// import { getStoresAction } from "@/actions/reliverse/store";
+// import { Separator } from "@/components/ui/separator";
+// import { eq } from "drizzle-orm";
+// import { getTranslations } from "next-intl/server";
+// import { authProvider } from "reliverse.config";
 
-async function getStoreFromParameters({
-  storeId,
-}: {
-  storeId: string;
-}) {
-  return await db.query.stores.findFirst({
-    where: eq(stores.id, storeId),
-  });
-}
+// import { authjs } from "~/auth/authjs";
+// import { clerk } from "~/auth/clerk";
+// import { Products } from "~/components/Common/products";
+// import { Breadcrumbs } from "~/components/Navigation/Pagination/Breadcrumbs";
+// import { db } from "~/db";
+// import { products, stores } from "~/db/schema";
 
-export async function generateMetadata({
-  params,
-}: StorePageProps): Promise<Metadata> {
-  const store = await getStoreFromParameters(params);
+// const isString = (a: unknown) => typeof a === "string";
 
-  if (!store) {
-    return {};
-  }
+// type StorePageProps = {
+//   params: {
+//     storeId: string;
+//   };
+//   searchParams: Record<string, string | string[] | undefined>;
+// };
 
-  return {
-    description: store.description,
+// async function getStoreFromParameters({
+//   storeId,
+// }: {
+//   storeId: string;
+// }) {
+//   return await db.query.stores.findFirst({
+//     where: eq(stores.id, storeId),
+//   });
+// }
 
-    title: store.name,
-  };
-}
+// export async function generateMetadata({
+//   params,
+// }: StorePageProps): Promise<Metadata> {
+//   const store = await getStoreFromParameters(params);
 
-export default async function StorePage({
-  params,
-  searchParams,
-}: StorePageProps) {
-  const store = await getStoreFromParameters(params);
+//   if (!store) {
+//     return {};
+//   }
 
-  if (!store) {
-    notFound();
-  }
+//   return {
+//     description: store.description,
 
-  const { page, per_page, store_page } = searchParams;
+//     title: store.name,
+//   };
+// }
 
-  const t = await getTranslations();
+// export default async function StorePage({
+// params,
+// searchParams,
+// }: StorePageProps) {
+export default function StorePage() {
+  // const store = await getStoreFromParameters(params);
 
-  // Products transaction
-  const limit = isString(per_page) ? Number.parseInt(per_page) : 8;
+  // if (!store) {
+  //   notFound();
+  // }
 
-  const offset = isString(page) ? (Number.parseInt(page) - 1) * limit : 0;
+  // const { page, per_page, store_page } = searchParams;
 
-  const productsTransaction = await getProductsAction({
-    limit: limit,
-    offset: offset,
-    page: isString(page) ? Number.parseInt(page) : 1,
-    store_ids: String(store.id),
-  });
+  // const t = await getTranslations();
 
-  const pageCount = Math.ceil(Number(productsTransaction.count) / limit);
+  // // Products transaction
+  // const limit = isString(per_page) ? Number.parseInt(per_page) : 8;
 
-  // Stores transaction
-  const storesLimit = 25;
+  // const offset = isString(page) ? (Number.parseInt(page) - 1) * limit : 0;
 
-  const storesOffset = isString(store_page)
-    ? (Number.parseInt(store_page) - 1) * storesLimit
-    : 0;
+  // const productsTransaction = await getProductsAction({
+  //   limit: limit,
+  //   offset: offset,
+  //   page: isString(page) ? Number.parseInt(page) : 1,
+  //   store_ids: String(store.id),
+  // });
 
-  const storesTransaction = await getStoresAction({
-    limit: storesLimit,
-    offset: storesOffset,
-    sort: "name.asc",
-  });
+  // const pageCount = Math.ceil(Number(productsTransaction.count) / limit);
 
-  const storePageCount = Math.ceil(
-    Number(storesTransaction.count) / storesLimit,
-  );
+  // // Stores transaction
+  // const storesLimit = 25;
 
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  // const storesOffset = isString(store_page)
+  //   ? (Number.parseInt(store_page) - 1) * storesLimit
+  //   : 0;
+
+  // const storesTransaction = await getStoresAction({
+  //   limit: storesLimit,
+  //   offset: storesOffset,
+  //   sort: "name.asc",
+  // });
+
+  // const storePageCount = Math.ceil(
+  //   Number(storesTransaction.count) / storesLimit,
+  // );
+
+  // const session = authProvider === "clerk" ? await clerk() : await authjs();
 
   return (
     <Shell>
-      <Breadcrumbs
+      Temporary Disabled Page
+      {/* <Breadcrumbs
         segments={[
           {
             href: "/stores",
@@ -137,7 +140,7 @@ export default async function StorePage({
             tAddToCart={t("store.products.addToCart")}
           />
         </div>
-      </div>
+      </div> */}
     </Shell>
   );
 }

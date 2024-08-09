@@ -25,6 +25,7 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedSideEffectImports": true,
     "noUncheckedIndexedAccess": true,
     "downlevelIteration": true,
     "noEmit": true,

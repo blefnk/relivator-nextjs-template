@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/utils";
 
 import { Icons } from "~/components/Common/Icons";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { env } from "~/env";
-import { cn } from "~/utils";
 
 export function generateMetadata(): Metadata {
   const url = env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";

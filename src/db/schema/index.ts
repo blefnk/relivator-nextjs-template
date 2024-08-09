@@ -10,7 +10,7 @@
 // Configure this index based on the database provider
 // Feel free to add, remove, or edit things as needed
 // You may also need to edit drizzle.config.ts
-// Please also check: table.ts and ../index.ts
+// Please also check: table.ts and index.ts files
 // export * from "./models/mysql";
 // export * from "./types/mysql";
 // export * from "./models/sqlite";

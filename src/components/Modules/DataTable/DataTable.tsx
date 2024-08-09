@@ -4,6 +4,10 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import type {
+  DataTableFilterableColumn,
+  DataTableSearchableColumn,
+} from "@/types";
+import type {
   ColumnDef,
   ColumnFiltersState,
   PaginationState,
@@ -18,7 +22,8 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/browser/reliverse/ui/Table";
+} from "@/components/ui/table";
+import { useDebounce } from "@/hooks-react/use-debounce";
 import {
   flexRender,
   getCoreRowModel,
@@ -30,16 +35,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import destr from "destr";
-import superjson from "superjson";
-
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn,
-} from "~/types";
 
 import { DataTablePagination } from "~/components/Modules/DataTable/DataTablePagination";
 import { DataTableToolbar } from "~/components/Modules/DataTable/DataTableToolbar";
-import { useDebounce } from "~/hooks";
 
 const isString = (a: unknown): a is string => typeof a === "string";
 const defaultFilterableColumns: DataTableFilterableColumn<unknown>[] = [];
@@ -168,7 +166,7 @@ export function DataTable<TData, TValue>({
   // Handle server-side filtering
   const debouncedSearchableColumnFilters = destr(
     useDebounce(
-      superjson.stringify(
+      JSON.stringify(
         columnFilters.filter((filter) => {
           return searchableColumns.find((column) => column.id === filter.id);
         }),

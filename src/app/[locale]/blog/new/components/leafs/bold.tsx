@@ -1,8 +1,7 @@
 import type { PlateLeafProps } from "@udecode/plate-common";
 
+import { cn } from "@/utils";
 import { PlateLeaf } from "@udecode/plate-common";
-
-import { cn } from "~/utils";
 
 const BoldLeaf = ({ children, className, ref, ...props }: PlateLeafProps) => (
   <PlateLeaf

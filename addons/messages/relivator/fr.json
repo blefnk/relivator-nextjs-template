@@ -1,0 +1,160 @@
+{
+  "LoginForm": {
+    "no-account": "Pas de compte?",
+    "signup": "Créez-en un ici.",
+    "title": "Se connecter",
+    "welcome-back": "Bon retour!"
+  },
+  "RegisterForm": {
+    "have-account": "Vous avez déjà un compte?",
+    "signin": "Connectez-vous ici.",
+    "title": "Créer un compte"
+  },
+  "account-page": {
+    "Settings": "Paramètres du compte",
+    "loggedIn": "Vous êtes connecté",
+    "loggedOut": "Vous êtes déconnecté",
+    "login": "Se connecter",
+    "logout": "Se déconnecter",
+    "title": "Mon compte"
+  },
+  "auth": {
+    "error": {
+      "default": "Veuillez essayer un autre compte.",
+      "email": "E-mail introuvable. Essayez un autre fournisseur.",
+      "oauthNotLinked": "Connectez-vous avec votre compte d'origine pour confirmer votre identité.",
+      "unknown": "Une erreur s'est produite. Veuillez réessayer.",
+      "unknown-error": "Un problème est survenu. Contactez le support pour obtenir de l'aide."
+    },
+    "legal": "En utilisant ces boutons, vous acceptez nos",
+    "legal-and": "et",
+    "legal-privacy": "Politique de confidentialité",
+    "legal-terms": "Conditions d'utilisation"
+  },
+  "auth-provider": {
+    "please-wait": "Chargement, veuillez patienter..."
+  },
+  "checkout": {
+    "CartDetails": "Détails du panier",
+    "Demo": "Utilisez les données de test : 4242424242424242 | 12/34 | 567",
+    "Description": "Vérifiez vos articles avant de payer",
+    "EmptyCartDescription": "Votre panier est vide. Ajoutez des articles pour continuer.",
+    "EmptyCartHeading": "Votre panier est vide",
+    "Pay": "Payer maintenant",
+    "Title": "Paiement",
+    "backToCart": "Retour au panier",
+    "backToCartSingle": "Retour",
+    "calculated": "Calculé au paiement",
+    "cart": "Panier",
+    "cartIsEmpty": "Votre panier est actuellement vide",
+    "continueShopping": "Continuer vos achats",
+    "free": "Gratuit",
+    "notConnectedDescription": "Connectez votre boutique à Stripe pour accepter les paiements.",
+    "notConnectedHeading": "Boutique non connectée à Stripe",
+    "shipping": "Expédition",
+    "taxes": "Taxes",
+    "total": "Montant total",
+    "viewTheCart": "Voir le panier"
+  },
+  "components": {
+    "command": {
+      "dark": "Mode sombre",
+      "light": "Mode clair",
+      "system": "Par défaut du système",
+      "theme": "Thème"
+    },
+    "search": {
+      "placeholder": "Rechercher des produits...",
+      "title": "Rechercher"
+    }
+  },
+  "contact": {
+    "submit": "Envoyer"
+  },
+  "demo": {
+    "aria-label-goto": "Aller à",
+    "launch": "Tableau de bord"
+  },
+  "faq": {
+    "1": {
+      "details": "Pour les dernières informations et comment démarrer, consultez notre guide dans la section d'aide de Relivator.",
+      "summary": "Comment puis-je commencer à acheter rapidement?"
+    },
+    "2": {
+      "details": "Relivator offre une large gamme de produits et de fonctionnalités qui rendent les achats faciles et agréables.",
+      "summary": "Pourquoi choisir Relivator pour vos achats en ligne?"
+    },
+    "3": {
+      "details": "Relivator est constamment mis à jour pour améliorer votre expérience d'achat. Votre soutien nous aide à améliorer notre plateforme. Merci de faire vos achats avec nous!",
+      "summary": "Comment puis-je soutenir le développement de Relivator?"
+    }
+  },
+  "landing": {
+    "about": "Bienvenue chez Relivator, votre boutique unique pour tous vos besoins. Explorez notre large gamme de produits et profitez d'une expérience d'achat fluide.",
+    "buy-now": "Parcourir le catalogue",
+    "features": {
+      "auth": {
+        "description": "Options de connexion faciles et sécurisées pour tous les utilisateurs.",
+        "title": "Connexion facile"
+      },
+      "database": {
+        "description": "Accédez à une large variété de produits avec un service fiable.",
+        "title": "Large gamme de produits"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator offre des possibilités infinies avec tous les outils dont vous avez besoin.",
+        "description": "Abonnez-vous à nos newsletters pour recevoir les dernières mises à jour et offres.",
+        "title": "Offres exclusives"
+      },
+      "interface": {
+        "description": "Profitez d'une interface conviviale pour une excellente expérience d'achat.",
+        "title": "Interface conviviale"
+      },
+      "nextjs": {
+        "description": "Naviguez sans interruption sur notre site.",
+        "title": "Navigation fluide"
+      },
+      "text": {
+        "description": "Découvrez une plateforme d'achat moderne et efficace.",
+        "title": "Achats efficaces"
+      }
+    },
+    "footer-cta": "Prêt à commencer vos achats?",
+    "get-started-button": "Aller au tableau de bord",
+    "main-cta": "Visiter GitHub",
+    "sell-now": "Aller au tableau de bord"
+  },
+  "metadata": {
+    "description": "Améliorez votre expérience d'achat avec Relivator : combinant la puissance de la technologie avancée et un design convivial.",
+    "title": {
+      "home": "Accueil"
+    }
+  },
+  "pages": {
+    "not-found": {
+      "description": "La page que vous recherchez a peut-être été déplacée, renommée ou n'existe plus. Veuillez vérifier l'URL ou utiliser le menu pour naviguer.",
+      "go-home": "Retour à l'accueil",
+      "title": "Page non trouvée!"
+    }
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "Achetez {category} des meilleures boutiques",
+      "buyTheBest": "Meilleurs produits de {category}"
+    },
+    "products": {
+      "addToCart": "Ajouter au panier",
+      "buyProductsFromOurStores": "Achetez dans nos boutiques",
+      "catalogue": "Catalogue de produits",
+      "description": "Description du produit",
+      "moreProductsFrom": "Plus de produits de {storeName}",
+      "noDescription": "Aucune description disponible.",
+      "products": "Produits",
+      "productsCatalogue": "Catalogue de produits"
+    },
+    "stores": {
+      "buy-products": "Achetez dans nos boutiques",
+      "stores": "Boutiques"
+    }
+  }
+}

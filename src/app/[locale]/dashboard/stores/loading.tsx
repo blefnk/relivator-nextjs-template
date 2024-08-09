@@ -1,6 +1,6 @@
-import { AspectRatio } from "@/browser/reliverse/ui/Aspect-Ratio";
-import { Card, CardHeader } from "@/browser/reliverse/ui/CardUI";
-import { Skeleton } from "@/browser/reliverse/ui/Skeleton";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Card, CardHeader } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import {
   PageHeader,

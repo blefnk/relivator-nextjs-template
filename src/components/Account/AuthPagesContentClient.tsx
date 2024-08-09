@@ -12,7 +12,8 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-} from "@/browser/reliverse/ui/CardUI";
+} from "@/components/ui/card";
+import { cn } from "@/utils";
 import { useQueryState } from "nuqs";
 import { cnBase } from "tailwind-variants";
 
@@ -21,7 +22,6 @@ import { authProvider } from "~/auth";
 import { SignIn } from "~/components/Account/AuthjsButtons";
 import { OAuthSignInClerk } from "~/components/Content/ClerkPageOauth";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import { cn, typography } from "~/utils";
 
 const noop = () => {};
 
@@ -139,8 +139,9 @@ export function AuthPagesContentClient({
           </Link>
           <CardDescription
             className={cnBase(
-              typography.p,
               "mb-2 font-bold flex flex-col text-base space-y-2 text-center",
+
+              // typography.p,
             )}
           >
             {isRegPage ? String(tSignUpLink) : String(tSignInLink)}

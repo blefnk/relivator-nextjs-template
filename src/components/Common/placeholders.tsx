@@ -1,9 +1,9 @@
 /* eslint-disable @stylistic/max-len */
 "use client";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { ToastAction } from "@/browser/reliverse/ui/Toast";
-import { useToast } from "@/browser/reliverse/ui/use-toast";
+import { Button } from "@/components/ui/button";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/hooks-react/use-toast";
 
 import { authProvider } from "~/auth";
 

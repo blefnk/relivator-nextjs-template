@@ -4,9 +4,8 @@ import Link from "next/link";
 
 import type { VariantProps } from "class-variance-authority";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
-
-import { cn } from "~/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 
 // Extending the types of the Link component to include variant
 type ExtendedLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &

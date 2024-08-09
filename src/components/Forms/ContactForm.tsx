@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,9 +12,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/browser/reliverse/ui/Form";
-import { Input } from "@/browser/reliverse/ui/Input";
-import { Textarea } from "@/browser/reliverse/ui/Text-Area";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/text-area";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 

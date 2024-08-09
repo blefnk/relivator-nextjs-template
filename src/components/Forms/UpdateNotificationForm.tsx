@@ -3,10 +3,12 @@
 import { use, useState } from "react";
 import { useForm } from "react-hook-form";
 
+import type { UpdateNotificationSchema } from "@/actions/reliverse/validations/notification";
 import type { getNotification } from "@/server/reliverse/queries/notification";
-import type { UpdateNotificationSchema } from "@/server/reliverse/validations/notification";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { updateNotification } from "@/actions/reliverse/notification";
+import { updateNotificationSchema } from "@/actions/reliverse/validations/notification";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,10 +17,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/browser/reliverse/ui/Form";
-import { Switch } from "@/browser/reliverse/ui/Switch";
-import { updateNotification } from "@/server/reliverse/actions/notification";
-import { updateNotificationSchema } from "@/server/reliverse/validations/notification";
+} from "@/components/ui/form";
+import { Switch } from "@/components/ui/switch";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
 

@@ -2,9 +2,8 @@ import type { ElementType, HTMLAttributes } from "react";
 
 import type { VariantProps } from "class-variance-authority";
 
+import { cn } from "@/utils";
 import { cva } from "class-variance-authority";
-
-import { cn } from "~/utils";
 
 const shellVariants = cva(
   `

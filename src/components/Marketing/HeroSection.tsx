@@ -2,7 +2,8 @@ import { Balancer } from "react-wrap-balancer";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { config } from "@reliverse/core";
 import { Download, ShoppingCart, Store } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -10,7 +11,6 @@ import { useTranslations } from "next-intl";
 import { GithubStarsBadge } from "~/components/Common/stars";
 import { HeroSection } from "~/components/Marketing/Marketing/HeroSection";
 import { env } from "~/env";
-import { cn } from "~/utils";
 
 export default function HomeHeroSection() {
   const t = useTranslations();
@@ -54,11 +54,12 @@ export default function HomeHeroSection() {
           }
         >
           <Store className="mr-2 size-4" />
-          {env.DEV_DEMO_NOTES === "true"
+          {/* {env.DEMO_NOTES_ENABLED === "true"
             ? String(t("demo.launch"))
-            : String(t("landing.sell-now"))}
+            : String(t("landing.sell-now"))} */}
+          {t("landing.sell-now")}
         </Link>
-        {env.DEV_DEMO_NOTES === "true" && env.NODE_ENV !== "development" ? (
+        {env.DEMO_NOTES_ENABLED === "true" && env.NODE_ENV !== "development" ? (
           <Link
             className={cn(
               buttonVariants({

@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/browser/reliverse/ui/CardUI";
+} from "@/components/ui/card";
 
 import { Shell } from "~/components/Wrappers/ShellVariants";
 

@@ -46,7 +46,7 @@ import tseslint from "typescript-eslint";
 
 // The current Relivator 1.2.6 version comes with many predefined ESLint configs.
 // Run the `pnpm reli:setup` to easily switch between them and set up other tooling.
-// Current: addons\terminal\reliverse\relicon\setup\configs\eslint.config.ultimate.ts
+// Current: addons\scripts\reliverse\relicon\setup\configs\eslint.config.ultimate.ts
 //
 const stylisticConfig = stylistic.configs.customize({
   indent: 2,
@@ -112,7 +112,7 @@ export default tseslint.config(
         },
         project: true,
         tsconfigRootDir: import.meta.dirname,
-        warnOnUnsupportedTypeScriptVersion: true,
+        warnOnUnsupportedTypeScriptVersion: false,
       },
     },
     linterOptions: {
@@ -331,7 +331,7 @@ export default tseslint.config(
           applyDefaultIgnorePatterns: true,
           beforeBlockComment: true,
           beforeLineComment: true,
-          ignorePattern: "@type\\s.+|@ts-expect-error",
+          ignorePattern: "@type\\s.+|@ts-expect-error|biome-ignore|TODO:",
         },
       ],
 
@@ -1092,9 +1092,14 @@ export default tseslint.config(
         },
       ],
       "no-restricted-imports": [
-        "error",
+        "warn",
         {
           paths: [
+            {
+              name: "inquirer",
+              message:
+                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
+            },
             {
               name: "process",
               importNames: ["env"],
@@ -1116,51 +1121,8 @@ export default tseslint.config(
             },
             {
               name: "fs",
-              importNames: [
-                "copy",
-                "emptyDir",
-                "ensureFile",
-                "ensureDir",
-                "ensureLink",
-                "ensureSymlink",
-                "mkdirp",
-                "mkdirs",
-                "move",
-                "outputFile",
-                "outputJson",
-                "pathExists",
-                "readJson",
-                "remove",
-                "writeJson",
-                "copySync",
-                "emptyDirSync",
-                "ensureFileSync",
-                "ensureDirSync",
-                "ensureLinkSync",
-                "ensureSymlinkSync",
-                "mkdirpSync",
-                "mkdirsSync",
-                "moveSync",
-                "outputFileSync",
-                "outputJsonSync",
-                "pathExistsSync",
-                "readJsonSync",
-                "removeSync",
-                "writeJsonSync",
-              ],
               message:
-                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)",
-            },
-            {
-              name: "fs-extra",
-              importNames: [
-                "readdirSync",
-                "readFileSync",
-                "realpathSync",
-                "existsSync",
-              ],
-              message:
-                "Looks like fs-extra does not provide this module, use import from regular fs instead",
+                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
             },
             {
               name: "path",
@@ -1815,14 +1777,50 @@ export default tseslint.config(
     files: ["{src,addons}/**/*.{ts,tsx}", "next.config.js"],
     rules: {
       "no-restricted-imports": [
-        "error",
+        "warn",
         {
           patterns: [
             {
               message:
                 // eslint-disable-next-line @stylistic/max-len
-                "\n\n⛔ Importing from '@/terminal' is not allowed in this file. The import from 'addons/terminal' folder cannot be used in the browser runtime context. \n✅ You can safely import from other folders inside 'addons' instead.\n💡 Consider using imports from 'addons/browser' (@/browser) for browser-compatible code.\n\n",
-              regex: "^@/terminal",
+                "\n\n⛔ Importing from '@/scripts' is not allowed in this file. The import from 'addons/scripts' folder cannot be used in the browser runtime context. \n✅ You can safely import from other folders inside 'addons' instead.\n💡 Consider using imports from 'addons/browser' (@/browser) for browser-compatible code.\n\n",
+              regex: "^@/scripts",
+            },
+          ],
+          paths: [
+            {
+              name: "inquirer",
+              message:
+                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
+            },
+            {
+              name: "process",
+              importNames: ["env"],
+              message: "Please use `import { env } from '~/env'` instead.",
+            },
+            {
+              name: "react",
+              importNames: ["default"],
+              message: "Named imports should be used instead.",
+            },
+            {
+              name: ".",
+              message: "Use explicit import file.",
+            },
+            {
+              name: "lodash",
+              message:
+                "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
+            },
+            {
+              name: "fs",
+              message:
+                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
+            },
+            {
+              name: "path",
+              message:
+                "Please use pathe instead (https://unjs.io/packages/pathe)",
             },
           ],
         },
@@ -1831,12 +1829,48 @@ export default tseslint.config(
   },
   {
     name: "@reliverse/eslint-config/etc",
-    files: ["addons/terminal/**/*.{ts,tsx}"],
+    files: ["addons/scripts/**/*.{ts,tsx}"],
     rules: {
       "no-restricted-imports": [
-        "error",
+        "warn",
         {
           patterns: [],
+          paths: [
+            {
+              name: "inquirer",
+              message:
+                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
+            },
+            {
+              name: "process",
+              importNames: ["env"],
+              message: "Please use `import { env } from '~/env'` instead.",
+            },
+            {
+              name: "react",
+              importNames: ["default"],
+              message: "Named imports should be used instead.",
+            },
+            {
+              name: ".",
+              message: "Use explicit import file.",
+            },
+            {
+              name: "lodash",
+              message:
+                "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
+            },
+            {
+              name: "fs",
+              message:
+                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
+            },
+            {
+              name: "path",
+              message:
+                "Please use pathe instead (https://unjs.io/packages/pathe)",
+            },
+          ],
         },
       ],
     },
@@ -2352,7 +2386,7 @@ export default tseslint.config(
     name: "@reliverse/config-eslint/addons-academy",
 
     // @reliverse/academy
-    files: ["addons/reliverse/academy/**/*.json"],
+    files: ["addons/scripts/reliverse/academy/**/*.json"],
     rules: {
       "jsonc/sort-array-values": "off",
       "jsonc/sort-keys": "off",
@@ -2384,7 +2418,7 @@ export default tseslint.config(
   {
     // @see https://github.com/coderaiser/putout#readme
     name: "@reliverse/config-eslint/addons-putout",
-    files: ["addons/terminal/reliverse/academy/**/*.json"],
+    files: ["addons/scripts/reliverse/academy/**/*.json"],
     rules: {
       "jsonc/sort-array-values": "off",
       "jsonc/sort-keys": "off",
@@ -2412,7 +2446,7 @@ export default tseslint.config(
     name: "@reliverse/config-eslint/addons-remotion",
 
     // @see https://remotion.dev/docs/contributing/formatting#eslint
-    files: ["addons/reliverse/remotion/*.{ts,tsx}"],
+    files: ["addons/scripts/reliverse/remotion/*.{ts,tsx}"],
     rules: {
       "no-relative-import-paths/no-relative-import-paths": "off",
     },
@@ -2434,7 +2468,7 @@ export default tseslint.config(
     name: "@reliverse/config-eslint/addons-no-comments",
 
     // @see https://npmjs.com/package/eslint-plugin-no-comments
-    files: ["addons/reliverse/template/index.ts"],
+    files: ["addons/scripts/reliverse/template/index.ts"],
     plugins: {
       "no-comments": noComments,
     },

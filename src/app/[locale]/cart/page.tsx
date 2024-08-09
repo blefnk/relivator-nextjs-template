@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
-import {
-  getCartAction,
-  getUniqueStoreIds,
-} from "@/server/reliverse/actions/cart";
+import { getCartAction, getUniqueStoreIds } from "@/actions/reliverse//cart";
+import { buttonVariants } from "@/components/ui/button";
 import { getCartId } from "@/server/reliverse/cart";
+import { cn } from "@/utils";
 import { getTranslations } from "next-intl/server";
 
 import { Icons } from "~/components/Common/Icons";
@@ -18,7 +16,6 @@ import {
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import { cn } from "~/utils";
 
 export const metadata: Metadata = {
   description: "Checkout with the cart items",

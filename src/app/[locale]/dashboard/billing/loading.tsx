@@ -3,8 +3,9 @@ import {
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/browser/reliverse/ui/CardUI";
-import { Skeleton } from "@/browser/reliverse/ui/Skeleton";
+} from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/utils";
 
 import {
   PageHeader,
@@ -12,7 +13,6 @@ import {
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import { cn } from "~/utils";
 
 export default function BillingLoading() {
   return (

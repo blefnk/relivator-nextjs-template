@@ -5,16 +5,15 @@ import { useCallback, useEffect, useState } from "react";
 
 import Image from "next/image";
 
+import type { StoredFile } from "@/types";
 import type { UseEmblaCarouselType } from "embla-carousel-react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import useEmblaCarousel from "embla-carousel-react";
 
-import type { StoredFile } from "~/types";
-
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type CarouselApi = UseEmblaCarouselType["1"];
 

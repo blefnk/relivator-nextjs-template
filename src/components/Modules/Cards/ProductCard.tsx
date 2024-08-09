@@ -6,8 +6,8 @@ import { useTransition } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { AspectRatio } from "@/browser/reliverse/ui/Aspect-Ratio";
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,12 +15,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/browser/reliverse/ui/CardUI";
+} from "@/components/ui/card";
+import { cn, formatPrice } from "@/utils";
 
 import type { Product } from "~/db/schema";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn, formatPrice } from "~/utils";
 
 type ProductCardProps = {
   product: Pick<

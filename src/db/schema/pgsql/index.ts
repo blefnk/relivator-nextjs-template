@@ -1,5 +1,3 @@
-// MODELS | @see src/db/schema/index.ts
-// ========================================================
 export * from "./addresses";
 
 export * from "./carts";

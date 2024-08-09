@@ -1,8 +1,8 @@
 import type { NextRequest, NextResponse } from "next/server";
 
-import { buildErrorResponse } from "@/server/reliverse/errors/helpers/server/error-response";
+import type { ApiResponse, NextRouteHandler } from "@/types";
 
-import type { ApiResponse, NextRouteHandler } from "~/types";
+import { buildErrorResponse } from "@/server/reliverse/errors/helpers/server/error-response";
 
 // Wrap an API handler with additional logging, error handling, etc.
 // @example

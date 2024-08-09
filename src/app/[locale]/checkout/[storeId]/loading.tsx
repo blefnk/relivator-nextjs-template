@@ -1,6 +1,6 @@
-import { ScrollArea } from "@/browser/reliverse/ui/Scroll-Area";
-import { Separator } from "@/browser/reliverse/ui/Separator";
-import { Skeleton } from "@/browser/reliverse/ui/Skeleton";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { Icons } from "~/components/Common/Icons";
 

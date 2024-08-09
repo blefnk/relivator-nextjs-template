@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
+import { Badge } from "@/components/ui/badge";
+import { getRepoStarsNumber } from "@/utils";
 import { Github } from "lucide-react";
 
 import { siteConfig } from "~/app";
-import { getRepoStarsNumber } from "~/utils/github";
 
 export async function GithubStarsBadge() {
   const repoGithubStarsNumber = await getRepoStarsNumber();
@@ -35,9 +35,9 @@ export async function GithubStarsBadge() {
             md:flex
           `}
         >
-          -canary.0
+          -canary.1
         </span>
-        <span className="ml-1">
+        <span>
           on GitHub ⭐{" "}
           {repoGithubStarsNumber && `${repoGithubStarsNumber}/1,500`}
         </span>

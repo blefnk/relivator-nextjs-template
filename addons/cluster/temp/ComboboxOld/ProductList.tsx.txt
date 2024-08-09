@@ -1,0 +1,47 @@
+import { useRouter } from "next/navigation";
+
+import { CommandGroup, CommandItem } from "@/components/ui/command";
+
+import type { Product } from "~/db/schema";
+
+type ProductListProps = {
+  data:
+    | {
+        category: Product["category"];
+        products: Pick<Product, "category" | "id" | "name">[];
+      }[]
+    | null;
+  handleSelect: (callback: () => unknown) => void;
+};
+
+const ProductList = ({ data, handleSelect }: ProductListProps) => {
+  const router = useRouter();
+
+  return (
+    <>
+      {data &&
+        data.map((group) => (
+          <CommandGroup
+            className="capitalize"
+            heading={group.category}
+            key={group.category}
+          >
+            {group.products.map((item) => (
+              <CommandItem
+                key={item.id}
+                onSelect={() => {
+                  handleSelect(() => {
+                    router.push(`/product/${item.id}`);
+                  });
+                }}
+              >
+                {item.name}
+              </CommandItem>
+            ))}
+          </CommandGroup>
+        ))}
+    </>
+  );
+};
+
+export default ProductList;

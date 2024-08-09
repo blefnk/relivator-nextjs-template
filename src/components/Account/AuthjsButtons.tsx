@@ -1,6 +1,6 @@
 import type { ComponentPropsWithRef } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
 export function SignIn({

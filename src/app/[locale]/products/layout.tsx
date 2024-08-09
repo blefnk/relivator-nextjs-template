@@ -1,8 +1,5 @@
 import type { ReactNode } from "react";
 
-import { SiteFooter } from "~/components/Navigation/SiteFooter";
-import { SiteHeader } from "~/components/Navigation/SiteHeader";
-
 export default function ProductsLayout({
   children,
 }: {
@@ -10,9 +7,7 @@ export default function ProductsLayout({
 }) {
   return (
     <>
-      <SiteHeader />
       <main className="relative flex min-h-screen flex-col">{children}</main>
-      <SiteFooter />
     </>
   );
 }

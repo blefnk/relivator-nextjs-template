@@ -1,10 +1,9 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-
-import { cn } from "~/utils";
 
 export default function HomeBottomSection() {
   const t = useTranslations();

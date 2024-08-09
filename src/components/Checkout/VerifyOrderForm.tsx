@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 
 import type { z } from "zod";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { verifyOrderSchema } from "@/actions/reliverse/validations/order";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,13 +17,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/browser/reliverse/ui/Form";
-import { Input } from "@/browser/reliverse/ui/Input";
-import { verifyOrderSchema } from "@/server/reliverse/validations/order";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type VerifyOderFormProps = {} & ComponentPropsWithoutRef<"form">;
 

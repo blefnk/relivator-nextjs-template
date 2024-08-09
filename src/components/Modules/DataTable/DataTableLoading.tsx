@@ -1,4 +1,4 @@
-import { Skeleton } from "@/browser/reliverse/ui/Skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/browser/reliverse/ui/Table";
+} from "@/components/ui/table";
 
 type DataTableLoadingProps = {
   columnCount: number;

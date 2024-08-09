@@ -7,15 +7,14 @@ import { useMemo } from "react";
 
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/utils";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
-
-import { cn } from "~/utils";
 
 type PaginationButtonProps = {
   createQueryString: (

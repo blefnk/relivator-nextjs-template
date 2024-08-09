@@ -2,17 +2,17 @@
 
 import { useId, useTransition } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { Input } from "@/browser/reliverse/ui/Input";
+import type { CartLineItem } from "@/types";
+
 import {
   deleteCartItemAction,
   updateCartItemAction,
-} from "@/server/reliverse/actions/cart";
+} from "@/actions/reliverse//cart";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
 import tryToCatch from "try-to-catch";
-
-import type { CartLineItem } from "~/types";
 
 type UpdateCartProps = {
   cartLineItem: CartLineItem;

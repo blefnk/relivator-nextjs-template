@@ -22,8 +22,8 @@
 // import { Shell } from "~/components/Wrappers/ShellVariants";
 //
 // import { products } from "~/db/schema";
-// import { getProductsAction } from "@/server/reliverse/actions/product";
-// import { getStoresAction } from "@/server/reliverse/actions/store";
+// import { getProductsAction } from "@/actions/reliverse//product";
+// import { getStoresAction } from "@/actions/reliverse//store";
 //
 // export default async function ProductsPage({
 //   searchParams,

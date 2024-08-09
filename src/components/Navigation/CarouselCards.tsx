@@ -1,13 +1,13 @@
 "use client";
 
-import { Card, CardContent } from "@/browser/reliverse/ui/CardUI";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/browser/reliverse/ui/Carousel";
+} from "@/components/ui/carousel";
 
 export function CarouselCards() {
   return (
@@ -49,4 +49,4 @@ export function CarouselCards() {
   );
 }
 
-export { Carousel } from "@/browser/reliverse/ui/Carousel";
+export { Carousel } from "@/components/ui/carousel";

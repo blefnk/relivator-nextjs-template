@@ -1,7 +1,7 @@
+import type { CartItem, CartLineItem } from "@/types";
+
 import destr from "destr";
 import { eq, inArray } from "drizzle-orm";
-
-import type { CartItem, CartLineItem } from "~/types";
 
 import { authjs } from "~/auth/authjs";
 import { db } from "~/db";
@@ -105,6 +105,6 @@ export async function getCartItemDetails(
     .leftJoin(stores, eq(products.storeId, stores.id)) // @ts-expect-error TODO: Fix id type
     .where(inArray(products.id, productIds));
 
-  // @ts-expect-error TODO: Fix id type
+  // @ts-expect-error TODO: fix
   return vals as CartLineItem[];
 }

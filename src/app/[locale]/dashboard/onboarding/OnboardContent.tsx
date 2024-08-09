@@ -1,4 +1,4 @@
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { Separator } from "@/components/ui/separator";
 
 import Content from "./content.mdx";
 

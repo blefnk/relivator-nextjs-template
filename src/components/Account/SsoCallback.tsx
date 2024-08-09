@@ -2,9 +2,9 @@
 
 import { useEffect } from "react";
 
-import { useClerk } from "@clerk/nextjs";
+import type { SSOCallbackPageProps } from "@/types";
 
-import type { SSOCallbackPageProps } from "~/types";
+import { useClerk } from "@clerk/nextjs";
 
 import { Icons } from "~/components/Common/Icons";
 

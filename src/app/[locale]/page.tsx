@@ -8,8 +8,6 @@ import { Features } from "~/components/Common/features";
 import HomeBottomSection from "~/components/Marketing/BottomSection";
 import HomeHeroSection from "~/components/Marketing/HeroSection";
 import HomeMainSection from "~/components/Marketing/MainSection";
-import { SiteFooter } from "~/components/Navigation/SiteFooter";
-import { SiteHeader } from "~/components/Navigation/SiteHeader";
 import { AccordionSection } from "~/components/Sections/Questions/AccordionSection";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
@@ -27,7 +25,6 @@ export async function generateMetadata() {
 export default function HomePage() {
   return (
     <>
-      <SiteHeader />
       <HomeHeroSection />
       <Shell
         className={`
@@ -44,7 +41,6 @@ export default function HomePage() {
         <AccordionSection />
         <HomeBottomSection />
       </Shell>
-      <SiteFooter />
     </>
   );
 }

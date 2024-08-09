@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 
 import type { z } from "zod";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { addToCartAction } from "@/actions/reliverse//cart";
+import { updateCartItemSchema } from "@/actions/reliverse/validations/cart";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,11 +15,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/browser/reliverse/ui/Form";
-import { Input } from "@/browser/reliverse/ui/Input";
-import { addToCartAction } from "@/server/reliverse/actions/cart";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
-import { updateCartItemSchema } from "@/server/reliverse/validations/cart";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
 import consola from "consola";

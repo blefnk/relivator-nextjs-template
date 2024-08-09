@@ -14,13 +14,16 @@ import type {
 
 import Image from "next/image";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import type { FileWithPreview } from "@/types";
+
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
-} from "@/browser/reliverse/ui/Dialog";
+} from "@/components/ui/dialog";
+import { cn, formatBytes } from "@/utils";
 import {
   CropIcon,
   Cross2Icon,
@@ -29,10 +32,6 @@ import {
   UploadIcon,
 } from "@radix-ui/react-icons";
 import consola from "consola";
-
-import type { FileWithPreview } from "~/types";
-
-import { cn, formatBytes } from "~/utils";
 
 import "cropperjs/dist/cropper.css";
 

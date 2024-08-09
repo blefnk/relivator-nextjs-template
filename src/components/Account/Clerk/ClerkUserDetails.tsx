@@ -1,5 +1,7 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import { useOrganization, useSession, useUser } from "@clerk/nextjs";
 
 function Row({
@@ -7,7 +9,7 @@ function Row({
   desc,
   value,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   desc: string;
   value: string;
 }) {
@@ -171,7 +173,7 @@ export function UserDetails() {
         <div className="divide-y divide-[#EEEEF0] rounded-lg bg-[#FAFAFB] px-2.5">
           <Row
             desc="Email"
-            value={user.emailAddresses?.[0]?.emailAddress ?? ""}
+            value={user.emailAddresses?.[0]?.emailAddress || ""}
           >
             <PointerC label="user.emailAddresses[0].emailAddress" />
           </Row>

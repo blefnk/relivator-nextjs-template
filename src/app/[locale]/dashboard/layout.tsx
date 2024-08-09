@@ -2,14 +2,12 @@ import type { ReactNode } from "react";
 
 import { redirect } from "next/navigation";
 
-import { ScrollArea } from "@/browser/reliverse/ui/Scroll-Area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { config } from "@reliverse/core";
 import consola from "consola";
 
 import { authProvider } from "~/auth";
 import { SidebarNav } from "~/components/Navigation/SidebarNav";
-import { SiteFooter } from "~/components/Navigation/SiteFooter";
-import { SiteHeader } from "~/components/Navigation/SiteHeader";
 import { GeneralShell } from "~/components/Wrappers/GeneralShell";
 import { dashboardConfig } from "~/constants/nav-items";
 import { env } from "~/env";
@@ -48,7 +46,6 @@ function DashboardLayoutContent({
   // consola.info("session:", session?.user.id);
   return (
     <GeneralShell>
-      <SiteHeader />
       <div className="flex min-h-screen flex-col">
         <div
           className={`
@@ -82,7 +79,6 @@ function DashboardLayoutContent({
           </main>
         </div>
       </div>
-      <SiteFooter />
     </GeneralShell>
   );
 }

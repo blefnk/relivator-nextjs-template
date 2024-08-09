@@ -2,10 +2,10 @@ import { Balancer } from "react-wrap-balancer";
 
 import Link from "next/link";
 
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/utils";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 export function FundingPlatforms() {
   return (

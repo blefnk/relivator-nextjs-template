@@ -6,9 +6,9 @@ import Link from "next/link";
 
 import type { ColumnDef } from "@tanstack/react-table";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
-import { Button } from "@/browser/reliverse/ui/Button";
-import { Checkbox } from "@/browser/reliverse/ui/Checkbox";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +16,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
+} from "@/components/ui/dropdown";
+import { formatDate, formatPrice } from "@/utils";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 
 import type { Product } from "~/db/schema";
@@ -24,7 +25,6 @@ import type { Product } from "~/db/schema";
 import { DataTable } from "~/components/Modules/DataTable/DataTable";
 import { DataTableColumnHeader } from "~/components/Modules/DataTable/DataTableColumnHeader";
 import { products } from "~/db/schema";
-import { formatDate, formatPrice } from "~/utils";
 
 type ProductsTableShellProps = {
   data: Product[];

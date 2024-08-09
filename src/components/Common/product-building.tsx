@@ -5,7 +5,13 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import type { CartItem } from "@/types";
+
+import {
+  addToCartAction,
+  deleteCartItemAction,
+} from "@/actions/reliverse//cart";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,9 +19,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
-import { Input } from "@/browser/reliverse/ui/Input";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+} from "@/components/ui/dropdown";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -23,25 +29,20 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/browser/reliverse/ui/Sheet";
-import { Slider } from "@/browser/reliverse/ui/Slider";
-import {
-  addToCartAction,
-  deleteCartItemAction,
-} from "@/server/reliverse/actions/cart";
+} from "@/components/ui/sheet";
+import { Slider } from "@/components/ui/slider";
+import { useDebounce } from "@/hooks-react/use-debounce";
+import { cn } from "@/utils";
 import consola from "consola";
 
-/* eslint-disable max-lines-per-function */
 import type { Product } from "~/db/schema";
-import type { CartItem } from "~/types";
 
 import { Icons } from "~/components/Common/Icons";
 import { ProductCard } from "~/components/Modules/Cards/ProductCard";
 import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
 import { sortOptions } from "~/constants/products";
-import { useDebounce } from "~/hooks";
-import { cn } from "~/utils";
 
+/* eslint-disable max-lines-per-function */
 type ProductBuilderProps = {
   cartItems: CartItem[];
   pageCount: number;
@@ -118,7 +119,8 @@ export function ProductBuilder({
           const productIdWithSameSubcategory =
             cartItems.find(
               (item) => item.subcategory === product.subcategory,
-            ) && // @ts-expect-error TODO: fix
+            ) &&
+            // @ts-expect-error TODO: fix id type
             cartItems.find((item) => item.subcategory === product.subcategory)
               .productId;
 
@@ -306,7 +308,8 @@ export function ProductBuilder({
         {products.map((product) => (
           <ProductCard
             isAddedToCart={cartItems
-              .map((item) => item.productId) // @ts-expect-error TODO: Fix id type
+              .map((item) => item.productId)
+              // @ts-expect-error TODO: fix id type
               .includes(product.id)}
             key={product.id}
             onSwitch={() => addToCart(product)}

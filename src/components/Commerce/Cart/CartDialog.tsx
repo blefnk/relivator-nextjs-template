@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { getCartAction } from "@/actions/reliverse//cart";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -10,14 +11,13 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/browser/reliverse/ui/Sheet";
-import { getCartAction } from "@/server/reliverse/actions/cart";
+} from "@/components/ui/sheet";
+import { cn, formatPrice } from "@/utils";
 import consola from "consola";
 import { getTranslations } from "next-intl/server";
 
 import { CartLineItems } from "~/components/Checkout/CartLineItems";
 import { Icons } from "~/components/Common/Icons";
-import { cn, formatPrice } from "~/utils";
 
 export default async function CartDialog() {
   const t = await getTranslations();
@@ -46,10 +46,10 @@ export default async function CartDialog() {
       <SheetTrigger asChild>
         <Button
           aria-label="Open cart"
-          className={cn(
-            "relative",
-            itemCount > 0 && "border border-primary/40",
-          )}
+          className={cn("relative border", {
+            "border-primary/40": itemCount > 0,
+            "border-primary/20": itemCount <= 0,
+          })}
           size="icon"
           variant="outline"
         >

@@ -1,9 +1,11 @@
+import Balancer from "react-wrap-balancer";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/browser/reliverse/ui/Accordion";
+} from "@/components/ui/accordion";
 import { useTranslations } from "next-intl";
 
 import { FundingPlatforms } from "~/components/Common/funding";
@@ -38,7 +40,8 @@ export function AccordionSection() {
             </AccordionTrigger>
             <AccordionContent>
               {itemId !== 3 ? (
-                <p
+                <Balancer
+                  as="p"
                   className={`
                     text-gray-500
 
@@ -46,9 +49,10 @@ export function AccordionSection() {
                   `}
                 >
                   {t(detailsKey)}
-                </p>
+                </Balancer>
               ) : (
-                <p
+                <Balancer
+                  as="p"
                   className={`
                     text-gray-500
 
@@ -56,8 +60,27 @@ export function AccordionSection() {
                   `}
                 >
                   {t(detailsKey)}
+                  {/*
+                    {t(detailsKey).includes("Donate to Relivator") ? (
+                      <>
+                        {t(detailsKey).split("Donate to Relivator")[0]}
+                        <Link
+                          variant="link"
+                          href="/donate"
+                          className={`
+                          text-blue-500 underline
+                        `}
+                        >
+                          Donate to Relivator
+                        </Link>
+                        {t(detailsKey).split("Donate to Relivator")[1]}
+                      </>
+                    ) : (
+                      t(detailsKey)
+                    )}
+                   */}
                   <FundingPlatforms />
-                </p>
+                </Balancer>
               )}
             </AccordionContent>
           </AccordionItem>

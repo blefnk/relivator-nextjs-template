@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { errorMessage } from "@/server/reliverse/currency/errorMessage";
-
 export const currencyValidation = (
   request: NextApiRequest,
   res: NextApiResponse,
@@ -11,7 +9,7 @@ export const currencyValidation = (
   if (!currency) {
     res.status(417).send({
       error: true,
-      message: errorMessage.missingCurrency,
+      message: "missingCurrency",
     });
 
     return false;
@@ -20,7 +18,7 @@ export const currencyValidation = (
   if (request.method !== "GET") {
     res.status(405).send({
       error: true,
-      message: errorMessage.methodNotAllowed,
+      message: "methodNotAllowed",
     });
 
     return false;

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { Separator } from "@/components/ui/separator";
 
 import {
   PageHeader,

@@ -12,7 +12,7 @@ import remarkGfm from "remark-gfm";
 
 await import("./src/env.js");
 
-// Uncomment the following lines to enable the Vercel Toolbar (and <Reliverse /> component in LocaleLayout)
+// Uncomment the following lines to enable the Vercel Toolbar (and <Reliverse /> component in RootLocaleLayout)
 // import withVercelToolbar from "@vercel/toolbar/plugins/next";
 //
 // The whitelist list of domains that are allowed to show media content
@@ -45,14 +45,15 @@ const nextConfig = {
     mdxRs: true,
     optimizePackageImports: ["lucide-react", "@radix-ui/react-icons"],
     ppr: false, // true - supported by next@canary only
-    swcPlugins: [
-      [
-        "next-superjson-plugin",
-        {
-          excluded: [],
-        },
-      ],
-    ],
+    // uncomment if you use superjson in 'browser' context
+    // swcPlugins: [
+    //   [
+    //     "next-superjson-plugin",
+    //     {
+    //       excluded: [],
+    //     },
+    //   ],
+    // ],
   },
   images: {
     formats: ["image/avif", "image/webp"],
@@ -62,6 +63,13 @@ const nextConfig = {
     })),
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+
+  // Adobe React Spectrum (next dev --turbo is not supported)
+  // transpilePackages: [
+  //   "@adobe/react-spectrum",
+  //   "@react-spectrum/*",
+  //   "@spectrum-icons/*",
+  // ].flatMap((spec) => glob.sync(spec, { cwd: "node_modules/" })),
 };
 
 // Create a config wrapper required to integrate a modern Next.js MDX support
@@ -78,7 +86,7 @@ const withMDX = createMDX({
 // @see https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing
 const withIntl = createNextIntlPlugin("./src/i18n.ts");
 
-// Uncomment the following lines to enable the Vercel Toolbar (and <Reliverse /> component in LocaleLayout)
+// Uncomment the following lines to enable the Vercel Toolbar (and <Reliverse /> component in RootLocaleLayout)
 //
 // const reliverseConfig = withIntl(withMDX(nextConfig));
 // const reliverseConfigWithVercelToolbar = withVercelToolbar()(reliverseConfig);

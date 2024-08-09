@@ -1,4 +1,4 @@
-import { Skeleton } from "@/browser/reliverse/ui/Skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function UpdateNotificationFormSkeleton() {
   return (

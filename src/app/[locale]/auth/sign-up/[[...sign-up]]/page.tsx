@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { authProvider } from "reliverse.config";
 
 import { auth, signIn } from "~/auth/authjs";

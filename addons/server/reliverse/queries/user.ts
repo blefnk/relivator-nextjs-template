@@ -12,7 +12,7 @@ import { clerk } from "~/auth/clerk";
 import { db } from "~/db";
 import { products, stores } from "~/db/schema";
 
-// import { getPlan } from "@/server/reliverse/actions/stripe";
+// import { getPlan } from "@/actions/reliverse//stripe";
 // import { getPlanLimits } from "@/server/reliverse/subscription";
 // Cache is used with a data-fetching function like fetch to share a data snapshot between components.
 // eslint-disable-next-line @stylistic/max-len
@@ -40,8 +40,8 @@ export async function getUserUsageMetrics(input: {
       .then((res) => res[0]);
 
     return {
-      productCount: data?.productCount ?? 0,
-      storeCount: data?.storeCount ?? 0,
+      productCount: data?.productCount || 0,
+      storeCount: data?.storeCount || 0,
     };
   } catch (error) {
     consola.error(error);

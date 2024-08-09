@@ -3,15 +3,15 @@ import type { ReactElement } from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { Edit, Mail, View } from "lucide-react";
 import { authProvider } from "reliverse.config";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
 import { GeneralShell } from "~/components/Wrappers/GeneralShell";
-import AdminProductsManagement from "~/core/trpc/tanstack/products-admin";
-import { cn } from "~/utils";
+import AdminProductsManagement from "~/core/trpc-old/tanstack/products-admin";
 
 export default async function AdminMainPage(): Promise<ReactElement> {
   const session = authProvider === "clerk" ? await clerk() : await authjs();

@@ -4,11 +4,11 @@ import { useTransition } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/browser/reliverse/ui/Button";
 import {
   getNextStoreIdAction,
   getPreviousStoreIdAction,
-} from "@/server/reliverse/actions/store";
+} from "@/actions/reliverse/store";
+import { Button } from "@/components/ui/button";
 import consola from "consola";
 
 import { Icons } from "~/components/Common/Icons";

@@ -1,6 +1,6 @@
-import { integer, json, text, timestamp } from "drizzle-orm/pg-core";
+import type { CheckoutItem } from "@/types";
 
-import type { CheckoutItem } from "~/types";
+import { integer, json, text, timestamp } from "drizzle-orm/pg-core";
 
 import { pgTable as createTable } from "~/db/schema/insert/table";
 import { genId } from "~/db/utils";

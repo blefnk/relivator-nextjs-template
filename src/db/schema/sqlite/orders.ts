@@ -1,6 +1,6 @@
-import { integer, text } from "drizzle-orm/sqlite-core";
+import type { CheckoutItem } from "@/types";
 
-import type { CheckoutItem } from "~/types";
+import { integer, text } from "drizzle-orm/sqlite-core";
 
 import { sqliteTable as createTable } from "~/db/schema/insert/table";
 import { genId } from "~/db/utils";

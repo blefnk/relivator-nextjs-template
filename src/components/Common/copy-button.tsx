@@ -1,7 +1,7 @@
 // @see https://usehooks.com/usecopytoclipboard
-import type { ButtonProps } from "@/browser/reliverse/ui/Button";
+import type { ButtonProps } from "@/components/ui/button";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
 
 import { Icons } from "~/components/Common/Icons";

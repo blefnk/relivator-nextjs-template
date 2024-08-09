@@ -5,10 +5,11 @@ import type { HTMLAttributes } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import type { SidebarNavItem } from "~/types";
+import type { SidebarNavItem } from "@/types";
+
+import { cn } from "@/utils";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type SidebarNavProps = {
   items: SidebarNavItem[];

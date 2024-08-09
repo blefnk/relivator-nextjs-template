@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useTransition } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
 
 import { Icons } from "~/components/Common/Icons";

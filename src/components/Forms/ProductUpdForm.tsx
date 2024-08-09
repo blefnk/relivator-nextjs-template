@@ -6,9 +6,15 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
+import type { FileWithPreview } from "@/types";
 import type { z } from "zod";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import {
+  checkProductAction,
+  deleteProductAction,
+} from "@/actions/reliverse/product-old";
+import { productSchema } from "@/actions/reliverse/validations/product-old";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,8 +23,8 @@ import {
   FormLabel,
   FormMessage,
   UncontrolledFormMessage,
-} from "@/browser/reliverse/ui/Form";
-import { Input } from "@/browser/reliverse/ui/Input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -26,20 +32,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/browser/reliverse/ui/Select";
-import { Textarea } from "@/browser/reliverse/ui/Text-Area";
-import {
-  checkProductAction,
-  deleteProductAction,
-} from "@/server/reliverse/actions/product";
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/text-area";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
-import { productSchema } from "@/server/reliverse/validations/product";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
 
 /* eslint-disable max-lines-per-function */
 import type { Product } from "~/db/schema";
-import type { FileWithPreview } from "~/types";
 
 import { MultiUploader } from "~/components/Application/UploadThing/MultiUploader";
 import { Icons } from "~/components/Common/Icons";
@@ -85,7 +85,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
   //     consola.success("The images were updated successfully");
   //   },
   //   onUploadError: (error) => {
-  //     consola.error(errorMessage);
+  //     consola.error(getErrorMessage);
   //   },
   // });
   const form = useForm<Inputs>({

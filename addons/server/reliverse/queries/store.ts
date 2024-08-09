@@ -5,7 +5,10 @@ import {
   unstable_noStore as noStore,
 } from "next/cache";
 
-import { getStoresSchema } from "@/server/reliverse/validations/store";
+import type { SearchParams } from "@/types";
+
+import { getStoresSchema } from "@/actions";
+import { takeFirstOrThrow } from "@/utils";
 import consola from "consola";
 import {
   and,
@@ -20,11 +23,9 @@ import {
 } from "drizzle-orm";
 
 import type { Store } from "~/db/schema";
-import type { SearchParams } from "~/types";
 
 import { db } from "~/db";
 import { orders, products, stores } from "~/db/schema";
-import { takeFirstOrThrow } from "~/utils";
 
 export async function getFeaturedStores() {
   return await cache(
@@ -111,16 +112,16 @@ export async function getStores(input: SearchParams) {
     const search = getStoresSchema.parse(input);
 
     const limit = 10;
-    const searchPage = search.page ?? 1;
+    const searchPage = search.page || 1;
     const offset = (searchPage - 1) * limit;
 
     const [column, order] =
       (search.sort?.split(".") as [
         keyof Store | undefined,
         "asc" | "desc" | undefined,
-      ]) ?? [];
+      ]) || [];
 
-    const statuses = search.statuses?.split(".") ?? [];
+    const statuses = search.statuses?.split(".") || [];
 
     const { data, total } = await db.transaction(async (tx) => {
       const data = await tx
@@ -181,7 +182,7 @@ export async function getStores(input: SearchParams) {
           ),
         )
         .execute()
-        .then((res) => res[0]?.count ?? 0);
+        .then((res) => res[0]?.count || 0);
 
       return {
         data,

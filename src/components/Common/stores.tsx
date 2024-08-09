@@ -5,7 +5,9 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import type { CuratedStore } from "@/types";
+
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,17 +15,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
+} from "@/components/ui/dropdown";
+import { cn } from "@/utils";
 import { Cross2Icon } from "@radix-ui/react-icons";
-
-import type { CuratedStore } from "~/types";
 
 import { FacetedFilter } from "~/components/Common/faceted-filter";
 import { Icons } from "~/components/Common/Icons";
 import { StoreCard } from "~/components/Modules/Cards/StoreCardDashboard";
 import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
 import { storeSortOptions, storeStatusOptions } from "~/constants/stores";
-import { cn } from "~/utils";
 
 type StoresProps = {
   pageCount: number;

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useUploadThing } from "@/server/reliverse/api/uploadthing/react";
 import { useDropzone } from "@uploadthing/react";
 import { generateClientDropzoneAccept } from "uploadthing/client";

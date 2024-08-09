@@ -1,8 +1,7 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
-
-import { cn } from "~/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 
 export function HomeFeaturedItems() {
   // todo: fix strange product images browser console warning message:

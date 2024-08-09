@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-// import { getStoresAction } from "@/server/reliverse/actions/store";
-// import { storesSearchParametersSchema } from "@/server/reliverse/validations/parameters";
+// import { getStoresAction } from "@/actions/reliverse//store";
+// import { storesSearchParametersSchema } from "@/actions/reliverse/validations/parameters";
 // import consola from "consola";
 // import { Stores } from "~/components/Common/stores";
 import { getTranslations } from "next-intl/server";

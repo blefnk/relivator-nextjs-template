@@ -1,7 +1,8 @@
+import type { Option } from "@/types";
 import type { Column } from "@tanstack/react-table";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -10,18 +11,15 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/browser/reliverse/ui/Command";
+} from "@/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/browser/reliverse/ui/Popover";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+} from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/utils";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
-
-import type { Option } from "~/types";
-
-import { cn } from "~/utils";
 
 type DataTableFacetedFilter<TData, TValue> = {
   column?: Column<TData, TValue>;

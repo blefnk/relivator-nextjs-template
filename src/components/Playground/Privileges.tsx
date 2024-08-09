@@ -3,7 +3,7 @@
 import type { FormEvent } from "react";
 import { startTransition } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
 import consola from "consola";
 

@@ -5,9 +5,12 @@ import { useForm } from "react-hook-form";
 
 import Image from "next/image";
 
+import type { FileWithPreview } from "@/types";
 import type { z } from "zod";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { checkProductAction } from "@/actions/reliverse/product-old";
+import { productSchema } from "@/actions/reliverse/validations/product-old";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,8 +19,8 @@ import {
   FormLabel,
   FormMessage,
   UncontrolledFormMessage,
-} from "@/browser/reliverse/ui/Form";
-import { Input } from "@/browser/reliverse/ui/Input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -25,15 +28,11 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/browser/reliverse/ui/Select";
-import { Textarea } from "@/browser/reliverse/ui/Text-Area";
-import { checkProductAction } from "@/server/reliverse/actions/product";
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/text-area";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
-import { productSchema } from "@/server/reliverse/validations/product";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
-
-import type { FileWithPreview } from "~/types";
 
 import { Icons } from "~/components/Common/Icons";
 import { Zoom } from "~/components/Common/zoom-image";

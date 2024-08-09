@@ -31,7 +31,7 @@ import { products, stores } from "~/db/schema";
 // } from "next/cache";
 // import { db } from "~/db";
 // import { products, stores } from "~/db/schema";
-// import { getProductsSchema } from "@/server/reliverse/validations/product";
+// import { getProductsSchema } from "@/actions/reliverse/validations/product";
 // import {
 //   categories,
 //   products,
@@ -80,17 +80,17 @@ export async function getProducts() {
   // const search = getProductsSchema.parse(input);
   //
   // const limit = 10;
-  // const searchPage = search.page ?? 1;
+  // const searchPage = search.page || 1;
   // const offset = (searchPage - 1) * limit;
   //
   // const [column, order] = (search.sort?.split(".") as [
   // keyof Product | undefined,
   // "asc" | "desc" | undefined,
-  // ]) ?? ["createdAt", "desc"];
-  // const [minPrice, maxPrice] = search.price_range?.split("-") ?? [];
-  // const categoryIds = search.categories?.split(".") ?? [];
-  // const subcategoryIds = search.subcategories?.split(".") ?? [];
-  // const storeIds = search.store_ids?.split(".") ?? [];
+  // ]) || ["createdAt", "desc"];
+  // const [minPrice, maxPrice] = search.price_range?.split("-") || [];
+  // const categoryIds = search.categories?.split(".") || [];
+  // const subcategoryIds = search.subcategories?.split(".") || [];
+  // const storeIds = search.store_ids?.split(".") || [];
   //
   // return await db.transaction(async (tx) => {
   // const data = await tx
@@ -167,7 +167,7 @@ export async function getProducts() {
   // ),
   // )
   // .execute()
-  // .then((res) => res[0]?.count ?? 0);
+  // .then((res) => res[0]?.count || 0);
   //
   // const pageCount = Math.ceil(total / limit);
   //
@@ -200,7 +200,7 @@ export async function getProductCountByCategory() {
   // .from(products)
   // .where(eq(products.categoryId, categoryId))
   // .execute()
-  // .then((res) => res[0]?.count ?? 0);
+  // .then((res) => res[0]?.count || 0);
   // },
   // [`product-count-${categoryId}`],
   // {

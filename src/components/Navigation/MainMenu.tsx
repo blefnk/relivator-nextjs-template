@@ -4,9 +4,10 @@ import type { ReactNode } from "react";
 
 import Link from "next/link";
 
-import { Store } from "lucide-react";
+import type { MainMenuItem } from "@/types";
 
-import type { MainMenuItem } from "~/types";
+import { cn } from "@/utils";
+import { Store } from "lucide-react";
 
 import { siteConfig } from "~/app";
 import {
@@ -18,7 +19,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "~/components/Navigation/NavMenu";
-import { cn } from "~/utils";
 
 type MainMenuProps = {
   items?: MainMenuItem[];

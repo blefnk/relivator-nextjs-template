@@ -2,12 +2,12 @@ import Balancer from "react-wrap-balancer";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import PageLayout from "~/components/Wrappers/PageLayout";
-import { cn } from "~/utils";
 
 // @see src/app/[locale]/[...rest]/page.tsx
 export default function NotFoundPage() {

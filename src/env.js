@@ -27,7 +27,7 @@ export const knownVariables = {
     "AUTH_SECRET",
     "CLERK_SECRET_KEY",
     "DATABASE_URL",
-    "DEV_DEMO_NOTES",
+    "DEMO_NOTES_ENABLED",
     "DISCORD_CLIENT_ID",
     "DISCORD_CLIENT_SECRET",
     "DISCORD_WEBHOOK_URL",
@@ -57,7 +57,7 @@ export const knownVariables = {
   ],
 };
 
-// @see addons/reliverse/relimter/core/env
+// @see addons/scripts/reliverse/relimter/core/env
 export const recommendedEnvVariables = {
   authjs: [
     "AUTH_DISCORD_SECRET",
@@ -121,7 +121,7 @@ export const env = createEnv({
     AUTH_SECRET: process.env.AUTH_SECRET,
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
     DATABASE_URL: process.env.DATABASE_URL,
-    DEV_DEMO_NOTES: process.env.DEV_DEMO_NOTES,
+    DEMO_NOTES_ENABLED: process.env.DEMO_NOTES_ENABLED,
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
     DISCORD_WEBHOOK_URL: process.env.DISCORD_WEBHOOK_URL,
@@ -168,7 +168,7 @@ export const env = createEnv({
     AUTH_SECRET: z.string().optional(),
     CLERK_SECRET_KEY: z.string().optional(),
     DATABASE_URL: z.string().url().optional(),
-    DEV_DEMO_NOTES: z.string().optional(),
+    DEMO_NOTES_ENABLED: z.string().optional(),
     DISCORD_CLIENT_ID: z.string().optional(),
     DISCORD_CLIENT_SECRET: z.string().optional(),
     DISCORD_WEBHOOK_URL: z.string().optional(),

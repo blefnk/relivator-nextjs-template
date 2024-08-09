@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
-import { deleteCartAction } from "@/server/reliverse/actions/cart";
+import { deleteCartAction } from "@/actions/reliverse//cart";
+import { buttonVariants } from "@/components/ui/button";
 import { getCartId } from "@/server/reliverse/cart";
+import { cn } from "@/utils";
 import { eq } from "drizzle-orm";
 
 import {
@@ -13,7 +14,6 @@ import {
 } from "~/components/Navigation/PageNavMenu";
 import { db } from "~/db";
 import { stores } from "~/db/schema";
-import { cn } from "~/utils";
 
 export const metadata: Metadata = {
   description: "Order summary for the purchase",

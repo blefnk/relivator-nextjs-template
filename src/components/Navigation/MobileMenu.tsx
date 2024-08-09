@@ -6,25 +6,21 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import type { MainMenuItem, SidebarNavItem } from "@/types";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/browser/reliverse/ui/Accordion";
-import { Button } from "@/browser/reliverse/ui/Button";
-import { ScrollArea } from "@/browser/reliverse/ui/Scroll-Area";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/browser/reliverse/ui/Sheet";
-
-import type { MainMenuItem, SidebarNavItem } from "~/types";
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/utils";
 
 import { siteConfig } from "~/app";
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type MobileMenuProps = {
   MainMenuItems?: MainMenuItem[];

@@ -2,8 +2,8 @@ import type { NextRequest } from "next/server";
 
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
 
-import { appRouter } from "~/core/trpc/root";
-import { createTRPCContext } from "~/core/trpc/trpc";
+import { appRouter } from "~/core/trpc-old/root";
+import { createTRPCContext } from "~/core/trpc-old/trpc";
 import { env } from "~/env";
 
 const noop = () => {};

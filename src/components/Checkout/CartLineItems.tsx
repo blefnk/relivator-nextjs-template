@@ -2,15 +2,18 @@ import type { HTMLAttributes } from "react";
 
 import Image from "next/image";
 
-import { ScrollArea } from "@/browser/reliverse/ui/Scroll-Area";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import type { CartLineItem } from "@/types";
+
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import { cn, formatPrice } from "@/utils";
 import { Slot } from "@radix-ui/react-slot";
+import { Edit } from "lucide-react";
 
-import type { CartLineItem } from "~/types";
-
-import { UpdateCart } from "~/components/Checkout/UpdateCart";
 import { Icons } from "~/components/Common/Icons";
-import { cn, formatPrice } from "~/utils";
+
+// TODO: fix and enable back in v1.3.0-canary.x
+// import { UpdateCart } from "~/components/Checkout/UpdateCart";
 
 type CartLineItemsProps = {
   isEditable?: boolean;
@@ -135,7 +138,10 @@ export function CartLineItems({
                 </div>
               </div>
               {isEditable ? (
-                <UpdateCart cartLineItem={item} />
+                <>
+                  <Edit />
+                  {/* <UpdateCart cartLineItem={item} /> */}
+                </>
               ) : (
                 <div
                   className={`

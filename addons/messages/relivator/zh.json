@@ -1,0 +1,160 @@
+{
+  "LoginForm": {
+    "no-account": "没有账户？",
+    "signup": "在这里注册。",
+    "title": "登录",
+    "welcome-back": "欢迎回来！"
+  },
+  "RegisterForm": {
+    "have-account": "已有账户？",
+    "signin": "在这里登录。",
+    "title": "创建账户"
+  },
+  "account-page": {
+    "Settings": "账户设置",
+    "loggedIn": "您已登录",
+    "loggedOut": "您已登出",
+    "login": "登录",
+    "logout": "登出",
+    "title": "我的账户"
+  },
+  "auth": {
+    "error": {
+      "default": "请尝试其他账户。",
+      "email": "未找到邮箱。请尝试其他提供商。",
+      "oauthNotLinked": "请使用原账户登录以确认身份。",
+      "unknown": "发生错误。请再试一次。",
+      "unknown-error": "出了点问题。请联系支持。"
+    },
+    "legal": "使用这些按钮即表示您同意我们的",
+    "legal-and": "和",
+    "legal-privacy": "隐私政策",
+    "legal-terms": "服务条款"
+  },
+  "auth-provider": {
+    "please-wait": "请稍候..."
+  },
+  "checkout": {
+    "CartDetails": "购物车详情",
+    "Demo": "使用测试数据：4242424242424242 | 12/34 | 567",
+    "Description": "支付前请检查您的商品",
+    "EmptyCartDescription": "您的购物车是空的。添加商品以继续。",
+    "EmptyCartHeading": "您的购物车是空的",
+    "Pay": "现在支付",
+    "Title": "结账",
+    "backToCart": "返回购物车",
+    "backToCartSingle": "返回",
+    "calculated": "结账时计算",
+    "cart": "购物车",
+    "cartIsEmpty": "您的购物车目前是空的",
+    "continueShopping": "继续购物",
+    "free": "免费",
+    "notConnectedDescription": "连接您的商店到Stripe以接受支付。",
+    "notConnectedHeading": "商店未连接到Stripe",
+    "shipping": "运费",
+    "taxes": "税费",
+    "total": "总计",
+    "viewTheCart": "查看购物车"
+  },
+  "components": {
+    "command": {
+      "dark": "黑暗模式",
+      "light": "光明模式",
+      "system": "系统默认",
+      "theme": "主题"
+    },
+    "search": {
+      "placeholder": "搜索产品...",
+      "title": "搜索"
+    }
+  },
+  "contact": {
+    "submit": "提交"
+  },
+  "demo": {
+    "aria-label-goto": "前往",
+    "launch": "控制面板"
+  },
+  "faq": {
+    "1": {
+      "details": "有关最新信息和如何快速开始，请查看Relivator帮助部分中的指南。",
+      "summary": "如何快速开始购物？"
+    },
+    "2": {
+      "details": "Relivator提供广泛的产品和功能，使购物变得轻松愉快。",
+      "summary": "为什么选择Relivator进行在线购物？"
+    },
+    "3": {
+      "details": "Relivator不断更新，以改善您的购物体验。您的支持有助于我们改进平台。感谢您在我们这里购物！",
+      "summary": "如何支持Relivator的发展？"
+    }
+  },
+  "landing": {
+    "about": "欢迎来到Relivator，您的单一商店满足所有需求。探索我们广泛的产品系列，享受无缝购物体验。",
+    "buy-now": "浏览目录",
+    "features": {
+      "auth": {
+        "description": "为所有用户提供简单且安全的登录选项。",
+        "title": "轻松登录"
+      },
+      "database": {
+        "description": "通过可靠的服务访问广泛的产品。",
+        "title": "广泛的产品系列"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator提供无限可能，拥有您所需的所有工具。",
+        "description": "订阅我们的新闻邮件，以获取最新更新和优惠。",
+        "title": "独家优惠"
+      },
+      "interface": {
+        "description": "享受用户友好的界面，带来极好的购物体验。",
+        "title": "用户友好界面"
+      },
+      "nextjs": {
+        "description": "无缝浏览我们的网站。",
+        "title": "无缝导航"
+      },
+      "text": {
+        "description": "体验现代高效的购物平台。",
+        "title": "高效购物"
+      }
+    },
+    "footer-cta": "准备好开始购物了吗？",
+    "get-started-button": "前往控制面板",
+    "main-cta": "访问GitHub",
+    "sell-now": "前往控制面板"
+  },
+  "metadata": {
+    "description": "通过Relivator提升您的购物体验：结合先进技术和用户友好的设计。",
+    "title": {
+      "home": "首页"
+    }
+  },
+  "pages": {
+    "not-found": {
+      "description": "资源可能已被移动、重命名或不存在。请验证URL或使用菜单进行导航。",
+      "go-home": "返回首页",
+      "title": "页面未找到！"
+    }
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "从顶级商店购买{category}",
+      "buyTheBest": "最好的{category}产品"
+    },
+    "products": {
+      "addToCart": "添加到购物车",
+      "buyProductsFromOurStores": "从我们的商店购买",
+      "catalogue": "产品目录",
+      "description": "产品描述",
+      "moreProductsFrom": "更多来自{storeName}的产品",
+      "noDescription": "没有可用描述。",
+      "products": "产品",
+      "productsCatalogue": "产品目录"
+    },
+    "stores": {
+      "buy-products": "从我们的商店购买",
+      "stores": "商店"
+    }
+  }
+}

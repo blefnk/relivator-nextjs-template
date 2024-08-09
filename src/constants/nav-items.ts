@@ -1,4 +1,4 @@
-import type { SidebarNavItem } from "~/types";
+import type { SidebarNavItem } from "@/types";
 
 type DashboardConfig = {
   sidebarNav: SidebarNavItem[];

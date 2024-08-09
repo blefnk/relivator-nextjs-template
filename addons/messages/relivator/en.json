@@ -1,0 +1,160 @@
+{
+  "LoginForm": {
+    "no-account": "Don't have an account?",
+    "signup": "Create one here.",
+    "title": "Sign In",
+    "welcome-back": "Welcome Back!"
+  },
+  "RegisterForm": {
+    "have-account": "Already have an account?",
+    "signin": "Log in here.",
+    "title": "Create Account"
+  },
+  "account-page": {
+    "Settings": "Account Settings",
+    "loggedIn": "You are logged in",
+    "loggedOut": "You are logged out",
+    "login": "Sign In",
+    "logout": "Log Out",
+    "title": "My Account"
+  },
+  "auth": {
+    "error": {
+      "default": "Please try a different account.",
+      "email": "Email not found. Try another provider.",
+      "oauthNotLinked": "Sign in with your original account to confirm your identity.",
+      "unknown": "An error occurred. Please try again.",
+      "unknown-error": "Something went wrong. Contact support for help."
+    },
+    "legal": "By using these buttons, you agree to our",
+    "legal-and": "and",
+    "legal-privacy": "Privacy Policy",
+    "legal-terms": "Terms of Service"
+  },
+  "auth-provider": {
+    "please-wait": "Loading, please wait..."
+  },
+  "checkout": {
+    "CartDetails": "Cart Details",
+    "Demo": "Use test data: 4242424242424242 | 12/34 | 567",
+    "Description": "Review your items before checkout",
+    "EmptyCartDescription": "Your cart is empty. Add items to proceed.",
+    "EmptyCartHeading": "Your cart is empty",
+    "Pay": "Pay Now",
+    "Title": "Checkout",
+    "backToCart": "Back to Cart",
+    "backToCartSingle": "Back",
+    "calculated": "Calculated at checkout",
+    "cart": "Shopping Cart",
+    "cartIsEmpty": "Your cart is currently empty",
+    "continueShopping": "Continue Shopping",
+    "free": "Free",
+    "notConnectedDescription": "Connect your store to Stripe to accept payments.",
+    "notConnectedHeading": "Store not connected to Stripe",
+    "shipping": "Shipping",
+    "taxes": "Taxes",
+    "total": "Total Amount",
+    "viewTheCart": "View Cart"
+  },
+  "components": {
+    "command": {
+      "dark": "Dark Mode",
+      "light": "Light Mode",
+      "system": "System Default",
+      "theme": "Theme"
+    },
+    "search": {
+      "placeholder": "Search products...",
+      "title": "Search"
+    }
+  },
+  "contact": {
+    "submit": "Submit"
+  },
+  "demo": {
+    "aria-label-goto": "Go to",
+    "launch": "Dashboard"
+  },
+  "faq": {
+    "1": {
+      "details": "For the latest information and how to get started, check our guide in the Relivator help section.",
+      "summary": "How can I start shopping quickly?"
+    },
+    "2": {
+      "details": "Relivator offers a wide range of products and features that make shopping easy and enjoyable.",
+      "summary": "Why choose Relivator for your online shopping?"
+    },
+    "3": {
+      "details": "Relivator is constantly being updated to improve your shopping experience. Your support helps us enhance our platform. Thank you for shopping with us!",
+      "summary": "How can I support the development of Relivator?"
+    }
+  },
+  "landing": {
+    "about": "Welcome to Relivator, your one-stop shop for all your needs. Explore our wide range of products and enjoy a seamless shopping experience.",
+    "buy-now": "Browse Catalogue",
+    "features": {
+      "auth": {
+        "description": "Easy and secure sign-in options for all users.",
+        "title": "Easy Sign-In"
+      },
+      "database": {
+        "description": "Access a wide variety of products with reliable service.",
+        "title": "Wide Product Range"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator offers endless possibilities with all the tools you need.",
+        "description": "Subscribe to our newsletters for the latest updates and offers.",
+        "title": "Exclusive Offers"
+      },
+      "interface": {
+        "description": "Enjoy a user-friendly interface for a great shopping experience.",
+        "title": "User-Friendly Interface"
+      },
+      "nextjs": {
+        "description": "Navigate seamlessly through our website.",
+        "title": "Seamless Navigation"
+      },
+      "text": {
+        "description": "Experience a modern and efficient shopping platform.",
+        "title": "Efficient Shopping"
+      }
+    },
+    "footer-cta": "Ready to start shopping?",
+    "get-started-button": "Go to Dashboard",
+    "main-cta": "Visit GitHub",
+    "sell-now": "Go to Dashboard"
+  },
+  "metadata": {
+    "description": "Enhance your shopping experience with Relivator: Combining the power of advanced technology and user-friendly design.",
+    "title": {
+      "home": "Home"
+    }
+  },
+  "pages": {
+    "not-found": {
+      "description": "The page you are looking for might have been moved, renamed, or no longer exists. Please check the URL or use the menu to navigate.",
+      "go-home": "Return to Home",
+      "title": "Page not found!"
+    }
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "Shop {category} from top stores",
+      "buyTheBest": "Best {category} products"
+    },
+    "products": {
+      "addToCart": "Add to Cart",
+      "buyProductsFromOurStores": "Shop from our stores",
+      "catalogue": "Product Catalogue",
+      "description": "Product Description",
+      "moreProductsFrom": "More products from {storeName}",
+      "noDescription": "No description available.",
+      "products": "Products",
+      "productsCatalogue": "Products Catalogue"
+    },
+    "stores": {
+      "buy-products": "Shop from our stores",
+      "stores": "Stores"
+    }
+  }
+}

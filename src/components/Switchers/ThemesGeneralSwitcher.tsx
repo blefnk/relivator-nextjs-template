@@ -1,15 +1,15 @@
 "use client";
 
-import type { ButtonProps } from "@/browser/reliverse/ui/Button";
+import type { ButtonProps } from "@/components/ui/button";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
+} from "@/components/ui/dropdown";
 import { useIsClient } from "@uidotdev/usehooks";
 import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";

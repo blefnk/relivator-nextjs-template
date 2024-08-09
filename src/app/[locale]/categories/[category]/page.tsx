@@ -22,7 +22,7 @@ type CategoryPageProps = {
 export function generateMetadata({ params }: CategoryPageProps): Metadata {
   return {
     description: `Buy products from the ${params.category} category`,
-    title: titleCase(params.category ?? ""),
+    title: titleCase(params.category || ""),
   };
 }
 

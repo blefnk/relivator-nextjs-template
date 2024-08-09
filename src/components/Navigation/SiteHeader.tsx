@@ -1,24 +1,22 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { Coffee } from "lucide-react";
-import { getTranslations } from "next-intl/server";
 import { intlProvider } from "reliverse.config";
 
 import { siteConfig } from "~/app";
 import { UserButton } from "~/components/Account/UserButton";
-import Combobox from "~/components/Combobox/Combobox";
 import { CartDialog } from "~/components/Commerce/Cart";
 import { LocaleSwitcher } from "~/components/Common/LocaleSwitcher";
+import { DonateLink } from "~/components/Navigation/DonateLink";
 import { MainMenu } from "~/components/Navigation/MainMenu";
 import { MobileMenu } from "~/components/Navigation/MobileMenu";
 import { ThemesGeneralSwitcher } from "~/components/Switchers/ThemesGeneralSwitcher";
 import { dashboardConfig } from "~/constants/nav-items";
-import { cn } from "~/utils";
 
 export async function SiteHeader() {
-  const t = await getTranslations();
+  // const t = await getTranslations();
 
   return (
     <header
@@ -35,17 +33,19 @@ export async function SiteHeader() {
       />
       <nav className="flex flex-1 items-center justify-end space-x-2">
         <CartDialog />
-        <Combobox
-          tCommandDark={t("components.command.dark")}
-          tCommandLight={t("components.command.light")}
-          tCommandSystem={t("components.command.system")}
-          tCommandTheme={t("components.command.theme")}
-          tPlaceholder={t("components.search.placeholder")}
-          tSearchTitle={t("components.search.title")}
-        />
+        <DonateLink />
+        {/* <ProductsCombobox
+        // TODO: uncomment when @/actions is fixed
+        // import { ProductsCombobox } from "~/components/Navigation/ProductsCombobox";
+        // tCommandDark={t("components.command.dark")}
+        // tCommandLight={t("components.command.light")}
+        // tCommandSystem={t("components.command.system")}
+        // tCommandTheme={t("components.command.theme")}
+        // tPlaceholder={t("components.search.placeholder")}
+        // tSearchTitle={t("components.search.title")}
+        /> */}
         <ThemeDropdown />
         <div className="flex space-x-2">
-          <PatreonLink />
           <GithubLink />
           <DiscordLink />
         </div>
@@ -109,29 +109,6 @@ function GithubLink() {
       target="_blank"
     >
       <GitHubLogoIcon className="size-4" />
-    </Link>
-  );
-}
-
-function PatreonLink() {
-  return (
-    <Link
-      className={cn(
-        buttonVariants({
-          size: "icon",
-          variant: "outline",
-        }),
-        `
-          hidden
-
-          md:flex
-        `,
-      )}
-      href="https://patreon.com/blefnk"
-      rel="noreferrer noopener"
-      target="_blank"
-    >
-      <Coffee className="size-4" />
     </Link>
   );
 }

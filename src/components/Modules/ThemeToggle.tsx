@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 
 import { Icons } from "~/components/Common/Icons";

@@ -3,12 +3,12 @@ import { Balancer } from "react-wrap-balancer";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { config } from "@reliverse/core";
 
 import { CriticalErrorMessage } from "~/app/[locale]/error/[[...error]]/client";
 import PageLayout from "~/components/Wrappers/PageLayout";
-import { cn } from "~/utils";
 
 export const metadata: Metadata = {
   robots: "noindex,nofollow",

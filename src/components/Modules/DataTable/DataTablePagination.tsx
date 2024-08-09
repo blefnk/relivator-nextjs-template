@@ -1,13 +1,13 @@
 import type { Table } from "@tanstack/react-table";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/browser/reliverse/ui/Select";
+} from "@/components/ui/select";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,

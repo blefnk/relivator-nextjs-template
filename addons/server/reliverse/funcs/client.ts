@@ -1,6 +1,6 @@
-import { ofetch } from "ofetch";
+import type { ApiResponse, ApiResponseError } from "@/types";
 
-import type { ApiResponse, ApiResponseError } from "~/types";
+import { ofetch } from "ofetch";
 
 const isString = (a: unknown): a is string => typeof a === "string";
 

@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 
 import type { z } from "zod";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
 import consola from "consola";
 

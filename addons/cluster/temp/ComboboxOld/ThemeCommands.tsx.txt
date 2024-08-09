@@ -1,0 +1,52 @@
+import { CommandGroup, CommandItem } from "@/components/ui/command";
+import { CloudMoon, MonitorSmartphone, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+
+type ThemeCommandsProps = {
+  runCommand: (command: () => void) => () => void;
+  tCommandDark: string;
+  tCommandLight: string;
+  tCommandSystem: string;
+  tCommandTheme: string;
+};
+
+const ThemeCommands = ({
+  runCommand,
+  tCommandDark,
+  tCommandLight,
+  tCommandSystem,
+  tCommandTheme,
+}: ThemeCommandsProps) => {
+  const { setTheme } = useTheme();
+
+  return (
+    <CommandGroup heading={tCommandTheme}>
+      <CommandItem
+        onSelect={runCommand(() => {
+          setTheme("light");
+        })}
+      >
+        <Sun className="mr-2 size-4" />
+        <span>{tCommandLight}</span>
+      </CommandItem>
+      <CommandItem
+        onSelect={runCommand(() => {
+          setTheme("dark");
+        })}
+      >
+        <CloudMoon className="mr-2 size-4" />
+        <span>{tCommandDark}</span>
+      </CommandItem>
+      <CommandItem
+        onSelect={runCommand(() => {
+          setTheme("system");
+        })}
+      >
+        <MonitorSmartphone className="mr-2 size-4" />
+        <span>{tCommandSystem}</span>
+      </CommandItem>
+    </CommandGroup>
+  );
+};
+
+export default ThemeCommands;

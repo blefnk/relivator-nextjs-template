@@ -1,8 +1,7 @@
 import type { PlateElementProps } from "@udecode/plate-common";
 
+import { cn } from "@/utils";
 import { PlateElement } from "@udecode/plate-common";
-
-import { cn } from "~/utils";
 
 const ParagraphElement = ({
   children,

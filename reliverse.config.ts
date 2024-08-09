@@ -4,11 +4,6 @@
 
 export const authProvider = "clerk" as "authjs" | "clerk" | "none";
 
-export const throwErrorOnFailedDepsCommand = false; // related to: ▶️ pnpm deps (deps:check deps:locations)
-
-// To enable this feature handled by packageJson.ts, 'debugEnabled' must also be set to 'true' currently.
-export const automaticPackageJsonDependenciesMover = false; // This feature can be unstable currently.
-
 export const debugEnabled = false;
 
 export const engineVersion = "0.4.0" as const;
@@ -21,10 +16,20 @@ export const hideTanstackDevtools = true;
 
 export const hideTailwindIndicator = false;
 
+export const disableDonateButton = false;
+
 export const intlProvider = "next-intl" as "disable" | "next-intl";
 
 // Relivator 1.3.0 will use 'bun' as the default package manager
 export const packageManager = "pnpm" as "bun" | "pnpm";
+
+// @see https://github.com/blefnk/relivator-nextjs-template/issues/32
+export type DatabaseDialect = "mysql" | "postgresql" | "sqlite";
+
+export const databasePrefix = // eslint-disable-next-line no-restricted-properties
+  process.env.NEXT_PUBLIC_DATABASE_PREFIX || "relivator";
+
+export const databaseDialect = "postgresql";
 
 // ### Type definitions for database provider
 // - neon           | postgres  | https://neon.tech
@@ -47,13 +52,5 @@ export type DatabaseProvider =
   | "turso"
   | "vercel";
 
-// @see https://github.com/blefnk/relivator-nextjs-template/issues/32
-export type DatabaseDialect = "mysql" | "postgresql" | "sqlite";
-
 // Configurations for database provider and dialect
 export const databaseProvider = "neon" as DatabaseProvider;
-
-export const databasePrefix = // eslint-disable-next-line no-restricted-properties
-  process.env.NEXT_PUBLIC_DATABASE_PREFIX ?? "relivator";
-
-export const databaseDialect = "postgresql";

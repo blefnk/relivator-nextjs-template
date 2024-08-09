@@ -1,0 +1,77 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+
+import { useComboboxDialog } from "~/components/Combobox/ComboboxContext";
+import ComboboxHandler from "~/components/Combobox/ComboboxHandler";
+import { Icons } from "~/components/Common/Icons";
+
+export default function Combobox({
+  tCommandDark = "Dark",
+  tCommandLight = "Light",
+  tCommandSystem = "System",
+  tCommandTheme = "Theme",
+  tPlaceholder = "Search...",
+  tSearchTitle = "Search...",
+}: {
+  tCommandDark?: string;
+  tCommandLight?: string;
+  tCommandSystem?: string;
+  tCommandTheme?: string;
+  tPlaceholder?: string;
+  tSearchTitle?: string;
+}) {
+  const { openDialog } = useComboboxDialog();
+
+  return (
+    <>
+      <Button
+        className={`
+          relative size-9 p-0
+
+          xl:h-10 xl:w-60 xl:justify-start xl:px-3 xl:py-2
+        `}
+        onClick={openDialog}
+        variant="outline"
+      >
+        <Icons.search
+          aria-hidden="true"
+          className={`
+            size-4
+
+            xl:mr-2
+          `}
+        />
+        <span
+          className={`
+            hidden
+
+            xl:inline-flex
+          `}
+        >
+          {tSearchTitle}
+        </span>
+        <span className="sr-only">Search products</span>
+        <kbd
+          className={`
+            pointer-events-none absolute right-1.5 top-2 hidden h-6 select-none
+            items-center gap-1 rounded border bg-muted px-1.5 font-mono
+            text-[10px] font-medium opacity-100
+
+            xl:flex
+          `}
+        >
+          <abbr title="Control">⌘</abbr>K
+        </kbd>
+      </Button>
+      <ComboboxHandler
+        tCommandDark={tCommandDark}
+        tCommandLight={tCommandLight}
+        tCommandSystem={tCommandSystem}
+        tCommandTheme={tCommandTheme}
+        tPlaceholder={tPlaceholder}
+        tSearchTitle={tSearchTitle}
+      />
+    </>
+  );
+}

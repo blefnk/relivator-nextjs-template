@@ -2,8 +2,8 @@
 
 import { useTransition } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { generateProducts } from "@/server/reliverse/actions/generate";
+import { generateProducts } from "@/actions/reliverse/generate";
+import { Button } from "@/components/ui/button";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
 import consola from "consola";
 import tryToCatch from "try-to-catch";

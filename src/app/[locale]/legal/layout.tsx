@@ -2,11 +2,8 @@ import type { ReactNode } from "react";
 
 import Link from "next/link";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
-
-import { SiteFooter } from "~/components/Navigation/SiteFooter";
-import { SiteHeader } from "~/components/Navigation/SiteHeader";
 
 type Props = {
   children?: ReactNode;
@@ -15,7 +12,6 @@ type Props = {
 export default function LegalLayout({ children }: Props) {
   return (
     <>
-      <SiteHeader />
       <div className="flex min-h-screen flex-col">
         <div className="container mx-auto p-6">
           <Button asChild variant="ghost">
@@ -33,7 +29,6 @@ export default function LegalLayout({ children }: Props) {
           {children}
         </main>
       </div>
-      <SiteFooter />
     </>
   );
 }

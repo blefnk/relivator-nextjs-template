@@ -2,21 +2,21 @@ import { Suspense } from "react";
 
 import type { Metadata } from "next";
 
+import type { SearchParams } from "@/types";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/browser/reliverse/ui/CardUI";
+} from "@/components/ui/card";
 import { getNotification } from "@/server/reliverse/queries/notification";
 import {
   getCachedUserAuthJs,
   getCachedUserClerk,
 } from "@/server/reliverse/queries/user";
 import { z } from "zod";
-
-import type { SearchParams } from "~/types";
 
 import { authProvider } from "~/auth";
 import { UpdateNotificationForm } from "~/components/Forms";

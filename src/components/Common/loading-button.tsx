@@ -3,14 +3,14 @@
 import { forwardRef } from "react";
 import { useFormStatus } from "react-dom";
 
-import type { ButtonProps } from "@/browser/reliverse/ui/Button";
+import type { ButtonProps } from "@/components/ui/button";
 
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
-import { Skeleton } from "@/browser/reliverse/ui/Skeleton";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/utils";
 import { useIsClient } from "@uidotdev/usehooks";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type LoadingButtonProps = {
   className?: string;

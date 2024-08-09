@@ -3,14 +3,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/browser/reliverse/ui/Drawer";
-import { ScrollArea } from "@/browser/reliverse/ui/Scroll-Area";
-import { getCartAction } from "@/server/reliverse/actions/cart";
+import { getCartAction } from "@/actions/reliverse//cart";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { cn, formatPrice } from "@/utils";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { eq } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
@@ -27,7 +24,6 @@ import {
 import { db } from "~/db";
 import { stores } from "~/db/schema";
 import { env } from "~/env";
-import { cn, formatPrice } from "~/utils";
 
 export const metadata: Metadata = {
   description: "Checkout with store items",
@@ -250,7 +246,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
           `}
         >
           <div className="mb-4 text-sm font-semibold">
-            {env.DEV_DEMO_NOTES === "true" && t("checkout.Demo")}
+            {env.DEMO_NOTES_ENABLED === "true" && t("checkout.Demo")}
           </div>
           <div
             className={`

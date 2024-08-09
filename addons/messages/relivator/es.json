@@ -1,0 +1,160 @@
+{
+  "LoginForm": {
+    "no-account": "¿No tienes una cuenta?",
+    "signup": "Crea una aquí.",
+    "title": "Iniciar Sesión",
+    "welcome-back": "¡Bienvenido de nuevo!"
+  },
+  "RegisterForm": {
+    "have-account": "¿Ya tienes una cuenta?",
+    "signin": "Inicia sesión aquí.",
+    "title": "Crear Cuenta"
+  },
+  "account-page": {
+    "Settings": "Configuración de la cuenta",
+    "loggedIn": "Has iniciado sesión",
+    "loggedOut": "Has cerrado sesión",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "title": "Mi Cuenta"
+  },
+  "auth": {
+    "error": {
+      "default": "Por favor, intenta con otra cuenta.",
+      "email": "Correo no encontrado. Intenta con otro proveedor.",
+      "oauthNotLinked": "Inicia sesión con tu cuenta original para confirmar tu identidad.",
+      "unknown": "Ocurrió un error. Por favor, inténtalo de nuevo.",
+      "unknown-error": "Algo salió mal. Contacta al soporte para obtener ayuda."
+    },
+    "legal": "Al usar estos botones, aceptas nuestros",
+    "legal-and": "y",
+    "legal-privacy": "Política de Privacidad",
+    "legal-terms": "Términos de Servicio"
+  },
+  "auth-provider": {
+    "please-wait": "Cargando, por favor espera..."
+  },
+  "checkout": {
+    "CartDetails": "Detalles del Carrito",
+    "Demo": "Usa datos de prueba: 4242424242424242 | 12/34 | 567",
+    "Description": "Revisa tus artículos antes de pagar",
+    "EmptyCartDescription": "Tu carrito está vacío. Agrega artículos para continuar.",
+    "EmptyCartHeading": "Tu carrito está vacío",
+    "Pay": "Pagar Ahora",
+    "Title": "Pago",
+    "backToCart": "Volver al Carrito",
+    "backToCartSingle": "Volver",
+    "calculated": "Calculado en el pago",
+    "cart": "Carrito de Compras",
+    "cartIsEmpty": "Tu carrito está actualmente vacío",
+    "continueShopping": "Seguir Comprando",
+    "free": "Gratis",
+    "notConnectedDescription": "Conecta tu tienda con Stripe para aceptar pagos.",
+    "notConnectedHeading": "Tienda no conectada a Stripe",
+    "shipping": "Envío",
+    "taxes": "Impuestos",
+    "total": "Monto Total",
+    "viewTheCart": "Ver Carrito"
+  },
+  "components": {
+    "command": {
+      "dark": "Modo Oscuro",
+      "light": "Modo Claro",
+      "system": "Predeterminado del Sistema",
+      "theme": "Tema"
+    },
+    "search": {
+      "placeholder": "Buscar productos...",
+      "title": "Buscar"
+    }
+  },
+  "contact": {
+    "submit": "Enviar"
+  },
+  "demo": {
+    "aria-label-goto": "Ir a",
+    "launch": "Panel"
+  },
+  "faq": {
+    "1": {
+      "details": "Para obtener la información más reciente y cómo empezar, consulta nuestra guía en la sección de ayuda de Relivator.",
+      "summary": "¿Cómo puedo empezar a comprar rápidamente?"
+    },
+    "2": {
+      "details": "Relivator ofrece una amplia gama de productos y características que hacen que comprar sea fácil y agradable.",
+      "summary": "¿Por qué elegir Relivator para tus compras en línea?"
+    },
+    "3": {
+      "details": "Relivator se actualiza constantemente para mejorar tu experiencia de compra. Tu apoyo nos ayuda a mejorar nuestra plataforma. ¡Gracias por comprar con nosotros!",
+      "summary": "¿Cómo puedo apoyar el desarrollo de Relivator?"
+    }
+  },
+  "landing": {
+    "about": "Bienvenido a Relivator, tu tienda única para todas tus necesidades. Explora nuestra amplia gama de productos y disfruta de una experiencia de compra sin interrupciones.",
+    "buy-now": "Explorar Catálogo",
+    "features": {
+      "auth": {
+        "description": "Opciones de inicio de sesión fáciles y seguras para todos los usuarios.",
+        "title": "Inicio de Sesión Fácil"
+      },
+      "database": {
+        "description": "Accede a una amplia variedad de productos con un servicio confiable.",
+        "title": "Amplia Variedad de Productos"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator ofrece posibilidades infinitas con todas las herramientas que necesitas.",
+        "description": "Suscríbete a nuestros boletines para recibir las últimas actualizaciones y ofertas.",
+        "title": "Ofertas Exclusivas"
+      },
+      "interface": {
+        "description": "Disfruta de una interfaz fácil de usar para una gran experiencia de compra.",
+        "title": "Interfaz Amigable"
+      },
+      "nextjs": {
+        "description": "Navega sin problemas por nuestro sitio web.",
+        "title": "Navegación Fluida"
+      },
+      "text": {
+        "description": "Experimenta una plataforma de compras moderna y eficiente.",
+        "title": "Compras Eficientes"
+      }
+    },
+    "footer-cta": "¿Listo para empezar a comprar?",
+    "get-started-button": "Ir al Panel",
+    "main-cta": "Visitar GitHub",
+    "sell-now": "Ir al Panel"
+  },
+  "metadata": {
+    "description": "Mejora tu experiencia de compra con Relivator: Combinando el poder de la tecnología avanzada y un diseño fácil de usar.",
+    "title": {
+      "home": "Inicio"
+    }
+  },
+  "pages": {
+    "not-found": {
+      "description": "La página que buscas puede haber sido movida, renombrada o ya no existe. Por favor, verifica la URL o usa el menú para navegar.",
+      "go-home": "Volver al Inicio",
+      "title": "¡Página no encontrada!"
+    }
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "Compra {category} de las mejores tiendas",
+      "buyTheBest": "Mejores productos de {category}"
+    },
+    "products": {
+      "addToCart": "Añadir al Carrito",
+      "buyProductsFromOurStores": "Compra en nuestras tiendas",
+      "catalogue": "Catálogo de Productos",
+      "description": "Descripción del Producto",
+      "moreProductsFrom": "Más productos de {storeName}",
+      "noDescription": "No hay descripción disponible.",
+      "products": "Productos",
+      "productsCatalogue": "Catálogo de Productos"
+    },
+    "stores": {
+      "buy-products": "Compra en nuestras tiendas",
+      "stores": "Tiendas"
+    }
+  }
+}

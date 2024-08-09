@@ -4,11 +4,11 @@ import { useTransition } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/browser/reliverse/ui/Button";
 import {
   getNextProductIdAction,
   getPreviousProductIdAction,
-} from "@/server/reliverse/actions/product";
+} from "@/actions/reliverse/product-old";
+import { Button } from "@/components/ui/button";
 import consola from "consola";
 
 import type { Product } from "~/db/schema";

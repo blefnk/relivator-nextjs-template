@@ -1,0 +1,91 @@
+"use client";
+
+import { useCallback, useEffect, useState, useTransition } from "react";
+
+import {
+  CommandDialog,
+  CommandEmpty,
+  CommandInput,
+  CommandList,
+  CommandSeparator,
+} from "@/components/ui/command";
+import { cn } from "@/utils";
+
+import { useComboboxDialog } from "~/components/Combobox/ComboboxContext";
+import ThemeCommands from "~/components/Combobox/ThemeCommands";
+
+// import useHotkey from "~/hooks/react-client/useHotkey";
+type ComboboxHandlerProps = {
+  tCommandDark?: string;
+  tCommandLight?: string;
+  tCommandSystem?: string;
+  tCommandTheme?: string;
+  tPlaceholder?: string;
+  tSearchTitle?: string;
+};
+
+export default function ComboboxHandler({
+  tCommandDark = "Dark",
+  tCommandLight = "Light",
+  tCommandSystem = "System",
+  tCommandTheme = "Theme",
+  tPlaceholder = "Search...",
+}: ComboboxHandlerProps) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { closeDialog, isOpen, openDialog, toggleDialog } = useComboboxDialog();
+  const [query, setQuery] = useState("");
+  const [isPending] = useTransition();
+
+  useEffect(() => {
+    if (!isOpen) {
+      setQuery("");
+    }
+  }, [isOpen]);
+
+  const runCommand = useCallback(
+    (command: () => void) => () => {
+      closeDialog();
+      command();
+    },
+    [closeDialog],
+  );
+
+  // TODO: if Vercel Toolbar is enabled, we need to use another hotkey for combobox
+  // useHotkey hook opens the dialog with Ctrl+K or Cmd+K
+  // useHotkey({ cmdCtrlKey: true, editDepth: 0, keyCodes: ["k"] }, (event_) => {
+  //   event_.preventDefault();
+  //   toggleDialog();
+  // });
+  return (
+    <CommandDialog
+      onOpenChange={(open: boolean) => {
+        open ? openDialog() : closeDialog();
+      }}
+      open={isOpen}
+      position="top"
+    >
+      <CommandInput
+        onValueChange={setQuery}
+        placeholder={tPlaceholder}
+        value={query}
+      />
+      <CommandList>
+        <CommandEmpty
+          className={cn(isPending ? "hidden" : "py-6 text-center text-sm")}
+        >
+          No product, page, or command found.
+          <br className="my-2" />
+          Try find something in another way.
+        </CommandEmpty>
+        <CommandSeparator />
+        <ThemeCommands
+          runCommand={runCommand}
+          tCommandDark={tCommandDark}
+          tCommandLight={tCommandLight}
+          tCommandSystem={tCommandSystem}
+          tCommandTheme={tCommandTheme}
+        />
+      </CommandList>
+    </CommandDialog>
+  );
+}

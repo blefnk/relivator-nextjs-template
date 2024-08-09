@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { joinNewsletterSchema } from "@/server/reliverse/validations/notification";
+import { joinNewsletterSchema } from "@/actions/reliverse/validations/notification";
 import { config } from "@reliverse/core";
 import consola from "consola";
 import { eq } from "drizzle-orm";
@@ -58,14 +58,14 @@ export async function POST(req: Request) {
 
     await Promise.all([
       resend.emails.send({
-        from: env.NEXT_PUBLIC_RESEND_EMAIL_FROM ?? "onboarding@resend.dev",
+        from: env.NEXT_PUBLIC_RESEND_EMAIL_FROM || "onboarding@resend.dev",
         react: NewsletterWelcomeEmail({
-          firstName: user?.name ?? "there",
+          firstName: user?.name || "there",
           fromEmail:
-            env.NEXT_PUBLIC_RESEND_EMAIL_FROM ?? "onboarding@resend.dev",
-          token: notification?.token ?? input.token,
+            env.NEXT_PUBLIC_RESEND_EMAIL_FROM || "onboarding@resend.dev",
+          token: notification?.token || input.token,
         }),
-        subject: input.subject ?? `Welcome to ${config.engine.name} Weekly!`,
+        subject: input.subject || `Welcome to ${config.engine.name} Weekly!`,
         to: input.email,
       }),
       db

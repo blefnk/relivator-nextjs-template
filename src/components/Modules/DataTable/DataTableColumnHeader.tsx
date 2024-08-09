@@ -2,22 +2,21 @@ import type { HTMLAttributes } from "react";
 
 import type { Column } from "@tanstack/react-table";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
+} from "@/components/ui/dropdown";
+import { cn } from "@/utils";
 import {
   ArrowDownIcon,
   ArrowUpIcon,
   CaretSortIcon,
   EyeNoneIcon,
 } from "@radix-ui/react-icons";
-
-import { cn } from "~/utils";
 
 type DataTableColumnHeaderProps<TData, TValue> = {
   column: Column<TData, TValue>;

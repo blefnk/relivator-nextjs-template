@@ -3,7 +3,7 @@
 import type { InputHTMLAttributes } from "react";
 import { useEffect, useState } from "react";
 
-import { Input } from "@/browser/reliverse/ui/Input";
+import { Input } from "@/components/ui/input";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement>;
 

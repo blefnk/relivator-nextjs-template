@@ -1,6 +1,6 @@
 "use client";
 
-import { createPost } from "@/server/reliverse/actions/post";
+import { createPost } from "@/actions/reliverse/post";
 
 // Protected React Server Actions w/ tRPC
 // @see https://trpc.io/blog/trpc-actions

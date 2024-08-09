@@ -4,10 +4,9 @@ import { Balancer } from "react-wrap-balancer";
 
 import type { VariantProps } from "class-variance-authority";
 
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/utils";
 import { cva } from "class-variance-authority";
-
-import { cn } from "~/utils";
 
 type PageHeaderProps = {
   as?: ElementType;

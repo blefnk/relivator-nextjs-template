@@ -2,17 +2,17 @@
 
 import { useMemo, useTransition } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import consola from "consola";
+import type { CartLineItem } from "@/types";
 
-import type { CartLineItem } from "~/types";
+import { Button } from "@/components/ui/button";
+import consola from "consola";
 
 import { Icons } from "~/components/Common/Icons";
 import { createCheckoutSessionAction } from "~/core/stripe/actions";
 import { getStripe } from "~/core/stripe/getting";
 
-function toastError(errorMessage: string) {
-  consola.error(errorMessage);
+function toastError(getErrorMessage: string) {
+  consola.error(getErrorMessage);
 
   return null;
 }

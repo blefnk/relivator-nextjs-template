@@ -2,9 +2,8 @@ import { forwardRef } from "react";
 
 import type { PlateContentProps } from "@udecode/plate-common";
 
+import { cn } from "@/utils";
 import { PlateContent } from "@udecode/plate-common";
-
-import { cn } from "~/utils";
 
 type EditorProps = {
   className?: string;

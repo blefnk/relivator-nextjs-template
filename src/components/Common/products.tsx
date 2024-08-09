@@ -6,8 +6,10 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { Checkbox } from "@/browser/reliverse/ui/Checkbox";
+import type { Option } from "@/types";
+
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,11 +17,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
-import { Input } from "@/browser/reliverse/ui/Input";
-import { Label } from "@/browser/reliverse/ui/Label";
-import { ScrollArea } from "@/browser/reliverse/ui/Scroll-Area";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+} from "@/components/ui/dropdown";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -27,22 +29,21 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/browser/reliverse/ui/Sheet";
-import { Slider } from "@/browser/reliverse/ui/Slider";
+} from "@/components/ui/sheet";
+import { Slider } from "@/components/ui/slider";
+import { useDebounce } from "@/hooks-react/use-debounce";
+import { cn, truncate } from "@/utils";
 import { getCookie } from "cookies-next";
 import { titleCase } from "string-ts";
 
 /* eslint-disable complexity */
 import type { Product, Store } from "~/db/schema";
-import type { Option } from "~/types";
 
 import { Icons } from "~/components/Common/Icons";
 import { MultiSelect } from "~/components/Common/multi-select";
 import { ProductCard } from "~/components/Modules/Cards/ProductCard";
 import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
 import { getSubcategories, sortOptions } from "~/constants/products";
-import { useDebounce } from "~/hooks";
-import { cn, truncate } from "~/utils";
 
 type ProductsProps = {
   categories?: Product["category"][];

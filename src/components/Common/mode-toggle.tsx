@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
+} from "@/components/ui/dropdown";
 import { useTheme } from "next-themes";
 
 import { Icons } from "~/components/Common/Icons";

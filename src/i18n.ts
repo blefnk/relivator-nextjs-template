@@ -2,17 +2,17 @@ import { notFound } from "next/navigation";
 
 import type { AbstractIntlMessages } from "next-intl";
 
-import de_de from "~/../messages/de.json";
-import en_us from "~/../messages/en.json";
-import es_es from "~/../messages/es.json";
-import fa_ir from "~/../messages/fa.json";
-import fr_fr from "~/../messages/fr.json";
-import hi_in from "~/../messages/hi.json";
-import it_it from "~/../messages/it.json";
-import pl_pl from "~/../messages/pl.json";
-import tr_tr from "~/../messages/tr.json";
-import uk_ua from "~/../messages/uk.json";
-import zh_cn from "~/../messages/zh.json";
+import de_de from "@/messages/reliverse/de.json";
+import en_us from "@/messages/reliverse/en.json";
+import es_es from "@/messages/reliverse/es.json";
+import fa_ir from "@/messages/reliverse/fa.json";
+import fr_fr from "@/messages/reliverse/fr.json";
+import hi_in from "@/messages/reliverse/hi.json";
+import it_it from "@/messages/reliverse/it.json";
+import pl_pl from "@/messages/reliverse/pl.json";
+import tr_tr from "@/messages/reliverse/tr.json";
+import uk_ua from "@/messages/reliverse/uk.json";
+import zh_cn from "@/messages/reliverse/zh.json";
 import deepmerge from "deepmerge";
 import { getRequestConfig } from "next-intl/server";
 

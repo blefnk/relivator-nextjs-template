@@ -1,16 +1,16 @@
 "use client";
 
-import type { ChartConfig } from "@/browser/reliverse/ui/Chart";
+import type { ChartConfig } from "@/components/ui/chart";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/browser/reliverse/ui/Chart";
-import { useToast } from "@/browser/reliverse/ui/use-toast";
+} from "@/components/ui/chart";
+import { useToast } from "@/hooks-react/use-toast";
 import { Monitor, Smartphone } from "lucide-react";
 import { Bar, BarChart, CartesianGrid } from "recharts";
 

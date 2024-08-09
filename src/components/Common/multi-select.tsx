@@ -1,17 +1,13 @@
 import type { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
-import { Button } from "@/browser/reliverse/ui/Button";
-import {
-  Command,
-  CommandGroup,
-  CommandItem,
-} from "@/browser/reliverse/ui/Command";
+import type { Option } from "@/types";
+
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
-
-import type { Option } from "~/types";
 
 type MultiSelectProps = {
   options: Option[];

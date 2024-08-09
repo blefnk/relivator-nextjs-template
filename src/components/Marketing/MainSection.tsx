@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
+import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "next-intl";
 
 import { productCategories } from "~/constants/products";

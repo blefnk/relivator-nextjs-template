@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import type { OAuthStrategy } from "@clerk/types";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useSignIn } from "@clerk/nextjs";
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
 import consola from "consola";

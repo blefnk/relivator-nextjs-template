@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { api } from "~/core/trpc/infer";
+import { api } from "~/core/trpc-old/infer";
 
 export function CreateTodo() {
   const router = useRouter();

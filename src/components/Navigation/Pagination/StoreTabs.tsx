@@ -4,9 +4,8 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { usePathname, useRouter } from "next/navigation";
 
-import { Tabs, TabsList, TabsTrigger } from "@/browser/reliverse/ui/Tabs";
-
-import { cn } from "~/utils";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/utils";
 
 type StoreTabsProps = {
   storeId: string;

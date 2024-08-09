@@ -4,8 +4,9 @@ import { useTransition } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
-import { Skeleton } from "@/browser/reliverse/ui/Skeleton";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/utils";
 import { SignOutButton } from "@clerk/nextjs";
 import { useIsClient } from "@uidotdev/usehooks";
 import { signOut } from "next-auth/react";
@@ -13,7 +14,6 @@ import { useLocale } from "next-intl";
 
 import { authProvider } from "~/auth";
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 export function LogOutButtons() {
   const router = useRouter();

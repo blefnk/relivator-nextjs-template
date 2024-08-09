@@ -1,9 +1,11 @@
+import type { FooterItem, MainMenuItem } from "@/types";
+
+import { slugify } from "@/utils";
+
 import type { Icons } from "~/components/Common/Icons";
-import type { FooterItem, MainMenuItem } from "~/types";
 
 import metadata from "~/constants/metadata";
 import { productCategories } from "~/constants/products";
-import { slugify } from "~/utils";
 
 const socialLinks = {
   discord: "https://discord.gg/Pb8uKbwpsJ",

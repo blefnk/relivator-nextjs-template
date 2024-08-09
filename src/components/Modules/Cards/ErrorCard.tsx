@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,11 +10,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/browser/reliverse/ui/CardUI";
+} from "@/components/ui/card";
+import { cn } from "@/utils";
 
 import { ClientButton } from "~/components/Common/client-button";
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type ErrorCardProps = {
   description: string;

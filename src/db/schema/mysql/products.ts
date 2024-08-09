@@ -1,3 +1,5 @@
+import type { StoredFile } from "@/types";
+
 import {
   int,
   json,
@@ -6,8 +8,6 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/mysql-core";
-
-import type { StoredFile } from "~/types";
 
 import { mysqlTable as createTable } from "~/db/schema/insert/table";
 import { genId } from "~/db/utils";

@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 
 import type { z } from "zod";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { addStoreAction } from "@/actions/reliverse/store";
+import { storeSchema } from "@/actions/reliverse/validations/store";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,12 +15,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/browser/reliverse/ui/Form";
-import { Input } from "@/browser/reliverse/ui/Input";
-import { Textarea } from "@/browser/reliverse/ui/Text-Area";
-import { addStoreAction } from "@/server/reliverse/actions/store";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/text-area";
 import { catchError } from "@/server/reliverse/errors/helpers/auth";
-import { storeSchema } from "@/server/reliverse/validations/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
 

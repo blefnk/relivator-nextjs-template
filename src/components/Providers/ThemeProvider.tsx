@@ -2,7 +2,7 @@
 
 import type { ThemeProviderProps } from "next-themes/dist/types";
 
-import { TooltipProvider } from "@/browser/reliverse/ui/Tooltip";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { Theme as RadixThemes } from "@radix-ui/themes";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 
@@ -22,7 +22,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
         radius="large"
       >
         <TooltipProvider delayDuration={0}>
-          {/* import { Popover as PopoverProvider } from "@/browser/reliverse/ui/Popover"; */}
+          {/* import { Popover as PopoverProvider } from "@/components/ui/popover"; */}
           {/* <PopoverProvider>{children}</PopoverProvider> */}
           {children}
         </TooltipProvider>

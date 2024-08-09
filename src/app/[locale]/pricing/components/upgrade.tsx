@@ -3,8 +3,8 @@
 import type { FC, ReactElement } from "react";
 import { useState } from "react";
 
-import { Badge } from "@/browser/reliverse/ui/Badge";
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { CheckCircle2, X } from "lucide-react";
 
 import ButtonSetSubscription from "~/app/[locale]/pricing/components/subscribe";

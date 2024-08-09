@@ -1,7 +1,8 @@
 import type { ElementType } from "react";
 import { Balancer } from "react-wrap-balancer";
 
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/utils";
 import {
   Clock,
   Files,
@@ -13,8 +14,6 @@ import {
   ToggleRight,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-
-import { cn } from "~/utils";
 
 export function Features() {
   const t = useTranslations("landing");

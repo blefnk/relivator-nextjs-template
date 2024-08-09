@@ -4,24 +4,19 @@ import type { ReactElement } from "react";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/browser/reliverse/ui/CardUI";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/browser/reliverse/ui/Tabs";
+} from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/utils";
 import { Settings, Star, User } from "lucide-react";
 
 import { PricingTableNative } from "~/app/[locale]/pricing/components/upgrade";
-import { cn } from "~/utils";
 
 // TODO: This file is not finished yet. It needs to be reviewed and completed.
 const PricingPageClient = ({

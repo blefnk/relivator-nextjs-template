@@ -7,7 +7,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/browser/reliverse/ui/CardUI";
+} from "@/components/ui/card";
 
 import { authProvider } from "~/auth";
 import { authjs } from "~/auth/authjs";

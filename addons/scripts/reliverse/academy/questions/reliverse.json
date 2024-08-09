@@ -1,0 +1,772 @@
+[
+  {
+    "id": "1",
+    "question": "What are the steps to enable React 19's React Compiler in a Next.js project, and what is the rationale behind each step?",
+    "difficulty": "medium",
+    "hint": "Consider the next.config.js file and necessary plugins.",
+    "answer": "Edit next.config.js, set reactCompiler to true in the experimental section to enable the compiler, and install babel-plugin-react-compiler to support the new compiler functionalities.",
+    "options": [
+      "Edit next.config.js, set reactCompiler to true in the experimental section to enable the compiler, and install babel-plugin-react-compiler to support the new compiler functionalities.",
+      "Enable in browser settings and install the necessary plugins",
+      "Install React 19 package and configure Babel",
+      "Update React version in package.json manually"
+    ],
+    "points": 15
+  },
+  {
+    "id": "2",
+    "question": "Describe the process to ensure code is fully auto-fixed in a development environment and explain why multiple actions might be necessary.",
+    "difficulty": "medium",
+    "hint": "It may require more than one action involving saving.",
+    "answer": "Press Cmd/Ctrl+S multiple times to ensure all auto-fixes are applied, as some tools may not catch all issues in a single pass.",
+    "options": [
+      "Install additional plugins to handle auto-fixing",
+      "Press Cmd/Ctrl+S multiple times to ensure all auto-fixes are applied, as some tools may not catch all issues in a single pass.",
+      "Restart IDE to refresh the environment",
+      "Run pnpm fix to apply fixes"
+    ],
+    "points": 10
+  },
+  {
+    "id": "3",
+    "question": "Which command should be used to check the health of a project using pnpm, and what does this command do?",
+    "difficulty": "medium",
+    "hint": "Think about pnpm commands related to health checks.",
+    "answer": "Run pnpm appts or pnpm turbo:appts to analyze the project's setup and configuration for potential issues.",
+    "options": [
+      "Check project dashboard for health indicators",
+      "Run npm check to verify package integrity",
+      "Run pnpm appts or pnpm turbo:appts to analyze the project's setup and configuration for potential issues.",
+      "Use a health monitoring tool for detailed insights"
+    ],
+    "points": 10
+  },
+  {
+    "id": "4",
+    "question": "What are the specific pnpm commands to update all packages to their latest versions, and what precautions should be taken?",
+    "difficulty": "hard",
+    "hint": "Look for pnpm commands that handle updates and preparations.",
+    "answer": "Run pnpm latest or pnpm reli:prepare, ensuring you have backups and version control in place to revert if necessary.",
+    "options": [
+      "Check for updates manually and update package.json",
+      "Reinstall all packages and verify dependencies",
+      "Run npm update to fetch latest versions",
+      "Run pnpm latest or pnpm reli:prepare, ensuring you have backups and version control in place to revert if necessary."
+    ],
+    "points": 15
+  },
+  {
+    "id": "5",
+    "question": "Why might you encounter 'Invalid JSON. JSON5: invalid character '#'?', and what steps should you take to resolve it?",
+    "difficulty": "medium",
+    "hint": "Consider issues related to VSCode extensions.",
+    "answer": "It's an incorrect error from thinker.sort-json extension, so update or disable the extension.",
+    "options": [
+      "Issue with JSON formatting requiring manual correction",
+      "It's an incorrect error from thinker.sort-json extension, so update or disable the extension.",
+      "Syntax error in JSON that needs fixing",
+      "Update JSON files to remove invalid characters"
+    ],
+    "points": 10
+  },
+  {
+    "id": "6",
+    "question": "How should outdated information in README.md be handled to ensure accuracy and consistency?",
+    "difficulty": "medium",
+    "hint": "Think about collaboration and issue tracking.",
+    "answer": "Report issues on the discussion page to collaboratively address and update the information.",
+    "options": [
+      "Contact support for assistance",
+      "Edit README.md directly with updated information",
+      "Ignore outdated information and continue",
+      "Report issues on the discussion page to collaboratively address and update the information."
+    ],
+    "points": 10
+  },
+  {
+    "id": "7",
+    "question": "What versions of React and Next.js are currently used, and what is the significance of using these versions?",
+    "difficulty": "medium",
+    "hint": "It is the very good practice: don't use the outdated dependencies in your projects.",
+    "answer": "Currently using react@canary, react-dom@canary, and next@canary to leverage the latest features and improvements under development.",
+    "options": [
+      "Currently using react@canary, react-dom@canary, and next@canary to leverage the latest features and improvements under development.",
+      "React 17 and Next.js 11 for stability",
+      "React 18 and Next.js 12 for recent stable features",
+      "React 19 and Next.js 15 for experimental features"
+    ],
+    "points": 15
+  },
+  {
+    "id": "8",
+    "question": "Where is the recommended location for storing project-specific files, and why is this location chosen?",
+    "difficulty": "medium",
+    "hint": "Think about organized project structures.",
+    "answer": "Store in src/cluster folder to keep project-specific files organized and separated from general resources.",
+    "options": [
+      "Store in assets folder for easy access",
+      "Store in public folder for frontend resources",
+      "Store in root folder for quick access",
+      "Store in src/cluster folder to keep project-specific files organized and separated from general resources."
+    ],
+    "points": 10
+  },
+  {
+    "id": "9",
+    "question": "How can formatting conflicts be resolved, especially when dealing with different tools and settings in a project?",
+    "difficulty": "hard",
+    "hint": "Consider configuration files in VSCode.",
+    "answer": "Adjust eslint.rules.customizations in .vscode/settings.json to ensure consistent formatting across different tools.",
+    "options": [
+      "Adjust eslint.rules.customizations in .vscode/settings.json to ensure consistent formatting across different tools.",
+      "Change VSCode theme to default settings",
+      "Restart the editor to apply new settings",
+      "Update project dependencies to latest versions"
+    ],
+    "points": 15
+  },
+  {
+    "id": "10",
+    "question": "What should you do if you receive a Babel warning about code generator deoptimization, and why?",
+    "difficulty": "medium",
+    "hint": "Think about common issues and their relevance.",
+    "answer": "Ignore it; it's a known issue that does not affect the overall functionality.",
+    "options": [
+      "Check for syntax errors to ensure code quality",
+      "Ignore it; it's a known issue that does not affect the overall functionality.",
+      "Reinstall dependencies to resolve potential conflicts",
+      "Update Babel to the latest version for fixes"
+    ],
+    "points": 10
+  },
+  {
+    "id": "11",
+    "question": "How can you efficiently open multiple files in VSCode, and what is the benefit of the recommended method?",
+    "difficulty": "medium",
+    "hint": "Consider VSCode extensions for enhanced functionality.",
+    "answer": "Use the Open Multiple Files extension to quickly open several files at once, improving workflow efficiency.",
+    "options": [
+      "Manually open each file from the explorer",
+      "Run a terminal command to batch open files",
+      "Use the Open Multiple Files extension to quickly open several files at once, improving workflow efficiency.",
+      "Use the built-in VSCode feature for multiple tabs"
+    ],
+    "points": 10
+  },
+  {
+    "id": "12",
+    "question": "What are the steps to resolve the 'Each child in a list should have a unique 'key' prop' error in a Next.js project, and why is it important?",
+    "difficulty": "hard",
+    "hint": "Think about experimental features in Next.js.",
+    "answer": "Disable experimental.instrumentationHook in next.config.js to avoid conflicts with key props, ensuring each child has a unique key.",
+    "options": [
+      "Check key props to ensure they are unique",
+      "Disable experimental.instrumentationHook in next.config.js to avoid conflicts with key props, ensuring each child has a unique key.",
+      "Restart the server to refresh the state",
+      "Update React version to latest for bug fixes"
+    ],
+    "points": 15
+  },
+  {
+    "id": "13",
+    "question": "How should you handle the 'Attempted import error: '__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED'' in a Next.js project, and what does the solution achieve?",
+    "difficulty": "hard",
+    "hint": "Adjust configuration files to handle internal dependencies.",
+    "answer": "Add component file path to filter.exclude in next.config.js to exclude specific files from causing import errors.",
+    "options": [
+      "Add component file path to filter.exclude in next.config.js to exclude specific files from causing import errors.",
+      "Ignore the error if it does not affect functionality",
+      "Reinstall React to resolve potential dependency issues",
+      "Update project dependencies to align with React"
+    ],
+    "points": 15
+  },
+  {
+    "id": "14",
+    "question": "Why might a connection be terminated with the message 'terminating connection due to immediate shutdown command', and how can this be prevented?",
+    "difficulty": "medium",
+    "hint": "Consider provider-specific behaviors.",
+    "answer": "Providers like Neon disconnect after inactivity, so maintaining activity or configuring longer timeouts can prevent this.",
+    "options": [
+      "Database misconfiguration requiring manual adjustment",
+      "Network issue that needs resolving",
+      "Providers like Neon disconnect after inactivity, so maintaining activity or configuring longer timeouts can prevent this.",
+      "Server error indicating deeper issues"
+    ],
+    "points": 10
+  },
+  {
+    "id": "15",
+    "question": "What is the recommended approach to remove unused keys from JSON files, and why is this method effective?",
+    "difficulty": "medium",
+    "hint": "Think about tools that streamline JSON management.",
+    "answer": "Use i18n Ally VSCode extension to automatically detect and remove unused keys, ensuring clean and efficient JSON files.",
+    "options": [
+      "Manually edit the JSON files to remove keys",
+      "Run a cleanup script to automate the process",
+      "Use a JSON formatter tool for better structure",
+      "Use i18n Ally VSCode extension to automatically detect and remove unused keys, ensuring clean and efficient JSON files."
+    ],
+    "points": 10
+  },
+  {
+    "id": "16",
+    "question": "How can you assign administrative privileges to a user within a database using pnpm?",
+    "difficulty": "hard",
+    "hint": "Use pnpm db tools.",
+    "answer": "Run pnpm db:studio and update the user's role to admin in the user table.",
+    "options": [
+      "Contact support",
+      "Edit the user's profile directly",
+      "Run pnpm db:studio and update the user's role to admin in the user table.",
+      "Use the admin dashboard"
+    ],
+    "points": 15
+  },
+  {
+    "id": "17",
+    "question": "What is the purpose of the DEMO_NOTES_ENABLED environment variable?",
+    "difficulty": "medium",
+    "hint": "It's associated with a demonstration environment.",
+    "answer": "It is used for the official Relivator demo website.",
+    "options": [
+      "It is used for the official Relivator demo website.",
+      "It's a debugging tool",
+      "It's for logging errors",
+      "It's for testing new features"
+    ],
+    "points": 10
+  },
+  {
+    "id": "18",
+    "question": "What steps should be taken to resolve the 'unable to connect to branch' error when using PlanetScale database provider?",
+    "difficulty": "hard",
+    "hint": "Investigate the database status.",
+    "answer": "Wake up the database on the PlanetScale dashboard.",
+    "options": [
+      "Check the network connection",
+      "Restart the server",
+      "Update the database configuration",
+      "Wake up the database on the PlanetScale dashboard."
+    ],
+    "points": 15
+  },
+  {
+    "id": "19",
+    "question": "What actions should you take if Node.js utilities like net and tls are not found?",
+    "difficulty": "hard",
+    "hint": "Review server-side code locations.",
+    "answer": "Ensure no server-only code is in the utils folder.",
+    "options": [
+      "Check the project dependencies",
+      "Ensure no server-only code is in the utils folder.",
+      "Install the missing utilities",
+      "Update Node.js"
+    ],
+    "points": 15
+  },
+  {
+    "id": "20",
+    "question": "Where you can find the useful VSCode extensions composed by Reliverse?",
+    "difficulty": "medium",
+    "hint": "Look in a specific configuration file.",
+    "answer": "Use the recommended extensions list in .vscode/extensions.json.",
+    "options": [
+      "Ask the community",
+      "Check online forums",
+      "Search the VSCode marketplace",
+      "Use the recommended extensions list in .vscode/extensions.json."
+    ],
+    "points": 10
+  },
+  {
+    "id": "21",
+    "question": "How can you enhance the visual experience in VSCode?",
+    "difficulty": "easy",
+    "hint": "Consider using pre-configured settings.",
+    "answer": "Apply the default or ultimate preset settings.",
+    "options": [
+      "Apply the VSCode preset using 'pnpm reli:vscode' command.",
+      "Change the VSCode theme",
+      "Customize the toolbar",
+      "Update the font settings"
+    ],
+    "points": 10
+  },
+  {
+    "id": "22",
+    "question": "What steps are needed to switch the package manager from pnpm to bun, yarn, or npm?",
+    "difficulty": "hard",
+    "hint": "Scripts in a specific file need updating.",
+    "answer": "Replace scripts in package.json or use npx nypm install.",
+    "options": [
+      "Install the new package manager",
+      "Replace scripts in package.json or use npx nypm install.",
+      "Restart the project",
+      "Update the project settings"
+    ],
+    "points": 15
+  },
+  {
+    "id": "23",
+    "question": "VSCode is slow after applying preset settings. What can be done to improve performance?",
+    "difficulty": "medium",
+    "hint": "Adjust a specific keybinding.",
+    "answer": "Set Save without Formatting to Ctrl+S and File: Save to Ctrl+Shift+S.",
+    "options": [
+      "Check for extension conflicts",
+      "Reapply the preset settings",
+      "Restart VSCode",
+      "Set Save without Formatting to Ctrl+S and File: Save to Ctrl+Shift+S."
+    ],
+    "points": 10
+  },
+  {
+    "id": "24",
+    "question": "What is the role of index.ts files in folders like server and utils?",
+    "difficulty": "medium",
+    "hint": "Consider their use in organizing imports.",
+    "answer": "They are barrel files used for convenient imports.",
+    "options": [
+      "They are barrel files used for convenient imports.",
+      "They are configuration files",
+      "They contain utility functions",
+      "They store environment variables"
+    ],
+    "points": 10
+  },
+  {
+    "id": "25",
+    "question": "Why are console logs only visible in the browser console?",
+    "difficulty": "medium",
+    "hint": "They relate to client-side logging.",
+    "answer": "Client-side console logs appear in the browser console.",
+    "options": [
+      "Client-side console logs appear in the browser console.",
+      "Server-side logs appear in the terminal",
+      "There is a logging configuration issue",
+      "Update the logging settings"
+    ],
+    "points": 10
+  },
+  {
+    "id": "26",
+    "question": "What should you do if you encounter strange VSCode extension errors?",
+    "difficulty": "medium",
+    "hint": "A simple action can often resolve this.",
+    "answer": "Restart VSCode to resolve extension issues.",
+    "options": [
+      "Check for conflicts",
+      "Reinstall the extensions",
+      "Restart VSCode to resolve extension issues.",
+      "Update VSCode"
+    ],
+    "points": 10
+  },
+  {
+    "id": "27",
+    "question": "How can you change the position of the panel in VSCode?",
+    "difficulty": "medium",
+    "hint": "The solution involves right-clicking.",
+    "answer": "Right-click the panel, select Panel Position, and choose the desired position.",
+    "options": [
+      "Drag the panel to the desired position",
+      "Right-click the panel, select Panel Position, and choose the desired position.",
+      "Update the settings.json file",
+      "Use a terminal command"
+    ],
+    "points": 10
+  },
+  {
+    "id": "28",
+    "question": "Where can you find more details about the project?",
+    "difficulty": "medium",
+    "hint": "A specific file usually contains this information.",
+    "answer": "Read the README.md file.",
+    "options": [
+      "Contact support",
+      "Join the project's Discord server",
+      "Read the README.md file.",
+      "Visit the project website"
+    ],
+    "points": 10
+  },
+  {
+    "id": "29",
+    "question": "What is the function of the 'addons' script in your project?",
+    "difficulty": "easy",
+    "hint": "It's related to running a specific command.",
+    "answer": "Runs the 'tsx addons' command.",
+    "options": [
+      "Builds the project",
+      "Checks for updates",
+      "Runs the 'tsx addons' command.",
+      "Starts the development server"
+    ],
+    "points": 10
+  },
+  {
+    "id": "30",
+    "question": "What is the purpose of the 'appts' script in your project?",
+    "difficulty": "hard",
+    "hint": "It involves multiple tasks.",
+    "answer": "Runs a series of commands including knip, fix, lint, format, typecheck, and build.",
+    "options": [
+      "Cleans the file system",
+      "Deploys the project",
+      "Runs a series of commands including knip, fix, lint, format, typecheck, and build.",
+      "Runs the development server"
+    ],
+    "points": 15
+  },
+  {
+    "id": "31",
+    "question": "What command should you use to build the project?",
+    "difficulty": "easy",
+    "hint": "This command is often used to prepare the project for deployment.",
+    "answer": "Run the 'build' script.",
+    "options": [
+      "Run the 'appts' script",
+      "Run the 'build' script",
+      "Run the 'deploy' script",
+      "Run the 'start' script"
+    ],
+    "points": 10
+  },
+  {
+    "id": "32",
+    "question": "What comprehensive tasks does the 'pnpm appts' script perform in the codebase?",
+    "difficulty": "hard",
+    "hint": "It involves multiple steps including formatting, linting, type checking, and building.",
+    "answer": "Sequentially runs pnpm knip, pnpm format, pnpm lint, pnpm typecheck, and pnpm turbo:build.",
+    "options": [
+      "Runs the 'knip', 'format', 'lint', 'typecheck', and 'turbo:build' scripts sequentially.",
+      "Deploys the project to production",
+      "Starts the development server",
+      "Cleans the project directory"
+    ],
+    "points": 15
+  },
+  {
+    "id": "33",
+    "question": "What command is executed by the 'pnpm db:migrate' script to handle database migrations?",
+    "difficulty": "easy",
+    "hint": "It's associated with applying generated database changes.",
+    "answer": "Runs the 'drizzle-kit migrate' command.",
+    "options": [
+      "Builds the project",
+      "Cleans the file system",
+      "Runs the 'drizzle-kit migrate' command.",
+      "Starts the development server"
+    ],
+    "points": 10
+  },
+  {
+    "id": "34",
+    "question": "Which script is used to deploy the project?",
+    "difficulty": "easy",
+    "hint": "This script is used after building the project.",
+    "answer": "Run the 'deploy' script.",
+    "options": [
+      "Run the 'build' script",
+      "Run the 'check' script",
+      "Run the 'deploy' script",
+      "Run the 'start' script"
+    ],
+    "points": 10
+  },
+  {
+    "id": "35",
+    "question": "What does the 'turbo:dev' script do?",
+    "difficulty": "hard",
+    "hint": "It involves turbo in the development process.",
+    "answer": "Runs the 'turbo dev' command.",
+    "options": [
+      "Builds the project",
+      "Runs the 'next dev' command",
+      "Runs the 'turbo dev' command.",
+      "Starts the development server"
+    ],
+    "points": 15
+  },
+  {
+    "id": "36",
+    "question": "What is the purpose of the 'fix:codemod-react' script?",
+    "difficulty": "hard",
+    "hint": "It's used for code migration.",
+    "answer": "Runs the 'codemod react/19/migration-recipe --target src' command.",
+    "options": [
+      "Runs the 'codemod next/13/new-link' command",
+      "Runs the 'codemod react/19/migration-recipe --target src' command.",
+      "Runs the 'fix:putout-unstable' command",
+      "Runs the 'lint' command"
+    ],
+    "points": 15
+  },
+  {
+    "id": "37",
+    "question": "How do you generate the database schema in the project?",
+    "difficulty": "easy",
+    "hint": "This task involves creating database structure.",
+    "answer": "Run the 'db:generate' script.",
+    "options": [
+      "Run the 'db:generate' script.",
+      "Run the 'db:migrate' script",
+      "Run the 'db:push' script",
+      "Run the 'db:studio' script"
+    ],
+    "points": 10
+  },
+  {
+    "id": "38",
+    "question": "What is the function of the 'lint:biome' script?",
+    "difficulty": "medium",
+    "hint": "It involves linting the codebase.",
+    "answer": "Runs the 'biome lint --write .' command.",
+    "options": [
+      "Runs the 'biome lint --write .' command.",
+      "Runs the 'eslint --cache --fix .' command",
+      "Runs the 'knip' command",
+      "Runs the 'redrun format:biome' command"
+    ],
+    "points": 10
+  },
+  {
+    "id": "39",
+    "question": "What script should be used to push database changes?",
+    "difficulty": "medium",
+    "hint": "It's part of database management tasks.",
+    "answer": "Run the 'db:push' script.",
+    "options": [
+      "Run the 'db:generate' script",
+      "Run the 'db:migrate' script",
+      "Run the 'db:push' script.",
+      "Run the 'db:studio' script"
+    ],
+    "points": 10
+  },
+  {
+    "id": "40",
+    "question": "What is the function of the 'dev' script?",
+    "difficulty": "medium",
+    "hint": "It involves starting a server.",
+    "answer": "Runs the 'next dev --turbo' command.",
+    "options": [
+      "Runs the 'build' script",
+      "Runs the 'next dev --turbo' command.",
+      "Runs the 'start' script",
+      "Runs the 'turbo dev' command"
+    ],
+    "points": 10
+  },
+  {
+    "id": "41",
+    "question": "What does the 'format' script accomplish?",
+    "difficulty": "easy",
+    "hint": "It's related to code formatting.",
+    "answer": "Runs the 'redrun format:biome' command.",
+    "options": [
+      "Runs the 'build' script",
+      "Runs the 'lint' command",
+      "Runs the 'redrun format:biome' command.",
+      "Runs the 'typecheck' command"
+    ],
+    "points": 10
+  },
+  {
+    "id": "42",
+    "question": "Which script is used to clean up temporary files in the project?",
+    "difficulty": "medium",
+    "hint": "It's associated with file management.",
+    "answer": "Run the 'fs:clean' script.",
+    "options": [
+      "Run the 'fs:clean' script.",
+      "Run the 'rm:lock' script",
+      "Run the 'rm:next' script",
+      "Run the 'rm:node_modules' script"
+    ],
+    "points": 10
+  },
+  {
+    "id": "43",
+    "question": "Which command is responsible for identifying and removing unused files, dependencies, and exports in JavaScript and TypeScript projects?",
+    "difficulty": "hard",
+    "hint": "This command performs extensive maintenance tasks.",
+    "answer": "Identifies and removes unused files, dependencies, and exports in JavaScript and TypeScript projects.",
+    "options": [
+      "Executes the 'format' command to standardize code style",
+      "Identifies and removes unused files, dependencies, and exports in JavaScript and TypeScript projects.",
+      "Acts as an alias for the 'lint' command to check code quality",
+      "Runs the 'typecheck' command to verify type correctness"
+    ],
+    "points": 15
+  },
+  {
+    "id": "44",
+    "question": "How does the 'pnpm latest' script update the project dependencies?",
+    "difficulty": "hard",
+    "hint": "It updates all packages to their most recent versions.",
+    "answer": "Updates all project packages to their latest stable versions and specific packages to rc/beta/alpha/next/canary versions.",
+    "options": [
+      "Cleans the file system",
+      "Installs global dependencies",
+      "Updates all project packages to their latest stable versions and specific packages to rc/beta/alpha/next/canary versions.",
+      "Runs the 'build' script"
+    ],
+    "points": 15
+  },
+  {
+    "id": "45",
+    "question": "What is the function of the 'lint:python' script in the project?",
+    "difficulty": "medium",
+    "hint": "It's related to Python code quality.",
+    "answer": "Runs 'ruff format' and 'ruff check --fix' commands.",
+    "options": [
+      "Runs 'ruff format' and 'ruff check --fix' commands.",
+      "Runs the 'format' command",
+      "Runs the 'lint' command",
+      "Runs the 'typecheck' command"
+    ],
+    "points": 10
+  },
+  {
+    "id": "46",
+    "question": "Which script should you execute to configure reliverse settings?",
+    "difficulty": "medium",
+    "hint": "This script handles specific configuration tasks for reliverse.",
+    "answer": "Run the 'reli' script.",
+    "options": [
+      "Run the 'appts' script",
+      "Run the 'build' script",
+      "Run the 'reli' script.",
+      "Run the 'start' script"
+    ],
+    "points": 10
+  },
+  {
+    "id": "47",
+    "question": "What is the primary function of the 'start' script?",
+    "difficulty": "medium",
+    "hint": "It's associated with initiating the production environment.",
+    "answer": "Runs the 'next start' command to start the production server.",
+    "options": [
+      "Alias command, which runs the 'build' script",
+      "Alias command, which runs the 'deploy' script",
+      "Alias command, which runs the 'dev' script",
+      "Runs the 'next start' command to start the production server."
+    ],
+    "points": 10
+  },
+  {
+    "id": "48",
+    "question": "What is the functionality of the 'pnpm stripe:listen' script?",
+    "difficulty": "hard",
+    "hint": "It involves setting up Stripe webhooks.",
+    "answer": "Runs the 'stripe listen' command to forward webhooks.",
+    "options": [
+      "Runs the 'build' script",
+      "Runs the 'dev' script",
+      "Runs the 'start' script",
+      "Runs the 'stripe listen' command to forward webhooks."
+    ],
+    "points": 15
+  },
+  {
+    "id": "49",
+    "question": "What action does the 'timestamp' script perform?",
+    "difficulty": "medium",
+    "hint": "It involves recording date and time information.",
+    "answer": "Logs the current date and time to a file.",
+    "options": [
+      "Logs the current date and time to a file.",
+      "Runs the 'build' script",
+      "Runs the 'dev' script",
+      "Runs the 'start' script"
+    ],
+    "points": 10
+  },
+  {
+    "id": "50",
+    "question": "Which script is used to perform type checking in the project?",
+    "difficulty": "medium",
+    "hint": "This script ensures type correctness.",
+    "answer": "Run the 'typecheck' script.",
+    "options": [
+      "Run the 'build' script",
+      "Run the 'format' script",
+      "Run the 'lint' script",
+      "Run the 'typecheck' script."
+    ],
+    "points": 10
+  },
+  {
+    "id": "51",
+    "question": "Which design principles are exists for writing cleaner code?",
+    "difficulty": "medium",
+    "hint": "These principles are part of advanced web development advice.",
+    "answer": "SOLID and DRY",
+    "options": [
+      "KISS and YAGNI",
+      "SOLID and DRY",
+      "MVC and MVVM",
+      "Agile and Scrum"
+    ],
+    "points": 10
+  },
+  {
+    "id": "52",
+    "question": "What basic web development technologies should beginners focus on learning?",
+    "difficulty": "easy",
+    "hint": "They are foundational technologies for web development.",
+    "answer": "HTML, CSS, and JavaScript",
+    "options": [
+      "Python, Java, and C++",
+      "HTML, CSS, and JavaScript",
+      "React, Angular, and Vue",
+      "SQL, NoSQL, and GraphQL"
+    ],
+    "points": 5
+  },
+  {
+    "id": "53",
+    "question": "What script should experienced users run to update all dependencies to the latest versions in the Relivator project?",
+    "difficulty": "medium",
+    "hint": "This script ensures dependencies are up-to-date.",
+    "answer": "pnpm reli:prepare",
+    "options": [
+      "pnpm update",
+      "pnpm upgrade",
+      "pnpm reli:prepare",
+      "pnpm install"
+    ],
+    "points": 10
+  },
+  {
+    "id": "54",
+    "question": "What is the purpose of contributing to the Reliverse's repositories like Relivator?",
+    "difficulty": "easy",
+    "hint": "Contributions are encouraged and rewarded.",
+    "answer": "To receive many cool gifts and help improve the Reliverse's projects.",
+    "options": [
+      "To receive monetary compensation.",
+      "To receive many cool gifts and help improve the project.",
+      "To gain access to exclusive features.",
+      "To get a free subscription to premium services."
+    ],
+    "points": 5
+  },
+  {
+    "id": "55",
+    "question": "What is the behavior of ESLint in VSCode and ESLint CLI when multiple auto-fix rules are applied to the same code line?",
+    "difficulty": "medium",
+    "hint": "It depends on the alphabetical order of the rules.",
+    "answer": "ESLint will perform auto-fix from the rule that goes first alphabetically.",
+    "options": [
+      "ESLint will perform auto-fix from the rule that goes first alphabetically.",
+      "ESLint will randomly choose a rule to apply.",
+      "ESLint will prompt the user to choose a rule.",
+      "ESLint will apply all rules sequentially."
+    ],
+    "points": 10
+  }
+]

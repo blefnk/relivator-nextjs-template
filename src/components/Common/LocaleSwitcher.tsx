@@ -5,7 +5,7 @@ import { Fragment, useState } from "react";
 
 import Link from "next/link";
 
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,13 +13,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/browser/reliverse/ui/Dropdown";
+} from "@/components/ui/dropdown";
+import { cn } from "@/utils";
 import { useLocale } from "next-intl";
 
 import type { Locale } from "~/constants/navigation";
 
 import { getLocaleLabels, localeFlags, locales } from "~/constants/navigation";
-import { cn } from "~/utils";
 
 const TRANSLATED = "⚙️ Translated";
 const NATIVE = "⚙️ Native";
@@ -46,7 +46,7 @@ export function LocaleSwitcher() {
             size: "sm",
             variant: "outline",
           }),
-          "p-3 font-twemoji",
+          "font-twemoji",
         )}
       >
         <LocaleNames

@@ -9,7 +9,7 @@ config({ path: ".env" });
 // Configure this index based on the database provider
 // Feel free to add, remove, or edit things as needed
 // You may also need to edit drizzle.config.ts
-// Verify also: schema/index.ts and table.ts
+// Verify also: index.ts in schema and table.ts
 // ==============================================
 //
 // export { db } from "./mysql";

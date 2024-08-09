@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -14,14 +14,15 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/browser/reliverse/ui/Command";
-import { Dialog, DialogTrigger } from "@/browser/reliverse/ui/Dialog";
+} from "@/components/ui/command";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/browser/reliverse/ui/Popover";
+} from "@/components/ui/popover";
 import { getRandomPatternStyle } from "@/server/reliverse/pattern";
+import { cn } from "@/utils";
 import {
   CaretSortIcon,
   CheckIcon,
@@ -29,8 +30,6 @@ import {
 } from "@radix-ui/react-icons";
 
 import type { Store } from "~/db/schema";
-
-import { cn } from "~/utils";
 
 type StoreSwitcherProperties = {
   currentStore: Pick<Store, "id" | "name">;

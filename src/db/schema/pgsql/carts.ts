@@ -1,6 +1,6 @@
-import { boolean, json, text, timestamp } from "drizzle-orm/pg-core";
+import type { CartItem } from "@/types";
 
-import type { CartItem } from "~/types";
+import { boolean, json, text, timestamp } from "drizzle-orm/pg-core";
 
 import { pgTable as createTable } from "~/db/schema/insert/table";
 import { genId } from "~/db/utils";

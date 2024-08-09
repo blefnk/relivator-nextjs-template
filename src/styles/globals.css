@@ -24,8 +24,8 @@
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
     --radius: 0.5rem;
-    --chart-1: oklch(67.72% 0.157 35.19);
-    --chart-2: oklch(63.09% 0.101 183.49);
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
@@ -55,8 +55,8 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
-    --chart-1: oklch(52.92% 0.193 262.13);
-    --chart-2: oklch(69.83% 0.134 165.46);
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 61% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
@@ -86,5 +86,11 @@
 
   .zoom-image [data-rmiz-modal-img] {
     @apply rounded-lg lg:rounded-2xl;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

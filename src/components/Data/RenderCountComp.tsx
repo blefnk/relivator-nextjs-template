@@ -1,4 +1,4 @@
-import useRenderCount from "~/hooks/react-client/useRenderCount";
+import useRenderCount from "@/hooks-react/use-render-count";
 
 const UrcTestComponent = () => {
   const { renderCount, resetRenderCount } = useRenderCount(true);

@@ -7,9 +7,10 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/browser/reliverse/ui/Accordion";
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+} from "@/components/ui/accordion";
+import { buttonVariants } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { cn, formatPrice } from "@/utils";
 import { getCookie } from "cookies-next";
 import { and, desc, eq, not } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
@@ -27,7 +28,6 @@ import { Shell } from "~/components/Wrappers/ShellVariants";
 import { db } from "~/db";
 import { products, stores } from "~/db/schema";
 import { env } from "~/env";
-import { cn, formatPrice } from "~/utils";
 
 type ProductPageProps = {
   params: {
@@ -123,7 +123,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           },
           {
             href: `/products?category=${product.category}`,
-            title: titleCase(product.category ?? ""),
+            title: titleCase(product.category || ""),
           },
           {
             href: `/product/${product.id}`,

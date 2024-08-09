@@ -1,10 +1,6 @@
 import type { ReactNode } from "react";
 
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/browser/reliverse/ui/Alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 type CalloutProps = {
   children?: ReactNode;

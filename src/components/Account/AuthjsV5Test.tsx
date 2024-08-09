@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { Input } from "@/browser/reliverse/ui/Input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
 
 import SessionData from "~/components/Account/SessionData";

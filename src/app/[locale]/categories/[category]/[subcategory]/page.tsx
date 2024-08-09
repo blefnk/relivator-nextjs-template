@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { unslugify } from "@/utils";
 import { titleCase } from "string-ts";
 
 import type { Product } from "~/db/schema";
@@ -10,7 +11,6 @@ import {
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import { unslugify } from "~/utils";
 
 type SubcategoryPageProps = {
   params: {

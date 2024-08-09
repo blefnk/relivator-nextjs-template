@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Button, buttonVariants } from "@/browser/reliverse/ui/Button";
-import { cn } from "@/browser/shared/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/utils";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import { authProvider, debugEnabled } from "reliverse.config";
 

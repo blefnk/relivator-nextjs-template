@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { buttonVariants } from "@/browser/reliverse/ui/Button";
-import { Card } from "@/browser/reliverse/ui/CardUI";
-import { Separator } from "@/browser/reliverse/ui/Separator";
+import type { SubscriptionPlanTypes, UserSubscriptionPlan } from "@/types";
+
+import { buttonVariants } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { getDashboardRedirectPath, getPlanFeatures } from "@/server";
+import { cn, formatDate, formatPrice } from "@/utils";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { desc, eq, sql } from "drizzle-orm";
-
-import type { SubscriptionPlanTypes, UserSubscriptionPlan } from "~/types";
 
 import { authProvider } from "~/auth";
 import { authjs } from "~/auth/authjs";
@@ -26,7 +27,6 @@ import { storeSubscriptionPlans } from "~/core/stripe/subs";
 import { db } from "~/db";
 import { products, stores } from "~/db/schema";
 import { env } from "~/env";
-import { cn, formatDate, formatPrice } from "~/utils";
 
 export const metadata: Metadata = {
   description: "Manage the billing and subscription",
@@ -135,7 +135,7 @@ export default async function BillingPage() {
         className="space-y-5 pb-2.5"
         id="subscription-plans"
       >
-        {env.DEV_DEMO_NOTES === "true" && (
+        {env.DEMO_NOTES_ENABLED === "true" && (
           <p>
             [demo-only-msg] When using buttons below {" -> "} use Stripe Test
             Card data:

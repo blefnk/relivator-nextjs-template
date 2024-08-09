@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { Input } from "@/browser/reliverse/ui/Input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 // Reliverse CMS v0.4.0 - Page Creation API
 // ========================================

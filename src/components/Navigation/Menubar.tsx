@@ -7,14 +7,13 @@ import type {
 } from "react";
 import { forwardRef } from "react";
 
+import { cn } from "@/utils";
 import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
 } from "@radix-ui/react-icons";
 import * as MenubarPrimitive from "@radix-ui/react-menubar";
-
-import { cn } from "~/utils";
 
 const MenubarMenu = MenubarPrimitive.Menu;
 const MenubarGroup = MenubarPrimitive.Group;

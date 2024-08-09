@@ -1,0 +1,160 @@
+{
+  "LoginForm": {
+    "no-account": "Hesabınız yok mu?",
+    "signup": "Buradan kaydolun.",
+    "title": "Giriş Yap",
+    "welcome-back": "Tekrar hoş geldiniz!"
+  },
+  "RegisterForm": {
+    "have-account": "Zaten hesabınız var mı?",
+    "signin": "Buradan giriş yapın.",
+    "title": "Hesap Oluştur"
+  },
+  "account-page": {
+    "Settings": "Hesap Ayarları",
+    "loggedIn": "Giriş yaptınız",
+    "loggedOut": "Çıkış yaptınız",
+    "login": "Giriş Yap",
+    "logout": "Çıkış Yap",
+    "title": "Hesabım"
+  },
+  "auth": {
+    "error": {
+      "default": "Lütfen farklı bir hesap deneyin.",
+      "email": "E-posta bulunamadı. Başka bir sağlayıcı deneyin.",
+      "oauthNotLinked": "Kimliğinizi doğrulamak için orijinal hesabınızla giriş yapın.",
+      "unknown": "Bir hata oluştu. Lütfen tekrar deneyin.",
+      "unknown-error": "Bir şeyler ters gitti. Yardım için destek ekibiyle iletişime geçin."
+    },
+    "legal": "Bu butonları kullanarak,",
+    "legal-and": "ve",
+    "legal-privacy": "Gizlilik Politikamızı",
+    "legal-terms": "Hizmet Şartlarımızı kabul etmiş olursunuz"
+  },
+  "auth-provider": {
+    "please-wait": "Lütfen bekleyin..."
+  },
+  "checkout": {
+    "CartDetails": "Sepet Detayları",
+    "Demo": "Test verilerini kullanın: 4242424242424242 | 12/34 | 567",
+    "Description": "Ödeme yapmadan önce ürünlerinizi gözden geçirin",
+    "EmptyCartDescription": "Sepetiniz boş. Devam etmek için ürün ekleyin.",
+    "EmptyCartHeading": "Sepetiniz boş",
+    "Pay": "Şimdi Öde",
+    "Title": "Ödeme",
+    "backToCart": "Sepete Dön",
+    "backToCartSingle": "Geri Dön",
+    "calculated": "Ödeme sırasında hesaplanacak",
+    "cart": "Alışveriş Sepeti",
+    "cartIsEmpty": "Sepetiniz şu anda boş",
+    "continueShopping": "Alışverişe Devam Et",
+    "free": "Ücretsiz",
+    "notConnectedDescription": "Ödemeleri kabul etmek için mağazanızı Stripe'a bağlayın.",
+    "notConnectedHeading": "Mağaza Stripe'a bağlı değil",
+    "shipping": "Kargo",
+    "taxes": "Vergiler",
+    "total": "Toplam Tutar",
+    "viewTheCart": "Sepeti Görüntüle"
+  },
+  "components": {
+    "command": {
+      "dark": "Karanlık Mod",
+      "light": "Aydınlık Mod",
+      "system": "Sistem Varsayılanı",
+      "theme": "Tema"
+    },
+    "search": {
+      "placeholder": "Ürün ara...",
+      "title": "Ara"
+    }
+  },
+  "contact": {
+    "submit": "Gönder"
+  },
+  "demo": {
+    "aria-label-goto": "Git",
+    "launch": "Kontrol Paneli"
+  },
+  "faq": {
+    "1": {
+      "details": "En son bilgiler ve nasıl başlayacağınız hakkında, Relivator yardım bölümümüzdeki kılavuzumuzu inceleyin.",
+      "summary": "Hızlı bir şekilde alışverişe nasıl başlayabilirim?"
+    },
+    "2": {
+      "details": "Relivator, alışverişi kolay ve keyifli hale getiren geniş bir ürün yelpazesi ve özellikler sunar.",
+      "summary": "Online alışveriş için neden Relivator'u seçmeliyim?"
+    },
+    "3": {
+      "details": "Relivator, alışveriş deneyiminizi iyileştirmek için sürekli olarak güncellenir. Destekleriniz, platformumuzu geliştirmemize yardımcı olur. Bizimle alışveriş yaptığınız için teşekkür ederiz!",
+      "summary": "Relivator'un gelişimini nasıl destekleyebilirim?"
+    }
+  },
+  "landing": {
+    "about": "Relivator'a hoş geldiniz, tüm ihtiyaçlarınız için tek durak mağazanız. Geniş ürün yelpazemizi keşfedin ve kesintisiz alışveriş deneyiminin tadını çıkarın.",
+    "buy-now": "Kataloğu İncele",
+    "features": {
+      "auth": {
+        "description": "Tüm kullanıcılar için kolay ve güvenli giriş seçenekleri.",
+        "title": "Kolay Giriş"
+      },
+      "database": {
+        "description": "Güvenilir hizmet ile geniş bir ürün yelpazesine erişin.",
+        "title": "Geniş Ürün Yelpazesi"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator, ihtiyacınız olan tüm araçlarla sınırsız olanaklar sunar.",
+        "description": "En son güncellemeler ve teklifler için bültenlerimize abone olun.",
+        "title": "Özel Teklifler"
+      },
+      "interface": {
+        "description": "Harika bir alışveriş deneyimi için kullanıcı dostu bir arayüzün keyfini çıkarın.",
+        "title": "Kullanıcı Dostu Arayüz"
+      },
+      "nextjs": {
+        "description": "Web sitemizde kesintisiz gezinin.",
+        "title": "Kesintisiz Gezinme"
+      },
+      "text": {
+        "description": "Modern ve verimli bir alışveriş platformunun tadını çıkarın.",
+        "title": "Verimli Alışveriş"
+      }
+    },
+    "footer-cta": "Alışverişe hazır mısınız?",
+    "get-started-button": "Kontrol Paneline Git",
+    "main-cta": "GitHub'ı Ziyaret Et",
+    "sell-now": "Kontrol Paneline Git"
+  },
+  "metadata": {
+    "description": "Gelişmiş teknoloji ve kullanıcı dostu tasarımın gücünü bir araya getirerek Relivator ile alışveriş deneyiminizi geliştirin.",
+    "title": {
+      "home": "Anasayfa"
+    }
+  },
+  "pages": {
+    "not-found": {
+      "description": "Kaynak taşınmış, yeniden adlandırılmış veya mevcut olmayabilir. Lütfen URL'yi doğrulayın veya gezinmek için menüyü kullanın.",
+      "go-home": "Anasayfaya Dön",
+      "title": "Sayfa bulunamadı!"
+    }
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "{category} en iyi mağazalardan satın alın",
+      "buyTheBest": "En iyi {category} ürünleri"
+    },
+    "products": {
+      "addToCart": "Sepete Ekle",
+      "buyProductsFromOurStores": "Mağazalarımızdan satın alın",
+      "catalogue": "Ürün Kataloğu",
+      "description": "Ürün Açıklaması",
+      "moreProductsFrom": "{storeName} daha fazla ürün",
+      "noDescription": "Açıklama mevcut değil.",
+      "products": "Ürünler",
+      "productsCatalogue": "Ürün Kataloğu"
+    },
+    "stores": {
+      "buy-products": "Mağazalarımızdan satın alın",
+      "stores": "Mağazalar"
+    }
+  }
+}

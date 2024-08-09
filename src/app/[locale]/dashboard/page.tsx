@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Separator } from "@/browser/reliverse/ui/Separator";
-import Onboarding from "@/cluster/reliverse/components/Onboarding";
+import Onboarding from "@/cluster/components/Onboarding";
+import { Separator } from "@/components/ui/separator";
 
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { env } from "~/env";

@@ -5,10 +5,10 @@ import { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/browser/reliverse/ui/Button";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/utils";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type DialogShellProps = {
   children: ReactNode;

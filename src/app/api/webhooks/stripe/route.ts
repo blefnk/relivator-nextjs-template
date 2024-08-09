@@ -9,16 +9,15 @@
 // You will also find links to inspirations and other additional learning resources there.
 import { headers } from "next/headers";
 
+// Please scroll down to the bottom of this file to read a detailed description of this file.
+import type { CheckoutItem } from "@/types";
 import type Stripe from "stripe";
 
-import { checkoutItemSchema } from "@/server/reliverse/validations/cart";
+import { checkoutItemSchema } from "@/actions/reliverse/validations/cart";
 import consola from "consola";
 import destr from "destr";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
-
-// Please scroll down to the bottom of this file to read a detailed description of this file.
-import type { CheckoutItem } from "~/types";
 
 import { authjs } from "~/auth/authjs";
 import { stripe } from "~/core/stripe/connect";

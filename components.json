@@ -1,8 +1,8 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
   "aliases": {
-    "components": "@/browser/reliverse",
-    "utils": "@/browser/shared/utils"
+    "components": "@/components",
+    "utils": "@/utils"
   },
   "rsc": true,
   "style": "default",

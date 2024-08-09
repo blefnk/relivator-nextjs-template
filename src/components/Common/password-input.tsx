@@ -3,11 +3,11 @@
 import type { InputHTMLAttributes } from "react";
 import { forwardRef, useState } from "react";
 
-import { Button } from "@/browser/reliverse/ui/Button";
-import { Input } from "@/browser/reliverse/ui/Input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { cn } from "@/utils";
 
 import { Icons } from "~/components/Common/Icons";
-import { cn } from "~/utils";
 
 type PasswordInputProps = {
   className?: string;

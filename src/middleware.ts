@@ -12,12 +12,15 @@ export default clerkMiddleware((_auth, req) => {
 });
 
 export const config = {
+  // Skip all paths that should not be internationalized
   matcher: [
+    "/((?!api|_next|.*\\..*).*)",
+
     // Exclude files with an extension (.jpg, .js, .css), as these are usually static files.
     // Also exclude files in the _next directory, which are Next.js internal files.
-    "/((?!.+\\.[\\w]+$|_next).*)",
+    // "/((?!.+\\.[\\w]+$|_next).*)",
 
     // Re-include any files in the api or trpc folders, even if they have an extension.
-    "/(api|trpc)(.*)",
+    // "/(api|trpc)(.*)",
   ],
 };

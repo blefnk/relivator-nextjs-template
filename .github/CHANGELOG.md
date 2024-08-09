@@ -1,8 +1,10 @@
 # Changelog
 
-<!-- For those who are viewing the current markdown file using:
-- VSCode: Press F1 or Cmd/Ctrl+Shift+P and enter ">Markdown: Open Preview". It is recommended to install the "markdownlint" and "Markdown All in One" extensions.
-- GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1". -->
+<!--
+For those who are viewing the current markdown file using:
+ – VSCode: Press F1 or Cmd/Ctrl+Shift+P and enter ">Markdown: Open Preview". Please install the "markdownlint" and "Markdown All in One" extensions.
+ – GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1".
+-->
 
 ## What's Happening
 
@@ -37,7 +39,7 @@ Neon PostgreSQL is now the default database instead of PlanetScale MySQL, as the
 ### Security and Code Improvements
 
 - **Type Safety and Editor Autocomplete**: This update enhances type safety and editor autocomplete for Drizzle ORM libraries.
-- **Prettier Replaced by Biome**: Prettier has been removed in favor of Biome. The Pterrier's config will be removed in the next version from the `addons\terminal\reliverse\relimter\core\temp` folder. You can re-add it by running the `reliverse` command starting from Relivator 1.3.0.
+- **Prettier Replaced by Biome**: Prettier has been removed in favor of Biome. The Pterrier's config will be removed in the next version from the `addons\scripts\reliverse\relimter\core\temp` folder. You can re-add it by running the `reliverse` command starting from Relivator 1.3.0.
 
 ### Reliverse Scripts Transition
 
