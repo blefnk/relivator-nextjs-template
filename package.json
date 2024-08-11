@@ -298,7 +298,7 @@
     "string-ts": "^2.2.0",
     "stripe": "^16.7.0",
     "superjson": "^2.2.1",
-    "tailwind-merge": "^2.4.0",
+    "tailwind-merge": "^2.5.0",
     "tailwind-variants": "^0.2.1",
     "tailwindcss-animate": "^1.0.7",
     "tasuku": "^2.0.1",

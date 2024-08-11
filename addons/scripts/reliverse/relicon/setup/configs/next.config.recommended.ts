@@ -1,68 +1,87 @@
-import MillionLint from "@million/lint";
-import bundleAnalyzer from "@next/bundle-analyzer";
 import createMDX from "@next/mdx";
-import million from "million/compiler";
 import createNextIntlPlugin from "next-intl/plugin";
 import remarkGfm from "remark-gfm";
 
+// The Reliverse Next Config comes with minimal and recommended configurations.
+// Run `pnpm reli:setup` to easily switch between them and set up other tools.
+// If you want to try all new Next.js features and Million.js, choose the recommended configuration.
+// P.S. The *.mjs extension is no longer necessary because the package.json type module is used.
 await import("~/env.js");
 
-// Everything starts here. This is the main Next.js configuration file.
-// The Reliverse Next Config comes with minimal and recommended configurations.
-// Run `pnpm reli:setup` to easily switch between them and set up other
-// tools. If you want to try all new Next.js features and
-// Million.js, choose the recommended configuration.
-// P.S. The *.mjs extension is not needed anymore
-// because the package.json type module is used.
-
-const millionEnabled = false; // unstable
-
-// Uncomment the following lines to enable the Vercel Toolbar (and <Reliverse /> component in RootLocaleLayout)
-// import withVercelToolbar from "@vercel/toolbar/plugins/next";
-
-// The whitelist list of domains that are allowed to show media content
-const hostnames = [
-  "*.githubusercontent.com",
-  "*.googleusercontent.com",
-  "api.dicebear.com",
-  "cdn.discordapp.com",
-  "discordapp.com",
-  "githubusercontent.com",
-  "googleusercontent.com",
-  "i.imgur.com",
-  "images.unsplash.com",
-  "img.youtube.com",
-  "pbs.twimg.com",
-  "res.cloudinary.com",
-  "utfs.io",
-  "www.gravatar.com",
-  "img.clerk.com",
-  "images.clerk.com",
-];
-
-// Everything starts here, this is the main Next.js configuration file
+// Everything starts here; this is the main Next.js configuration file.
 // @see https://nextjs.org/docs/app/building-the-application/configuring
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  compress: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
+
+    // The whitelist of domains allowed to display media content.
+    // @see https://nextjs.org/docs/app/api-reference/components/image
+    remotePatterns: [
+      {
+        port: "",
+        protocol: "https",
+        hostname: "utfs.io",
+      },
+      {
+        port: "",
+        protocol: "https",
+        hostname: "img.clerk.com",
+      },
+      {
+        port: "",
+        protocol: "https",
+        hostname: "api.dicebear.com",
+      },
+      {
+        port: "",
+        protocol: "https",
+        hostname: "cdn.discordapp.com",
+      },
+      {
+        port: "",
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+      },
+      {
+        port: "",
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
+
+    // ?| The following shorthand is most equivalent to
+    // the above, but performance is not tested too much.
+    // Remember to add: const hostnames = ["example.com"];
+    // remotePatterns: hostnames.map((hostname) => ({
+    //   hostname,
+    //   protocol: "https",
+    // })),
+  },
+
   experimental: {
-    // React Compiler currently uses Webpack/Babel
-    // only, so it may slightly slow down the build
-    // reactCompiler: false,
-    // after: true,
     mdxRs: true,
-    optimisticClientCache: true,
+
+    // The React Compiler currently uses Webpack/Babel only,
+    // so it may slightly slow down the build.
+    // reactCompiler: false, // next@canary only
+
     optimizePackageImports: [
       "recharts",
       "lucide-react",
       "@radix-ui/react-icons",
       "@radix-ui/react-avatar",
       "@radix-ui/react-select",
-      "date-fns",
     ],
-    optimizeServerReact: true,
-    ppr: false, // true - supported by next@canary only
-    // uncomment if you use superjson in 'browser' context
+
+    // ?| The following options are untested too much, performance may vary.
+    // after: true, // next@canary only
+    // ppr: false, // next@canary only
+    // optimisticClientCache: true,
+    // optimizeServerReact: true,
+    // serverMinification: true,
+
+    // ?| Uncomment if you use superjson in the 'browser' context.
     // swcPlugins: [
     //   [
     //     "next-superjson-plugin",
@@ -71,18 +90,11 @@ const nextConfig = {
     //     },
     //   ],
     // ],
-    serverMinification: true,
-  },
-  images: {
-    formats: ["image/avif", "image/webp"],
-    remotePatterns: hostnames.map((hostname) => ({
-      hostname,
-      protocol: "https",
-    })),
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 
-  // Adobe React Spectrum (next dev --turbo is not supported)
+  // ?| Uncomment the following to enable Adobe React Spectrum.
+  // Note: `next dev --turbo` is not supported yet by this library.
   // transpilePackages: [
   //   "@adobe/react-spectrum",
   //   "@react-spectrum/*",
@@ -90,51 +102,45 @@ const nextConfig = {
   // ].flatMap((spec) => glob.sync(spec, { cwd: "node_modules/" })),
 };
 
-// Create a config wrapper required to integrate a modern Next.js MDX support
+// Create a configuration wrapper required to integrate modern Next.js MDX support.
 // @see https://nextjs.org/docs/app/building-the-application/configuring/mdx
 const withMDX = createMDX({
   // extension: /\.mdx?$/,
   options: {
     // providerImportSource: "@mdx-js/react",
-    rehypePlugins: [],
     remarkPlugins: [remarkGfm],
   },
 });
 
-// Create a configuration wrapper required to change the default next-intl config location
+// Create a configuration wrapper required to change the default next-intl config location.
 // @see https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing
 const withIntl = createNextIntlPlugin("./src/i18n.ts");
 
-// Next.js Bundle Analyzer helps you manage the size of the JavaScript modules
+// =======================================================================
+// !| ADVANCED CONFIGURATION
+// =======================================================================
+
+// ?| Uncomment the following to enable the Next.js Bundle Analyzer.
+// Also, make sure to wrap nextConfig with the withAnalyzer function.
+// import bundleAnalyzer from "@next/bundle-analyzer";
+// Next.js Bundle Analyzer helps you manage the size of the JavaScript modules.
 // @see https://nextjs.org/docs/app/building-the-application/optimizing/bundle-analyzer
-const withAnalyzer = bundleAnalyzer({
-  // eslint-disable-next-line no-restricted-properties
-  enabled: process.env.ANALYZE === "true",
-  openAnalyzer: false,
-});
+// const withAnalyzer = bundleAnalyzer({ enabled: process.env.ANALYZE === "true", openAnalyzer: false });
 
+// !| Next.js Configuration Chaining:
 // @ts-expect-error TODO: fix
-const chainedNextConfig = withAnalyzer(withIntl(withMDX(nextConfig)));
+const chainedNextConfig = withIntl(withMDX(nextConfig));
 
-const reliverseConfig = million.next(
-  MillionLint.next({
-    // Million Lint Configuration
-    // @see https://million.dev
-    rsc: true,
-  })(chainedNextConfig),
-  {
-    // Million.js Compiler Configuration
-    auto: {
-      rsc: true,
-    },
-    rsc: true,
-  },
-);
+// ?| Uncomment the following to enable the Million Lint & Million Compiler.
+// import MillionLint from "@million/lint";
+// import million from "million/compiler";
+// [@see https://million.dev] Million Lint & Million Compiler Configuration
+// const chainedNextConfig = million.next(MillionLint.next({ rsc: true })(chainedNextConfig),
+// { auto: { rsc: true }, rsc: true } );
 
-// const reliverseConfigWithVercelToolbar = withVercelToolbar()(reliverseConfig);
+// ?| Uncomment the following to enable the Vercel Toolbar (and <Reliverse /> component in RootLocaleLayout).
+// import withVercelToolbar from "@vercel/toolbar/plugins/next";
+// const chainedNextConfigWithVercelToolbar = withVercelToolbar()(chainedNextConfig);
+// export default process.env.ENABLE_VERCEL_TOOLBAR ? chainedNextConfigWithVercelToolbar : chainedNextConfig;
 
-// export default process.env.ENABLE_VERCEL_TOOLBAR
-// ? reliverseConfigWithVercelToolbar
-// : reliverseConfig;
-
-export default millionEnabled ? reliverseConfig : chainedNextConfig;
+export default chainedNextConfig;

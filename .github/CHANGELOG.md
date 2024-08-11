@@ -14,7 +14,7 @@ For those who are viewing the current markdown file using:
 
 ### 1.2.6 - August 4, 2024 – The Resurrection Update
 
-Below you can see a copy of [the article from Bleverse Docs](https://docs.bleverse.com/en/blog/relivator/v126), which may be a bit outdated below. Please refer to [this blog post](https://docs.bleverse.com/en/blog/relivator/v126) to read the most recent version. Bleverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
+Below you can see a copy of [the article from Reliverse Docs](https://docs.reliverse.com/en/relivator/v126), which may be a bit outdated below. Please refer to [this blog post](https://docs.reliverse.com/en/relivator/v126) to read the most recent version. Reliverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
 
 **Relivator is Back with Version 1.2.6!** 🥳
 
@@ -167,7 +167,7 @@ How to Install and Get Started? Please visit [the project's README](../README.md
 
 </details>
 
-Please visit the CHANGELOG.md or [Bleverse Docs](https://docs.bleverse.com/en/blog/relivator/changelog) to read the older versions release notes.
+Please visit the CHANGELOG.md or [Reliverse Docs](https://docs.reliverse.com/en/relivator) to read the older versions release notes.
 
 ### Everyone! Thank You 🙏
 

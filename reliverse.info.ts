@@ -40,7 +40,7 @@ const logSupportMessage = () => {
 
 const logUpdateInstructions = () => {
   consola.info(
-    `[${reliverse.framework.name} v1.2.6 & v1.3.0@canary Release Post] https://docs.bleverse.com/en/blog/relivator/v126`,
+    `[${reliverse.framework.name} v1.2.6 & v1.3.0@canary Release Post] https://docs.reliverse.com/en/relivator/v126`,
   );
   consola.info(
     `Help ${reliverse.framework.name} become even better! Please, star the repo – https://github.com/blefnk/relivator`,

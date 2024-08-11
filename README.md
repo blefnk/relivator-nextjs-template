@@ -92,7 +92,7 @@ Our goal is to create the world's most feature-rich and globally accessible Next
 
 ## The Huge Relivator 1.2.6 is Finally Available
 
-[**👉 Read the Detailed Blog Post About This Update 👈**](https://docs.bleverse.com/en/blog/relivator/v126)
+[**👉 Read the Detailed Blog Post About This Update 👈**](https://docs.reliverse.com/en/relivator/v126)
 
 Relivator 1.2.6 was released on August 4, 2024! We are now actively working on the next major update, Relivator 1.3.0, with the goal of making the project production-ready, clean, and high-quality. Please join us in actively searching for issues, contributing freely, and earning cool rewards. A canary branch will be launched soon, and the dev branch is already available for a limited time to all sponsors at any paid pledge level.
 
@@ -252,7 +252,7 @@ Below are some scripts configured in the `scripts` section of the `package.json`
 ```bash
 # pnpm tsx reliverse.config.ts --details
 ℹ ▲ Framework: Relivator v1.2.6 ▲ Engine: Reliverse v0.4.0 ▲ Hotline: https://discord.gg/Pb8uKbwpsJ
-ℹ Relivator v1.2.6 Release Blog Post 👉 https://docs.bleverse.com/en/blog/relivator/v126
+ℹ Relivator v1.2.6 Release Blog Post 👉 https://docs.reliverse.com/en/relivator/v126
 ℹ Help Relivator become even better! Please star the repo – https://github.com/blefnk/relivator
 ℹ For experienced users: run 'pnpm reli:prepare' to update all dependencies to the latest versions and check if the code requires any adjustments.
 ℹ Meet quality standards: run 'pnpm appts' and 'pnpm fix:putout-unstable' to get linting, formatting, and more.
@@ -854,7 +854,7 @@ Alternatively, check the GitHub docs on [how to create a pull request](https://h
 - [ ] 49. Implement Relivator's/Reliverse's own version of [Saas UI](https://saas-ui.dev) to be fully compatible with our project with only needed functionality, with using Tailwind and Shadcn instead of Chakra.
 - [ ] 50. Implement our own fork of [Radix Themes](https://radix-ui.com) library with set up `<main>` as wrapper instead of its current `<section>`; OR implement our very own solution which generates Tailwind instead of Radix's classes.
 - [ ] 51. Implement full [Million.js](https://million.dev) support (read [Million 3.0 Announcement](https://million.dev/blog/million-3) to learn more).
-- [ ] 52. Implement file uploads using [UploadThing](https://uploadthing.com) and [Cloudinary](https://cloudinary.com).
+- [ ] 52. Implement file uploads using [UploadThing](https://uploadthing.com) and [Cloudinary](https://cloudinary.com) (NOTE: "res.cloudinary.com" and "utfs.io" should be added to `nextConfig.images.remotePatterns`).
 - [ ] 53. Implement dynamic switching between app features, like database provider, by making corresponding checks for environment variables.
 - [ ] 54. Implement docs to the project and move each explanation from the code into that docs.
 - [ ] 55. Implement deep feature-parity and easy-migration compatibility with Reliverse.
@@ -924,7 +924,7 @@ This project is licensed under [the MIT License](https://choosealicense.com/lice
 
 ### 1.2.6 - August 4, 2024 – The Resurrection Update
 
-Below you can see a small copy of [the article from Bleverse Docs](https://docs.bleverse.com/en/blog/relivator/v126), which is possibly outdated. Please refer to [1.2.6 Release Notes Page on GitHub](https://github.com/blefnk/relivator-nextjs-template/releases/tag/1.2.6) or to [this blog post](https://docs.bleverse.com/en/blog/relivator/v126) to read the most recent version. Bleverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
+Below you can see a small copy of [the article from Reliverse Docs](https://docs.reliverse.com/en/relivator/v126), which is possibly outdated. Please refer to [1.2.6 Release Notes Page on GitHub](https://github.com/blefnk/relivator-nextjs-template/releases/tag/1.2.6) or to [this blog post](https://docs.reliverse.com/en/relivator/v126) to read the most recent version. Reliverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
 
 **Relivator is Back with Version 1.2.6!** 🥳
 
@@ -1083,7 +1083,7 @@ How to Install and Get Started? Please refer to the [🏗️ Installation](#inst
 
 </details>
 
-Please visit the [CHANGELOG.md](.github/CHANGELOG.md) or [Bleverse Docs](https://docs.bleverse.com/en/blog/relivator/changelog) to read the release notes for older versions.
+Please visit the [CHANGELOG.md](.github/CHANGELOG.md) or [Reliverse Docs](https://docs.reliverse.com/en/relivator) to read the release notes for older versions.
 
 ## The Final Words
 

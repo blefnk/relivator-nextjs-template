@@ -35,9 +35,15 @@ export async function GithubStarsBadge() {
             md:flex
           `}
         >
-          -canary.1
+          -canary.3
         </span>
-        <span>
+        <span
+          className={`
+            ml-1
+
+            md:ml-0
+          `}
+        >
           on GitHub ⭐{" "}
           {repoGithubStarsNumber && `${repoGithubStarsNumber}/1,000`}
         </span>

@@ -70,7 +70,7 @@ export function getWebDevelopmentAdvice(level: TLevel): string {
 
 // Personalized quotes and reviews
 export const personalQuotes = [
-  "[Relivator v1.2.6 Release Blog Post] 👉 https://docs.bleverse.com/en/blog/relivator/v126",
+  "[Relivator v1.2.6 Release Blog Post] 👉 https://docs.reliverse.com/en/relivator/v126",
   "Isn't coding so much better with some good music? Try working with Relivator while you listen to the beautiful songs on the MF Piano YouTube channel (https://youtube.com/@mfpiano). My brother runs the channel and would really appreciate your support. Subscribing, watching, liking, and commenting would help his channel grow. Thanks a bunch! © blefnk",
   "For experienced users: run 'pnpm reli:prepare' to update all dependencies to the latest versions and check if the code requires any adjustments.",
   "I learned a lot from using the Relivator project! I see the hard work that was put into it. It's truly an amazing open-source starter; I have built my startup using it. @blefnk, your hard work is impressive; it's astonishing how you manage it all alone. © demiroo (Özkan Demir)",
