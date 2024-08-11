@@ -39,7 +39,7 @@ export async function GithubStarsBadge() {
         </span>
         <span>
           on GitHub ⭐{" "}
-          {repoGithubStarsNumber && `${repoGithubStarsNumber}/1,500`}
+          {repoGithubStarsNumber && `${repoGithubStarsNumber}/1,000`}
         </span>
       </Badge>
     </Link>

@@ -22,7 +22,7 @@ const loadSiteConfig = async () => {
 
   if (!configData) {
     consola.error(
-      "Something went wrong! Configuration file `src/config/json/appts.json` was not found!",
+      "Something went wrong! Configuration file `src/constants/json/appts.json` was not found!",
     );
 
     return;

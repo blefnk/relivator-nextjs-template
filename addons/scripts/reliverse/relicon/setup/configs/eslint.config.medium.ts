@@ -240,7 +240,7 @@ export default tseslint.config(
           applyDefaultIgnorePatterns: true,
           beforeBlockComment: true,
           beforeLineComment: true,
-          ignorePattern: "@type\\s.+|@ts-expect-error|biome-ignore",
+          ignorePattern: "@type\\s.+|@ts-expect-error|biome-ignore|TODO:",
         },
       ],
 

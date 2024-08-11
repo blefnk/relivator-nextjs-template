@@ -17,7 +17,7 @@ import metadata from "~/constants/metadata";
 
 export async function configureAppts({ apptsConfig }: ApptsConfig) {
   const apptsConfigPath = join(apptsConfig, "app.ts");
-  const metadataConfigPath = join(apptsConfig, "config/metadata.ts");
+  const metadataConfigPath = join(apptsConfig, "constants/metadata.ts");
 
   if (!(await fileExists(apptsConfigPath))) {
     consola.error(
@@ -29,7 +29,7 @@ export async function configureAppts({ apptsConfig }: ApptsConfig) {
 
   if (!(await fileExists(metadataConfigPath))) {
     consola.error(
-      "Uh-oh! We couldn't find the configuration file `src/config/metadata.ts`! ⛔",
+      `Uh-oh! We couldn't find the configuration file! (${metadataConfigPath}) ⛔`,
     );
 
     return;

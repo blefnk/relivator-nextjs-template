@@ -6,6 +6,7 @@ import consola from "consola";
 import { readFile, writeFile } from "fs/promises";
 import fs from "fs-extra";
 import pc from "picocolors";
+import { debugEnabled } from "reliverse.config";
 
 export async function configureNext({
   nextConfig,
@@ -28,14 +29,14 @@ export async function configureNext({
         value: "Skip",
       },
       {
-        hint: "[✅ Default] Minimal configuration: faster builds",
-        label: "next.config.minimal.ts",
-        value: "Minimal",
-      },
-      {
-        hint: "[⛔ Unstable] Recommended configuration: faster runtime, Million.js, and more",
+        hint: "[✅ Default] Recommended configuration: faster runtime (but slower builds); may be less stable",
         label: "next.config.recommended.ts",
         value: "Recommended",
+      },
+      {
+        hint: "Minimal configuration: faster builds (but slower runtime); more stable",
+        label: "next.config.minimal.ts",
+        value: "Minimal",
       },
     ],
   });
@@ -99,7 +100,10 @@ async function replaceEnvImport(filePath: string) {
     if (fileContent.includes(oldImportStatement)) {
       fileContent = fileContent.replace(oldImportStatement, newImportStatement);
       await writeFile(filePath, fileContent, "utf8");
-      consola.success(`Replaced import statement in ${filePath}`);
+
+      if (debugEnabled) {
+        consola.success(`Replaced import statement in ${filePath}`);
+      }
     } else {
       consola.info(`Import statement not found in ${filePath}`);
     }

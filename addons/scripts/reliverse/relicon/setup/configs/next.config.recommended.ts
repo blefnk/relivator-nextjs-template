@@ -1,3 +1,12 @@
+import MillionLint from "@million/lint";
+import bundleAnalyzer from "@next/bundle-analyzer";
+import createMDX from "@next/mdx";
+import million from "million/compiler";
+import createNextIntlPlugin from "next-intl/plugin";
+import remarkGfm from "remark-gfm";
+
+await import("~/env.js");
+
 // Everything starts here. This is the main Next.js configuration file.
 // The Reliverse Next Config comes with minimal and recommended configurations.
 // Run `pnpm reli:setup` to easily switch between them and set up other
@@ -5,18 +14,13 @@
 // Million.js, choose the recommended configuration.
 // P.S. The *.mjs extension is not needed anymore
 // because the package.json type module is used.
-import MillionLint from "@million/lint";
-import bundleAnalyzer from "@next/bundle-analyzer";
-import createMDX from "@next/mdx";
-import withVercelToolbar from "@vercel/toolbar/plugins/next";
-import million from "million/compiler";
-import createNextIntlPlugin from "next-intl/plugin";
-import remarkGfm from "remark-gfm";
 
-await import("~/env.js");
+const millionEnabled = false; // unstable
+
+// Uncomment the following lines to enable the Vercel Toolbar (and <Reliverse /> component in RootLocaleLayout)
+// import withVercelToolbar from "@vercel/toolbar/plugins/next";
 
 // The whitelist list of domains that are allowed to show media content
-
 const hostnames = [
   "*.githubusercontent.com",
   "*.googleusercontent.com",
@@ -32,6 +36,7 @@ const hostnames = [
   "res.cloudinary.com",
   "utfs.io",
   "www.gravatar.com",
+  "img.clerk.com",
   "images.clerk.com",
 ];
 
@@ -43,7 +48,7 @@ const nextConfig = {
   experimental: {
     // React Compiler currently uses Webpack/Babel
     // only, so it may slightly slow down the build
-    // reactCompiler: true,
+    // reactCompiler: false,
     // after: true,
     mdxRs: true,
     optimisticClientCache: true,
@@ -76,7 +81,6 @@ const nextConfig = {
     })),
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  serverExternalPackages: ["mysql2"],
 
   // Adobe React Spectrum (next dev --turbo is not supported)
   // transpilePackages: [
@@ -110,45 +114,14 @@ const withAnalyzer = bundleAnalyzer({
 });
 
 // @ts-expect-error TODO: fix
-const withMillion = withAnalyzer(withIntl(withMDX(nextConfig)));
+const chainedNextConfig = withAnalyzer(withIntl(withMDX(nextConfig)));
 
 const reliverseConfig = million.next(
   MillionLint.next({
     // Million Lint Configuration
     // @see https://million.dev
-    filter: {
-      exclude: [
-        "**/node_modules/**/*",
-        "./src/app/[locale]/**",
-        "./src/components/**",
-
-        // @see https://github.com/blefnk/relivator-nextjs-template#faq
-        // TODO: Eliminate things above, then repeat the
-        // TODO: builds, adding specific files as below.
-        "./src/app/[locale]/(adm)/dashboard/admin/_components/privileges.tsx",
-        "./src/app/[locale]/(blog)/blog/new/_components/editor-plate.tsx",
-        "./src/app/[locale]/(main)/404/[[...404]]/client.tsx",
-        "./src/app/[locale]/(main)/error/[[...error]]/client.tsx",
-        "./src/app/global-error.tsx",
-        "./src/app/not-found.tsx",
-        "./src/components/misc/loading-button.tsx",
-        "./src/components/misc/localization.tsx",
-        "./src/components/misc/product-building.tsx",
-        "./src/components/misc/stores.tsx",
-        "./src/core/auth/authjs/components/check-user-button.tsx",
-        "./src/core/auth/clerkjs/components/user-profile-clerk.tsx",
-        "./src/core/trpc/react.tsx",
-        "./src/core/trpc/tanstack/products-admin.tsx",
-        "./src/components/forms/ManageSubscriptionForm.tsx",
-        "./src/components/forms/UpdateEmailPreferencesForm.tsx",
-        "./src/components/account/avatar.tsx",
-        "./src/components/Primitives/ui/toaster.tsx",
-        "./src/components/providers/theme-provider.tsx",
-        "./src/components/providers/tooltip.tsx",
-      ],
-    },
     rsc: true,
-  })(withMillion),
+  })(chainedNextConfig),
   {
     // Million.js Compiler Configuration
     auto: {
@@ -158,10 +131,10 @@ const reliverseConfig = million.next(
   },
 );
 
-const reliverseConfigWithVercelToolbar = withVercelToolbar()(reliverseConfig);
+// const reliverseConfigWithVercelToolbar = withVercelToolbar()(reliverseConfig);
 
-// Export the chained config
-// eslint-disable-next-line no-restricted-properties
-export default process.env.ENABLE_VERCEL_TOOLBAR
-  ? reliverseConfigWithVercelToolbar
-  : reliverseConfig;
+// export default process.env.ENABLE_VERCEL_TOOLBAR
+// ? reliverseConfigWithVercelToolbar
+// : reliverseConfig;
+
+export default millionEnabled ? reliverseConfig : chainedNextConfig;

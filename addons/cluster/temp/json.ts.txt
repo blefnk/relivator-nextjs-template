@@ -16,7 +16,7 @@ export async function configureApptsJson({ apptsConfig }: ApptsConfig) {
 
   if (!currentConfig) {
     consola.error(
-      "Something went wrong! Configuration file `src/config/json/appts.json` was not found!",
+      "Something went wrong! Configuration file `src/constants/json/appts.json` was not found!",
     );
 
     return;
@@ -122,7 +122,7 @@ async function askForHandle(currentHandle: string): Promise<string> {
   return (await text({
     message:
       // eslint-disable-next-line @stylistic/max-len
-      "Let's customize the Relivator Next.js template according to your needs. The `src/config/json/appts.json` file contains the main configuration for your product. Let's get acquainted! What's your handle (without the @ symbol)? Example:",
+      "Let's customize the Relivator Next.js template according to your needs. The `src/constants/json/appts.json` file contains the main configuration for your product. Let's get acquainted! What's your handle (without the @ symbol)? Example:",
     placeholder: currentHandle || "blefnk",
     validate: (value) => {
       if (value && !/^[\da-z]+$/i.test(value)) {

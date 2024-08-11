@@ -34,7 +34,7 @@ export async function configureBiome({
         value: "RulesDisabled",
       },
       {
-        hint: "[⛔ Unstable] Recommended configuration (🐞 You'll encounter many issues on Relivator 1.2.6)",
+        hint: "[⛔ Unstable] Recommended configuration (🐞 You'll encounter many issues on Relivator 1.3.0@canary)",
         label: "biome.recommended.json",
         value: "Recommended",
       },

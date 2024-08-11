@@ -19,7 +19,7 @@ import { siteConfig } from "~/app";
 export async function runReliverseSetup() {
   const currentDirname = getCurrentDirname(import.meta.url);
   const rootDirectory = getRootDirname(import.meta.url, 5);
-  const srcDirectory = join(currentDirname, `${currentDirname}/src`);
+  const srcDirectory = join(rootDirectory, "src");
   const configsFolder = join(currentDirname, "configs");
 
   // Next.js configurations

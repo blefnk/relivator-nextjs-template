@@ -86,7 +86,7 @@ Our goal is to create the world's most feature-rich and globally accessible Next
 
 **🎉 The upcoming Relivator 1.3.0 will have as few dependencies as possible.** Everything will work thanks to @reliverse/addons. Everything will be separated into its own libraries and will be published on npmjs and/or jsr. You will be able to install exactly what you need, including functionality and UI. You will have two options. One is to install the addons the classic way using 'package.json'. The other option is that all these addons can also be installed in a style inspired by shadcn/ui, where you keep all the content directly in your project (as it is currently in test mode in Relivator 1.2.6 (please check `addons` folder or run `pnpm addons`)), although the first option will be recommended for the most use cases. 'addons' folder already contains many cool things, especially related to codemods. It also includes the @reliverse/academy game, where you can check how good you know JavaScript/TypeScript, React/Next.js, Relivator/Reliverse, and even ESLint, ecosystems (you will even find there table of records and will can contest with other players if you share data/players.json and data/progress.json save files to them; the game has also achievement system).
 
-**🙏 Please help us reach 1500 stars on GitHub**: Once this project reaches this goal, I, @blefnk, the author of this project, will start my video course on the basics of web development (HTML, CSS, JS), React, Next.js, TypeScript, related libraries, and many other topics. This milestone will also affirm that Relivator and [Reliverse](https://github.com/blefnk/reliverse-website-builder) truly make sense to exist, leading to more frequent updates and further dedication to these projects.
+**🙏 Please help us reach 1,000 stars on GitHub**: Once this project reaches this goal, I, @blefnk, the author of this project, will start my video course on the basics of web development (HTML, CSS, JS), React, Next.js, TypeScript, related libraries, and many other topics. This milestone will also affirm that Relivator and [Reliverse](https://github.com/blefnk/reliverse-website-builder) truly make sense to exist, leading to more frequent updates and further dedication to these projects.
 
 **⭐ Bookmark this page in your browser**: This project will only get better in the future. You can also click the star at the top of the page and add the repo to your collection to keep it easily accessible.
 
@@ -176,7 +176,7 @@ Currently, I’m in a challenging financial situation, so I would greatly apprec
 
 **How to Install and Get Started:** You have two options for installation. You can either immediately deploy to Vercel using the button below and start working on the generated repository right away (but still read the information below), or you can follow the short or detailed manual installation instructions provided.
 
-**By The Way:** *Sometimes, we gift [`Reliverse Pro: Backers` pledge](https://patreon.com/blefnk), which gives you early access to the Reliverse projects ecosystem, including Relivator, as well as upcoming plugins, to randomly selected individuals. We also give away other interesting things. Simply `star this repository` and [let us know how to reach you](https://forms.gle/NXZ6QHpwrxh52VA36). To join the discussion, hop into [the project's Discord](https://discord.gg/Pb8uKbwpsJ).*
+**By The Way:** *Sometimes, we gift `Reliverse Pro`, which gives you early access to the Reliverse projects ecosystem, including Relivator, as well as upcoming plugins, to randomly selected individuals. We also give away other interesting things. Simply `star this repository` and [let us know how to reach you](https://forms.gle/NXZ6QHpwrxh52VA36). To join the discussion, hop into [the project's Discord](https://discord.gg/Pb8uKbwpsJ).*
 
 ### One-click Installation Method (**find recommended method below**)
 
@@ -602,7 +602,7 @@ To edit product categories, please refer to the `MySQL`, `PostgreSQL`, or `LibSQ
 
 After editing these files, don't forget to run `pnpm db:push` to apply the changes. Or run `pnpm generate` to create a sharable SQL, which another developers may apply with `pnpm migrate` to edit theirs database tables easily.
 
-Then, simply update the category names and subcategories in the [products file](src/config/products.ts) accordingly.
+Then, simply update the category names and subcategories in the [products file](src/constants/products.ts) accordingly.
 
 ## Additional Notes About Stripe
 
