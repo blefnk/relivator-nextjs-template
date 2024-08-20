@@ -1,15 +1,15 @@
 import { revalidatePath } from "next/cache";
 
-import type { CartLineItem } from "@/types";
+import type { CartLineItem } from "@/types/reliverse/store";
 import type { z } from "zod";
 
 import { getCartId } from "@/server/reliverse/cart";
+import { databaseDialect } from "~/../reliverse.config";
 import { and, asc, desc, eq, inArray, sql } from "drizzle-orm";
-import { databaseDialect } from "reliverse.config";
 
 import { authjs } from "~/auth/authjs";
 import { db } from "~/db";
-import { carts, products, stores, users } from "~/db/schema";
+import { carts, products, stores, users } from "~/db/schema/provider";
 
 import {
   cartItemSchema,

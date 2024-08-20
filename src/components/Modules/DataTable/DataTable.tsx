@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn,
-} from "@/types";
+} from "@/types/reliverse/store";
 import type {
   ColumnDef,
   ColumnFiltersState,

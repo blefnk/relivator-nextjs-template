@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
-import { unslugify } from "@/utils";
+import { unslugify } from "@/utils/reliverse/string";
 import { titleCase } from "string-ts";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 import {
   PageHeader,

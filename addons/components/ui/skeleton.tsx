@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
 function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return (

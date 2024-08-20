@@ -2,13 +2,14 @@
 
 import { redirect } from "next/navigation";
 
-import type { CheckoutItem, UserSubscriptionPlan } from "@/types";
+import type { UserSubscriptionPlan } from "@/types/reliverse/plan";
+import type { CheckoutItem } from "@/types/reliverse/store";
 import type Stripe from "stripe";
 import type { z } from "zod";
 
 import { userPrivateMetadataSchema } from "@/actions/reliverse/validations/auth";
 import { getCartId } from "@/server/reliverse/cart";
-import { calculateOrderAmount } from "@/utils";
+import { calculateOrderAmount } from "@/utils/reliverse/misc";
 import dayjs from "dayjs";
 import { eq } from "drizzle-orm";
 import superjson from "superjson";
@@ -25,7 +26,7 @@ import { stripe } from "~/core/stripe/connect";
 import { storeSubscriptionPlans } from "~/core/stripe/subs";
 import { manageSubscriptionSchema } from "~/core/stripe/zod";
 import { db } from "~/db";
-import { carts, payments, stores, users } from "~/db/schema";
+import { carts, payments, stores, users } from "~/db/schema/provider";
 import { env } from "~/env";
 
 const absoluteUrl = (path: string) => {

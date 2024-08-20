@@ -1,8 +1,8 @@
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
 import type { Metadata } from "next";
 
-import type { SearchParams } from "@/types";
+// import type { SearchParams } from "@/types/reliverse/meta";
 
 import {
   Card,
@@ -11,21 +11,22 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { getNotification } from "@/server/reliverse/queries/notification";
-import {
-  getCachedUserAuthJs,
-  getCachedUserClerk,
-} from "@/server/reliverse/queries/user";
-import { z } from "zod";
+// import { getNotification } from "@/server/reliverse/notification";
+// import {
+//   getCachedUserAuthJs,
+//   getCachedUserClerk,
+// } from "@/server/reliverse/user";
+import { getTranslations } from "next-intl/server";
+// import { z } from "zod";
 
-import { authProvider } from "~/auth";
-import { UpdateNotificationForm } from "~/components/Forms";
+// import { authProvider } from "~/auth/provider";
+// import { UpdateNotificationForm } from "~/components/Forms/UpdateNotificationForm";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
-import UpdateNotificationFormSkeleton from "~/components/Skeletons/Forms/UpdateNotificationFormSkeleton";
+// import UpdateNotificationFormSkeleton from "~/components/Skeletons/Forms/UpdateNotificationFormSkeleton";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export const metadata: Metadata = {
@@ -33,46 +34,52 @@ export const metadata: Metadata = {
   title: "Settings",
 };
 
-type SettingsPageProps = {
-  searchParams: SearchParams;
-};
+// type SettingsPageProps = {
+//   searchParams: SearchParams;
+// };
 
-const schema = z.object({
-  token: z.string().optional(),
-});
+// const schema = z.object({
+//   token: z.string().optional(),
+// });
 
-export default async function SettingsPage({
-  searchParams,
-}: SettingsPageProps) {
-  const { token } = schema.parse(searchParams);
+// searchParams,
+// }: SettingsPageProps) {
+export default async function SettingsPage() {
+  const t = await getTranslations();
 
-  const user =
-    authProvider === "clerk"
-      ? await getCachedUserClerk()
-      : await getCachedUserAuthJs();
+  // const { token } = schema.parse(searchParams);
 
-  const notificationPromise = getNotification({
-    email: user.email,
-    token,
-  });
+  // const user =
+  //   authProvider === "clerk"
+  //     ? await getCachedUserClerk()
+  //     : await getCachedUserAuthJs();
+
+  // const notificationPromise = getNotification({
+  //   email: user.email,
+  //   token,
+  // });
 
   return (
     <Shell variant="sidebar">
       <PageHeader>
-        <PageHeaderHeading size="sm">Settings</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("page.settings")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Manage the website and account preferences.
         </PageHeaderDescription>
       </PageHeader>
       <Card>
         <CardHeader>
-          <CardTitle>Email Preferences</CardTitle>
-          <CardDescription>Manage your email preferences</CardDescription>
+          <CardTitle>{t("page.emailPreferences")}</CardTitle>
+          <CardDescription>
+            {t("page.manageYourEmailPreferences")}
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <Suspense fallback={<UpdateNotificationFormSkeleton />}>
+          We have temporarily disabled this website element while we work on it.
+          Please check back later to use it.
+          {/* <Suspense fallback={<UpdateNotificationFormSkeleton />}>
             <UpdateNotificationForm notificationPromise={notificationPromise} />
-          </Suspense>
+          </Suspense> */}
         </CardContent>
       </Card>
     </Shell>

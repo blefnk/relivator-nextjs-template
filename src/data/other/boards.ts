@@ -2,7 +2,7 @@ import { unstable_cache } from "next/cache";
 
 import { and, asc, eq } from "drizzle-orm";
 
-import type { Item } from "~/db/schema";
+import type { Item } from "~/db/schema/provider";
 
 import { authjs } from "~/auth/authjs";
 import { db } from "~/db";

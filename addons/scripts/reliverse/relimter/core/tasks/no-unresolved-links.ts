@@ -1,8 +1,8 @@
 // 🐞 Still in the production and may not work as expected! Please use at own risk!
 // ▶️ pnpm tsx addons\scripts\reliverse\relimter\core\tasks\no-unresolved-links.ts
 
-import { getRootDirname } from "@/scripts/utils";
 import { log } from "@clack/prompts";
+import { getRootDirname } from "@reliverse/fs";
 import fs from "fs-extra";
 import * as readline from "node:readline";
 import { fetch } from "node-fetch-native";

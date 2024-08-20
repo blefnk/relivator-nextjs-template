@@ -1,6 +1,6 @@
 {
   "[appts.reliverse]": {
-    "vscodePreset": "default"
+    "vscodePreset": "ultimate"
   },
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
@@ -25,6 +25,9 @@
   },
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[mdx]": {
+    "editor.wordWrap": "on"
   },
   "[python]": {
     "editor.codeActionsOnSave": {
@@ -158,8 +161,7 @@
   "editor.unicodeHighlight.allowedLocales": {
     "tr": true
   },
-  "editor.wordBasedSuggestions": "matchingDocuments",
-  "editor.wordWrap": "on",
+  "editor.wordBasedSuggestions": "currentDocument",
   "eslint.codeActionsOnSave.mode": "problems",
   "eslint.enable": true,
   "eslint.format.enable": true,
@@ -184,19 +186,7 @@
   ],
   "eslint.rules.customizations": [
     {
-      "rule": "@typescript-eslint/consistent-type-imports",
-      "severity": "off"
-    },
-    {
-      "rule": "import-x/newline-after-import",
-      "severity": "off"
-    },
-    {
-      "rule": "readable-tailwind/*",
-      "severity": "off"
-    },
-    {
-      "rule": "import-x/no-duplicates",
+      "rule": "@stylistic/*",
       "severity": "off"
     },
     {
@@ -204,28 +194,36 @@
       "severity": "off"
     },
     {
-      "rule": "@stylistic/*",
-      "severity": "off"
+      "rule": "@typescript-eslint/consistent-type-imports",
+      "severity": "info"
+    },
+    {
+      "rule": "import-x/newline-after-import",
+      "severity": "info"
+    },
+    {
+      "rule": "readable-tailwind/*",
+      "severity": "info"
     },
     {
       "rule": "curly",
-      "severity": "off"
+      "severity": "info"
     },
     {
       "rule": "no-lonely-if",
-      "severity": "off"
+      "severity": "info"
     },
     {
       "rule": "@stylistic/linebreak-style",
-      "severity": "off"
+      "severity": "info"
     },
     {
       "rule": "jsonc/indent",
-      "severity": "off"
+      "severity": "info"
     },
     {
       "rule": "RULES-BELOW-ARE-NOT-AUTOFIXABLE",
-      "severity": "default"
+      "severity": "warn"
     },
     {
       "rule": "@typescript-eslint/no-unused-vars",
@@ -249,7 +247,7 @@
     },
     {
       "rule": "@stylistic/max-len",
-      "severity": "info"
+      "severity": "error"
     },
     {
       "rule": "@stylistic/line-comment-position",
@@ -303,33 +301,22 @@
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
-  "github.copilot.editor.enableAutoCompletions": true,
   "html.format.indentInnerHtml": true,
-  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.displayLanguage": "en-US",
   "i18n-ally.enabledFrameworks": ["general", "next-intl", "react"],
   "i18n-ally.keysInUse": [
+    "Manifest.name",
     "faq.1.details",
     "faq.1.summary",
     "faq.2.details",
     "faq.2.summary",
     "faq.3.details",
-    "faq.3.summary"
+    "faq.3.summary",
+    "name"
   ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": ["addons/messages/reliverse"],
-  "i18n-ally.sourceLanguage": "en",
-  "indentRainbow.colors": [
-    "rgba(58, 12, 163,0.15)",
-    "rgba(63, 55, 201,0.05)",
-    "rgba(63, 55, 201,0.025)",
-    "rgba(63, 55, 201,0.1)",
-    "rgba(63, 55, 201,0.15)",
-    "rgba(72, 12, 168,0.15)",
-    "rgba(86, 11, 173,0.15)",
-    "rgba(114, 9, 183, 0.15)",
-    "rgba(181, 23, 158,0.15)",
-    "rgba(247, 37, 133,0.15)"
-  ],
+  "i18n-ally.localesPaths": ["messages/default"],
+  "i18n-ally.sourceLanguage": "en-US",
   "javascript.format.semicolons": "insert",
   "javascript.inlayHints.enumMemberValues.enabled": true,
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -353,6 +340,7 @@
     "**/*.jpeg",
     "**/*.png",
     "**/*.svg",
+    "**/*.txt",
     "**/.git",
     "**/.idea",
     "**/.million",
@@ -458,7 +446,7 @@
   "typescript.preferences.includePackageJsonAutoImports": "on",
   "typescript.referencesCodeLens.enabled": true,
   "typescript.reportStyleChecksAsWarnings": true,
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.validate.enable": true,
   "window.autoDetectColorScheme": true,
@@ -484,6 +472,7 @@
     "terminalCursor.background": "#868690",
     "terminalCursor.foreground": "#43444D"
   },
+
   "workbench.colorTheme": "Houston",
   "workbench.editor.enablePreview": false,
   "workbench.iconTheme": "pop-icon-theme",
@@ -493,6 +482,5 @@
   "workbench.preferredHighContrastColorTheme": "GitHub Dark High Contrast",
   "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
   "workbench.preferredLightColorTheme": "GitHub Light",
-  "workbench.sideBar.location": "left",
   "workbench.statusBar.visible": true
 }

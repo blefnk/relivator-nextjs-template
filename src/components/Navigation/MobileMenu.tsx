@@ -6,7 +6,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import type { MainMenuItem, SidebarNavItem } from "@/types";
+import type { MainMenuItem, SidebarNavItem } from "@/types/reliverse/with";
 
 import {
   Accordion,
@@ -17,10 +17,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { siteConfig } from "~/app";
-import { Icons } from "~/components/Common/Icons";
 
 type MobileMenuProps = {
   MainMenuItems?: MainMenuItem[];
@@ -31,6 +32,8 @@ export function MobileMenu({
   MainMenuItems,
   sidebarNavItems,
 }: MobileMenuProps) {
+  const t = useTranslations();
+
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -50,8 +53,8 @@ export function MobileMenu({
           `}
           variant="ghost"
         >
-          <Icons.menu className="size-6" />
-          <span className="sr-only">Toggle Menu</span>
+          <Menu className="size-6" />
+          <span className="sr-only">{t("MobileMenu.toggleMenu")}</span>
           <span
             className={`
               ml-2 hidden font-medium tracking-wide

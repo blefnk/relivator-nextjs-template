@@ -1,11 +1,22 @@
-import type { FooterItem, MainMenuItem } from "@/types";
+import type { FooterItem } from "@/types/reliverse/nav";
+import type { MainMenuItem } from "@/types/reliverse/with";
 
-import { slugify } from "@/utils";
-
-import type { Icons } from "~/components/Common/Icons";
+import { slugify } from "@/utils/reliverse/string";
 
 import metadata from "~/constants/metadata";
 import { productCategories } from "~/constants/products";
+
+// Define available icon names as a union type
+type IconName =
+  | "billing"
+  | "discord"
+  | "dollarSign"
+  | "laptop"
+  | "settings"
+  | "store"
+  | "terminal"
+  | "user"
+  | "view";
 
 const socialLinks = {
   discord: "https://discord.gg/Pb8uKbwpsJ",
@@ -133,9 +144,8 @@ export const siteConfig = {
   ] satisfies FooterItem[],
   images: [
     {
-      // eslint-disable-next-line @stylistic/max-len
-      alt: "Shows the cover image of Relivator Next.js template, with the phrase: Relivator Empowers Your eCommerce with the Power of Next.js",
-      url: "/og-image.png",
+      alt: "Shows the cover image of Relivator Next.js template",
+      url: "/og.png",
     },
   ],
   keywords: ["next js shadcn ecommerce template"] as string[],
@@ -212,6 +222,6 @@ export const oauthProvidersClerk = [
     | "oauth_github"
     | "oauth_google"
     | "oauth_microsoft";
-  icon: keyof typeof Icons;
+  icon: IconName;
   name: string;
 }[];

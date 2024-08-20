@@ -5,7 +5,7 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "~/core/trpc-old/trpc";
-import { todos } from "~/db/schema";
+import { todos } from "~/db/schema/provider";
 
 export const todoRouter = createTRPCRouter({
   create: protectedProcedure

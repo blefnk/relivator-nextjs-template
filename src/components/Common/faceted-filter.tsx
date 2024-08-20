@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useMemo } from "react";
 
-import type { Option } from "@/types";
+import type { Option } from "@/types/reliverse/store";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -20,8 +20,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
 type FacetedFilterProps = {
   filterValues: string[];
@@ -36,6 +37,8 @@ export function FacetedFilter({
   setFilterValues,
   title,
 }: FacetedFilterProps) {
+  const t = useTranslations();
+
   const selectedValues = useMemo(() => new Set(filterValues), [filterValues]);
 
   return (
@@ -81,9 +84,7 @@ export function FacetedFilter({
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
-                        className={`
-                          rounded-sm px-1 font-normal
-                        `}
+                        className="rounded-sm px-1 font-normal"
                         key={option.value}
                         variant="secondary"
                       >
@@ -100,7 +101,7 @@ export function FacetedFilter({
         <Command>
           <CommandInput placeholder={title} />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandEmpty>{t("faceted-filter.noResultsFound")}</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
                 const isSelected = selectedValues.has(option.value);
@@ -143,9 +144,7 @@ export function FacetedFilter({
                     {option.icon && (
                       <option.icon
                         aria-hidden="true"
-                        className={`
-                          mr-2 size-4 text-muted-foreground
-                        `}
+                        className="mr-2 size-4 text-muted-foreground"
                       />
                     )}
                     <span>{option.label}</span>

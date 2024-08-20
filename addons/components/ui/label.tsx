@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 
 import type { VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva } from "class-variance-authority";
 

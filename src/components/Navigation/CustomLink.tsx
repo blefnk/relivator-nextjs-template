@@ -2,7 +2,7 @@ import type { LinkHTMLAttributes } from "react";
 
 import Link from "next/link";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { ExternalLink } from "lucide-react";
 
 type CustomLinkProps = {

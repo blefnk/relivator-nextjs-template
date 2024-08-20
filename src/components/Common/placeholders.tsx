@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks-react/use-toast";
 
-import { authProvider } from "~/auth";
+import { authProvider } from "~/auth/provider";
 
 // Used as a placeholder when environment variables are not specified
 export function ButtonPlaceholder() {

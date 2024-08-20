@@ -3,13 +3,15 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { config } from "@reliverse/core";
+import { appMainName } from "~/../reliverse.config";
 import { Music, Store } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { siteConfig } from "~/app";
-import JoinNewsletterForm from "~/components/Forms/JoinNewsletterForm";
+import { JoinNewsletterForm } from "~/components/Forms/JoinNewsletterForm";
 import { DonateLink } from "~/components/Navigation/DonateLink";
 import { ThemesGeneralSwitcher } from "~/components/Switchers/ThemesGeneralSwitcher";
 import { Shell } from "~/components/Wrappers/ShellVariants";
@@ -39,6 +41,8 @@ const SocialIconLink = ({ children, href, label }: SocialIconLinkProps) => (
 );
 
 export function SiteFooter() {
+  const t = useTranslations();
+
   return (
     <footer className="items-center border-t bg-background py-14">
       <Shell
@@ -96,13 +100,22 @@ export function SiteFooter() {
                 rel="noreferrer noopener"
                 target="_blank"
               >
-                {siteConfig.author.fullName}
-                <span className="sr-only">
-                  {siteConfig.author.fullName}'s GitHub Page
-                </span>
+                {env.NEXT_PUBLIC_APP_URL ===
+                "https://relivator.reliverse.org" ? (
+                  <>
+                    {siteConfig.author.fullName}
+                    <span className="sr-only">
+                      {siteConfig.author.fullName}'s GitHub Page
+                    </span>
+                  </>
+                ) : (
+                  <>{appMainName}</>
+                )}
               </Link>
               <br />
-              <span className="font-normal">All Rights Reserved</span>
+              <span className="font-normal">
+                {t("SiteFooter.allRightsReserved")}
+              </span>
             </div>
           </div>
         </section>

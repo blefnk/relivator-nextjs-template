@@ -95,9 +95,7 @@ export default function ButtonSetSubscription({
 
           ${
             mapPlanId === userSubscription
-              ? `
-            hover:bg-destructive hover:text-destructive-foreground
-          `
+              ? "hover:bg-destructive hover:text-destructive-foreground"
               : ""
           }
         `}

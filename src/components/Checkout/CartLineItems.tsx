@@ -2,15 +2,14 @@ import type { HTMLAttributes } from "react";
 
 import Image from "next/image";
 
-import type { CartLineItem } from "@/types";
+import type { CartLineItem } from "@/types/reliverse/store";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-import { cn, formatPrice } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { formatPrice } from "@/utils/reliverse/number";
 import { Slot } from "@radix-ui/react-slot";
-import { Edit } from "lucide-react";
-
-import { Icons } from "~/components/Common/Icons";
+import { Edit, ImageIcon } from "lucide-react";
 
 // TODO: fix and enable back in v1.3.0-canary.x
 // import { UpdateCart } from "~/components/Checkout/UpdateCart";
@@ -82,47 +81,27 @@ export function CartLineItems({
                           flex h-full items-center justify-center bg-secondary
                         `}
                       >
-                        <Icons.placeholder
+                        <ImageIcon
                           aria-hidden="true"
-                          className={`
-                            size-4 text-muted-foreground
-                          `}
+                          className="size-4 text-muted-foreground"
                         />
                       </div>
                     )}
                   </div>
                 ) : null}
-                <div
-                  className={`
-                  flex flex-col space-y-1 self-start
-                `}
-                >
-                  <span
-                    className={`
-                    line-clamp-1 text-sm font-medium
-                  `}
-                  >
+                <div className="flex flex-col space-y-1 self-start">
+                  <span className="line-clamp-1 text-sm font-medium">
                     {item.name}
                   </span>
                   {isEditable ? (
-                    <span
-                      className={`
-                      line-clamp-1 text-xs
-                      text-muted-foreground
-                    `}
-                    >
+                    <span className="line-clamp-1 text-xs text-muted-foreground">
                       {formatPrice(item.price)} x {item.quantity} ={" "}
                       {formatPrice(
                         (Number(item.price) * Number(item.quantity)).toFixed(2),
                       )}
                     </span>
                   ) : (
-                    <span
-                      className={`
-                      line-clamp-1 text-xs
-                      text-muted-foreground
-                    `}
-                    >
+                    <span className="line-clamp-1 text-xs text-muted-foreground">
                       Qty {item.quantity}
                     </span>
                   )}
@@ -143,26 +122,13 @@ export function CartLineItems({
                   {/* <UpdateCart cartLineItem={item} /> */}
                 </>
               ) : (
-                <div
-                  className={`
-                  flex flex-col space-y-1 font-medium
-                `}
-                >
-                  <span
-                    className={`
-                    ml-auto line-clamp-1 text-sm
-                  `}
-                  >
+                <div className="flex flex-col space-y-1 font-medium">
+                  <span className="ml-auto line-clamp-1 text-sm">
                     {formatPrice(
                       (Number(item.price) * item.quantity).toFixed(2),
                     )}
                   </span>
-                  <span
-                    className={`
-                    line-clamp-1 text-xs
-                    text-muted-foreground
-                  `}
-                  >
+                  <span className="line-clamp-1 text-xs text-muted-foreground">
                     {formatPrice(item.price)} each
                   </span>
                 </div>

@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslations } from "next-intl";
 
 import {
   PageHeader,
@@ -8,13 +9,17 @@ import {
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function PurchasesLoading() {
+  const t = useTranslations();
+
   return (
     <Shell variant="sidebar">
       <PageHeader
         aria-labelledby="dashboard-purchases-header-heading"
         id="dashboard-purchases-header"
       >
-        <PageHeaderHeading size="sm">Purchases</PageHeaderHeading>
+        <PageHeaderHeading size="sm">
+          {t("loading.purchases")}
+        </PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Manage the purchases
         </PageHeaderDescription>

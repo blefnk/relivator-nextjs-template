@@ -17,14 +17,15 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown";
-import { formatDate, formatPrice } from "@/utils";
+import { formatDate } from "@/utils/reliverse/date";
+import { formatPrice } from "@/utils/reliverse/number";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 import { DataTable } from "~/components/Modules/DataTable/DataTable";
 import { DataTableColumnHeader } from "~/components/Modules/DataTable/DataTableColumnHeader";
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 
 type ProductsTableShellProps = {
   data: Product[];

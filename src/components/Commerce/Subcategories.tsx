@@ -6,12 +6,7 @@ import { productCategories } from "~/constants/products";
 
 export function ProductSubcategories() {
   return (
-    <div
-      className={`
-      mx-auto flex flex-col items-center space-y-4
-      text-center
-    `}
-    >
+    <div className="mx-auto flex flex-col items-center space-y-4 text-center">
       <div
         aria-labelledby="random-subcategories-heading"
         className="flex flex-wrap items-center justify-center gap-4"

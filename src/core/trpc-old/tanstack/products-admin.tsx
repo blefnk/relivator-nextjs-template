@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useQueryNormalizer } from "@normy/react-query";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 
 // @see https://github.com/klis87/normy#readme */
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 10));
@@ -61,6 +62,8 @@ const TanstackProducts = () => {
 };
 
 export default function ProductsAdminManagement() {
+  const t = useTranslations();
+
   const queryClient = useQueryClient();
   const queryNormalizer = useQueryNormalizer();
 
@@ -219,13 +222,17 @@ export default function ProductsAdminManagement() {
           Update "Store 1" name manually
         </Button>
         <hr className="my-4" />
-        <h2 className="mb-4 text-2xl font-bold">Products</h2>
+        <h2 className="mb-4 text-2xl font-bold">
+          {t("products-admin.products")}
+        </h2>
         <TanstackProducts />
         <hr className="my-4" />
         {}
         {productData && (
           <>
-            <h2 className="mb-4 text-2xl font-bold">Product Details</h2>
+            <h2 className="mb-4 text-2xl font-bold">
+              {t("products-admin.productDetails")}
+            </h2>
             <div
               className={`
                 rounded bg-zinc-200 p-4 shadow

@@ -88,7 +88,7 @@ export default async function CustomClothesPage() {
         aria-labelledby="custom-clothing-header-heading"
         id="custom-clothing-header"
       >
-        <PageHeaderHeading size="sm">Build a Board</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("page.buildABoard")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Select the components for the board
         </PageHeaderDescription>

@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,

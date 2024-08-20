@@ -1,15 +1,13 @@
 import type { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { cva } from "class-variance-authority";
 
 const headingVariants = cva("font-bold transition-colors", {
   variants: {
     variant: {
-      h1: `
-        scroll-m-20 border-b pb-2 text-3xl font-extrabold tracking-tight
-      `,
+      h1: "scroll-m-20 border-b pb-2 text-3xl font-extrabold tracking-tight",
       h2: `
         scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight
         transition-colors

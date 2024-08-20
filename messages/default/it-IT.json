@@ -1,0 +1,604 @@
+{
+  "AuthjsV5Test": {
+    "clientExamplePageTsx": "esempio-client/page.tsx",
+    "clientSideRendering": "Rendering lato client",
+    "exampleBackend": "backend di esempio",
+    "here": "Qui",
+    "loading": "Caricamento...",
+    "sessionprovider": "SessionProvider",
+    "thirdPartyBackendIntegration": "Integrazione backend di terze parti",
+    "update": "Aggiornamento",
+    "updatingTheSession": "Aggiornamento della sessione",
+    "useClient": "'usa client'",
+    "usesession": "useSession"
+  },
+  "CartAddForm": {
+    "addOneItem": "Aggiungi un elemento",
+    "quantity": "Quantità",
+    "removeOneItem": "Rimuovi un elemento"
+  },
+  "CommerceDashboard": {
+    "dashboard": "Pannello di controllo"
+  },
+  "ContactForm": {
+    "message": "Messaggio",
+    "subject": "Soggetto"
+  },
+  "CountryList": {
+    "currencies": "Valute:",
+    "languages": "Lingue:",
+    "loading": "Caricamento..."
+  },
+  "DataTablePagination": {
+    "rowsPerPage": "Righe per pagina"
+  },
+  "DialogShell": {
+    "close": "Vicino"
+  },
+  "Error": {
+    "description": "<p>Switch the website language to English if the error details are not displayed. | Purtroppo abbiamo riscontrato un errore.</p><p>Puoi provare a <riprovare>ricaricare la pagina</riprova> che stavi visitando. Noi, come sviluppatori del sito Web, ti saremmo molto grati se potessi contattarci e segnalarci questo errore. Grazie in anticipo!</p>",
+    "title": "Qualcosa è andato storto..."
+  },
+  "Faceted": {
+    "noResultsFound": "Nessun risultato trovato"
+  },
+  "GuestAddForm": {
+    "email": "E-mail"
+  },
+  "JoinNewsletterForm": {
+    "joinReliverseWeeklyNewsletter": "Iscriviti alla newsletter settimanale di Reliverse",
+    "tryAgain": "Riprova"
+  },
+  "LocaleSwitcher": {
+    "changeLanguage": "cambiare lingua",
+    "english": "Inglese",
+    "germany": "Germania",
+    "languages": "Lingue",
+    "spanish": "spagnolo",
+    "ukrainian": "ucraino"
+  },
+  "LoginForm": {
+    "no-account": "Non hai un account?",
+    "signup": "Registrati qui.",
+    "title": "Accedi",
+    "welcome-back": "Bentornato"
+  },
+  "MainMenu": {
+    "websiteLogoWithName": "Logo del sito web con nome"
+  },
+  "Manifest": {
+    "name": "Relivator: Modello Next.js"
+  },
+  "MdxCard": {
+    "view": "Visualizzazione"
+  },
+  "MobileMenu": {
+    "toggleMenu": "Cambia menu"
+  },
+  "ModeToggle": {
+    "toggleTheme": "Cambia tema"
+  },
+  "MultiUploader": {
+    "dropFilesHere": "Rilascia i file qui!"
+  },
+  "NavWithCompactPageHeader": {
+    "navwithcompactpageheader": "NavWithCompactPageHeader"
+  },
+  "NewsletterWelcomeEmail": {
+    "reliverseWeeklyNewsletter": "Newsletter settimanale ripercorribile"
+  },
+  "Options": {
+    "toggleColumns": "Attiva/disattiva colonne"
+  },
+  "PathnamesPage": {
+    "description": "<p>Reliverse Playground | next-intl | I nomi dei percorsi degli URL possono essere internazionalizzati.</p><p>Se utilizzi la lingua predefinita, l'inglese, vedrai <code>/en/pathnames</code> nella barra degli indirizzi del browser in questa pagina.< /p><p>Se cambi la locale in tedesco, l'URL verrà localizzato di conseguenza (<code>/de/pfadnamen</code>).</p>",
+    "title": "Nomi di percorso"
+  },
+  "PostAddForm": {
+    "createPost": "Crea messaggio"
+  },
+  "PricingModules": {
+    "nextJs": "Next.js"
+  },
+  "Privileges": {
+    "switchUserRole": "Cambia ruolo utente"
+  },
+  "ProductAddForm": {
+    "addProduct": "Aggiungi prodotto",
+    "category": "Categoria",
+    "description": "Descrizione",
+    "images": "Immagini",
+    "inventory": "Inventario",
+    "name": "Nome",
+    "price": "Prezzo",
+    "subcategory": "Sottocategoria"
+  },
+  "ProductCard": {
+    "promise": "Promessa"
+  },
+  "ProductPager": {
+    "nextProduct": "Prodotto successivo",
+    "previousProduct": "Prodotto precedente"
+  },
+  "ProductUpdForm": {
+    "category": "Categoria",
+    "deleteProduct": "Elimina prodotto",
+    "description": "Descrizione",
+    "images": "Immagini",
+    "inventory": "Inventario",
+    "name": "Nome",
+    "price": "Prezzo",
+    "subcategory": "Sottocategoria",
+    "updateProduct": "Aggiorna prodotto"
+  },
+  "ProductsCombobox": {
+    "searchProducts": "Cerca prodotti"
+  },
+  "RegisterForm": {
+    "have-account": "Hai già un account?",
+    "signin": "Accedi qui.",
+    "title": "Registrati"
+  },
+  "RootLocaleLayout": {
+    "metadata": {
+      "description": "Migliora il tuo eCommerce con Relivator: Potenza di shadcn/ui, Next.js 15 e React 19",
+      "title": {
+        "home": "Home"
+      }
+    },
+    "titleDetails": "Costruisci rapidamente negozi online"
+  },
+  "SVG": {
+    "buyMeACoffeLogo": "Comprami un logo del caffè",
+    "facebookLogo": "Logo di Facebook",
+    "githubLogoInvertocat": "Logo GitHub: Invertocat",
+    "googleLogo": "Logo di Google",
+    "nextJs": "Next.js",
+    "passkey": "Chiave di accesso",
+    "patreonLogo": "Logo Patreon",
+    "paypalLogo": "Logo PayPal",
+    "spinner": "Filatore"
+  },
+  "SessionData": {
+    "currentSessionData": "Dati della sessione corrente",
+    "onlyPassTheNecessaryFields": "compila solo i campi necessari",
+    "signIn": "Registrazione"
+  },
+  "SidebarWithHeader": {
+    "applicationAppShellsSidebarLayoutsSidebarWithHeader": "Applicazione - Shell delle app - Layout della barra laterale - Barra laterale con intestazione",
+    "sidebarwithheader": "SidebarWithHeader"
+  },
+  "SiteFooter": {
+    "allRightsReserved": "Tutti i diritti riservati"
+  },
+  "StoreAddForm": {
+    "addStore": "Aggiungi negozio",
+    "description": "Descrizione",
+    "name": "Nome"
+  },
+  "StorePager": {
+    "nextStore": "Il prossimo negozio",
+    "previousStore": "Negozio precedente"
+  },
+  "StoreSwitcher": {
+    "noStoresFound": "Nessun negozio trovato."
+  },
+  "ThemeToggle": {
+    "toggleTheme": "Cambia tema"
+  },
+  "ThemesGeneralSwitcher": {
+    "dark": "Buio",
+    "light": "Leggero",
+    "system": "Sistema",
+    "theme": "Tema"
+  },
+  "UpdateCart": {
+    "addOneItem": "Aggiungi un elemento",
+    "deleteItem": "Elimina elemento",
+    "removeOneItem": "Rimuovi un elemento"
+  },
+  "UpdateNotificationForm": {
+    "marketingEmails": "E-mail di marketing",
+    "newsletterEmails": "E-mail della newsletter",
+    "savePreferences": "Salva le preferenze"
+  },
+  "UserButton": {
+    "signIn": "Registrazione"
+  },
+  "VerifyOrderForm": {
+    "deliveryPostalCode": "Codice postale di consegna",
+    "verifyOrder": "Verifica l'ordine"
+  },
+  "WithIcons": {
+    "applicationNavigationVerticalNavigationWithIcons": "Applicazione - Navigazione - Navigazione verticale - Con icone",
+    "withicons": "ConIcone"
+  },
+  "WithLeftAlignedNav": {
+    "elementsHeadersWithLeftAlignedNav": "Elementi - Intestazioni - Con navigazione allineata a sinistra",
+    "withleftalignednav": "ConNav allineato a sinistra"
+  },
+  "WithSecondaryNavigation": {
+    "withsecondarynavigation": "Con navigazione secondaria"
+  },
+  "account-page": {
+    "Settings": "Impostazioni",
+    "loggedIn": "Connesso",
+    "loggedOut": "Disconnesso",
+    "login": "Accedi",
+    "logout": "Disconnetti",
+    "title": "Account"
+  },
+  "auth": {
+    "error": {
+      "default": "Prova un altro account.",
+      "email": "Email non trovata. Prova un altro fornitore.",
+      "oauthNotLinked": "Accedi con il tuo account originale per confermare l'identità.",
+      "unknown": "Si è verificato un errore. Riprova.",
+      "unknown-error": "Qualcosa è andato storto. Visita /contact per informare il supporto."
+    },
+    "legal": "Usando questi pulsanti, accetti i nostri",
+    "legal-and": "e",
+    "legal-privacy": "Politica sulla riservatezza",
+    "legal-terms": "Termini di servizio"
+  },
+  "auth-provider": {
+    "please-wait": "Attendere prego..."
+  },
+  "auth-user": {
+    "signInEmail": "Accedi e-mail"
+  },
+  "banners": {
+    "announcements-1": {
+      "button": "Visita ora",
+      "details": "Visita il post sul blog di rilascio per vedere cosa è cambiato e cosa verrà dopo.",
+      "dismiss": "Congedare",
+      "title": "Relivator v1.2.6 e v1.3.0-canary.4 sono QUI!"
+    }
+  },
+  "blog-comments-server": {
+    "postthreadlist": "PostThreadList"
+  },
+  "checkout": {
+    "CartDetails": "Dettagli",
+    "Demo": "Usa dati di test: 4242424242424242 | 12/34 | 567",
+    "Description": "Paga con articoli nel carrello",
+    "EmptyCartDescription": "Aggiungi articoli al carrello per pagare",
+    "EmptyCartHeading": "Carrello vuoto",
+    "Pay": "Paga",
+    "Title": "Pagamento",
+    "backToCart": "Torna al carrello",
+    "backToCartSingle": "Indietro",
+    "calculated": "Calcolato al pagamento",
+    "cart": "Carrello",
+    "cartIsEmpty": "Il tuo carrello è vuoto",
+    "continueShopping": "Continua a fare acquisti",
+    "free": "Gratis",
+    "notConnectedDescription": "Collega il negozio a Stripe per accettare pagamenti",
+    "notConnectedHeading": "Negozio non connesso a Stripe",
+    "shipping": "Spedizione",
+    "taxes": "Tasse",
+    "total": "Totale",
+    "viewTheCart": "Vedi carrello"
+  },
+  "client": {
+    "currentPassword": "Password attuale",
+    "name": "Nome",
+    "newPassword": "Nuova password",
+    "password": "Password",
+    "plan": "Piano",
+    "saveChanges": "Salva modifiche",
+    "savePassword": "Salva password",
+    "settings": "Impostazioni",
+    "subscriptionPlans": "Piani di abbonamento",
+    "userNotFound": "Utente non trovato",
+    "username": "Nome utente"
+  },
+  "components": {
+    "command": {
+      "dark": "Scuro",
+      "light": "Chiaro",
+      "system": "Sistema",
+      "theme": "Tema"
+    },
+    "search": {
+      "placeholder": "Cerca...",
+      "title": "Cerca"
+    }
+  },
+  "contact": {
+    "submit": "Invia"
+  },
+  "cursor": {
+    "cursor": "Cursore"
+  },
+  "demo": {
+    "aria-label-goto": "Vai a",
+    "launch": "Dashboard"
+  },
+  "editor-placeholder": {
+    "record": "Documentazione"
+  },
+  "example": {
+    "beforeUsing": "prima dell'uso",
+    "billing": "Fatturazione",
+    "localhostDebug": "[localhost-debug]:"
+  },
+  "faceted-filter": {
+    "noResultsFound": "Nessun risultato trovato"
+  },
+  "faq": {
+    "1": {
+      "details": "Visita README.md nel repository GitHub di Relivator per le ultime informazioni e istruzioni di installazione.",
+      "summary": "Come posso installare e iniziare velocemente?"
+    },
+    "2": {
+      "details": "Relivator offre possibilità illimitate con tutti gli strumenti pronti all'uso.",
+      "summary": "Perché scegliere Relivator per Next.js 15 e React 19?"
+    },
+    "3": {
+      "details": "Lo sviluppo è principalmente svolto da una persona. Le donazioni possono accelerare il processo. Clicca sotto per sostenere. Grazie per il tuo supporto! 🩷",
+      "summary": "Si può accelerare il rilascio di Relivator v1.3.0?"
+    }
+  },
+  "file-dialog": {
+    "cropImage": "Ritaglia l'immagine",
+    "dropTheFileHere": "Rilascia il file qui",
+    "removeAll": "Rimuovi tutto",
+    "removeFile": "Rimuovi file",
+    "uploadImages": "Carica immagini"
+  },
+  "landing": {
+    "about": "Lo starter Next.js più ricco di funzionalità e globale. Scopri le nostre caratteristiche. Più che codice, è un viaggio. Stabile e pronto per la produzione.",
+    "buy-now": "Catalogo",
+    "features": {
+      "auth": {
+        "description": "Distribuisci un sistema di autenticazione versatile con NextAuth.js e Clerk. Vedi .env.example per dettagli.",
+        "title": "Autenticazione: Sicura e Flessibile"
+      },
+      "database": {
+        "description": "Mantieni le prestazioni con Drizzle ORM, passando da MySQL a Postgres senza interruzioni. Distribuisci con Planetscale, Vercel, Railway, Neon e altri.",
+        "title": "Integrazione Database: Robusta e Versatile"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator offre possibilità illimitate con tutti gli strumenti pronti.",
+        "description": "Sistema di abbonamento robusto con piani gratuiti e a pagamento. Vedi README.md per maggiori dettagli.",
+        "title": "Abbonamenti Stripe: Potenti e Flessibili"
+      },
+      "interface": {
+        "description": "Crea UI impressionanti con componenti Flowbite e Shadcn UI, stilizzati con Radix e Tailwind CSS. VSCode consigliato.",
+        "title": "Componenti: Eleganti e Funzionali"
+      },
+      "nextjs": {
+        "description": "Navigazione fluida con App Router, Layouts e Loading UI. Scopri potenti API routes e altro.",
+        "title": "Next.js 15: Esperienza Migliorata"
+      },
+      "text": {
+        "description": "Gestisci facilmente l'app con componenti server e client. Usa hook avanzati e funzioni aggiuntive per uno sviluppo fluido.",
+        "title": "React 19: Sviluppo Moderno"
+      }
+    },
+    "footer-cta": "Pronto per iniziare?",
+    "get-started-button": "Dashboard",
+    "main-cta": "GitHub",
+    "sell-now": "Dashboard"
+  },
+  "layout": {
+    "back": "Indietro"
+  },
+  "loading": {
+    "account": "Account",
+    "billing": "Fatturazione",
+    "checkout": "Guardare",
+    "loading": "Caricamento...",
+    "purchases": "Acquisti",
+    "signOut": "disconnessione",
+    "thankYouForTheOrder": "Grazie per l'ordine"
+  },
+  "metadata": {
+    "description": "Migliora il tuo eCommerce con Relivator: Potenza di shadcn/ui, Next.js 15 e React 19",
+    "title": {
+      "home": "Home"
+    }
+  },
+  "mode-toggle": {
+    "dark": "Buio",
+    "light": "Leggero",
+    "system": "Sistema",
+    "toggleTheme": "Cambia tema"
+  },
+  "name": "Modello Relivator Next.js",
+  "onboard": {
+    "asa": "come",
+    "dateEventDateTbd": "Data: [Data dell'evento (da definire)]",
+    "donTMissOutReserveTheSpotNow": "Non perdertelo, prenota subito il posto!",
+    "eventDetails": "Dettagli dell'evento:",
+    "join15MinutesEarlyToNetwork": "🌟 Partecipa 15 minuti prima per fare rete! 🌟",
+    "locationEventLinkTbd": "Posizione: [Link evento (da definire)]",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js ridefinito:",
+    "tbdToBeDetermined": "*Da definire - Da definire",
+    "timeEventTimeTbd": "Orario: [Ora dell'evento (da definire)]"
+  },
+  "page": {
+    "about": "Di",
+    "accessToAPrivateCommunity": "Accesso a una comunità privata",
+    "account": "Account",
+    "addANewStoreToTheAccount": "Aggiungi un nuovo negozio all'account",
+    "addStore": "Aggiungi negozio",
+    "admin": "Ammin",
+    "adminPage": "Pagina di amministrazione",
+    "availableWorldwide": "Disponibile in tutto il mondo",
+    "billing": "Fatturazione",
+    "blog": "Blog",
+    "buildABoard": "Costruisci una tavola",
+    "client": "Cliente",
+    "countriesData": "Dati sui paesi",
+    "createNewComponent": "Crea nuovo componente",
+    "createNewPage": "Crea nuova pagina",
+    "createNewPost": "Crea nuovo messaggio",
+    "dashboard": "Pannello di controllo",
+    "directSupport": "Supporto diretto",
+    "donateThroughGithubBilling": "Dona tramite fatturazione GitHub",
+    "donationTiers": "Livelli di donazione",
+    "earlyAccessToNewFeatures": "Accesso anticipato alle nuove funzionalità",
+    "easyAndQuickProcess": "Processo facile e veloce",
+    "editUserPrivileges": "Modifica privilegi utente",
+    "emailPreferences": "Preferenze e-mail",
+    "exclusiveUpdatesAndContent": "Aggiornamenti e contenuti esclusivi",
+    "frequentlyAskedQuestions": "Domande frequenti",
+    "howTheMoneyIsUsed": "Come viene utilizzato il denaro",
+    "instantDonations": "Donazioni istantanee",
+    "localhostOnlyDebugInfo": "[informazioni-debug-solo-localhost]",
+    "manageTheSubscription": "Gestisci l'abbonamento",
+    "manageYourEmailPreferences": "Gestisci le tue preferenze e-mail",
+    "name": "Nome: ---",
+    "newStore": "Nuovo negozio",
+    "notImplementedYet": "Non ancora implementato",
+    "novuDeveloperPlaygroundPageComingSoon": "Pagina Novu Developer Playground Prossimamente...",
+    "oneTimeAndRecurringDonations": "Donazioni una tantum e ricorrenti",
+    "oneTimeDonations": "Donazioni una tantum",
+    "preferences": "Preferenze",
+    "pricing": "Prezzi",
+    "purchases": "Acquisti",
+    "purchasesTable": "Tabella degli acquisti",
+    "readyToBuildYourEcommercePlatform": "Pronto a costruire la tua piattaforma di e-commerce?",
+    "recurringAndOneTimeDonations": "Donazioni ricorrenti e una tantum",
+    "reliversePlayground": "Parco giochi Reliverse",
+    "res": "Ris",
+    "resJsonAsPromise": "res.json() come Promessa",
+    "resetPassword": "Reimposta la password",
+    "root": "radice",
+    "secureTransactions": "Transazioni sicure",
+    "seeAllPosts": "Vedi tutti i post",
+    "seeOurSponsors": "Vedi i nostri sponsor",
+    "server": "Server",
+    "settings": "Impostazioni",
+    "showASponsorBadgeOnYourGithubProfile": "Mostra un badge sponsor sul tuo profilo GitHub",
+    "signinWithDiscord": "Accedi con Discord",
+    "signinWithGithub": "Accedi con GitHub",
+    "signinWithGoogle": "Accedi con Google",
+    "simpleAndFunWayToSupport": "Un modo semplice e divertente per sostenere",
+    "smallOneTimeDonations": "Piccole donazioni una tantum",
+    "specificCountryRe": "Paese specifico (RE)",
+    "stores": "Negozi",
+    "supportWithNoFees": "Supporto senza costi",
+    "testEmailDelivery": "Prova la consegna della posta elettronica",
+    "thankYouForTheOrder": "Grazie per l'ordine",
+    "thePageIsStillInProductionPleaseCheckBackHereLater": "La pagina è ancora in produzione. Ricontrolla qui più tardi.",
+    "underConstruction": "In costruzione...",
+    "verifyEmail": "Verifica l'e-mail",
+    "waysToDonate": "Modi per donare"
+  },
+  "pages": {
+    "not-found": {
+      "description": "La risorsa potrebbe essere stata spostata, rinominata o non esistere. Verifica l'URL o usa il menu.",
+      "go-home": "Torna alla Home",
+      "title": "🫠 Pagina non trovata! 🥲"
+    }
+  },
+  "privacy-notice-right-aligned": {
+    "elementsBannersPrivacyNoticeRightAligned": "Elementi - Banner - Informativa sulla privacy allineati a destra",
+    "privacynoticerightaligned": "Informativa sulla privacyRightAligned"
+  },
+  "product-building": {
+    "filters": "Filtri",
+    "noProductsFound": "Nessun prodotto trovato",
+    "sortBy": "Ordina per"
+  },
+  "product-context": {
+    "productsctx": "ProdottiCtx"
+  },
+  "product-image-carousel": {
+    "nextSlide": "Diapositiva successiva",
+    "previousSlide": "Diapositiva precedente"
+  },
+  "products": {
+    "filters": "Filtri",
+    "nextStorePage": "Pagina successiva del negozio",
+    "noProductsFound": "Nessun prodotto trovato",
+    "previousStorePage": "Pagina precedente del negozio",
+    "sortBy": "Ordina per"
+  },
+  "products-admin": {
+    "productDetails": "Dettagli del prodotto",
+    "products": "Prodotti"
+  },
+  "signOutPage": {
+    "dashboard": "Pannello di controllo",
+    "description": {
+      "areyousueyouwanttosignout": "Sei sicuro di voler uscire?"
+    },
+    "heading": {
+      "signout": "disconnessione"
+    },
+    "home": "Casa",
+    "logOut": "Esci"
+  },
+  "stacked-with-footer-actions": {
+    "elementsFlyoutMenusStackedWithFooterActions": "Elementi - Menu a comparsa - Impilati con azioni a piè di pagina",
+    "stackedwithfooteractions": "StackedWithFooterActions"
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "Acquista {category} dai migliori negozi",
+      "buyTheBest": "Miglior {category}"
+    },
+    "products": {
+      "addToCart": "Aggiungi al carrello",
+      "buyProductsFromOurStores": "Acquista nei nostri negozi",
+      "catalogue": "Catalogo",
+      "description": "Descrizione",
+      "moreProductsFrom": "Altro da {storeName}",
+      "noDescription": "Nessuna descrizione disponibile.",
+      "products": "Prodotti",
+      "productsCatalogue": "Catalogo Prodotti"
+    },
+    "stores": {
+      "buy-products": "Acquista nei nostri negozi",
+      "stores": "Negozi"
+    }
+  },
+  "stores": {
+    "noStoresFound": "Nessun negozio trovato",
+    "sortBy": "Ordina per"
+  },
+  "temp-compiler-fix": {
+    "app": "App"
+  },
+  "titleDetails": "Costruisci rapidamente negozi online",
+  "upgrade": {
+    "localhostDebug": "localhost-debug",
+    "thisIncludes": "Ciò include:"
+  },
+  "usermenu": {
+    "account": {
+      "menu": "Account"
+    },
+    "adminpage": {
+      "menu": "Pagina di amministrazione"
+    },
+    "billing": {
+      "menu": "Fatturazione"
+    },
+    "dashboard": {
+      "menu": "Pannello di controllo"
+    },
+    "logout": {
+      "menu": "Esci"
+    },
+    "purchases": {
+      "menu": "Acquisti"
+    },
+    "settings": {
+      "menu": "Impostazioni"
+    },
+    "stores": {
+      "menu": "Negozi"
+    }
+  },
+  "with-button": {
+    "dismiss": "Congedare"
+  },
+  "with-button-animated": {
+    "dismiss": "Congedare"
+  }
+}

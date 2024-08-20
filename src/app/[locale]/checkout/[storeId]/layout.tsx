@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 
 import { redirect } from "next/navigation";
 
-import { authProvider } from "~/auth";
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 
 type CheckoutLayoutProps = {
   children: ReactNode;

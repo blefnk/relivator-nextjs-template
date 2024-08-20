@@ -1,9 +1,9 @@
-import Link from "next/link";
-
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { disableDonateButton } from "~/../reliverse.config";
 import { Coffee } from "lucide-react";
-import { disableDonateButton } from "reliverse.config";
+
+import { Link } from "~/navigation";
 
 // import { isDevelopment } from "std-env";
 // import { env } from "~/env";
@@ -23,7 +23,7 @@ export function DonateLink() {
         }),
         "space-x-1",
       )}
-      href="/donate"
+      href={"/donate" as any}
 
       // href={
       //   isDevelopment

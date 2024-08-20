@@ -5,7 +5,7 @@ import type { HTMLAttributes, ReactNode } from "react";
 
 import type { StripeElementsOptions } from "@stripe/stripe-js";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { Elements } from "@stripe/react-stripe-js";
 
 import { getStripe } from "~/core/stripe/getting";

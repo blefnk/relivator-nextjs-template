@@ -1440,9 +1440,6 @@ export default tseslint.config(
       // @see https://npmjs.com/package/eslint-plugin-react-hooks
       "react-hooks/rules-of-hooks": "off",
 
-      // @see https://github.com/ArnaudBarre/eslint-plugin-react-refresh
-      "react-refresh/only-export-components": "off",
-
       // @see https://github.com/schoero/eslint-plugin-readable-tailwind
       "readable-tailwind/multiline": ["off"], // {
       //   callees: [

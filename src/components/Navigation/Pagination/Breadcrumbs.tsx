@@ -3,7 +3,8 @@ import { Fragment } from "react";
 
 import Link from "next/link";
 
-import { cn, truncate } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { truncate } from "@/utils/reliverse/string";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 
 type BreadcrumbsProps = {

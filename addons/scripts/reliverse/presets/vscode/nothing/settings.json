@@ -1,17 +1,22 @@
 {
-  "i18n-ally.displayLanguage": "en",
+  "[appts.reliverse]": {
+    "vscodePreset": "nothing"
+  },
+  "i18n-ally.displayLanguage": "en-US",
   "i18n-ally.enabledFrameworks": ["general", "next-intl", "react"],
   "i18n-ally.keysInUse": [
+    "Manifest.name",
     "faq.1.details",
     "faq.1.summary",
     "faq.2.details",
     "faq.2.summary",
     "faq.3.details",
-    "faq.3.summary"
+    "faq.3.summary",
+    "name"
   ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": ["addons/messages/reliverse"],
-  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.localesPaths": ["messages/default"],
+  "i18n-ally.sourceLanguage": "en-US",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

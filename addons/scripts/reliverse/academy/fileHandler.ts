@@ -1,5 +1,5 @@
-import { getCurrentDirname } from "@/scripts/utils";
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
+import { getCurrentDirname } from "@reliverse/fs";
 import { destr } from "destr";
 import fs from "fs-extra";
 import { join } from "pathe";

@@ -8,14 +8,14 @@ import { Shell } from "~/components/Wrappers/ShellVariants";
 // import { Separator } from "@/components/ui/separator";
 // import { eq } from "drizzle-orm";
 // import { getTranslations } from "next-intl/server";
-// import { authProvider } from "reliverse.config";
+// import { authProvider } from "~/../reliverse.config";
 
 // import { authjs } from "~/auth/authjs";
 // import { clerk } from "~/auth/clerk";
 // import { Products } from "~/components/Common/products";
 // import { Breadcrumbs } from "~/components/Navigation/Pagination/Breadcrumbs";
 // import { db } from "~/db";
-// import { products, stores } from "~/db/schema";
+// import { products, stores } from "~/db/schema/provider";
 
 // const isString = (a: unknown) => typeof a === "string";
 

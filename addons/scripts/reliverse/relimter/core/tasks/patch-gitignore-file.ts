@@ -1,7 +1,7 @@
+import { debugEnabled } from "~/../reliverse.config";
 import consola from "consola";
 import fs from "fs-extra";
 import path from "pathe";
-import { debugEnabled } from "reliverse.config";
 
 import { env } from "~/env";
 

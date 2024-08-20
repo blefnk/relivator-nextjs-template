@@ -1,5 +1,5 @@
 import { getPlayers } from "@/scripts/reliverse/academy/player";
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import consola from "consola";
 
 export const displayLeaderboard = async (): Promise<void> => {

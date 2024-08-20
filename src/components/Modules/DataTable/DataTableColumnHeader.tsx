@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import {
   ArrowDownIcon,
   ArrowUpIcon,

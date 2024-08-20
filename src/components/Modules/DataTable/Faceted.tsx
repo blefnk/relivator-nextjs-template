@@ -1,4 +1,4 @@
-import type { Option } from "@/types";
+import type { Option } from "@/types/reliverse/store";
 import type { Column } from "@tanstack/react-table";
 
 import { Badge } from "@/components/ui/badge";
@@ -18,8 +18,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
 type DataTableFacetedFilter<TData, TValue> = {
   column?: Column<TData, TValue>;
@@ -32,6 +33,8 @@ export function DataTableFacetedFilter<TData, TValue>({
   options,
   title,
 }: DataTableFacetedFilter<TData, TValue>) {
+  const t = useTranslations();
+
   const selectedValues = new Set(
     column && (column.getFilterValue() as string[]),
   );
@@ -79,9 +82,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
-                        className={`
-                          rounded-sm px-1 font-normal
-                        `}
+                        className="rounded-sm px-1 font-normal"
                         key={option.value}
                         variant="secondary"
                       >
@@ -98,7 +99,7 @@ export function DataTableFacetedFilter<TData, TValue>({
         <Command>
           <CommandInput placeholder={title} />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandEmpty>{t("Faceted.noResultsFound")}</CommandEmpty>
             <CommandGroup>
               {options.map((option) => {
                 const isSelected = selectedValues.has(option.value);
@@ -142,9 +143,7 @@ export function DataTableFacetedFilter<TData, TValue>({
                     {option.icon && (
                       <option.icon
                         aria-hidden="true"
-                        className={`
-                          mr-2 size-4 text-muted-foreground
-                        `}
+                        className="mr-2 size-4 text-muted-foreground"
                       />
                     )}
                     <span>{option.label}</span>

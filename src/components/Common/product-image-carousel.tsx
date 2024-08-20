@@ -5,15 +5,15 @@ import { useCallback, useEffect, useState } from "react";
 
 import Image from "next/image";
 
-import type { StoredFile } from "@/types";
+import type { StoredFile } from "@/types/reliverse/store";
 import type { UseEmblaCarouselType } from "embla-carousel-react";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import useEmblaCarousel from "embla-carousel-react";
-
-import { Icons } from "~/components/Common/Icons";
+import { ImageIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type CarouselApi = UseEmblaCarouselType["1"];
 
@@ -32,6 +32,8 @@ export function ProductImageCarousel({
   options,
   ...props
 }: ProductImageCarouselProps) {
+  const t = useTranslations();
+
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
 
   const [previousButtonDisabled, setPreviousButtonDisabled] = useState(true);
@@ -89,7 +91,7 @@ export function ProductImageCarousel({
         `}
         role="img"
       >
-        <Icons.placeholder
+        <ImageIcon
           aria-hidden="true"
           className="size-9 text-muted-foreground"
         />
@@ -152,7 +154,9 @@ export function ProductImageCarousel({
                 sm:size-4
               `}
             />
-            <span className="sr-only">Previous slide</span>
+            <span className="sr-only">
+              {t("product-image-carousel.previousSlide")}
+            </span>
           </Button>
           {images.map((image, index) => (
             <Button
@@ -210,7 +214,9 @@ export function ProductImageCarousel({
                 sm:size-4
               `}
             />
-            <span className="sr-only">Next slide</span>
+            <span className="sr-only">
+              {t("product-image-carousel.nextSlide")}
+            </span>
           </Button>
         </div>
       ) : null}

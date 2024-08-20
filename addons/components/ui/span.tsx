@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { cva } from "class-variance-authority";
 
 const spanVariants = cva("", {

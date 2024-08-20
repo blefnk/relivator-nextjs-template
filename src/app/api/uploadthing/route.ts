@@ -1,4 +1,4 @@
-import { ourFileRouter } from "@/server/reliverse/api/uploadthing/core";
+import { ourFileRouter } from "@/server/reliverse/uploadthing-core";
 import { createRouteHandler } from "uploadthing/next";
 
 // Export routes for Next App Router

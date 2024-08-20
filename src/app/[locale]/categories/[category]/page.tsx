@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 import { titleCase } from "string-ts";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 import {
   PageHeader,

@@ -4,11 +4,11 @@ import { useTransition } from "react";
 
 import { generateProducts } from "@/actions/reliverse/generate";
 import { Button } from "@/components/ui/button";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 import consola from "consola";
 import tryToCatch from "try-to-catch";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
 type GenerateButtonProps = {
   storeId: string;
@@ -49,10 +49,7 @@ export function GenerateButton({ storeId }: GenerateButtonProps) {
       variant="secondary"
     >
       {isPending && (
-        <Icons.spinner
-          aria-hidden="true"
-          className="mr-2 size-4 animate-spin"
-        />
+        <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
       )}
       Generate products
     </Button>

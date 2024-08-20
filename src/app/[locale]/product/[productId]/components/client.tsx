@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import { getCookie, setCookie } from "cookies-next";
 import { useTranslations } from "next-intl";
 
-import { CartAddForm, GuestAddForm } from "~/components/Forms";
+import { CartAddForm } from "~/components/Forms/CartAddForm";
 import { GuestEmailSubmitProvider } from "~/components/Forms/Context/GuestAddFormContext";
+import { GuestAddForm } from "~/components/Forms/GuestAddForm";
 
 type AddToCartProps = {
   email?: string;

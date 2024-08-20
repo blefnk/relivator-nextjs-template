@@ -7,7 +7,7 @@ import type {
 } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import {
   CheckIcon,
   ChevronRightIcon,
@@ -210,12 +210,7 @@ const MenubarCheckboxItem = forwardRef<
     ref={ref}
     {...props}
   >
-    <span
-      className={`
-        absolute left-2 flex size-3.5 items-center
-        justify-center
-      `}
-    >
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
         <CheckIcon className="size-4" />
       </MenubarPrimitive.ItemIndicator>
@@ -245,12 +240,7 @@ const MenubarRadioItem = forwardRef<
     ref={ref}
     {...props}
   >
-    <span
-      className={`
-        absolute left-2 flex size-3.5 items-center
-        justify-center
-      `}
-    >
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <MenubarPrimitive.ItemIndicator>
         <DotFilledIcon className="size-4 fill-current" />
       </MenubarPrimitive.ItemIndicator>

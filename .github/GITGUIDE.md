@@ -1,26 +1,26 @@
 # The Detailed Git Guide
 
 <!--
-For those who are viewing the current markdown file using:
+For those viewing this markdown file using:
  – VSCode: Press F1 or Cmd/Ctrl+Shift+P and enter ">Markdown: Open Preview". Please install the "markdownlint" and "Markdown All in One" extensions.
  – GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1".
 -->
 
-*It is recommended to install Relivator according to the detailed instructions in [README.md](https://github.com/blefnk/relivator#readme) to feel more confident when starting to learn Git.*
+*It is recommended to install Relivator following the detailed instructions in the [README.md](https://github.com/blefnk/relivator#readme) to feel more confident as you begin learning Git.*
 
-That's true. [Git](https://git-scm.com) can be complex at first. Consider using resources like the current guide, [Git Book](https://git-scm.com/book), and [GitHub Skills](https://skills.github.com) to deepen your understanding. The command *git commit --help* will redirect you to information about the git commit command and its options, so this help command can be beneficial as well. The best way to get comfortable with Git is to use it regularly. Create a small project or use a large web project template like [Relivator](https://github.com/blefnk/relivator-nextjs-template) and experiment with different commands. If you're ever unsure about something related to Git, use the current detailed guide article to learn more about Git.
+It's true—[Git](https://git-scm.com) can be complex at first. Consider using resources like this guide, the [Git Book](https://git-scm.com/book), and [GitHub Skills](https://skills.github.com) to deepen your understanding. The command *git commit --help* will direct you to information about the `git commit` command and its options, so this help command can be beneficial as well. The best way to get comfortable with Git is to use it regularly. Create a small project or use a large web project template like [Relivator](https://github.com/blefnk/relivator-nextjs-template) and experiment with different commands. If you're ever unsure about something related to Git, refer to this detailed guide to learn more.
 
 ## Git Initial Setup
 
-*By following the details below in this guide, you will get a good start with Git, setting up your environment, and using some handy aliases to streamline your workflow. Happy gitting!*
+*By following the details in this guide, you will get a solid start with Git, set up your environment, and use some handy aliases to streamline your workflow. Happy gitting!*
 
 ### Essential Tools
 
-Ensure you have [*Git*](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git) installed. It is also recommended to install: *Node.js LTS* ([Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis)). Then, run *corepack enable pnpm* to install [*pnpm*](https://pnpm.io/installation). Additionally, we recommend installing [*VSCode*](https://code.visualstudio.com) and *GitHub Desktop* ([Windows/macOS](https://desktop.github.com) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)). If you're a Windows user, install [PowerShell 7.4+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#installing-the-msi-package) as well.
+Ensure you have [*Git*](https://learn.microsoft.com/en-us/devops/develop/git/install-and-set-up-git) installed. It's also recommended to install: *Node.js LTS* ([Windows/macOS](https://nodejs.org) | [Linux](https://youtu.be/NS3aTgKztis)). Then, run *corepack enable pnpm* to install [*pnpm*](https://pnpm.io/installation). Additionally, we recommend installing [*VSCode*](https://code.visualstudio.com) and *GitHub Desktop* ([Windows/macOS](https://desktop.github.com) | [Linux](https://dev.to/rahedmir/is-github-desktop-available-for-gnu-linux-4a69)). If you're a Windows user, also install [PowerShell 7.4+](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#installing-the-msi-package).
 
 ### Setting Up Your Identity
 
-Before you start creating any commits in Git, you need to set your identity. This is important because your name and email will be added to every commit you make. This information is public, so use something appropriate.
+Before you start creating any commits in Git, you need to set your identity. This is important because your name and email will be added to every commit you make. Since this information is public, use something appropriate.
 
 ```bash
 git config --global user.name "<YOUR_NAME>"
@@ -37,7 +37,7 @@ git config --global --list
 
 ## Git References
 
-Writing good commits is a good skill. To learn how to write good commit messages, refer to the following resources:
+Writing good commits is a valuable skill. To learn how to write effective commit messages, refer to the following resources:
 
 - [Enhance Your Git Log with Conventional Commits](https://dev.to/maxpou/enhance-your-git-log-with-conventional-commits-3ea4)
 - [Karma Commit Messages](http://karma-runner.github.io/6.4/dev/git-commit-msg.html)

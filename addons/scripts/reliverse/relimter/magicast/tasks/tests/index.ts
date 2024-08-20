@@ -1,4 +1,4 @@
-import { getCurrentDirname } from "@/scripts/utils";
+import { getCurrentDirname } from "@reliverse/fs";
 import consola from "consola";
 import { loadFile, writeFile } from "magicast";
 import { join, relative } from "pathe";

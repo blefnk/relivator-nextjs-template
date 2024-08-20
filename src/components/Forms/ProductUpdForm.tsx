@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import type { FileWithPreview } from "@/types";
+import type { FileWithPreview } from "@/types/reliverse/store";
 import type { z } from "zod";
 
 import {
@@ -34,27 +34,30 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/text-area";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
+import { useTranslations } from "next-intl";
 
 /* eslint-disable max-lines-per-function */
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 import { MultiUploader } from "~/components/Application/UploadThing/MultiUploader";
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 import { Zoom } from "~/components/Common/zoom-image";
 import { getSubcategories } from "~/constants/products";
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 import { env } from "~/env";
 
-type UpdateProductFormProps = {
+type ProductUpdFormProps = {
   product: Product;
 };
 
 type Inputs = z.infer<typeof productSchema>;
 
-export default function UpdateProductForm({ product }: UpdateProductFormProps) {
+export function ProductUpdForm({ product }: ProductUpdFormProps) {
+  const t = useTranslations();
+
   // todo: fix strange product images browser console warning message:
   // todo: "Ignoring unsupported entryTypes: largest-contentful-paint"
   const router = useRouter();
@@ -130,7 +133,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
         }
       >
         <FormItem>
-          <FormLabel>Name</FormLabel>
+          <FormLabel>{t("ProductUpdForm.name")}</FormLabel>
           <FormControl>
             <Input
               aria-invalid={!!form.formState.errors.name}
@@ -144,7 +147,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
           />
         </FormItem>
         <FormItem>
-          <FormLabel>Description</FormLabel>
+          <FormLabel>{t("ProductUpdForm.description")}</FormLabel>
           <FormControl>
             <Textarea
               placeholder="Type product description here."
@@ -168,7 +171,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
             name="category"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Category</FormLabel>
+                <FormLabel>{t("ProductUpdForm.category")}</FormLabel>
                 <FormControl>
                   <Select
                     defaultValue={product.category || "clothing"}
@@ -206,7 +209,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
             name="subcategory"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Subcategory</FormLabel>
+                <FormLabel>{t("ProductUpdForm.subcategory")}</FormLabel>
                 <FormControl>
                   <Select
                     onValueChange={field.onChange}
@@ -239,7 +242,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
           `}
         >
           <FormItem className="w-full">
-            <FormLabel>Price</FormLabel>
+            <FormLabel>{t("ProductUpdForm.price")}</FormLabel>
             <FormControl>
               <Input
                 inputMode="numeric"
@@ -254,7 +257,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
             />
           </FormItem>
           <FormItem className="w-full">
-            <FormLabel>Inventory</FormLabel>
+            <FormLabel>{t("ProductUpdForm.inventory")}</FormLabel>
             <FormControl>
               <Input
                 inputMode="numeric"
@@ -272,7 +275,7 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
           </FormItem>
         </div>
         <FormItem className="flex w-full flex-col gap-1.5">
-          <FormLabel>Images</FormLabel>
+          <FormLabel>{t("ProductUpdForm.images")}</FormLabel>
           {env.NODE_ENV === "development" && (
             <span className="font-mono text-red-500">
               {/* [localhost-notice] Upload button is hidden if UploadThing env are missing. */}
@@ -317,13 +320,13 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
         <div className="flex space-x-2">
           <Button disabled={isPending}>
             {isPending && (
-              <Icons.spinner
+              <SpinnerSVG
                 aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
               />
             )}
             Update Product
-            <span className="sr-only">Update product</span>
+            <span className="sr-only">{t("ProductUpdForm.updateProduct")}</span>
           </Button>
           <Button
             disabled={isPending}
@@ -341,13 +344,13 @@ export default function UpdateProductForm({ product }: UpdateProductFormProps) {
             variant="destructive"
           >
             {isPending && (
-              <Icons.spinner
+              <SpinnerSVG
                 aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
               />
             )}
             Delete Product
-            <span className="sr-only">Delete product</span>
+            <span className="sr-only">{t("ProductUpdForm.deleteProduct")}</span>
           </Button>
         </div>
       </form>

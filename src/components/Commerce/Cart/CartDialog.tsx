@@ -12,14 +12,15 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn, formatPrice } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { formatPrice } from "@/utils/reliverse/number";
 import consola from "consola";
+import { ShoppingCart } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { CartLineItems } from "~/components/Checkout/CartLineItems";
-import { Icons } from "~/components/Common/Icons";
 
-export default async function CartDialog() {
+export async function CartDialog() {
   const t = await getTranslations();
   const cartLineItems = await getCartAction();
 
@@ -64,7 +65,7 @@ export default async function CartDialog() {
               {itemCount}
             </Badge>
           )}
-          <Icons.cart aria-hidden="true" className="size-4" />
+          <ShoppingCart aria-hidden="true" className="size-4" />
         </Button>
       </SheetTrigger>
       <SheetContent
@@ -122,7 +123,7 @@ export default async function CartDialog() {
               flex h-full flex-col items-center justify-center space-y-1
             `}
           >
-            <Icons.cart
+            <ShoppingCart
               aria-hidden="true"
               className="mb-4 size-16 text-muted-foreground"
             />

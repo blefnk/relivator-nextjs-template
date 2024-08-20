@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dropdown";
 import { useIsClient } from "@uidotdev/usehooks";
 import { Laptop, Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 type ThemesGeneralSwitcherProps = {
@@ -22,6 +23,7 @@ export function ThemesGeneralSwitcher({
   iconClassName = "mr-2 h-4 w-4",
   ...props
 }: ThemesGeneralSwitcherProps) {
+  const t = useTranslations();
   const { setTheme } = useTheme();
   const isMounted = useIsClient();
 
@@ -80,7 +82,9 @@ export function ThemesGeneralSwitcher({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem className="font-medium">Theme</DropdownMenuItem>
+        <DropdownMenuItem className="font-medium">
+          {t("ThemesGeneralSwitcher.theme")}
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
@@ -88,7 +92,7 @@ export function ThemesGeneralSwitcher({
           }}
         >
           <Moon aria-hidden="true" className={iconClassName} />
-          <span>Dark</span>
+          <span>{t("ThemesGeneralSwitcher.dark")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
@@ -96,7 +100,7 @@ export function ThemesGeneralSwitcher({
           }}
         >
           <Sun aria-hidden="true" className={iconClassName} />
-          <span>Light</span>
+          <span>{t("ThemesGeneralSwitcher.light")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
@@ -104,7 +108,7 @@ export function ThemesGeneralSwitcher({
           }}
         >
           <Laptop aria-hidden="true" className={iconClassName} />
-          <span>System</span>
+          <span>{t("ThemesGeneralSwitcher.system")}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

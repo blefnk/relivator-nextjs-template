@@ -7,7 +7,8 @@ import { getCartAction } from "@/actions/reliverse//cart";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn, formatPrice } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { formatPrice } from "@/utils/reliverse/number";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { eq } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
@@ -15,14 +16,14 @@ import { getTranslations } from "next-intl/server";
 import { siteConfig } from "~/app";
 import { CartLineItems } from "~/components/Checkout/CartLineItems";
 import { CheckoutShell } from "~/components/Checkout/CheckoutShell";
-import { CheckoutForm } from "~/components/Forms";
+import { CheckoutForm } from "~/components/Forms/CheckoutForm";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import {
   createPaymentIntentAction,
   getStripeAccountAction,
 } from "~/core/stripe/actions";
 import { db } from "~/db";
-import { stores } from "~/db/schema";
+import { stores } from "~/db/schema/provider";
 import { env } from "~/env";
 
 export const metadata: Metadata = {
@@ -116,12 +117,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
         id="checkout-not-connected"
         variant="centered"
       >
-        <div
-          className={`
-          flex flex-col items-center justify-center gap-2
-          pt-20
-        `}
-        >
+        <div className="flex flex-col items-center justify-center gap-2 pt-20">
           <div className="text-center text-2xl font-bold">
             {t("checkout.notConnectedHeading")}
           </div>
@@ -226,11 +222,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
                   items={cartLineItems}
                   variant="minimal"
                 />
-                <div
-                  className={`
-                  container flex max-w-6xl pr-6 font-medium
-                `}
-                >
+                <div className="container flex max-w-6xl pr-6 font-medium">
                   <TotalQuantity />
                   <div>{formatPrice(total)}</div>
                 </div>
@@ -248,11 +240,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
           <div className="mb-4 text-sm font-semibold">
             {env.DEMO_NOTES_ENABLED === "true" && t("checkout.Demo")}
           </div>
-          <div
-            className={`
-            line-clamp-1 font-semibold text-muted-foreground
-          `}
-          >
+          <div className="line-clamp-1 font-semibold text-muted-foreground">
             {t("checkout.Pay")}
             {store.name}
           </div>

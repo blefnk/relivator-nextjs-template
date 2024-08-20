@@ -2,13 +2,15 @@
 
 import { useMemo } from "react";
 
-import type { CheckoutItem } from "@/types";
+import type { CheckoutItem } from "@/types/reliverse/store";
 import type { ColumnDef } from "@tanstack/react-table";
 
 import { Badge } from "@/components/ui/badge";
-import { cn, formatDate, formatPrice } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { formatDate } from "@/utils/reliverse/date";
+import { formatPrice } from "@/utils/reliverse/number";
 
-import type { Order } from "~/db/schema";
+import type { Order } from "~/db/schema/provider";
 
 import { DataTable } from "~/components/Modules/DataTable/DataTable";
 import { DataTableColumnHeader } from "~/components/Modules/DataTable/DataTableColumnHeader";

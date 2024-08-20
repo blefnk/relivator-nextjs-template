@@ -2,8 +2,12 @@
 
 import { useSearchParams } from "next/navigation";
 
+import { useTranslations } from "next-intl";
+
 // @see https://nextjs.org/docs/app/api-ref/functions/use-search-params
 export function CriticalErrorMessage() {
+  const t = useTranslations();
+
   // TODO: What approach is better for this function? 🤔
   const searchParameters = useSearchParams();
 
@@ -14,7 +18,7 @@ export function CriticalErrorMessage() {
   if (message === "user-not-found") {
     // URL -> `/error?message=user-not-found`
     // `message` -> 'user-not-found'
-    return <code>User not found</code>;
+    return <code>{t("client.userNotFound")}</code>;
   }
 
   return (

@@ -16,10 +16,10 @@ import {
 } from "drizzle-orm";
 import { z } from "zod";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 import { db } from "~/db";
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 
 import {
   getProductSchema,

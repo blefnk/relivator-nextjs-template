@@ -1,6 +1,6 @@
+import { getCurrentWorkingDirectory } from "@/../packageJson";
 import destr from "destr";
 import fs from "fs-extra";
-import { getCurrentWorkingDirectory } from "packageJson";
 import { join } from "pathe";
 
 type PackageJson = {

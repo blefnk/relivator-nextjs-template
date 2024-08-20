@@ -1,8 +1,8 @@
+import { debugEnabled } from "~/../reliverse.config";
 import consola from "consola";
 import dotenv from "dotenv";
 import { readFile } from "fs/promises";
 import pc from "picocolors";
-import { debugEnabled } from "reliverse.config";
 
 import { knownVariables } from "~/env";
 

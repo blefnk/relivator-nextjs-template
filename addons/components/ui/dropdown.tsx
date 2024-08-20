@@ -7,7 +7,7 @@ import type {
 } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import {
   CheckIcon,
@@ -174,12 +174,7 @@ const DropdownMenuCheckboxItem = forwardRef<
     ref={ref}
     {...props}
   >
-    <span
-      className={`
-      absolute left-2 flex size-3.5 items-center
-      justify-center
-    `}
-    >
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
         <CheckIcon className="size-4" />
       </DropdownMenuPrimitive.ItemIndicator>
@@ -210,12 +205,7 @@ const DropdownMenuRadioItem = forwardRef<
     ref={ref}
     {...props}
   >
-    <span
-      className={`
-      absolute left-2 flex size-3.5 items-center
-      justify-center
-    `}
-    >
+    <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
         <DotFilledIcon className="size-4 fill-current" />
       </DropdownMenuPrimitive.ItemIndicator>

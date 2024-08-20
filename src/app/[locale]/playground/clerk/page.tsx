@@ -71,11 +71,7 @@ export default function Home() {
           />
 
           <div className="border-b border-[#F2F2F4] px-12 py-16">
-            <div
-              className={`
-              inline-flex gap-4 rounded-full bg-[#F4F4F5] px-4 py-3
-            `}
-            >
+            <div className="inline-flex gap-4 rounded-full bg-[#F4F4F5] px-4 py-3">
               <ClerkLogo />
               <div aria-hidden className="h-6 w-px bg-[#C7C7C8]" />
               <NextLogo />
@@ -88,7 +84,9 @@ export default function Home() {
                 relative text-5xl font-bold tracking-tight text-[#131316]
               `}
             >
-              <span className="font-mono text-sm">Reliverse Playground</span>
+              <span className="font-mono text-sm">
+                {t("page.reliversePlayground")}
+              </span>
               Auth Provider: Clerk
             </h1>
 

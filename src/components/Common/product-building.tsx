@@ -5,12 +5,12 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import type { CartItem } from "@/types";
+import type { CartItem } from "@/types/reliverse/store";
 
 import {
   addToCartAction,
   deleteCartItemAction,
-} from "@/actions/reliverse//cart";
+} from "@/actions/reliverse/cart";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -32,12 +32,13 @@ import {
 } from "@/components/ui/sheet";
 import { Slider } from "@/components/ui/slider";
 import { useDebounce } from "@/hooks-react/use-debounce";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import consola from "consola";
+import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
-import { Icons } from "~/components/Common/Icons";
 import { ProductCard } from "~/components/Modules/Cards/ProductCard";
 import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
 import { sortOptions } from "~/constants/products";
@@ -59,6 +60,8 @@ export function ProductBuilder({
   tAddToCart = "Add to cart",
   ...props
 }: ProductBuilderProps) {
+  const t = useTranslations();
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParameters = useSearchParams();
@@ -108,21 +111,19 @@ export function ProductBuilder({
         })}`,
       );
     });
-  }, [debouncedPrice]);
+  }, [debouncedPrice, createQueryString, pathname, router]);
 
   const addToCart = useCallback(
     async (product: Product) => {
       try {
-        // @ts-expect-error TODO: fix id type
-        if (!cartItems.map((item) => item.productId).includes(product.id)) {
+        const productId = Number(product.id);
+        const storeId = Number(product.storeId);
+
+        if (!cartItems.map((item) => item.productId).includes(productId)) {
           // Only allow one product per subcategory in cart
-          const productIdWithSameSubcategory =
-            cartItems.find(
-              (item) => item.subcategory === product.subcategory,
-            ) &&
-            // @ts-expect-error TODO: fix id type
-            cartItems.find((item) => item.subcategory === product.subcategory)
-              .productId;
+          const productIdWithSameSubcategory = cartItems.find(
+            (item) => item.subcategory === product.subcategory,
+          )?.productId;
 
           if (productIdWithSameSubcategory) {
             await deleteCartItemAction({
@@ -130,12 +131,10 @@ export function ProductBuilder({
             });
           }
 
-          // consola.info("ProductBuilder's await addToCartAction");
           await addToCartAction({
-            // @ts-expect-error TODO: Fix id type
-            productId: product.id,
+            productId: productId,
             quantity: 1,
-            storeId: product.storeId,
+            storeId: storeId,
             subcategory: product.subcategory || subcategory,
           });
 
@@ -145,8 +144,7 @@ export function ProductBuilder({
         }
 
         await deleteCartItemAction({
-          // @ts-expect-error TODO: Fix id type
-          productId: product.id,
+          productId: productId,
         });
 
         consola.success("Removed from cart.");
@@ -156,7 +154,7 @@ export function ProductBuilder({
           : consola.error("Something went wrong, please try again.");
       }
     },
-    [subcategory, cartItems],
+    [cartItems, subcategory],
   );
 
   return (
@@ -170,22 +168,12 @@ export function ProductBuilder({
           </SheetTrigger>
           <SheetContent className="flex flex-col">
             <SheetHeader className="px-1">
-              <SheetTitle>Filters</SheetTitle>
+              <SheetTitle>{t("product-building.filters")}</SheetTitle>
             </SheetHeader>
             <Separator />
-            <div
-              className={`
-              flex flex-1 flex-col gap-5 overflow-hidden
-              px-1
-            `}
-            >
+            <div className="flex flex-1 flex-col gap-5 overflow-hidden px-1">
               <div className="space-y-4">
-                <h3
-                  className={`
-                  text-sm font-medium tracking-wide
-                  text-foreground
-                `}
-                >
+                <h3 className="text-sm font-medium tracking-wide text-foreground">
                   Price range ($)
                 </h3>
                 <Slider
@@ -241,10 +229,9 @@ export function ProductBuilder({
                     startTransition(() => {
                       router.push(
                         `${pathname}?${createQueryString({
-                          price_range: 0 - 100,
+                          price_range: "0-100",
                         })}`,
                       );
-
                       setPriceRange([0, 100]);
                     });
                   }}
@@ -260,11 +247,13 @@ export function ProductBuilder({
           <DropdownMenuTrigger asChild>
             <Button aria-label="Sort products" disabled={isPending} size="sm">
               Sort
-              <Icons.chevronDown aria-hidden="true" className="ml-2 size-4" />
+              <ChevronDown aria-hidden="true" className="ml-2 size-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-48">
-            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+            <DropdownMenuLabel>
+              {t("product-building.sortBy")}
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
             {sortOptions.map((option) => (
               <DropdownMenuItem
@@ -288,7 +277,9 @@ export function ProductBuilder({
       </div>
       {!isPending && products.length === 0 ? (
         <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
-          <h1 className="text-center text-2xl font-bold">No products found</h1>
+          <h1 className="text-center text-2xl font-bold">
+            {t("product-building.noProductsFound")}
+          </h1>
           <p className="text-center text-muted-foreground">
             Try changing the filters, or check back later for new products
           </p>
@@ -309,12 +300,11 @@ export function ProductBuilder({
           <ProductCard
             isAddedToCart={cartItems
               .map((item) => item.productId)
-              // @ts-expect-error TODO: fix id type
-              .includes(product.id)}
+              .includes(Number(product.id))}
             key={product.id}
             onSwitch={() => addToCart(product)}
-            product={product} // @ts-expect-error TODO: Fix id type
-            storeId={product.storeId}
+            product={product}
+            storeId={product.storeId.toString()}
             tAddToCart={tAddToCart}
             variant="switchable"
           />

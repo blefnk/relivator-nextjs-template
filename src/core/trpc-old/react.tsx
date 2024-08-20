@@ -8,10 +8,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
 import { loggerLink, unstable_httpBatchStreamLink } from "@trpc/client";
-import { hideTanstackDevtools } from "reliverse.config";
+import { hideTanstackDevtools } from "~/../reliverse.config";
 import superjson from "superjson";
 
-import { api } from "~/core/trpc-old";
+import { api } from "~/core/trpc-old/api";
 import { env } from "~/env";
 
 // We cannot useState or useRef in a server component, which is why we are

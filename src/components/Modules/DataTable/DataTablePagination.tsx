@@ -14,6 +14,7 @@ import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
 type DataTablePaginationProps<TData> = {
   pageSizeOptions?: number[];
@@ -24,6 +25,8 @@ export function DataTablePagination<TData>({
   pageSizeOptions,
   table,
 }: DataTablePaginationProps<TData>) {
+  const t = useTranslations();
+
   return (
     <div
       className={`
@@ -33,12 +36,7 @@ export function DataTablePagination<TData>({
         sm:flex-row sm:gap-8
       `}
     >
-      <div
-        className={`
-        flex-1 whitespace-nowrap text-sm
-        text-muted-foreground
-      `}
-      >
+      <div className="flex-1 whitespace-nowrap text-sm text-muted-foreground">
         {table.getFilteredSelectedRowModel().rows.length} of{" "}
         {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>
@@ -52,7 +50,9 @@ export function DataTablePagination<TData>({
         `}
       >
         <div className="flex items-center space-x-2">
-          <p className="whitespace-nowrap text-sm font-medium">Rows per page</p>
+          <p className="whitespace-nowrap text-sm font-medium">
+            {t("DataTablePagination.rowsPerPage")}
+          </p>
           <Select
             onValueChange={(value) => {
               table.setPageSize(Number(value));

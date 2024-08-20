@@ -2,21 +2,23 @@
 
 import { useTransition } from "react";
 
-import { useRouter } from "next/navigation";
-
 import { Button, buttonVariants } from "@/components/ui/button";
+import { Link } from "@/components/ui/link";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { SignOutButton } from "@clerk/nextjs";
 import { useIsClient } from "@uidotdev/usehooks";
 import { signOut } from "next-auth/react";
 import { useLocale } from "next-intl";
 
-import { authProvider } from "~/auth";
-import { Icons } from "~/components/Common/Icons";
+import { authProvider } from "~/auth/provider";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
-export function LogOutButtons() {
-  const router = useRouter();
+export function LogOutButtons({
+  tLogOut,
+  tHome,
+  tDashboard,
+}: { tDashboard: string; tHome: string; tLogOut: string }) {
   const isMounted = useIsClient();
   const [isPending] = useTransition();
   const locale = useLocale();
@@ -33,7 +35,7 @@ export function LogOutButtons() {
           "w-full bg-muted text-muted-foreground",
         )}
       >
-        Log out
+        {tLogOut}
       </Skeleton>
     );
   }
@@ -43,20 +45,18 @@ export function LogOutButtons() {
       {authProvider === "clerk" ? (
         <SignOutButton redirectUrl="/">
           <Button
-            aria-label="Log out"
+            aria-label={tLogOut}
             className="w-full"
             disabled={isPending}
             size="sm"
           >
-            {isPending && (
-              <Icons.spinner className="mr-2 size-4 animate-spin" />
-            )}
-            Log out
+            {isPending && <SpinnerSVG className="mr-2 size-4 animate-spin" />}
+            {tLogOut}
           </Button>
         </SignOutButton>
       ) : (
         <Button
-          aria-label="Log out"
+          aria-label={tLogOut}
           className="w-full"
           disabled={isPending}
           onClick={() =>
@@ -66,21 +66,27 @@ export function LogOutButtons() {
           }
           size="sm"
         >
-          Log out
+          {tLogOut}
         </Button>
       )}
-      <Button
-        aria-label="Go back to the previous page"
+      <Link
+        aria-label="Go to the home page"
         className="w-full"
-        disabled={isPending}
-        onClick={() => {
-          router.back();
-        }}
+        href="/"
         size="sm"
         variant="outline"
       >
-        Go back
-      </Button>
+        {tHome}
+      </Link>
+      <Link
+        aria-label="Go to the dashboard"
+        href="/dashboard"
+        className="w-full"
+        size="sm"
+        variant="outline"
+      >
+        {tDashboard}
+      </Link>
     </div>
   );
 }

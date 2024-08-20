@@ -8,11 +8,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { getTranslations } from "next-intl/server";
 
-import { authProvider } from "~/auth";
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
-import { StoreAddForm } from "~/components/Forms";
+import { authProvider } from "~/auth/provider";
+import { StoreAddForm } from "~/components/Forms/StoreAddForm";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -26,6 +27,8 @@ export const metadata: Metadata = {
 };
 
 export default async function NewStorePage() {
+  const t = await getTranslations();
+
   // const user = await revalidateUser();
   const user = authProvider === "clerk" ? await clerk() : await authjs();
 
@@ -40,7 +43,7 @@ export default async function NewStorePage() {
         aria-labelledby="new-store-page-header-heading"
         id="new-store-page-header"
       >
-        <PageHeaderHeading size="sm">New Store</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("page.newStore")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Add a new store to the account
         </PageHeaderDescription>
@@ -50,8 +53,10 @@ export default async function NewStorePage() {
         id="new-store-page-form-container"
       >
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Add store</CardTitle>
-          <CardDescription>Add a new store to the account</CardDescription>
+          <CardTitle className="text-2xl">{t("page.addStore")}</CardTitle>
+          <CardDescription>
+            {t("page.addANewStoreToTheAccount")}
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <StoreAddForm userId={user.id} />

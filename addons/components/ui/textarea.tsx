@@ -1,7 +1,7 @@
 import type { TextareaHTMLAttributes } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
 export type TextareaProps = {} & TextareaHTMLAttributes<HTMLTextAreaElement>;
 

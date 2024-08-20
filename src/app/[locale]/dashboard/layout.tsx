@@ -6,11 +6,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { config } from "@reliverse/core";
 import consola from "consola";
 
-import { authProvider } from "~/auth";
+import { authProvider } from "~/auth/provider";
 import { SidebarNav } from "~/components/Navigation/SidebarNav";
 import { GeneralShell } from "~/components/Wrappers/GeneralShell";
-import { dashboardConfig } from "~/constants/nav-items";
 import { env } from "~/env";
+
+// import { SidebarNav } from "~/components/Navigation/SidebarNav";
+// import { dashboardConfig } from "~/constants/nav-items";
 
 export default function DashboardLayout({
   children,
@@ -71,7 +73,7 @@ function DashboardLayoutContent({
                 lg:py-8
               `}
             >
-              <SidebarNav className="p-1" items={dashboardConfig.sidebarNav} />
+              <SidebarNav />
             </ScrollArea>
           </aside>
           <main className="flex w-full flex-col overflow-hidden">

@@ -1,13 +1,20 @@
 import type { ReactNode } from "react";
 
-import type { Icons } from "~/components/Common/Icons";
+type IconName =
+  | "billing"
+  | "dollarSign"
+  | "laptop"
+  | "settings"
+  | "store"
+  | "terminal"
+  | "user";
 
 type NavItem = {
   description?: string;
   disabled?: boolean;
   external?: boolean;
   href: string;
-  icon?: keyof typeof Icons;
+  icon?: IconName;
   label?: string;
   title: string;
 };

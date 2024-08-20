@@ -1,0 +1,604 @@
+{
+  "AuthjsV5Test": {
+    "clientExamplePageTsx": "client-example/page.tsx",
+    "clientSideRendering": "رندر سمت مشتری",
+    "exampleBackend": "نمونه باطن",
+    "here": "اینجا",
+    "loading": "در حال بارگیری...",
+    "sessionprovider": "SessionProvider",
+    "thirdPartyBackendIntegration": "ادغام باطن شخص ثالث",
+    "update": "به روز رسانی",
+    "updatingTheSession": "در حال به روز رسانی جلسه",
+    "useClient": "استفاده از مشتری",
+    "usesession": "useSession"
+  },
+  "CartAddForm": {
+    "addOneItem": "یک مورد اضافه کنید",
+    "quantity": "مقدار",
+    "removeOneItem": "حذف یک مورد"
+  },
+  "CommerceDashboard": {
+    "dashboard": "داشبورد"
+  },
+  "ContactForm": {
+    "message": "پیام",
+    "subject": "موضوع"
+  },
+  "CountryList": {
+    "currencies": "ارزها:",
+    "languages": "زبان ها:",
+    "loading": "در حال بارگیری..."
+  },
+  "DataTablePagination": {
+    "rowsPerPage": "ردیف در هر صفحه"
+  },
+  "DialogShell": {
+    "close": "بستن"
+  },
+  "Error": {
+    "description": "<p>Switch the website language to English if the error details are not displayed. | متأسفانه، با خطایی مواجه شده‌ایم.</p><p>می‌توانید سعی کنید صفحه‌ای را که بازدید می‌کردید، <retry>بازبارگیری کنید</retry>. ما به عنوان توسعه دهندگان وب سایت بسیار سپاسگزار خواهیم بود اگر با ما تماس بگیرید و این خطا را به ما اطلاع دهید. پیشاپیش از شما متشکرم!</p>",
+    "title": "مشکلی پیش آمد..."
+  },
+  "Faceted": {
+    "noResultsFound": "هیچ نتیجه ای یافت نشد."
+  },
+  "GuestAddForm": {
+    "email": "ایمیل"
+  },
+  "JoinNewsletterForm": {
+    "joinReliverseWeeklyNewsletter": "به خبرنامه هفتگی Reliverse بپیوندید",
+    "tryAgain": "دوباره امتحان کنید"
+  },
+  "LocaleSwitcher": {
+    "changeLanguage": "تغییر زبان",
+    "english": "انگلیسی",
+    "germany": "آلمان",
+    "languages": "زبان ها",
+    "spanish": "اسپانیایی",
+    "ukrainian": "اوکراینی"
+  },
+  "LoginForm": {
+    "no-account": "حساب کاربری ندارید؟",
+    "signup": "اینجا ثبت نام کنید.",
+    "title": "ورود",
+    "welcome-back": "خوش برگشتی"
+  },
+  "MainMenu": {
+    "websiteLogoWithName": "لوگوی وب سایت با نام"
+  },
+  "Manifest": {
+    "name": "Relivator: قالب Next.js"
+  },
+  "MdxCard": {
+    "view": "مشاهده کنید"
+  },
+  "MobileMenu": {
+    "toggleMenu": "تغییر منو"
+  },
+  "ModeToggle": {
+    "toggleTheme": "تغییر موضوع"
+  },
+  "MultiUploader": {
+    "dropFilesHere": "فایل ها را اینجا رها کنید!"
+  },
+  "NavWithCompactPageHeader": {
+    "navwithcompactpageheader": "NavWithCompactPageHeader"
+  },
+  "NewsletterWelcomeEmail": {
+    "reliverseWeeklyNewsletter": "خبرنامه هفتگی Reliverse"
+  },
+  "Options": {
+    "toggleColumns": "تغییر دادن ستون ها"
+  },
+  "PathnamesPage": {
+    "description": "<p>Reliverse Playground | next-intl | نام‌های مسیرهای URL را می‌توان بین‌المللی کرد.</p><p>اگر از زبان پیش‌فرض، انگلیسی استفاده می‌کنید، <code>/en/pathnames</code> را در نوار آدرس مرورگر در این صفحه خواهید دید.</p><p>اگر زبان محلی را به آلمانی تغییر دهید، URL بر این اساس بومی‌سازی می‌شود (<code>/de/pfadnamen</code>).</p>",
+    "title": "نام‌های مسیر"
+  },
+  "PostAddForm": {
+    "createPost": "ایجاد پست"
+  },
+  "PricingModules": {
+    "nextJs": "Next.js"
+  },
+  "Privileges": {
+    "switchUserRole": "تغییر نقش کاربر"
+  },
+  "ProductAddForm": {
+    "addProduct": "افزودن محصول",
+    "category": "دسته بندی",
+    "description": "توضیحات",
+    "images": "تصاویر",
+    "inventory": "موجودی",
+    "name": "نام",
+    "price": "قیمت",
+    "subcategory": "زیرمجموعه"
+  },
+  "ProductCard": {
+    "promise": "قول بده"
+  },
+  "ProductPager": {
+    "nextProduct": "محصول بعدی",
+    "previousProduct": "محصول قبلی"
+  },
+  "ProductUpdForm": {
+    "category": "دسته بندی",
+    "deleteProduct": "محصول را حذف کنید",
+    "description": "توضیحات",
+    "images": "تصاویر",
+    "inventory": "موجودی",
+    "name": "نام",
+    "price": "قیمت",
+    "subcategory": "زیرمجموعه",
+    "updateProduct": "به روز رسانی محصول"
+  },
+  "ProductsCombobox": {
+    "searchProducts": "محصولات را جستجو کنید"
+  },
+  "RegisterForm": {
+    "have-account": "از قبل حساب کاربری دارید؟",
+    "signin": "اینجا وارد شوید.",
+    "title": "ثبت نام"
+  },
+  "RootLocaleLayout": {
+    "metadata": {
+      "description": "Relivator با قدرت shadcn/ui، Next.js 15 و React 19 تجارت الکترونیک شما را بهبود می‌بخشد",
+      "title": {
+        "home": "خانه"
+      }
+    },
+    "titleDetails": "به سرعت فروشگاه های آنلاین بسازید"
+  },
+  "SVG": {
+    "buyMeACoffeLogo": "برای من یک لوگو قهوه بخر",
+    "facebookLogo": "لوگوی فیس بوک",
+    "githubLogoInvertocat": "لوگوی GitHub: Invertocat",
+    "googleLogo": "لوگوی گوگل",
+    "nextJs": "Next.js",
+    "passkey": "کلید عبور",
+    "patreonLogo": "لوگوی Patreon",
+    "paypalLogo": "لوگوی پی پال",
+    "spinner": "اسپینر"
+  },
+  "SessionData": {
+    "currentSessionData": "داده های جلسه فعلی",
+    "onlyPassTheNecessaryFields": "فقط فیلدهای لازم را بگذرانید",
+    "signIn": "وارد شوید"
+  },
+  "SidebarWithHeader": {
+    "applicationAppShellsSidebarLayoutsSidebarWithHeader": "برنامه - پوسته های برنامه - طرح بندی نوار کناری - نوار کناری با هدر",
+    "sidebarwithheader": "SidebarWithHeader"
+  },
+  "SiteFooter": {
+    "allRightsReserved": "تمامی حقوق محفوظ است"
+  },
+  "StoreAddForm": {
+    "addStore": "افزودن فروشگاه",
+    "description": "توضیحات",
+    "name": "نام"
+  },
+  "StorePager": {
+    "nextStore": "فروشگاه بعدی",
+    "previousStore": "فروشگاه قبلی"
+  },
+  "StoreSwitcher": {
+    "noStoresFound": "هیچ فروشگاهی پیدا نشد"
+  },
+  "ThemeToggle": {
+    "toggleTheme": "تغییر موضوع"
+  },
+  "ThemesGeneralSwitcher": {
+    "dark": "تاریک",
+    "light": "نور",
+    "system": "سیستم",
+    "theme": "تم"
+  },
+  "UpdateCart": {
+    "addOneItem": "یک مورد اضافه کنید",
+    "deleteItem": "مورد را حذف کنید",
+    "removeOneItem": "حذف یک مورد"
+  },
+  "UpdateNotificationForm": {
+    "marketingEmails": "ایمیل های بازاریابی",
+    "newsletterEmails": "ایمیل های خبرنامه",
+    "savePreferences": "ذخیره تنظیمات"
+  },
+  "UserButton": {
+    "signIn": "وارد شوید"
+  },
+  "VerifyOrderForm": {
+    "deliveryPostalCode": "کد پستی تحویل",
+    "verifyOrder": "تأیید سفارش"
+  },
+  "WithIcons": {
+    "applicationNavigationVerticalNavigationWithIcons": "برنامه - ناوبری - ناوبری عمودی - با نمادها",
+    "withicons": "با آیکون ها"
+  },
+  "WithLeftAlignedNav": {
+    "elementsHeadersWithLeftAlignedNav": "عناصر - سرصفحه ها - با ناوبری تراز چپ",
+    "withleftalignednav": "WithLeftAlignedNav"
+  },
+  "WithSecondaryNavigation": {
+    "withsecondarynavigation": "با ناوبری ثانویه"
+  },
+  "account-page": {
+    "Settings": "تنظیمات",
+    "loggedIn": "وارد شده",
+    "loggedOut": "خارج شده",
+    "login": "ورود",
+    "logout": "خروج",
+    "title": "حساب"
+  },
+  "auth": {
+    "error": {
+      "default": "با حساب دیگری وارد شوید.",
+      "email": "ایمیل یافت نشد. ارائه‌دهنده دیگری را امتحان کنید.",
+      "oauthNotLinked": "برای تایید هویت، با حساب اصلی وارد شوید.",
+      "unknown": "خطایی رخ داده است. دوباره تلاش کنید.",
+      "unknown-error": "مشکلی پیش آمده است. به /contact مراجعه و پشتیبانی را مطلع کنید."
+    },
+    "legal": "با استفاده از این دکمه‌ها، شما موافقت می‌کنید",
+    "legal-and": "و",
+    "legal-privacy": "سیاست حفظ حریم خصوصی",
+    "legal-terms": "شرایط استفاده"
+  },
+  "auth-provider": {
+    "please-wait": "لطفا صبر کنید..."
+  },
+  "auth-user": {
+    "signInEmail": "ورود به سیستم ایمیل"
+  },
+  "banners": {
+    "announcements-1": {
+      "button": "اکنون مراجعه کنید",
+      "details": "از پست وبلاگ انتشار دیدن کنید تا ببینید چه چیزی تغییر کرده است و چه چیزی در آینده خواهد آمد.",
+      "dismiss": "رد کردن",
+      "title": "Relivator v1.2.6 و v1.3.0-canary.4 اینجا هستند!"
+    }
+  },
+  "blog-comments-server": {
+    "postthreadlist": "PostThreadList"
+  },
+  "checkout": {
+    "CartDetails": "جزئیات",
+    "Demo": "داده‌های تست: 4242424242424242 | 12/34 | 567",
+    "Description": "پرداخت سبد خرید",
+    "EmptyCartDescription": "برای پرداخت، اقلامی را به سبد خرید اضافه کنید",
+    "EmptyCartHeading": "سبد خرید خالی است",
+    "Pay": "پرداخت",
+    "Title": "پرداخت",
+    "backToCart": "بازگشت به سبد خرید",
+    "backToCartSingle": "بازگشت",
+    "calculated": "در پرداخت محاسبه می‌شود",
+    "cart": "سبد خرید",
+    "cartIsEmpty": "سبد خرید خالی است",
+    "continueShopping": "ادامه خرید",
+    "free": "رایگان",
+    "notConnectedDescription": "برای پذیرش پرداخت، فروشگاه خود را به Stripe متصل کنید",
+    "notConnectedHeading": "فروشگاه به Stripe متصل نیست",
+    "shipping": "حمل و نقل",
+    "taxes": "مالیات",
+    "total": "جمع",
+    "viewTheCart": "مشاهده سبد خرید"
+  },
+  "client": {
+    "currentPassword": "رمز عبور فعلی",
+    "name": "نام",
+    "newPassword": "رمز عبور جدید",
+    "password": "رمز عبور",
+    "plan": "برنامه ریزی کنید",
+    "saveChanges": "ذخیره تغییرات",
+    "savePassword": "ذخیره رمز عبور",
+    "settings": "تنظیمات",
+    "subscriptionPlans": "طرح های اشتراک",
+    "userNotFound": "کاربر پیدا نشد",
+    "username": "نام کاربری"
+  },
+  "components": {
+    "command": {
+      "dark": "تاریک",
+      "light": "روشن",
+      "system": "سیستم",
+      "theme": "موضوع"
+    },
+    "search": {
+      "placeholder": "جستجو...",
+      "title": "جستجو"
+    }
+  },
+  "contact": {
+    "submit": "ارسال"
+  },
+  "cursor": {
+    "cursor": "مکان نما"
+  },
+  "demo": {
+    "aria-label-goto": "رفتن به",
+    "launch": "داشبورد"
+  },
+  "editor-placeholder": {
+    "record": "ضبط کنید"
+  },
+  "example": {
+    "beforeUsing": "قبل از استفاده",
+    "billing": "صورتحساب",
+    "localhostDebug": "[localhost-debug]:"
+  },
+  "faceted-filter": {
+    "noResultsFound": "هیچ نتیجه ای یافت نشد."
+  },
+  "faq": {
+    "1": {
+      "details": "برای اطلاعات به‌روز و دستورالعمل‌های نصب، فایل README.md در مخزن GitHub Relivator را ببینید.",
+      "summary": "چگونه می‌توانم سریع نصب کنم و شروع کنم؟"
+    },
+    "2": {
+      "details": "Relivator امکانات نامحدودی با تمام ابزارهای آماده فراهم می‌کند.",
+      "summary": "چرا باید Relivator را برای Next.js 15 و React 19 انتخاب کنم؟"
+    },
+    "3": {
+      "details": "توسعه عمدتاً توسط یک نفر انجام می‌شود. کمک‌های مالی می‌توانند روند را تسریع کنند. برای کمک، اینجا کلیک کنید. متشکرم! 🩷",
+      "summary": "آیا می‌توان انتشار Relivator v1.3.0 را سرعت بخشید؟"
+    }
+  },
+  "file-dialog": {
+    "cropImage": "برش تصویر",
+    "dropTheFileHere": "فایل را اینجا رها کنید",
+    "removeAll": "همه را حذف کنید",
+    "removeFile": "حذف فایل",
+    "uploadImages": "آپلود تصاویر"
+  },
+  "landing": {
+    "about": "غنی‌ترین، جهانی‌ترین و نمادین‌ترین استارتر Next.js. ویژگی‌هایمان را کشف کنید. بیش از یک کد، یک سفر. پایدار و آماده تولید.",
+    "buy-now": "کاتالوگ",
+    "features": {
+      "auth": {
+        "description": "سیستم احراز هویت همه‌کاره با NextAuth.js و Clerk. جزئیات در .env.example.",
+        "title": "احراز هویت: ایمن و انعطاف‌پذیر"
+      },
+      "database": {
+        "description": "عملکرد بالا با Drizzle ORM و تغییر بین MySQL و Postgres. استقرار با Planetscale، Vercel، Railway، Neon و بیشتر.",
+        "title": "یکپارچه‌سازی پایگاه‌داده: قوی و انعطاف‌پذیر"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator امکانات نامحدودی با تمام ابزارهای آماده فراهم می‌کند.",
+        "description": "سیستم اشتراک قوی با پشتیبانی از برنامه‌های رایگان و پولی. جزئیات در README.md.",
+        "title": "اشتراک‌های Stripe: قوی و انعطاف‌پذیر"
+      },
+      "interface": {
+        "description": "ایجاد UI شگفت‌انگیز با اجزای Flowbite و Shadcn UI، طراحی شده با Radix و Tailwind CSS. توصیه می‌شود از VSCode استفاده کنید.",
+        "title": "اجزا: زیبا و کاربردی"
+      },
+      "nextjs": {
+        "description": "ناوبری صاف با App Router، Layouts و Loading UI. مسیرهای API قوی را کشف کنید.",
+        "title": "Next.js 15: تجربه بهتر"
+      },
+      "text": {
+        "description": "مدیریت آسان با اجزای سرور و کلاینت. استفاده از hook‌های پیشرفته و امکانات بیشتر برای توسعه روان.",
+        "title": "React 19: توسعه مدرن"
+      }
+    },
+    "footer-cta": "آماده شروع هستید؟",
+    "get-started-button": "داشبورد",
+    "main-cta": "GitHub",
+    "sell-now": "داشبورد"
+  },
+  "layout": {
+    "back": "برگشت"
+  },
+  "loading": {
+    "account": "حساب",
+    "billing": "صورتحساب",
+    "checkout": "تسویه حساب",
+    "loading": "در حال بارگیری...",
+    "purchases": "خریدها",
+    "signOut": "از سیستم خارج شوید",
+    "thankYouForTheOrder": "ممنون از سفارش"
+  },
+  "metadata": {
+    "description": "Relivator با قدرت shadcn/ui، Next.js 15 و React 19 تجارت الکترونیک شما را بهبود می‌بخشد",
+    "title": {
+      "home": "خانه"
+    }
+  },
+  "mode-toggle": {
+    "dark": "تاریک",
+    "light": "نور",
+    "system": "سیستم",
+    "toggleTheme": "تغییر موضوع"
+  },
+  "name": "الگوی Relivator Next.js",
+  "onboard": {
+    "asa": "آسا",
+    "dateEventDateTbd": "تاریخ: [تاریخ رویداد (TBD)]",
+    "donTMissOutReserveTheSpotNow": "فرصت را از دست ندهید، همین حالا مکان را رزرو کنید!",
+    "eventDetails": "جزئیات رویداد:",
+    "join15MinutesEarlyToNetwork": "🌟 15 دقیقه زودتر به شبکه بپیوندید! 🌟",
+    "locationEventLinkTbd": "مکان: [پیوند رویداد (TBD)]",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js دوباره تعریف شد:",
+    "tbdToBeDetermined": "*TBD - باید مشخص شود",
+    "timeEventTimeTbd": "زمان: [زمان رویداد (TBD)]"
+  },
+  "page": {
+    "about": "درباره",
+    "accessToAPrivateCommunity": "دسترسی به یک جامعه خصوصی",
+    "account": "حساب",
+    "addANewStoreToTheAccount": "یک فروشگاه جدید به حساب اضافه کنید",
+    "addStore": "فروشگاه را اضافه کنید",
+    "admin": "مدیر",
+    "adminPage": "صفحه مدیریت",
+    "availableWorldwide": "در سراسر جهان موجود است",
+    "billing": "صورتحساب",
+    "blog": "وبلاگ",
+    "buildABoard": "یک تابلو بسازید",
+    "client": "مشتری",
+    "countriesData": "داده های کشورها",
+    "createNewComponent": "کامپوننت جدید ایجاد کنید",
+    "createNewPage": "ایجاد صفحه جدید",
+    "createNewPost": "ایجاد پست جدید",
+    "dashboard": "داشبورد",
+    "directSupport": "پشتیبانی مستقیم",
+    "donateThroughGithubBilling": "از طریق صورت‌حساب GitHub کمک مالی کنید",
+    "donationTiers": "طبقات اهدایی",
+    "earlyAccessToNewFeatures": "دسترسی زودهنگام به ویژگی های جدید",
+    "easyAndQuickProcess": "فرآیند آسان و سریع",
+    "editUserPrivileges": "ویرایش امتیازات کاربر",
+    "emailPreferences": "تنظیمات ایمیل",
+    "exclusiveUpdatesAndContent": "به روز رسانی و محتوای منحصر به فرد",
+    "frequentlyAskedQuestions": "سوالات متداول",
+    "howTheMoneyIsUsed": "نحوه استفاده از پول",
+    "instantDonations": "کمک های فوری",
+    "localhostOnlyDebugInfo": "[localhost-only-debug-info]",
+    "manageTheSubscription": "اشتراک را مدیریت کنید",
+    "manageYourEmailPreferences": "تنظیمات برگزیده ایمیل خود را مدیریت کنید",
+    "name": "نام: ---",
+    "newStore": "فروشگاه جدید",
+    "notImplementedYet": "هنوز اجرا نشده است",
+    "novuDeveloperPlaygroundPageComingSoon": "صفحه Playground Developer Novu به زودی...",
+    "oneTimeAndRecurringDonations": "کمک های یکباره و مکرر",
+    "oneTimeDonations": "کمک های یکباره",
+    "preferences": "ترجیحات",
+    "pricing": "قیمت گذاری",
+    "purchases": "خریدها",
+    "purchasesTable": "جدول خرید",
+    "readyToBuildYourEcommercePlatform": "آماده ساختن پلتفرم تجارت الکترونیک خود هستید؟",
+    "recurringAndOneTimeDonations": "کمک های مکرر و یکباره",
+    "reliversePlayground": "زمین بازی Reliverse",
+    "res": "Res",
+    "resJsonAsPromise": "()res.json به عنوان Promise",
+    "resetPassword": "بازنشانی رمز عبور",
+    "root": "ریشه",
+    "secureTransactions": "تراکنش های امن",
+    "seeAllPosts": "مشاهده همه پست ها",
+    "seeOurSponsors": "حامیان ما را ببینید",
+    "server": "سرور",
+    "settings": "تنظیمات",
+    "showASponsorBadgeOnYourGithubProfile": "نشان حامی مالی را در نمایه GitHub خود نشان دهید",
+    "signinWithDiscord": "با Discord وارد شوید",
+    "signinWithGithub": "با GitHub وارد شوید",
+    "signinWithGoogle": "با گوگل وارد شوید",
+    "simpleAndFunWayToSupport": "راه ساده و سرگرم کننده برای پشتیبانی",
+    "smallOneTimeDonations": "کمک های کوچک یکباره",
+    "specificCountryRe": "کشور خاص (RE)",
+    "stores": "فروشگاه ها",
+    "supportWithNoFees": "پشتیبانی بدون کارمزد",
+    "testEmailDelivery": "تست تحویل ایمیل",
+    "thankYouForTheOrder": "ممنون از سفارش",
+    "thePageIsStillInProductionPleaseCheckBackHereLater": "صفحه هنوز در حال تولید است. لطفاً بعداً اینجا را بررسی کنید.",
+    "underConstruction": "در حال ساخت ...",
+    "verifyEmail": "تایید ایمیل",
+    "waysToDonate": "راه های اهدا"
+  },
+  "pages": {
+    "not-found": {
+      "description": "منبع ممکن است جابجا، تغییر نام داده یا وجود نداشته باشد. URL را بررسی یا از منو استفاده کنید.",
+      "go-home": "بازگشت به خانه",
+      "title": "🫠 صفحه پیدا نشد! 🥲"
+    }
+  },
+  "privacy-notice-right-aligned": {
+    "elementsBannersPrivacyNoticeRightAligned": "عناصر - بنرها - اطلاعیه حریم خصوصی به راست تراز شده است",
+    "privacynoticerightaligned": "PrivacyNoticeRightAligned"
+  },
+  "product-building": {
+    "filters": "فیلترها",
+    "noProductsFound": "هیچ محصولی یافت نشد",
+    "sortBy": "مرتب سازی بر اساس"
+  },
+  "product-context": {
+    "productsctx": "محصولاتCtx"
+  },
+  "product-image-carousel": {
+    "nextSlide": "اسلاید بعدی",
+    "previousSlide": "اسلاید قبلی"
+  },
+  "products": {
+    "filters": "فیلترها",
+    "nextStorePage": "صفحه بعدی فروشگاه",
+    "noProductsFound": "هیچ محصولی یافت نشد",
+    "previousStorePage": "صفحه فروشگاه قبلی",
+    "sortBy": "مرتب سازی بر اساس"
+  },
+  "products-admin": {
+    "productDetails": "جزئیات محصول",
+    "products": "محصولات"
+  },
+  "signOutPage": {
+    "dashboard": "داشبورد",
+    "description": {
+      "areyousueyouwanttosignout": "آیا مطمئن هستید که می خواهید از سیستم خارج شوید؟"
+    },
+    "heading": {
+      "signout": "از سیستم خارج شوید"
+    },
+    "home": "صفحه اصلی",
+    "logOut": "از سیستم خارج شوید"
+  },
+  "stacked-with-footer-actions": {
+    "elementsFlyoutMenusStackedWithFooterActions": "عناصر - منوهای پرواز - انباشته با اقدامات پاورقی",
+    "stackedwithfooteractions": "StackedWithFooterActions"
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "از بهترین فروشگاه‌ها {category} بخرید",
+      "buyTheBest": "بهترین {category}"
+    },
+    "products": {
+      "addToCart": "افزودن به سبد خرید",
+      "buyProductsFromOurStores": "خرید از فروشگاه‌های ما",
+      "catalogue": "کاتالوگ",
+      "description": "شرح",
+      "moreProductsFrom": "بیشتر از {storeName}",
+      "noDescription": "توضیح موجود نیست.",
+      "products": "محصولات",
+      "productsCatalogue": "کاتالوگ محصولات"
+    },
+    "stores": {
+      "buy-products": "خرید از فروشگاه‌های ما",
+      "stores": "فروشگاه‌ها"
+    }
+  },
+  "stores": {
+    "noStoresFound": "هیچ فروشگاهی پیدا نشد",
+    "sortBy": "مرتب سازی بر اساس"
+  },
+  "temp-compiler-fix": {
+    "app": "برنامه"
+  },
+  "titleDetails": "به سرعت فروشگاه های آنلاین بسازید",
+  "upgrade": {
+    "localhostDebug": "localhost-debug",
+    "thisIncludes": "این شامل:"
+  },
+  "usermenu": {
+    "account": {
+      "menu": "حساب"
+    },
+    "adminpage": {
+      "menu": "صفحه مدیریت"
+    },
+    "billing": {
+      "menu": "صورتحساب"
+    },
+    "dashboard": {
+      "menu": "داشبورد"
+    },
+    "logout": {
+      "menu": "خروج از سیستم"
+    },
+    "purchases": {
+      "menu": "خریدها"
+    },
+    "settings": {
+      "menu": "تنظیمات"
+    },
+    "stores": {
+      "menu": "فروشگاه ها"
+    }
+  },
+  "with-button": {
+    "dismiss": "رد کردن"
+  },
+  "with-button-animated": {
+    "dismiss": "رد کردن"
+  }
+}

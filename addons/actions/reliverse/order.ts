@@ -1,4 +1,4 @@
-import type { CartLineItem, CheckoutItem } from "@/types";
+import type { CartLineItem, CheckoutItem } from "@/types/reliverse/store";
 import type Stripe from "stripe";
 
 import { getCartId } from "@/server/reliverse/cart";
@@ -7,7 +7,7 @@ import { desc, eq, inArray } from "drizzle-orm";
 import { z } from "zod";
 
 import { db } from "~/db";
-import { carts, orders, payments, products } from "~/db/schema";
+import { carts, orders, payments, products } from "~/db/schema/provider";
 
 import type { getOrderLineItemsSchema } from "./validations/order";
 

@@ -1,6 +1,6 @@
-import type { Option } from "@/types";
+import type { Option } from "@/types/reliverse/store";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 export const sortOptions = [
   {

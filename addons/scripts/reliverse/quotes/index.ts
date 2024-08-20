@@ -9,12 +9,12 @@ import {
   wiseQuotes,
 } from "@/scripts/reliverse/quotes/lines";
 import { advancedTsLearningQuotes } from "@/scripts/reliverse/quotes/more";
+import { debugEnabled } from "~/../reliverse.config";
 import consola from "consola";
 import { ofetch } from "ofetch";
 // @ts-expect-error missing types
 import pick from "pick-random-weighted";
 import pc from "picocolors";
-import { debugEnabled } from "reliverse.config";
 
 const isString = (a: unknown) => typeof a === "string";
 

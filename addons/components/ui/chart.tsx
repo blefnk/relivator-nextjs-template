@@ -8,7 +8,7 @@ import type {
 } from "react";
 import { createContext, forwardRef, useContext, useId, useMemo } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as RechartsPrimitive from "recharts";
 
 // Format: { THEME_NAME: CSS_SELECTOR }

@@ -254,19 +254,21 @@
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
   "html.format.indentInnerHtml": true,
-  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.displayLanguage": "en-US",
   "i18n-ally.enabledFrameworks": ["general", "next-intl", "react"],
   "i18n-ally.keysInUse": [
+    "Manifest.name",
     "faq.1.details",
     "faq.1.summary",
     "faq.2.details",
     "faq.2.summary",
     "faq.3.details",
-    "faq.3.summary"
+    "faq.3.summary",
+    "name"
   ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": ["addons/messages/reliverse"],
-  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.localesPaths": ["messages/default"],
+  "i18n-ally.sourceLanguage": "en-US",
   "javascript.format.semicolons": "insert",
   "javascript.inlayHints.enumMemberValues.enabled": true,
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -329,7 +331,7 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.preferences.includePackageJsonAutoImports": "on",
   "typescript.referencesCodeLens.enabled": true,
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.validate.enable": true,
   "window.commandCenter": true,
@@ -337,6 +339,5 @@
   "workbench.editor.enablePreview": false,
   "workbench.layoutControl.enabled": true,
   "workbench.panel.defaultLocation": "bottom",
-  "workbench.sideBar.location": "left",
   "workbench.statusBar.visible": true
 }

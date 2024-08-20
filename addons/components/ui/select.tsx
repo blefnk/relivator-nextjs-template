@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import * as SelectPrimitive from "@radix-ui/react-select";
 
@@ -135,12 +135,7 @@ const SelectItem = forwardRef<
     ref={ref}
     {...props}
   >
-    <span
-      className={`
-      absolute right-2 flex size-3.5 items-center
-      justify-center
-    `}
-    >
+    <span className="absolute right-2 flex size-3.5 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
         <CheckIcon className="size-4" />
       </SelectPrimitive.ItemIndicator>

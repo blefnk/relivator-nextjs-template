@@ -2,12 +2,16 @@ import type { ReactNode } from "react";
 
 import type { Session } from "next-auth";
 
+import { useTranslations } from "next-intl";
+
 type RootLayoutProps = {
   children: ReactNode;
   user: Session["user"];
 };
 
 export default function DashboardLayout({ children, user }: RootLayoutProps) {
+  const t = useTranslations();
+
   return (
     <main
       className={`
@@ -21,7 +25,9 @@ export default function DashboardLayout({ children, user }: RootLayoutProps) {
           md:flex-row md:justify-between
         `}
       >
-        <h1 className="text-4xl font-bold">Dashboard</h1>
+        <h1 className="text-4xl font-bold">
+          {t("CommerceDashboard.dashboard")}
+        </h1>
         <div
           className={`
             hidden h-fit items-center gap-2

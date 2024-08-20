@@ -16,11 +16,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn, formatPrice } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { formatPrice } from "@/utils/reliverse/number";
+import { Check, ImageIcon, Plus } from "lucide-react";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
 type ProductCardProps = {
   product: Pick<
@@ -45,8 +47,6 @@ export function ProductCard({
 }: ProductCardProps) {
   const [isPending, startTransition] = useTransition();
 
-  // consola.info("(x) storeId:", storeId, typeof storeId);
-  // consola.info("(x) product.storeId:", product.storeId, typeof product.storeId);
   return (
     <Card className={cn("h-full overflow-hidden", className)} {...props}>
       <Link
@@ -75,7 +75,7 @@ export function ProductCard({
                 `}
                 role="img"
               >
-                <Icons.placeholder
+                <ImageIcon
                   aria-hidden="true"
                   className="size-9 text-muted-foreground"
                 />
@@ -101,13 +101,15 @@ export function ProductCard({
             className="h-8 w-full whitespace-nowrap"
             disabled={isPending}
             onClick={() => {
-              startTransition(async () => {});
+              startTransition(async () => {
+                // TODO: Add the default action here
+              });
             }}
             size="default"
             variant="secondary"
           >
             {isPending && (
-              <Icons.spinner
+              <SpinnerSVG
                 aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
               />
@@ -129,14 +131,14 @@ export function ProductCard({
             variant="secondary"
           >
             {isPending ? (
-              <Icons.spinner
+              <SpinnerSVG
                 aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
               />
             ) : isAddedToCart ? (
-              <Icons.check aria-hidden="true" className="mr-2 size-4" />
+              <Check aria-hidden="true" className="mr-2 size-4" />
             ) : (
-              <Icons.add aria-hidden="true" className="mr-2 size-4" />
+              <Plus aria-hidden="true" className="mr-2 size-4" />
             )}
             {isAddedToCart ? "Added" : String(tAddToCart)}
           </Button>

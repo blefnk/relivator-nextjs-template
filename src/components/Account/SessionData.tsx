@@ -1,21 +1,27 @@
 import type { Session } from "next-auth";
 
+import { useTranslations } from "next-intl";
+
 // next-auth v5 | https://github.com/nextauthjs/next-auth/blob/main/apps/examples/nextjs/components/session-data.tsx
 export default function SessionData({
   session,
 }: {
   session: null | Session;
 }) {
+  const t = useTranslations();
+
   if (session) {
     return (
       <div className="flex w-full flex-col gap-4">
-        <h2 className="text-xl font-bold">Current Session Data</h2>
+        <h2 className="text-xl font-bold">
+          {t("SessionData.currentSessionData")}
+        </h2>
         {Object.keys(session).length > 3 ? (
           <p>
             In this example, the whole session object is passed to the page,
             including the raw user object. Our recommendation is to{" "}
-            <em>only pass the necessary fields</em> to the page, as the raw user
-            object may contain sensitive information.
+            <em>{t("SessionData.onlyPassTheNecessaryFields")}</em> to the page,
+            as the raw user object may contain sensitive information.
           </p>
         ) : (
           <p>
@@ -37,7 +43,7 @@ export default function SessionData({
 
   return (
     <p>
-      No session data, please <em>Sign In</em> first.
+      No session data, please <em>{t("SessionData.signIn")}</em> first.
     </p>
   );
 }

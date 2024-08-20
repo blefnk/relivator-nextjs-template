@@ -6,9 +6,9 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils";
-
-import { Icons } from "~/components/Common/Icons";
+import { cn } from "@/utils/reliverse/cn";
+import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type DialogShellProps = {
   children: ReactNode;
@@ -19,6 +19,8 @@ export function DialogShell({
   className,
   ...props
 }: DialogShellProps) {
+  const t = useTranslations();
+
   const router = useRouter();
 
   useEffect(() => {
@@ -48,8 +50,8 @@ export function DialogShell({
           router.back();
         }}
       >
-        <Icons.close aria-hidden="true" className="size-4" />
-        <span className="sr-only">Close</span>
+        <X aria-hidden="true" className="size-4" />
+        <span className="sr-only">{t("DialogShell.close")}</span>
       </Button>
       {children}
     </div>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import { useTranslations } from "next-intl";
 
-import { ContactForm } from "~/components/Forms";
+import { ContactForm } from "~/components/Forms/ContactForm";
 import HeadingText from "~/components/Modules/HText";
 
 export const metadata: Metadata = {

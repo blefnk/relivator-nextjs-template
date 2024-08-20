@@ -10,16 +10,18 @@ import {
 } from "@/actions/reliverse/product-old";
 import { Button } from "@/components/ui/button";
 import consola from "consola";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-import type { Product } from "~/db/schema";
-
-import { Icons } from "~/components/Common/Icons";
+import type { Product } from "~/db/schema/provider";
 
 type ProductPagerProps = {
   product: Product;
 };
 
 export function ProductPager({ product }: ProductPagerProps) {
+  const t = useTranslations();
+
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -50,8 +52,8 @@ export function ProductPager({ product }: ProductPagerProps) {
         size="icon"
         variant="ghost"
       >
-        <Icons.chevronLeft aria-hidden="true" className="size-4" />
-        <span className="sr-only">Previous product</span>
+        <ChevronLeft aria-hidden="true" className="size-4" />
+        <span className="sr-only">{t("ProductPager.previousProduct")}</span>
       </Button>
       <Button
         disabled={isPending}
@@ -76,8 +78,8 @@ export function ProductPager({ product }: ProductPagerProps) {
         size="icon"
         variant="ghost"
       >
-        <Icons.chevronRight aria-hidden="true" className="size-4" />
-        <span className="sr-only">Next product</span>
+        <ChevronRight aria-hidden="true" className="size-4" />
+        <span className="sr-only">{t("ProductPager.nextProduct")}</span>
       </Button>
     </div>
   );

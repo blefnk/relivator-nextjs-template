@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { CuratedStore } from "@/types";
+import type { CuratedStore } from "@/types/reliverse/store";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getRandomPatternStyle } from "@/server/reliverse/pattern";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
 type StoreCardProps = {
   href: string;

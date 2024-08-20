@@ -1,4 +1,7 @@
-import type { SubscriptionPlanTypes, UserSubscriptionPlan } from "@/types";
+import type {
+  SubscriptionPlanTypes,
+  UserSubscriptionPlan,
+} from "@/types/reliverse/plan";
 
 import { storeSubscriptionPlans } from "~/core/stripe/subs";
 import { env } from "~/env";

@@ -1,7 +1,7 @@
 /* eslint-disable @stylistic/max-len */
 import type { LucideProps } from "lucide-react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
 import styles from "./SVG.module.css";
 

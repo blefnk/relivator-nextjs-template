@@ -16,6 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/text-area";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 import * as z from "zod";
 
 import { siteConfig } from "~/app";
@@ -33,7 +34,9 @@ type ContactFormProps = {
   tSubmit: string;
 };
 
-export default function ContactForm({ tSubmit }: ContactFormProps) {
+export function ContactForm({ tSubmit }: ContactFormProps) {
+  const t = useTranslations();
+
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
       msg: "",
@@ -72,7 +75,7 @@ export default function ContactForm({ tSubmit }: ContactFormProps) {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject</FormLabel>
+              <FormLabel>{t("ContactForm.subject")}</FormLabel>
               <FormControl>
                 <Input placeholder="Enter the subject" {...field} />
               </FormControl>
@@ -85,7 +88,7 @@ export default function ContactForm({ tSubmit }: ContactFormProps) {
           name="msg"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel>{t("ContactForm.message")}</FormLabel>
               <FormControl>
                 <Textarea placeholder="Enter the message" {...field} />
               </FormControl>

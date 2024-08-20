@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from "~/constants/navigation";
+import { defaultLocale, locales } from "~/../reliverse.i18n";
 
 export const getI18nPath = (url: string, locale: string) => {
   if (locale === defaultLocale) {

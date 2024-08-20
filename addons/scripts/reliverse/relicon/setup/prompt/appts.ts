@@ -1,8 +1,8 @@
 import type { ApptsConfig } from "@/scripts/reliverse/relicon/setup/types";
 
-import { fileExists } from "@/scripts/utils";
 import { confirm, text } from "@clack/prompts";
 import { config } from "@reliverse/core";
+import { fileExists } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import {

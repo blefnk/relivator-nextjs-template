@@ -1,14 +1,15 @@
 import { config as reliverse } from "@reliverse/core";
 import consola from "consola";
 import pc from "picocolors";
+import semver from "semver";
+
+import { env } from "~/env";
+
 import {
   authProvider,
   engineVersion,
   frameworkVersion,
-} from "reliverse.config";
-import semver from "semver";
-
-import { env } from "~/env";
+} from "./reliverse.config";
 
 // ===== @reliverse/setup ================================================
 // TODO: Move the following code to a separate package
@@ -40,7 +41,7 @@ const logSupportMessage = () => {
 
 const logUpdateInstructions = () => {
   consola.info(
-    `[${reliverse.framework.name} v1.2.6 & v1.3.0@canary Release Post] https://docs.reliverse.com/en/relivator/v126`,
+    `[${reliverse.framework.name} v1.2.6 & v1.3.0@canary Release Post] https://reliverse.org/relivator/v126`,
   );
   consola.info(
     `Help ${reliverse.framework.name} become even better! Please, star the repo – https://github.com/blefnk/relivator`,

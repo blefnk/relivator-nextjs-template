@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { authProvider, debugEnabled } from "reliverse.config";
+import { authProvider, debugEnabled } from "~/../reliverse.config";
+import { getTranslations } from "next-intl/server";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
 };
 
 export default async function ProfilesPage() {
+  const t = await getTranslations();
+
   const user = authProvider === "clerk" ? await clerk() : await authjs();
 
   if (!user) {
@@ -34,7 +37,7 @@ export default async function ProfilesPage() {
         id="account-header"
         separated
       >
-        <PageHeaderHeading size="sm">Account</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("page.account")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Manage the account settings
         </PageHeaderDescription>

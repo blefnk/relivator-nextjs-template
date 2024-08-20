@@ -8,7 +8,7 @@ import { eq } from "drizzle-orm";
 import { siteConfig } from "~/app";
 import { authjs } from "~/auth/authjs";
 import { db } from "~/db";
-import { users } from "~/db/schema";
+import { users } from "~/db/schema/provider";
 import { env } from "~/env";
 
 export const getOrCreateStripeCustomerIdForUser = async ({

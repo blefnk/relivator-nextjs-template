@@ -1,4 +1,4 @@
-import { getRootDirname } from "@/scripts/utils";
+import { getRootDirname } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import { join } from "pathe";

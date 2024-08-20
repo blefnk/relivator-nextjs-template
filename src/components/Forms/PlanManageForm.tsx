@@ -8,27 +8,27 @@ import { redirect } from "next/navigation";
 import type { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 import consola from "consola";
 
 import type { manageSubscriptionSchema } from "~/core/stripe/zod";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 import {
   manageDowngradeToStarterAction,
   manageSubscriptionAction,
 } from "~/core/stripe/actions";
 
-type ManageSubscriptionFormProps = z.infer<typeof manageSubscriptionSchema>;
+type PlanManageFormProps = z.infer<typeof manageSubscriptionSchema>;
 
-export default function ButtonManageSubscription({
+export function PlanManageForm({
   isCurrentPlan,
   isSubscribed,
   mapPlanId,
   stripeCustomerId,
   stripePriceId,
   stripeSubscriptionId,
-}: ManageSubscriptionFormProps) {
+}: PlanManageFormProps) {
   const [isPending, startTransition] = useTransition();
 
   function onSubmit(event_: FormEvent<HTMLFormElement>) {
@@ -167,10 +167,7 @@ function ManageSubscriptionButton({
       variant="default"
     >
       {isPending && (
-        <Icons.spinner
-          aria-hidden="true"
-          className="mr-2 size-4 animate-spin"
-        />
+        <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
       )}
       {determineButtonText()}
     </Button>

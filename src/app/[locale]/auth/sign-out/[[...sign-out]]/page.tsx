@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-import { authProvider } from "reliverse.config";
+import { authProvider } from "~/../reliverse.config";
+import { getTranslations } from "next-intl/server";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
@@ -18,7 +19,9 @@ export const metadata: Metadata = {
   title: "Sign out",
 };
 
-export default async function SignOutPage() {
+export default async function signOutPage() {
+  const t = await getTranslations();
+
   const session = authProvider === "clerk" ? await clerk() : await authjs();
 
   if (!session || session.email === "guest@email.com") {
@@ -32,12 +35,18 @@ export default async function SignOutPage() {
         className="text-center"
         id="sign-out-page-header"
       >
-        <PageHeaderHeading size="sm">Sign out</PageHeaderHeading>
+        <PageHeaderHeading size="sm">
+          {t("signOutPage.heading.signout")}
+        </PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          Are you sure you want to sign out?
+          {t("signOutPage.description.areyousueyouwanttosignout")}
         </PageHeaderDescription>
       </PageHeader>
-      <LogOutButtons />
+      <LogOutButtons
+        tLogOut={t("signOutPage.logOut")}
+        tHome={t("signOutPage.home")}
+        tDashboard={t("signOutPage.dashboard")}
+      />
     </Shell>
   );
 }

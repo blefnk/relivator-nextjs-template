@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import ButtonSetSubscription from "~/app/[locale]/pricing/components/subscribe";
 
@@ -231,6 +232,8 @@ const PricingPlan: FC<PricingPlanProps> = ({
   price,
   userSubscription,
 }) => {
+  const t = useTranslations();
+
   // const { userId, isLoaded } = useAuth();
   // if (
   //   // In case the user signs out while on the page.
@@ -261,20 +264,14 @@ const PricingPlan: FC<PricingPlanProps> = ({
       <div className="flex flex-col items-start">
         {popular ? (
           <Badge
-            className={`
-              -mt-1 mb-2 rounded-full px-4 py-1
-              font-semibold
-            `}
+            className="-mt-1 mb-2 rounded-full px-4 py-1 font-semibold"
             variant="default"
           >
             Most popular
           </Badge>
         ) : (
           <Badge
-            className={`
-              mb-2 border-none bg-transparent py-1
-              font-semibold
-            `}
+            className="mb-2 border-none bg-transparent py-1 font-semibold"
             variant="outline"
           >
             ⠀
@@ -299,7 +296,9 @@ const PricingPlan: FC<PricingPlanProps> = ({
         mapPlanId={mapPlanId}
         userSubscription={userSubscription}
       />
-      <p className="mb-3 mt-4 text-sm opacity-70">This includes:</p>
+      <p className="mb-3 mt-4 text-sm opacity-70">
+        {t("upgrade.thisIncludes")}
+      </p>
       <ul className="mb-4 space-y-2 text-left text-sm">
         {features.map((feature) => (
           <li className="flex items-center" key={feature}>
@@ -312,7 +311,7 @@ const PricingPlan: FC<PricingPlanProps> = ({
       </ul>
       {/* {DEBUG_GOD_MODE && process.env.NODE_ENV === "development" && (
         <div className="opacity-50 mt-6 text-sm space-y-2">
-          <h2 className="font-semibold">localhost-debug</h2>
+          <h2 className="font-semibold">{t("upgrade.localhostDebug")}</h2>
           <p>mapPlanId: {mapPlanId}</p>
           <p>isCurrentPlan: {String(isCurrentPlan)}</p>
           <p>isSubscribed: {String(isSubscribed)}</p>

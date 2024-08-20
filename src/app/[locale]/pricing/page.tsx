@@ -1,5 +1,7 @@
 import Balancer from "react-wrap-balancer";
 
+import { useTranslations } from "next-intl";
+
 import PricingPageClient from "~/app/[locale]/pricing/components/client";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { env } from "~/env";
@@ -11,6 +13,8 @@ const ENTERPRISE =
 // TODO: Consider using: import { JSX } from "react";
 // export default function PricingPage(): JSX.Element {}
 export default function PricingPage() {
+  const t = useTranslations("page");
+
   const userSubscription = "starter";
   const userRole = "user";
 
@@ -24,7 +28,7 @@ export default function PricingPage() {
   // }
   return (
     <Shell>
-      <Balancer asd="h1">Pricing</Balancer>
+      <Balancer asd="h1">{t("pricing")}</Balancer>
       <Balancer asd="p">
         No worries! Relivator will always be an open-source. But if you want
         even more and personalized things, just contact us.

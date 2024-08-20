@@ -2,14 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import { resend } from "@/server/reliverse/resend";
 import { eq } from "drizzle-orm";
 
 import { authjs } from "~/auth/authjs";
 import NewsletterWelcomeEmail from "~/components/Emails/NewsletterWelcomeEmail";
 import { db } from "~/db";
-import { notifications } from "~/db/schema";
+import { notifications } from "~/db/schema/provider";
 import { env } from "~/env";
 
 import type { UpdateNotificationSchema } from "./validations/notification";

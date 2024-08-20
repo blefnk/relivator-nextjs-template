@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 
-import type { SSOCallbackPageProps } from "@/types";
+import type { SSOCallbackPageProps } from "@/types/reliverse/auth";
 
 import { useClerk } from "@clerk/nextjs";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
 export default function SSOCallback({ searchParams }: SSOCallbackPageProps) {
   const { handleRedirectCallback } = useClerk();
@@ -22,7 +22,7 @@ export default function SSOCallback({ searchParams }: SSOCallbackPageProps) {
       className="flex items-center justify-center"
       role="status"
     >
-      <Icons.spinner aria-hidden="true" className="size-16 animate-spin" />
+      <SpinnerSVG aria-hidden="true" className="size-16 animate-spin" />
       {/* import { FakeLoadingVariantOne } from "~/components/FakeLoading"; */}
       {/* <FakeLoadingVariantOne /> */}
     </div>

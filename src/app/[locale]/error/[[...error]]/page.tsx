@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { config } from "@reliverse/core";
 
 import { CriticalErrorMessage } from "~/app/[locale]/error/[[...error]]/client";

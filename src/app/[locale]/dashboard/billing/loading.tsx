@@ -5,7 +5,8 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { useTranslations } from "next-intl";
 
 import {
   PageHeader,
@@ -15,10 +16,12 @@ import {
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function BillingLoading() {
+  const t = useTranslations();
+
   return (
     <Shell as="div" variant="sidebar">
       <PageHeader separated>
-        <PageHeaderHeading size="sm">Billing</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("loading.billing")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Manage the billing and subscription
         </PageHeaderDescription>

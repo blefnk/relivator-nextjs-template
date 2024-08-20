@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import type { DataTableFilterField } from "@/types";
+import type { DataTableFilterField } from "@/types/reliverse/table";
 import type {
   ColumnDef,
   ColumnFiltersState,

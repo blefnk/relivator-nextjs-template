@@ -3,7 +3,7 @@ import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 

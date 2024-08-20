@@ -7,10 +7,10 @@ import type { ButtonProps } from "@/components/ui/button";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { useIsClient } from "@uidotdev/usehooks";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
 type LoadingButtonProps = {
   className?: string;
@@ -53,10 +53,7 @@ const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
         ref={ref}
       >
         {pending && (
-          <Icons.spinner
-            aria-hidden="true"
-            className="mr-2 size-4 animate-spin"
-          />
+          <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
         )}
         {props.children}
       </Button>

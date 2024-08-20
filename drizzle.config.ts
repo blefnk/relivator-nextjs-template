@@ -31,9 +31,9 @@ const outRailway =
 const out = databaseProvider.startsWith("railway") ? outRailway : outElse;
 
 // Determine the schema path based on the database provider
-const schemaPg = "src/db/schema/pgsql/index.ts";
-const schemaSqlite = "src/db/schema/sqlite/index.ts";
-const schemaMysql = "src/db/schema/mysql/index.ts";
+const schemaPg = "src/db/schema/pgsql.ts";
+const schemaSqlite = "src/db/schema/sqlite.ts";
+const schemaMysql = "src/db/schema/mysql.ts";
 
 const schemaElse =
   databaseProvider === "neon" || databaseProvider === "private-pg"

@@ -3,7 +3,10 @@ import type { ReactNode } from "react";
 import NextLink from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+
+// TODO: implement
+// import { Link as NextLink } from "~/navigation";
 
 type LinkProps = {
   variant?:
@@ -75,7 +78,7 @@ import Link from "next/link";
 import type { VariantProps } from "class-variance-authority";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
 // Extending the types of the Link component to include variant
 type ExtendedLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> &

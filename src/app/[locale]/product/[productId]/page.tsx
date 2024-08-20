@@ -10,23 +10,24 @@ import {
 } from "@/components/ui/accordion";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { cn, formatPrice } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { formatPrice } from "@/utils/reliverse/number";
+import { authProvider } from "~/../reliverse.config";
 import { getCookie } from "cookies-next";
 import { and, desc, eq, not } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
-import { authProvider } from "reliverse.config";
 import { titleCase } from "string-ts";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
-import { CartAddForm } from "~/components/Forms";
+import { CartAddForm } from "~/components/Forms/CartAddForm";
 import { ProductCard } from "~/components/Modules/Cards/ProductCard";
 import { Breadcrumbs } from "~/components/Navigation/Pagination/Breadcrumbs";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { db } from "~/db";
-import { products, stores } from "~/db/schema";
+import { products, stores } from "~/db/schema/provider";
 import { env } from "~/env";
 
 type ProductPageProps = {
@@ -223,7 +224,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {env.NODE_ENV === "development" && (
         <>
           <Separator />
-          <h1 className="font-semibold">[localhost-only-debug-info]</h1>
+          <h1 className="font-semibold">{t("page.localhostOnlyDebugInfo")}</h1>
           <div className="space-y-2">
             <p>store.id: {store?.id}</p>
             <p>productId: {productId}</p>

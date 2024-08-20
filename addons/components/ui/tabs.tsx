@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 const Tabs = TabsPrimitive.Root;

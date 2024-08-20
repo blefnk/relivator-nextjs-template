@@ -1,6 +1,6 @@
 import { convertEmptyStringToUndefined } from "@/scripts/reliverse/relimter/core/env/helpers";
+import { authProvider, debugEnabled } from "~/../reliverse.config";
 import consola from "consola";
-import { authProvider, debugEnabled } from "reliverse.config";
 
 import { recommendedEnvVariables } from "~/env";
 

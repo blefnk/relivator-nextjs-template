@@ -29,12 +29,6 @@ import { products, stores } from "~/db/schema";
 import { env } from "~/env";
 import { cn, formatDate, formatPrice } from "~/utils";
 
-export const metadata: Metadata = {
-  description: "Manage the billing and subscription",
-  metadataBase: new URL(baseUrl || "http://localhost:3000"),
-  title: "Billing",
-};
-
 export default async function BillingPage() {
   const user = authProvider === "clerk" ? await clerk() : await authjs();
 

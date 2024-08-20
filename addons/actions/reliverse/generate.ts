@@ -2,7 +2,7 @@ import { revalidatePath } from "next/cache";
 
 import { faker } from "@faker-js/faker";
 
-import type { Product } from "~/db/schema";
+import type { Product } from "~/db/schema/provider";
 
 import {
   getSubcategories,
@@ -10,7 +10,7 @@ import {
   productTags,
 } from "~/constants/products";
 import { db } from "~/db";
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 
 export async function generateProducts({
   count = 5,

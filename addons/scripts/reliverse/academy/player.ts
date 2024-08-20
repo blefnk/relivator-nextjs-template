@@ -4,7 +4,7 @@ import {
   readJsonFile,
   writeJsonFile,
 } from "@/scripts/reliverse/academy/fileHandler";
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import tryToCatch from "try-to-catch";
 import { v4 as uuidv4 } from "uuid";
 

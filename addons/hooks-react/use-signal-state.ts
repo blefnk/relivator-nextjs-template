@@ -4,7 +4,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { useRef, useState } from "react";
 
 import { useEvent } from "@/hooks-react/use-event";
-import { shrinkToValue } from "@/server/reliverse/funcs/s-to-v";
+import { shrinkToValue } from "@/server/reliverse/s-to-v";
 
 // 🔴 DEPRECATED AND POSSIBLY WILL BE REMOVED IN RELIVATOR 1.3.0 🔴 ||
 // ================================================================= ||

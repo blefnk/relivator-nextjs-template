@@ -22,14 +22,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { getRandomPatternStyle } from "@/server/reliverse/pattern";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import {
   CaretSortIcon,
   CheckIcon,
   PlusCircledIcon,
 } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
-import type { Store } from "~/db/schema";
+import type { Store } from "~/db/schema/provider";
 
 type StoreSwitcherProperties = {
   currentStore: Pick<Store, "id" | "name">;
@@ -44,6 +45,8 @@ export function StoreSwitcher({
   stores,
   ...properties
 }: StoreSwitcherProperties) {
+  const t = useTranslations();
+
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -88,7 +91,7 @@ export function StoreSwitcher({
           <Command>
             <CommandList>
               <CommandInput placeholder="Search store..." />
-              <CommandEmpty>No stores found.</CommandEmpty>
+              <CommandEmpty>{t("StoreSwitcher.noStoresFound")}</CommandEmpty>
               <CommandGroup>
                 {stores.map((store) => (
                   <CommandItem
@@ -100,10 +103,7 @@ export function StoreSwitcher({
                     }}
                   >
                     <div
-                      className={`
-                        mr-2 aspect-square size-4
-                        rounded-full
-                      `}
+                      className="mr-2 aspect-square size-4 rounded-full"
                       style={getRandomPatternStyle(String(store.id))}
                     />
                     <span className="line-clamp-1">{store.name}</span>

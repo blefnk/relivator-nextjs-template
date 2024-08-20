@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
 
 import { redirect } from "next/navigation";
 
-import { authProvider } from "reliverse.config";
+import { authProvider } from "~/../reliverse.config";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";

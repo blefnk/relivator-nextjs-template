@@ -8,7 +8,7 @@ import type {
   PlatePluginComponent,
 } from "@udecode/plate-common";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { createNodesHOC, usePlaceholderState } from "@udecode/plate-common";
 import { ELEMENT_H1 } from "@udecode/plate-heading";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";

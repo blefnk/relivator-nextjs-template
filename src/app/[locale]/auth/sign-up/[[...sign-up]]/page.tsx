@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 import { Button } from "@/components/ui/button";
-import { authProvider } from "reliverse.config";
+import { authProvider } from "~/../reliverse.config";
+import { getTranslations } from "next-intl/server";
 
 import { auth, signIn } from "~/auth/authjs";
 import {
@@ -16,6 +17,8 @@ export const metadata: Metadata = {
 };
 
 export default async function SignUpPage() {
+  const t = await getTranslations();
+
   const session = await auth();
 
   const message =
@@ -62,7 +65,7 @@ export default async function SignUpPage() {
                 await signIn("discord");
               }}
             >
-              <Button type="submit">Signin with Discord</Button>
+              <Button type="submit">{t("page.signinWithDiscord")}</Button>
             </form>
             <form
               action={async () => {
@@ -70,7 +73,7 @@ export default async function SignUpPage() {
                 await signIn("github");
               }}
             >
-              <Button type="submit">Signin with GitHub</Button>
+              <Button type="submit">{t("page.signinWithGithub")}</Button>
             </form>
             <form
               action={async () => {
@@ -78,7 +81,7 @@ export default async function SignUpPage() {
                 await signIn("google");
               }}
             >
-              <Button type="submit">Signin with Google</Button>
+              <Button type="submit">{t("page.signinWithGoogle")}</Button>
             </form>
           </div>
           {/* <div>

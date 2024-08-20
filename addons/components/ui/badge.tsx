@@ -2,7 +2,7 @@ import type { HTMLAttributes } from "react";
 
 import type { VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { cva } from "class-variance-authority";
 
 const badgeVariants = cva(

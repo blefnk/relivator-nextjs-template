@@ -3,7 +3,7 @@ import { forwardRef } from "react";
 
 import type { VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
 

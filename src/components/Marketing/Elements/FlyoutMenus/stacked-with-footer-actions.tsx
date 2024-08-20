@@ -1,8 +1,16 @@
+import { useTranslations } from "next-intl";
+
 export function StackedWithFooterActions() {
+  const t = useTranslations();
+
   return (
     <header>
-      <h2>Elements - Flyout Menus - Stacked with footer actions</h2>
-      <p>StackedWithFooterActions</p>
+      <h2>
+        {t(
+          "stacked-with-footer-actions.elementsFlyoutMenusStackedWithFooterActions",
+        )}
+      </h2>
+      <p>{t("stacked-with-footer-actions.stackedwithfooteractions")}</p>
     </header>
   );
 }

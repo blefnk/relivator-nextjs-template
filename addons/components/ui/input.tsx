@@ -3,7 +3,7 @@
 import type { InputHTMLAttributes } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement>;
 

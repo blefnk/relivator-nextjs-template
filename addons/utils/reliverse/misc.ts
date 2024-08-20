@@ -1,4 +1,4 @@
-import type { CartLineItem } from "@/types";
+import type { CartLineItem } from "@/types/reliverse/store";
 
 export const getInitials = async (username: string): Promise<string> => {
   if (!username) {

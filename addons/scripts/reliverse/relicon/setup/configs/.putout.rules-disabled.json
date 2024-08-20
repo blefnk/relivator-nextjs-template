@@ -165,7 +165,6 @@
     "**/reset.d.ts",
     "**/yarn-error.log",
     "addons/.output",
-    "addons/browser/reliverse/tools/components/ReliverseToolbar.tsx",
     "addons/cluster/reliverse/ui/cluster-readme.tsx",
     "addons/scripts/reliverse/academy/fileHandler.ts",
     "addons/scripts/reliverse/academy/leaders.ts",

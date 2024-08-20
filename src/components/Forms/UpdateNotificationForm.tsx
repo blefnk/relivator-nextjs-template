@@ -4,7 +4,7 @@ import { use, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import type { UpdateNotificationSchema } from "@/actions/reliverse/validations/notification";
-import type { getNotification } from "@/server/reliverse/queries/notification";
+import type { getNotification } from "@/server/reliverse/notification";
 
 import { updateNotification } from "@/actions/reliverse/notification";
 import { updateNotificationSchema } from "@/actions/reliverse/validations/notification";
@@ -21,16 +21,19 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
+import { useTranslations } from "next-intl";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
 type UpdateNotificationFormProps = {
   notificationPromise: ReturnType<typeof getNotification>;
 };
 
-export default function UpdateNotificationForm({
+export function UpdateNotificationForm({
   notificationPromise,
 }: UpdateNotificationFormProps) {
+  const t = useTranslations();
+
   const notification = use(notificationPromise);
   const [loading, setLoading] = useState(false);
 
@@ -108,7 +111,9 @@ export default function UpdateNotificationForm({
               `}
             >
               <div className="space-y-0.5">
-                <FormLabel className="text-base">Newsletter emails</FormLabel>
+                <FormLabel className="text-base">
+                  {t("UpdateNotificationForm.newsletterEmails")}
+                </FormLabel>
                 <FormDescription>
                   Receive our monthly newsletter with the latest news and
                   updates.
@@ -135,7 +140,9 @@ export default function UpdateNotificationForm({
               `}
             >
               <div className="space-y-0.5">
-                <FormLabel className="text-base">Marketing emails</FormLabel>
+                <FormLabel className="text-base">
+                  {t("UpdateNotificationForm.marketingEmails")}
+                </FormLabel>
                 <FormDescription>
                   Receive marketing emails, including promotions, discounts, and
                   more.
@@ -153,13 +160,15 @@ export default function UpdateNotificationForm({
         />
         <Button className="w-fit" disabled={loading} size="sm">
           {loading && (
-            <Icons.spinner
+            <SpinnerSVG
               aria-hidden="true"
               className="mr-2 size-4 animate-spin"
             />
           )}
           Save preferences
-          <span className="sr-only">Save preferences</span>
+          <span className="sr-only">
+            {t("UpdateNotificationForm.savePreferences")}
+          </span>
         </Button>
       </form>
     </Form>

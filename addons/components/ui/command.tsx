@@ -12,7 +12,7 @@ import type { DialogProps } from "@radix-ui/react-dialog";
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Command as CommandPrimitive } from "cmdk";
 
@@ -44,11 +44,7 @@ const CommandDialog = ({
 }: CommandDialogProps) => (
   <Dialog {...props}>
     <DialogContent className="overflow-hidden p-0" position={position}>
-      <DialogTitle
-        className={`
-        pl-3 pt-3 text-base font-medium text-muted-foreground
-      `}
-      >
+      <DialogTitle className="pl-3 pt-3 text-base font-medium text-muted-foreground">
         ↓↑ Command Menu
       </DialogTitle>
       <Separator />

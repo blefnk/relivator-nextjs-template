@@ -1,4 +1,4 @@
-import { hideTanstackDevtools } from "reliverse.config";
+import { hideTanstackDevtools } from "~/../reliverse.config";
 
 import { env } from "~/env";
 

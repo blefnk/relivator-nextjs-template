@@ -1,9 +1,9 @@
 import { currentUser } from "@clerk/nextjs/server";
 import consola from "consola";
 
-import type { User } from "~/db/schema";
+import type { User } from "~/db/schema/provider";
 
-import { authProvider } from "~/auth";
+import { authProvider } from "~/auth/provider";
 import { env } from "~/env";
 
 // ?| This file is related to Clerk. Please refer to "src/auth.ts" if you are using NextAuth.js as the authProvider.
@@ -17,7 +17,7 @@ const GuestSession = async (): Promise<User> => ({
   email: "guest@email.com",
   emailVerified: new Date("2024-07-10T00:00:00.000Z"),
   hashedPassword: "guestHashedPassword",
-  image: "https://relivator.bleverse.com/logo.png",
+  image: "https://relivator.reliverse.org/logo.png",
   mode: "buyer",
   role: "user",
   status: "guest",

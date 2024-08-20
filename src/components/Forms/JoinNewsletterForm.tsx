@@ -12,14 +12,18 @@ import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/hooks-react/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { config } from "@reliverse/core";
+import { Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { ofetch } from "ofetch";
 import { randomUUID } from "uncrypto";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
 type Inputs = z.infer<typeof emailSchema>;
 
-export default function JoinNewsletterForm() {
+export function JoinNewsletterForm() {
+  const t = useTranslations();
+
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
@@ -48,7 +52,11 @@ export default function JoinNewsletterForm() {
             toast({
               variant: "destructive",
               title: "You are already subscribed to Reliverse Weekly 🥰",
-              action: <ToastAction altText="Try again">Try again</ToastAction>,
+              action: (
+                <ToastAction altText={t("JoinNewsletterForm.tryAgain")}>
+                  {t("JoinNewsletterForm.tryAgain")}
+                </ToastAction>
+              ),
             });
             break;
 
@@ -56,7 +64,11 @@ export default function JoinNewsletterForm() {
             toast({
               variant: "destructive",
               title: "Invalid input 😭",
-              action: <ToastAction altText="Try again">Try again</ToastAction>,
+              action: (
+                <ToastAction altText={t("JoinNewsletterForm.tryAgain")}>
+                  {t("JoinNewsletterForm.tryAgain")}
+                </ToastAction>
+              ),
             });
             break;
 
@@ -64,7 +76,11 @@ export default function JoinNewsletterForm() {
             toast({
               variant: "destructive",
               title: "The daily email limit has been reached 🥹",
-              action: <ToastAction altText="Try again">Try again</ToastAction>,
+              action: (
+                <ToastAction altText={t("JoinNewsletterForm.tryAgain")}>
+                  {t("JoinNewsletterForm.tryAgain")}
+                </ToastAction>
+              ),
             });
             break;
 
@@ -72,7 +88,11 @@ export default function JoinNewsletterForm() {
             toast({
               variant: "destructive",
               title: "Something went wrong, please try again later 🤔",
-              action: <ToastAction altText="Try again">Try again</ToastAction>,
+              action: (
+                <ToastAction altText={t("JoinNewsletterForm.tryAgain")}>
+                  {t("JoinNewsletterForm.tryAgain")}
+                </ToastAction>
+              ),
             });
         }
 
@@ -87,7 +107,11 @@ export default function JoinNewsletterForm() {
       toast({
         variant: "destructive",
         title: "Something went wrong, please try again later 🥲",
-        action: <ToastAction altText="Try again">Try again</ToastAction>,
+        action: (
+          <ToastAction altText={t("JoinNewsletterForm.tryAgain")}>
+            {t("JoinNewsletterForm.tryAgain")}
+          </ToastAction>
+        ),
       });
       console.error(error);
     } finally {
@@ -115,11 +139,13 @@ export default function JoinNewsletterForm() {
           variant="outline"
         >
           {loading ? (
-            <Icons.spinner aria-hidden="true" className="animate-spin" />
+            <SpinnerSVG aria-hidden="true" className="animate-spin" />
           ) : (
-            <Icons.send aria-hidden="true" className="size-3" />
+            <Send aria-hidden="true" className="size-3" />
           )}
-          <span className="sr-only">Join Reliverse Weekly Newsletter</span>
+          <span className="sr-only">
+            {t("JoinNewsletterForm.joinReliverseWeeklyNewsletter")}
+          </span>
         </Button>
       </div>
     </form>

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { filterProducts } from "@/actions";
+import { filterProducts } from "@/actions/reliverse/product";
 import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
@@ -17,17 +17,19 @@ import {
 import { Kbd } from "@/components/ui/kbd";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useDebounce } from "@/hooks-react/use-debounce";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Package } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { isMacOS } from "std-env";
-
-import { Icons } from "~/components/Common/Icons";
 
 type ProductGroup = NonNullable<
   Awaited<ReturnType<typeof filterProducts>>["data"]
 >[number];
 
 export function ProductsCombobox() {
+  const t = useTranslations();
+
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -109,7 +111,7 @@ export function ProductsCombobox() {
         >
           Search products...
         </span>
-        <span className="sr-only">Search products</span>
+        <span className="sr-only">{t("ProductsCombobox.searchProducts")}</span>
         <Kbd
           title={isMacOS ? "Command" : "Control"}
           className={`
@@ -169,7 +171,7 @@ export function ProductsCombobox() {
                           });
                         }}
                       >
-                        <Icons.product
+                        <Package
                           className="mr-2.5 size-3 text-muted-foreground"
                           aria-hidden="true"
                         />

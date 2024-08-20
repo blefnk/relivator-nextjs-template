@@ -1,3 +1,7 @@
+import { useTranslations } from "next-intl";
+
 export default function NovuTestPage() {
-  return <div>Novu Developer Playground Page Coming soon...</div>;
+  const t = useTranslations();
+
+  return <div>{t("page.novuDeveloperPlaygroundPageComingSoon")}</div>;
 }

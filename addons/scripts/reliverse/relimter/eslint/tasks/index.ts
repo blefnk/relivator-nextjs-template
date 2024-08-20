@@ -1,6 +1,6 @@
 import { getRandomQuote } from "@/scripts/reliverse/quotes";
-import { getCurrentDirname, getRootDirname } from "@/scripts/utils";
 import { config } from "@reliverse/core";
+import { getCurrentDirname, getRootDirname } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import * as path from "pathe";

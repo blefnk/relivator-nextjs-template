@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { handler } from "@/server/reliverse/funcs/handler";
+import { handler } from "@/server/reliverse/handler";
 
 type ResponseData = {
   pong: string;

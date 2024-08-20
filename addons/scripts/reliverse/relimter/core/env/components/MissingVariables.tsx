@@ -10,7 +10,7 @@ import {
   getMissingVariables,
 } from "@/scripts/reliverse/relimter/core/env/get-missing";
 import { config } from "@reliverse/core";
-import { authProvider, debugEnabled, hideEnvInfo } from "reliverse.config";
+import { authProvider, debugEnabled, hideEnvInfo } from "~/../reliverse.config";
 
 type EnvInfoProps = {
   hide?: boolean;
@@ -49,11 +49,7 @@ export function EnvInfo({ hide = false, session = null }: EnvInfoProps) {
 
   return (
     <Card className="mx-12 mb-2 mt-6">
-      <CardContent
-        className={`
-        flex flex-1 flex-wrap place-items-start gap-4 text-sm
-      `}
-      >
+      <CardContent className="flex flex-1 flex-wrap place-items-start gap-4 text-sm">
         <Accordion className="flex-1" collapsible type="single">
           <AccordionItem value="item-1">
             <AccordionTrigger>

@@ -35,11 +35,9 @@ export default tseslint.config(
   js.configs.recommended,
   {
     ignores: [
-      "**/.{git,next,turbo,million,output}/",
+      "**/.{git,next,astro,turbo,million,output}/",
       "**/{node_modules,build,dist,drizzle}/",
-      "**/eslint.config.{ultimate,medium,minimal,rules-disabled}.ts",
-      "**/pnpm-lock.yaml",
-      "eslint.config.js", // TODO: delete when linting error is resolved
+      "pnpm-lock.yaml",
     ],
   },
   {
@@ -240,7 +238,8 @@ export default tseslint.config(
           applyDefaultIgnorePatterns: true,
           beforeBlockComment: true,
           beforeLineComment: true,
-          ignorePattern: "@type\\s.+|@ts-expect-error|biome-ignore|TODO:",
+          ignorePattern:
+            "@type\\s.+|@ts-expect-error|biome-ignore|TODO:|import",
         },
       ],
 
@@ -871,44 +870,51 @@ export default tseslint.config(
         },
       ],
       "no-restricted-imports": [
-        "warn",
+        "error",
+
+        // {
+        //   name: "next/link",
+        //   message:
+        //     "Please import from '~/navigation' OR from '@/components/ui/link' instead.",
+        // },
+        // {
+        //   name: "next/navigation",
+        //   importNames: [
+        //     "redirect",
+        //     "permanentRedirect",
+        //     "useRouter",
+        //     "usePathname",
+        //   ],
+        //   message: "Please import from '~/navigation' instead.",
+        // },
         {
-          paths: [
-            {
-              name: "inquirer",
-              message:
-                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
-            },
-            {
-              name: "process",
-              importNames: ["env"],
-              message: "Please use `import { env } from '~/env'` instead.",
-            },
-            {
-              name: "react",
-              importNames: ["default"],
-              message: "Named imports should be used instead.",
-            },
-            {
-              name: ".",
-              message: "Use explicit import file.",
-            },
-            {
-              name: "lodash",
-              message:
-                "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
-            },
-            {
-              name: "fs",
-              message:
-                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
-            },
-            {
-              name: "path",
-              message:
-                "Please use pathe instead (https://unjs.io/packages/pathe)",
-            },
-          ],
+          name: "inquirer",
+          message:
+            "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
+        },
+        {
+          name: "process",
+          importNames: ["env"],
+          message: "Please use `import { env } from '~/env'` instead.",
+        },
+        {
+          name: "react",
+          importNames: ["default"],
+          message: "Named imports should be used instead.",
+        },
+        {
+          name: "lodash",
+          message:
+            "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
+        },
+        {
+          name: "fs",
+          message:
+            "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
+        },
+        {
+          name: "path",
+          message: "Please use pathe instead (https://unjs.io/packages/pathe)",
         },
       ],
       "no-restricted-properties": [
@@ -1229,72 +1235,5 @@ export default tseslint.config(
     name: "@reliverse/eslint-config/js",
     files: ["**/*.{js,jsx}"],
     ...tseslint.configs.disableTypeChecked,
-  },
-  {
-    name: "@reliverse/eslint-config/etc",
-    files: ["{src,addons}/**/*.{ts,tsx}", "next.config.js"],
-    rules: {
-      "no-restricted-imports": [
-        "warn",
-        {
-          patterns: [
-            {
-              message:
-                // eslint-disable-next-line @stylistic/max-len
-                "\n\n⛔ Importing from '@/scripts' is not allowed in this file. The import from 'addons/scripts' folder cannot be used in the browser runtime context. \n✅ You can safely import from other folders inside 'addons' instead.\n💡 Consider using imports from 'addons/browser' (@/browser) for browser-compatible code.\n\n",
-              regex: "^@/scripts",
-            },
-          ],
-          paths: [
-            {
-              name: "inquirer",
-              message:
-                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
-            },
-            {
-              name: "process",
-              importNames: ["env"],
-              message: "Please use `import { env } from '~/env'` instead.",
-            },
-            {
-              name: "react",
-              importNames: ["default"],
-              message: "Named imports should be used instead.",
-            },
-            {
-              name: ".",
-              message: "Use explicit import file.",
-            },
-            {
-              name: "lodash",
-              message:
-                "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
-            },
-            {
-              name: "fs",
-              message:
-                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
-            },
-            {
-              name: "path",
-              message:
-                "Please use pathe instead (https://unjs.io/packages/pathe)",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    name: "@reliverse/eslint-config/etc",
-    files: ["addons/scripts/**/*.{ts,tsx}"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [],
-        },
-      ],
-    },
   },
 );

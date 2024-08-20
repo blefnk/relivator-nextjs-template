@@ -1,8 +1,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
-
-import { Icons } from "~/components/Common/Icons";
+import { ImageIcon } from "lucide-react";
 
 export default function CheckoutLoading() {
   return (
@@ -68,22 +67,15 @@ export default function CheckoutLoading() {
                   `}
                 >
                   <div className="flex items-center space-x-4">
-                    <div
-                      className={`
-                      relative size-16 overflow-hidden
-                      rounded
-                    `}
-                    >
+                    <div className="relative size-16 overflow-hidden rounded">
                       <div
                         className={`
                           flex h-full items-center justify-center bg-secondary
                         `}
                       >
-                        <Icons.placeholder
+                        <ImageIcon
                           aria-hidden="true"
-                          className={`
-                            size-4 text-muted-foreground
-                          `}
+                          className="size-4 text-muted-foreground"
                         />
                       </div>
                     </div>
@@ -97,11 +89,7 @@ export default function CheckoutLoading() {
                       <Skeleton className="h-2.5 w-20" />
                     </div>
                   </div>
-                  <div
-                    className={`
-                    flex flex-col space-y-2 font-medium
-                  `}
-                  >
+                  <div className="flex flex-col space-y-2 font-medium">
                     <Skeleton className="ml-auto h-4 w-12" />
                     <Skeleton className="h-2.5 w-20" />
                   </div>

@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { publicProcedure } from "~/core/trpc-old/trpc2";
 import { db } from "~/db";
-import * as schema from "~/db/schema";
+import * as schema from "~/db/schema/provider";
 
 // @ts-expect-error TODO: fix todos
 export const todosRouter = router({

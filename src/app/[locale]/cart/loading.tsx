@@ -7,8 +7,9 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ImageIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-import { Icons } from "~/components/Common/Icons";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -17,21 +18,18 @@ import {
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function CartLoading() {
+  const t = useTranslations();
+
   return (
     <Shell>
       <PageHeader>
-        <PageHeaderHeading size="sm">Checkout</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("loading.checkout")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Checkout with the cart items
         </PageHeaderDescription>
       </PageHeader>
       <Card>
-        <CardHeader
-          className={`
-          flex flex-row items-center justify-between
-          space-x-4 py-4
-        `}
-        >
+        <CardHeader className="flex flex-row items-center justify-between space-x-4 py-4">
           <Skeleton className="h-6 w-20" />
           <Skeleton className="h-8 w-20" />
         </CardHeader>
@@ -50,27 +48,16 @@ export default function CartLoading() {
                       xs:flex-row
                     `}
                   >
-                    <div
-                      className={`
-                      flex items-center space-x-4
-                    `}
-                    >
-                      <div
-                        className={`
-                        relative size-16 overflow-hidden
-                        rounded
-                      `}
-                      >
+                    <div className="flex items-center space-x-4">
+                      <div className="relative size-16 overflow-hidden rounded">
                         <div
                           className={`
                             flex h-full items-center justify-center bg-secondary
                           `}
                         >
-                          <Icons.placeholder
+                          <ImageIcon
                             aria-hidden="true"
-                            className={`
-                              size-4 text-muted-foreground
-                            `}
+                            className="size-4 text-muted-foreground"
                           />
                         </div>
                       </div>
@@ -91,11 +78,7 @@ export default function CartLoading() {
                         xs:w-auto xs:justify-normal
                       `}
                     >
-                      <div
-                        className={`
-                        flex items-center space-x-1
-                      `}
-                      >
+                      <div className="flex items-center space-x-1">
                         <Skeleton className="size-8" />
                         <Skeleton className="h-8 w-14" />
                         <Skeleton className="size-8" />

@@ -1,6 +1,4 @@
-// ===== The Reliverse Configuration =====================================
-// TODO: Consider moving technical details from `src/app.ts` to this file
-// =======================================================================
+export const appMainName = "Acme Store" as const;
 
 export const authProvider = "clerk" as "authjs" | "clerk" | "none";
 

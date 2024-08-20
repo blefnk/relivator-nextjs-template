@@ -5,14 +5,14 @@ import type {
   ComponentRef,
   HTMLAttributes,
 } from "react";
-import { createContext, forwardRef, use, useId } from "react";
+import { createContext, forwardRef, useContext, useId } from "react";
 import type { ControllerProps, FieldPath, FieldValues } from "react-hook-form";
 import { Controller, FormProvider, useFormContext } from "react-hook-form";
 
 import type * as LabelPrimitive from "@radix-ui/react-label";
 
 import { Label } from "@/components/ui/label";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { Slot } from "@radix-ui/react-slot";
 
 const Form = FormProvider;
@@ -45,7 +45,7 @@ const FormField = <
 );
 
 const useFormField = () => {
-  const fieldContext = use(FormFieldContext);
+  const fieldContext = useContext(FormFieldContext);
 
   const { formState, getFieldState } = useFormContext();
 
@@ -55,7 +55,7 @@ const useFormField = () => {
     throw new Error("useFormField should be used within <FormField>");
   }
 
-  const { id } = use(FormItemContext);
+  const { id } = useContext(FormItemContext);
 
   return {
     id,

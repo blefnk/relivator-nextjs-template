@@ -8,7 +8,7 @@ import type {
 import { forwardRef } from "react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
 const AlertDialog = AlertDialogPrimitive.Root;

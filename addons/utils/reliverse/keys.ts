@@ -1,4 +1,8 @@
-import type { CheckHotkeyMatch, Hotkey, KeyboardModifiers } from "@/types";
+import type {
+  CheckHotkeyMatch,
+  Hotkey,
+  KeyboardModifiers,
+} from "@/types/reliverse/keys";
 
 function parseHotkey(hotkey: string): Hotkey {
   const keys = hotkey

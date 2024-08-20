@@ -52,8 +52,8 @@ export default function Onboarding() {
         <p>
           RQ29: Should I modify the components by
           [shadcn/ui](https://ui.shadcn.com) (as of Relivator 1.2.6, they are
-          located in the "addons/browser/reliverse/shadcn/ui" folder)? RA29: You
-          may lose your changes if @shadcn or
+          located in the "addons/components/ui" folder)? RA29: You may lose your
+          changes if @shadcn or
           [Reliverse](https://github.com/orgs/reliverse/repositories) update any
           of these components in the release of Relivator 1.3.x+. Therefore, the
           best option currently is to use, for example, the
@@ -65,12 +65,11 @@ export default function Onboarding() {
           copy and paste that line into your newly created file. Alternatively,
           you can duplicate the code from the original file and make any
           modifications you want. Use `Cmd/Ctrl+Shift+H` and simply replace
-          `addons/browser/reliverse/shadcn/ui` with
-          `addons/cluster/reliverse/shadcn/ui` (the difference is only in the
-          words "browser" and "cluster"). `addons/cluster` is your house; feel
-          free to do anything you want here, mess it up or tidy it up as you
-          wish. This is your own house, and no one has the right to take it away
-          from you.
+          `addons/components/ui` with `addons/cluster/reliverse/shadcn/ui` (the
+          difference is only in the words "browser" and "cluster").
+          `addons/cluster` is your house; feel free to do anything you want
+          here, mess it up or tidy it up as you wish. This is your own house,
+          and no one has the right to take it away from you.
         </p>
         <br />
         <p>
@@ -86,12 +85,11 @@ export default function Onboarding() {
           copy and paste that line into your newly created file. Alternatively,
           you can duplicate the code from the original file and make any
           modifications you want. Use `Cmd/Ctrl+Shift+H` and simply replace
-          `addons/browser/reliverse/shadcn/ui` with
-          `addons/cluster/reliverse/shadcn/ui` (the difference is only in the
-          words "browser" and "cluster"). `addons/cluster` is your house; feel
-          free to do anything you want here, mess it up or tidy it up as you
-          wish. This is your own house, and no one has the right to take it away
-          from you.
+          `addons/components/ui` with `addons/cluster/reliverse/shadcn/ui` (the
+          difference is only in the words "browser" and "cluster").
+          `addons/cluster` is your house; feel free to do anything you want
+          here, mess it up or tidy it up as you wish. This is your own house,
+          and no one has the right to take it away from you.
         </p>
       </article>
     </>
@@ -105,7 +103,7 @@ export function Onboard({ firstName = "FirstName" }) {
       <Tailwind>
         <Img
           alt="Relivator Logo"
-          src="https://relivator.bleverse.com/logo.png"
+          src="https://relivator.reliverse.org/logo.png"
         />
         <p className="text-2xl">Welcome {firstName}, </p>
         <p className="text-lg">
@@ -194,7 +192,7 @@ export function OnboardSample({ firstName = "FirstName" }) {
       <Image
         alt="Relivator Logo"
         height={150}
-        src="https://relivator.bleverse.com/logo.png"
+        src="https://relivator.reliverse.org/logo.png"
         width={500}
       />
       <a href="/page">asa</a>

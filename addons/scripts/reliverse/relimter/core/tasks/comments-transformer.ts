@@ -1,6 +1,5 @@
-import { getRootDirname } from "@/scripts/utils";
 import { confirm } from "@inquirer/prompts";
-import { getErrorMessage, wrapError } from "@metamask/utils/node";
+import { getRootDirname } from "@reliverse/fs";
 import { consola } from "consola";
 import fs from "fs-extra";
 import { join, relative } from "pathe";
@@ -60,9 +59,8 @@ async function* getFiles(directory: string): AsyncGenerator<string> {
       }
     }
   } catch (error) {
-    throw wrapError(
-      new Error(`Error reading directory: ${directory}`),
-      String(error),
+    new Error(
+      `Error reading directory: ${directory}. Details: ${String(error)}`,
     );
   }
 }
@@ -297,7 +295,7 @@ async function main(): Promise<void> {
   try {
     result = await processFiles();
   } catch (error) {
-    consola.error(pc.red(`❌ An error occurred: ${getErrorMessage(error)}`));
+    consola.error(pc.red(`❌ An error occurred: ${String(error)}`));
 
     return;
   }

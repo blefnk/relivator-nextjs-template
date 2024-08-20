@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import type { Option } from "@/types";
+import type { Option } from "@/types/reliverse/store";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -32,14 +32,16 @@ import {
 } from "@/components/ui/sheet";
 import { Slider } from "@/components/ui/slider";
 import { useDebounce } from "@/hooks-react/use-debounce";
-import { cn, truncate } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { truncate } from "@/utils/reliverse/string";
 import { getCookie } from "cookies-next";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { titleCase } from "string-ts";
 
 /* eslint-disable complexity */
-import type { Product, Store } from "~/db/schema";
+import type { Product, Store } from "~/db/schema/provider";
 
-import { Icons } from "~/components/Common/Icons";
 import { MultiSelect } from "~/components/Common/multi-select";
 import { ProductCard } from "~/components/Modules/Cards/ProductCard";
 import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
@@ -67,6 +69,8 @@ export function Products({
   tAddToCart = "Add to cart",
   ...props
 }: ProductsProps) {
+  const t = useTranslations();
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParameters = useSearchParams();
@@ -204,22 +208,12 @@ export function Products({
           </SheetTrigger>
           <SheetContent className="flex flex-col">
             <SheetHeader className="px-1">
-              <SheetTitle>Filters</SheetTitle>
+              <SheetTitle>{t("products.filters")}</SheetTitle>
             </SheetHeader>
             <Separator />
-            <div
-              className={`
-              flex flex-1 flex-col gap-5 overflow-hidden
-              px-1
-            `}
-            >
+            <div className="flex flex-1 flex-col gap-5 overflow-hidden px-1">
               <div className="space-y-4">
-                <h3
-                  className={`
-                  text-sm font-medium tracking-wide
-                  text-foreground
-                `}
-                >
+                <h3 className="text-sm font-medium tracking-wide text-foreground">
                   Price range ($)
                 </h3>
                 <Slider
@@ -310,11 +304,7 @@ export function Products({
                     >
                       Stores
                     </h3>
-                    <div
-                      className={`
-                      flex items-center space-x-2
-                    `}
-                    >
+                    <div className="flex items-center space-x-2">
                       <Button
                         disabled={Number(store_page) === 1 || isPending}
                         onClick={() => {
@@ -329,11 +319,10 @@ export function Products({
                         size="icon"
                         variant="ghost"
                       >
-                        <Icons.chevronLeft
-                          aria-hidden="true"
-                          className="size-4"
-                        />
-                        <span className="sr-only">Previous store page</span>
+                        <ChevronLeft aria-hidden="true" className="size-4" />
+                        <span className="sr-only">
+                          {t("products.previousStorePage")}
+                        </span>
                       </Button>
                       <Button
                         disabled={
@@ -351,11 +340,10 @@ export function Products({
                         size="icon"
                         variant="ghost"
                       >
-                        <Icons.chevronRight
-                          aria-hidden="true"
-                          className="size-4"
-                        />
-                        <span className="sr-only">Next store page</span>
+                        <ChevronRight aria-hidden="true" className="size-4" />
+                        <span className="sr-only">
+                          {t("products.nextStorePage")}
+                        </span>
                       </Button>
                     </div>
                   </div>
@@ -363,9 +351,7 @@ export function Products({
                     <div className="space-y-4">
                       {stores.map((store) => (
                         <div
-                          className={`
-                            flex items-center space-x-2
-                          `}
+                          className="flex items-center space-x-2"
                           key={store.id}
                         >
                           <Checkbox
@@ -441,11 +427,11 @@ export function Products({
           <DropdownMenuTrigger asChild>
             <Button aria-label="Sort products" disabled={isPending} size="sm">
               Sort
-              <Icons.chevronDown aria-hidden="true" className="ml-2 size-4" />
+              <ChevronDown aria-hidden="true" className="ml-2 size-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-48">
-            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+            <DropdownMenuLabel>{t("products.sortBy")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {sortOptions.map((option) => (
               <DropdownMenuItem
@@ -472,7 +458,9 @@ export function Products({
       </div>
       {!isPending && products.length === 0 ? (
         <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
-          <h1 className="text-center text-2xl font-bold">No products found</h1>
+          <h1 className="text-center text-2xl font-bold">
+            {t("products.noProductsFound")}
+          </h1>
           <p className="text-center text-muted-foreground">
             Try changing the filters, or check back later for new products
           </p>

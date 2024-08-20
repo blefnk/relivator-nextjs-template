@@ -1,13 +1,13 @@
 import type { TarFileItem } from "nanotar";
 
+import { checkbox, confirm, input, select, Separator } from "@inquirer/prompts";
 import {
+  directoryExists,
   getFoldersInDirectory,
   getRootDirname,
   removeFile,
   removeFolder,
-} from "@/scripts/utils";
-import { checkbox, confirm, input, select, Separator } from "@inquirer/prompts";
-import { directoryExists } from "@metamask/utils/node";
+} from "@reliverse/fs";
 import { consola } from "consola";
 import fs from "fs-extra";
 import { createTarGzip, parseTarGzip } from "nanotar";

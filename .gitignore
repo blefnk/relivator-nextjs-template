@@ -3,7 +3,7 @@
 # Dependency directories
 node_modules/
 jspm_packages/
-bower_components
+bower_components/
 web_modules/
 .pnp
 .pnp.js
@@ -25,7 +25,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
-yarn-error.log*
 
 # Runtime data
 pids/
@@ -37,22 +36,24 @@ pids/
 lib-cov/
 coverage/
 *.lcov
-.nyc_output
+.nyc_output/
 
 # Grunt intermediate storage
-.grunt
+.grunt/
 
 # node-waf configuration
 .lock-wscript
 
 # Compiled binary addons
-build/Release
+build/Release/
 
 # TypeScript cache
 *.tsbuildinfo
+*.d.ts.map
 
 # Optional npm cache directory
-.npm
+.npm/
+.npm/_locks
 
 # Optional stylelint cache
 .stylelintcache
@@ -71,8 +72,8 @@ build/Release
 
 # Yarn files
 .yarn/
-.yarn/cache
-.yarn/unplugged
+.yarn/cache/
+.yarn/unplugged/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
@@ -86,8 +87,8 @@ __.env
 .__.env
 
 # Parcel cache
-.cache
-.parcel-cache
+.cache/
+.parcel-cache/
 
 # Expo
 .expo/
@@ -96,7 +97,7 @@ expo-env.d.ts
 apps/expo/.gitignore
 
 # Docusaurus cache and generated files
-.docusaurus
+.docusaurus/
 
 # Serverless directories
 .serverless/
@@ -108,19 +109,19 @@ apps/expo/.gitignore
 .dynamodb/
 
 # TernJS port file
-.tern-port
+.tern-port/
 
 # Turbo
-.turbo
+.turbo/
 
 # Vercel
-.vercel
+.vercel/
 
 # Diagnostic reports
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # IntelliJ based IDEs
-.idea
+.idea/
 
 # MacOS Finder
 .DS_Store
@@ -143,9 +144,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Python related
 __pycache__/
 *.py[oc]
-*.egg-info
-.venv
-.ruff_cache
+*.egg-info/
+.venv/
+.ruff_cache/
 .wheels/
 
 # Code editors
@@ -154,7 +155,7 @@ __pycache__/
 *.idea/
 *.vscode/
 .eslintcache
-.vscode-test
+.vscode-test/
 
 # Misc
 *.pem
@@ -162,7 +163,8 @@ __pycache__/
 path_mapping.txt
 
 # Reliverse
-addons/.output
-.million
-yarn-error.log
-coverage
+addons/.output/
+addons/premium/
+yarn-error.log/
+coverage/
+.million/

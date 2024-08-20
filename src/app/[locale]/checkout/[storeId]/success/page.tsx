@@ -4,8 +4,9 @@ import Link from "next/link";
 import { deleteCartAction } from "@/actions/reliverse//cart";
 import { buttonVariants } from "@/components/ui/button";
 import { getCartId } from "@/server/reliverse/cart";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { eq } from "drizzle-orm";
+import { getTranslations } from "next-intl/server";
 
 import {
   PageHeader,
@@ -13,7 +14,7 @@ import {
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
 import { db } from "~/db";
-import { stores } from "~/db/schema";
+import { stores } from "~/db/schema/provider";
 
 export const metadata: Metadata = {
   description: "Order summary for the purchase",
@@ -31,6 +32,8 @@ type OrderSuccessPageProps = {
 export default async function OrderSuccessPage({
   params,
 }: OrderSuccessPageProps) {
+  const t = await getTranslations();
+
   const { storeId } = params;
 
   // const { delivery_postal_code, payment_intent, payment_intent_client_secret, redirect_status } =
@@ -82,7 +85,7 @@ export default async function OrderSuccessPage({
           className="container flex max-w-7xl flex-col"
           id="order-success-page-header"
         >
-          <PageHeaderHeading>Thank you for the order</PageHeaderHeading>
+          <PageHeaderHeading>{t("page.thankYouForTheOrder")}</PageHeaderHeading>
           <PageHeaderDescription>
             {store?.name || "Store"} will be in touch with you shortly
           </PageHeaderDescription>
@@ -125,7 +128,7 @@ export default async function OrderSuccessPage({
             id="order-success-page-header"
             aria-labelledby="order-success-page-header-heading"
           >
-            <PageHeaderHeading>Thank you for the order</PageHeaderHeading>
+            <PageHeaderHeading>{t("page.thankYouForTheOrder")}</PageHeaderHeading>
             <PageHeaderDescription>
               {store?.name || "Store"} will be in touch with you shortly
             </PageHeaderDescription>

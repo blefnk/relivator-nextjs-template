@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef, ElementRef } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 
 const HoverCard = HoverCardPrimitive.Root;

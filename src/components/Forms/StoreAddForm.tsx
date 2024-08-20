@@ -18,19 +18,22 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/text-area";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
+import { useTranslations } from "next-intl";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
-type AddStoreFormProps = {
+type StoreAddFormProps = {
   userId: string;
 };
 
 type Inputs = z.infer<typeof storeSchema>;
 
-export default function AddStoreForm({ userId }: AddStoreFormProps) {
+export function StoreAddForm({ userId }: StoreAddFormProps) {
+  const t = useTranslations();
+
   const [isPending, startTransition] = useTransition();
 
   // react-hook-form
@@ -80,7 +83,7 @@ export default function AddStoreForm({ userId }: AddStoreFormProps) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{t("StoreAddForm.name")}</FormLabel>
               <FormControl>
                 <Input placeholder="Type store name here." {...field} />
               </FormControl>
@@ -93,7 +96,7 @@ export default function AddStoreForm({ userId }: AddStoreFormProps) {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{t("StoreAddForm.description")}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Type store description here."
@@ -106,13 +109,13 @@ export default function AddStoreForm({ userId }: AddStoreFormProps) {
         />
         <Button className="w-fit" disabled={isPending}>
           {isPending && (
-            <Icons.spinner
+            <SpinnerSVG
               aria-hidden="true"
               className="mr-2 size-4 animate-spin"
             />
           )}
           Add Store
-          <span className="sr-only">Add Store</span>
+          <span className="sr-only">{t("StoreAddForm.addStore")}</span>
         </Button>
       </form>
     </Form>

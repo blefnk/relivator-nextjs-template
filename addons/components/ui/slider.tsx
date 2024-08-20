@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 
 const Slider = forwardRef<

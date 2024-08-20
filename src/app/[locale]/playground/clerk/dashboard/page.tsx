@@ -39,11 +39,7 @@ export default async function DashboardPage() {
       <main className="mx-auto w-full max-w-[75rem]">
         <div className="grid grid-cols-[1fr_20.5rem] gap-10 pb-10">
           <div>
-            <header
-              className={`
-              flex h-16 w-full items-center justify-between gap-4
-            `}
-            >
+            <header className="flex h-16 w-full items-center justify-between gap-4">
               <div className="flex gap-4">
                 <ClerkLogo />
                 <div aria-hidden className="h-6 w-px bg-[#C7C7C8]" />

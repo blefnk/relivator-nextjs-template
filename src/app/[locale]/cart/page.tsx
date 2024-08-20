@@ -5,10 +5,10 @@ import { redirect } from "next/navigation";
 import { getCartAction, getUniqueStoreIds } from "@/actions/reliverse//cart";
 import { buttonVariants } from "@/components/ui/button";
 import { getCartId } from "@/server/reliverse/cart";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { ShoppingCart } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
-import { Icons } from "~/components/Common/Icons";
 import { CheckoutCard } from "~/components/Modules/Cards/CheckoutCard";
 import {
   PageHeader,
@@ -97,7 +97,7 @@ export default async function CartPage() {
           `}
           id="cart-page-empty-cart"
         >
-          <Icons.cart
+          <ShoppingCart
             aria-hidden="true"
             className="mb-4 size-16 text-muted-foreground"
           />

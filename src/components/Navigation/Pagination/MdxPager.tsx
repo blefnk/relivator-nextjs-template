@@ -3,9 +3,9 @@ import type { HTMLAttributes } from "react";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn, truncate } from "@/utils";
-
-import { Icons } from "~/components/Common/Icons";
+import { cn } from "@/utils/reliverse/cn";
+import { truncate } from "@/utils/reliverse/string";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 type MdxPagerItem = {
   slug: string;
@@ -44,7 +44,7 @@ export function MdxPager({
           )}
           href={pager.prev.slug}
         >
-          <Icons.chevronLeft aria-hidden="true" className="mr-2 size-4" />
+          <ChevronLeft aria-hidden="true" className="mr-2 size-4" />
           {truncate(pager.prev.title, 20)}
         </Link>
       ) : null}
@@ -60,7 +60,7 @@ export function MdxPager({
           href={pager.next.slug}
         >
           {truncate(pager.next.title, 20)}
-          <Icons.chevronRight aria-hidden="true" className="ml-2 size-4" />
+          <ChevronRight aria-hidden="true" className="ml-2 size-4" />
         </Link>
       ) : null}
     </div>

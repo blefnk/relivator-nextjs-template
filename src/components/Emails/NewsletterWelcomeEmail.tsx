@@ -14,6 +14,7 @@ import {
   Text,
 } from "@react-email/components";
 import { config } from "@reliverse/core";
+import { useTranslations } from "next-intl";
 
 import { env } from "~/env";
 
@@ -48,31 +49,25 @@ export default function NewsletterWelcomeEmail({
   fromEmail = "blefnk@gmail.com",
   token,
 }: NewsletterWelcomeEmailProps) {
+  const t = useTranslations();
+
   const previewText = `Hi, ${firstName}! Welcome to Reliverse Weekly! 👋`;
 
   return (
     <Html>
       <Head>
-        <title>Reliverse Weekly Newsletter</title>
+        <title>{t("NewsletterWelcomeEmail.reliverseWeeklyNewsletter")}</title>
       </Head>
       <Preview>{previewText}</Preview>
       <Tailwind>
         <Body className="mx-auto bg-zinc-50 font-sans">
           <Container className="mx-auto my-[40px] max-w-2xl rounded p-4">
             <Section className="mt-4">
-              <Heading
-                className={`
-                text-center text-2xl font-semibold text-zinc-950
-              `}
-              >
+              <Heading className="text-center text-2xl font-semibold text-zinc-950">
                 Reliverse Weekly
               </Heading>
               <Hr className="my-4" />
-              <Heading
-                className={`
-                text-center text-3xl font-semibold text-zinc-800
-              `}
-              >
+              <Heading className="text-center text-3xl font-semibold text-zinc-800">
                 Welcome to Reliverse Weekly!
               </Heading>
               <Text className="mb-0 mt-6 text-center text-base">

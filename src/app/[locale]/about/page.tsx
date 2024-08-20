@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "About Relivator",
 };
 
-export default function Page() {
+export default function AboutPage() {
   const t = useTranslations();
 
   return (
@@ -49,7 +49,7 @@ export default function Page() {
             </Link>
           </section>
         </div>
-        <Heading>About</Heading>
+        <Heading>{t("page.about")}</Heading>
         <Paragraph>
           <br />
           <br />© 2024

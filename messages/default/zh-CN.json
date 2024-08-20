@@ -1,0 +1,604 @@
+{
+  "AuthjsV5Test": {
+    "clientExamplePageTsx": "客户端示例/page.tsx",
+    "clientSideRendering": "客户端渲染",
+    "exampleBackend": "示例后端",
+    "here": "这里",
+    "loading": "加载中...",
+    "sessionprovider": "会话提供者",
+    "thirdPartyBackendIntegration": "第三方后端集成",
+    "update": "更新",
+    "updatingTheSession": "更新会话",
+    "useClient": "“使用客户端”",
+    "usesession": "使用会话"
+  },
+  "CartAddForm": {
+    "addOneItem": "添加一项",
+    "quantity": "数量",
+    "removeOneItem": "删除一项"
+  },
+  "CommerceDashboard": {
+    "dashboard": "仪表板"
+  },
+  "ContactForm": {
+    "message": "信息",
+    "subject": "主题"
+  },
+  "CountryList": {
+    "currencies": "货币：",
+    "languages": "语言：",
+    "loading": "加载中..."
+  },
+  "DataTablePagination": {
+    "rowsPerPage": "每页行数"
+  },
+  "DialogShell": {
+    "close": "关闭"
+  },
+  "Error": {
+    "description": "<p>Switch the website language to English if the error details are not displayed. | 很遗憾，我们遇到了错误。</p><p>您可以尝试<重试>重新加载您正在访问的页面</重试>。作为网站的开发者，如果您能联系我们并通知我们有关此错误的信息，我们将不胜感激。预先感谢您！</p>",
+    "title": "出了点问题..."
+  },
+  "Faceted": {
+    "noResultsFound": "没有找到结果。"
+  },
+  "GuestAddForm": {
+    "email": "电子邮件"
+  },
+  "JoinNewsletterForm": {
+    "joinReliverseWeeklyNewsletter": "加入 Reliverse 每周通讯",
+    "tryAgain": "再试一次"
+  },
+  "LocaleSwitcher": {
+    "changeLanguage": "改变语言",
+    "english": "英语",
+    "germany": "德国",
+    "languages": "语言",
+    "spanish": "西班牙语",
+    "ukrainian": "乌克兰"
+  },
+  "LoginForm": {
+    "no-account": "没有账户？",
+    "signup": "在此注册。",
+    "title": "登录",
+    "welcome-back": "欢迎回来"
+  },
+  "MainMenu": {
+    "websiteLogoWithName": "带有名称的网站徽标"
+  },
+  "Manifest": {
+    "name": "Relivator：Next.js 模板"
+  },
+  "MdxCard": {
+    "view": "看法"
+  },
+  "MobileMenu": {
+    "toggleMenu": "切换菜单"
+  },
+  "ModeToggle": {
+    "toggleTheme": "切换主题"
+  },
+  "MultiUploader": {
+    "dropFilesHere": "将文件放到这里！"
+  },
+  "NavWithCompactPageHeader": {
+    "navwithcompactpageheader": "带有紧凑页标题的导航"
+  },
+  "NewsletterWelcomeEmail": {
+    "reliverseWeeklyNewsletter": "Reliverse 每周通讯"
+  },
+  "Options": {
+    "toggleColumns": "切换列"
+  },
+  "PathnamesPage": {
+    "description": "<p>Reliverse Playground | next-intl | URL 路径名可以国际化。</p><p>如果您使用默认语言英语，您将在此页面的浏览器地址栏中看到 <code>/en/pathnames</code>。< /p><p>如果将区域设置更改为德语，则 URL 也会相应地本地化 (<code>/de/pfadnamen</code>)。</p>",
+    "title": "路径名"
+  },
+  "PostAddForm": {
+    "createPost": "创建帖子"
+  },
+  "PricingModules": {
+    "nextJs": "Next.js"
+  },
+  "Privileges": {
+    "switchUserRole": "切换用户角色"
+  },
+  "ProductAddForm": {
+    "addProduct": "添加产品",
+    "category": "类别",
+    "description": "描述",
+    "images": "图片",
+    "inventory": "存货",
+    "name": "姓名",
+    "price": "价格",
+    "subcategory": "子类别"
+  },
+  "ProductCard": {
+    "promise": "承诺"
+  },
+  "ProductPager": {
+    "nextProduct": "下一个产品",
+    "previousProduct": "上一个产品"
+  },
+  "ProductUpdForm": {
+    "category": "类别",
+    "deleteProduct": "删除产品",
+    "description": "描述",
+    "images": "图片",
+    "inventory": "存货",
+    "name": "姓名",
+    "price": "价格",
+    "subcategory": "子类别",
+    "updateProduct": "更新产品"
+  },
+  "ProductsCombobox": {
+    "searchProducts": "搜索产品"
+  },
+  "RegisterForm": {
+    "have-account": "已有账户？",
+    "signin": "在这里登录。",
+    "title": "注册"
+  },
+  "RootLocaleLayout": {
+    "metadata": {
+      "description": "使用 Relivator 提升您的电商：shadcn/ui、Next.js 15 和 React 19 的强大功能",
+      "title": {
+        "home": "首页"
+      }
+    },
+    "titleDetails": "快速建立网上商店"
+  },
+  "SVG": {
+    "buyMeACoffeLogo": "给我买杯咖啡标志",
+    "facebookLogo": "脸书标志",
+    "githubLogoInvertocat": "GitHub 徽标：Invertocat",
+    "googleLogo": "谷歌标志",
+    "nextJs": "Next.js",
+    "passkey": "万能钥匙",
+    "patreonLogo": "帕特雷恩标志",
+    "paypalLogo": "贝宝标志",
+    "spinner": "旋转器"
+  },
+  "SessionData": {
+    "currentSessionData": "当前会话数据",
+    "onlyPassTheNecessaryFields": "只传递必要的字段",
+    "signIn": "登入"
+  },
+  "SidebarWithHeader": {
+    "applicationAppShellsSidebarLayoutsSidebarWithHeader": "应用程序 - 应用程序外壳 - 侧边栏布局 - 带标题的侧边栏",
+    "sidebarwithheader": "带标题的侧边栏"
+  },
+  "SiteFooter": {
+    "allRightsReserved": "版权所有"
+  },
+  "StoreAddForm": {
+    "addStore": "添加商店",
+    "description": "描述",
+    "name": "姓名"
+  },
+  "StorePager": {
+    "nextStore": "下一家店",
+    "previousStore": "上一家店"
+  },
+  "StoreSwitcher": {
+    "noStoresFound": "没有找到商店。"
+  },
+  "ThemeToggle": {
+    "toggleTheme": "切换主题"
+  },
+  "ThemesGeneralSwitcher": {
+    "dark": "黑暗的",
+    "light": "光",
+    "system": "系统",
+    "theme": "主题"
+  },
+  "UpdateCart": {
+    "addOneItem": "添加一项",
+    "deleteItem": "删除项目",
+    "removeOneItem": "删除一项"
+  },
+  "UpdateNotificationForm": {
+    "marketingEmails": "营销电子邮件",
+    "newsletterEmails": "时事通讯电子邮件",
+    "savePreferences": "保存首选项"
+  },
+  "UserButton": {
+    "signIn": "登入"
+  },
+  "VerifyOrderForm": {
+    "deliveryPostalCode": "送货邮政编码",
+    "verifyOrder": "验证订单"
+  },
+  "WithIcons": {
+    "applicationNavigationVerticalNavigationWithIcons": "应用程序 - 导航 - 垂直导航 - 带图标",
+    "withicons": "带图标"
+  },
+  "WithLeftAlignedNav": {
+    "elementsHeadersWithLeftAlignedNav": "元素 - 标题 - 导航左对齐",
+    "withleftalignednav": "左对齐Nav"
+  },
+  "WithSecondaryNavigation": {
+    "withsecondarynavigation": "带辅助导航"
+  },
+  "account-page": {
+    "Settings": "设置",
+    "loggedIn": "已登录",
+    "loggedOut": "已登出",
+    "login": "登录",
+    "logout": "登出",
+    "title": "账户"
+  },
+  "auth": {
+    "error": {
+      "default": "尝试使用其他账户。",
+      "email": "找不到电子邮件。请尝试其他提供商。",
+      "oauthNotLinked": "请使用原账户登录确认身份。",
+      "unknown": "发生错误。请重试。",
+      "unknown-error": "出了些问题。请访问 /contact 告知支持团队。"
+    },
+    "legal": "使用这些按钮即表示您同意我们的",
+    "legal-and": "和",
+    "legal-privacy": "隐私政策",
+    "legal-terms": "服务条款"
+  },
+  "auth-provider": {
+    "please-wait": "请稍等..."
+  },
+  "auth-user": {
+    "signInEmail": "登录 电子邮件"
+  },
+  "banners": {
+    "announcements-1": {
+      "button": "立即访问",
+      "details": "请访问发布博客文章，了解发生了什么变化以及接下来会发生什么。",
+      "dismiss": "解雇",
+      "title": "Relivator v1.2.6 和 v1.3.0-canary.4 现已推出！"
+    }
+  },
+  "blog-comments-server": {
+    "postthreadlist": "帖子列表"
+  },
+  "checkout": {
+    "CartDetails": "详情",
+    "Demo": "测试数据: 4242424242424242 | 12/34 | 567",
+    "Description": "结账购物车中的商品",
+    "EmptyCartDescription": "添加商品到购物车以结账",
+    "EmptyCartHeading": "购物车为空",
+    "Pay": "支付",
+    "Title": "结账",
+    "backToCart": "返回购物车",
+    "backToCartSingle": "返回",
+    "calculated": "结账时计算",
+    "cart": "购物车",
+    "cartIsEmpty": "您的购物车为空",
+    "continueShopping": "继续购物",
+    "free": "免费",
+    "notConnectedDescription": "连接 Stripe 以接受支付",
+    "notConnectedHeading": "商店未连接 Stripe",
+    "shipping": "运送",
+    "taxes": "税费",
+    "total": "总计",
+    "viewTheCart": "查看购物车"
+  },
+  "client": {
+    "currentPassword": "当前密码",
+    "name": "姓名",
+    "newPassword": "新密码",
+    "password": "密码",
+    "plan": "计划",
+    "saveChanges": "保存更改",
+    "savePassword": "保存密码",
+    "settings": "设置",
+    "subscriptionPlans": "订阅计划",
+    "userNotFound": "未找到用户",
+    "username": "用户名"
+  },
+  "components": {
+    "command": {
+      "dark": "黑暗",
+      "light": "光明",
+      "system": "系统",
+      "theme": "主题"
+    },
+    "search": {
+      "placeholder": "搜索...",
+      "title": "搜索"
+    }
+  },
+  "contact": {
+    "submit": "提交"
+  },
+  "cursor": {
+    "cursor": "光标"
+  },
+  "demo": {
+    "aria-label-goto": "前往",
+    "launch": "仪表板"
+  },
+  "editor-placeholder": {
+    "record": "记录"
+  },
+  "example": {
+    "beforeUsing": "使用前",
+    "billing": "计费",
+    "localhostDebug": "[本地主机调试]："
+  },
+  "faceted-filter": {
+    "noResultsFound": "没有找到结果。"
+  },
+  "faq": {
+    "1": {
+      "details": "访问 Relivator GitHub 仓库中的 README.md 文件，获取最新信息和安装说明。",
+      "summary": "如何快速安装和开始？"
+    },
+    "2": {
+      "details": "Relivator 提供无限可能，并且所有工具都已准备就绪。",
+      "summary": "为什么选择 Relivator 作为 Next.js 15 和 React 19 的起步？"
+    },
+    "3": {
+      "details": "开发主要由一人完成。捐赠可以加速进度。点击下方支持。感谢支持！ 🩷",
+      "summary": "是否可以加快 Relivator v1.3.0 的发布？"
+    }
+  },
+  "file-dialog": {
+    "cropImage": "裁剪图像",
+    "dropTheFileHere": "将文件拖放到此处",
+    "removeAll": "全部删除",
+    "removeFile": "删除文件",
+    "uploadImages": "上传图片"
+  },
+  "landing": {
+    "about": "功能最丰富的全球 Next.js 启动器。探索我们的功能。超越代码，这是一次旅程。稳定并可投入生产。",
+    "buy-now": "目录",
+    "features": {
+      "auth": {
+        "description": "使用 NextAuth.js 和 Clerk 部署多功能身份验证系统。详见 .env.example。",
+        "title": "身份验证：安全灵活"
+      },
+      "database": {
+        "description": "通过 Drizzle ORM 保持性能，切换 MySQL 和 Postgres。与 Planetscale、Vercel、Railway、Neon 等一起部署。",
+        "title": "数据库集成：强大灵活"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator 提供无限可能，并且所有工具都已准备就绪。",
+        "description": "强大的订阅系统，支持免费和付费计划。详见 README.md。",
+        "title": "Stripe 订阅：强大灵活"
+      },
+      "interface": {
+        "description": "使用 Flowbite 和 Shadcn UI 组件，结合 Radix 和 Tailwind CSS 创建惊艳 UI。推荐使用 VSCode。",
+        "title": "组件：优雅功能"
+      },
+      "nextjs": {
+        "description": "通过 App Router、Layouts 和 Loading UI 流畅导航。探索强大 API 路由等。",
+        "title": "Next.js 15：增强体验"
+      },
+      "text": {
+        "description": "轻松管理应用，使用服务器和客户端组件。使用高级钩子和附加功能，实现流畅开发。",
+        "title": "React 19：现代开发"
+      }
+    },
+    "footer-cta": "准备好开始了吗？",
+    "get-started-button": "仪表板",
+    "main-cta": "GitHub",
+    "sell-now": "仪表板"
+  },
+  "layout": {
+    "back": "后退"
+  },
+  "loading": {
+    "account": "帐户",
+    "billing": "计费",
+    "checkout": "查看",
+    "loading": "加载中...",
+    "purchases": "购买",
+    "signOut": "登出",
+    "thankYouForTheOrder": "感谢您的订单"
+  },
+  "metadata": {
+    "description": "使用 Relivator 提升您的电商：shadcn/ui、Next.js 15 和 React 19 的强大功能",
+    "title": {
+      "home": "首页"
+    }
+  },
+  "mode-toggle": {
+    "dark": "黑暗的",
+    "light": "光",
+    "system": "系统",
+    "toggleTheme": "切换主题"
+  },
+  "name": "Relivator Next.js 模板",
+  "onboard": {
+    "asa": "阿萨",
+    "dateEventDateTbd": "日期：[活动日期（待定）]",
+    "donTMissOutReserveTheSpotNow": "机不可失，赶快预定位置吧！",
+    "eventDetails": "活动详情：",
+    "join15MinutesEarlyToNetwork": "🌟 提前15分钟加入网络！ 🌟",
+    "locationEventLinkTbd": "地点：【活动链接（待定）】",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js 重新定义：",
+    "tbdToBeDetermined": "*TBD - 待定",
+    "timeEventTimeTbd": "时间：[活动时间（待定）]"
+  },
+  "page": {
+    "about": "关于",
+    "accessToAPrivateCommunity": "进入私人社区",
+    "account": "帐户",
+    "addANewStoreToTheAccount": "将新商店添加到帐户",
+    "addStore": "添加商店",
+    "admin": "行政",
+    "adminPage": "管理页面",
+    "availableWorldwide": "全球发售",
+    "billing": "计费",
+    "blog": "博客",
+    "buildABoard": "建立一个董事会",
+    "client": "客户",
+    "countriesData": "国家数据",
+    "createNewComponent": "创建新组件",
+    "createNewPage": "创建新页面",
+    "createNewPost": "创建新帖子",
+    "dashboard": "仪表板",
+    "directSupport": "直接支持",
+    "donateThroughGithubBilling": "通过 GitHub 计费进行捐赠",
+    "donationTiers": "捐赠等级",
+    "earlyAccessToNewFeatures": "抢先体验新功能",
+    "easyAndQuickProcess": "过程简单快捷",
+    "editUserPrivileges": "编辑用户权限",
+    "emailPreferences": "电子邮件首选项",
+    "exclusiveUpdatesAndContent": "独家更新和内容",
+    "frequentlyAskedQuestions": "常见问题解答",
+    "howTheMoneyIsUsed": "钱怎么用",
+    "instantDonations": "即时捐款",
+    "localhostOnlyDebugInfo": "[仅本地主机调试信息]",
+    "manageTheSubscription": "管理订阅",
+    "manageYourEmailPreferences": "管理您的电子邮件首选项",
+    "name": "姓名：  - -",
+    "newStore": "新店",
+    "notImplementedYet": "尚未实施",
+    "novuDeveloperPlaygroundPageComingSoon": "Novu 开发者游乐场页面即将推出...",
+    "oneTimeAndRecurringDonations": "一次性和经常性捐赠",
+    "oneTimeDonations": "一次性捐款",
+    "preferences": "偏好设置",
+    "pricing": "定价",
+    "purchases": "购买",
+    "purchasesTable": "采购表",
+    "readyToBuildYourEcommercePlatform": "准备好构建您的电子商务平台了吗？",
+    "recurringAndOneTimeDonations": "经常性和一次性捐赠",
+    "reliversePlayground": "重温游乐场",
+    "res": "资源",
+    "resJsonAsPromise": "res.json() 作为 Promise",
+    "resetPassword": "重置密码",
+    "root": "根",
+    "secureTransactions": "安全交易",
+    "seeAllPosts": "查看所有帖子",
+    "seeOurSponsors": "查看我们的赞助商",
+    "server": "服务器",
+    "settings": "设置",
+    "showASponsorBadgeOnYourGithubProfile": "在您的 GitHub 个人资料上显示赞助商徽章",
+    "signinWithDiscord": "使用 Discord 登录",
+    "signinWithGithub": "使用 GitHub 登录",
+    "signinWithGoogle": "使用谷歌登录",
+    "simpleAndFunWayToSupport": "简单有趣的支持方式",
+    "smallOneTimeDonations": "一次性小额捐款",
+    "specificCountryRe": "特定国家/地区 (RE)",
+    "stores": "商店",
+    "supportWithNoFees": "免费支持",
+    "testEmailDelivery": "测试电子邮件传送",
+    "thankYouForTheOrder": "感谢您的订单",
+    "thePageIsStillInProductionPleaseCheckBackHereLater": "该页面仍在制作中。请稍后再回来查看。",
+    "underConstruction": "建设中...",
+    "verifyEmail": "验证电子邮件",
+    "waysToDonate": "捐赠方式"
+  },
+  "pages": {
+    "not-found": {
+      "description": "资源可能已移动、重命名或不存在。请检查 URL 或使用菜单导航。",
+      "go-home": "返回首页",
+      "title": "🫠 页面未找到！🥲"
+    }
+  },
+  "privacy-notice-right-aligned": {
+    "elementsBannersPrivacyNoticeRightAligned": "元素-横幅-隐私声明右对齐",
+    "privacynoticerightaligned": "隐私声明右对齐"
+  },
+  "product-building": {
+    "filters": "过滤器",
+    "noProductsFound": "没有找到产品",
+    "sortBy": "排序方式"
+  },
+  "product-context": {
+    "productsctx": "产品Ctx"
+  },
+  "product-image-carousel": {
+    "nextSlide": "下一张幻灯片",
+    "previousSlide": "上一张幻灯片"
+  },
+  "products": {
+    "filters": "过滤器",
+    "nextStorePage": "下一个商店页面",
+    "noProductsFound": "没有找到产品",
+    "previousStorePage": "上一个商店页面",
+    "sortBy": "排序方式"
+  },
+  "products-admin": {
+    "productDetails": "产品详情",
+    "products": "产品"
+  },
+  "signOutPage": {
+    "dashboard": "仪表板",
+    "description": {
+      "areyousueyouwanttosignout": "您确定要退出吗？"
+    },
+    "heading": {
+      "signout": "登出"
+    },
+    "home": "家",
+    "logOut": "退出"
+  },
+  "stacked-with-footer-actions": {
+    "elementsFlyoutMenusStackedWithFooterActions": "元素 - 弹出菜单 - 与页脚操作堆叠",
+    "stackedwithfooteractions": "StackedWithFooterActions"
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "从最佳商店购买 {category}",
+      "buyTheBest": "购买最好的 {category}"
+    },
+    "products": {
+      "addToCart": "添加到购物车",
+      "buyProductsFromOurStores": "从我们的商店购买",
+      "catalogue": "目录",
+      "description": "描述",
+      "moreProductsFrom": "更多来自 {storeName}",
+      "noDescription": "没有描述。",
+      "products": "产品",
+      "productsCatalogue": "产品目录"
+    },
+    "stores": {
+      "buy-products": "从我们的商店购买",
+      "stores": "商店"
+    }
+  },
+  "stores": {
+    "noStoresFound": "没有找到商店",
+    "sortBy": "排序方式"
+  },
+  "temp-compiler-fix": {
+    "app": "应用程序"
+  },
+  "titleDetails": "快速建立网上商店",
+  "upgrade": {
+    "localhostDebug": "本地主机调试",
+    "thisIncludes": "这包括："
+  },
+  "usermenu": {
+    "account": {
+      "menu": "帐户"
+    },
+    "adminpage": {
+      "menu": "管理页面"
+    },
+    "billing": {
+      "menu": "计费"
+    },
+    "dashboard": {
+      "menu": "仪表板"
+    },
+    "logout": {
+      "menu": "退出"
+    },
+    "purchases": {
+      "menu": "购买"
+    },
+    "settings": {
+      "menu": "设置"
+    },
+    "stores": {
+      "menu": "商店"
+    }
+  },
+  "with-button": {
+    "dismiss": "解雇"
+  },
+  "with-button-animated": {
+    "dismiss": "解雇"
+  }
+}

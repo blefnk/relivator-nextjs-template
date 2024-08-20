@@ -10,8 +10,8 @@ import {
 } from "@/actions/reliverse/store";
 import { Button } from "@/components/ui/button";
 import consola from "consola";
-
-import { Icons } from "~/components/Common/Icons";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type StorePagerProps = {
   storeId: string;
@@ -19,6 +19,8 @@ type StorePagerProps = {
 };
 
 export function StorePager({ storeId, userId }: StorePagerProps) {
+  const t = useTranslations();
+
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -64,8 +66,8 @@ export function StorePager({ storeId, userId }: StorePagerProps) {
         size="icon"
         variant="ghost"
       >
-        <Icons.chevronLeft aria-hidden="true" className="size-4" />
-        <span className="sr-only">Previous store</span>
+        <ChevronLeft aria-hidden="true" className="size-4" />
+        <span className="sr-only">{t("StorePager.previousStore")}</span>
       </Button>
       <Button
         disabled={isPending}
@@ -73,8 +75,8 @@ export function StorePager({ storeId, userId }: StorePagerProps) {
         size="icon"
         variant="ghost"
       >
-        <Icons.chevronRight aria-hidden="true" className="size-4" />
-        <span className="sr-only">Next store</span>
+        <ChevronRight aria-hidden="true" className="size-4" />
+        <span className="sr-only">{t("StorePager.nextStore")}</span>
       </Button>
     </div>
   );

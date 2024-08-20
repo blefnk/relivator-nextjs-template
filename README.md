@@ -1,5 +1,9 @@
 # Relivator 1.2.6: Next.js 15, React 19, TailwindCSS Template
 
+We are currently migrating the documentation from the existing Relivator README.md to the official, newly launched [Relivator & Reliverse Docs website (https://reliverse.org)](https://reliverse.org). The content will be organized into appropriate sections on the new site. During the migration, some elements might not function properly. The current README.md will contain only minimal information. Please let us know if you encounter any issues.
+
+---
+
 <!--
 For those who are viewing the current markdown file using:
  – VSCode: Press F1 or Cmd/Ctrl+Shift+P and enter ">Markdown: Open Preview". Please install the "markdownlint" and "Markdown All in One" extensions.
@@ -8,7 +12,7 @@ For those who are viewing the current markdown file using:
 
 <div align="center">
 
-[🌐 Demo](https://relivator.bleverse.com) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🩷 Sponsors](#sponsors)
+[🌐 Demo](https://relivator.reliverse.org) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🩷 Sponsors](#sponsors)
 
 [⚙️ Scripts](#scripts) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
 
@@ -28,7 +32,7 @@ Please take a moment to read through the information below. You'll find helpful 
 
 <p>
     <span>
-      <a href="https://relivator.bleverse.com">
+      <a href="https://relivator.reliverse.org">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="public/screenshot-dark.png" />
             <source media="(prefers-color-scheme: light)" srcset="public/screenshot-light.png" />
@@ -61,7 +65,7 @@ Our goal is to create the world's most feature-rich and globally accessible Next
 
 <!-- <p align="center">
     <span>
-      <a href="https://relivator.bleverse.com">
+      <a href="https://relivator.reliverse.org">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="public/screenshot-dark.png" />
             <source media="(prefers-color-scheme: light)" srcset="public/screenshot-light.png" />
@@ -82,32 +86,32 @@ Our goal is to create the world's most feature-rich and globally accessible Next
 
 ## Introduction
 
+[**👉 Read the Detailed Blog Post About 1.2.6 & 1.3.0@canary Update 👈**](https://reliverse.org/relivator/v126)
+
 **✅ Relivator 1.2.6 uses the following dependencies (only some are listed)**: Next.js 15, React 19, TypeScript 5.5/5.6, Tailwind 3/4, tRPC 11, Clerk 5, Auth.js 5, ESLint 9 (with multiple plugins like typescript-eslint 8, react, unicorn, sonarjs, perfectionist, tailwindcss, readable-tailwind, import-x, jsx-a11y, security, markdown, mdx, json), Biome, Stripe, Million, Reliverse, next-intl, shadcn/ui, radix-ui, react-query, pnpm, zod, cn, turbo, Drizzle (Postgres, MySQL, SQLite, Neon, Railway, PlanetScale, Turso), GSAP, SWR, Resend, react-email, next-themes, Putout, Flowbite, Udecode, Slate, uploadthing, Radash, CSpell, TypeStat, Lucide & Radix Icons, Vercel & Loglib Analytics, Axios, Day.js, Embla Carousel, Execa, Math.js, UnJS libs (consola, fs-extra, pathe, etc), and much more
 
-**🎉 The upcoming Relivator 1.3.0 will have as few dependencies as possible.** Everything will work thanks to @reliverse/addons. Everything will be separated into its own libraries and will be published on npmjs and/or jsr. You will be able to install exactly what you need, including functionality and UI. You will have two options. One is to install the addons the classic way using 'package.json'. The other option is that all these addons can also be installed in a style inspired by shadcn/ui, where you keep all the content directly in your project (as it is currently in test mode in Relivator 1.2.6 (please check `addons` folder or run `pnpm addons`)), although the first option will be recommended for the most use cases. 'addons' folder already contains many cool things, especially related to codemods. It also includes the @reliverse/academy game, where you can check how good you know JavaScript/TypeScript, React/Next.js, Relivator/Reliverse, and even ESLint, ecosystems (you will even find there table of records and will can contest with other players if you share data/players.json and data/progress.json save files to them; the game has also achievement system).
+**[upd. 18.08.2024]** You can now try out the first published Reliverse Addon – [@reliverse/fs](https://github.com/reliverse/fs#readme), which is already available and used in Relivator! **🎉 The upcoming Relivator 1.3.0 will have as few dependencies as possible.** Everything will work thanks to @reliverse/addons. Everything will be separated into its own libraries and will be published on npmjs and/or jsr. You will be able to install exactly what you need, including functionality and UI. You will have two options. One is to install the addons the classic way using 'package.json'. The other option is that all these addons can also be installed in a style inspired by shadcn/ui, where you keep all the content directly in your project (as it is currently in test mode in Relivator 1.2.6 (please check `addons` folder or run `pnpm addons`)), although the first option will be recommended for the most use cases. 'addons' folder already contains many cool things, especially related to codemods. It also includes the @reliverse/academy game, where you can check how good you know JavaScript/TypeScript, React/Next.js, Relivator/Reliverse, and even ESLint, ecosystems (you will even find there table of records and will can contest with other players if you share data/players.json and data/progress.json save files to them; the game has also achievement system).
 
 **🙏 Please help us reach 1,000 stars on GitHub**: Once this project reaches this goal, I, @blefnk, the author of this project, will start my video course on the basics of web development (HTML, CSS, JS), React, Next.js, TypeScript, related libraries, and many other topics. This milestone will also affirm that Relivator and [Reliverse](https://github.com/blefnk/reliverse-website-builder) truly make sense to exist, leading to more frequent updates and further dedication to these projects.
 
 **⭐ Bookmark this page in your browser**: This project will only get better in the future. You can also click the star at the top of the page and add the repo to your collection to keep it easily accessible.
 
-## The Huge Relivator 1.2.6 is Finally Available
+## The Huge Relivator 1.2.6 & 1.3.0@canary are Already Available
 
-[**👉 Read the Detailed Blog Post About This Update 👈**](https://docs.reliverse.com/en/relivator/v126)
+[**👉 Read the Detailed Blog Post About 1.2.6 & 1.3.0@canary Update 👈**](https://reliverse.org/relivator/v126)
 
-Relivator 1.2.6 was released on August 4, 2024! We are now actively working on the next major update, Relivator 1.3.0, with the goal of making the project production-ready, clean, and high-quality. Please join us in actively searching for issues, contributing freely, and earning cool rewards. A canary branch will be launched soon, and the dev branch is already available for a limited time to all sponsors at any paid pledge level.
-
-*The fastest released version will be called: Relivator v1.3.0-canary.0*.
+Relivator 1.2.6 was released on August 4, 2024! We are now actively working on the next major update, Relivator 1.3.0, with the goal of making the project production-ready, clean, and high-quality. We invite you to join us in actively searching for issues, contributing freely, and earning cool rewards. A canary branch was launched a few days ago (and is available to everyone in the main repo), and the dev branch is also now available (the dev branch is available for a limited time to all sponsors at any paid pledge level).
 
 **🔥 Important Note:** Relivator currently requires specifying Clerk environment variable keys, as its API has changed. We are working on making Clerk optional again. However, all other environment variables are optional. If this statement is incorrect and something is broken, please let us know.
 
-## What About the Future?! Any News on 1.3.0?
+## What About the Future? Any News on 1.3.0?
 
 **🎉 The upcoming Relivator 1.3.0 will have as few dependencies as possible! Finally!**
 
 I'm ([blefnk](https://github.com/blefnk)) working to automate the Relivator's developer experience as much as possible, including the installation process. The upcoming version 1.3.0 will feature significant automated installation. If you wish to try the initial alpha version of one of my many automation scripts, use the `pnpm deps:install` (or `pnpm deps:install-all`) command. This script already allows you to install and remove project packages, and it also works as a linter. You can check the comprehensive number of predefined commands configured inside the 'scripts' section of the 'package.json' file. However, before running this script, you should manually install the essentials:
 
 - `npx npm add typescript tsx npm @mnrendra/read-package @clack/prompts`
-- `npx npm add pathe fast-npm-meta semver @types/semver redrun axios`
+- `npx npm add fs-extra pathe fast-npm-meta semver @types/semver redrun axios`
 - `bun|yarn|pnpm dlx jsr add @reliverse/core` (or: `npx jsr add @reliverse/core`)
 
 Thanks to @reliverse/addons, everything now works smoothly with fewer dependencies. In the future, each feature and component will be split into its own library and published on [npmjs](https://npmjs.com) and/or [jsr](https://jsr.io), so you can install only what you need. With the future Relivator 1.3.0 version, you won't have to deal with unnecessary components in web templates anymore. You get the core package and can add features and UI components as you need them.
@@ -126,7 +130,7 @@ I can’t wait for you to experience the new and improved Relivator 1.3.0! By th
 
 Developing something as ambitious as Relivator takes a lot of time, especially since the project is primarily developed by just one person. The development could be significantly accelerated by hiring additional developers. Therefore, @blefnk (Nazar Kornienko), the author of this project, would be immensely grateful to anyone who can donate to the project in any amount. A big thank you to everyone in advance!
 
-**[Visit the "Donate to Relivator" page to learn more.](https://relivator.bleverse.com/en/donate)**
+**[Visit the "Donate to Relivator" page to learn more.](https://relivator.reliverse.org/donate)**
 
 *Relivator is currently sponsored by the following awesome people/organizations:*
 
@@ -204,7 +208,7 @@ By using this method, you will get only the front-end, with all the functionalit
 
 ▲ Hotline: [Email](mailto:blefnk@gmail.com) | [Discord](https://discord.gg/Pb8uKbwpsJ) | [Slack](https://join.slack.com/t/reliverse/shared_invite/zt-2mq703yro-hKnLmsgbIQul0wX~gLxRPA) | [Cal.com](https://cal.com/blefnk/reliverse)
 
-> I'm ([blefnk](https://github.com/blefnk)) working to automate the Relivator's installation process as much as possible. The upcoming version 1.3.0 will feature a significant automated installation. If you wish to try the alpha version of one of my many automation scripts, use the `pnpm deps:install` (or `pnpm deps:install-all`) command. However, before running this script, you should manually install the essentials (edit 'pnpm dlx jsr' if needed): `npx nypm add typescript tsx @clack/prompts @mnrendra/read-package nypm ora pathe fast-npm-meta semver @types/semver redrun && pnpm dlx jsr add @reliverse/core`.
+> I'm ([blefnk](https://github.com/blefnk)) working to automate the Relivator's installation process as much as possible. The upcoming version 1.3.0 will feature a significant automated installation. If you wish to try the alpha version of one of my many automation scripts, use the `pnpm deps:install` (or `pnpm deps:install-all`) command. However, before running this script, you should manually install the essentials (edit 'pnpm dlx jsr' if needed): `npx nypm add typescript tsx @clack/prompts @mnrendra/read-package nypm ora fs-extra pathe fast-npm-meta semver @types/semver redrun && pnpm dlx jsr add @reliverse/core`.
 
 **Please note**: As of version 1.2.6 and 1.3.0 (dev and canary), it is recommended to use Clerk as the authProvider (specified in the `reliverse.config.ts` file) since this version has been more thoroughly tested with Clerk. We are working on fixing and improving the stability of Auth.js (next-auth@beta/NextAuth.js) as an authentication provider.
 
@@ -252,7 +256,7 @@ Below are some scripts configured in the `scripts` section of the `package.json`
 ```bash
 # pnpm tsx reliverse.config.ts --details
 ℹ ▲ Framework: Relivator v1.2.6 ▲ Engine: Reliverse v0.4.0 ▲ Hotline: https://discord.gg/Pb8uKbwpsJ
-ℹ Relivator v1.2.6 Release Blog Post 👉 https://docs.reliverse.com/en/relivator/v126
+ℹ Relivator v1.2.6 Release Blog Post 👉 https://reliverse.org/relivator/v126
 ℹ Help Relivator become even better! Please star the repo – https://github.com/blefnk/relivator
 ℹ For experienced users: run 'pnpm reli:prepare' to update all dependencies to the latest versions and check if the code requires any adjustments.
 ℹ Meet quality standards: run 'pnpm appts' and 'pnpm fix:putout-unstable' to get linting, formatting, and more.
@@ -339,11 +343,11 @@ pip freeze > requirements.txt
 
 - **RQ15:** How can I grant admin rights to myself or another user? **RA15:** Run `pnpm db:studio`, navigate to the `${databasePrefix}_user` table, and set `role: admin` for the desired user. In the future, if you have admin rights, you will be able to change user privileges directly from the frontend admin page.
 
-- **RQ16:** What does the `DEMO_NOTES_ENABLED` environment variable mean? **RA16:** Do not use it. It is only used on the official [Relivator demo website](https://relivator.bleverse.com) to showcase certain features that are not needed in real-world applications.
+- **RQ16:** What does the `DEMO_NOTES_ENABLED` environment variable mean? **RA16:** Do not use it. It is only used on the official [Relivator demo website](https://relivator.reliverse.org) to showcase certain features that are not needed in real-world applications.
 
 - **RQ17:** I'm using PlanetScale as my database provider. After taking a break from the project, I'm now encountering an "unable to connect to branch" error. How can I fix this? **RA17:** Go to the PlanetScale dashboard and click on the `wake up` button. Please contact us if the database is not asleep and the problem persists.
 
-- **RQ18:** I have build/runtime errors indicating that Node.js utilities like `net`, `tls`, `perf_hooks`, and `fs` are not found. What should I do? **RA18:** Do not install these utilities; it won't fix the issue. Remember, never keep code in the `utils` folder that *can only run on the server*. Otherwise, you will encounter anomalies during the project build. For example, an error like `node:` and `file:` not found, or the package `fs`, `crypto`, etc. not found. Want to see the error for yourself? Move the file `src/server/api/uploadthing/react.ts` to `src/utils`, import it in this file, run `pnpm build`, get scared, remove the import, and move the file back to its place. You may find on the web the solutions suggesting to add configurations like `"node": { "net": "empty", "tls": "empty", "perf_hooks": "empty", "fs": "empty" }` or `"browser": { "net": false, "tls": false, "perf_hooks": false, "fs": false }` into `package.json` or to the webpack config, but these may not help you. **The main issue likely lies in the following:** You've triggered client-side code. For example, you might have a hook file in the `utils` folder with a corresponding `useEffect` React hook. To debug, try using the global search functionality in the IDE. Note that commenting out the lines may not be the quickest solution in this case, unlike in other debugging scenarios.
+- **RQ18:** I have build/runtime errors indicating that Node.js utilities like `net`, `tls`, `perf_hooks`, and `fs` are not found. What should I do? **RA18:** Do not install these utilities; it won't fix the issue. Remember, never keep code in the `utils` folder that *can only run on the server*. Otherwise, you will encounter anomalies during the project build. For example, an error like `node:` and `file:` not found, or the package `fs`, `crypto`, etc. not found. Want to see the error for yourself? Move the file `src/server/react.ts` to `src/utils`, import it in this file, run `pnpm build`, get scared, remove the import, and move the file back to its place. You may find on the web the solutions suggesting to add configurations like `"node": { "net": "empty", "tls": "empty", "perf_hooks": "empty", "fs": "empty" }` or `"browser": { "net": false, "tls": false, "perf_hooks": false, "fs": false }` into `package.json` or to the webpack config, but these may not help you. **The main issue likely lies in the following:** You've triggered client-side code. For example, you might have a hook file in the `utils` folder with a corresponding `useEffect` React hook. To debug, try using the global search functionality in the IDE. Note that commenting out the lines may not be the quickest solution in this case, unlike in other debugging scenarios.
 
 - **RQ19:** I love all kinds of interesting things! Can you recommend any cool VSCode extensions? **RA19:** Of course! Just replace the current code in `.vscode/extensions.json` with the one from `addons/scripts/reliverse/presets/vscode/[default|minimal|ultimate]/extensions.json`. Remember, performance issues are possible, so you can just install what you want. Alternatively, you can just run the `pnpm reli:vscode` command to switch easily, and use `Cmd/Ctrl+Shift+P` ➞ `>Extensions: Show Recommended Extensions`.
 
@@ -484,12 +488,12 @@ pip freeze > requirements.txt
 
 - **RQ28:** How can I configure `pnpm` or `bun` (as package manager) for my needs? **RA28:** You can visit [this `pnpm` page](https://pnpm.io/package_json) or [this `bun` page](https://bun.sh/docs/runtime/bunfig#package-manager) in the official docs to learn more.
 
-**RQ29:** Should I modify the components by [shadcn/ui](https://ui.shadcn.com) (as of Relivator 1.2.6, they are located in the `"addons/browser/reliverse/shadcn/ui"` folder)? **RA29:** You may lose your changes if @shadcn or [Reliverse](https://github.com/orgs/reliverse/repositories) updates any of these components in the release of Relivator 1.3.x+. Therefore, the best option currently is to use, for example, the `"addons/cluster/reliverse/shadcn/ui"` folder, where you can have files that you can safely overwrite the original files with, ensuring you do not lose your changes. As an example, this folder already contains a `cluster-readme.tsx` file, which only re-exports the original `button.tsx` file. So, you can create a `button.tsx` file here and copy and paste that line into your newly created file. Alternatively, you can duplicate the code from the original file and make any modifications you want. Use `Cmd/Ctrl+Shift+H` and simply replace `addons/browser/reliverse/shadcn/ui` with `addons/cluster/reliverse/shadcn/ui` (the difference is only in the words `"browser"` and `"cluster"`). `addons/cluster` is your house; feel free to do anything you want here, mess it up or tidy it up as you wish. This is your own house, and no one has the right to take it away from you.
+**RQ29:** Should I modify the components by [shadcn/ui](https://ui.shadcn.com) (as of Relivator 1.2.6, they are located in the `"addons/components/ui"` folder)? **RA29:** You may lose your changes if @shadcn or [Reliverse](https://github.com/orgs/reliverse/repositories) updates any of these components in the release of Relivator 1.3.x+. Therefore, the best option currently is to use, for example, the `"addons/cluster/reliverse/shadcn/ui"` folder, where you can have files that you can safely overwrite the original files with, ensuring you do not lose your changes. As an example, this folder already contains a `cluster-readme.tsx` file, which only re-exports the original `button.tsx` file. So, you can create a `button.tsx` file here and copy and paste that line into your newly created file. Alternatively, you can duplicate the code from the original file and make any modifications you want. Use `Cmd/Ctrl+Shift+H` and simply replace `addons/components/ui` with `addons/cluster/reliverse/shadcn/ui` (the difference is only in the words `"browser"` and `"cluster"`). `addons/cluster` is your house; feel free to do anything you want here, mess it up or tidy it up as you wish. This is your own house, and no one has the right to take it away from you.
 
 - **RQ30:** Which command allows me to easily manage the installation of dependencies in a project? **RA30:** `pnpm deps:install`. However, before running this script, you should manually install the essentials:
 
   - npx nypm add typescript tsx nypm @mnrendra/read-package @clack/prompts
-  - npx nypm add pathe fast-npm-meta semver @types/semver redrun axios
+  - npx nypm add fs-extra pathe fast-npm-meta semver @types/semver redrun axios
   - bun|yarn|pnpm dlx jsr add @reliverse/core (or: npx jsr add @reliverse/core)
 
 - **RQ31:** I noticed a [Turborepo](https://turbo.build) file named `turbo.disabled.json`. How can I reactivate `turbo`? **RA31:** Simply remove the `.disabled` from the filename. You can also add the `"scripts"` from the `turbo.scripts.json` file to the `package.json` file (if they are not already there).
@@ -498,7 +502,7 @@ pip freeze > requirements.txt
 
 ## Details
 
-🌐 <https://relivator.bleverse.com>
+🌐 <https://relivator.reliverse.org>
 
 <img src="/public/screenshot-dark.png" width="600" alt="Screenshot showing the main page of the Relivator project">
 
@@ -916,7 +920,7 @@ Alternatively, check the GitHub docs on [how to create a pull request](https://h
 
 This project is licensed under [the MIT License](https://choosealicense.com/licenses/mit) and is free to use and modify for your own projects. Please visit the [license](LICENSE) file for details. Since this project is under a free license, the author reserves the right to include referral links. The author may receive compensation from these links if users follow them and, for example, pay their first bill. Thank you all for your understanding!
 
-🌐 <https://relivator.bleverse.com>
+🌐 <https://relivator.reliverse.org>
 
 ## Changelog
 
@@ -924,7 +928,7 @@ This project is licensed under [the MIT License](https://choosealicense.com/lice
 
 ### 1.2.6 - August 4, 2024 – The Resurrection Update
 
-Below you can see a small copy of [the article from Reliverse Docs](https://docs.reliverse.com/en/relivator/v126), which is possibly outdated. Please refer to [1.2.6 Release Notes Page on GitHub](https://github.com/blefnk/relivator-nextjs-template/releases/tag/1.2.6) or to [this blog post](https://docs.reliverse.com/en/relivator/v126) to read the most recent version. Reliverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
+Below you can see a small copy of [the article from Reliverse Docs](https://reliverse.org/relivator/v126), which is possibly outdated. Please refer to [1.2.6 Release Notes Page on GitHub](https://github.com/blefnk/relivator-nextjs-template/releases/tag/1.2.6) or to [this blog post](https://reliverse.org/relivator/v126) to read the most recent version. Reliverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
 
 **Relivator is Back with Version 1.2.6!** 🥳
 
@@ -1083,7 +1087,7 @@ How to Install and Get Started? Please refer to the [🏗️ Installation](#inst
 
 </details>
 
-Please visit the [CHANGELOG.md](.github/CHANGELOG.md) or [Reliverse Docs](https://docs.reliverse.com/en/relivator) to read the release notes for older versions.
+Please visit the [CHANGELOG.md](.github/CHANGELOG.md) or [Reliverse Docs](https://reliverse.org/relivator) to read the release notes for older versions.
 
 ## The Final Words
 
@@ -1115,7 +1119,7 @@ Check out [our other free Next.js 15 starter](https://github.com/blefnk/relivers
 git clone https://github.com/blefnk/relivator.git
 ```
 
-[2023-2024 © Nazar Kornienko / Nazar Kornienko / blefnk](https://github.com/blefnk) (<https://relivator.bleverse.com>)
+[2023-2024 © Nazar Kornienko / Nazar Kornienko / blefnk](https://github.com/blefnk) (<https://relivator.reliverse.org>)
 
 <p>
   <span>
@@ -1131,7 +1135,7 @@ git clone https://github.com/blefnk/relivator.git
 
 [![Join the Relivator Discord](https://discordapp.com/api/guilds/1075533942096150598/widget.png?style=banner2)][badge-discord]
 
-[🌐 Demo](https://relivator.bleverse.com) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
+[🌐 Demo](https://relivator.reliverse.org) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
 
 **Follow Us Everywhere:** [𝕏](https://x.com/blefnk) | [GitHub](https://github.com/blefnk) | [LinkedIn](https://linkedin.com/in/blefnk) | [Facebook](https://facebook.com/blefnk) | [Discord](https://discord.gg/Pb8uKbwpsJ) | [Fiverr](https://fiverr.com/blefnk)
 

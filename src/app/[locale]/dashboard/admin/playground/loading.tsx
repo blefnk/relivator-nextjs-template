@@ -1,3 +1,7 @@
+import { useTranslations } from "next-intl";
+
 export default function PlaygroundLoading() {
-  return <div>Loading...</div>;
+  const t = useTranslations();
+
+  return <div>{t("loading.loading")}</div>;
 }

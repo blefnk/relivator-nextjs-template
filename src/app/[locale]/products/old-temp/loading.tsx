@@ -6,8 +6,8 @@ import {
   CardHeader,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ImageIcon } from "lucide-react";
 
-import { Icons } from "~/components/Common/Icons";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function ProductsLoading() {
@@ -44,11 +44,9 @@ export default function ProductsLoading() {
                       flex h-full items-center justify-center bg-secondary
                     `}
                   >
-                    <Icons.placeholder
+                    <ImageIcon
                       aria-hidden="true"
-                      className={`
-                        size-9 text-muted-foreground
-                      `}
+                      className="size-9 text-muted-foreground"
                     />
                   </div>
                 </AspectRatio>

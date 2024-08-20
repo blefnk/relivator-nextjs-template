@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import type { CuratedStore } from "@/types";
+import type { CuratedStore } from "@/types/reliverse/store";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -16,11 +16,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { FacetedFilter } from "~/components/Common/faceted-filter";
-import { Icons } from "~/components/Common/Icons";
 import { StoreCard } from "~/components/Modules/Cards/StoreCardDashboard";
 import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
 import { storeSortOptions, storeStatusOptions } from "~/constants/stores";
@@ -31,6 +32,8 @@ type StoresProps = {
 } & HTMLAttributes<HTMLDivElement>;
 
 export function Stores({ pageCount, stores, ...props }: StoresProps) {
+  const t = useTranslations();
+
   const router = useRouter();
   const pathname = usePathname();
   const searchParameters = useSearchParams();
@@ -95,11 +98,11 @@ export function Stores({ pageCount, stores, ...props }: StoresProps) {
           <DropdownMenuTrigger asChild>
             <Button aria-label="Sort stores" disabled={isPending} size="sm">
               Sort
-              <Icons.chevronDown aria-hidden="true" className="ml-2 size-4" />
+              <ChevronDown aria-hidden="true" className="ml-2 size-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="start" className="w-48">
-            <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+            <DropdownMenuLabel>{t("stores.sortBy")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {storeSortOptions.map((option) => (
               <DropdownMenuItem
@@ -151,7 +154,9 @@ export function Stores({ pageCount, stores, ...props }: StoresProps) {
       </div>
       {!isPending && stores.length === 0 ? (
         <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
-          <h1 className="text-center text-2xl font-bold">No stores found</h1>
+          <h1 className="text-center text-2xl font-bold">
+            {t("stores.noStoresFound")}
+          </h1>
           <p className="text-center text-muted-foreground">
             Try changing the filters, or check back later for new stores
           </p>

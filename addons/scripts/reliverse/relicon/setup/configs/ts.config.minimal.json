@@ -15,12 +15,12 @@
     "noEmit": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+    "skipLibCheck": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "skipLibCheck": true
+    ]
   },
   "include": [
     "**/*.ts",

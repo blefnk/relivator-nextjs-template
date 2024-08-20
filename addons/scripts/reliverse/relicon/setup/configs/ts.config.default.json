@@ -33,13 +33,13 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "skipLibCheck": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "verbatimModuleSyntax": false,
-    "skipLibCheck": true
+    ]
   },
   "include": [
     "**/*.d.ts",

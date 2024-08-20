@@ -43,7 +43,7 @@ import semver from "semver";
 //
 // However, before running this script, you should manually install the essentials:
 // - npx nypm add typescript tsx nypm @mnrendra/read-package @clack/prompts
-// - npx nypm add pathe fast-npm-meta semver @types/semver redrun axios
+// - npx nypm add fs-extra pathe fast-npm-meta semver @types/semver redrun axios
 // - bun|yarn|pnpm dlx jsr add @reliverse/core (or: npx jsr add @reliverse/core)
 //
 const localDebugEnabled = false;
@@ -163,7 +163,6 @@ const basicDependencies: string[] = [
   "@loglib/tracker",
   "@mdx-js/loader",
   "@mdx-js/react",
-  "@metamask/utils",
   "@million/lint",
   "@mnrendra/read-package",
   "@neondatabase/serverless",
@@ -214,7 +213,6 @@ const basicDependencies: string[] = [
   "cookies-next",
   "cropperjs",
   "dayjs",
-  "deepmerge",
   "destr",
   "dotenv-cli",
   "dotenv",
@@ -311,6 +309,7 @@ const dependenciesEslintExtended: string[] = [
   "@next/eslint-plugin-next",
   "@remotion/eslint-config",
   "@tanstack/eslint-plugin-query",
+  "eslint-plugin-barrel-files",
   "eslint-plugin-drizzle",
   "eslint-plugin-eslint-comments",
   "eslint-plugin-import-x",

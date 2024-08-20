@@ -3,8 +3,7 @@ import type { ButtonProps } from "@/components/ui/button";
 
 import { Button } from "@/components/ui/button";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
-
-import { Icons } from "~/components/Common/Icons";
+import { Check, Copy } from "lucide-react";
 
 export function CopyButton({ value, ...props }: ButtonProps) {
   const [copiedText, copyToClipboard] = useCopyToClipboard();
@@ -29,9 +28,9 @@ export function CopyButton({ value, ...props }: ButtonProps) {
       {...props}
     >
       {hasCopiedText ? (
-        <Icons.check aria-hidden="true" className="size-3" />
+        <Check aria-hidden="true" className="size-3" />
       ) : (
-        <Icons.copy aria-hidden="true" className="size-3" />
+        <Copy aria-hidden="true" className="size-3" />
       )}
       <span className="sr-only">
         {hasCopiedText ? "Copied" : "Copy to clipboard"}

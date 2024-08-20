@@ -16,10 +16,7 @@ export default function ProviderButton({
 }: ProviderButtonProps) {
   return (
     <div
-      className={`
-        flex w-full flex-row items-baseline justify-center
-        gap-2
-      `} // @ts-expect-error TODO: fix
+      className="flex w-full flex-row items-baseline justify-center gap-2" // @ts-expect-error TODO: fix
       key={provider.id}
     >
       <Button

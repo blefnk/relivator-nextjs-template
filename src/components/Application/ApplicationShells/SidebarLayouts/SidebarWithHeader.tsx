@@ -1,8 +1,16 @@
+import { useTranslations } from "next-intl";
+
 export function SidebarWithHeader() {
+  const t = useTranslations();
+
   return (
     <section>
-      <h2>Application - App Shells - Sidebar Layouts - Sidebar with header</h2>
-      <p>SidebarWithHeader</p>
+      <h2>
+        {t(
+          "SidebarWithHeader.applicationAppShellsSidebarLayoutsSidebarWithHeader",
+        )}
+      </h2>
+      <p>{t("SidebarWithHeader.sidebarwithheader")}</p>
     </section>
   );
 }

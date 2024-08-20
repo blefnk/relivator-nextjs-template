@@ -1,6 +1,6 @@
 import type { PlateLeafProps } from "@udecode/plate-common";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { PlateLeaf } from "@udecode/plate-common";
 
 const CodeLeaf = ({ children, className, ref, ...props }: PlateLeafProps) => (

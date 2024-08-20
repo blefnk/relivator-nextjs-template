@@ -4,7 +4,7 @@ import type {
 } from "@/scripts/reliverse/academy/types";
 
 import { getPlayerById, savePlayer } from "@/scripts/reliverse/academy/player";
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import consola from "consola";
 import pc from "picocolors";
 

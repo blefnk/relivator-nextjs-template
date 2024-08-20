@@ -4,12 +4,15 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type Props = {
   children?: ReactNode;
 };
 
 export default function LegalLayout({ children }: Props) {
+  const t = useTranslations();
+
   return (
     <>
       <div className="flex min-h-screen flex-col">
@@ -17,7 +20,7 @@ export default function LegalLayout({ children }: Props) {
           <Button asChild variant="ghost">
             <Link href="/">
               <ChevronLeftIcon className="mr-2 size-4" />
-              <span>Back</span>
+              <span>{t("layout.back")}</span>
             </Link>
           </Button>
         </div>

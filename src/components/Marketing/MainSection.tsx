@@ -14,12 +14,7 @@ export default function HomeMainSection() {
       className="py-1"
       id="categories"
     >
-      <div
-        className={`
-        grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))]
-        gap-4
-      `}
-      >
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
         {productCategories.map((category) => (
           <Link
             aria-label={`${t("demo.aria-label-goto")} ${category.title}`}

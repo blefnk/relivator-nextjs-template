@@ -382,7 +382,6 @@ export default antfu(
       "drizzle/enforce-update-with-where": "off",
       "no-barrel-files/no-barrel-files": "off",
       "no-secrets/no-secrets": "off",
-      "react-refresh/only-export-components": "off",
       "prefer-arrow-functions/prefer-arrow-functions": [
         "off",
         {

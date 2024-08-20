@@ -1,5 +1,5 @@
 import { resetPlayerScore } from "@/scripts/reliverse/academy/player";
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import { select } from "@inquirer/prompts";
 import consola from "consola";
 

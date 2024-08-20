@@ -1,7 +1,7 @@
 import type { EnvJsConfig } from "@/scripts/reliverse/relicon/setup/types";
 
-import { fileExists, removeFile } from "@/scripts/utils";
 import { select } from "@clack/prompts";
+import { fileExists, removeFile } from "@reliverse/fs";
 import consola from "consola";
 import { readFile, writeFile } from "fs/promises";
 import fs from "fs-extra";

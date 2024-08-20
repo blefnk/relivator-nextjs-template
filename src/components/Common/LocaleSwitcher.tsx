@@ -5,6 +5,8 @@ import { Fragment, useState } from "react";
 
 import Link from "next/link";
 
+import type { Locale } from "~/../reliverse.i18n";
+
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,12 +16,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown";
-import { cn } from "@/utils";
-import { useLocale } from "next-intl";
-
-import type { Locale } from "~/constants/navigation";
-
-import { getLocaleLabels, localeFlags, locales } from "~/constants/navigation";
+import { cn } from "@/utils/reliverse/cn";
+import { labels, localeFlags, locales } from "~/../reliverse.i18n";
+import { useLocale, useTranslations } from "next-intl";
 
 const TRANSLATED = "⚙️ Translated";
 const NATIVE = "⚙️ Native";
@@ -58,7 +57,6 @@ export function LocaleSwitcher() {
       <DropdownMenuContent align="start">
         <DropdownMenuLabel>{LANGUAGE_LABEL}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {/* eslint-disable-next-line readable-tailwind/multiline */}
         <DropdownMenuItem className="flex items-center justify-start font-twemoji">
           <Button
             className="w-full text-left"
@@ -91,6 +89,26 @@ export function LocaleSwitcher() {
   );
 }
 
+const determinateLocaleLabels = (translateLanguages: boolean) => {
+  if (translateLanguages) {
+    return {
+      "de-DE": "Deutsch",
+      "en-US": "English",
+      "es-ES": "Español",
+      "fa-IR": "فارسی",
+      "fr-FR": "Français",
+      "hi-IN": "हिन्दी",
+      "it-IT": "Italiano",
+      "pl-PL": "Polski",
+      "tr-TR": "Türkçe",
+      "uk-UA": "Українська",
+      "zh-CN": "中文",
+    } as const;
+  }
+
+  return labels;
+};
+
 type LocaleNamesProps = {
   currentLocale: Locale;
   hideNamesOnSpecificBreakpoints?: boolean;
@@ -102,7 +120,8 @@ const LocaleNames: FC<LocaleNamesProps> = ({
   translateLanguages,
   hideNamesOnSpecificBreakpoints,
 }) => {
-  const localeLabels = getLocaleLabels(translateLanguages);
+  const t = useTranslations();
+  const localeLabels = determinateLocaleLabels(translateLanguages);
 
   return (
     <div className="flex items-center space-x-2">
@@ -124,7 +143,7 @@ const LocaleNames: FC<LocaleNamesProps> = ({
       ) : (
         <span>{localeLabels[currentLocale]}</span>
       )}
-      <span className="sr-only">Languages</span>
+      <span className="sr-only">{t("LocaleSwitcher.languages")}</span>
     </div>
   );
 };

@@ -91,35 +91,4 @@ export default tseslint.config(
     files: ["**/*.{js,jsx}"],
     ...tseslint.configs.disableTypeChecked,
   },
-  {
-    name: "@reliverse/eslint-config/etc",
-    files: ["{src,addons}/**/*.{ts,tsx}", "next.config.js"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              message:
-                // eslint-disable-next-line @stylistic/max-len
-                "\n\n⛔ Importing from '@/scripts' is not allowed in this file. The import from 'addons/scripts' folder cannot be used in the browser runtime context. \n✅ You can safely import from other folders inside 'addons' instead.\n💡 Consider using imports from 'addons/browser' (@/browser) for browser-compatible code.\n\n",
-              regex: "^@/scripts",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    name: "@reliverse/eslint-config/etc",
-    files: ["addons/scripts/**/*.{ts,tsx}"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [],
-        },
-      ],
-    },
-  },
 );

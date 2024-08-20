@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-import { authProvider } from "~/auth";
+import { getTranslations } from "next-intl/server";
+
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -17,6 +19,8 @@ export const metadata: Metadata = {
 };
 
 export default async function PurchasesPage() {
+  const t = await getTranslations();
+
   const session = authProvider === "clerk" ? await clerk() : await authjs();
 
   if (!session) {
@@ -29,12 +33,12 @@ export default async function PurchasesPage() {
         aria-labelledby="dashboard-purchases-header-heading"
         id="dashboard-purchases-header"
       >
-        <PageHeaderHeading size="sm">Purchases</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("page.purchases")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Manage the purchases
         </PageHeaderDescription>
       </PageHeader>
-      <div>Purchases Table</div>
+      <div>{t("page.purchasesTable")}</div>
     </Shell>
   );
 }

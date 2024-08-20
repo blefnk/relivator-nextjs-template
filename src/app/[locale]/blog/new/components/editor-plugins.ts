@@ -42,7 +42,7 @@ import { createSelectOnBackspacePlugin } from "@udecode/plate-select";
 import { ELEMENT_TD } from "@udecode/plate-table";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
 
-import { autoFormatConfig } from "~/app/[locale]/blog/new/components/auto-format";
+import { autoFormatConfig } from "~/app/[locale]/blog/new/components/auto-format/plate";
 import { withPlaceholders } from "~/app/[locale]/blog/new/components/editor-placeholder";
 import { ParagraphElement } from "~/app/[locale]/blog/new/components/elements/paragraph";
 import { BoldLeaf } from "~/app/[locale]/blog/new/components/leafs/bold";

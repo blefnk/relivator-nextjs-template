@@ -19,16 +19,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
 type VerifyOderFormProps = {} & ComponentPropsWithoutRef<"form">;
 
 type Inputs = z.infer<typeof verifyOrderSchema>;
 
 export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {
+  const t = useTranslations();
+
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
@@ -42,12 +45,12 @@ export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {
 
   function onSubmit(data: Inputs) {
     startTransition(() => {
-      const [baseDeliversePostalCodeUrl] = window.location.href.split(
+      const [deliveryPostalCodeURL] = window.location.href.split(
         "&delivery_postal_code=",
       );
       const formattedPostalCode = data.deliveryPostalCode.split(" ").join("");
 
-      const location = `${baseDeliversePostalCodeUrl}&delivery_postal_code=${formattedPostalCode}`;
+      const location = `${deliveryPostalCodeURL}&delivery_postal_code=${formattedPostalCode}`;
 
       router.push(location);
     });
@@ -67,7 +70,7 @@ export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {
           name="deliveryPostalCode"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Delivery postal code</FormLabel>
+              <FormLabel>{t("VerifyOrderForm.deliveryPostalCode")}</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Type delivery postal code here."
@@ -80,13 +83,13 @@ export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {
         />
         <Button disabled={isPending}>
           {isPending && (
-            <Icons.spinner
+            <SpinnerSVG
               aria-hidden="true"
               className="mr-2 size-4 animate-spin"
             />
           )}
           Verify order
-          <span className="sr-only">Verify order</span>
+          <span className="sr-only">{t("VerifyOrderForm.verifyOrder")}</span>
         </Button>
       </form>
     </Form>

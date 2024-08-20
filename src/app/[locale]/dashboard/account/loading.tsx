@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslations } from "next-intl";
 
 import {
   PageHeader,
@@ -8,10 +9,12 @@ import {
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function AccountLoading() {
+  const t = useTranslations();
+
   return (
     <Shell variant="sidebar">
       <PageHeader separated>
-        <PageHeaderHeading size="sm">Account</PageHeaderHeading>
+        <PageHeaderHeading size="sm">{t("loading.account")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
           Manage the account settings
         </PageHeaderDescription>

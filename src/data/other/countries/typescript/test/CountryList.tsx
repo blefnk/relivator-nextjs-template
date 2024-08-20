@@ -3,6 +3,7 @@
 import type { FC } from "react";
 import { useEffect, useState } from "react";
 
+import { useTranslations } from "next-intl";
 import { ofetch } from "ofetch";
 
 // TODO: Fix this test component, which parses countries data from a JSON file
@@ -21,6 +22,8 @@ type Country = {
 const CountryList: FC<{
   cca2?: string;
 }> = ({ cca2 }) => {
+  const t = useTranslations();
+
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<null | string>(null);
@@ -52,7 +55,7 @@ const CountryList: FC<{
   }, [cca2]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{t("CountryList.loading")}</div>;
   }
 
   if (error) {
@@ -67,7 +70,7 @@ const CountryList: FC<{
             {country.flag}
             {country.cca2}
           </h2>
-          <p>Currencies:</p>
+          <p>{t("CountryList.currencies")}</p>
           <ul>
             {Object.entries(country.currencies).map(([code, currency]) => (
               <li key={code}>
@@ -75,7 +78,7 @@ const CountryList: FC<{
               </li>
             ))}
           </ul>
-          <p>Languages:</p>
+          <p>{t("CountryList.languages")}</p>
           <ul>
             {Object.entries(country.languages).map(([code, language]) => (
               <li key={code}>{language}</li>

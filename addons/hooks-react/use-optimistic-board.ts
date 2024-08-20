@@ -2,10 +2,10 @@
 
 import { useOptimistic } from "react";
 
-import { invariant } from "@/utils";
+import { invariant } from "@/utils/reliverse/gen";
 
 import type { BoardWithColumns } from "~/data/other/boards";
-import type { Column, Item } from "~/db/schema";
+import type { Column, Item } from "~/db/schema/provider";
 
 type UpdCol = {
   color: string;

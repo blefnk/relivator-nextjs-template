@@ -2,7 +2,7 @@ import type { ElementType } from "react";
 import { Balancer } from "react-wrap-balancer";
 
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import {
   Clock,
   Files,
@@ -82,12 +82,7 @@ type FeatureCardProps = {
 
 function FeatureCard({ description, icon: Icon, title }: FeatureCardProps) {
   return (
-    <div
-      className={`
-      overflow-hidden rounded-lg border bg-background p-2
-      text-left
-    `}
-    >
+    <div className="overflow-hidden rounded-lg border bg-background p-2 text-left">
       <div className="flex flex-col justify-between rounded-lg p-6">
         <div className="flex min-h-[64px] items-center space-x-4">
           <Icon aria-hidden className="size-8" />

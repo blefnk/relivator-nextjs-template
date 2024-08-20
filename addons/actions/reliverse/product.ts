@@ -3,18 +3,18 @@
 import { unstable_noStore as noStore, revalidatePath } from "next/cache";
 
 import type {
-  CreateProductSchema,
   createProductSchema,
+  CreateProductSchema,
   updateProductRatingSchema,
-} from "@/actions";
-import type { StoredFile } from "@/types";
+} from "@/actions/reliverse/validations/product";
+import type { StoredFile } from "@/types/reliverse/store";
 import type { z } from "zod";
 
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import { and, eq } from "drizzle-orm";
 
 import { db } from "~/db";
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 
 export async function filterProducts({ query }: { query: string }) {
   noStore();

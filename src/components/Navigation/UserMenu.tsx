@@ -11,18 +11,31 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown";
-import { cn, getInitials } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { getInitials } from "@/utils/reliverse/misc";
 import { SignedIn, SignInButton } from "@clerk/nextjs";
-import { debugEnabled } from "reliverse.config";
+import { debugEnabled } from "~/../reliverse.config";
+import {
+  CreditCard,
+  DollarSign,
+  FileTerminal,
+  Laptop,
+  LogOut,
+  Settings,
+  ShoppingBag,
+  User,
+} from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-import { authProvider } from "~/auth";
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
-import { Icons } from "~/components/Common/Icons";
+import { authProvider } from "~/auth/provider";
 import { SignOutButton } from "~/core/auth/authjs/components/sign-out-button";
 import { env } from "~/env";
 
 export default async function UserMenu() {
+  const t = await getTranslations();
+
   const user = authProvider === "clerk" ? await clerk() : await authjs();
 
   const initials = await getInitials(user.name || "TestUser");
@@ -39,7 +52,7 @@ export default async function UserMenu() {
             <Avatar className="size-8">
               <AvatarImage
                 alt={user.name}
-                src={user.image || "https://relivator.bleverse.com/logo.png"}
+                src={user.image || "https://relivator.reliverse.org/logo.png"}
               />
               <AvatarFallback>{initials}</AvatarFallback>
             </Avatar>
@@ -49,11 +62,7 @@ export default async function UserMenu() {
           <DropdownMenuLabel className="font-normal">
             <div className="flex flex-col space-y-1">
               <p className="text-sm font-medium leading-none">{user.name}</p>
-              <p
-                className={`
-                text-xs leading-none text-muted-foreground
-              `}
-              >
+              <p className="text-xs leading-none text-muted-foreground">
                 {user.email}
               </p>
             </div>
@@ -61,45 +70,45 @@ export default async function UserMenu() {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
+              <Link className="flex items-center" href="/dashboard">
+                <Laptop aria-hidden="true" className="mr-2 size-4" />
+                {t("usermenu.dashboard.menu")}
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem disabled>
               <Link className="flex items-center" href="/dashboard/stores">
-                <Icons.store aria-hidden="true" className="mr-2 size-4" />
-                Stores
+                <ShoppingBag aria-hidden="true" className="mr-2 size-4" />
+                {t("usermenu.stores.menu")}
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem disabled>
               <Link className="flex items-center" href="/dashboard/billing">
-                <Icons.billing aria-hidden="true" className="mr-2 size-4" />
-                Billing
+                <CreditCard aria-hidden="true" className="mr-2 size-4" />
+                {t("usermenu.billing.menu")}
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem disabled>
               <Link className="flex items-center" href="/dashboard/account">
-                <Icons.user aria-hidden="true" className="mr-2 size-4" />
-                Account
+                <User aria-hidden="true" className="mr-2 size-4" />
+                {t("usermenu.account.menu")}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link className="flex items-center" href="/dashboard/settings">
-                <Icons.settings aria-hidden="true" className="mr-2 size-4" />
-                Settings
+                <Settings aria-hidden="true" className="mr-2 size-4" />
+                {t("usermenu.settings.menu")}
               </Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem disabled>
               <Link className="flex items-center" href="/dashboard/purchases">
-                <Icons.dollarSign aria-hidden="true" className="mr-2 size-4" />
-                Purchases
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link className="flex items-center" href="/dashboard">
-                <Icons.laptop aria-hidden="true" className="mr-2 size-4" />
-                Dashboard
+                <DollarSign aria-hidden="true" className="mr-2 size-4" />
+                {t("usermenu.purchases.menu")}
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link className="flex items-center" href="/dashboard/admin">
-                <Icons.terminal aria-hidden="true" className="mr-2 size-4" />
-                Admin Page
+                <FileTerminal aria-hidden="true" className="mr-2 size-4" />
+                {t("usermenu.adminpage.menu")}
               </Link>
             </DropdownMenuItem>
           </DropdownMenuGroup>
@@ -131,11 +140,8 @@ export default async function UserMenu() {
                       )}
                       href="/auth/sign-out"
                     >
-                      <Icons.logout
-                        aria-hidden="true"
-                        className="mr-2 size-4"
-                      />
-                      Log Out
+                      <LogOut aria-hidden="true" className="mr-2 size-4" />
+                      {t("usermenu.logout.menu")}
                     </Link>
                   </SignedIn>
                 </>

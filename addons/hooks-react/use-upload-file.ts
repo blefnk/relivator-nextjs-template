@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import type { OurFileRouter } from "@/server";
-import type { StoredFile } from "@/types";
+import type { OurFileRouter } from "@/server/reliverse/uploadthing-core";
+import type { StoredFile } from "@/types/reliverse/store";
 import type { UploadFilesOptions } from "uploadthing/types";
 
-import { getErrorMessage, uploadFiles } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
+import { uploadFiles } from "@/server/reliverse/uploadthing-react";
 import consola from "consola";
 
 type UseUploadFileProps = {

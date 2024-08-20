@@ -1,10 +1,13 @@
 "use client";
 
 import { createPost } from "@/actions/reliverse/post";
+import { useTranslations } from "next-intl";
 
 // Protected React Server Actions w/ tRPC
 // @see https://trpc.io/blog/trpc-actions
-export default function PostForm() {
+export function PostAddForm() {
+  const t = useTranslations();
+
   // Use `action` to make form progressively enhanced
   // And `Using `onSubmit` allows building rich
   // interactive forms once JavaScript has loaded
@@ -28,7 +31,7 @@ export default function PostForm() {
       }}
     >
       <input name="title" type="text" />
-      <button type="submit">Create Post</button>
+      <button type="submit">{t("PostAddForm.createPost")}</button>
     </form>
   );
 }

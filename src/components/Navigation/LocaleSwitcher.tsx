@@ -6,9 +6,11 @@ import { useTransition } from "react";
 import type { NextPage } from "next";
 import { usePathname, useRouter } from "next/navigation";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const LocaleSwitcher: NextPage = () => {
+  const t = useTranslations();
+
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localeValue = useLocale();
@@ -37,7 +39,7 @@ const LocaleSwitcher: NextPage = () => {
 
   return (
     <label>
-      <p className="sr-only">change language</p>
+      <p className="sr-only">{t("LocaleSwitcher.changeLanguage")}</p>
       <select
         className={`
           block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5
@@ -49,10 +51,10 @@ const LocaleSwitcher: NextPage = () => {
         disabled={isPending}
         onChange={handleChange}
       >
-        <option value="en">English</option>
-        <option value="uk">Ukrainian</option>
-        <option value="de">Germany</option>
-        <option value="es">Spanish</option>
+        <option value="en">{t("LocaleSwitcher.english")}</option>
+        <option value="uk">{t("LocaleSwitcher.ukrainian")}</option>
+        <option value="de">{t("LocaleSwitcher.germany")}</option>
+        <option value="es">{t("LocaleSwitcher.spanish")}</option>
       </select>
     </label>
   );

@@ -6,7 +6,7 @@ import Link from "next/link";
 import type { ButtonProps } from "@/components/ui/button";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,

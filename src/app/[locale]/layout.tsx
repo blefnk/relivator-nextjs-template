@@ -5,15 +5,17 @@ import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 
 import { Toaster } from "@/components/ui/toaster";
-import { ourFileRouter } from "@/server/reliverse/api/uploadthing/core";
+import { ourFileRouter } from "@/server/reliverse/uploadthing-core";
 import { TRPCReactProvider } from "@/trpc/react";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { config as reliverse } from "@reliverse/core";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { getTranslations } from "next-intl/server";
-import { hideTailwindIndicator } from "reliverse.config";
+import { hideTailwindIndicator } from "~/../reliverse.config";
+import { defaultLocale, locales } from "~/../reliverse.i18n";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
 import { extractRouterConfig } from "uploadthing/server";
 
 import { siteConfig } from "~/app";
@@ -24,27 +26,23 @@ import { SiteHeader } from "~/components/Navigation/SiteHeader";
 import { AuthProvider } from "~/components/Providers/AuthProvider";
 import { ThemeProvider } from "~/components/Providers/ThemeProvider";
 import { env } from "~/env";
-import { defaultLocale, locales } from "~/navigation";
 
-import "~/styles/globals.css";
-
-// @reliverse/themes (coming soon)
-// import "@radix-ui/themes/styles.css";
-// import "@xyflow/react/dist/style.css";
-//
-// Each page in the app will have the following metadata - you can override
-// them by defining the metadata in the page.tsx or in children layout.tsx.
-// By the way, we only need the getTranslations on async components
-// useTranslations works both on the server and the client side.
 const baseMetadataURL = env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
-// const absoluteUrl = (path: string) => {
-//   return `${env.NEXT_PUBLIC_APP_URL}${path}`;
-// };
+type RootLocaleLayoutProps = {
+  children: ReactNode;
+  params: { locale: string };
+};
 
-export async function generateMetadata() {
-  const t = await getTranslations();
+export async function generateMetadata({
+  params: { locale },
+}: Omit<RootLocaleLayoutProps, "children">) {
+  // We only need the getTranslations on async components
+  // useTranslations works both on the server and the client side.
+  const t = await getTranslations({ locale, namespace: "RootLocaleLayout" });
 
+  // Each page in the app will have the following metadata - you can override
+  // them by defining the metadata in the page.tsx or in children layout.tsx.
   const metadata: Metadata = {
     alternates: {
       canonical: new URL(baseMetadataURL),
@@ -59,25 +57,14 @@ export async function generateMetadata() {
     creator: siteConfig.author.handle,
     description: t("metadata.description"),
     icons: [{ rel: "icon", url: "/favicon.ico" }],
-
-    // icons: {
-    //   icon: `${baseMetadataURL}/logo.png`,
-    // },
     keywords: siteConfig.keywords,
     openGraph: {
       alternateLocale: locales.filter((locale) => locale !== defaultLocale),
       description: t("metadata.description"),
       images: [`${baseMetadataURL}/og.png`],
-
-      // images: [
-      //   {
-      //     alt: siteConfig.images[0].alt,
-      //     url: `${baseMetadataURL}/og-image.png`,
-      //   },
-      // ],
       locale: defaultLocale,
       siteName: siteConfig.name,
-      title: siteConfig.name,
+      title: `${siteConfig.name} | ${t("titleDetails")}`,
       type: "website",
       url: baseMetadataURL,
     },
@@ -97,7 +84,7 @@ export async function generateMetadata() {
       card: "summary_large_image",
       creator: siteConfig.author.handleAt,
       description: t("metadata.description"),
-      images: [`${baseMetadataURL}/og-image.png`],
+      images: [`${baseMetadataURL}/og.png`],
       site: siteConfig.author.handleAt,
       title: siteConfig.name,
     },
@@ -114,13 +101,6 @@ export const viewport: Viewport = {
   ],
 };
 
-// import { Inter as FontSans } from "next/font/google";
-// const fontSans = FontSans({ subsets: ["latin"],
-// variable: "--font-sans" });
-// const fontSans = localFont({
-//   src: "../../styles/fonts/GeistVF.woff",
-//   variable: "--font-sans",
-// });
 const fontSans = localFont({
   src: "../../styles/fonts/FiraSans-Regular.ttf",
   variable: "--font-sans",
@@ -146,21 +126,15 @@ const fontFlag = localFont({
 export default async function RootLocaleLayout({
   children,
   params: { locale },
-}: Readonly<{
-  params: {
-    locale: string;
-  };
-  children: ReactNode;
-}>) {
+}: RootLocaleLayoutProps) {
   // @see https://github.com/blefnk/relivator
   if (!locales.includes(locale)) {
     return notFound();
   }
 
-  // Uncomment if you want next-intl to be available on both client and server components.
-  // By default, it is available on server components, while for "use client" components it
-  // should be passed as props. If you uncomment, it may impact the project's performance.
-  // const messages = await getMessages(); // Uncomment NextIntlClientProvider as well.
+  // Providing all messages to the client side
+  // is the easiest way to handle "use client";
+  const messages = await getMessages();
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -176,13 +150,13 @@ export default async function RootLocaleLayout({
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           <TRPCReactProvider>
             <ThemeProvider>
-              {/* <NextIntlClientProvider messages={messages}> */}
-              <SiteHeader />
-              {children}
-              <SiteFooter />
-              {/* <Reliverse /> */}
-              {hideTailwindIndicator === false && <TailwindScreens />}
-              {/* </NextIntlClientProvider> */}
+              <NextIntlClientProvider messages={messages}>
+                <SiteHeader />
+                {children}
+                <SiteFooter />
+                {/* <Reliverse /> */}
+                {hideTailwindIndicator === false && <TailwindScreens />}
+              </NextIntlClientProvider>
             </ThemeProvider>
           </TRPCReactProvider>
           <Toaster />

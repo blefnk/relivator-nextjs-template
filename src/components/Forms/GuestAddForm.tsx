@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { setCookie } from "cookies-next";
+import { useTranslations } from "next-intl";
 import * as z from "zod";
 
 import { useGuestEmailSubmit } from "~/components/Forms/Context/GuestAddFormContext";
@@ -24,7 +25,9 @@ const guestEmailSchema = z.object({
   }),
 });
 
-export default function AddToCartGuestForm() {
+export function GuestAddForm() {
+  const t = useTranslations();
+
   const { onEmailSubmit } = useGuestEmailSubmit();
 
   const form = useForm<z.infer<typeof guestEmailSchema>>({
@@ -50,7 +53,7 @@ export default function AddToCartGuestForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{t("GuestAddForm.email")}</FormLabel>
               <FormControl>
                 <Input placeholder="Enter the email" {...field} />
               </FormControl>

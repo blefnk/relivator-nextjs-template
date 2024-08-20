@@ -1,11 +1,11 @@
-import type { CartItem, CartLineItem } from "@/types";
+import type { CartItem, CartLineItem } from "@/types/reliverse/store";
 
 import destr from "destr";
 import { eq, inArray } from "drizzle-orm";
 
 import { authjs } from "~/auth/authjs";
 import { db } from "~/db";
-import { carts, products, stores } from "~/db/schema";
+import { carts, products, stores } from "~/db/schema/provider";
 
 export async function getCartId(): Promise<number | undefined> {
   const session = await authjs();

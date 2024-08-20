@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 
 export const productSchema = z.object({
   name: z.string().min(1, {

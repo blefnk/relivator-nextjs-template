@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef, FormEvent, ReactElement } from "react";
 import { useEffect, useId, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import {
   AddressElement,
   LinkAuthenticationElement,
@@ -14,7 +14,7 @@ import {
 } from "@stripe/react-stripe-js";
 import consola from "consola";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 import { env } from "~/env";
 
 type CheckoutFormProps = {
@@ -26,7 +26,7 @@ const absoluteUrl = (path: string) => {
 };
 
 // @see https://stripe.com/docs/payments/quickstart
-export default function CheckoutForm({
+export function CheckoutForm({
   className,
   storeId,
   ...props
@@ -157,10 +157,7 @@ export default function CheckoutForm({
         variant="secondary"
       >
         {isLoading && (
-          <Icons.spinner
-            aria-hidden="true"
-            className="mr-2 size-4 animate-spin"
-          />
+          <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
         )}
         Pay
       </Button>

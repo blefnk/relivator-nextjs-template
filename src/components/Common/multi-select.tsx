@@ -1,7 +1,7 @@
 import type { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { Option } from "@/types";
+import type { Option } from "@/types/reliverse/store";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

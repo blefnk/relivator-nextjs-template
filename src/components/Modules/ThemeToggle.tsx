@@ -1,11 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Moon, SunMedium } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
-import { Icons } from "~/components/Common/Icons";
-
 export function ThemeToggle() {
+  const t = useTranslations();
+
   const { setTheme, theme } = useTheme();
 
   return (
@@ -16,7 +18,7 @@ export function ThemeToggle() {
       size="icon"
       variant="ghost"
     >
-      <Icons.sun
+      <SunMedium
         aria-hidden="true"
         className={`
           size-5 rotate-0 scale-100 transition-all
@@ -24,7 +26,7 @@ export function ThemeToggle() {
           dark:-rotate-90 dark:scale-0
         `}
       />
-      <Icons.moon
+      <Moon
         aria-hidden="true"
         className={`
           absolute size-5 rotate-90 scale-0 transition-all
@@ -32,7 +34,7 @@ export function ThemeToggle() {
           dark:rotate-0 dark:scale-100
         `}
       />
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{t("ThemeToggle.toggleTheme")}</span>
     </Button>
   );
 }

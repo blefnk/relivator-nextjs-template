@@ -4,7 +4,7 @@ import { eq } from "drizzle-orm";
 
 import { authjs } from "~/auth/authjs";
 import { db } from "~/db";
-import { users } from "~/db/schema";
+import { users } from "~/db/schema/provider";
 
 type ChangeUserPrivilegesProps = {
   role: "admin" | "user";

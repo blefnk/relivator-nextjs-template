@@ -2,15 +2,17 @@ import Link from "next/link";
 
 import Onboarding from "@/cluster/components/Onboarding";
 import { Separator } from "@/components/ui/separator";
+import { useTranslations } from "next-intl";
 
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import { env } from "~/env";
 
 export default function DashboardPage() {
+  const t = useTranslations();
+
   return (
     <Shell>
       <section className="">
-        <h1 className="text-xl font-semibold">Dashboard</h1>
+        <h1 className="text-xl font-semibold">{t("page.dashboard")}</h1>
         <Separator
           className={`
             mt-2
@@ -26,14 +28,16 @@ export default function DashboardPage() {
           md:hidden
         `}
       >
-        <Link href="/dashboard/stores">Stores</Link>
-        <Link href="/dashboard/billing">Billing</Link>
-        <Link href="/dashboard/account">Account</Link>
-        <Link href="/dashboard/settings">Settings</Link>
-        <Link href="/dashboard/purchases">Purchases</Link>
-        <Link href="/dashboard/admin">Admin</Link>
+        <Link href="/dashboard/stores">{t("page.stores")}</Link>
+        <Link href="/dashboard/billing">{t("page.billing")}</Link>
+        <Link href="/dashboard/account">{t("page.account")}</Link>
+        <Link href="/dashboard/settings">{t("page.settings")}</Link>
+        <Link href="/dashboard/purchases">{t("page.purchases")}</Link>
+        <Link href="/dashboard/admin">{t("page.admin")}</Link>
       </section>
-      {env.NODE_ENV === "development" && <Onboarding />}
+
+      {/* {env.NODE_ENV === "development" && <Onboarding />} */}
+      <Onboarding />
     </Shell>
   );
 }

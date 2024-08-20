@@ -3,7 +3,6 @@ import type { InferSelectModel } from "drizzle-orm";
 import type {
   columns,
   items,
-  notifications,
   orders,
   products,
   stores,
@@ -17,7 +16,7 @@ export type Column = InferSelectModel<typeof columns>;
 
 export type Item = InferSelectModel<typeof items>;
 
-export type Notification = typeof notifications.$inferSelect;
+// export type Notification = typeof notifications.$inferSelect;
 
 export type Order = InferSelectModel<typeof orders>;
 

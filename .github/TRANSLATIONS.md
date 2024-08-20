@@ -6,9 +6,9 @@ For those who are viewing the current markdown file using:
  – GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1".
 -->
 
-[📖 Docs](https://docs.reliverse.com/en)
+[📖 Docs](https://reliverse.org)
 
-Are you fluent in a language other than English? the expertise is invaluable to us!
+Are you fluent in a language other than English? Your expertise is invaluable to us!
 
 We utilize [README.md](../README.md) for the current repo and the [Starlight](https://starlight.astro.build) for our shared documentation website. This fantastic tool enables multilingual support within the same repository. This means you can contribute to the documentation in the preferred language without the hassle of managing a separate repository. For detailed guidance, please explore the [Starlight i18n documentation](https://starlight.astro.build/guides/i18n/).
 

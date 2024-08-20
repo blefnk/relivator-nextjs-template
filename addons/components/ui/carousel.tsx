@@ -4,8 +4,8 @@ import type { ComponentProps, HTMLAttributes, KeyboardEvent } from "react";
 import {
   createContext,
   forwardRef,
-  use,
   useCallback,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -13,7 +13,7 @@ import {
 import type { UseEmblaCarouselType } from "embla-carousel-react";
 
 import { Button } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -44,7 +44,7 @@ type CarouselContextProps = {
 const CarouselContext = createContext<CarouselContextProps | null>(null);
 
 function useCarousel() {
-  const context = use(CarouselContext);
+  const context = useContext(CarouselContext);
 
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />");

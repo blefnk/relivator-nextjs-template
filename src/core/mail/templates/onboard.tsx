@@ -4,15 +4,18 @@ import { Head } from "@react-email/head";
 import { Html } from "@react-email/html";
 import { Img } from "@react-email/img";
 import { Tailwind } from "@react-email/tailwind";
+import { useTranslations } from "next-intl";
 
 export default function Onboard({ firstName = "FirstName" }) {
+  const t = useTranslations();
+
   return (
     <Html>
       <Head />
       <Tailwind>
         <Img
           alt="Relivator Logo"
-          src="https://relivator.bleverse.com/logo.png"
+          src="https://relivator.reliverse.org/logo.png"
         />
         <p className="text-2xl">Welcome {firstName}, </p>
         <p className="text-lg">
@@ -24,7 +27,9 @@ export default function Onboard({ firstName = "FirstName" }) {
         </p>
         <ul>
           <li>
-            <span className="font-bold">🚀 Relivator - Next.js Redefined:</span>
+            <span className="font-bold">
+              {t("onboard.relivatorNextJsRedefined")}
+            </span>
             <br />
             Dive into the advanced features of Relivator, including its seamless
             integration with Stripe, responsive Tailwind design, and powerful
@@ -58,13 +63,13 @@ export default function Onboard({ firstName = "FirstName" }) {
             modern aesthetic.
           </li>
         </ul>
-        <h4>Event Details: </h4>
+        <h4>{t("onboard.eventDetails")} </h4>
         <ul>
-          <li>Date: [Event Date (TBD)]</li>
-          <li>Time: [Event Time (TBD)]</li>
-          <li>Location: [Event Link (TBD)]</li>
-          <li>Don't miss out, reserve the spot now!</li>
-          <li>*TBD - To Be Determined</li>
+          <li>{t("onboard.dateEventDateTbd")}</li>
+          <li>{t("onboard.timeEventTimeTbd")}</li>
+          <li>{t("onboard.locationEventLinkTbd")}</li>
+          <li>{t("onboard.donTMissOutReserveTheSpotNow")}</li>
+          <li>{t("onboard.tbdToBeDetermined")}</li>
         </ul>
         <button
           className={`
@@ -75,7 +80,9 @@ export default function Onboard({ firstName = "FirstName" }) {
         >
           Join Event
         </button>
-        <p className="text-center">🌟 Join 15 minutes early to network! 🌟</p>
+        <p className="text-center">
+          {t("onboard.join15MinutesEarlyToNetwork")}
+        </p>
         <p>
           Embark on a transformative journey with Relivator, Bleverse, and with
           our friends and partners. This event is not just an introduction, it's
@@ -96,15 +103,17 @@ export default function Onboard({ firstName = "FirstName" }) {
 }
 
 export function OnboardSample({ firstName = "FirstName" }) {
+  const t = useTranslations();
+
   return (
     <div className="mx-auto mt-10 max-w-[500px]">
       <Image
         alt="Relivator Logo"
         height={150}
-        src="https://relivator.bleverse.com/logo.png"
+        src="https://relivator.reliverse.org/logo.png"
         width={500}
       />
-      <a href="/page">asa</a>
+      <a href="/page">{t("onboard.asa")}</a>
       <p className="text-2xl">Hello {firstName}, welcome to Relivator!</p>
       <p className="text-lg">
         We're excited to introduce you to the world of advanced web development

@@ -10,7 +10,7 @@
 import { headers } from "next/headers";
 
 // Please scroll down to the bottom of this file to read a detailed description of this file.
-import type { CheckoutItem } from "@/types";
+import type { CheckoutItem } from "@/types/reliverse/store";
 import type Stripe from "stripe";
 
 import { checkoutItemSchema } from "@/actions/reliverse/validations/cart";
@@ -22,7 +22,7 @@ import { z } from "zod";
 import { authjs } from "~/auth/authjs";
 import { stripe } from "~/core/stripe/connect";
 import { db } from "~/db";
-import { carts, orders, payments, products, users } from "~/db/schema";
+import { carts, orders, payments, products, users } from "~/db/schema/provider";
 import { env } from "~/env";
 
 // POST /api/webhooks/stripe

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 import Image from "next/image";
 
-import type { FileWithPreview } from "@/types";
+import type { FileWithPreview } from "@/types/reliverse/store";
 import type { z } from "zod";
 
 import { checkProductAction } from "@/actions/reliverse/product-old";
@@ -30,14 +30,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/text-area";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 import { zodResolver } from "@hookform/resolvers/zod";
 import consola from "consola";
+import { useTranslations } from "next-intl";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 import { Zoom } from "~/components/Common/zoom-image";
 import { getSubcategories } from "~/constants/products";
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 import { env } from "~/env";
 
 // import { FileDialog } from "~/components/Common/file-dialog";
@@ -45,7 +46,9 @@ import { env } from "~/env";
 type Inputs = z.infer<typeof productSchema>;
 
 // eslint-disable-next-line max-lines-per-function
-export default function AddProductForm() {
+export function ProductAddForm() {
+  const t = useTranslations();
+
   // todo: fix strange product images browser console warning message:
   // todo: "Ignoring unsupported entryTypes: largest-contentful-paint"
   // const [files, setFiles] = useState<FileWithPreview[] | null>(null);
@@ -110,7 +113,7 @@ export default function AddProductForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>{t("ProductAddForm.name")}</FormLabel>
               <FormControl>
                 <Input placeholder="Type product name here." {...field} />
               </FormControl>
@@ -123,7 +126,7 @@ export default function AddProductForm() {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{t("ProductAddForm.description")}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Type product description here."
@@ -146,7 +149,7 @@ export default function AddProductForm() {
             name="category"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Category</FormLabel>
+                <FormLabel>{t("ProductAddForm.category")}</FormLabel>
                 <Select
                   onValueChange={(value: typeof field.value) => {
                     field.onChange(value);
@@ -183,7 +186,7 @@ export default function AddProductForm() {
             name="subcategory"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Subcategory</FormLabel>
+                <FormLabel>{t("ProductAddForm.subcategory")}</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   value={field.value?.toString()}
@@ -220,7 +223,7 @@ export default function AddProductForm() {
             name="price"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Price</FormLabel>
+                <FormLabel>{t("ProductAddForm.price")}</FormLabel>
                 <FormControl>
                   <Input
                     onChange={field.onChange}
@@ -237,7 +240,7 @@ export default function AddProductForm() {
             name="inventory"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel>Inventory</FormLabel>
+                <FormLabel>{t("ProductAddForm.inventory")}</FormLabel>
                 <FormControl>
                   <Input
                     inputMode="numeric"
@@ -255,7 +258,7 @@ export default function AddProductForm() {
           />
         </div>
         <FormItem className="flex w-full flex-col gap-1.5">
-          <FormLabel>Images</FormLabel>
+          <FormLabel>{t("ProductAddForm.images")}</FormLabel>
           {env.NODE_ENV === "development" && (
             <span className="font-mono text-red-500">
               {/* [localhost-notice] Upload button is hidden if UploadThing env are missing. */}
@@ -318,13 +321,13 @@ export default function AddProductForm() {
           }
         >
           {isPending && (
-            <Icons.spinner
+            <SpinnerSVG
               aria-hidden="true"
               className="mr-2 size-4 animate-spin"
             />
           )}
           Add Product
-          <span className="sr-only">Add Product</span>
+          <span className="sr-only">{t("ProductAddForm.addProduct")}</span>
         </Button>
       </form>
     </Form>

@@ -5,9 +5,8 @@ import { forwardRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/utils";
-
-import { Icons } from "~/components/Common/Icons";
+import { cn } from "@/utils/reliverse/cn";
+import { Eye, EyeOff } from "lucide-react";
 
 type PasswordInputProps = {
   className?: string;
@@ -40,9 +39,9 @@ const PasswordInput = forwardRef<HTMLInputElement, PasswordInputProps>(
           variant="ghost"
         >
           {showPassword ? (
-            <Icons.hide aria-hidden="true" className="size-4" />
+            <EyeOff aria-hidden="true" className="size-4" />
           ) : (
-            <Icons.view aria-hidden="true" className="size-4" />
+            <Eye aria-hidden="true" className="size-4" />
           )}
           <span className="sr-only">
             {showPassword ? "Hide password" : "Show password"}

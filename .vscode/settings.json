@@ -26,6 +26,9 @@
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
+  "[mdx]": {
+    "editor.wordWrap": "on"
+  },
   "[python]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
@@ -59,10 +62,8 @@
     "tson"
   ],
   "cSpell.words": ["callout", "combobox", "reliverse", "utapi"],
-  "chat.editor.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
   "css.lint.important": "ignore",
   "css.lint.unknownAtRules": "ignore",
-  "debug.console.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
   "debug.toolBarLocation": "docked",
   "diffEditor.experimental.showMoves": true,
   "diffEditor.hideUnchangedRegions.enabled": true,
@@ -79,18 +80,12 @@
     "source.organizeImports.biome": "never",
     "source.removeUnused": "never"
   },
-  "editor.codeLensFontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
   "editor.colorDecorators": true,
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "line",
   "editor.defaultFormatter": "biomejs.biome",
   "editor.detectIndentation": false,
-  "editor.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 14,
-  "editor.fontVariations": true,
-  "editor.fontWeight": "normal",
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
@@ -98,7 +93,7 @@
   "editor.guides.bracketPairs": true,
   "editor.guides.indentation": false,
   "editor.hideCursorInOverviewRuler": false,
-  "editor.inlayHints.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
+  "editor.inlayHints.enabled": "offUnlessPressed",
   "editor.inlineSuggest.enabled": true,
   "editor.inlineSuggest.showToolbar": "always",
   "editor.insertSpaces": true,
@@ -158,8 +153,7 @@
   "editor.unicodeHighlight.allowedLocales": {
     "tr": true
   },
-  "editor.wordBasedSuggestions": "matchingDocuments",
-  "editor.wordWrap": "on",
+  "editor.wordBasedSuggestions": "currentDocument",
   "eslint.codeActionsOnSave.mode": "problems",
   "eslint.enable": true,
   "eslint.format.enable": true,
@@ -185,11 +179,11 @@
   "eslint.rules.customizations": [
     {
       "rule": "@stylistic/*",
-      "severity": "info"
+      "severity": "off"
     },
     {
       "rule": "perfectionist/*",
-      "severity": "info"
+      "severity": "off"
     },
     {
       "rule": "@typescript-eslint/consistent-type-imports",
@@ -299,33 +293,22 @@
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
   "git.openRepositoryInParentFolders": "never",
-  "github.copilot.editor.enableAutoCompletions": true,
   "html.format.indentInnerHtml": true,
-  "i18n-ally.displayLanguage": "en",
+  "i18n-ally.displayLanguage": "en-US",
   "i18n-ally.enabledFrameworks": ["general", "next-intl", "react"],
   "i18n-ally.keysInUse": [
+    "Manifest.name",
     "faq.1.details",
     "faq.1.summary",
     "faq.2.details",
     "faq.2.summary",
     "faq.3.details",
-    "faq.3.summary"
+    "faq.3.summary",
+    "name"
   ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": ["addons/messages/reliverse"],
-  "i18n-ally.sourceLanguage": "en",
-  "indentRainbow.colors": [
-    "rgba(58, 12, 163,0.15)",
-    "rgba(63, 55, 201,0.05)",
-    "rgba(63, 55, 201,0.025)",
-    "rgba(63, 55, 201,0.1)",
-    "rgba(63, 55, 201,0.15)",
-    "rgba(72, 12, 168,0.15)",
-    "rgba(86, 11, 173,0.15)",
-    "rgba(114, 9, 183, 0.15)",
-    "rgba(181, 23, 158,0.15)",
-    "rgba(247, 37, 133,0.15)"
-  ],
+  "i18n-ally.localesPaths": ["messages/default"],
+  "i18n-ally.sourceLanguage": "en-US",
   "javascript.format.semicolons": "insert",
   "javascript.inlayHints.enumMemberValues.enabled": true,
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
@@ -335,7 +318,6 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "json.validate.enable": false,
   "markdown.extension.preview.autoShowPreviewToSide": false,
-  "markdown.preview.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
   "markdown.preview.scrollEditorWithPreview": true,
   "markdown.preview.scrollPreviewWithEditor": true,
   "markdownlint.config": {
@@ -343,7 +325,6 @@
     "MD041": false
   },
   "mdx.server.enable": true,
-  "notebook.output.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
   "openMultipleFiles.exclude": [
     "**/*.gif",
     "**/*.jpeg",
@@ -375,26 +356,12 @@
   "openMultipleFiles.ignore": [".gitignore"],
   "openMultipleFiles.limit": 1000,
   "outline.problems.badges": false,
-  "pop-icon-theme.files.associations": {
-    "*.astro": "astro",
-    "*.hbs": "handlebars",
-    "*.tson": "typescript",
-    "*.txt": "plaintext",
-    ".env.example": "properties",
-    "error.tsx": "console",
-    "layout.tsx": "mjml",
-    "loading.tsx": "dotjs",
-    "package.json": "json",
-    "page.tsx": "url"
-  },
-  "pop-icon-theme.hidesExplorerArrows": true,
   "prettify-ts.viewNestedTypes": true,
   "problems.defaultViewMode": "table",
   "problems.showCurrentInStatus": true,
   "problems.sortOrder": "position",
   "ruff.lineLength": 88,
   "ruff.nativeServer": true,
-  "scm.inputFontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
   "search.exclude": {
     "**/*.lock": true,
     "**/.eslintcache": true,
@@ -427,8 +394,6 @@
     "vscode",
     "vscode-insiders"
   ],
-  "terminal.integrated.fontFamily": "'JetBrains Mono', 'Geist Mono', 'Monaspace Argon Var', Menlo, Monaco, 'Courier New', monospace",
-  "terminal.integrated.fontSize": 12,
   "terminal.integrated.smoothScrolling": true,
   "totalTypeScript.hideAllTips": true,
   "totalTypeScript.hideBasicTips": true,
@@ -481,15 +446,8 @@
     "terminalCursor.background": "#868690",
     "terminalCursor.foreground": "#43444D"
   },
-  "workbench.colorTheme": "Houston",
   "workbench.editor.enablePreview": false,
-  "workbench.iconTheme": "pop-icon-theme",
   "workbench.layoutControl.enabled": true,
   "workbench.panel.defaultLocation": "bottom",
-  "workbench.preferredDarkColorTheme": "Default Dark Modern",
-  "workbench.preferredHighContrastColorTheme": "GitHub Dark High Contrast",
-  "workbench.preferredHighContrastLightColorTheme": "GitHub Light High Contrast",
-  "workbench.preferredLightColorTheme": "Default Light Modern",
-  "workbench.sideBar.location": "left",
   "workbench.statusBar.visible": true
 }

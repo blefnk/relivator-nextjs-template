@@ -1,8 +1,9 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ImageIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-import { Icons } from "~/components/Common/Icons";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -10,6 +11,8 @@ import {
 } from "~/components/Navigation/PageNavMenu";
 
 export default function OrderSuccessLoading() {
+  const t = useTranslations();
+
   return (
     <div
       className={`
@@ -20,7 +23,9 @@ export default function OrderSuccessLoading() {
     >
       <div className="grid gap-10 overflow-auto">
         <PageHeader className="container flex max-w-7xl flex-col">
-          <PageHeaderHeading>Thank you for the order</PageHeaderHeading>
+          <PageHeaderHeading>
+            {t("loading.thankYouForTheOrder")}
+          </PageHeaderHeading>
           <PageHeaderDescription>
             Store will be in touch with you shortly
           </PageHeaderDescription>
@@ -39,27 +44,16 @@ export default function OrderSuccessLoading() {
                       xs:flex-row
                     `}
                   >
-                    <div
-                      className={`
-                      flex items-center space-x-4
-                    `}
-                    >
-                      <div
-                        className={`
-                        relative size-16 overflow-hidden
-                        rounded
-                      `}
-                      >
+                    <div className="flex items-center space-x-4">
+                      <div className="relative size-16 overflow-hidden rounded">
                         <div
                           className={`
                             flex h-full items-center justify-center bg-secondary
                           `}
                         >
-                          <Icons.placeholder
+                          <ImageIcon
                             aria-hidden="true"
-                            className={`
-                              size-4 text-muted-foreground
-                            `}
+                            className="size-4 text-muted-foreground"
                           />
                         </div>
                       </div>
@@ -80,12 +74,7 @@ export default function OrderSuccessLoading() {
               ))}
             </div>
           </ScrollArea>
-          <div
-            className={`
-            container flex max-w-7xl items-center
-            justify-between
-          `}
-          >
+          <div className="container flex max-w-7xl items-center justify-between">
             <Skeleton className="h-4 w-16" />
             <Skeleton className="h-4 w-20" />
           </div>

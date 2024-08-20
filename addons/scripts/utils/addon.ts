@@ -2,10 +2,9 @@ import type {
   InstallCommand,
   PackageManagerRunner,
   PackageManagerType,
-} from "@/types";
+} from "@/types/reliverse/pm";
 import type { Resolvable } from "citty";
 
-import { getRootDirname } from "@/scripts/utils";
 import {
   findInstallCommand,
   findPackageManagerRunner,
@@ -13,6 +12,7 @@ import {
   readPackageJson,
 } from "@/scripts/utils/pm";
 import { log } from "@clack/prompts";
+import { getRootDirname } from "@reliverse/fs";
 import fs from "fs-extra";
 import { cwd } from "node:process";
 import { join } from "pathe";

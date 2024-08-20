@@ -1,23 +1,25 @@
 import { revalidatePath } from "next/cache";
 
-import type { getStoreSchema } from "@/actions";
+import type { getStoreSchema } from "@/actions/reliverse/validations/store";
 
-import { getStoresSchema, storeSchema } from "@/actions";
-import { slugify } from "@/utils";
+import {
+  getStoresSchema,
+  storeSchema,
+} from "@/actions/reliverse/validations/store";
+import { slugify } from "@/utils/reliverse/string";
 import { and, asc, desc, eq, gt, isNull, lt, not, sql } from "drizzle-orm";
 import { z } from "zod";
 
-import type { Store } from "~/db/schema";
+import type { Store } from "~/db/schema/provider";
 
 import { db } from "~/db";
-import { products, stores } from "~/db/schema";
+import { products, stores } from "~/db/schema/provider";
 
 const isString = (a: unknown): a is string => typeof a === "string";
 const isNumber = (a: unknown): a is number => typeof a === "number";
 
-export async function getStoresAction(
-  rawInput: z.infer<typeof getStoresSchema>,
-) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+async function getStoresAction(rawInput: z.infer<typeof getStoresSchema>) {
   try {
     const input = getStoresSchema.parse(rawInput);
 

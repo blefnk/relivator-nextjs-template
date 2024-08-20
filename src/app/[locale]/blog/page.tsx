@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Separator } from "@/components/ui/separator";
+import { useTranslations } from "next-intl";
 
 import {
   PageHeader,
@@ -15,10 +16,12 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const t = useTranslations();
+
   return (
     <Shell className="md:pb-10">
       <PageHeader aria-labelledby="blog-header-heading" id="blog-header">
-        <PageHeaderHeading>Blog</PageHeaderHeading>
+        <PageHeaderHeading>{t("page.blog")}</PageHeaderHeading>
         <PageHeaderDescription>
           Explore the latest news and updates from the community
         </PageHeaderDescription>

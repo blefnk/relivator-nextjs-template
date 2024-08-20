@@ -1,7 +1,7 @@
+import { getCurrentWorkingDirectory } from "@/../packageJson";
 import { throwIfStagedChanges } from "@/scripts/reliverse/gitutils/utils/shell";
 import consola from "consola";
 import log4js from "log4js";
-import { getCurrentWorkingDirectory } from "packageJson";
 
 process.on("unhandledRejection", (error) => {
   consola.error("Unhandled Rejection:", error);

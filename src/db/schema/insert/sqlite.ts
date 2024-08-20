@@ -1,7 +1,7 @@
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-import { boards, columns, items } from "~/db/schema/sqlite";
+import { boards, columns, items } from "~/db/schema/mysql";
 
 // createInsertSchema
 // ========================================================

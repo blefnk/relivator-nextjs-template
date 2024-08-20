@@ -3,7 +3,7 @@ import { Balancer } from "react-wrap-balancer";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { config } from "@reliverse/core";
 import { Download, ShoppingCart, Store } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -36,12 +36,7 @@ export default function HomeHeroSection() {
       >
         {t("landing.about")}
       </Balancer>
-      <div
-        className={`
-        mt-3 flex flex-wrap items-center justify-center
-        gap-4
-      `}
-      >
+      <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
         <Link
           className={cn(
             buttonVariants({

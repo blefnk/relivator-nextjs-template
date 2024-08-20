@@ -11,14 +11,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { AlertTriangle, CheckCircle, Info, XCircle } from "lucide-react";
 
 import { ClientButton } from "~/components/Common/client-button";
-import { Icons } from "~/components/Common/Icons";
+
+type IconName = "error" | "info" | "success" | "warning";
 
 type ErrorCardProps = {
   description: string;
-  icon?: keyof typeof Icons;
+  icon?: IconName;
   reset?: () => void;
   retryLink?: string;
   retryLinkText?: string;
@@ -28,14 +30,21 @@ type ErrorCardProps = {
 export function ErrorCard({
   className,
   description,
-  icon,
+  icon = "warning",
   reset,
   retryLink,
   retryLinkText = "Go back",
   title,
   ...props
 }: ErrorCardProps) {
-  const Icon = Icons[icon || "warning"];
+  const iconMap = {
+    warning: AlertTriangle,
+    info: Info,
+    success: CheckCircle,
+    error: XCircle,
+  };
+
+  const Icon = iconMap[icon];
 
   return (
     <Card
@@ -46,12 +55,7 @@ export function ErrorCard({
       {...props}
     >
       <CardHeader>
-        <div
-          className={`
-          grid size-20 place-items-center rounded-full
-          bg-muted
-        `}
-        >
+        <div className="grid size-20 place-items-center rounded-full bg-muted">
           <Icon aria-hidden="true" className="size-10" />
         </div>
       </CardHeader>

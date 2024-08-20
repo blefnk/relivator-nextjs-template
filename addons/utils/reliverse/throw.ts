@@ -1,5 +1,5 @@
 // @see https://gist.github.com/rphlmr/0d1722a794ed5a16da0fdf6652902b15
-export function takeFirst<T>(items: T[]) {
+function takeFirst<T>(items: T[]) {
   return items.at(0);
 }
 

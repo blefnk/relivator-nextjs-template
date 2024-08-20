@@ -1,7 +1,7 @@
 import type { KnipConfig } from "@/scripts/reliverse/relicon/setup/types";
 
-import { fileExists, removeFile } from "@/scripts/utils";
 import { select } from "@clack/prompts";
+import { fileExists, removeFile } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import pc from "picocolors";

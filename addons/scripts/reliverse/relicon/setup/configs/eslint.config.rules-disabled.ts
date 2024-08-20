@@ -5,6 +5,8 @@ import nextPlugin from "@next/eslint-plugin-next";
 import stylistic from "@stylistic/eslint-plugin";
 import tanstack from "@tanstack/eslint-plugin-query";
 // @ts-expect-error missing types
+import barrel from "eslint-plugin-barrel-files";
+// @ts-expect-error missing types
 import drizzle from "eslint-plugin-drizzle";
 // @ts-expect-error missing types
 import eslintComments from "eslint-plugin-eslint-comments";
@@ -46,7 +48,7 @@ import tseslint from "typescript-eslint";
 
 // The current Relivator 1.2.6 version comes with many predefined ESLint configs.
 // Run the `pnpm reli:setup` to easily switch between them and set up other tooling.
-// Current: addons\scripts\reliverse\relicon\setup\configs\eslint.config.rules-disabled.ts
+// Current: addons\scripts\reliverse\relicon\setup\configs\eslint.config.ultimate.ts
 //
 const stylisticConfig = stylistic.configs.customize({
   indent: 2,
@@ -75,11 +77,9 @@ export default tseslint.config(
   js.configs.recommended,
   {
     ignores: [
-      "**/.{git,next,turbo,million,output}/",
+      "**/.{git,next,astro,turbo,million,output}/",
       "**/{node_modules,build,dist,drizzle}/",
-      "**/eslint.config.{ultimate,medium,minimal,rules-disabled}.ts",
-      "**/pnpm-lock.yaml",
-      "eslint.config.js", // TODO: delete when linting error is resolved
+      "pnpm-lock.yaml",
     ],
   },
   {
@@ -123,6 +123,7 @@ export default tseslint.config(
       "@next/next": nextPlugin,
       "@stylistic": stylistic,
       "@tanstack/query": tanstack,
+      "barrel-files": { rules: barrel.rules },
       "@typescript-eslint": tseslint.plugin,
       drizzle: drizzle,
       "eslint-comments": eslintComments,
@@ -155,6 +156,14 @@ export default tseslint.config(
       ...tailwindReadable.configs.error.rules,
       ...tailwindReadable.configs.warning.rules,
       ...tailwindcss.configs.recommended.rules,
+
+      // @see https://npmjs.com/package/eslint-plugin-barrel-files
+      "barrel-files/avoid-importing-barrel-files": "off",
+
+      // Alternative: https://npmjs.com/package/eslint-plugin-no-barrel-files
+      "barrel-files/avoid-barrel-files": "off",
+      "barrel-files/avoid-namespace-import": "off",
+      "barrel-files/avoid-re-export-all": "off",
 
       // @see https://eslint-react.xyz/rules/overview
       "@eslint-react/dom/no-dangerously-set-innerhtml": "off",
@@ -331,7 +340,8 @@ export default tseslint.config(
           applyDefaultIgnorePatterns: true,
           beforeBlockComment: true,
           beforeLineComment: true,
-          ignorePattern: "@type\\s.+|@ts-expect-error|biome-ignore|TODO:",
+          ignorePattern:
+            "@type\\s.+|@ts-expect-error|biome-ignore|TODO:|import",
         },
       ],
 
@@ -902,7 +912,6 @@ export default tseslint.config(
       ],
       "id-match": "off",
       "import-style": "off",
-
       // @see https://github.com/un-ts/eslint-plugin-import-x
       "import-x/consistent-type-specifier-style": ["off", "prefer-top-level"],
       "import-x/default": "off",
@@ -1092,44 +1101,51 @@ export default tseslint.config(
         },
       ],
       "no-restricted-imports": [
-        "off",
+        "error",
+
+        // {
+        //   name: "next/link",
+        //   message:
+        //     "Please import from '~/navigation' OR from '@/components/ui/link' instead.",
+        // },
+        // {
+        //   name: "next/navigation",
+        //   importNames: [
+        //     "redirect",
+        //     "permanentRedirect",
+        //     "useRouter",
+        //     "usePathname",
+        //   ],
+        //   message: "Please import from '~/navigation' instead.",
+        // },
         {
-          paths: [
-            {
-              name: "inquirer",
-              message:
-                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
-            },
-            {
-              name: "process",
-              importNames: ["env"],
-              message: "Please use `import { env } from '~/env'` instead.",
-            },
-            {
-              name: "react",
-              importNames: ["default"],
-              message: "Named imports should be used instead.",
-            },
-            {
-              name: ".",
-              message: "Use explicit import file.",
-            },
-            {
-              name: "lodash",
-              message:
-                "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
-            },
-            {
-              name: "fs",
-              message:
-                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
-            },
-            {
-              name: "path",
-              message:
-                "Please use pathe instead (https://unjs.io/packages/pathe)",
-            },
-          ],
+          name: "inquirer",
+          message:
+            "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
+        },
+        {
+          name: "process",
+          importNames: ["env"],
+          message: "Please use `import { env } from '~/env'` instead.",
+        },
+        {
+          name: "react",
+          importNames: ["default"],
+          message: "Named imports should be used instead.",
+        },
+        {
+          name: "lodash",
+          message:
+            "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
+        },
+        {
+          name: "fs",
+          message:
+            "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
+        },
+        {
+          name: "path",
+          message: "Please use pathe instead (https://unjs.io/packages/pathe)",
         },
       ],
       "no-restricted-properties": [
@@ -1454,13 +1470,11 @@ export default tseslint.config(
       "react/no-invalid-html-attribute": "off",
       "react/no-unescaped-entities": "off",
       "react/no-unknown-property": "off",
-
       // TODO: https://github.com/shadcn-ui/ui/issues/120
       "react/prop-types": "off",
 
       // "react-compiler/react-compiler": "off",
       "react/react-in-jsx-scope": "off",
-
       // TODO: fix error in eslint console (@see https://npmjs.com/package/eslint-plugin-react-compiler)
       "react-hooks/exhaustive-deps": "off",
 
@@ -1468,7 +1482,13 @@ export default tseslint.config(
       "react-hooks/rules-of-hooks": "off",
 
       // @see https://github.com/ArnaudBarre/eslint-plugin-react-refresh
-      "react-refresh/only-export-components": "off",
+      "react-refresh/only-export-components": [
+        "off",
+        {
+          allowConstantExport: true,
+          allowExportNames: ["generateMetadata", "viewport"],
+        },
+      ],
 
       // @see https://github.com/schoero/eslint-plugin-readable-tailwind
       "readable-tailwind/multiline": ["off"],
@@ -1596,10 +1616,8 @@ export default tseslint.config(
           case: "pascalCase",
           ignore: [
             String.raw`.*\.(jsx|tsx)$`,
-
             // TODO: remove in GA branch of 1.3.0 version
             String.raw`.*\.(js|ts|cjs|cts|mjs|mts|d\.ts)$`,
-
             // TODO: decide in 1.3.x
             String.raw`^(layout|page|loading|not-found|error|global-error)\.(jsx|tsx)$`,
             String.raw`^(template|default|icon|apple-icon|opengraph-image)\.(jsx|tsx)$`,
@@ -1733,7 +1751,6 @@ export default tseslint.config(
     settings: {
       // @see https://github.com/jsx-eslint/eslint-plugin-react#configuration
       formComponents: ["Form"],
-
       // @see https://github.com/un-ts/eslint-plugin-import-x
       "import-x/internal-regex": "^~/",
 
@@ -1773,109 +1790,6 @@ export default tseslint.config(
     ...tseslint.configs.disableTypeChecked,
   },
   {
-    name: "@reliverse/eslint-config/etc",
-    files: ["{src,addons}/**/*.{ts,tsx}", "next.config.js"],
-    rules: {
-      "no-restricted-imports": [
-        "off",
-        {
-          patterns: [
-            {
-              message:
-                // eslint-disable-next-line @stylistic/max-len
-                "\n\n⛔ Importing from '@/scripts' is not allowed in this file. The import from 'addons/scripts' folder cannot be used in the browser runtime context. \n✅ You can safely import from other folders inside 'addons' instead.\n💡 Consider using imports from 'addons/browser' (@/browser) for browser-compatible code.\n\n",
-              regex: "^@/scripts",
-            },
-          ],
-          paths: [
-            {
-              name: "inquirer",
-              message:
-                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
-            },
-            {
-              name: "process",
-              importNames: ["env"],
-              message: "Please use `import { env } from '~/env'` instead.",
-            },
-            {
-              name: "react",
-              importNames: ["default"],
-              message: "Named imports should be used instead.",
-            },
-            {
-              name: ".",
-              message: "Use explicit import file.",
-            },
-            {
-              name: "lodash",
-              message:
-                "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
-            },
-            {
-              name: "fs",
-              message:
-                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
-            },
-            {
-              name: "path",
-              message:
-                "Please use pathe instead (https://unjs.io/packages/pathe)",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    name: "@reliverse/eslint-config/etc",
-    files: ["addons/scripts/**/*.{ts,tsx}"],
-    rules: {
-      "no-restricted-imports": [
-        "off",
-        {
-          patterns: [],
-          paths: [
-            {
-              name: "inquirer",
-              message:
-                "This is the legacy version of Inquirer.js. While it still receives maintenance, it is not actively developed. For the new Inquirer, see @inquirer/prompts – https://npmjs.com/package/@inquirer/prompts",
-            },
-            {
-              name: "process",
-              importNames: ["env"],
-              message: "Please use `import { env } from '~/env'` instead.",
-            },
-            {
-              name: "react",
-              importNames: ["default"],
-              message: "Named imports should be used instead.",
-            },
-            {
-              name: ".",
-              message: "Use explicit import file.",
-            },
-            {
-              name: "lodash",
-              message:
-                "Don't use lodash, use radash instead (in case you still need it, use lodash/{module} import).",
-            },
-            {
-              name: "fs",
-              message:
-                "Please use fs-extra instead (https://npmjs.com/package/fs-extra)\n\nJust use: import fs from 'fs-extra'",
-            },
-            {
-              name: "path",
-              message:
-                "Please use pathe instead (https://unjs.io/packages/pathe)",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
     name: "@reliverse/eslint-config/md",
     extends: [...markdown.configs.recommended],
     files: ["**/*.md"],
@@ -1883,7 +1797,6 @@ export default tseslint.config(
       markdown,
     },
   },
-
   // import * as mdx from "eslint-plugin-mdx";
   // {
   // name: "@reliverse/config-eslint/markdown-core",
@@ -2376,10 +2289,33 @@ export default tseslint.config(
             // Completeness
             "skipDefaultLibCheck",
             "skipLibCheck",
+
+            // Plugins
+            "plugins",
           ],
           pathPattern: "^compilerOptions$",
         },
       ],
+    },
+  },
+  {
+    name: "@reliverse/addons",
+    files: ["addons/scripts/**/*.ts"],
+    rules: {
+      "barrel-files/avoid-importing-barrel-files": "off",
+      "barrel-files/avoid-barrel-files": "off",
+      "barrel-files/avoid-namespace-import": "off",
+      "barrel-files/avoid-re-export-all": "off",
+    },
+  },
+  {
+    name: "@reliverse/addons-metadata",
+    files: ["src/constants/metadata.ts"],
+    rules: {
+      "barrel-files/avoid-importing-barrel-files": "off",
+      "barrel-files/avoid-barrel-files": "off",
+      "barrel-files/avoid-namespace-import": "off",
+      "barrel-files/avoid-re-export-all": "off",
     },
   },
   {

@@ -3,7 +3,7 @@
 import type { ComponentPropsWithoutRef, ElementRef } from "react";
 import { forwardRef, useContext } from "react";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { DashIcon } from "@radix-ui/react-icons";
 import { OTPInput, OTPInputContext } from "input-otp";
 

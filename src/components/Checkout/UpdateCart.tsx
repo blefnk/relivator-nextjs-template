@@ -2,7 +2,7 @@
 
 import { useId, useTransition } from "react";
 
-import type { CartLineItem } from "@/types";
+import type { CartLineItem } from "@/types/reliverse/store";
 
 import {
   deleteCartItemAction,
@@ -10,8 +10,9 @@ import {
 } from "@/actions/reliverse//cart";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import tryToCatch from "try-to-catch";
 
 type UpdateCartProps = {
@@ -19,6 +20,8 @@ type UpdateCartProps = {
 };
 
 export function UpdateCart({ cartLineItem }: UpdateCartProps) {
+  const t = useTranslations();
+
   const id = useId();
   const [isPending, startTransition] = useTransition();
 
@@ -52,7 +55,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           variant="outline"
         >
           <MinusIcon aria-hidden="true" className="size-3" />
-          <span className="sr-only">Remove one item</span>
+          <span className="sr-only">{t("UpdateCart.removeOneItem")}</span>
         </Button>
         <Input
           className="h-8 w-14 rounded-none border-x-0"
@@ -100,7 +103,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
           variant="outline"
         >
           <PlusIcon aria-hidden="true" className="size-3" />
-          <span className="sr-only">Add one item</span>
+          <span className="sr-only">{t("UpdateCart.addOneItem")}</span>
         </Button>
       </div>
       <Button
@@ -122,7 +125,7 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
         variant="outline"
       >
         <TrashIcon aria-hidden="true" className="size-3" />
-        <span className="sr-only">Delete item</span>
+        <span className="sr-only">{t("UpdateCart.deleteItem")}</span>
       </Button>
     </div>
   );

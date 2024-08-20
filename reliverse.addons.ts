@@ -45,7 +45,7 @@ async function main() {
     }
 
     if (selection === "runner") {
-      await import("addons/scripts");
+      await import("@/scripts/manager");
     }
 
     if (selection === "disabler-addon") {
@@ -53,7 +53,7 @@ async function main() {
     }
 
     if (selection === "disabler-pages") {
-      await import("addons/scripts/reliverse/disabler");
+      await import("@/scripts/reliverse/disabler");
     }
   } catch (error) {
     if (!(error as any).message.includes("User force closed")) {

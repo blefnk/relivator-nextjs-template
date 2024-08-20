@@ -4,7 +4,7 @@ import { playGame } from "@/scripts/reliverse/academy/game";
 import { displayLeaderboard } from "@/scripts/reliverse/academy/leaders";
 import { addPlayer, findPlayer } from "@/scripts/reliverse/academy/player";
 import { openSettings } from "@/scripts/reliverse/academy/settings";
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import { input, select } from "@inquirer/prompts";
 import consola from "consola";
 import pc from "picocolors";

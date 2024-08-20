@@ -3,9 +3,9 @@
 import { useEffect, useState, useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 import { createAccountLinkAction } from "~/core/stripe/actions";
 
 type ConnectToStripeButtonProps = {
@@ -44,10 +44,7 @@ export function ConnectStoreToStripeButton({
       }}
     >
       {isPending && (
-        <Icons.spinner
-          aria-hidden="true"
-          className="mr-2 size-4 animate-spin"
-        />
+        <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
       )}
       Connect to Stripe
     </Button>

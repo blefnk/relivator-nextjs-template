@@ -1,13 +1,13 @@
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
-import { intlProvider } from "reliverse.config";
+import { intlProvider } from "~/../reliverse.config";
 
 import { siteConfig } from "~/app";
 import { UserButton } from "~/components/Account/UserButton";
-import { CartDialog } from "~/components/Commerce/Cart";
+import { CartDialog } from "~/components/Commerce/Cart/CartDialog";
 import { LocaleSwitcher } from "~/components/Common/LocaleSwitcher";
 import { DonateLink } from "~/components/Navigation/DonateLink";
 import { MainMenu } from "~/components/Navigation/MainMenu";
@@ -16,8 +16,6 @@ import { ThemesGeneralSwitcher } from "~/components/Switchers/ThemesGeneralSwitc
 import { dashboardConfig } from "~/constants/nav-items";
 
 export async function SiteHeader() {
-  // const t = await getTranslations();
-
   return (
     <header
       className={`

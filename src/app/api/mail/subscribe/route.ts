@@ -10,7 +10,7 @@ import { z } from "zod";
 import { authjs } from "~/auth/authjs";
 import NewsletterWelcomeEmail from "~/components/Emails/NewsletterWelcomeEmail";
 import { db } from "~/db";
-import { notifications } from "~/db/schema";
+import { notifications } from "~/db/schema/provider";
 import { env } from "~/env";
 
 const resendApiKey = env.NEXT_PUBLIC_RESEND_API_KEY;

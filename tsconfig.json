@@ -1,56 +1,51 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "ES2022",
+    "target": "es2022",
     "jsx": "preserve",
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": ["dom", "dom.iterable", "es2022"],
     "moduleDetection": "force",
-    "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "module": "preserve",
     "paths": {
       "@/*": ["./addons/*"],
       "~/*": ["./src/*"]
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "checkJs": true,
     "strict": true,
-    "strictFunctionTypes": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "allowUnreachableCode": false,
-    "alwaysStrict": true,
-    "exactOptionalPropertyTypes": false,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noPropertyAccessFromIndexSignature": false,
-    "noUncheckedSideEffectImports": true,
+    "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
-    "downlevelIteration": true,
     "noEmit": true,
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "verbatimModuleSyntax": false,
-    "skipLibCheck": true
+    ]
   },
   "include": [
-    "**/*.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
     ".next/types/**/*.ts",
+    "addons/**/*.ts",
+    "addons/**/*.tsx",
+    "drizzle.config.ts",
     "eslint.config.js",
     "next.config.js",
     "next-env.d.ts",
-    "src/env.js"
+    "reliverse.addons.ts",
+    "reliverse.config.ts",
+    "reliverse.info.ts",
+    "reliverse.setup.ts",
+    "reliverse.themes.ts",
+    "remotion.config.ts",
+    "reset.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/env.js",
+    "tailwind.config.ts"
   ],
   "exclude": ["node_modules"]
 }

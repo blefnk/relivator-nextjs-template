@@ -1,0 +1,604 @@
+{
+  "AuthjsV5Test": {
+    "clientExamplePageTsx": "Istemci örneği/sayfa.tsx",
+    "clientSideRendering": "Istemci Tarafında Oluşturma",
+    "exampleBackend": "Örnek arka uç",
+    "here": "Burada",
+    "loading": "Yükleniyor...",
+    "sessionprovider": "Oturum Sağlayıcı",
+    "thirdPartyBackendIntegration": "Üçüncü taraf arka uç entegrasyonu",
+    "update": "Güncelleme",
+    "updatingTheSession": "Oturumun güncellenmesi",
+    "useClient": "'istemciyi kullan'",
+    "usesession": "KullanımOturumu"
+  },
+  "CartAddForm": {
+    "addOneItem": "Bir öğe ekle",
+    "quantity": "Miktar",
+    "removeOneItem": "Bir ögeyi kaldır"
+  },
+  "CommerceDashboard": {
+    "dashboard": "Kontrol Paneli"
+  },
+  "ContactForm": {
+    "message": "Mesaj",
+    "subject": "Ders"
+  },
+  "CountryList": {
+    "currencies": "Para birimleri:",
+    "languages": "Diller:",
+    "loading": "Yükleniyor..."
+  },
+  "DataTablePagination": {
+    "rowsPerPage": "Sayfa başına satır"
+  },
+  "DialogShell": {
+    "close": "Kapalı"
+  },
+  "Error": {
+    "description": "<p>Switch the website language to English if the error details are not displayed. | Maalesef bir hatayla karşılaştık.</p><p>Ziyaret ettiğiniz <yeniden yüklemeyi</retry> deneyebilirsiniz. Web sitesinin geliştiricileri olarak bizimle iletişime geçip bu hatayı bize bildirirseniz çok minnettar oluruz. Şimdiden teşekkür ederiz!</p>",
+    "title": "Bir şeyler ters gitti..."
+  },
+  "Faceted": {
+    "noResultsFound": "Sonuç bulunamadı."
+  },
+  "GuestAddForm": {
+    "email": "E-posta"
+  },
+  "JoinNewsletterForm": {
+    "joinReliverseWeeklyNewsletter": "Reliverse Haftalık Bültenine Katılın",
+    "tryAgain": "Tekrar deneyin"
+  },
+  "LocaleSwitcher": {
+    "changeLanguage": "Dili değiştir",
+    "english": "İngilizce",
+    "germany": "Almanya",
+    "languages": "Diller",
+    "spanish": "İspanyol",
+    "ukrainian": "Ukrayna"
+  },
+  "LoginForm": {
+    "no-account": "Hesabınız yok mu?",
+    "signup": "Buradan kayıt olun.",
+    "title": "Giriş Yap",
+    "welcome-back": "Tekrar hoşgeldiniz"
+  },
+  "MainMenu": {
+    "websiteLogoWithName": "Adı olan web sitesi logosu"
+  },
+  "Manifest": {
+    "name": "Relivator: Next.js Şablonu"
+  },
+  "MdxCard": {
+    "view": "Görüş"
+  },
+  "MobileMenu": {
+    "toggleMenu": "Menüyü Değiştir"
+  },
+  "ModeToggle": {
+    "toggleTheme": "Temayı değiştir"
+  },
+  "MultiUploader": {
+    "dropFilesHere": "Dosyaları buraya bırakın!"
+  },
+  "NavWithCompactPageHeader": {
+    "navwithcompactpageheader": "NavWithCompactPageHeader"
+  },
+  "NewsletterWelcomeEmail": {
+    "reliverseWeeklyNewsletter": "Haftalık Bülteni Yeniden Yaşayın"
+  },
+  "Options": {
+    "toggleColumns": "Sütunları değiştir"
+  },
+  "PathnamesPage": {
+    "description": "<p>Reliverse Playground | next-intl | URL yol adları uluslararası hale getirilebilir.</p><p>Varsayılan dil olan İngilizce'yi kullanıyorsanız, bu sayfadaki tarayıcı adres çubuğunda <code>/en/pathnames</code> ifadesini göreceksiniz.< /p><p>Yerel ayarı Almanca olarak değiştirirseniz URL buna uygun şekilde yerelleştirilir (<code>/de/pfadnamen</code>).</p>",
+    "title": "Yol adları"
+  },
+  "PostAddForm": {
+    "createPost": "Gönderi Oluştur"
+  },
+  "PricingModules": {
+    "nextJs": "Next.js"
+  },
+  "Privileges": {
+    "switchUserRole": "Kullanıcı Rolünü Değiştir"
+  },
+  "ProductAddForm": {
+    "addProduct": "Ürün Ekle",
+    "category": "Kategori",
+    "description": "Tanım",
+    "images": "Görseller",
+    "inventory": "Envanter",
+    "name": "İsim",
+    "price": "Fiyat",
+    "subcategory": "Alt kategori"
+  },
+  "ProductCard": {
+    "promise": "Söz"
+  },
+  "ProductPager": {
+    "nextProduct": "Sonraki ürün",
+    "previousProduct": "Önceki ürün"
+  },
+  "ProductUpdForm": {
+    "category": "Kategori",
+    "deleteProduct": "Ürünü sil",
+    "description": "Tanım",
+    "images": "Görseller",
+    "inventory": "Envanter",
+    "name": "İsim",
+    "price": "Fiyat",
+    "subcategory": "Alt kategori",
+    "updateProduct": "Ürünü güncelle"
+  },
+  "ProductsCombobox": {
+    "searchProducts": "Ürün ara"
+  },
+  "RegisterForm": {
+    "have-account": "Zaten bir hesabınız mı var?",
+    "signin": "Buradan giriş yapın.",
+    "title": "Kayıt Ol"
+  },
+  "RootLocaleLayout": {
+    "metadata": {
+      "description": "Relivator ile e-Ticaretinizi geliştirin: shadcn/ui, Next.js 15 ve React 19 gücü",
+      "title": {
+        "home": "Anasayfa"
+      }
+    },
+    "titleDetails": "Hızla çevrimiçi mağazalar oluşturun"
+  },
+  "SVG": {
+    "buyMeACoffeLogo": "Bana bir Kahve Al Logo",
+    "facebookLogo": "Facebook logosu",
+    "githubLogoInvertocat": "GitHub Logosu: Invertocat",
+    "googleLogo": "Google Logosu",
+    "nextJs": "Next.js",
+    "passkey": "Geçiş anahtarı",
+    "patreonLogo": "Patreon logosu",
+    "paypalLogo": "PayPal Logosu",
+    "spinner": "Döndürücü"
+  },
+  "SessionData": {
+    "currentSessionData": "Mevcut Oturum Verileri",
+    "onlyPassTheNecessaryFields": "Yalnızca gerekli alanları geçin",
+    "signIn": "Kayıt olmak"
+  },
+  "SidebarWithHeader": {
+    "applicationAppShellsSidebarLayoutsSidebarWithHeader": "Uygulama - Uygulama Kabukları - Kenar Çubuğu Düzenleri - Başlıklı Kenar Çubuğu",
+    "sidebarwithheader": "Kenar ÇubuğuBaşlıklı"
+  },
+  "SiteFooter": {
+    "allRightsReserved": "Her hakkı saklıdır"
+  },
+  "StoreAddForm": {
+    "addStore": "Mağaza Ekle",
+    "description": "Tanım",
+    "name": "İsim"
+  },
+  "StorePager": {
+    "nextStore": "Sonraki mağaza",
+    "previousStore": "Önceki mağaza"
+  },
+  "StoreSwitcher": {
+    "noStoresFound": "Mağaza bulunamadı."
+  },
+  "ThemeToggle": {
+    "toggleTheme": "Temayı değiştir"
+  },
+  "ThemesGeneralSwitcher": {
+    "dark": "Karanlık",
+    "light": "Işık",
+    "system": "Sistem",
+    "theme": "Tema"
+  },
+  "UpdateCart": {
+    "addOneItem": "Bir öğe ekle",
+    "deleteItem": "Ögeyi sil",
+    "removeOneItem": "Bir ögeyi kaldır"
+  },
+  "UpdateNotificationForm": {
+    "marketingEmails": "Pazarlama e-postaları",
+    "newsletterEmails": "Bülten e-postaları",
+    "savePreferences": "Tercihleri ​​kaydet"
+  },
+  "UserButton": {
+    "signIn": "Kayıt olmak"
+  },
+  "VerifyOrderForm": {
+    "deliveryPostalCode": "Teslimat posta kodu",
+    "verifyOrder": "Siparişi doğrula"
+  },
+  "WithIcons": {
+    "applicationNavigationVerticalNavigationWithIcons": "Uygulama - Gezinme - Dikey Gezinme - Simgelerle",
+    "withicons": "Simgelerle"
+  },
+  "WithLeftAlignedNav": {
+    "elementsHeadersWithLeftAlignedNav": "Ögeler - Başlıklar - Sola hizalanmış gezinme ile",
+    "withleftalignednav": "Sola HizalanmışNav ile"
+  },
+  "WithSecondaryNavigation": {
+    "withsecondarynavigation": "İkincil Gezinme ile"
+  },
+  "account-page": {
+    "Settings": "Ayarlar",
+    "loggedIn": "Giriş yapıldı",
+    "loggedOut": "Çıkış yapıldı",
+    "login": "Giriş yap",
+    "logout": "Çıkış Yap",
+    "title": "Hesap"
+  },
+  "auth": {
+    "error": {
+      "default": "Farklı bir hesapla giriş yapın.",
+      "email": "E-posta bulunamadı. Farklı bir sağlayıcı deneyin.",
+      "oauthNotLinked": "Kimliğinizi doğrulamak için orijinal hesabınızla giriş yapın.",
+      "unknown": "Bir hata oluştu. Tekrar deneyin.",
+      "unknown-error": "Bir şeyler yanlış gitti. Destek için /contact sayfasını ziyaret edin."
+    },
+    "legal": "Bu düğmeleri kullanarak kabul edersiniz",
+    "legal-and": "Ve",
+    "legal-privacy": "Gizlilik Politikası",
+    "legal-terms": "Kullanım Şartları"
+  },
+  "auth-provider": {
+    "please-wait": "Lütfen bekleyin..."
+  },
+  "auth-user": {
+    "signInEmail": "Oturum aç E-posta"
+  },
+  "banners": {
+    "announcements-1": {
+      "button": "Şimdi ziyaret edin",
+      "details": "Nelerin değiştiğini ve bundan sonra nelerin geleceğini görmek için sürüm blog gönderisini ziyaret edin.",
+      "dismiss": "Azletmek",
+      "title": "Relivator v1.2.6 ve v1.3.0-canary.4 BURADA!"
+    }
+  },
+  "blog-comments-server": {
+    "postthreadlist": "Mesaj Konusu Listesi"
+  },
+  "checkout": {
+    "CartDetails": "Detaylar",
+    "Demo": "Test verileri: 4242424242424242 | 12/34 | 567",
+    "Description": "Sepetle ödeme yapın",
+    "EmptyCartDescription": "Ödeme yapmak için ürün ekleyin",
+    "EmptyCartHeading": "Sepetiniz boş",
+    "Pay": "Ödeme Yap",
+    "Title": "Ödeme",
+    "backToCart": "Sepete geri dön",
+    "backToCartSingle": "Geri",
+    "calculated": "Ödemede hesaplanır",
+    "cart": "Sepet",
+    "cartIsEmpty": "Sepetiniz boş",
+    "continueShopping": "Alışverişe devam et",
+    "free": "Ücretsiz",
+    "notConnectedDescription": "Stripe ödemeleri kabul etmek için mağazanızı bağlayın",
+    "notConnectedHeading": "Mağaza Stripe'a bağlı değil",
+    "shipping": "Kargo",
+    "taxes": "Vergiler",
+    "total": "Toplam",
+    "viewTheCart": "Sepeti Görüntüle"
+  },
+  "client": {
+    "currentPassword": "Mevcut Şifre",
+    "name": "İsim",
+    "newPassword": "Yeni Şifre",
+    "password": "Şifre",
+    "plan": "Planı",
+    "saveChanges": "Değişiklikleri kaydet",
+    "savePassword": "Şifreyi kaydet",
+    "settings": "Ayarlar",
+    "subscriptionPlans": "Abonelik planları",
+    "userNotFound": "Kullanıcı bulunamadı",
+    "username": "Kullanıcı adı"
+  },
+  "components": {
+    "command": {
+      "dark": "Karanlık",
+      "light": "Aydınlık",
+      "system": "Sistem",
+      "theme": "Tema"
+    },
+    "search": {
+      "placeholder": "Ara...",
+      "title": "Ara"
+    }
+  },
+  "contact": {
+    "submit": "Gönder"
+  },
+  "cursor": {
+    "cursor": "Imleç"
+  },
+  "demo": {
+    "aria-label-goto": "Git",
+    "launch": "Dashboard"
+  },
+  "editor-placeholder": {
+    "record": "Kayıt"
+  },
+  "example": {
+    "beforeUsing": "Kullanmadan önce",
+    "billing": "Faturalandırma",
+    "localhostDebug": "[localhost-hata ayıklama]:"
+  },
+  "faceted-filter": {
+    "noResultsFound": "Sonuç bulunamadı."
+  },
+  "faq": {
+    "1": {
+      "details": "Proje hakkında en güncel bilgiler ve kurulum talimatları için Relivator GitHub deposundaki README.md dosyasını ziyaret edin.",
+      "summary": "Nasıl hızlı kurabilir ve başlayabilirim?"
+    },
+    "2": {
+      "details": "Relivator sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
+      "summary": "Next.js 15 ve React 19 için neden Relivator'u seçmeliyim?"
+    },
+    "3": {
+      "details": "Geliştirme genellikle bir kişi tarafından yapılır. Bağışlar süreci hızlandırabilir. Bağış yapmak için aşağıya tıklayın. Destek için teşekkürler! 🩷",
+      "summary": "Relivator v1.3.0'ı hızlandırmak mümkün mü?"
+    }
+  },
+  "file-dialog": {
+    "cropImage": "Resmi kırp",
+    "dropTheFileHere": "Dosyayı buraya bırak",
+    "removeAll": "Tümünü kaldır",
+    "removeFile": "Dosyayı kaldır",
+    "uploadImages": "Resimleri Yükle"
+  },
+  "landing": {
+    "about": "En zengin özelliklere sahip global Next.js starter'ı oluşturma hedefi. Özelliklerimizi keşfedin. Koddan fazlası, bu bir yolculuk. Kararlı ve üretime hazır.",
+    "buy-now": "Katalog",
+    "features": {
+      "auth": {
+        "description": "NextAuth.js ve Clerk kullanarak çok yönlü bir kimlik doğrulama sistemi dağıtın. Detaylar için .env.example'a bakın.",
+        "title": "Kimlik Doğrulama: Güvenli ve Esnek"
+      },
+      "database": {
+        "description": "Drizzle ORM ile performansı koruyun, MySQL ve Postgres'i anında değiştirin. Planetscale, Vercel, Railway, Neon ve daha fazlası ile dağıtım yapın.",
+        "title": "Veritabanı Entegrasyonu: Sağlam ve Esnek"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
+        "description": "Güçlü abonelik sistemi, ücretsiz ve ücretli planlarla. Detaylar için README.md'yi inceleyin.",
+        "title": "Stripe Abonelikleri: Güçlü ve Esnek"
+      },
+      "interface": {
+        "description": "Flowbite ve Shadcn UI bileşenleri ile, Radix ve Tailwind CSS kullanarak harika UI oluşturun. VSCode önerilir.",
+        "title": "Bileşenler: Şık ve İşlevsel"
+      },
+      "nextjs": {
+        "description": "App Router, Layouts ve Loading UI ile sorunsuz gezinme. Güçlü API yollarını keşfedin.",
+        "title": "Next.js 15: Gelişmiş Deneyim"
+      },
+      "text": {
+        "description": "Sunucu ve istemci bileşenleri ile uygulamayı kolayca yönetin. Gelişmiş kancalar ve ek özellikler ile sorunsuz geliştirme.",
+        "title": "React 19: Modern Geliştirme"
+      }
+    },
+    "footer-cta": "Başlamak için hazır mısınız?",
+    "get-started-button": "Dashboard",
+    "main-cta": "GitHub",
+    "sell-now": "Dashboard"
+  },
+  "layout": {
+    "back": "Geri"
+  },
+  "loading": {
+    "account": "Hesap",
+    "billing": "Faturalandırma",
+    "checkout": "Çıkış yapmak",
+    "loading": "Yükleniyor...",
+    "purchases": "Satın almalar",
+    "signOut": "Oturumu Kapat",
+    "thankYouForTheOrder": "Sipariş için teşekkür ederim"
+  },
+  "metadata": {
+    "description": "Relivator ile e-Ticaretinizi geliştirin: shadcn/ui, Next.js 15 ve React 19 gücü",
+    "title": {
+      "home": "Anasayfa"
+    }
+  },
+  "mode-toggle": {
+    "dark": "Karanlık",
+    "light": "Işık",
+    "system": "Sistem",
+    "toggleTheme": "Temayı değiştir"
+  },
+  "name": "Relivator Next.js Şablonu",
+  "onboard": {
+    "asa": "Asa",
+    "dateEventDateTbd": "Tarih: [Etkinlik Tarihi (TBD)]",
+    "donTMissOutReserveTheSpotNow": "Fırsatı kaçırmayın, hemen yerinizi ayırtın!",
+    "eventDetails": "Etkinlik Detayları:",
+    "join15MinutesEarlyToNetwork": "🌟 Ağa 15 dakika erken katılın! 🌟",
+    "locationEventLinkTbd": "Konum: [Etkinlik Bağlantısı (TBD)]",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js Yeniden Tanımlandı:",
+    "tbdToBeDetermined": "*TBD - Belirlenecek",
+    "timeEventTimeTbd": "Zaman: [Olay Zamanı (TBD)]"
+  },
+  "page": {
+    "about": "Hakkında",
+    "accessToAPrivateCommunity": "Özel bir topluluğa erişim",
+    "account": "Hesap",
+    "addANewStoreToTheAccount": "Hesaba yeni bir mağaza ekleme",
+    "addStore": "Mağaza ekle",
+    "admin": "Yönetici",
+    "adminPage": "Yönetici Sayfası",
+    "availableWorldwide": "Dünya çapında mevcuttur",
+    "billing": "Faturalandırma",
+    "blog": "Blog",
+    "buildABoard": "Bir Tahta Oluştur",
+    "client": "Müşteri",
+    "countriesData": "Ülke Verileri",
+    "createNewComponent": "Yeni Bileşen Oluştur",
+    "createNewPage": "Yeni Sayfa Oluştur",
+    "createNewPost": "Yeni Gönderi Oluştur",
+    "dashboard": "Kontrol Paneli",
+    "directSupport": "Doğrudan destek",
+    "donateThroughGithubBilling": "GitHub faturalandırması yoluyla bağış yapın",
+    "donationTiers": "Bağış katmanları",
+    "earlyAccessToNewFeatures": "Yeni özelliklere erken erişim",
+    "easyAndQuickProcess": "Kolay ve hızlı süreç",
+    "editUserPrivileges": "Kullanıcı Ayrıcalıklarını Düzenle",
+    "emailPreferences": "E-posta Tercihleri",
+    "exclusiveUpdatesAndContent": "Özel güncellemeler ve içerik",
+    "frequentlyAskedQuestions": "Sıkça Sorulan Sorular",
+    "howTheMoneyIsUsed": "Para nasıl kullanılır?",
+    "instantDonations": "Anında bağışlar",
+    "localhostOnlyDebugInfo": "[yalnızca localhost-hata ayıklama bilgisi]",
+    "manageTheSubscription": "Aboneliği Yönet",
+    "manageYourEmailPreferences": "E-posta tercihlerinizi yönetin",
+    "name": "İsim: ---",
+    "newStore": "Yeni Mağaza",
+    "notImplementedYet": "Henüz uygulanmadı",
+    "novuDeveloperPlaygroundPageComingSoon": "Novu Geliştirici Oyun Alanı Sayfası Çok yakında...",
+    "oneTimeAndRecurringDonations": "Bir kerelik ve tekrarlanan bağışlar",
+    "oneTimeDonations": "Bir kerelik bağışlar",
+    "preferences": "Tercihler",
+    "pricing": "Fiyatlandırma",
+    "purchases": "Satın almalar",
+    "purchasesTable": "Satın Alma Tablosu",
+    "readyToBuildYourEcommercePlatform": "E-Ticaret platformunuzu oluşturmaya hazır mısınız?",
+    "recurringAndOneTimeDonations": "Tekrarlanan ve bir kerelik bağışlar",
+    "reliversePlayground": "Oyun Alanını Yeniden Yaşayın",
+    "res": "Çöz.",
+    "resJsonAsPromise": "Res.json() Söz olarak",
+    "resetPassword": "Şifreyi sıfırla",
+    "root": "Kök",
+    "secureTransactions": "Güvenli işlemler",
+    "seeAllPosts": "Tüm gönderileri gör",
+    "seeOurSponsors": "Sponsorlarımızı görün",
+    "server": "Sunucu",
+    "settings": "Ayarlar",
+    "showASponsorBadgeOnYourGithubProfile": "GitHub profilinizde sponsor rozeti gösterin",
+    "signinWithDiscord": "Discord'la oturum açma",
+    "signinWithGithub": "GitHub ile oturum açma",
+    "signinWithGoogle": "Google ile oturum aç",
+    "simpleAndFunWayToSupport": "Desteklemenin basit ve eğlenceli yolu",
+    "smallOneTimeDonations": "Tek seferlik küçük bağışlar",
+    "specificCountryRe": "Belirli Ülke (RE)",
+    "stores": "Mağazalar",
+    "supportWithNoFees": "Ücretsiz destek",
+    "testEmailDelivery": "E-posta Teslimatını Test Edin",
+    "thankYouForTheOrder": "Sipariş için teşekkür ederim",
+    "thePageIsStillInProductionPleaseCheckBackHereLater": "Sayfa halen üretimdedir. Lütfen daha sonra burayı tekrar kontrol edin.",
+    "underConstruction": "Yapım halinde...",
+    "verifyEmail": "E-postayı doğrula",
+    "waysToDonate": "Bağış yapma yolları"
+  },
+  "pages": {
+    "not-found": {
+      "description": "Kaynak taşınmış, yeniden adlandırılmış veya var olmamış olabilir. URL'yi kontrol edin veya menüyü kullanın.",
+      "go-home": "Ana Sayfaya Dön",
+      "title": "🫠 Sayfa bulunamadı! 🥲"
+    }
+  },
+  "privacy-notice-right-aligned": {
+    "elementsBannersPrivacyNoticeRightAligned": "Ögeler - Banner'lar - Gizlilik bildirimi sağa hizalanmış",
+    "privacynoticerightaligned": "GizlilikUyarıRightAligned"
+  },
+  "product-building": {
+    "filters": "Filtreler",
+    "noProductsFound": "Ürün bulunamadı",
+    "sortBy": "Göre sırala"
+  },
+  "product-context": {
+    "productsctx": "ÜrünlerCtx"
+  },
+  "product-image-carousel": {
+    "nextSlide": "Sonraki slayt",
+    "previousSlide": "Önceki slayt"
+  },
+  "products": {
+    "filters": "Filtreler",
+    "nextStorePage": "Sonraki mağaza sayfası",
+    "noProductsFound": "Ürün bulunamadı",
+    "previousStorePage": "Önceki mağaza sayfası",
+    "sortBy": "Göre sırala"
+  },
+  "products-admin": {
+    "productDetails": "Ürün Detayları",
+    "products": "Ürünler"
+  },
+  "signOutPage": {
+    "dashboard": "Kontrol Paneli",
+    "description": {
+      "areyousueyouwanttosignout": "Oturumu kapatmak istediğinizden emin misiniz?"
+    },
+    "heading": {
+      "signout": "Oturumu Kapat"
+    },
+    "home": "Ev",
+    "logOut": "Oturumu kapat"
+  },
+  "stacked-with-footer-actions": {
+    "elementsFlyoutMenusStackedWithFooterActions": "Ögeler - Açılır Menüler - Altbilgi eylemleriyle yığılmış",
+    "stackedwithfooteractions": "StackedWithFooterActions"
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "En iyi mağazalardan {category} satın alın",
+      "buyTheBest": "En iyi {category}"
+    },
+    "products": {
+      "addToCart": "Sepete ekle",
+      "buyProductsFromOurStores": "Mağazalarımızdan satın alın",
+      "catalogue": "Katalog",
+      "description": "Açıklama",
+      "moreProductsFrom": "{storeName}'dan daha fazla",
+      "noDescription": "Açıklama yok.",
+      "products": "Ürünler",
+      "productsCatalogue": "Ürün Kataloğu"
+    },
+    "stores": {
+      "buy-products": "Mağazalarımızdan satın alın",
+      "stores": "Mağazalar"
+    }
+  },
+  "stores": {
+    "noStoresFound": "Mağaza bulunamadı",
+    "sortBy": "Göre sırala"
+  },
+  "temp-compiler-fix": {
+    "app": "Uygulama"
+  },
+  "titleDetails": "Hızla çevrimiçi mağazalar oluşturun",
+  "upgrade": {
+    "localhostDebug": "Localhost-hata ayıklama",
+    "thisIncludes": "Bu şunları içerir:"
+  },
+  "usermenu": {
+    "account": {
+      "menu": "Hesap"
+    },
+    "adminpage": {
+      "menu": "Yönetici Sayfası"
+    },
+    "billing": {
+      "menu": "Faturalandırma"
+    },
+    "dashboard": {
+      "menu": "Kontrol Paneli"
+    },
+    "logout": {
+      "menu": "Oturumu kapat"
+    },
+    "purchases": {
+      "menu": "Satın almalar"
+    },
+    "settings": {
+      "menu": "Ayarlar"
+    },
+    "stores": {
+      "menu": "Mağazalar"
+    }
+  },
+  "with-button": {
+    "dismiss": "Azletmek"
+  },
+  "with-button-animated": {
+    "dismiss": "Azletmek"
+  }
+}

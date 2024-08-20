@@ -2,18 +2,18 @@ import type { ReactNode } from "react";
 
 import { notFound, redirect } from "next/navigation";
 
-import { getDashboardRedirectPath } from "@/server";
+import { getDashboardRedirectPath } from "@/server/reliverse/plan";
 import { eq } from "drizzle-orm";
 
-import { authProvider } from "~/auth";
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { PageHeaderHeading } from "~/components/Navigation/PageNavMenu";
 import { StoreSwitcher } from "~/components/Navigation/Pagination/StoreSwitcher";
 import { StoreTabs } from "~/components/Navigation/Pagination/StoreTabs";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { db } from "~/db";
-import { stores } from "~/db/schema";
+import { stores } from "~/db/schema/provider";
 
 type StoreLayoutProps = {
   params: {

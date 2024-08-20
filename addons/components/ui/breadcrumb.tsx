@@ -1,13 +1,13 @@
+import { forwardRef } from "react";
 import type {
   ComponentProps,
   ComponentPropsWithoutRef,
   ReactNode,
 } from "react";
-import { forwardRef } from "react";
 
-import { cn } from "@/utils";
-import { ChevronRightIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { cn } from "@/utils/reliverse/cn";
 import { Slot } from "@radix-ui/react-slot";
+import { ChevronRight, MoreHorizontal } from "lucide-react";
 
 const Breadcrumb = forwardRef<
   HTMLElement,
@@ -105,7 +105,7 @@ const BreadcrumbSeparator = ({
     className={cn("[&>svg]:size-3.5", className)}
     {...props}
   >
-    {children || <ChevronRightIcon />}
+    {children ?? <ChevronRight />}
   </li>
 );
 
@@ -121,7 +121,7 @@ const BreadcrumbEllipsis = ({
     className={cn("flex size-9 items-center justify-center", className)}
     {...props}
   >
-    <DotsHorizontalIcon className="size-4" />
+    <MoreHorizontal className="size-4" />
     <span className="sr-only">More</span>
   </span>
 );

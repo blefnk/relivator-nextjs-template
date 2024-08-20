@@ -7,8 +7,8 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ImageIcon } from "lucide-react";
 
-import { Icons } from "~/components/Common/Icons";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function ProductLoading() {
@@ -43,16 +43,12 @@ export default function ProductLoading() {
               `}
               role="img"
             >
-              <Icons.placeholder
+              <ImageIcon
                 aria-hidden="true"
                 className="size-9 text-muted-foreground"
               />
             </div>
-            <div
-              className={`
-              flex w-full items-center justify-center gap-2
-            `}
-            >
+            <div className="flex w-full items-center justify-center gap-2">
               <Skeleton className="size-7 rounded-none" />
               {Array.from({
                 length: 3,
@@ -121,11 +117,9 @@ export default function ProductLoading() {
                         flex h-full items-center justify-center bg-secondary
                       `}
                     >
-                      <Icons.placeholder
+                      <ImageIcon
                         aria-hidden="true"
-                        className={`
-                          size-9 text-muted-foreground
-                        `}
+                        className="size-9 text-muted-foreground"
                       />
                     </div>
                   </AspectRatio>

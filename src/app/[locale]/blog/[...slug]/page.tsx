@@ -3,9 +3,10 @@ import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { ChevronLeft } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-import { Icons } from "~/components/Common/Icons";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { env } from "~/env";
 
@@ -36,6 +37,8 @@ export function generateMetadata(): Metadata {
 }
 
 export default function PostPage() {
+  const t = useTranslations();
+
   return (
     <Shell as="article" variant="markdown">
       <Link
@@ -51,7 +54,7 @@ export default function PostPage() {
         )}
         href="/blog"
       >
-        <Icons.chevronLeft className="mr-2 size-4" />
+        <ChevronLeft className="mr-2 size-4" />
         See all posts
       </Link>
       <div>
@@ -75,9 +78,9 @@ export default function PostPage() {
           )}
           href="/blog"
         >
-          <Icons.chevronLeft aria-hidden="true" className="mr-2 size-4" />
+          <ChevronLeft aria-hidden="true" className="mr-2 size-4" />
           See all posts
-          <span className="sr-only">See all posts</span>
+          <span className="sr-only">{t("page.seeAllPosts")}</span>
         </Link>
       </div>
     </Shell>

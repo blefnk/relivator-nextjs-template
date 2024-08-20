@@ -4,7 +4,7 @@ import * as z from "zod";
 
 import { clerkEvent } from "~/core/trpc-old/routers/type";
 import { createTRPCRouter, publicProcedure } from "~/core/trpc-old/trpc";
-import { users } from "~/db/schema";
+import { users } from "~/db/schema/provider";
 
 export const webhookProcedure = publicProcedure.input(
   z.object({

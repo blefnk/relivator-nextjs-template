@@ -1,9 +1,10 @@
 import Link from "next/link";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
-import { authProvider, debugEnabled } from "reliverse.config";
+import { authProvider, debugEnabled } from "~/../reliverse.config";
+import { getTranslations } from "next-intl/server";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
@@ -12,6 +13,8 @@ import UserMenu from "~/components/Navigation/UserMenu";
 import { env } from "~/env";
 
 export async function UserButton() {
+  const t = await getTranslations();
+
   const user = authProvider === "clerk" ? await clerk() : await authjs();
 
   if (debugEnabled) {
@@ -30,7 +33,7 @@ export async function UserButton() {
         </SignedIn>
         <SignedOut>
           <SignInButton>
-            <Button variant="secondary">Sign In</Button>
+            <Button variant="secondary">{t("UserButton.signIn")}</Button>
           </SignInButton>
         </SignedOut>
       </>

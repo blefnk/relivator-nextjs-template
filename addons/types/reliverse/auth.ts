@@ -1,4 +1,4 @@
-import type { userPrivateMetadataSchema } from "@/actions";
+import type { userPrivateMetadataSchema } from "@/actions/reliverse/validations/auth";
 import type { HandleOAuthCallbackParams } from "@clerk/types";
 import type { z } from "zod";
 

@@ -8,12 +8,12 @@ import Link from "next/link";
 import type {
   DataTableFilterableColumn,
   DataTableSearchableColumn,
-} from "@/types";
+} from "@/types/reliverse/store";
 import type { Table } from "@tanstack/react-table";
 
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons";
 
 import { DataTableFacetedFilter } from "~/components/Modules/DataTable/Faceted";

@@ -17,15 +17,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { catchError } from "@/server/reliverse/errors/helpers/auth";
+import { catchError } from "@/server/reliverse/auth-error";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
 import consola from "consola";
+import { useTranslations } from "next-intl";
 import tryToCatch from "try-to-catch";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 
-type AddToCartFormProps = {
+type CartAddFormProps = {
   email?: string;
   productId: number;
   session?: unknown;
@@ -35,11 +36,13 @@ type AddToCartFormProps = {
 
 type Inputs = z.infer<typeof updateCartItemSchema>;
 
-export default function AddToCartForm({
+export function CartAddForm({
   productId,
   storeId,
   tAddToCart,
-}: AddToCartFormProps) {
+}: CartAddFormProps) {
+  const t = useTranslations();
+
   const id = useId();
 
   // const [isPending, startTransition] = useTransition();
@@ -92,14 +95,16 @@ export default function AddToCartForm({
             variant="outline"
           >
             <MinusIcon aria-hidden="true" className="size-3" />
-            <span className="sr-only">Remove one item</span>
+            <span className="sr-only">{t("CartAddForm.removeOneItem")}</span>
           </Button>
           <FormField
             control={form.control}
             name="quantity"
             render={({ field }) => (
               <FormItem className="space-y-0">
-                <FormLabel className="sr-only">Quantity</FormLabel>
+                <FormLabel className="sr-only">
+                  {t("CartAddForm.quantity")}
+                </FormLabel>
                 <FormControl>
                   <Input
                     className="h-8 w-14 rounded-none border-x-0"
@@ -134,7 +139,7 @@ export default function AddToCartForm({
             variant="outline"
           >
             <PlusIcon aria-hidden="true" className="size-3" />
-            <span className="sr-only">Add one item</span>
+            <span className="sr-only">{t("CartAddForm.addOneItem")}</span>
           </Button>
         </div>
         <Button
@@ -144,7 +149,7 @@ export default function AddToCartForm({
           variant="secondary"
         >
           {isPending ? (
-            <Icons.spinner
+            <SpinnerSVG
               aria-hidden="true"
               className="mr-2 size-4 animate-spin"
             />

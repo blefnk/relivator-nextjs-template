@@ -7,10 +7,15 @@ import type { OAuthStrategy } from "@clerk/types";
 import { Button } from "@/components/ui/button";
 import { useSignIn } from "@clerk/nextjs";
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
+import { DiscordLogoIcon } from "@radix-ui/react-icons";
 import consola from "consola";
 
 import { oauthProvidersClerk } from "~/app";
-import { Icons } from "~/components/Common/Icons";
+import {
+  GithubSVG,
+  GoogleSVG,
+  SpinnerSVG,
+} from "~/components/Common/Icons/SVG";
 
 // @see https://github.com/clerk/javascript/blob/main/packages/clerk-js/src/ui/components/SignIn/SignInStart.tsx
 export function OAuthSignInClerk() {
@@ -34,7 +39,6 @@ export function OAuthSignInClerk() {
 
       const unknownError = "Something went wrong, please try again.";
 
-      // ? consola.error(error.errors[0]?.longMessage || unknownError)
       isClerkAPIResponseError(error)
         ? consola.error(error)
         : consola.error(unknownError);
@@ -42,8 +46,13 @@ export function OAuthSignInClerk() {
   }
 
   const getColumnClass = (count: number) => {
-    // If the number of items is not a multiple of 3, use 2 columns instead.
     return !(count % 3) ? "sm:grid-cols-3" : "sm:grid-cols-2";
+  };
+
+  const iconMap = {
+    github: GithubSVG,
+    google: GoogleSVG,
+    discord: DiscordLogoIcon,
   };
 
   return (
@@ -58,7 +67,8 @@ export function OAuthSignInClerk() {
         `}
       >
         {oauthProvidersClerk.map((provider) => {
-          const Icon = Icons[provider.icon];
+          const Icon =
+            iconMap[provider.icon as keyof typeof iconMap] || SpinnerSVG; // Fallback to SpinnerSVG if icon not found
 
           return (
             <div className="flex justify-center" key={provider.strategy}>
@@ -76,7 +86,7 @@ export function OAuthSignInClerk() {
                 variant="outline"
               >
                 {isLoading === provider.strategy ? (
-                  <Icons.spinner
+                  <SpinnerSVG
                     aria-hidden="true"
                     className="mr-2 size-4 animate-spin"
                   />

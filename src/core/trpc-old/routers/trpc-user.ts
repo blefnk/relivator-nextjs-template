@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { protectedProcedure } from "~/core/trpc-old/trpc2";
 import { db } from "~/db";
-import { users } from "~/db/schema";
+import { users } from "~/db/schema/provider";
 
 // @ts-expect-error TODO: fix trpc users
 export const userRouter = router({

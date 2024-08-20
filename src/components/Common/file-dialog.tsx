@@ -14,7 +14,7 @@ import type {
 
 import Image from "next/image";
 
-import type { FileWithPreview } from "@/types";
+import type { FileWithPreview } from "@/types/reliverse/store";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -23,7 +23,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { cn, formatBytes } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { formatBytes } from "@/utils/reliverse/number";
 import {
   CropIcon,
   Cross2Icon,
@@ -32,6 +33,7 @@ import {
   UploadIcon,
 } from "@radix-ui/react-icons";
 import consola from "consola";
+import { useTranslations } from "next-intl";
 
 import "cropperjs/dist/cropper.css";
 
@@ -66,6 +68,8 @@ export function FileDialog<TFieldValues extends FieldValues>({
   setValue,
   ...props
 }: FileDialogProps<TFieldValues, Path<TFieldValues>>) {
+  const t = useTranslations();
+
   const onDrop = useCallback(
     (acceptedFiles: FileWithPath[], rejectedFiles: FileRejection[]) => {
       for (const file of acceptedFiles) {
@@ -130,7 +134,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
       <DialogTrigger asChild>
         <Button disabled={disabled} variant="outline">
           Upload Images
-          <span className="sr-only">Upload Images</span>
+          <span className="sr-only">{t("file-dialog.uploadImages")}</span>
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-screen-xs">
@@ -177,9 +181,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
             >
               <UploadIcon
                 aria-hidden="true"
-                className={`
-                  size-9 animate-pulse text-muted-foreground
-                `}
+                className="size-9 animate-pulse text-muted-foreground"
               />
             </div>
           ) : isDragActive ? (
@@ -194,7 +196,9 @@ export function FileDialog<TFieldValues extends FieldValues>({
                 aria-hidden="true"
                 className={cn("size-8", isDragActive && "animate-bounce")}
               />
-              <p className="text-base font-medium">Drop the file here</p>
+              <p className="text-base font-medium">
+                {t("file-dialog.dropTheFileHere")}
+              </p>
             </div>
           ) : (
             <div
@@ -217,12 +221,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
             </div>
           )}
         </div>
-        <p
-          className={`
-          text-center text-sm font-medium
-          text-muted-foreground
-        `}
-        >
+        <p className="text-center text-sm font-medium text-muted-foreground">
           You can upload up to {maxFiles}
           {maxFiles === 1 ? "file" : "files"}
         </p>
@@ -252,7 +251,7 @@ export function FileDialog<TFieldValues extends FieldValues>({
           >
             <TrashIcon aria-hidden="true" className="mr-2 size-4" />
             Remove All
-            <span className="sr-only">Remove all</span>
+            <span className="sr-only">{t("file-dialog.removeAll")}</span>
           </Button>
         ) : null}
       </DialogContent>
@@ -268,6 +267,8 @@ type FileCardProps = {
 };
 
 function FileCard({ file, files, i, setFiles }: FileCardProps) {
+  const t = useTranslations();
+
   const [isOpen, setIsOpen] = useState(false);
   const [cropData, setCropData] = useState<null | string>(null);
   const cropperRef = useRef<ReactCropperElement>(null);
@@ -332,12 +333,7 @@ function FileCard({ file, files, i, setFiles }: FileCardProps) {
           width={40}
         />
         <div className="flex flex-col">
-          <p
-            className={`
-            line-clamp-1 text-sm font-medium
-            text-muted-foreground
-          `}
-          >
+          <p className="line-clamp-1 text-sm font-medium text-muted-foreground">
             {file.name}
           </p>
           <p className="text-xs text-slate-500">
@@ -356,7 +352,7 @@ function FileCard({ file, files, i, setFiles }: FileCardProps) {
                 variant="outline"
               >
                 <CropIcon aria-hidden="true" className="size-4 text-white" />
-                <span className="sr-only">Crop image</span>
+                <span className="sr-only">{t("file-dialog.cropImage")}</span>
               </Button>
             </DialogTrigger>
             <DialogContent>
@@ -368,11 +364,7 @@ function FileCard({ file, files, i, setFiles }: FileCardProps) {
               >
                 Crop image
               </p>
-              <div
-                className={`
-                mt-8 grid place-items-center space-y-5
-              `}
-              >
+              <div className="mt-8 grid place-items-center space-y-5">
                 <Cropper
                   autoCropArea={1}
                   background={false}
@@ -389,11 +381,7 @@ function FileCard({ file, files, i, setFiles }: FileCardProps) {
                   viewMode={1}
                   zoomTo={0.5}
                 />
-                <div
-                  className={`
-                  flex items-center justify-center space-x-2
-                `}
-                >
+                <div className="flex items-center justify-center space-x-2">
                   <Button
                     aria-label="Crop image"
                     className="h-8"
@@ -440,7 +428,7 @@ function FileCard({ file, files, i, setFiles }: FileCardProps) {
           variant="outline"
         >
           <Cross2Icon aria-hidden="true" className="size-4 text-white" />
-          <span className="sr-only">Remove file</span>
+          <span className="sr-only">{t("file-dialog.removeFile")}</span>
         </Button>
       </div>
     </div>

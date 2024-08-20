@@ -9,7 +9,7 @@ import { forwardRef } from "react";
 
 import type { VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva } from "class-variance-authority";
 import { X } from "lucide-react";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
-import { getRepoStarsNumber } from "@/utils";
+import { getRepoStarsNumber } from "@/utils/reliverse/github";
 import { Github } from "lucide-react";
 
 import { siteConfig } from "~/app";
@@ -35,7 +35,7 @@ export async function GithubStarsBadge() {
             md:flex
           `}
         >
-          -canary.3
+          -canary.4
         </span>
         <span
           className={`

@@ -9,11 +9,14 @@ import {
 } from "@/components/ui/dropdown";
 import { useIsClient } from "@uidotdev/usehooks";
 import { Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 
 import { siteConfig } from "~/app";
 
 export function ModeToggle() {
+  const t = useTranslations();
+
   const isMounted = useIsClient();
   const { setTheme } = useTheme();
 
@@ -38,7 +41,7 @@ export function ModeToggle() {
             dark:rotate-0 dark:scale-100
           `}
         />
-        <span className="sr-only">Toggle theme</span>
+        <span className="sr-only">{t("ModeToggle.toggleTheme")}</span>
       </Button>
     );
   }
@@ -61,7 +64,7 @@ export function ModeToggle() {
               dark:rotate-0 dark:scale-100
             `}
           />
-          <span className="sr-only">Toggle theme</span>
+          <span className="sr-only">{t("ModeToggle.toggleTheme")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

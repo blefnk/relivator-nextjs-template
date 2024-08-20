@@ -3,9 +3,14 @@ import { Balancer } from "react-wrap-balancer";
 import Link from "next/link";
 
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
-import { Icons } from "~/components/Common/Icons";
+import {
+  BMaCoffeSVG,
+  GithubSVG,
+  PatreonSVG,
+  PaypalSVG,
+} from "~/components/Common/Icons/SVG";
 
 export function FundingPlatforms() {
   return (
@@ -66,16 +71,16 @@ function FundingPlatform({
   const renderIcon = (platform: Platform) => {
     switch (platform) {
       case "buymeacoffee":
-        return <Icons.Coffe aria-hidden className="size-8" />;
+        return <BMaCoffeSVG aria-hidden className="size-8" />;
 
       case "github":
-        return <Icons.Github aria-hidden className="size-8" />;
+        return <GithubSVG aria-hidden className="size-8" />;
 
       case "patreon":
-        return <Icons.Patreon aria-hidden className="size-8" />;
+        return <PatreonSVG aria-hidden className="size-8" />;
 
       case "paypal":
-        return <Icons.Paypal aria-hidden className="size-8" />;
+        return <PaypalSVG aria-hidden className="size-8" />;
 
       default:
         return null;

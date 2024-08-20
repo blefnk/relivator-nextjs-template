@@ -2,12 +2,12 @@
 
 import { useMemo, useTransition } from "react";
 
-import type { CartLineItem } from "@/types";
+import type { CartLineItem } from "@/types/reliverse/store";
 
 import { Button } from "@/components/ui/button";
 import consola from "consola";
 
-import { Icons } from "~/components/Common/Icons";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
 import { createCheckoutSessionAction } from "~/core/stripe/actions";
 import { getStripe } from "~/core/stripe/getting";
 
@@ -88,10 +88,7 @@ export function CheckoutButton({
       size="sm"
     >
       {isPending && (
-        <Icons.spinner
-          aria-hidden="true"
-          className="mr-2 size-4 animate-spin"
-        />
+        <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
       )}
       Checkout
     </Button>

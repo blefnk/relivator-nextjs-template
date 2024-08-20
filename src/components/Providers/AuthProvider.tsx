@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-import { getClerkLocale } from "@/server/reliverse/clerk/getClerkLocale";
+import { getClerkLocale } from "@/server/reliverse/clerk";
 import { ClerkProvider } from "@clerk/nextjs";
-import { authProvider } from "reliverse.config";
+import { authProvider } from "~/../reliverse.config";
 
 import { env } from "~/env";
 

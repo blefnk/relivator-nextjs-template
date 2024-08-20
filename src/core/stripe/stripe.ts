@@ -16,7 +16,7 @@ import { eq } from "drizzle-orm";
 import { authjs } from "~/auth/authjs";
 import { stripe } from "~/core/stripe/connect";
 import { db } from "~/db/postgres";
-import { users } from "~/db/schema";
+import { users } from "~/db/schema/provider";
 import { env } from "~/env";
 
 export const PROFESSIONAL = env.STRIPE_PROFESSIONAL_SUBSCRIPTION_PRICE_ID || "";

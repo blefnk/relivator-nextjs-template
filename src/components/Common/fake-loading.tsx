@@ -7,8 +7,8 @@ import {
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ImageIcon } from "lucide-react";
 
-import { Icons } from "~/components/Common/Icons";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export function FakeLoadingVariantOne() {
@@ -92,12 +92,8 @@ export function FakeLoadingVariantOneSpecial() {
 function PlaceholderIcon() {
   return (
     <div className="relative size-16 overflow-hidden rounded">
-      <div
-        className={`
-        flex h-full items-center justify-center bg-secondary
-      `}
-      >
-        <Icons.placeholder
+      <div className="flex h-full items-center justify-center bg-secondary">
+        <ImageIcon
           aria-hidden="true"
           className="size-4 text-muted-foreground"
         />
@@ -147,23 +143,14 @@ export function FakeLoadingVariantTwo() {
               `}
               role="img"
             >
-              <Icons.placeholder
+              <ImageIcon
                 aria-hidden="true"
                 className="size-9 text-muted-foreground"
               />
             </div>
-            <div
-              className={`
-              flex w-full items-center justify-center gap-2
-            `}
-            >
+            <div className="flex w-full items-center justify-center gap-2">
               <Skeleton className="size-7 rounded-none" />
-              <Skeleton
-                className={`
-                aspect-square size-full max-w-[100px]
-                rounded-none
-              `}
-              />
+              <Skeleton className="aspect-square size-full max-w-[100px] rounded-none" />
               <Skeleton className="size-7 rounded-none" />
             </div>
           </div>
@@ -274,17 +261,8 @@ export function FakeLoadingVariantThree() {
             lg:p-8
           `}
         >
-          <div
-            className={`
-            flex w-full flex-col justify-center space-y-6
-          `}
-          >
-            <div
-              className={`
-              mx-auto mb-4 flex flex-col content-center
-              gap-8
-            `}
-            >
+          <div className="flex w-full flex-col justify-center space-y-6">
+            <div className="mx-auto mb-4 flex flex-col content-center gap-8">
               <Skeleton className="h-9 w-full rounded-lg" />
               <Skeleton className="h-9 w-full rounded-lg" />
               <Skeleton className="h-9 w-full rounded-lg" />
@@ -293,12 +271,7 @@ export function FakeLoadingVariantThree() {
           <div className="space-y-8">
             <Skeleton className="mx-auto h-4 w-5/6 rounded" />
           </div>
-          <div
-            className={`
-            flex flex-1 flex-col items-center gap-4
-            space-y-2
-          `}
-          />
+          <div className="flex flex-1 flex-col items-center gap-4 space-y-2" />
         </div>
         <div
           className={`

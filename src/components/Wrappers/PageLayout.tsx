@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 
 import { Shell } from "~/components/Wrappers/ShellVariants";
 

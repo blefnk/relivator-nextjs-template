@@ -4,10 +4,11 @@ import type { ReactNode } from "react";
 
 import Link from "next/link";
 
-import type { MainMenuItem } from "@/types";
+import type { MainMenuItem } from "@/types/reliverse/with";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { Store } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { siteConfig } from "~/app";
 import {
@@ -25,6 +26,8 @@ type MainMenuProps = {
 };
 
 export function MainMenu({ items }: MainMenuProps) {
+  const t = useTranslations();
+
   return (
     <nav
       className={`
@@ -43,7 +46,7 @@ export function MainMenu({ items }: MainMenuProps) {
         href="/"
       >
         <Store className="size-6" />
-        <span className="sr-only">Website logo with name</span>
+        <span className="sr-only">{t("MainMenu.websiteLogoWithName")}</span>
         <span
           className={`
             hidden font-bold

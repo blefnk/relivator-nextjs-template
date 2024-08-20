@@ -5,10 +5,10 @@ import type {
   cartItemSchema,
   cartLineItemSchema,
   checkoutItemSchema,
-} from "@/actions";
+} from "@/actions/reliverse/validations/cart";
 import type { z } from "zod";
 
-import type { Store } from "~/db/schema";
+import type { Store } from "~/db/schema/provider";
 
 // Store and Product-Related Types
 export type Option = {

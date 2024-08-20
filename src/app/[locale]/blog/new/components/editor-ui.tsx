@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import type { PlateContentProps } from "@udecode/plate-common";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { PlateContent } from "@udecode/plate-common";
 
 type EditorProps = {

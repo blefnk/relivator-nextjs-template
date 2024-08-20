@@ -1,7 +1,7 @@
 import consola from "consola";
 import pc from "picocolors";
 
-import { authProvider } from "~/auth";
+import { authProvider } from "~/auth/provider";
 
 export const logMessages = (
   missingImportantVariables: string[],

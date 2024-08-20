@@ -1,6 +1,6 @@
 import * as z from "zod";
 
-import { products } from "~/db/schema";
+import { products } from "~/db/schema/provider";
 
 export const cartItemSchema = z.object({
   productId: z.number(),

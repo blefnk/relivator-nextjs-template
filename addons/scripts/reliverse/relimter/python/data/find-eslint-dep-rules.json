@@ -62,7 +62,7 @@
     },
     {
       "rule": "no-restricted-modules",
-      "why": "Replaced by n/no-restricted-modules (https://github.com/eslint-community/eslint-plugin-n/blob/master/docs/rules/no-restricted-modules.md)"
+      "why": "Replaced by no-restricted-imports (https://eslint.org/docs/latest/rules/no-restricted-imports)"
     },
     {
       "rule": "no-mixed-requires",

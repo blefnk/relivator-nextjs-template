@@ -2,7 +2,8 @@ import type { HTMLAttributes } from "react";
 
 import Link from "next/link";
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
+import { useTranslations } from "next-intl";
 
 type CardProps = {
   disabled?: boolean;
@@ -16,6 +17,8 @@ export function MdxCard({
   href,
   ...props
 }: CardProps) {
+  const t = useTranslations();
+
   return (
     <div
       className={cn(
@@ -46,7 +49,7 @@ export function MdxCard({
       </div>
       {href && (
         <Link className="absolute inset-0" href={disabled ? "#" : href}>
-          <span className="sr-only">View</span>
+          <span className="sr-only">{t("MdxCard.view")}</span>
         </Link>
       )}
     </div>

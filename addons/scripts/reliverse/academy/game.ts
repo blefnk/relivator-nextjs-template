@@ -10,7 +10,7 @@ import {
 } from "@/scripts/reliverse/academy/fileHandler";
 import { updatePlayerScore } from "@/scripts/reliverse/academy/player";
 import { AcademyCategoryEnum } from "@/scripts/reliverse/academy/types";
-import { getErrorMessage } from "@/server";
+import { getErrorMessage } from "@/server/reliverse/error-message";
 import { select } from "@inquirer/prompts";
 import consola from "consola";
 import pc from "picocolors";

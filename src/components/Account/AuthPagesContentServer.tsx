@@ -10,11 +10,11 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { cn } from "@/utils";
+import { cn } from "@/utils/reliverse/cn";
 import { cnBase } from "tailwind-variants";
 
 import { siteConfig } from "~/app";
-import { authProvider } from "~/auth";
+import { authProvider } from "~/auth/provider";
 import { SignIn } from "~/components/Account/AuthjsButtons";
 import { OAuthSignInClerk } from "~/components/Content/ClerkPageOauth";
 import { Shell } from "~/components/Wrappers/ShellVariants";
@@ -143,17 +143,8 @@ export function AuthPagesContentServer({
             md:top-0 md:col-span-2 md:flex md:translate-y-0
           `}
         >
-          <div
-            className={`
-            mx-auto flex flex-col justify-center space-y-6
-          `}
-          >
-            <div
-              className={`
-              mx-auto mb-4 flex flex-col content-center
-              gap-8
-            `}
-            >
+          <div className="mx-auto flex flex-col justify-center space-y-6">
+            <div className="mx-auto mb-4 flex flex-col content-center gap-8">
               {authProvider === "clerk" && (
                 <div className="mt-12">
                   <OAuthSignInClerk />

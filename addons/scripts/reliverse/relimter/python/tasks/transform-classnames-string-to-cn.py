@@ -29,7 +29,7 @@ def process_file(filepath):
             line_parts.insert(1, "cn,")
             lines[utils_import_line] = " ".join(line_parts) + "\n"
     elif not cn_imported:
-        lines.insert(0, 'import { cn } from "@/utils";\n')
+        lines.insert(0, 'import { cn } from "@/utils/reliverse/cn";\n')
 
     for line in lines:
         match = class_name_pattern.search(line.strip())

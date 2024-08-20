@@ -2,20 +2,29 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import type { SubscriptionPlanTypes, UserSubscriptionPlan } from "@/types";
+import type {
+  SubscriptionPlanTypes,
+  UserSubscriptionPlan,
+} from "@/types/reliverse/plan";
 
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { getDashboardRedirectPath, getPlanFeatures } from "@/server";
-import { cn, formatDate, formatPrice } from "@/utils";
+import {
+  getDashboardRedirectPath,
+  getPlanFeatures,
+} from "@/server/reliverse/plan";
+import { cn } from "@/utils/reliverse/cn";
+import { formatDate } from "@/utils/reliverse/date";
+import { formatPrice } from "@/utils/reliverse/number";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { desc, eq, sql } from "drizzle-orm";
+import { getTranslations } from "next-intl/server";
 
-import { authProvider } from "~/auth";
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
-import { PlanManageForm } from "~/components/Forms";
+import { authProvider } from "~/auth/provider";
+import { PlanManageForm } from "~/components/Forms/PlanManageForm";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -25,7 +34,7 @@ import { Shell } from "~/components/Wrappers/ShellVariants";
 import { getSubscriptionPlanAction } from "~/core/stripe/actions";
 import { storeSubscriptionPlans } from "~/core/stripe/subs";
 import { db } from "~/db";
-import { products, stores } from "~/db/schema";
+import { products, stores } from "~/db/schema/provider";
 import { env } from "~/env";
 
 export const metadata: Metadata = {
@@ -34,6 +43,8 @@ export const metadata: Metadata = {
 };
 
 export default async function BillingPage() {
+  const t = await getTranslations();
+
   const user = authProvider === "clerk" ? await clerk() : await authjs();
 
   if (!user) {
@@ -58,8 +69,7 @@ export default async function BillingPage() {
   const subscriptionPlan = await getSubscriptionPlanAction(user.id || "");
 
   const { maxProductCount, maxStoreCount } = getPlanFeatures(
-    // @ts-expect-error TODO: fix
-    subscriptionPlan && subscriptionPlan.id,
+    (subscriptionPlan && subscriptionPlan.id) || undefined,
   );
 
   return (
@@ -70,7 +80,9 @@ export default async function BillingPage() {
         separated
       >
         <div className="flex space-x-4">
-          <PageHeaderHeading size="sm">Billing</PageHeaderHeading>
+          <PageHeaderHeading size="sm">
+            {t("example.billing")}
+          </PageHeaderHeading>
           <Link
             aria-label="Create store"
             className={cn(
@@ -157,8 +169,8 @@ export default async function BillingPage() {
             [localhost-notice] Ensure you have correctly filled out the{" "}
             <span className="font-semibold">`.env`</span> file and have{" "}
             <span className="font-semibold">`pnpm stripe:listen`</span> running{" "}
-            <span className="font-semibold">before using</span> the buttons
-            below.
+            <span className="font-semibold">{t("example.beforeUsing")}</span>{" "}
+            the buttons below.
             <br />
             [localhost-notice]{" "}
             <span className="font-semibold">Buttons are hidden if</span>{" "}
@@ -288,7 +300,7 @@ function SubscriptionPlanCard({
         )}
       {/* {process.env.NODE_ENV === "development" && (
         <div className="opacity-50 mt-6 text-sm space-y-2">
-          <h2 className="font-semibold">[localhost-debug]:</h2>
+          <h2 className="font-semibold">{t("example.localhostDebug")}</h2>
           <p>mapPlanId: {planInfo.id}</p>
           <p>isCurrentPlan: {String(isCurrentPlan)}</p>
           <p>isSubscribed: {String(isSubscribed)}</p>
