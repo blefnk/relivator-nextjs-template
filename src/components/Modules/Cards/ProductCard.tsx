@@ -1,13 +1,18 @@
 "use client";
 
+import type { Product } from "~/db/schema";
+
 import type { HTMLAttributes } from "react";
 import { useTransition } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Check, ImageIcon, Plus } from "lucide-react";
+
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { AspectRatio } from "~/components/ui/aspect-ratio";
+import { Button, buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -15,18 +20,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/utils/reliverse/cn";
-import { formatPrice } from "@/utils/reliverse/number";
-import { Check, ImageIcon, Plus } from "lucide-react";
-
-import type { Product } from "~/db/schema/provider";
-
-import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+} from "~/components/ui/card";
+import { cn } from "~/utils/cn";
+import { formatPrice } from "~/utils/number";
 
 type ProductCardProps = {
   product: Pick<
     Product,
+    // @ts-expect-error disable ts error during migration
     "category" | "id" | "images" | "inventory" | "name" | "price" | "storeId"
   >;
   isAddedToCart?: boolean;
@@ -57,27 +58,27 @@ export function ProductCard({
           <AspectRatio ratio={4 / 3}>
             {product && product.images && product.images.length > 0 ? (
               <Image
-                alt={product.images[0]?.name || product.name}
                 className="object-cover"
-                fill
+                alt={product.images[0]?.name || product.name}
                 loading="lazy"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 src={
                   product.images[0]?.url || "/images/product-placeholder.webp"
                 }
+                fill
               />
             ) : (
               <div
-                aria-label="Placeholder"
-                aria-roledescription="placeholder"
                 className={`
                   flex size-full items-center justify-center bg-secondary
                 `}
+                aria-label="Placeholder"
+                aria-roledescription="placeholder"
                 role="img"
               >
                 <ImageIcon
-                  aria-hidden="true"
                   className="size-9 text-muted-foreground"
+                  aria-hidden="true"
                 />
               </div>
             )}
@@ -100,18 +101,18 @@ export function ProductCard({
           <Button
             className="h-8 w-full whitespace-nowrap"
             disabled={isPending}
+            size="default"
+            variant="secondary"
             onClick={() => {
               startTransition(async () => {
                 // TODO: Add the default action here
               });
             }}
-            size="default"
-            variant="secondary"
           >
             {isPending && (
               <SpinnerSVG
-                aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
+                aria-hidden="true"
               />
             )}
             {tAddToCart}
@@ -119,26 +120,26 @@ export function ProductCard({
         )}
         {variant === "switchable" && (
           <Button
-            aria-label={isAddedToCart ? "Remove from cart" : String(tAddToCart)}
             className="h-8 w-full whitespace-nowrap"
+            aria-label={isAddedToCart ? "Remove from cart" : String(tAddToCart)}
             disabled={isPending}
+            size="default"
+            variant="secondary"
             onClick={() => {
               startTransition(async () => {
                 await onSwitch?.();
               });
             }}
-            size="default"
-            variant="secondary"
           >
             {isPending ? (
               <SpinnerSVG
-                aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
+                aria-hidden="true"
               />
             ) : isAddedToCart ? (
-              <Check aria-hidden="true" className="mr-2 size-4" />
+              <Check className="mr-2 size-4" aria-hidden="true" />
             ) : (
-              <Plus aria-hidden="true" className="mr-2 size-4" />
+              <Plus className="mr-2 size-4" aria-hidden="true" />
             )}
             {isAddedToCart ? "Added" : String(tAddToCart)}
           </Button>

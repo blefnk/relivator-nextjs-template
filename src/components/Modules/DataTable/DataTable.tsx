@@ -1,12 +1,3 @@
-import type { MouseEventHandler } from "react";
-import { useCallback, useEffect, useMemo, useState } from "react";
-
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn,
-} from "@/types/reliverse/store";
 import type {
   ColumnDef,
   ColumnFiltersState,
@@ -14,16 +5,16 @@ import type {
   SortingState,
   VisibilityState,
 } from "@tanstack/react-table";
+import type {
+  DataTableFilterableColumn,
+  DataTableSearchableColumn,
+} from "~/types/store";
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { useDebounce } from "@/hooks-react/use-debounce";
+import type { MouseEventHandler } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import {
   flexRender,
   getCoreRowModel,
@@ -38,6 +29,15 @@ import destr from "destr";
 
 import { DataTablePagination } from "~/components/Modules/DataTable/DataTablePagination";
 import { DataTableToolbar } from "~/components/Modules/DataTable/DataTableToolbar";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "~/components/ui/table";
+import { useDebounce } from "~/hooks/use-debounce";
 
 const isString = (a: unknown): a is string => typeof a === "string";
 const defaultFilterableColumns: DataTableFilterableColumn<unknown>[] = [];
@@ -288,7 +288,7 @@ export function DataTable<TData, TValue>({
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead className="whitespace-nowrap" key={header.id}>
+                  <TableHead key={header.id} className="whitespace-nowrap">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -304,8 +304,8 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows && table.getRowModel().rows.length > 0 ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  data-state={row.getIsSelected() && "selected"}
                   key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

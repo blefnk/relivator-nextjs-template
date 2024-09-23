@@ -1,10 +1,9 @@
-import { convertEmptyStringToUndefined } from "@/scripts/reliverse/relimter/core/env/helpers";
 import { authProvider, debugEnabled } from "~/../reliverse.config";
 import consola from "consola";
 
+import { convertEmptyStringToUndefined } from "@/scripts/reliverse/relimter/core/env/helpers";
 import { recommendedEnvVariables } from "~/env";
 
-/* eslint-disable no-restricted-properties */
 const checkMissingVariables = (
   env: Record<string, string | undefined>,
   variablesList: string[],

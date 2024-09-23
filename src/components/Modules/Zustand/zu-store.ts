@@ -18,7 +18,6 @@ const getDefaultInitialState = () => ({
   light: false,
 });
 
-// eslint-disable-next-line no-use-before-define
 export type StoreType = ReturnType<typeof initializeStore>;
 
 const zustandContext = createContext<null | StoreType>(null);

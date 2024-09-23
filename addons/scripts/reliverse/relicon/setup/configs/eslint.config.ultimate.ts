@@ -79,6 +79,7 @@ export default tseslint.config(
     ignores: [
       "**/.{git,next,astro,turbo,million,output}/",
       "**/{node_modules,build,dist,drizzle}/",
+      "**/{cluster,public}/",
       "pnpm-lock.yaml",
     ],
   },
@@ -123,8 +124,8 @@ export default tseslint.config(
       "@next/next": nextPlugin,
       "@stylistic": stylistic,
       "@tanstack/query": tanstack,
-      "barrel-files": { rules: barrel.rules },
       "@typescript-eslint": tseslint.plugin,
+      "barrel-files": { rules: barrel.rules },
       drizzle: drizzle,
       "eslint-comments": eslintComments,
       "import-x": importX,
@@ -157,17 +158,13 @@ export default tseslint.config(
       ...tailwindReadable.configs.warning.rules,
       ...tailwindcss.configs.recommended.rules,
 
-      // @see https://npmjs.com/package/eslint-plugin-barrel-files
-      "barrel-files/avoid-importing-barrel-files": "off",
-
-      // Alternative: https://npmjs.com/package/eslint-plugin-no-barrel-files
-      "barrel-files/avoid-barrel-files": "warn",
-      "barrel-files/avoid-namespace-import": "off",
-      "barrel-files/avoid-re-export-all": "off",
-
       // @see https://eslint-react.xyz/rules/overview
       "@eslint-react/dom/no-dangerously-set-innerhtml": "off",
+
+      "@eslint-react/hooks-extra/ensure-custom-hooks-using-other-hooks": "off",
+      "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
       "@eslint-react/no-array-index-key": "off",
+
       "@eslint-react/no-leaked-conditional-rendering": "off",
       "@eslint-react/no-unstable-context-value": "off",
       "@eslint-react/no-unstable-default-props": "off",
@@ -195,6 +192,7 @@ export default tseslint.config(
           singleValue: false,
         },
       ],
+
       "@stylistic/arrow-parens": ["warn", "always"],
 
       // { requireForBlockBody: true },
@@ -206,6 +204,7 @@ export default tseslint.config(
         },
       ],
       "@stylistic/block-spacing": ["warn", "always"],
+
       "@stylistic/brace-style": [
         "off",
         "1tbs",
@@ -274,6 +273,7 @@ export default tseslint.config(
       // @see https://eslint.style/rules
       "@stylistic/jsx-child-element-spacing": "off",
       "@stylistic/jsx-closing-bracket-location": "off",
+
       "@stylistic/jsx-closing-tag-location": "off",
       "@stylistic/jsx-curly-newline": "off",
       "@stylistic/jsx-indent": [
@@ -368,6 +368,7 @@ export default tseslint.config(
           max: 1,
         },
       ],
+
       "@stylistic/member-delimiter-style": [
         "warn",
         {
@@ -649,6 +650,7 @@ export default tseslint.config(
       // @see https://tanstack.com/query/latest/docs/eslint/eslint-plugin-query
       "@tanstack/query/exhaustive-deps": "error",
       "@tanstack/query/no-rest-destructuring": "error",
+
       "@tanstack/query/stable-query-client": "error",
 
       // @see https://typescript-eslint.io/rules
@@ -660,14 +662,15 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/await-thenable": "off",
+
       "@typescript-eslint/ban-ts-comment": [
         "error",
         {
           minimumDescriptionLength: 9,
-          "ts-check": false,
+          "ts-check": true,
           "ts-expect-error": "allow-with-description",
           "ts-ignore": true,
-          "ts-nocheck": true,
+          "ts-nocheck": "allow-with-description",
         },
       ],
       "@typescript-eslint/camelcase": "off",
@@ -772,7 +775,7 @@ export default tseslint.config(
         },
       ],
       "@typescript-eslint/no-unused-vars": [
-        "warn",
+        "off",
         {
           args: "all",
           argsIgnorePattern: "^_",
@@ -831,16 +834,26 @@ export default tseslint.config(
       "@typescript-eslint/unbound-method": "off",
       "@typescript-eslint/unified-signatures": "off",
 
+      // Alternative: https://npmjs.com/package/eslint-plugin-no-barrel-files
+      "barrel-files/avoid-barrel-files": "warn",
+
+      // @see https://npmjs.com/package/eslint-plugin-barrel-files
+      "barrel-files/avoid-importing-barrel-files": "off",
+
+      "barrel-files/avoid-namespace-import": "off",
+      "barrel-files/avoid-re-export-all": "off",
+
       // @see https://eslint.org/docs/latest/rules
       complexity: [
-        "warn",
+        "off",
         {
           max: 20,
         },
       ],
       "consistent-function-scoping": "off",
+
       "constructor-super": "off",
-      curly: ["warn", "all"],
+      curly: ["off", "all"],
 
       // @see https://orm.drizzle.team/docs/eslint-plugin
       "drizzle/enforce-delete-with-where": [
@@ -849,6 +862,7 @@ export default tseslint.config(
           drizzleObjectName: ["db", "ctx.db"],
         },
       ],
+
       "drizzle/enforce-update-with-where": [
         "warn",
         {
@@ -871,6 +885,7 @@ export default tseslint.config(
       "eslint-comments/no-unlimited-disable": "error",
       "eslint-comments/no-unused-disable": "error",
       "eslint-comments/no-unused-enable": "error",
+
       "eslint-comments/no-use": [
         "error",
         {
@@ -972,6 +987,7 @@ export default tseslint.config(
       "jsx-a11y/aria-unsupported-elements": "error",
       "jsx-a11y/click-events-have-key-events": "off",
       "jsx-a11y/no-noninteractive-element-interactions": "off",
+
       "jsx-a11y/role-has-required-aria-props": "error",
       "jsx-a11y/role-supports-aria-props": "error",
       "max-depth": ["warn", 10],
@@ -1000,6 +1016,7 @@ export default tseslint.config(
       "n/no-process-exit": "off",
       "n/no-unpublished-import": "off",
       "n/no-unsupported-features/es-syntax": "off",
+
       "n/no-unsupported-features/node-builtins": "off",
 
       // @see https://eslint.org/docs/latest/rules
@@ -1009,6 +1026,7 @@ export default tseslint.config(
       "no-async-promise-executor": "off",
       "no-await-in-promise-methods": "off",
       "no-case-declarations": "off",
+
       "no-compare-neg-zero": "off",
       "no-cond-assign": "off",
       "no-console": [
@@ -1128,11 +1146,12 @@ export default tseslint.config(
           importNames: ["env"],
           message: "Please use `import { env } from '~/env'` instead.",
         },
-        {
-          name: "react",
-          importNames: ["default"],
-          message: "Named imports should be used instead.",
-        },
+
+        // {
+        //   name: "react",
+        //   importNames: ["default"],
+        //   message: "Named imports should be used instead.",
+        // },
         {
           name: "lodash",
           message:
@@ -1222,6 +1241,7 @@ export default tseslint.config(
         },
       ],
       "no-self-assign": "off",
+
       "no-setter-return": "off",
       "no-shadow": [
         "off",
@@ -1307,30 +1327,83 @@ export default tseslint.config(
               react: ["react", "react-*"],
             },
             value: {
+              "@type": ["@reliverse/types/**"],
+              config: ["@reliverse/config", "@reliverse/config/**"],
+              files: [
+                "react-icons/**",
+                "*.css",
+                "*.png",
+                "*.jpg",
+                "*.jpeg",
+                "*.json",
+                "@reliverse/**/*.css",
+                "@reliverse/**/*.png",
+                "@reliverse/**/*.jpg",
+                "@reliverse/**/*.jpeg",
+                "@reliverse/**/*.json",
+              ],
               next: ["next", "next/*", "next/*/*"],
               react: ["react", "react-*"],
+              server: ["server-only"],
             },
           },
           environment: "node",
           groups: [
+            "server",
+            [
+              "type",
+              "parent-type",
+              "sibling-type",
+              "index-type",
+              "internal-type",
+              "@type",
+            ],
             "react",
             "next",
-            "type",
             ["builtin", "external"],
-            "internal-type",
+            "config",
             "internal",
-            ["parent-type", "sibling-type", "index-type"],
             ["parent", "sibling", "index"],
-            "object",
             "side-effect",
             "side-effect-style",
-            "style",
+            "object",
             "unknown",
+            "style",
           ],
           ignoreCase: true,
-          internalPattern: ["~/**"],
+          internalPattern: ["@reliverse/**", "$/**", "#/**", "@/**", "~/**"],
           maxLineLength: undefined,
           newlinesBetween: "always",
+          order: "asc",
+          type: "natural",
+        },
+      ],
+      "perfectionist/sort-jsx-props": [
+        // TODO: fix (`pnpm check:eslint`: 14226.536 ms)
+        "warn",
+        {
+          customGroups: {
+            id: ["key", "id", "name"],
+            animate: "animate",
+            breakpoints: ["xs", "sm", "md", "lg", "xl", "2xl"],
+            callback: "on*",
+            className: "className",
+            exit: "exit",
+            initial: "initial",
+            transition: "transition",
+          },
+          groups: [
+            "id",
+            "initial",
+            "exit",
+            "animate",
+            "transition",
+            "className",
+            "unknown",
+            "multiline",
+            "callback",
+            "shorthand",
+          ],
           order: "asc",
           type: "natural",
         },
@@ -1369,11 +1442,11 @@ export default tseslint.config(
           ignoreCase: true,
           order: "asc",
           partitionByNewLine: false,
-          type: "alphabetical",
+          type: "natural",
         },
       ],
       "perfectionist/sort-objects": [
-        "off",
+        "warn",
         {
           // TODO: fix (`pnpm check:eslint`: 61297.924 ms)
           customGroups: {
@@ -1409,10 +1482,6 @@ export default tseslint.config(
           type: "natural",
         },
       ],
-      "perfectionist/sort-jsx-props": [
-        // TODO: fix (`pnpm check:eslint`: 14226.536 ms)
-        "off",
-      ],
       "perfectionist/sort-union-types": [
         "warn",
         {
@@ -1423,6 +1492,7 @@ export default tseslint.config(
         },
       ],
       "prefer-blob-reading-methods": "off",
+
       "prefer-const": [
         "error",
         {
@@ -1430,6 +1500,7 @@ export default tseslint.config(
           ignoreReadBeforeAssign: true,
         },
       ],
+
       "prefer-destructuring": [
         "off",
         {
@@ -1470,6 +1541,7 @@ export default tseslint.config(
       "react/no-invalid-html-attribute": "error",
       "react/no-unescaped-entities": "off",
       "react/no-unknown-property": "off",
+
       // TODO: https://github.com/shadcn-ui/ui/issues/120
       "react/prop-types": "off",
 
@@ -1493,27 +1565,37 @@ export default tseslint.config(
       // @see https://github.com/schoero/eslint-plugin-readable-tailwind
       "readable-tailwind/multiline": ["off"],
       "readable-tailwind/no-unnecessary-whitespace": ["error"],
+
       "readable-tailwind/sort-classes": ["error"],
 
       // @see https://github.com/SonarSource/eslint-plugin-sonarjs#rules (errors in: rules-of-hooks, no-fallthrough)
       "sonarjs/cognitive-complexity": "off",
+
+      "sonarjs/constructor-for-side-effects": "off",
+
       "sonarjs/default-param-last": "off",
+
       "sonarjs/deprecation": "off",
       "sonarjs/different-types-comparison": "off",
       "sonarjs/function-return-type": "off",
+
       "sonarjs/hook-use-state": "off",
       "sonarjs/jsx-no-constructed-context-values": "off",
       "sonarjs/jsx-no-useless-fragment": "off",
+      "sonarjs/link-with-target-blank": "off",
       "sonarjs/new-cap": "off",
       "sonarjs/no-array-index-key": "off",
       "sonarjs/no-base-to-string": "off",
+      "sonarjs/no-clear-text-protocols": "off",
       "sonarjs/no-commented-code": "off",
       "sonarjs/no-dead-store": "off",
       "sonarjs/no-duplicate-string": "off",
+      "sonarjs/no-globals-shadowing": "off",
       "sonarjs/no-gratuitous-expressions": "off",
       "sonarjs/no-identical-expressions": "off",
       "sonarjs/no-invalid-await": "off",
       "sonarjs/no-misused-promises": "off",
+      "sonarjs/no-nested-assignment": "off",
       "sonarjs/no-nested-conditional": "off",
       "sonarjs/no-nested-functions": "off",
       "sonarjs/no-nested-template-literals": "off",
@@ -1527,6 +1609,7 @@ export default tseslint.config(
       "sonarjs/null-dereference": "off",
       "sonarjs/prefer-for-of": "off",
       "sonarjs/prefer-nullish-coalescing": "off",
+      "sonarjs/pseudo-random": "off",
       "sonarjs/redundant-type-aliases": "off",
       "sonarjs/rules-of-hooks": "off",
       "sonarjs/slow-regex": "off",
@@ -2302,8 +2385,8 @@ export default tseslint.config(
     name: "@reliverse/addons",
     files: ["addons/scripts/**/*.ts"],
     rules: {
-      "barrel-files/avoid-importing-barrel-files": "off",
       "barrel-files/avoid-barrel-files": "off",
+      "barrel-files/avoid-importing-barrel-files": "off",
       "barrel-files/avoid-namespace-import": "off",
       "barrel-files/avoid-re-export-all": "off",
     },
@@ -2312,8 +2395,8 @@ export default tseslint.config(
     name: "@reliverse/addons-metadata",
     files: ["src/constants/metadata.ts"],
     rules: {
-      "barrel-files/avoid-importing-barrel-files": "off",
       "barrel-files/avoid-barrel-files": "off",
+      "barrel-files/avoid-importing-barrel-files": "off",
       "barrel-files/avoid-namespace-import": "off",
       "barrel-files/avoid-re-export-all": "off",
     },
@@ -2412,4 +2495,13 @@ export default tseslint.config(
       "no-comments/disallowComments": "warn",
     },
   },
+
+  // {
+  //   name: "@reliverse/addons-i18n",
+  //   files: ["messages/**/*.json"],
+  //   rules: {
+  //     "jsonc/sort-array-values": "off",
+  //     "jsonc/sort-keys": "off",
+  //   },
+  // },
 );

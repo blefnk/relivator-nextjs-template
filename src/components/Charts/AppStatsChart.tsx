@@ -1,18 +1,19 @@
 "use client";
 
-import type { ChartConfig } from "@/components/ui/chart";
+import type { ChartConfig } from "~/components/ui/chart";
 
-import { Button } from "@/components/ui/button";
+import { Monitor, Smartphone } from "lucide-react";
+import { Bar, BarChart, CartesianGrid } from "recharts";
+
+import { Button } from "~/components/ui/button";
 import {
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/components/ui/chart";
-import { useToast } from "@/hooks-react/use-toast";
-import { Monitor, Smartphone } from "lucide-react";
-import { Bar, BarChart, CartesianGrid } from "recharts";
+} from "~/components/ui/chart";
+import { useToast } from "~/hooks/use-toast";
 
 const chartConfig = {
   desktop: {
@@ -43,13 +44,13 @@ export function AppStatsChart() {
     <>
       <Button
         className="mt-2"
+        size="sm"
+        variant="default"
         onClick={() => {
           toast({
             description: "Still in development. Stay tuned!",
           });
         }}
-        size="sm"
-        variant="default"
       >
         👋
       </Button>
@@ -57,7 +58,7 @@ export function AppStatsChart() {
         className="min-h-[200px] w-full max-w-screen-sm"
         config={chartConfig}
       >
-        <BarChart accessibilityLayer data={chartData}>
+        <BarChart data={chartData} accessibilityLayer>
           <CartesianGrid vertical={false} />
           {/* TODO: fix browser console error */}
           {/* <XAxis

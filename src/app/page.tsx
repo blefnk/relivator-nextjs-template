@@ -6,6 +6,10 @@ export default function RootPage() {
   redirect("/en");
 }
 
+// export default function HomePage() {
+//   return <h1>Hello, Home page!</h1>
+// }
+
 // Extended implementation
 // (possibly will be deprecated):
 // Redirects to ./[locale]/page.tsx

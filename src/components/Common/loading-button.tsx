@@ -1,16 +1,16 @@
 "use client";
 
+import type { ButtonProps } from "~/components/ui/button";
+
 import { forwardRef } from "react";
 import { useFormStatus } from "react-dom";
 
-import type { ButtonProps } from "@/components/ui/button";
-
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/utils/reliverse/cn";
 import { useIsClient } from "@uidotdev/usehooks";
 
 import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button, buttonVariants } from "~/components/ui/button";
+import { Skeleton } from "~/components/ui/skeleton";
+import { cn } from "~/utils/cn";
 
 type LoadingButtonProps = {
   className?: string;
@@ -53,7 +53,7 @@ const LoadingButton = forwardRef<HTMLButtonElement, LoadingButtonProps>(
         ref={ref}
       >
         {pending && (
-          <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
+          <SpinnerSVG className="mr-2 size-4 animate-spin" aria-hidden="true" />
         )}
         {props.children}
       </Button>

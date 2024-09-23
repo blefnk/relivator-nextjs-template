@@ -13,10 +13,7 @@ export default function Onboard({ firstName = "FirstName" }) {
     <Html>
       <Head />
       <Tailwind>
-        <Img
-          alt="Relivator Logo"
-          src="https://relivator.reliverse.org/logo.png"
-        />
+        <Img alt="Relivator Logo" src="https://bleverse.com/logo.png" />
         <p className="text-2xl">Welcome {firstName}, </p>
         <p className="text-lg">
           Ready to revolutionize the web development journey? the decision to
@@ -110,7 +107,7 @@ export function OnboardSample({ firstName = "FirstName" }) {
       <Image
         alt="Relivator Logo"
         height={150}
-        src="https://relivator.reliverse.org/logo.png"
+        src="https://bleverse.com/logo.png"
         width={500}
       />
       <a href="/page">{t("onboard.asa")}</a>

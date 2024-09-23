@@ -1,16 +1,17 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Card, CardContent } from "@/components/ui/card";
+import { authProvider, debugEnabled, hideEnvInfo } from "~/../reliverse.config";
+
 import {
   checkAuthConditions,
   getMissingVariables,
 } from "@/scripts/reliverse/relimter/core/env/get-missing";
 import { config } from "@reliverse/core";
-import { authProvider, debugEnabled, hideEnvInfo } from "~/../reliverse.config";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/components/ui/accordion";
+import { Card, CardContent } from "~/components/ui/card";
 
 type EnvInfoProps = {
   hide?: boolean;
@@ -50,7 +51,7 @@ export function EnvInfo({ hide = false, session = null }: EnvInfoProps) {
   return (
     <Card className="mx-12 mb-2 mt-6">
       <CardContent className="flex flex-1 flex-wrap place-items-start gap-4 text-sm">
-        <Accordion className="flex-1" collapsible type="single">
+        <Accordion className="flex-1" type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger>
               {/* eslint-disable-next-line @stylistic/max-len */}

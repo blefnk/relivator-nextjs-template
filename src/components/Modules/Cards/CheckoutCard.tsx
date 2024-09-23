@@ -1,19 +1,18 @@
 import Link from "next/link";
 
-import { getCartAction } from "@/actions/reliverse//cart";
-import { buttonVariants } from "@/components/ui/button";
+import { CartLineItems } from "~/components/Checkout/CartLineItems";
+import { buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils/reliverse/cn";
-import { formatPrice } from "@/utils/reliverse/number";
-
-import { CartLineItems } from "~/components/Checkout/CartLineItems";
+} from "~/components/ui/card";
+import { Separator } from "~/components/ui/separator";
+import { getCartAction } from "~/server/actions/deprecated/cart";
+import { cn } from "~/utils/cn";
+import { formatPrice } from "~/utils/number";
 
 type CheckoutCardProps = {
   storeId: string;
@@ -58,26 +57,26 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
 
   return (
     <Card
-      aria-labelledby={`checkout-store-${storeId}-heading`}
+      id={`checkout-store-${storeId}`}
+      key={storeId}
       className={cn(
         cartLineItems[0]?.storeStripeAccountId
           ? "border-green-500"
           : "border-neutral-700",
       )}
-      id={`checkout-store-${storeId}`}
-      key={storeId}
+      aria-labelledby={`checkout-store-${storeId}-heading`}
     >
       <CardHeader className="flex flex-row items-center space-x-4 py-4">
         <CardTitle className="line-clamp-1 flex-1">
           {cartLineItems[0]?.storeName}
         </CardTitle>
         <Link
-          aria-label="Checkout"
           className={cn(
             buttonVariants({
               size: "sm",
             }),
           )}
+          aria-label="Checkout"
           href={`/checkout/${storeId}`}
         >
           Checkout

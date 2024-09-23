@@ -1,14 +1,14 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ImageIcon } from "lucide-react";
+
+import { AspectRatio } from "~/components/ui/aspect-ratio";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { ImageIcon } from "lucide-react";
-
+} from "~/components/ui/card";
+import { Separator } from "~/components/ui/separator";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export function FakeLoadingVariantOne() {
@@ -94,8 +94,8 @@ function PlaceholderIcon() {
     <div className="relative size-16 overflow-hidden rounded">
       <div className="flex h-full items-center justify-center bg-secondary">
         <ImageIcon
-          aria-hidden="true"
           className="size-4 text-muted-foreground"
+          aria-hidden="true"
         />
       </div>
     </div>
@@ -135,17 +135,17 @@ export function FakeLoadingVariantTwo() {
         >
           <div className="flex flex-col gap-2">
             <div
-              aria-label="Placeholder"
-              aria-roledescription="placeholder"
               className={`
                 flex aspect-square h-full flex-1 items-center justify-center
                 bg-secondary
               `}
+              aria-label="Placeholder"
+              aria-roledescription="placeholder"
               role="img"
             >
               <ImageIcon
-                aria-hidden="true"
                 className="size-9 text-muted-foreground"
+                aria-hidden="true"
               />
             </div>
             <div className="flex w-full items-center justify-center gap-2">

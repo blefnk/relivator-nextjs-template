@@ -12,8 +12,8 @@ export function NextLogo() {
       >
         <g clipPath="url(#clip0_29_46694)">
           <mask
-            height="24"
             id="mask0_29_46694"
+            height="24"
             maskUnits="userSpaceOnUse"
             style={{ maskType: "alpha" }}
             width="24"
@@ -46,8 +46,8 @@ export function NextLogo() {
         </g>
         <defs>
           <linearGradient
-            gradientUnits="userSpaceOnUse"
             id="paint0_linear_29_46694"
+            gradientUnits="userSpaceOnUse"
             x1="14.534"
             x2="19.267"
             y1="15.533"
@@ -59,8 +59,8 @@ export function NextLogo() {
             <stop offset="1" stopColor="#fff" stopOpacity="0"></stop>
           </linearGradient>
           <linearGradient
-            gradientUnits="userSpaceOnUse"
             id="paint1_linear_29_46694"
+            gradientUnits="userSpaceOnUse"
             x1="16.134"
             x2="16.107"
             y1="7.2"

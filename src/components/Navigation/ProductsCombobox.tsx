@@ -4,8 +4,12 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { filterProducts } from "@/actions/reliverse/product";
-import { Button } from "@/components/ui/button";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Package } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { isMacOS } from "std-env";
+
+import { Button } from "~/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -13,15 +17,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
-import { Kbd } from "@/components/ui/kbd";
-import { Skeleton } from "@/components/ui/skeleton";
-import { useDebounce } from "@/hooks-react/use-debounce";
-import { cn } from "@/utils/reliverse/cn";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { Package } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { isMacOS } from "std-env";
+} from "~/components/ui/command";
+import { Kbd } from "~/components/ui/kbd";
+import { Skeleton } from "~/components/ui/skeleton";
+import { useDebounce } from "~/hooks/use-debounce";
+import { filterProducts } from "~/server/actions/deprecated/product";
+import { cn } from "~/utils/cn";
 
 type ProductGroup = NonNullable<
   Awaited<ReturnType<typeof filterProducts>>["data"]
@@ -84,12 +85,12 @@ export function ProductsCombobox() {
   return (
     <>
       <Button
-        variant="outline"
         className={`
           relative size-9 p-0
 
           xl:h-10 xl:w-60 xl:justify-start xl:px-3 xl:py-2
         `}
+        variant="outline"
         onClick={() => {
           setOpen(true);
         }}
@@ -113,12 +114,12 @@ export function ProductsCombobox() {
         </span>
         <span className="sr-only">{t("ProductsCombobox.searchProducts")}</span>
         <Kbd
-          title={isMacOS ? "Command" : "Control"}
           className={`
             pointer-events-none absolute right-1.5 top-1.5 hidden
 
             xl:block
           `}
+          title={isMacOS ? "Command" : "Control"}
         >
           {isMacOS ? "⌘" : "Ctrl"} K
         </Kbd>
@@ -157,29 +158,26 @@ export function ProductsCombobox() {
                 className="capitalize"
                 heading={group.name}
               >
-                {group.products.map(
-                  // @ts-expect-error TODO: fix
-                  (item) => {
-                    return (
-                      <CommandItem
-                        key={item.id}
-                        className="h-9"
-                        value={item.name}
-                        onSelect={() => {
-                          onSelect(() => {
-                            router.push(`/product/${item.id}`);
-                          });
-                        }}
-                      >
-                        <Package
-                          className="mr-2.5 size-3 text-muted-foreground"
-                          aria-hidden="true"
-                        />
-                        <span className="truncate">{item.name}</span>
-                      </CommandItem>
-                    );
-                  },
-                )}
+                {group.products.map((item) => {
+                  return (
+                    <CommandItem
+                      key={item.id}
+                      className="h-9"
+                      value={item.name}
+                      onSelect={() => {
+                        onSelect(() => {
+                          router.push(`/product/${item.id}`);
+                        });
+                      }}
+                    >
+                      <Package
+                        className="mr-2.5 size-3 text-muted-foreground"
+                        aria-hidden="true"
+                      />
+                      <span className="truncate">{item.name}</span>
+                    </CommandItem>
+                  );
+                })}
               </CommandGroup>
             ))
           )}

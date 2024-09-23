@@ -1,8 +1,6 @@
 import type { ElementType } from "react";
 import { Balancer } from "react-wrap-balancer";
 
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils/reliverse/cn";
 import {
   Clock,
   Files,
@@ -14,6 +12,9 @@ import {
   ToggleRight,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { Separator } from "~/components/ui/separator";
+import { cn } from "~/utils/cn";
 
 export function Features() {
   const t = useTranslations("landing");
@@ -85,20 +86,20 @@ function FeatureCard({ description, icon: Icon, title }: FeatureCardProps) {
     <div className="overflow-hidden rounded-lg border bg-background p-2 text-left">
       <div className="flex flex-col justify-between rounded-lg p-6">
         <div className="flex min-h-[64px] items-center space-x-4">
-          <Icon aria-hidden className="size-8" />
+          <Icon className="size-8" aria-hidden />
           <Balancer
-            as="h2"
             className={cn(`
               text-lg font-medium tracking-tight text-muted-foreground
 
               sm:text-xl
             `)}
+            as="h2"
           >
             {title}
           </Balancer>
         </div>
         <Separator className="my-4" />
-        <Balancer as="p" className="flex text-muted-foreground">
+        <Balancer className="flex text-muted-foreground" as="p">
           {description}
         </Balancer>
       </div>

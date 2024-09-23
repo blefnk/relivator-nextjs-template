@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import { DiscordLogoIcon, GitHubLogoIcon } from "@radix-ui/react-icons";
 import { intlProvider } from "~/../reliverse.config";
 
@@ -13,15 +11,17 @@ import { DonateLink } from "~/components/Navigation/DonateLink";
 import { MainMenu } from "~/components/Navigation/MainMenu";
 import { MobileMenu } from "~/components/Navigation/MobileMenu";
 import { ThemesGeneralSwitcher } from "~/components/Switchers/ThemesGeneralSwitcher";
+import { buttonVariants } from "~/components/ui/button";
 import { dashboardConfig } from "~/constants/nav-items";
+import { cn } from "~/utils/cn";
 
 export async function SiteHeader() {
   return (
     <header
       className={`
-        container sticky top-0 z-40 mb-2 flex h-16 w-full justify-between
-        border-b bg-background/90 backdrop-blur-sm duration-slow items-center
-        animate-in fade-in slide-in-from-top-full
+        sticky top-0 z-40 mb-2 flex h-16 w-full items-center justify-between border-b
+        bg-background/90 px-10 backdrop-blur-sm duration-slow animate-in
+        fade-in slide-in-from-top-full
       `}
     >
       <MainMenu items={siteConfig.mainNav} />

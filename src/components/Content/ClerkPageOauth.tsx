@@ -1,10 +1,9 @@
 "use client";
 
-import { useState } from "react";
-
 import type { OAuthStrategy } from "@clerk/types";
 
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+
 import { useSignIn } from "@clerk/nextjs";
 import { isClerkAPIResponseError } from "@clerk/nextjs/errors";
 import { DiscordLogoIcon } from "@radix-ui/react-icons";
@@ -16,6 +15,7 @@ import {
   GoogleSVG,
   SpinnerSVG,
 } from "~/components/Common/Icons/SVG";
+import { Button } from "~/components/ui/button";
 
 // @see https://github.com/clerk/javascript/blob/main/packages/clerk-js/src/ui/components/SignIn/SignInStart.tsx
 export function OAuthSignInClerk() {
@@ -50,9 +50,9 @@ export function OAuthSignInClerk() {
   };
 
   const iconMap = {
+    discord: DiscordLogoIcon,
     github: GithubSVG,
     google: GoogleSVG,
-    discord: DiscordLogoIcon,
   };
 
   return (
@@ -71,27 +71,27 @@ export function OAuthSignInClerk() {
             iconMap[provider.icon as keyof typeof iconMap] || SpinnerSVG; // Fallback to SpinnerSVG if icon not found
 
           return (
-            <div className="flex justify-center" key={provider.strategy}>
+            <div key={provider.strategy} className="flex justify-center">
               <Button
-                aria-label={`Sign in with ${provider.name}`}
                 className={`
                   w-full bg-background
 
                   sm:w-auto
                 `}
+                aria-label={`Sign in with ${provider.name}`}
                 disabled={isLoading !== null}
+                variant="outline"
                 onClick={async () =>
                   void (await oauthSignIn(provider.strategy))
                 }
-                variant="outline"
               >
                 {isLoading === provider.strategy ? (
                   <SpinnerSVG
-                    aria-hidden="true"
                     className="mr-2 size-4 animate-spin"
+                    aria-hidden="true"
                   />
                 ) : (
-                  <Icon aria-hidden="true" className="mr-2 size-4" />
+                  <Icon className="mr-2 size-4" aria-hidden="true" />
                 )}
                 {provider.name}
               </Button>

@@ -2,8 +2,15 @@ import type {
   InstallCommand,
   PackageManagerRunner,
   PackageManagerType,
-} from "@/types/reliverse/pm";
+} from "~/types/pm";
 import type { Resolvable } from "citty";
+
+import { log } from "@clack/prompts";
+import fs from "fs-extra";
+import { cwd } from "node:process";
+import { join } from "pathe";
+import pc from "picocolors";
+import prettyjson from "prettyjson";
 
 import {
   findInstallCommand,
@@ -11,13 +18,7 @@ import {
   findPackageManagerType,
   readPackageJson,
 } from "@/scripts/utils/pm";
-import { log } from "@clack/prompts";
 import { getRootDirname } from "@reliverse/fs";
-import fs from "fs-extra";
-import { cwd } from "node:process";
-import { join } from "pathe";
-import pc from "picocolors";
-import prettyjson from "prettyjson";
 
 export const defineAddon = (
   emoji: string,

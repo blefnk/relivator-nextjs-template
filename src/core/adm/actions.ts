@@ -3,8 +3,10 @@ import { redirect } from "next/navigation";
 import { eq } from "drizzle-orm";
 
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { db } from "~/db";
-import { users } from "~/db/schema/provider";
+import { users } from "~/db/schema";
 
 type ChangeUserPrivilegesProps = {
   role: "admin" | "user";

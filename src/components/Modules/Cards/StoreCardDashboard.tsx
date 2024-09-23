@@ -1,19 +1,20 @@
+import type { CuratedStore } from "~/types/store";
+
 import Link from "next/link";
 
-import type { CuratedStore } from "@/types/reliverse/store";
+import { PackagePlus } from "lucide-react";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
+import { AspectRatio } from "~/components/ui/aspect-ratio";
+import { Badge } from "~/components/ui/badge";
+import { buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { getRandomPatternStyle } from "@/server/reliverse/pattern";
-import { cn } from "@/utils/reliverse/cn";
-import { PackagePlus } from "lucide-react";
+} from "~/components/ui/card";
+import { getRandomPatternStyle } from "~/server/helpers/pattern";
+import { cn } from "~/utils/cn";
 
 type StoreCardProps = {
   href: string;
@@ -53,7 +54,6 @@ export function StoreCard({ href, store }: StoreCardProps) {
             ) : null}
           </div>
           <Link
-            aria-label="Add new product"
             className={cn(
               buttonVariants({
                 size: "icon",
@@ -61,9 +61,10 @@ export function StoreCard({ href, store }: StoreCardProps) {
               }),
               "ml-auto flex items-center rounded",
             )}
+            aria-label="Add new product"
             href={`/dashboard/stores/${store.id}/products/new`}
           >
-            <PackagePlus aria-hidden="true" className="size-5" />
+            <PackagePlus className="size-5" aria-hidden="true" />
           </Link>
         </CardHeader>
       </Card>

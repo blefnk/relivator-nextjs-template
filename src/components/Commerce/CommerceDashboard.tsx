@@ -1,6 +1,8 @@
-import type { ReactNode } from "react";
+// @ts-nocheck disable all ts errors during migration
 
 import type { Session } from "next-auth";
+
+import type { ReactNode } from "react";
 
 import { useTranslations } from "next-intl";
 

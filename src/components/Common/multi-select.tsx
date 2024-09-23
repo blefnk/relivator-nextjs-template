@@ -1,13 +1,14 @@
+import type { Option } from "~/types/store";
+
 import type { Dispatch, KeyboardEvent, SetStateAction } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { Option } from "@/types/reliverse/store";
-
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 import { Command as CommandPrimitive } from "cmdk";
 import { X } from "lucide-react";
+
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Command, CommandGroup, CommandItem } from "~/components/ui/command";
 
 type MultiSelectProps = {
   options: Option[];
@@ -102,22 +103,23 @@ export function MultiSelect({
           {selected &&
             selected.map((option) => (
               <Badge
+                key={option.value}
                 className={`
                   rounded
 
                   hover:bg-secondary
                 `}
-                key={option.value}
                 variant="secondary"
               >
                 {option.label}
                 <Button
-                  aria-label="Remove option"
                   className={`
                     ml-2 h-auto bg-transparent p-0 text-primary
 
                     hover:bg-transparent hover:text-destructive
                   `}
+                  aria-label="Remove option"
+                  size="sm"
                   onClick={() => {
                     handleRemove(option);
                   }}
@@ -132,9 +134,8 @@ export function MultiSelect({
                     event_.preventDefault();
                     event_.stopPropagation();
                   }}
-                  size="sm"
                 >
-                  <X aria-hidden="true" className="size-3" />
+                  <X className="size-3" aria-hidden="true" />
                 </Button>
               </Badge>
             ))}
@@ -144,6 +145,9 @@ export function MultiSelect({
 
               placeholder:text-muted-foreground
             `}
+            placeholder={placeholder}
+            ref={inputRef}
+            value={query}
             onBlur={() => {
               setIsOpen(false);
             }}
@@ -151,9 +155,6 @@ export function MultiSelect({
               setIsOpen(true);
             }}
             onValueChange={setQuery}
-            placeholder={placeholder}
-            ref={inputRef}
-            value={query}
           />
         </div>
       </div>
@@ -168,8 +169,8 @@ export function MultiSelect({
             <CommandGroup className="h-full overflow-auto">
               {filteredOptions.map((option) => (
                 <CommandItem
-                  className="px-2 py-1.5 text-sm"
                   key={option.value}
+                  className="px-2 py-1.5 text-sm"
                   onMouseDown={(event_) => {
                     event_.preventDefault();
                     event_.stopPropagation();

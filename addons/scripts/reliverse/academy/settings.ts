@@ -1,7 +1,8 @@
-import { resetPlayerScore } from "@/scripts/reliverse/academy/player";
-import { getErrorMessage } from "@/server/reliverse/error-message";
 import { select } from "@inquirer/prompts";
 import consola from "consola";
+
+import { resetPlayerScore } from "@/scripts/reliverse/academy/player";
+import { getErrorMessage } from "~/server/helpers/error-message";
 
 export const openSettings = async (playerId: string) => {
   try {

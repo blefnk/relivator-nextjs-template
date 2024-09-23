@@ -21,6 +21,8 @@ export function NextIntlProvider({
 }) {
   return (
     <NextIntlClientProvider
+      locale={locale} // @ts-expect-error TODO: fix
+      messages={messages}
       getMessageFallback={({ error, key, namespace }) => {
         const nestedMessages = _.get(messages, namespace || "");
 
@@ -36,8 +38,6 @@ export function NextIntlProvider({
         // @ts-expect-error TODO: fix key
         return nestedMessages[key];
       }}
-      locale={locale} // @ts-expect-error TODO: fix
-      messages={messages}
       onError={noop}
     >
       {children}

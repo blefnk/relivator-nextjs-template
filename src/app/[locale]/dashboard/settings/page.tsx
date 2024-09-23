@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next";
 
-// import type { SearchParams } from "@/types/reliverse/meta";
+// import type { SearchParams } from "~/types/reliverse/meta";
 
 import {
   Card,
@@ -10,12 +10,12 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-// import { getNotification } from "@/server/reliverse/notification";
+} from "~/components/ui/card";
+// import { getNotification } from "~/server/notification";
 // import {
 //   getCachedUserAuthJs,
 //   getCachedUserClerk,
-// } from "@/server/reliverse/user";
+// } from "~/server/user";
 import { getTranslations } from "next-intl/server";
 // import { z } from "zod";
 
@@ -51,8 +51,8 @@ export default async function SettingsPage() {
 
   // const user =
   //   authProvider === "clerk"
-  //     ? await getCachedUserClerk()
-  //     : await getCachedUserAuthJs();
+  //     ? await authClerk()
+  //     : await authAuthJs();
 
   // const notificationPromise = getNotification({
   //   email: user.email,

@@ -1,6 +1,7 @@
-import { defineAddon } from "@/scripts/utils";
 import { defineCommand, runMain } from "citty";
 import consola from "consola";
+
+import { defineAddon } from "@/scripts/utils";
 
 // ▶️ pnpm tsx eslint.setup.ts
 // TODO: Move this code to a separate package
@@ -8,7 +9,7 @@ import consola from "consola";
 const main = defineCommand({
   args: {
     deprecated: {
-      description: "@blefnk/eslint-reliverse-addons/deprecated",
+      description: "@blefnk/eslint-reliverse-addons/cluster",
       type: "boolean",
     },
     toggler: {
@@ -42,7 +43,6 @@ const main = defineCommand({
     });
 
     if (typeof selected !== "string") {
-      // eslint-disable-next-line unicorn/no-process-exit
       process.exit(0);
     }
 

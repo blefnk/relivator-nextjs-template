@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import type { SSOCallbackPageProps } from "~/types/auth";
 
-import type { SSOCallbackPageProps } from "@/types/reliverse/auth";
+import { useEffect } from "react";
 
 import { useClerk } from "@clerk/nextjs";
 
@@ -17,12 +17,12 @@ export default function SSOCallback({ searchParams }: SSOCallbackPageProps) {
 
   return (
     <div
+      className="flex items-center justify-center"
       aria-describedby="loading-description"
       aria-label="Loading"
-      className="flex items-center justify-center"
       role="status"
     >
-      <SpinnerSVG aria-hidden="true" className="size-16 animate-spin" />
+      <SpinnerSVG className="size-16 animate-spin" aria-hidden="true" />
       {/* import { FakeLoadingVariantOne } from "~/components/FakeLoading"; */}
       {/* <FakeLoadingVariantOne /> */}
     </div>

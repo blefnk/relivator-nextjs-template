@@ -8,6 +8,7 @@ export type TTables =
   | "cart"
   | "category"
   | "column"
+  | "customer"
   | "guest"
   | "item"
   | "notification"
@@ -15,11 +16,16 @@ export type TTables =
   | "payment"
   | "post"
   | "product"
+  | "product_variant"
+  | "stock"
   | "store"
+  | "store_variant"
   | "subcategory"
   | "subscription"
+  | "tag"
   | "todo"
-  | "user";
+  | "user"
+  | "webhook";
 
 type TablesKey = {
   [key in TTables]: key;
@@ -37,6 +43,7 @@ export const tables: TablesKey = {
   cart: "cart",
   category: "category",
   column: "column",
+  customer: "customer",
   guest: "guest",
   item: "item",
   notification: "notification",
@@ -44,11 +51,16 @@ export const tables: TablesKey = {
   payment: "payment",
   post: "post",
   product: "product",
+  product_variant: "product_variant",
+  stock: "stock",
   store: "store",
+  store_variant: "store_variant",
   subcategory: "subcategory",
   subscription: "subscription",
+  tag: "tag",
   todo: "todo",
   user: "user",
+  webhook: "webhook",
 };
 
 export const prefixes: PrefixesKey = {
@@ -59,6 +71,7 @@ export const prefixes: PrefixesKey = {
   cart: "crt",
   category: "cat",
   column: "col",
+  customer: "cus",
   guest: "gst",
   item: "itm",
   notification: "ntf",
@@ -66,15 +79,32 @@ export const prefixes: PrefixesKey = {
   payment: "pmt",
   post: "pst",
   product: "prd",
+  product_variant: "prv",
+  stock: "stk",
   store: "str",
+  store_variant: "stv",
   subcategory: "sct",
   subscription: "sub",
+  tag: "tag",
   todo: "tdo",
   user: "usr",
+  webhook: "wbh",
 };
 
-export function genId(prefix: keyof typeof prefixes) {
+export function generateId(prefix: keyof typeof prefixes) {
   const nanoid = customAlphabet("0123456789abcdefghijklmnopqrstuvwxyz", 10);
 
   return [prefix, nanoid()].join("_");
 }
+
+// TODO: consider to use e.g. tables.address
+// instead of "address" in the schema.ts
+// const tables = {
+//   address: "address",
+//   cart: "cart",
+//   post: "post",
+//   board: "board",
+//   column: "column",
+//   item: "item",
+//   stripe: "stripe",
+// }

@@ -12,7 +12,7 @@ For those who are viewing the current markdown file using:
 
 <div align="center">
 
-[🌐 Demo](https://relivator.reliverse.org) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🩷 Sponsors](#sponsors)
+[🌐 Demo](https://relivator.com) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🩷 Sponsors](#sponsors)
 
 [⚙️ Scripts](#scripts) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
 
@@ -32,7 +32,7 @@ Please take a moment to read through the information below. You'll find helpful 
 
 <p>
     <span>
-      <a href="https://relivator.reliverse.org">
+      <a href="https://relivator.com">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="public/screenshot-dark.png" />
             <source media="(prefers-color-scheme: light)" srcset="public/screenshot-light.png" />
@@ -65,7 +65,7 @@ Our goal is to create the world's most feature-rich and globally accessible Next
 
 <!-- <p align="center">
     <span>
-      <a href="https://relivator.reliverse.org">
+      <a href="https://relivator.com">
         <picture>
             <source media="(prefers-color-scheme: dark)" srcset="public/screenshot-dark.png" />
             <source media="(prefers-color-scheme: light)" srcset="public/screenshot-light.png" />
@@ -130,7 +130,7 @@ I can’t wait for you to experience the new and improved Relivator 1.3.0! By th
 
 Developing something as ambitious as Relivator takes a lot of time, especially since the project is primarily developed by just one person. The development could be significantly accelerated by hiring additional developers. Therefore, @blefnk (Nazar Kornienko), the author of this project, would be immensely grateful to anyone who can donate to the project in any amount. A big thank you to everyone in advance!
 
-**[Visit the "Donate to Relivator" page to learn more.](https://relivator.reliverse.org/donate)**
+**[Visit the "Donate to Relivator" page to learn more.](https://relivator.com/donate)**
 
 *Relivator is currently sponsored by the following awesome people/organizations:*
 
@@ -343,7 +343,7 @@ pip freeze > requirements.txt
 
 - **RQ15:** How can I grant admin rights to myself or another user? **RA15:** Run `pnpm db:studio`, navigate to the `${databasePrefix}_user` table, and set `role: admin` for the desired user. In the future, if you have admin rights, you will be able to change user privileges directly from the frontend admin page.
 
-- **RQ16:** What does the `DEMO_NOTES_ENABLED` environment variable mean? **RA16:** Do not use it. It is only used on the official [Relivator demo website](https://relivator.reliverse.org) to showcase certain features that are not needed in real-world applications.
+- **RQ16:** What does the `DEMO_NOTES_ENABLED` environment variable mean? **RA16:** Do not use it. It is only used on the official [Relivator demo website](https://relivator.com) to showcase certain features that are not needed in real-world applications.
 
 - **RQ17:** I'm using PlanetScale as my database provider. After taking a break from the project, I'm now encountering an "unable to connect to branch" error. How can I fix this? **RA17:** Go to the PlanetScale dashboard and click on the `wake up` button. Please contact us if the database is not asleep and the problem persists.
 
@@ -402,7 +402,7 @@ pip freeze > requirements.txt
 
 <!--
   - **RQ??:** [Relivator 1.3.0] How can I improve the experience with the CSpell (Code Spell Checker) extension?
-    **RA??:** Install the [CSpell VSCode extension](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker), install the CSpell npm package as a dev dependency if it's not installed (check your `package.json` file), install the necessary packages using your package manager (by using `npx nypm add -D @cspell/dict-companies @cspell/dict-de-de @cspell/dict-es-es @cspell/dict-fr-fr @cspell/dict-fullstack @cspell/dict-it-it @cspell/dict-markdown @cspell/dict-npm @cspell/dict-pl_pl @cspell/dict-tr-tr @cspell/dict-typescript @cspell/dict-fa-ir @cspell/dict-uk-ua cspell`), and add these lines to the `cspell.json` file:
+    **RA??:** Install the [CSpell VSCode extension](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker), install the CSpell npm package as a dev dependency if it's not installed (check your `package.json` file), install the necessary packages using your package manager (by using `npx nypm add -D @cspell/dict-companies @cspell/dict-de-de @cspell/dict-es-es @cspell/dict-fr-fr @cspell/dict-fullstack @cspell/dict-it-it @cspell/dict-markdown @cspell/dict-npm @cspell/dict-pl_pl @cspell/dict-tr-tr @cspell/dict-typescript @cspell/dict-uk-ua cspell`), and add these lines to the `cspell.json` file:
 
     ```json
     {
@@ -414,7 +414,6 @@ pip freeze > requirements.txt
         "@cspell/dict-npm/cspell-ext.json",
         "@cspell/dict-de-de/cspell-ext.json",
         "@cspell/dict-es-es/cspell-ext.json",
-        "@cspell/dict-fa-ir/cspell-ext.json",
         "@cspell/dict-fr-fr/cspell-ext.json",
         "@cspell/dict-it-it/cspell-ext.json",
         "@cspell/dict-pl_pl/cspell-ext.json",
@@ -502,7 +501,7 @@ pip freeze > requirements.txt
 
 ## Details
 
-🌐 <https://relivator.reliverse.org>
+🌐 <https://relivator.com>
 
 <img src="/public/screenshot-dark.png" width="600" alt="Screenshot showing the main page of the Relivator project">
 
@@ -670,8 +669,8 @@ This error occurs because we have {类别}, but it should be {category}. To veri
 
 **Currently supported locales (you can add the own manually):**
 
-- de, en, es, fa, fr, hi, it, pl, tr, uk, zh.
-- de-DE, en-US, es-ES, fa-IR, fr-FR, hi-IN, it-IT, pl-PL, tr-TR, uk-UA, zh-CN.
+- de, en, es, ms, fr, hi, it, pl, tr, uk, zh.
+- de-DE, en-US, es-ES, ms-MY, fr-FR, hi-IN, it-IT, pl-PL, tr-TR, uk-UA, zh-CN.
 
 ## Principles, Design Decisions, Code Insights, Recommendations
 
@@ -920,7 +919,7 @@ Alternatively, check the GitHub docs on [how to create a pull request](https://h
 
 This project is licensed under [the MIT License](https://choosealicense.com/licenses/mit) and is free to use and modify for your own projects. Please visit the [license](LICENSE) file for details. Since this project is under a free license, the author reserves the right to include referral links. The author may receive compensation from these links if users follow them and, for example, pay their first bill. Thank you all for your understanding!
 
-🌐 <https://relivator.reliverse.org>
+🌐 <https://relivator.com>
 
 ## Changelog
 
@@ -1119,7 +1118,7 @@ Check out [our other free Next.js 15 starter](https://github.com/blefnk/relivers
 git clone https://github.com/blefnk/relivator.git
 ```
 
-[2023-2024 © Nazar Kornienko / Nazar Kornienko / blefnk](https://github.com/blefnk) (<https://relivator.reliverse.org>)
+[2023-2024 © Nazar Kornienko / Nazar Kornienko / blefnk](https://github.com/blefnk) (<https://relivator.com>)
 
 <p>
   <span>
@@ -1135,7 +1134,7 @@ git clone https://github.com/blefnk/relivator.git
 
 [![Join the Relivator Discord](https://discordapp.com/api/guilds/1075533942096150598/widget.png?style=banner2)][badge-discord]
 
-[🌐 Demo](https://relivator.reliverse.org) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
+[🌐 Demo](https://relivator.com) | [👋 Introduction](#introduction) | [🏗️ Installation](#installation) | [🤔 FAQ](#faq) | [🔍 Details](#details) | [✅ Roadmap](#roadmap) | [📖 Changelog](#changelog)
 
 **Follow Us Everywhere:** [𝕏](https://x.com/blefnk) | [GitHub](https://github.com/blefnk) | [LinkedIn](https://linkedin.com/in/blefnk) | [Facebook](https://facebook.com/blefnk) | [Discord](https://discord.gg/Pb8uKbwpsJ) | [Fiverr](https://fiverr.com/blefnk)
 

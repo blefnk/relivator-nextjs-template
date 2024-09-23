@@ -1,10 +1,9 @@
-import { useCallback } from "react";
-
+import type { MainProps } from "./Main";
 import type { CalculateMetadataFunction } from "remotion";
 
-import { Composition } from "remotion";
+import { useCallback } from "react";
 
-import type { MainProps } from "./Main";
+import { Composition } from "remotion";
 
 import { constants } from "./constants";
 import { fetchStargazers } from "./fetch-data";
@@ -38,8 +37,14 @@ export const RemotionRoot = () => {
 
   return (
     <Composition
+      id="main"
       calculateMetadata={calculateMetadata}
       component={Main}
+      durationInFrames={15 * FPS}
+      fps={FPS}
+      height={540}
+      schema={mainSchema}
+      width={960}
       defaultProps={{
         duration: 30,
         repoName: "relivator-nextjs-template",
@@ -47,12 +52,6 @@ export const RemotionRoot = () => {
         starCount: 900,
         stargazers: null,
       }}
-      durationInFrames={15 * FPS}
-      fps={FPS}
-      height={540}
-      id="main"
-      schema={mainSchema}
-      width={960}
     />
   );
 };

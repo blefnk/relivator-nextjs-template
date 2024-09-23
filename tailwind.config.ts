@@ -4,28 +4,8 @@ import { fontFamily } from "tailwindcss/defaultTheme";
 import animate from "tailwindcss-animate";
 import { withUt } from "uploadthing/tw";
 
-// ========================================================
-//
-// Tailwind CSS v3 Configuration File
-// Note: Tailwind CSS v4 does not use this configuration.
-// v4 only relies on variables in `src/styles/globals.css`.
-// See: https://tailwindcss.com/blog/tailwindcss-v4-alpha
-//
-// ========================================================
-//
-// Alpha Switcher Commands:
-// `pnpm deps:use-tailwind-[3|4]` and `pnpm tw:[v4|v3]`
-//
-// - We are currently using [Tailwind CSS v3](https://tailwindcss.com).
-// - These commands allow you to switch between [stable v3](https://tailwindcss.com/docs/guides/nextjs) and alpha v4.
-// - After running these commands, please open `postcss.config.js` and toggle comments there as needed.
-// - NOTE: Relivator 1.2.6 is currently not fully compatible with Tailwind CSS v4.
-// - Some manual adjustments may be needed.
-//
-// ========================================================
-//
 const config = withUt({
-  content: ["./{addons,src}/**/*.{ts,tsx}"],
+  content: ["./{addons,src}/**/*.{js,ts,jsx,tsx}"],
   darkMode: ["class"],
   plugins: [animate],
   prefix: "",
@@ -35,17 +15,22 @@ const config = withUt({
       padding: "1rem",
       screens: {
         "2xl": "1850px",
+        lg: "1100px",
+        lgminus: "1130px",
+        md: "800px",
+        sm: "650px",
       },
     },
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        fadeIn: "fadeIn 1s ease-in-out forwards",
+      },
+      backgroundImage: {
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -63,15 +48,30 @@ const config = withUt({
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        chart: {
+          1: "hsl(var(--chart-1))",
+          2: "hsl(var(--chart-2))",
+          3: "hsl(var(--chart-3))",
+          4: "hsl(var(--chart-4))",
+          5: "hsl(var(--chart-5))",
+        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         foreground: "hsl(var(--foreground))",
+        green: {
+          light: "#44b22e",
+        },
         input: "hsl(var(--input))",
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
+        },
+        orange: {
+          dark: "#CF4E17",
+          light: "#DC7E52",
+          primary: "#EB7847",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -81,22 +81,28 @@ const config = withUt({
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        purple: {
+          dark: "#611AE5",
+          darker: "#5326a6",
+          darkest: "#280A6C",
+          hover: "#b99af4",
+          light: "#EEE5FF",
+          lightest: "#F7F4FE",
+          primary: "#8147EB",
+        },
         ring: "hsl(var(--ring))",
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
-        chart: {
-          1: "hsl(var(--chart-1))",
-          2: "hsl(var(--chart-2))",
-          3: "hsl(var(--chart-3))",
-          4: "hsl(var(--chart-4))",
-          5: "hsl(var(--chart-5))",
-        },
       },
       fontFamily: {
         mono: ["var(--font-mono)", ...fontFamily.mono],
         sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
+      fontSize: {
+        reponsive2Xl: "clamp(1.7rem, 1rem + 3vw, 4rem)",
+        reponsiveXl: "clamp(1rem, 1rem + 1vw, 1.2rem)",
       },
       keyframes: {
         "accordion-down": {
@@ -106,6 +112,10 @@ const config = withUt({
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
       },
     },

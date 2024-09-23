@@ -1,10 +1,11 @@
-import { getRandomQuote } from "@/scripts/reliverse/quotes";
-import { config } from "@reliverse/core";
-import { getCurrentDirname, getRootDirname } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import * as path from "pathe";
 import pc from "picocolors";
+
+import { getRandomQuote } from "@/scripts/reliverse/quotes";
+import { config } from "@reliverse/core";
+import { getCurrentDirname, getRootDirname } from "@reliverse/fs";
 
 // 🀄 @reliverse/addons-relimter [v0.0.0]: Reliverse Formatter Linter
 const currentDirname = getCurrentDirname(import.meta.url);

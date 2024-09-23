@@ -1,9 +1,13 @@
 import Link from "next/link";
 
-import { getCartAction } from "@/actions/reliverse//cart";
-import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import consola from "consola";
+import { ShoppingCart } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+
+import { CartLineItems } from "~/components/Checkout/CartLineItems";
+import { Badge } from "~/components/ui/badge";
+import { Button, buttonVariants } from "~/components/ui/button";
+import { Separator } from "~/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -11,14 +15,10 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { cn } from "@/utils/reliverse/cn";
-import { formatPrice } from "@/utils/reliverse/number";
-import consola from "consola";
-import { ShoppingCart } from "lucide-react";
-import { getTranslations } from "next-intl/server";
-
-import { CartLineItems } from "~/components/Checkout/CartLineItems";
+} from "~/components/ui/sheet";
+import { getCartAction } from "~/server/actions/deprecated/cart";
+import { cn } from "~/utils/cn";
+import { formatPrice } from "~/utils/number";
 
 export async function CartDialog() {
   const t = await getTranslations();
@@ -46,11 +46,11 @@ export async function CartDialog() {
     <Sheet>
       <SheetTrigger asChild>
         <Button
-          aria-label="Open cart"
           className={cn("relative border", {
-            "border-primary/40": itemCount > 0,
             "border-primary/20": itemCount <= 0,
+            "border-primary/40": itemCount > 0,
           })}
+          aria-label="Open cart"
           size="icon"
           variant="outline"
         >
@@ -65,7 +65,7 @@ export async function CartDialog() {
               {itemCount}
             </Badge>
           )}
-          <ShoppingCart aria-hidden="true" className="size-4" />
+          <ShoppingCart className="size-4" aria-hidden="true" />
         </Button>
       </SheetTrigger>
       <SheetContent
@@ -104,11 +104,11 @@ export async function CartDialog() {
               <SheetFooter>
                 <SheetTrigger asChild>
                   <Link
-                    aria-label={t("checkout.viewTheCart")}
                     className={buttonVariants({
                       className: "w-full",
                       size: "sm",
                     })}
+                    aria-label={t("checkout.viewTheCart")}
                     href="/cart"
                   >
                     {t("checkout.viewTheCart")}
@@ -124,15 +124,14 @@ export async function CartDialog() {
             `}
           >
             <ShoppingCart
-              aria-hidden="true"
               className="mb-4 size-16 text-muted-foreground"
+              aria-hidden="true"
             />
             <div className="text-xl font-medium text-muted-foreground">
               {t("checkout.cartIsEmpty")}
             </div>
             <SheetTrigger asChild>
               <Link
-                aria-label={t("checkout.continueShopping")}
                 className={cn(
                   buttonVariants({
                     className: "text-sm text-muted-foreground",
@@ -140,6 +139,7 @@ export async function CartDialog() {
                     variant: "link",
                   }),
                 )}
+                aria-label={t("checkout.continueShopping")}
                 href="/products"
               >
                 {t("checkout.continueShopping")}

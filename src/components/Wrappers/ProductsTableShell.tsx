@@ -1,14 +1,19 @@
 "use client";
 
+import type { ColumnDef } from "@tanstack/react-table";
+import type { Product } from "~/db/schema";
+
 import { useMemo, useState, useTransition } from "react";
 
 import Link from "next/link";
 
-import type { ColumnDef } from "@tanstack/react-table";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { DataTable } from "~/components/Modules/DataTable/DataTable";
+import { DataTableColumnHeader } from "~/components/Modules/DataTable/DataTableColumnHeader";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
+import { Checkbox } from "~/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,16 +21,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { formatDate } from "@/utils/reliverse/date";
-import { formatPrice } from "@/utils/reliverse/number";
-import { DotsHorizontalIcon } from "@radix-ui/react-icons";
-
-import type { Product } from "~/db/schema/provider";
-
-import { DataTable } from "~/components/Modules/DataTable/DataTable";
-import { DataTableColumnHeader } from "~/components/Modules/DataTable/DataTableColumnHeader";
-import { products } from "~/db/schema/provider";
+} from "~/components/ui/dropdown";
+import { products } from "~/db/schema";
+import { formatDate } from "~/utils/date";
+import { formatPrice } from "~/utils/number";
 
 type ProductsTableShellProps = {
   data: Product[];
@@ -49,9 +48,9 @@ export function ProductsTableShell({
         id: "select",
         cell: ({ row }) => (
           <Checkbox
+            className="translate-y-[2px]"
             aria-label="Select row"
             checked={row.getIsSelected()}
-            className="translate-y-[2px]"
             onCheckedChange={(value) => {
               row.toggleSelected(!!value);
               // @ts-expect-error TODO: fix id type
@@ -71,9 +70,9 @@ export function ProductsTableShell({
         enableSorting: false,
         header: ({ table }) => (
           <Checkbox
+            className="translate-y-[2px]"
             aria-label="Select all"
             checked={table.getIsAllPageRowsSelected()}
-            className="translate-y-[2px]"
             onCheckedChange={(value) => {
               table.toggleAllPageRowsSelected(!!value);
               // @ts-expect-error TODO: fix id type
@@ -95,17 +94,16 @@ export function ProductsTableShell({
       {
         accessorKey: "category",
         cell: ({ cell }) => {
-          const categories = Object.values(products.category.enumValues);
-          const category = cell.getValue() as Product["category"];
+          // const categories = Object.values(products.category.enumValues);
+          // const category = cell.getValue() as Product["category"];
 
-          // @ts-expect-error TODO: fix id type
-          if (!categories.includes(category)) {
-            return null;
-          }
+          // if (!categories.includes(category)) {
+          // return null;
+          // }
 
           return (
             <Badge className="capitalize" variant="outline">
-              {category}
+              {/* {category} */}🟠
             </Badge>
           );
         },
@@ -146,14 +144,14 @@ export function ProductsTableShell({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
-                aria-label="Open menu"
                 className="flex size-8 p-0 data-[state=open]:bg-muted"
+                aria-label="Open menu"
                 variant="ghost"
               >
-                <DotsHorizontalIcon aria-hidden="true" className="size-4" />
+                <DotsHorizontalIcon className="size-4" aria-hidden="true" />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-[160px]">
+            <DropdownMenuContent className="w-[160px]" align="end">
               <DropdownMenuItem asChild>
                 <Link
                   href={`/dashboard/stores/${storeId}/products/${row.original.id}`}
@@ -234,12 +232,16 @@ export function ProductsTableShell({
     <DataTable
       columns={columns}
       data={data}
+      newRowLink={`/dashboard/stores/${storeId}/products/new`}
+      pageCount={pageCount}
       deleteRowsAction={() => {
         deleteSelectedRows();
       }}
       filterableColumns={[
         {
+          // @ts-expect-error TODO: Fix ts
           id: "category",
+          // @ts-expect-error TODO: Fix ts
           options: products.category.enumValues.map((category) => ({
             label: `${category.charAt(0).toUpperCase()}${category.slice(1)}`,
             value: category,
@@ -247,8 +249,6 @@ export function ProductsTableShell({
           title: "Category",
         },
       ]}
-      newRowLink={`/dashboard/stores/${storeId}/products/new`}
-      pageCount={pageCount}
       searchableColumns={[
         {
           id: "name",

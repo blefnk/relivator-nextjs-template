@@ -1,15 +1,15 @@
 "use client";
 
+import type { CartLineItem } from "~/types/store";
+
 import { useMemo, useTransition } from "react";
 
-import type { CartLineItem } from "@/types/reliverse/store";
-
-import { Button } from "@/components/ui/button";
 import consola from "consola";
 
 import { SpinnerSVG } from "~/components/Common/Icons/SVG";
-import { createCheckoutSessionAction } from "~/core/stripe/actions";
+import { Button } from "~/components/ui/button";
 import { getStripe } from "~/core/stripe/getting";
+import { createCheckoutSession } from "~/server/actions/deprecated/stripe/createCheckoutSession";
 
 function toastError(getErrorMessage: string) {
   consola.error(getErrorMessage);
@@ -35,9 +35,10 @@ export function CheckoutButton({
 
   return (
     <Button
+      id={`store-${storeId}-checkout-button`}
       aria-label="Checkout with the cart items"
       disabled={isPending}
-      id={`store-${storeId}-checkout-button`}
+      size="sm"
       onClick={() => {
         startTransition(async () => {
           try {
@@ -49,7 +50,7 @@ export function CheckoutButton({
               return;
             }
 
-            const sessionResponse = await createCheckoutSessionAction({
+            const sessionResponse = await createCheckoutSession({
               items: cartLineItems,
               // @ts-expect-error TODO: fix id type
               storeId,
@@ -85,10 +86,9 @@ export function CheckoutButton({
           }
         });
       }}
-      size="sm"
     >
       {isPending && (
-        <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
+        <SpinnerSVG className="mr-2 size-4 animate-spin" aria-hidden="true" />
       )}
       Checkout
     </Button>

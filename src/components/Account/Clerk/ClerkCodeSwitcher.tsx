@@ -35,6 +35,7 @@ export function CodeSwitcher() {
       <div className="flex w-full gap-1.5 rounded-md bg-[#F7F7F8] p-[0.1875rem]">
         {typesToShow.map((type) => (
           <button
+            key={type}
             className={clsx(
               `
                 h-7 flex-1 rounded text-[0.8125rem] font-medium capitalize
@@ -45,11 +46,10 @@ export function CodeSwitcher() {
                 ? "bg-white text-black shadow-sm"
                 : "text-[#5E5F6E]",
             )}
-            key={type}
+            type="button"
             onClick={() => {
               setSelectedType(type);
             }}
-            type="button"
           >
             {type}
           </button>

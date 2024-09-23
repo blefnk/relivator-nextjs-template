@@ -1,15 +1,24 @@
 "use client";
 
+import type { Product, Store } from "~/db/schema";
+import type { Option } from "~/types/store";
+
 /* eslint-disable max-lines-per-function */
 import type { HTMLAttributes } from "react";
 import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import type { Option } from "@/types/reliverse/store";
+import { getCookie } from "cookies-next";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { titleCase } from "string-ts";
 
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
+import { MultiSelect } from "~/components/Common/multi-select";
+import { ProductCard } from "~/components/Modules/Cards/ProductCard";
+import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
+import { Button } from "~/components/ui/button";
+import { Checkbox } from "~/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,11 +26,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+} from "~/components/ui/dropdown";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -29,26 +38,17 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Slider } from "@/components/ui/slider";
-import { useDebounce } from "@/hooks-react/use-debounce";
-import { cn } from "@/utils/reliverse/cn";
-import { truncate } from "@/utils/reliverse/string";
-import { getCookie } from "cookies-next";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { titleCase } from "string-ts";
-
-/* eslint-disable complexity */
-import type { Product, Store } from "~/db/schema/provider";
-
-import { MultiSelect } from "~/components/Common/multi-select";
-import { ProductCard } from "~/components/Modules/Cards/ProductCard";
-import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
+} from "~/components/ui/sheet";
+import { Slider } from "~/components/ui/slider";
 import { getSubcategories, sortOptions } from "~/constants/products";
+import { useDebounce } from "~/hooks/use-debounce";
+import { cn } from "~/utils/cn";
+import { truncate } from "~/utils/string";
 
 type ProductsProps = {
+  // @ts-expect-error TODO: Fix ts
   categories?: Product["category"][];
+  // @ts-expect-error TODO: Fix ts
   category?: Product["category"];
   pageCount: number;
   products: Product[];
@@ -157,7 +157,6 @@ export function Products({
     null | Option[]
   >(null);
 
-  // @ts-expect-error TODO: Fix
   const subcategories = getSubcategories(category);
 
   useEffect(() => {
@@ -219,13 +218,13 @@ export function Products({
                 <Slider
                   defaultValue={[0, 500]}
                   max={500}
-                  onValueChange={(value: typeof priceRange) => {
-                    setPriceRange(value);
-                  }}
                   step={1}
                   thickness="thin"
                   value={priceRange}
                   variant="range"
+                  onValueChange={(value: typeof priceRange) => {
+                    setPriceRange(value);
+                  }}
                 />
                 <div className="flex items-center space-x-4">
                   <Input
@@ -233,13 +232,13 @@ export function Products({
                     inputMode="numeric"
                     max={priceRange[1]}
                     min={0}
+                    type="number"
+                    value={priceRange[0]}
                     onChange={(event_) => {
                       const value = Number(event_.target.value);
 
                       setPriceRange([value, priceRange[1]]);
                     }}
-                    type="number"
-                    value={priceRange[0]}
                   />
                   <span className="text-muted-foreground">-</span>
                   <Input
@@ -247,13 +246,13 @@ export function Products({
                     inputMode="numeric"
                     max={500}
                     min={priceRange[0]}
+                    type="number"
+                    value={priceRange[1]}
                     onChange={(event_) => {
                       const value = Number(event_.target.value);
 
                       setPriceRange([priceRange[0], value]);
                     }}
-                    type="number"
-                    value={priceRange[1]}
                   />
                 </div>
               </div>
@@ -267,13 +266,13 @@ export function Products({
                     Categories
                   </h3>
                   <MultiSelect
+                    placeholder="Select categories"
+                    selected={selectedCategories}
+                    setSelected={setSelectedCategories}
                     options={categories.map((c) => ({
                       label: titleCase(c || ""),
                       value: c || "",
                     }))}
-                    placeholder="Select categories"
-                    selected={selectedCategories}
-                    setSelected={setSelectedCategories}
                   />
                 </div>
               ) : null}
@@ -307,6 +306,8 @@ export function Products({
                     <div className="flex items-center space-x-2">
                       <Button
                         disabled={Number(store_page) === 1 || isPending}
+                        size="icon"
+                        variant="ghost"
                         onClick={() => {
                           startTransition(() => {
                             router.push(
@@ -316,15 +317,15 @@ export function Products({
                             );
                           });
                         }}
-                        size="icon"
-                        variant="ghost"
                       >
-                        <ChevronLeft aria-hidden="true" className="size-4" />
+                        <ChevronLeft className="size-4" aria-hidden="true" />
                         <span className="sr-only">
                           {t("products.previousStorePage")}
                         </span>
                       </Button>
                       <Button
+                        size="icon"
+                        variant="ghost"
                         disabled={
                           Number(store_page) === storePageCount || isPending
                         }
@@ -337,10 +338,8 @@ export function Products({
                             );
                           });
                         }}
-                        size="icon"
-                        variant="ghost"
                       >
-                        <ChevronRight aria-hidden="true" className="size-4" />
+                        <ChevronRight className="size-4" aria-hidden="true" />
                         <span className="sr-only">
                           {t("products.nextStorePage")}
                         </span>
@@ -351,15 +350,15 @@ export function Products({
                     <div className="space-y-4">
                       {stores.map((store) => (
                         <div
-                          className="flex items-center space-x-2"
                           key={store.id}
+                          className="flex items-center space-x-2"
                         >
                           <Checkbox
+                            id={`store-${store.id}`}
                             checked={
                               // @ts-expect-error TODO: Fix
                               (storeIds && storeIds.includes(store.id)) || false
                             }
-                            id={`store-${store.id}`}
                             onCheckedChange={(value) => {
                               if (value) {
                                 // @ts-expect-error TODO: Fix
@@ -395,9 +394,10 @@ export function Products({
               <Separator className="my-4" />
               <SheetFooter>
                 <Button
-                  aria-label="Clear filters"
                   className="w-full"
+                  aria-label="Clear filters"
                   disabled={isPending}
+                  size="sm"
                   onClick={() => {
                     startTransition(() => {
                       router.push(
@@ -415,7 +415,6 @@ export function Products({
                       setStoreIds(null);
                     });
                   }}
-                  size="sm"
                 >
                   Clear Filters
                 </Button>
@@ -427,16 +426,16 @@ export function Products({
           <DropdownMenuTrigger asChild>
             <Button aria-label="Sort products" disabled={isPending} size="sm">
               Sort
-              <ChevronDown aria-hidden="true" className="ml-2 size-4" />
+              <ChevronDown className="ml-2 size-4" aria-hidden="true" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-48">
+          <DropdownMenuContent className="w-48" align="start">
             <DropdownMenuLabel>{t("products.sortBy")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {sortOptions.map((option) => (
               <DropdownMenuItem
-                className={cn(option.value === sort && "font-bold")}
                 key={option.label}
+                className={cn(option.value === sort && "font-bold")}
                 onClick={() => {
                   startTransition(() => {
                     router.push(
@@ -481,8 +480,9 @@ export function Products({
           <>
             {products.map((product) => (
               <ProductCard
-                key={product.id}
-                product={product} // @ts-expect-error TODO: Fix
+                key={product.id} // @ts-expect-error TODO: Fix
+                product={product}
+                // @ts-expect-error TODO: Fix ts
                 storeId={Number(product.storeId)}
                 tAddToCart={tAddToCart}
                 variant="default"
@@ -493,8 +493,9 @@ export function Products({
           <>
             {products.map((product) => (
               <ProductCard
-                key={product.id}
-                product={product} // @ts-expect-error TODO: Fix
+                key={product.id} // @ts-expect-error TODO: Fix
+                product={product}
+                // @ts-expect-error TODO: Fix ts
                 storeId={Number(product.storeId)}
                 tAddToCart={tAddToCart}
                 variant="guest"

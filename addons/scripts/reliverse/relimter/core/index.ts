@@ -1,7 +1,8 @@
-import { defineAddon } from "@/scripts/utils";
 import { defineCommand, runMain } from "citty";
 import consola from "consola";
 import pc from "picocolors";
+
+import { defineAddon } from "@/scripts/utils";
 
 const main = defineCommand({
   meta: {

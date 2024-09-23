@@ -1,6 +1,5 @@
-import type { Option } from "@/types/reliverse/store";
-
-import type { Product } from "~/db/schema/provider";
+import type { Product } from "~/db/schema";
+import type { Option } from "~/types/store";
 
 export const sortOptions = [
   {
@@ -191,6 +190,7 @@ export const productCategories = [
     title: string;
   }[];
   image: string;
+  // @ts-expect-error TODO: Fix ts
   title: Product["category"];
 }[];
 

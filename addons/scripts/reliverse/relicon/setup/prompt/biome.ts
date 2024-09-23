@@ -1,10 +1,11 @@
 import type { BiomeConfig } from "@/scripts/reliverse/relicon/setup/types";
 
 import { select } from "@clack/prompts";
-import { fileExists, removeFile } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import pc from "picocolors";
+
+import { fileExists, removeFile } from "@reliverse/fs";
 
 export async function configureBiome({
   biomeConfig,

@@ -1,15 +1,18 @@
 "use client";
 
+import type { z } from "zod";
+
 import type { ComponentPropsWithoutRef } from "react";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import { useRouter } from "next/navigation";
 
-import type { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
 
-import { verifyOrderSchema } from "@/actions/reliverse/validations/order";
-import { Button } from "@/components/ui/button";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,13 +20,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/utils/reliverse/cn";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-
-import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
+import { verifyOrderSchema } from "~/server/validations/deprecated/order";
+import { cn } from "~/utils/cn";
 
 type VerifyOderFormProps = {} & ComponentPropsWithoutRef<"form">;
 
@@ -66,8 +66,8 @@ export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {
         {...props}
       >
         <FormField
-          control={form.control}
           name="deliveryPostalCode"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("VerifyOrderForm.deliveryPostalCode")}</FormLabel>
@@ -84,8 +84,8 @@ export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {
         <Button disabled={isPending}>
           {isPending && (
             <SpinnerSVG
-              aria-hidden="true"
               className="mr-2 size-4 animate-spin"
+              aria-hidden="true"
             />
           )}
           Verify order

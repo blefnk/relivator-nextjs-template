@@ -1,21 +1,22 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { buttonVariants } from "~/components/ui/button";
+import { cn } from "~/utils/cn";
 
 export default function HomeBottomSection() {
   const t = useTranslations();
 
   return (
     <section
-      aria-labelledby="create-a-store-banner-heading"
+      id="create-a-store-banner"
       className={`
         mb-14 mt-10 grid place-items-center gap-6 bg-card px-6 text-center
         text-card-foreground
       `}
-      id="create-a-store-banner"
+      aria-labelledby="create-a-store-banner-heading"
     >
       <div
         className={`

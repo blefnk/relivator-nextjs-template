@@ -3,12 +3,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getCartAction } from "@/actions/reliverse//cart";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { cn } from "@/utils/reliverse/cn";
-import { formatPrice } from "@/utils/reliverse/number";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import { eq } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
@@ -17,14 +11,18 @@ import { siteConfig } from "~/app";
 import { CartLineItems } from "~/components/Checkout/CartLineItems";
 import { CheckoutShell } from "~/components/Checkout/CheckoutShell";
 import { CheckoutForm } from "~/components/Forms/CheckoutForm";
+import { Button, buttonVariants } from "~/components/ui/button";
+import { Drawer, DrawerContent, DrawerTrigger } from "~/components/ui/drawer";
+import { ScrollArea } from "~/components/ui/scroll-area";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import {
-  createPaymentIntentAction,
-  getStripeAccountAction,
-} from "~/core/stripe/actions";
 import { db } from "~/db";
-import { stores } from "~/db/schema/provider";
+import { stores } from "~/db/schema";
 import { env } from "~/env";
+import { getCartAction } from "~/server/actions/deprecated/cart";
+import { createPaymentIntent } from "~/server/actions/deprecated/stripe/createPaymentIntent";
+import { getStripeAccountAction } from "~/server/actions/deprecated/stripe/getStripeAccount";
+import { cn } from "~/utils/cn";
+import { formatPrice } from "~/utils/number";
 
 export const metadata: Metadata = {
   description: "Checkout with store items",
@@ -67,9 +65,9 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
   // @ts-expect-error TODO: fix id type
   const cartLineItems = await getCartAction(storeId);
 
-  const paymentIntent = createPaymentIntentAction({
+  const paymentIntent = createPaymentIntent({
     items: cartLineItems,
-    // @ts-expect-error TODO: fix id type
+    // @ts-expect-error TODO: Fix ts
     storeId: store.id,
   });
 
@@ -113,8 +111,8 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
   if (!(isConnected && store.stripeAccountId)) {
     return (
       <Shell
-        aria-labelledby="checkout-not-connected-heading"
         id="checkout-not-connected"
+        aria-labelledby="checkout-not-connected-heading"
         variant="centered"
       >
         <div className="flex flex-col items-center justify-center gap-2 pt-20">
@@ -125,12 +123,12 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
             {t("checkout.notConnectedDescription")}
           </div>
           <Link
-            aria-label={t("checkout.backToCart")}
             className={cn(
               buttonVariants({
                 size: "sm",
               }),
             )}
+            aria-label={t("checkout.backToCart")}
             href="/cart"
           >
             {t("checkout.backToCart")}
@@ -170,21 +168,21 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
             `}
           >
             <Link
-              aria-label={t("checkout.backToCart")}
               className={`
                 group flex w-28 items-center space-x-2
 
                 lg:flex-auto
               `}
+              aria-label={t("checkout.backToCart")}
               href="/cart"
             >
               <ArrowLeftIcon
-                aria-hidden="true"
                 className={`
                   size-5 text-muted-foreground transition-colors
 
                   group-hover:text-primary
                 `}
+                aria-hidden="true"
               />
               <div
                 className={`

@@ -13,7 +13,7 @@ type CheckoutLayoutProps = {
 export default async function CheckoutLayout({
   children,
 }: CheckoutLayoutProps) {
-  const user = authProvider === "clerk" ? await clerk() : await authjs();
+  const user = await authjs();
 
   if (!user) {
     redirect("/auth");

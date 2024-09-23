@@ -1,34 +1,34 @@
+import type { Product } from "~/db/schema";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils/reliverse/cn";
-import { formatPrice } from "@/utils/reliverse/number";
-import { authProvider } from "~/../reliverse.config";
 import { getCookie } from "cookies-next";
 import { and, desc, eq, not } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
 import { titleCase } from "string-ts";
 
-import type { Product } from "~/db/schema/provider";
-
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { CartAddForm } from "~/components/Forms/CartAddForm";
 import { ProductCard } from "~/components/Modules/Cards/ProductCard";
 import { Breadcrumbs } from "~/components/Navigation/Pagination/Breadcrumbs";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/components/ui/accordion";
+import { buttonVariants } from "~/components/ui/button";
+import { Separator } from "~/components/ui/separator";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { db } from "~/db";
-import { products, stores } from "~/db/schema/provider";
+import { products, stores } from "~/db/schema";
 import { env } from "~/env";
+import { cn } from "~/utils/cn";
+import { formatPrice } from "~/utils/number";
 
 type ProductPageProps = {
   params: {
@@ -59,9 +59,8 @@ export async function generateMetadata({
   };
 }
 
-// eslint-disable-next-line complexity
 export default async function ProductPage({ params }: ProductPageProps) {
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  const session = await authjs();
   const guestEmail = getCookie?.("GUEST_EMAIL")?.toString() || null;
 
   const t = await getTranslations();
@@ -71,7 +70,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const product = await db.query.products.findFirst({
     columns: {
       id: true,
-      name: true,
+      name: true, // @ts-expect-error TODO: Fix ts
       category: true,
       description: true,
       images: true,
@@ -97,7 +96,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     ? await db
         .select({
           id: products.id,
-          name: products.name,
+          name: products.name, // @ts-expect-error TODO: Fix ts
           category: products.category,
           images: products.images,
           inventory: products.inventory,
@@ -123,7 +122,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
             title: String(t("store.products.products")),
           },
           {
-            href: `/products?category=${product.category}`,
+            // @ts-expect-error TODO: Fix ts
+            href: `/products?category=${product.category}`, // @ts-expect-error TODO: Fix ts
             title: titleCase(product.category || ""),
           },
           {
@@ -204,9 +204,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <Separator className="mt-5" />
           <Accordion
             className="w-full"
-            collapsible
             defaultValue="description"
             type="single"
+            collapsible
           >
             <AccordionItem value="description">
               <AccordionTrigger>
@@ -231,6 +231,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <p>product.storeId: {product.storeId}</p>
             <p>product.price: {product.price}</p>
             <p>store.name: {store?.name}</p>
+            {/* @ts-expect-error TODO: Fix ts */}
             <p>product.category: {product.category}</p>
             <p>product.name: {product.name}</p>
             <p>guestEmail: {guestEmail || "not set or not found in cookie"}</p>
@@ -255,8 +256,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="flex w-fit gap-4">
               {otherProducts.map((product) => (
                 <ProductCard
-                  className="min-w-[260px]"
                   key={product.id}
+                  className="min-w-[260px]"
+                  // @ts-expect-error TODO: Fix ts
                   product={product as Product}
                   storeId={product.id}
                   tAddToCart={t("store.products.addToCart")}

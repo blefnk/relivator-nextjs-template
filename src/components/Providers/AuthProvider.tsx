@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
-import { getClerkLocale } from "@/server/reliverse/clerk";
 import { ClerkProvider } from "@clerk/nextjs";
-import { authProvider } from "~/../reliverse.config";
 
+import { authProvider } from "~/auth/provider";
 import { env } from "~/env";
+import { getClerkLocale } from "~/server/helpers/clerk";
 
 export function AuthProvider({
   children,
@@ -44,6 +44,7 @@ export function AuthProvider({
       ) : (
         <ClerkProvider
           afterSignOutUrl="/"
+          localization={clerkLocale}
           appearance={{
             elements: {
               card: "bg-[#fafafa]",
@@ -60,7 +61,6 @@ export function AuthProvider({
             },
             variables: { colorPrimary: "#000000" },
           }}
-          localization={clerkLocale}
         >
           {children}
         </ClerkProvider>

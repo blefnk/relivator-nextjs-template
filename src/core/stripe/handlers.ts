@@ -1,14 +1,16 @@
-import { redirect } from "next/navigation";
-
 import type Stripe from "stripe";
+
+import { redirect } from "next/navigation";
 
 import axios from "axios";
 import { eq } from "drizzle-orm";
 
 import { siteConfig } from "~/app";
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { db } from "~/db";
-import { users } from "~/db/schema/provider";
+import { users } from "~/db/schema";
 import { env } from "~/env";
 
 export const getOrCreateStripeCustomerIdForUser = async ({

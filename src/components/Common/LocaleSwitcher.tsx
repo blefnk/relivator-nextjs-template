@@ -1,13 +1,16 @@
 "use client";
 
+import type { Locale } from "~/../reliverse.i18n";
+
 import type { FC, MouseEvent } from "react";
 import { Fragment, useState } from "react";
 
 import Link from "next/link";
 
-import type { Locale } from "~/../reliverse.i18n";
+import { labels, localeFlags, locales } from "~/../reliverse.i18n";
+import { useLocale, useTranslations } from "next-intl";
 
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,10 +18,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { cn } from "@/utils/reliverse/cn";
-import { labels, localeFlags, locales } from "~/../reliverse.i18n";
-import { useLocale, useTranslations } from "next-intl";
+} from "~/components/ui/dropdown";
+import { cn } from "~/utils/cn";
 
 const TRANSLATED = "⚙️ Translated";
 const NATIVE = "⚙️ Native";
@@ -49,9 +50,9 @@ export function LocaleSwitcher() {
         )}
       >
         <LocaleNames
-          hideNamesOnSpecificBreakpoints
           currentLocale={locale}
           translateLanguages={translateLanguages}
+          hideNamesOnSpecificBreakpoints
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
@@ -60,9 +61,9 @@ export function LocaleSwitcher() {
         <DropdownMenuItem className="flex items-center justify-start font-twemoji">
           <Button
             className="w-full text-left"
-            onClick={toggleTranslation}
             type="button"
             variant="outline"
+            onClick={toggleTranslation}
           >
             {translateLanguages ? TRANSLATED : NATIVE}
           </Button>
@@ -95,10 +96,10 @@ const determinateLocaleLabels = (translateLanguages: boolean) => {
       "de-DE": "Deutsch",
       "en-US": "English",
       "es-ES": "Español",
-      "fa-IR": "فارسی",
       "fr-FR": "Français",
       "hi-IN": "हिन्दी",
       "it-IT": "Italiano",
+      "ms-MY": "Melayu",
       "pl-PL": "Polski",
       "tr-TR": "Türkçe",
       "uk-UA": "Українська",
@@ -117,8 +118,8 @@ type LocaleNamesProps = {
 
 const LocaleNames: FC<LocaleNamesProps> = ({
   currentLocale,
-  translateLanguages,
   hideNamesOnSpecificBreakpoints,
+  translateLanguages,
 }) => {
   const t = useTranslations();
   const localeLabels = determinateLocaleLabels(translateLanguages);

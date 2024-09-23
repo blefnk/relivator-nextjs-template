@@ -1,13 +1,13 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "~/components/ui/carousel";
 
 export function CarouselCards() {
   return (
@@ -22,12 +22,12 @@ export function CarouselCards() {
           length: 5,
         }).map((_, index) => (
           <CarouselItem
+            key={index}
             className={`
               lg:basis-1/3
 
               md:basis-1/2
             `}
-            key={index}
           >
             <div className="p-1">
               <Card>
@@ -49,4 +49,4 @@ export function CarouselCards() {
   );
 }
 
-export { Carousel } from "@/components/ui/carousel";
+export { Carousel } from "~/components/ui/carousel";

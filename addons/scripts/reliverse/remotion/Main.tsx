@@ -1,7 +1,7 @@
+import type { Stargazer } from "./cache";
+
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { z } from "zod";
-
-import type { Stargazer } from "./cache";
 
 import { constants } from "./constants";
 import { Content } from "./Content";

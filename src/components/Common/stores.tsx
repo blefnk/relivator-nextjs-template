@@ -1,22 +1,12 @@
 "use client";
 
+import type { CuratedStore } from "~/types/store";
+
 import type { HTMLAttributes } from "react";
 import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import type { CuratedStore } from "@/types/reliverse/store";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { cn } from "@/utils/reliverse/cn";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -24,7 +14,17 @@ import { useTranslations } from "next-intl";
 import { FacetedFilter } from "~/components/Common/faceted-filter";
 import { StoreCard } from "~/components/Modules/Cards/StoreCardDashboard";
 import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
+import { Button } from "~/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown";
 import { storeSortOptions, storeStatusOptions } from "~/constants/stores";
+import { cn } from "~/utils/cn";
 
 type StoresProps = {
   pageCount: number;
@@ -98,16 +98,16 @@ export function Stores({ pageCount, stores, ...props }: StoresProps) {
           <DropdownMenuTrigger asChild>
             <Button aria-label="Sort stores" disabled={isPending} size="sm">
               Sort
-              <ChevronDown aria-hidden="true" className="ml-2 size-4" />
+              <ChevronDown className="ml-2 size-4" aria-hidden="true" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-48">
+          <DropdownMenuContent className="w-48" align="start">
             <DropdownMenuLabel>{t("stores.sortBy")}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             {storeSortOptions.map((option) => (
               <DropdownMenuItem
-                className={cn(option.value === sort && "font-bold")}
                 key={option.label}
+                className={cn(option.value === sort && "font-bold")}
                 onClick={() => {
                   startTransition(() => {
                     router.push(
@@ -135,19 +135,19 @@ export function Stores({ pageCount, stores, ...props }: StoresProps) {
           />
           {filterValues.length > 0 && (
             <Button
-              aria-label="Reset filters"
               className={`
                 h-8 px-2
 
                 lg:px-3
               `}
+              aria-label="Reset filters"
+              variant="ghost"
               onClick={() => {
                 setFilterValues([]);
               }}
-              variant="ghost"
             >
               Reset
-              <Cross2Icon aria-hidden="true" className="ml-2 size-4" />
+              <Cross2Icon className="ml-2 size-4" aria-hidden="true" />
             </Button>
           )}
         </div>
@@ -175,8 +175,8 @@ export function Stores({ pageCount, stores, ...props }: StoresProps) {
       >
         {stores.map((store) => (
           <StoreCard
-            href={`/products?store_ids=${store.id}`}
             key={store.id}
+            href={`/products?store_ids=${store.id}`}
             store={store}
           />
         ))}

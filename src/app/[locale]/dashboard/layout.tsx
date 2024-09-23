@@ -2,12 +2,12 @@ import type { ReactNode } from "react";
 
 import { redirect } from "next/navigation";
 
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { config } from "@reliverse/core";
 import consola from "consola";
 
+import { config } from "@reliverse/core";
 import { authProvider } from "~/auth/provider";
 import { SidebarNav } from "~/components/Navigation/SidebarNav";
+import { ScrollArea } from "~/components/ui/scroll-area";
 import { GeneralShell } from "~/components/Wrappers/GeneralShell";
 import { env } from "~/env";
 
@@ -44,7 +44,7 @@ function DashboardLayoutContent({
   children: ReactNode;
 }) {
   // await revalidateUser();
-  // const session = await authjs();
+  // const session = await auth();
   // consola.info("session:", session?.user.id);
   return (
     <GeneralShell>

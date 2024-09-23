@@ -1,6 +1,3 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
 import { ImageIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -9,6 +6,9 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
+import { Skeleton } from "~/components/ui/skeleton";
 
 export default function OrderSuccessLoading() {
   const t = useTranslations();
@@ -36,7 +36,7 @@ export default function OrderSuccessLoading() {
               {Array.from({
                 length: 4,
               }).map((_, index) => (
-                <div className="space-y-3" key={index}>
+                <div key={index} className="space-y-3">
                   <div
                     className={`
                       flex flex-col items-start justify-between gap-4
@@ -52,8 +52,8 @@ export default function OrderSuccessLoading() {
                           `}
                         >
                           <ImageIcon
-                            aria-hidden="true"
                             className="size-4 text-muted-foreground"
+                            aria-hidden="true"
                           />
                         </div>
                       </div>
@@ -80,11 +80,11 @@ export default function OrderSuccessLoading() {
           </div>
         </section>
         <section
-          aria-labelledby="order-success-actions-heading"
+          id="order-success-actions"
           className={`
             container flex max-w-7xl items-center justify-center space-x-2.5
           `}
-          id="order-success-actions"
+          aria-labelledby="order-success-actions-heading"
         >
           <Skeleton className="h-8 w-24" />
           <Skeleton className="h-8 w-16" />

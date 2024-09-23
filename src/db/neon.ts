@@ -1,7 +1,7 @@
 import { Pool } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
 
-import * as schema from "~/db/schema/pgsql";
+import * as schema from "~/db/schema";
 import { env } from "~/env";
 
 // db provider: neon (serverless)

@@ -1,1 +1,1 @@
-export * from "../../../types/reliverse/string";
+export * from "../../../../src/types/string";

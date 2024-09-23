@@ -1,19 +1,17 @@
 "use client";
 
-import { useMemo } from "react";
-
-import type { CheckoutItem } from "@/types/reliverse/store";
 import type { ColumnDef } from "@tanstack/react-table";
+import type { Order } from "~/db/schema";
+import type { CheckoutItem } from "~/types/store";
 
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/utils/reliverse/cn";
-import { formatDate } from "@/utils/reliverse/date";
-import { formatPrice } from "@/utils/reliverse/number";
-
-import type { Order } from "~/db/schema/provider";
+import { useMemo } from "react";
 
 import { DataTable } from "~/components/Modules/DataTable/DataTable";
 import { DataTableColumnHeader } from "~/components/Modules/DataTable/DataTableColumnHeader";
+import { Badge } from "~/components/ui/badge";
+import { cn } from "~/utils/cn";
+import { formatDate } from "~/utils/date";
+import { formatPrice } from "~/utils/number";
 
 type OrdersTableShellProps = {
   data: Order[];

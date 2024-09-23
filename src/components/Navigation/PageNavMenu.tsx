@@ -1,12 +1,13 @@
 //
+import type { VariantProps } from "class-variance-authority";
+
 import type { ComponentProps, ElementType, HTMLAttributes } from "react";
 import { Balancer } from "react-wrap-balancer";
 
-import type { VariantProps } from "class-variance-authority";
-
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils/reliverse/cn";
 import { cva } from "class-variance-authority";
+
+import { Separator } from "~/components/ui/separator";
+import { cn } from "~/utils/cn";
 
 type PageHeaderProps = {
   as?: ElementType;
@@ -119,13 +120,13 @@ function PageHeaderDescription({
 }: PageHeaderDescriptionProps) {
   return (
     <Balancer
-      as="p"
       className={cn(
         descriptionVariants({
           className,
           size,
         }),
       )}
+      as="p"
       {...props}
     />
   );

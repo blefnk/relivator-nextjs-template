@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
+import { buttonVariants } from "~/components/ui/button";
+import { cn } from "~/utils/cn";
 
 export function HomeFeaturedItems() {
   // todo: fix strange product images browser console warning message:
@@ -44,13 +44,13 @@ export function HomeFeaturedItems() {
   // const guestEmail = getCookie("GUEST_EMAIL")?.toString() || null;
   return (
     <section
-      aria-labelledby="featured-items-heading"
+      id="featured-items"
       className={`
         mt-10 grid grid-cols-1 items-stretch gap-6 text-card-foreground/80
 
         sm:grid-cols-2
       `}
-      id="featured-items"
+      aria-labelledby="featured-items-heading"
     >
       <div
         className={`
@@ -74,9 +74,9 @@ export function HomeFeaturedItems() {
                 md:block
               `}
             >
-              Featured
+              Music
             </span>{" "}
-            Products
+            Sheets
           </h3>
           <Link aria-label="Products" href="/products">
             <div
@@ -162,9 +162,9 @@ export function HomeFeaturedItems() {
                 md:block
               `}
             >
-              Featured
+              Music
             </span>{" "}
-            Stores
+            Sellers
           </h2>
           <Link aria-label="Stores" href="/stores">
             <div

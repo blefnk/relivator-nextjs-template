@@ -1,7 +1,8 @@
-import { getCurrentDirname } from "@reliverse/fs";
 import consola from "consola";
 import { loadFile, writeFile } from "magicast";
 import { join, relative } from "pathe";
+
+import { getCurrentDirname } from "@reliverse/fs";
 
 const processedFileDirectory = "./tested.ts";
 const currentDirname = getCurrentDirname(import.meta.url);

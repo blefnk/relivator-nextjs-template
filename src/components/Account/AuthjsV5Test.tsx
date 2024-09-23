@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 
 import SessionData from "~/components/Account/SessionData";
 import CustomLink from "~/components/Navigation/CustomLink";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 
 // next-auth v5 | https://github.com/nextauthjs/next-auth/blob/main/apps/examples/nextjs/components/client-example.tsx
 const UpdateForm = () => {
@@ -32,12 +32,12 @@ const UpdateForm = () => {
         onSubmit={() => {}}
       >
         <Input
-          onChange={(event_) => {
-            setName(event_.target.value);
-          }}
           placeholder="New name"
           type="text"
           value={name}
+          onChange={(event_) => {
+            setName(event_.target.value);
+          }}
         />
         <Button type="submit">{t("update")}</Button>
       </form>

@@ -307,7 +307,7 @@
     "name"
   ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": ["messages/default"],
+  "i18n-ally.localesPaths": ["messages"],
   "i18n-ally.sourceLanguage": "en-US",
   "javascript.format.semicolons": "insert",
   "javascript.inlayHints.enumMemberValues.enabled": true,
@@ -341,6 +341,7 @@
     "**/.venv",
     "**/.yarn",
     "**/build",
+    "**/cluster/deprecated",
     "**/coverage",
     "**/dist",
     "**/dist-dev",

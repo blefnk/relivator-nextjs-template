@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { Separator } from "@/components/ui/separator";
 import { useTranslations } from "next-intl";
 
 import {
@@ -8,6 +7,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import { Separator } from "~/components/ui/separator";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function BlogPage() {
 
   return (
     <Shell className="md:pb-10">
-      <PageHeader aria-labelledby="blog-header-heading" id="blog-header">
+      <PageHeader id="blog-header" aria-labelledby="blog-header-heading">
         <PageHeaderHeading>{t("page.blog")}</PageHeaderHeading>
         <PageHeaderDescription>
           Explore the latest news and updates from the community
@@ -28,7 +28,7 @@ export default function BlogPage() {
       </PageHeader>
       <Separator className="mb-2.5" />
       <section
-        aria-labelledby="blog-posts-heading"
+        id="blog-posts"
         className={`
           grid grid-cols-1 gap-8
 
@@ -38,7 +38,7 @@ export default function BlogPage() {
 
           sm:grid-cols-2
         `}
-        id="blog-posts"
+        aria-labelledby="blog-posts-heading"
       >
         Blog still in development. Please check back later.
       </section>

@@ -1,8 +1,8 @@
+import type { QueryResult, Stargazer } from "./cache";
+
 import consola from "consola";
 import { ofetch } from "ofetch";
 import superjson from "superjson";
-
-import type { QueryResult, Stargazer } from "./cache";
 
 import { getFromCache, saveRes } from "./cache";
 
@@ -85,7 +85,6 @@ export const fetchViaGraphQl = async ({
       query,
     }),
     headers: {
-      // eslint-disable-next-line no-restricted-properties
       authorization: `token ${process.env.REMOTION_GITHUB_TOKEN}`,
       "Content-Type": "application/json",
     },

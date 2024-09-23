@@ -1,23 +1,20 @@
 "use client";
 
+import type { manageSubscriptionSchema } from "~/core/stripe/zod";
+import type { z } from "zod";
+
 import type { FormEvent } from "react";
 import { useTransition } from "react";
 
 import { redirect } from "next/navigation";
 
-import type { z } from "zod";
-
-import { Button } from "@/components/ui/button";
-import { catchError } from "@/server/reliverse/auth-error";
 import consola from "consola";
 
-import type { manageSubscriptionSchema } from "~/core/stripe/zod";
-
 import { SpinnerSVG } from "~/components/Common/Icons/SVG";
-import {
-  manageDowngradeToStarterAction,
-  manageSubscriptionAction,
-} from "~/core/stripe/actions";
+import { Button } from "~/components/ui/button";
+import { manageDowngradeToStarter } from "~/server/actions/deprecated/stripe/manageDowngradeToStarter";
+import { manageSubscription } from "~/server/actions/deprecated/stripe/manageSubscription";
+import { catchError } from "~/server/helpers/auth-error";
 
 type PlanManageFormProps = z.infer<typeof manageSubscriptionSchema>;
 
@@ -35,7 +32,7 @@ export function PlanManageForm({
     event_.preventDefault();
     startTransition(async () => {
       try {
-        const session = await manageSubscriptionAction({
+        const session = await manageSubscription({
           isCurrentPlan,
           isSubscribed,
           stripeCustomerId,
@@ -62,7 +59,7 @@ export function PlanManageForm({
       // TODO: This is a hacky and wrong way to clear the subscription,
       // TODO: we need also clear the subscription on the Stripe side.
       try {
-        const session = await manageDowngradeToStarterAction();
+        const session = await manageDowngradeToStarter();
 
         if (session !== undefined) {
           // window.location.href = "/dashboard/billing";
@@ -167,7 +164,7 @@ function ManageSubscriptionButton({
       variant="default"
     >
       {isPending && (
-        <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
+        <SpinnerSVG className="mr-2 size-4 animate-spin" aria-hidden="true" />
       )}
       {determineButtonText()}
     </Button>

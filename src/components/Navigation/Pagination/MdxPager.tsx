@@ -2,10 +2,11 @@ import type { HTMLAttributes } from "react";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
-import { truncate } from "@/utils/reliverse/string";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import { buttonVariants } from "~/components/ui/button";
+import { cn } from "~/utils/cn";
+import { truncate } from "~/utils/string";
 
 type MdxPagerItem = {
   slug: string;
@@ -36,31 +37,31 @@ export function MdxPager({
     >
       {pager?.prev ? (
         <Link
-          aria-label="Previous post"
           className={cn(
             buttonVariants({
               variant: "ghost",
             }),
           )}
+          aria-label="Previous post"
           href={pager.prev.slug}
         >
-          <ChevronLeft aria-hidden="true" className="mr-2 size-4" />
+          <ChevronLeft className="mr-2 size-4" aria-hidden="true" />
           {truncate(pager.prev.title, 20)}
         </Link>
       ) : null}
       {pager?.next ? (
         <Link
-          aria-label="Next post"
           className={cn(
             buttonVariants({
               variant: "ghost",
             }),
             "ml-auto",
           )}
+          aria-label="Next post"
           href={pager.next.slug}
         >
           {truncate(pager.next.title, 20)}
-          <ChevronRight aria-hidden="true" className="ml-2 size-4" />
+          <ChevronRight className="ml-2 size-4" aria-hidden="true" />
         </Link>
       ) : null}
     </div>

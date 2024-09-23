@@ -1,19 +1,20 @@
 "use client";
 
+import type { Product } from "~/db/schema";
+
 import { useTransition } from "react";
 
 import { useRouter } from "next/navigation";
 
-import {
-  getNextProductIdAction,
-  getPreviousProductIdAction,
-} from "@/actions/reliverse/product-old";
-import { Button } from "@/components/ui/button";
 import consola from "consola";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type { Product } from "~/db/schema/provider";
+import { Button } from "~/components/ui/button";
+import {
+  getNextProductIdAction,
+  getPreviousProductIdAction,
+} from "~/server/actions/deprecated/product-old";
 
 type ProductPagerProps = {
   product: Product;
@@ -29,11 +30,14 @@ export function ProductPager({ product }: ProductPagerProps) {
     <div className="flex space-x-0.5">
       <Button
         disabled={isPending}
+        size="icon"
+        variant="ghost"
         onClick={() => {
           startTransition(async () => {
             try {
               const previousProductId = await getPreviousProductIdAction({
                 id: Number(product.id),
+                // @ts-expect-error TODO: Fix ts
                 storeId: product.storeId,
               });
 
@@ -49,19 +53,20 @@ export function ProductPager({ product }: ProductPagerProps) {
             }
           });
         }}
-        size="icon"
-        variant="ghost"
       >
-        <ChevronLeft aria-hidden="true" className="size-4" />
+        <ChevronLeft className="size-4" aria-hidden="true" />
         <span className="sr-only">{t("ProductPager.previousProduct")}</span>
       </Button>
       <Button
         disabled={isPending}
+        size="icon"
+        variant="ghost"
         onClick={() => {
           startTransition(async () => {
             try {
               const nextProductId = await getNextProductIdAction({
                 id: Number(product.id),
+                // @ts-expect-error TODO: Fix ts
                 storeId: product.storeId,
               });
 
@@ -75,10 +80,8 @@ export function ProductPager({ product }: ProductPagerProps) {
             }
           });
         }}
-        size="icon"
-        variant="ghost"
       >
-        <ChevronRight aria-hidden="true" className="size-4" />
+        <ChevronRight className="size-4" aria-hidden="true" />
         <span className="sr-only">{t("ProductPager.nextProduct")}</span>
       </Button>
     </div>

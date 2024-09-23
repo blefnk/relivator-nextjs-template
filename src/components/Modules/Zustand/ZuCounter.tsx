@@ -19,13 +19,13 @@ const Counter = () => {
       <h1>
         Count: <span>{count}</span>
       </h1>
-      <button onClick={increment} type="button">
+      <button type="button" onClick={increment}>
         +1
       </button>
-      <button onClick={decrement} type="button">
+      <button type="button" onClick={decrement}>
         -1
       </button>
-      <button onClick={reset} type="reset">
+      <button type="reset" onClick={reset}>
         Reset
       </button>
     </div>

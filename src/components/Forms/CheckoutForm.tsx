@@ -3,8 +3,6 @@
 import type { ComponentPropsWithoutRef, FormEvent, ReactElement } from "react";
 import { useEffect, useId, useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import {
   AddressElement,
   LinkAuthenticationElement,
@@ -15,7 +13,9 @@ import {
 import consola from "consola";
 
 import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button } from "~/components/ui/button";
 import { env } from "~/env";
+import { cn } from "~/utils/cn";
 
 type CheckoutFormProps = {
   storeId: string;
@@ -118,9 +118,9 @@ export function CheckoutForm({
 
   return (
     <form
-      aria-labelledby={`${id}-checkout-form-heading`}
-      className={cn("grid gap-4", className)}
       id={`${id}-checkout-form`}
+      className={cn("grid gap-4", className)}
+      aria-labelledby={`${id}-checkout-form-heading`}
       onSubmit={async (...arguments_) => {
         await onSubmit(...arguments_);
       }}
@@ -145,19 +145,19 @@ export function CheckoutForm({
         }}
       />
       <Button
-        aria-label="Pay"
+        id={`${id}-checkout-form-submit`}
         className={`
           w-full bg-blue-600
 
           hover:bg-blue-500 hover:shadow-md
         `}
+        aria-label="Pay"
         disabled={!stripe || !elements || isLoading}
-        id={`${id}-checkout-form-submit`}
         type="submit"
         variant="secondary"
       >
         {isLoading && (
-          <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
+          <SpinnerSVG className="mr-2 size-4 animate-spin" aria-hidden="true" />
         )}
         Pay
       </Button>

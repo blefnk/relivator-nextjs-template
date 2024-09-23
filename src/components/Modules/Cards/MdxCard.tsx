@@ -2,8 +2,9 @@ import type { HTMLAttributes } from "react";
 
 import Link from "next/link";
 
-import { cn } from "@/utils/reliverse/cn";
 import { useTranslations } from "next-intl";
+
+import { cn } from "~/utils/cn";
 
 type CardProps = {
   disabled?: boolean;

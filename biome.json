@@ -30,9 +30,11 @@
       ".vercel/",
       "addons/.output/",
       "build/",
+      "cluster/",
       "dist/",
       "drizzle/",
-      "node_modules/"
+      "node_modules/",
+      "public/"
     ],
     "indentStyle": "space",
     "indentWidth": 2,
@@ -85,15 +87,21 @@
       ".vercel/",
       "addons/.output/",
       "build/",
+      "cluster/",
       "dist/",
       "drizzle/",
-      "node_modules/"
+      "node_modules/",
+      "public/"
     ],
     "rules": {
       "a11y": {
+        "noAriaHiddenOnFocusable": "off",
         "noBlankTarget": "off",
         "noNoninteractiveElementToInteractiveRole": "off",
-        "useKeyWithClickEvents": "off"
+        "noRedundantRoles": "off",
+        "useFocusableInteractive": "off",
+        "useKeyWithClickEvents": "off",
+        "useSemanticElements": "off"
       },
       "complexity": {
         "noBannedTypes": "off",
@@ -102,6 +110,7 @@
         "noUselessLoneBlockStatements": "off",
         "useArrowFunction": "off",
         "useFlatMap": "off",
+        "useLiteralKeys": "off",
         "useOptionalChain": "off",
         "useRegexLiterals": "off",
         "useSimpleNumberKeys": "off"
@@ -135,7 +144,8 @@
         "useYield": "off"
       },
       "performance": {
-        "noAccumulatingSpread": "off"
+        "noAccumulatingSpread": "off",
+        "noDelete": "off"
       },
       "recommended": true,
       "security": {

@@ -1,12 +1,13 @@
 import type { AcademyPlayer } from "@/scripts/reliverse/academy/types";
 
+import tryToCatch from "try-to-catch";
+import { v4 as uuidv4 } from "uuid";
+
 import {
   readJsonFile,
   writeJsonFile,
 } from "@/scripts/reliverse/academy/fileHandler";
-import { getErrorMessage } from "@/server/reliverse/error-message";
-import tryToCatch from "try-to-catch";
-import { v4 as uuidv4 } from "uuid";
+import { getErrorMessage } from "~/server/helpers/error-message";
 
 const playersFilePath = "data/players.json";
 

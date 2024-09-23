@@ -6,17 +6,14 @@ import type { ReactNode } from "react";
 
 import { redirect } from "next/navigation";
 
-import { authProvider } from "~/../reliverse.config";
-
-import { authjs } from "~/auth/authjs";
-import { clerk } from "~/auth/clerk";
+import { auth } from "~/server/queries/user";
 
 type AdminLayoutProps = {
   children: ReactNode;
 };
 
 export default async function AdminLayout({ children }: AdminLayoutProps) {
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  const session = await auth();
 
   if (!session) {
     redirect("/auth");

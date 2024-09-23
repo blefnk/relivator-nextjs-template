@@ -1,5 +1,6 @@
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+
+import { Button } from "~/components/ui/button";
 
 type ProviderButtonProps = {
   loading: boolean;
@@ -15,9 +16,9 @@ export default function ProviderButton({
   tPleaseWait,
 }: ProviderButtonProps) {
   return (
-    <div
-      className="flex w-full flex-row items-baseline justify-center gap-2" // @ts-expect-error TODO: fix
+    <div // @ts-expect-error TODO: fix
       key={provider.id}
+      className="flex w-full flex-row items-baseline justify-center gap-2"
     >
       <Button
         className={`
@@ -29,8 +30,8 @@ export default function ProviderButton({
           ${loading ? "cursor-not-allowed opacity-50" : ""}
         `}
         disabled={loading}
-        onClick={onClick}
         variant="outline"
+        onClick={onClick}
       >
         {loading ? (
           <>

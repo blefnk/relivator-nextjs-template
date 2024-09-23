@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
 
-import { Button } from "@/components/ui/button";
-import { authProvider } from "~/../reliverse.config";
 import { getTranslations } from "next-intl/server";
 
 import { auth, signIn } from "~/auth/authjs";
+import { authProvider } from "~/auth/provider";
 import {
   PageHeader,
   PageHeaderDescription,
 } from "~/components/Navigation/PageNavMenu";
+import { Button } from "~/components/ui/button";
 import { env } from "~/env";
 
 export const metadata: Metadata = {
-  title: "Sign In",
   description: "Sign into your account",
+  title: "Sign In",
 };
 
 export default async function SignUpPage() {

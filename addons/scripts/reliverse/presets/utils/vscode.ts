@@ -1,9 +1,10 @@
-import { getRootDirname } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import { join } from "pathe";
 import pc from "picocolors";
 import task from "tasuku";
+
+import { getRootDirname } from "@reliverse/fs";
 
 // Please visit the Scripts section in README.md file to learn more about script
 // Just run `pnpm reli:relicon` from the root folder to run the switcher script

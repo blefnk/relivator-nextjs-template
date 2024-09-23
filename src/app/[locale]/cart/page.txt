@@ -1,0 +1,128 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { ShoppingCart } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+
+import { CheckoutCard } from "~/components/Modules/Cards/CheckoutCard";
+import {
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "~/components/Navigation/PageNavMenu";
+import { buttonVariants } from "~/components/ui/button";
+import { Shell } from "~/components/Wrappers/ShellVariants";
+import {
+  getCartAction,
+  getUniqueStoreIds,
+} from "~/server/actions/deprecated/cart";
+import { getCartId } from "~/server/helpers/cart";
+import { cn } from "~/utils/cn";
+
+export const metadata: Metadata = {
+  description: "Checkout with the cart items",
+  title: "Cart",
+};
+
+export default async function CartPage() {
+  const t = await getTranslations();
+
+  // getUniqueStoreIds returns an array of store IDs
+  const uniqueStoreIds = await getUniqueStoreIds();
+
+  // Check for a valid cartId
+  const cartId = await getCartId();
+
+  if (!cartId || Number.isNaN(Number(cartId))) {
+    return redirect("/");
+  }
+
+  // Map over uniqueStoreIds and fetch
+  // the cart line items for each store
+  const storeCarts = await Promise.all(
+    uniqueStoreIds.map(async (storeId) => {
+      const cartLineItems = await getCartAction(storeId);
+
+      // Calculations for totalQuantity and
+      // totalPrice for each store's cart
+      let totalQuantity = 0;
+
+      try {
+        totalQuantity = cartLineItems.reduce(
+          // @ts-expect-error TODO: Fix ts
+          (accumulator, item) => accumulator + (item.quantity || 0),
+          0,
+        );
+      } catch (error) {
+        if (error instanceof Error) {
+          totalQuantity = 0;
+        }
+
+        // Set default variable value in case of an error
+      }
+
+      // Return an object that contains
+      // the storeId and its cart data
+
+      return {
+        storeId,
+        totalQuantity,
+      };
+    }),
+  );
+
+  // Filter out stores with no items in cart
+  const nonEmptyStoreCarts = storeCarts.filter(
+    (storeCart) => storeCart.totalQuantity > 0,
+  );
+
+  return (
+    <Shell>
+      <PageHeader
+        id="cart-page-header"
+        aria-labelledby="cart-page-header-heading"
+      >
+        <PageHeaderHeading size="sm">{t("checkout.Title")}</PageHeaderHeading>
+        <PageHeaderDescription size="sm">
+          {t("checkout.Description")}
+        </PageHeaderDescription>
+      </PageHeader>
+      {nonEmptyStoreCarts.length > 0 ? (
+        nonEmptyStoreCarts.map(({ storeId }) => (
+          // @ts-expect-error TODO: fix id type
+          <CheckoutCard key={storeId} storeId={storeId} />
+        ))
+      ) : (
+        <section
+          id="cart-page-empty-cart"
+          className={`
+            flex h-full flex-col items-center justify-center space-y-1 pt-16
+          `}
+          aria-labelledby="cart-page-empty-cart-heading"
+        >
+          <ShoppingCart
+            className="mb-4 size-16 text-muted-foreground"
+            aria-hidden="true"
+          />
+          <div className="text-xl font-medium text-muted-foreground">
+            {t("checkout.EmptyCartHeading")}
+          </div>
+          <Link
+            className={cn(
+              buttonVariants({
+                className: "text-sm text-muted-foreground",
+                size: "sm",
+                variant: "link",
+              }),
+            )}
+            aria-label={t("checkout.EmptyCartDescription")}
+            href="/products"
+          >
+            {t("checkout.EmptyCartDescription")}
+          </Link>
+        </section>
+      )}
+    </Shell>
+  );
+}

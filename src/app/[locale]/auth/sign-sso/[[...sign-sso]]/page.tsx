@@ -1,4 +1,4 @@
-import type { SSOCallbackPageProps } from "@/types/reliverse/auth";
+import type { SSOCallbackPageProps } from "~/types/auth";
 
 import SSOCallback from "~/components/Account/SsoCallback";
 import { Shell } from "~/components/Wrappers/ShellVariants";

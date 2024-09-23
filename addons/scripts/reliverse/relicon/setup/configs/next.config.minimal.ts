@@ -10,42 +10,6 @@ await import("~/env.js");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    formats: ["image/avif", "image/webp"],
-    remotePatterns: [
-      {
-        port: "",
-        protocol: "https",
-        hostname: "utfs.io",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "img.clerk.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "api.dicebear.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "cdn.discordapp.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-      },
-    ],
-  },
-
   experimental: {
     mdxRs: true,
     optimizePackageImports: [
@@ -54,6 +18,42 @@ const nextConfig = {
       "@radix-ui/react-icons",
       "@radix-ui/react-avatar",
       "@radix-ui/react-select",
+    ],
+  },
+
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        hostname: "utfs.io",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "img.clerk.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "api.dicebear.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "cdn.discordapp.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        protocol: "https",
+      },
     ],
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],

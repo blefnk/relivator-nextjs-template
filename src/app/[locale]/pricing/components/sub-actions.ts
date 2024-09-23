@@ -2,6 +2,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 
 type UpdateSubscriptionProps = {
   currentSubscription: "enterprise" | "none" | "premium" | "starter";

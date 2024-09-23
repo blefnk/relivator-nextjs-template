@@ -1,7 +1,7 @@
+import type { Stargazer } from "./cache";
+
 import consola from "consola";
 import { ofetch } from "ofetch";
-
-import type { Stargazer } from "./cache";
 
 export const REST_PER_PAGE = 100;
 
@@ -28,9 +28,8 @@ export const fetchPageViaRest = async ({
   const res = await ofetch(url, {
     headers: {
       Accept: "application/vnd.github.v3.star+json",
-      // eslint-disable-next-line no-restricted-properties
+
       ...(process.env.REMOTION_GITHUB_TOKEN && {
-        // eslint-disable-next-line no-restricted-properties
         Authorization: `Bearer ${process.env.REMOTION_GITHUB_TOKEN}`,
       }),
     },

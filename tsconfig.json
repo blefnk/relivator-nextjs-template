@@ -7,7 +7,9 @@
     "moduleDetection": "force",
     "module": "preserve",
     "paths": {
+      "#/*": ["./cluster/src/*"],
       "@/*": ["./addons/*"],
+      "$/*": ["./public/*"],
       "~/*": ["./src/*"]
     },
     "resolveJsonModule": true,
@@ -19,7 +21,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "skipLibCheck": true,
     "plugins": [
       {
@@ -31,6 +33,10 @@
     ".next/types/**/*.ts",
     "addons/**/*.ts",
     "addons/**/*.tsx",
+    "cluster/deprecated/src/**/*.ts",
+    "cluster/deprecated/src/**/*.tsx",
+    "cluster/src/**/*.ts",
+    "cluster/src/**/*.tsx",
     "drizzle.config.ts",
     "eslint.config.js",
     "next.config.js",

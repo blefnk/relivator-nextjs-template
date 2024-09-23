@@ -1,3 +1,8 @@
+import { confirm } from "@clack/prompts";
+import consola from "consola";
+import { join } from "pathe";
+import pc from "picocolors";
+
 import {
   configureBiome,
   configureEnv,
@@ -7,13 +12,8 @@ import {
   configurePutout,
 } from "@/scripts/reliverse/relicon/setup/prompt";
 import { configureAppts } from "@/scripts/reliverse/relicon/setup/prompt/appts";
-import { confirm } from "@clack/prompts";
 import { config } from "@reliverse/core";
 import { getCurrentDirname, getRootDirname } from "@reliverse/fs";
-import consola from "consola";
-import { join } from "pathe";
-import pc from "picocolors";
-
 import { siteConfig } from "~/app";
 
 export async function runReliverseSetup() {

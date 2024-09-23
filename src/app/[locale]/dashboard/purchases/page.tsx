@@ -6,12 +6,14 @@ import { getTranslations } from "next-intl/server";
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
 import { authProvider } from "~/auth/provider";
+import { UserNotFound } from "~/components/Account/Guest/UserNotFound";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
 import { Shell } from "~/components/Wrappers/ShellVariants";
+import { auth } from "~/server/queries/user";
 
 export const metadata: Metadata = {
   description: "Manage the purchases",
@@ -21,17 +23,17 @@ export const metadata: Metadata = {
 export default async function PurchasesPage() {
   const t = await getTranslations();
 
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  const session = await auth();
 
   if (!session) {
-    redirect("/auth");
+    return <UserNotFound />;
   }
 
   return (
     <Shell variant="sidebar">
       <PageHeader
-        aria-labelledby="dashboard-purchases-header-heading"
         id="dashboard-purchases-header"
+        aria-labelledby="dashboard-purchases-header-heading"
       >
         <PageHeaderHeading size="sm">{t("page.purchases")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">

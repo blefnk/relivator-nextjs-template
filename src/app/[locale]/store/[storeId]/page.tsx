@@ -3,19 +3,19 @@ import { Shell } from "~/components/Wrappers/ShellVariants";
 // import type { Metadata } from "next";
 // import { notFound } from "next/navigation";
 
-// import { getProductsAction } from "@/actions/reliverse/product-old";
-// import { getStoresAction } from "@/actions/reliverse/store";
-// import { Separator } from "@/components/ui/separator";
+// import { getProductsAction } from "~/actions/reliverse/product-old";
+// import { getStoresAction } from "~/actions/reliverse/store";
+// import { Separator } from "~/components/ui/separator";
 // import { eq } from "drizzle-orm";
 // import { getTranslations } from "next-intl/server";
-// import { authProvider } from "~/../reliverse.config";
+// import { authProvider } from "~/auth/provider";
 
 // import { authjs } from "~/auth/authjs";
 // import { clerk } from "~/auth/clerk";
 // import { Products } from "~/components/Common/products";
 // import { Breadcrumbs } from "~/components/Navigation/Pagination/Breadcrumbs";
 // import { db } from "~/db";
-// import { products, stores } from "~/db/schema/provider";
+// import { products, stores } from "~/db/schema";
 
 // const isString = (a: unknown) => typeof a === "string";
 
@@ -98,7 +98,7 @@ export default function StorePage() {
   //   Number(storesTransaction.count) / storesLimit,
   // );
 
-  // const session = authProvider === "clerk" ? await clerk() : await authjs();
+  // const session = await authjs();
 
   return (
     <Shell>

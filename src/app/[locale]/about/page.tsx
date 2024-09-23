@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
-import { Heading } from "@/components/ui/heading";
-import { Link } from "@/components/ui/link";
-import { Main } from "@/components/ui/main";
-import { Paragraph } from "@/components/ui/paragraph";
 import { ArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { siteConfig } from "~/app";
+import { Heading } from "~/components/ui/heading";
+import { Link } from "~/components/ui/link";
+import { Main } from "~/components/ui/main";
+import { Paragraph } from "~/components/ui/paragraph";
 
 export const metadata: Metadata = {
   title: "About Relivator",
@@ -31,17 +31,17 @@ export default function AboutPage() {
             {t("landing.about")}
           </Paragraph>
           <section
-            aria-labelledby="create-a-store-banner-heading"
+            id="create-a-store-banner"
             className={`
               mb-14 mt-10 grid place-items-start gap-6 bg-card pt-6 text-center
               text-card-foreground
             `}
-            id="create-a-store-banner"
+            aria-labelledby="create-a-store-banner-heading"
           >
             <Link
               href="https://github.com/blefnk/relivator-nextjs-template#readme"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               variant="default"
             >
               Learn More on Relivator's GitHub
@@ -57,8 +57,8 @@ export default function AboutPage() {
           <Link
             className="font-medium"
             href="https://github.com/blefnk"
-            target="_blank"
             rel="noopener"
+            target="_blank"
           >
             {siteConfig.author.handleAt}
           </Link>

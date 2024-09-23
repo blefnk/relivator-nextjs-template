@@ -1,19 +1,19 @@
 "use client";
 
+import type { CartLineItem } from "~/types/store";
+
 import { useId, useTransition } from "react";
 
-import type { CartLineItem } from "@/types/reliverse/store";
+import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 import {
   deleteCartItemAction,
   updateCartItemAction,
-} from "@/actions/reliverse//cart";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { catchError } from "@/server/reliverse/auth-error";
-import { MinusIcon, PlusIcon, TrashIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
-import tryToCatch from "try-to-catch";
+} from "~/server/actions/deprecated/cart";
+import { catchError } from "~/server/helpers/auth-error";
 
 type UpdateCartProps = {
   cartLineItem: CartLineItem;
@@ -35,96 +35,100 @@ export function UpdateCart({ cartLineItem }: UpdateCartProps) {
     >
       <div className="flex items-center">
         <Button
+          id={`${id}-decrement`}
           className="size-8 rounded-r-none"
           disabled={isPending}
-          id={`${id}-decrement`}
+          size="icon"
+          variant="outline"
           onClick={() => {
             startTransition(async () => {
-              const [error] = await tryToCatch(updateCartItemAction, {
-                productId: cartLineItem.id,
-                quantity: Number(cartLineItem.quantity) - 1,
-                storeId: cartLineItem.storeId,
-              });
-
-              if (error) {
+              try {
+                await updateCartItemAction({
+                  productId: Number(cartLineItem.id),
+                  quantity: Number(cartLineItem.quantity) - 1,
+                  storeId: Number(cartLineItem.storeId),
+                });
+              } catch (error) {
                 catchError(error);
               }
             });
           }}
-          size="icon"
-          variant="outline"
         >
-          <MinusIcon aria-hidden="true" className="size-3" />
+          <MinusIcon className="size-3" aria-hidden="true" />
           <span className="sr-only">{t("UpdateCart.removeOneItem")}</span>
         </Button>
         <Input
+          id={`${id}-quantity`}
           className="h-8 w-14 rounded-none border-x-0"
           disabled={isPending}
-          id={`${id}-quantity`}
           min="0"
-          onChange={(event_) => {
-            startTransition(async () => {
-              const [error] = await tryToCatch(updateCartItemAction, {
-                productId: cartLineItem.id,
-                quantity: Number(event_.target.value),
-                storeId: cartLineItem.storeId,
-              });
-
-              if (error) {
-                catchError(error);
-              }
-            });
-          }}
+          type="number"
+          value={String(cartLineItem.quantity)}
           style={{
             MozAppearance: "textfield",
             WebkitAppearance: "none",
           }}
-          type="number"
-          value={cartLineItem.quantity}
-        />
-        <Button
-          className="size-8 rounded-l-none"
-          disabled={isPending}
-          id={`${id}-increment`}
-          onClick={() => {
+          onChange={(event_) => {
             startTransition(async () => {
-              const [error] = await tryToCatch(updateCartItemAction, {
-                productId: cartLineItem.id,
-                quantity: Number(cartLineItem.quantity) + 1,
-                storeId: cartLineItem.storeId,
-              });
+              try {
+                const newQuantity = Number(event_.target.value);
 
-              if (error) {
+                if (!Number.isNaN(newQuantity)) {
+                  await updateCartItemAction({
+                    productId: Number(cartLineItem.id),
+                    quantity: newQuantity,
+                    storeId: Number(cartLineItem.storeId),
+                  });
+                }
+              } catch (error) {
                 catchError(error);
               }
             });
           }}
+        />
+        <Button
+          id={`${id}-increment`}
+          className="size-8 rounded-l-none"
+          disabled={isPending}
           size="icon"
           variant="outline"
+          onClick={() => {
+            startTransition(async () => {
+              try {
+                await updateCartItemAction({
+                  productId: Number(cartLineItem.id),
+                  quantity: Number(cartLineItem.quantity) + 1,
+                  storeId: Number(cartLineItem.storeId),
+                });
+              } catch (error) {
+                catchError(error);
+              }
+            });
+          }}
         >
-          <PlusIcon aria-hidden="true" className="size-3" />
+          <PlusIcon className="size-3" aria-hidden="true" />
           <span className="sr-only">{t("UpdateCart.addOneItem")}</span>
         </Button>
       </div>
       <Button
+        id={`${id}-delete`}
         className="size-8"
         disabled={isPending}
-        id={`${id}-delete`}
+        size="icon"
+        variant="outline"
         onClick={() => {
           startTransition(async () => {
-            const [error] = await tryToCatch(deleteCartItemAction, {
-              productId: cartLineItem.id,
-            });
-
-            if (error) {
+            try {
+              await deleteCartItemAction({
+                productId: Number(cartLineItem.id),
+              });
+            } catch (error) {
               catchError(error);
             }
           });
         }}
-        size="icon"
-        variant="outline"
       >
-        <TrashIcon aria-hidden="true" className="size-3" />
+        <TrashIcon className="size-3" aria-hidden="true" />
         <span className="sr-only">{t("UpdateCart.deleteItem")}</span>
       </Button>
     </div>

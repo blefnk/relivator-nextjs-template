@@ -1,22 +1,4 @@
-# GITATTRIBUTES FOR WEB PROJECTS
-#
-# These settings are for any web project.
-# Details per file setting:
-#   text    These files should be normalized (i.e. convert CRLF to LF).
-#   binary  These files are binary and should be left untouched.
-#
-# https://rehansaeed.com/gitattributes-best-practices
-# https://github.com/gitattributes/gitattributes/blob/master/Web.gitattributes
-# https://dev.to/deadlybyte/please-add-gitattributes-to-your-git-repository-1jld
-################################################################################
-
-# Auto detect
-## Handle line endings automatically for files detected as
-## text and leave all files detected as binary untouched.
-## This will handle all files NOT defined below.
 * text=auto
-
-# Source code
 *.bash            text eol=lf
 *.bat             text eol=crlf
 *.cmd             text eol=crlf
@@ -53,11 +35,7 @@
 *.tsx             text eol=lf
 *.xml             text
 *.xhtml           text diff=html
-
-# Docker
 Dockerfile        text
-
-# Documentation
 *.ipynb           text eol=lf
 *.markdown        text diff=markdown
 *.md              text diff=markdown eol=lf
@@ -82,8 +60,6 @@ NEWS              text
 readme            text eol=lf
 *README*          text eol=lf
 TODO              text eol=lf
-
-# Templates
 *.astro           text eol=lf
 *.dot             text
 *.ejs             text
@@ -102,8 +78,6 @@ TODO              text eol=lf
 *.tpl             text
 *.twig            text
 *.vue             text eol=lf
-
-# Configs
 *.cnf             text
 *.conf            text
 *.config          text eol=lf
@@ -124,13 +98,8 @@ yarn.lock         text -diff
 browserslist      text
 Makefile          text
 makefile          text
-# Fixes syntax highlighting on GitHub to allow comments
 tsconfig.json     linguist-language=JSON-with-Comments
-
-# Heroku
 Procfile          text
-
-# Graphics
 *.ai              binary
 *.bmp             binary
 *.eps             binary
@@ -147,18 +116,12 @@ Procfile          text
 *.png             binary
 *.psb             binary
 *.psd             binary
-# SVG treated as an asset (binary) by default.
 *.svg             text
-# If you want to treat it as binary,
-# use the following line instead.
-# *.svg           binary
 *.svgz            binary
 *.tif             binary
 *.tiff            binary
 *.wbmp            binary
 *.webp            binary
-
-# Audio
 *.kar             binary
 *.m4a             binary
 *.mid             binary
@@ -166,8 +129,6 @@ Procfile          text
 *.mp3             binary
 *.ogg             binary
 *.ra              binary
-
-# Video
 *.3gpp            binary
 *.3gp             binary
 *.as              binary
@@ -186,34 +147,25 @@ Procfile          text
 *.swc             binary
 *.swf             binary
 *.webm            binary
-
-# Archives
 *.7z              binary
 *.gz              binary
 *.jar             binary
 *.rar             binary
 *.tar             binary
 *.zip             binary
-
-# Fonts
 *.ttf             binary
 *.eot             binary
 *.otf             binary
 *.woff            binary
 *.woff2           binary
-
-# Executables
 *.exe             binary
 *.pyc             binary
-# Prevents massive diffs caused by vendored, minified files
 **/.yarn/releases/**   binary
 **/.yarn/plugins/**    binary
-
-# RC files (like .babelrc or .eslintrc)
 *.*rc             text eol=lf
-
-# Ignore files (like .npmignore or .gitignore)
 *.*ignore         text eol=lf
-
-# Prevents massive diffs from built files
 dist/*            binary
+
+public/generated/**/*.json linguist-generated=true
+src/manifest.json linguist-generated=true
+*-mp3.js binary

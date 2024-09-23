@@ -1,11 +1,11 @@
+import type { User } from "~/db/schema";
+
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import consola from "consola";
 import NextAuth from "next-auth";
 import Discord from "next-auth/providers/discord";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
-
-import type { User } from "~/db/schema/provider";
 
 import { authProvider } from "~/auth/provider";
 import { db } from "~/db";
@@ -24,7 +24,7 @@ const GuestSession = async (): Promise<User> => ({
   email: "guest@email.com",
   emailVerified: new Date("2024-07-10T00:00:00.000Z"),
   hashedPassword: "guestHashedPassword",
-  image: "https://relivator.reliverse.org/logo.png",
+  image: "https://bleverse.com/logo.png",
   mode: "buyer",
   role: "user",
   status: "guest",
@@ -62,7 +62,7 @@ const NextSession = async (): Promise<User> => {
   }
 };
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { auth, handlers, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db),
   providers: [GitHub, Discord, Google],
 

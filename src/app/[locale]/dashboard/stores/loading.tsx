@@ -1,20 +1,19 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Card, CardHeader } from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import { AspectRatio } from "~/components/ui/aspect-ratio";
+import { Card, CardHeader } from "~/components/ui/card";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function StoresLoading() {
   return (
     <Shell variant="sidebar">
       <PageHeader
-        aria-labelledby="dashboard-stores-page-header-heading"
         id="dashboard-stores-page-header"
+        aria-labelledby="dashboard-stores-page-header-heading"
       >
         <div className="flex space-x-4">
           <PageHeaderHeading className="flex-1" size="sm">
@@ -27,9 +26,9 @@ export default function StoresLoading() {
         </PageHeaderDescription>
       </PageHeader>
       <Card
-        aria-labelledby="dashboard-stores-page-alert-heading"
-        className="flex space-x-4 px-4 py-3"
         id="dashboard-stores-page-alert"
+        className="flex space-x-4 px-4 py-3"
+        aria-labelledby="dashboard-stores-page-alert-heading"
       >
         <Skeleton className="mt-2 size-4 rounded" />
         <div className="flex-1 space-y-2">
@@ -45,7 +44,7 @@ export default function StoresLoading() {
         </div>
       </Card>
       <section
-        aria-labelledby="dashboard-stores-page-stores-heading"
+        id="dashboard-stores-page-stores"
         className={`
           grid gap-4
 
@@ -53,12 +52,12 @@ export default function StoresLoading() {
 
           sm:grid-cols-2
         `}
-        id="dashboard-stores-page-stores"
+        aria-labelledby="dashboard-stores-page-stores-heading"
       >
         {Array.from({
           length: 3,
         }).map((_, index) => (
-          <Card className="h-full" key={index}>
+          <Card key={index} className="h-full">
             <AspectRatio ratio={21 / 9}>
               <Skeleton className="absolute right-2 top-2 h-5 w-20" />
               <Skeleton className="size-full" />

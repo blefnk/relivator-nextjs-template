@@ -1,14 +1,17 @@
 "use client";
 
+import type { getNotification } from "~/server/helpers/notification";
+import type { UpdateNotificationSchema } from "~/server/validations/deprecated/notification";
+
 import { use, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import type { UpdateNotificationSchema } from "@/actions/reliverse/validations/notification";
-import type { getNotification } from "@/server/reliverse/notification";
+import { zodResolver } from "@hookform/resolvers/zod";
+import consola from "consola";
+import { useTranslations } from "next-intl";
 
-import { updateNotification } from "@/actions/reliverse/notification";
-import { updateNotificationSchema } from "@/actions/reliverse/validations/notification";
-import { Button } from "@/components/ui/button";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,13 +20,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Switch } from "@/components/ui/switch";
-import { zodResolver } from "@hookform/resolvers/zod";
-import consola from "consola";
-import { useTranslations } from "next-intl";
-
-import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+} from "~/components/ui/form";
+import { Switch } from "~/components/ui/switch";
+import { updateNotification } from "~/server/actions/deprecated/notification";
+import { updateNotificationSchema } from "~/server/validations/deprecated/notification";
 
 type UpdateNotificationFormProps = {
   notificationPromise: ReturnType<typeof getNotification>;
@@ -72,8 +72,8 @@ export function UpdateNotificationForm({
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
-          control={form.control}
           name="communication"
+          control={form.control}
           render={({ field }) => (
             <FormItem
               className={`
@@ -101,8 +101,8 @@ export function UpdateNotificationForm({
           )}
         />
         <FormField
-          control={form.control}
           name="newsletter"
+          control={form.control}
           render={({ field }) => (
             <FormItem
               className={`
@@ -130,8 +130,8 @@ export function UpdateNotificationForm({
           )}
         />
         <FormField
-          control={form.control}
           name="marketing"
+          control={form.control}
           render={({ field }) => (
             <FormItem
               className={`
@@ -161,8 +161,8 @@ export function UpdateNotificationForm({
         <Button className="w-fit" disabled={loading} size="sm">
           {loading && (
             <SpinnerSVG
-              aria-hidden="true"
               className="mr-2 size-4 animate-spin"
+              aria-hidden="true"
             />
           )}
           Save preferences

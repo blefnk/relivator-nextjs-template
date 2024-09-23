@@ -1,9 +1,10 @@
-import { checkMissingEnvVariables } from "@/scripts/reliverse/relimter/core/env/check-missing-variables";
-import { checkUnexpectedEnvVariables } from "@/scripts/reliverse/relimter/core/env/check-unexpected-variables";
-import { fileExists, getRootDirname } from "@reliverse/fs";
 import { hideEnvInfo } from "~/../reliverse.config";
 import consola from "consola";
 import { join } from "pathe";
+
+import { checkMissingEnvVariables } from "@/scripts/reliverse/relimter/core/env/check-missing-variables";
+import { checkUnexpectedEnvVariables } from "@/scripts/reliverse/relimter/core/env/check-unexpected-variables";
+import { fileExists, getRootDirname } from "@reliverse/fs";
 
 const main = async () => {
   try {

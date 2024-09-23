@@ -12,53 +12,6 @@ await import("~/env.js");
 // @see https://nextjs.org/docs/app/building-the-application/configuring
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    formats: ["image/avif", "image/webp"],
-
-    // The whitelist of domains allowed to display media content.
-    // @see https://nextjs.org/docs/app/api-reference/components/image
-    remotePatterns: [
-      {
-        port: "",
-        protocol: "https",
-        hostname: "utfs.io",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "img.clerk.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "api.dicebear.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "cdn.discordapp.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-      },
-      {
-        port: "",
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-      },
-    ],
-
-    // ?| The following shorthand is most equivalent to
-    // the above, but performance is not tested too much.
-    // Remember to add: const hostnames = ["example.com"];
-    // remotePatterns: hostnames.map((hostname) => ({
-    //   hostname,
-    //   protocol: "https",
-    // })),
-  },
-
   experimental: {
     mdxRs: true,
 
@@ -90,6 +43,53 @@ const nextConfig = {
     //     },
     //   ],
     // ],
+  },
+
+  images: {
+    formats: ["image/avif", "image/webp"],
+
+    // The whitelist of domains allowed to display media content.
+    // @see https://nextjs.org/docs/app/api-reference/components/image
+    remotePatterns: [
+      {
+        hostname: "utfs.io",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "img.clerk.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "api.dicebear.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "cdn.discordapp.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        protocol: "https",
+      },
+      {
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+        protocol: "https",
+      },
+    ],
+
+    // ?| The following shorthand is most equivalent to
+    // the above, but performance is not tested too much.
+    // Remember to add: const hostnames = ["example.com"];
+    // remotePatterns: hostnames.map((hostname) => ({
+    //   hostname,
+    //   protocol: "https",
+    // })),
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 

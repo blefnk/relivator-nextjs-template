@@ -17,8 +17,8 @@ export const SigninLink: FC<
       `,
       className,
     )}
-    onClick={() => signIn()}
     type="button"
+    onClick={() => signIn()}
     {...props}
   >
     {children}

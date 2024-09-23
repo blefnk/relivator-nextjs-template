@@ -1,9 +1,8 @@
 import type { ReactNode } from "react";
 import Balancer from "react-wrap-balancer";
 
-import { cn } from "@/utils/reliverse/cn";
-
 import { Shell } from "~/components/Wrappers/ShellVariants";
+import { cn } from "~/utils/cn";
 
 type Props = {
   children?: ReactNode;
@@ -25,7 +24,6 @@ export default function PageLayout({ children, title, variant }: Props) {
       >
         {title && (
           <Balancer
-            as="h1"
             className={cn(
               "leading-snug",
 
@@ -33,6 +31,7 @@ export default function PageLayout({ children, title, variant }: Props) {
               //   ${typography.h1}
               // `,
             )}
+            as="h1"
           >
             {title}
           </Balancer>

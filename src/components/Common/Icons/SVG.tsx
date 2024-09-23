@@ -1,7 +1,7 @@
 /* eslint-disable @stylistic/max-len */
 import type { LucideProps } from "lucide-react";
 
-import { cn } from "@/utils/reliverse/cn";
+import { cn } from "~/utils/cn";
 
 import styles from "./SVG.module.css";
 
@@ -89,8 +89,8 @@ export const SpinnerSVG = (props: LucideProps) => (
 
 export const PatreonSVG = (props: LucideProps) => (
   <svg
-    fill="currentColor"
     id="Layer_1"
+    fill="currentColor"
     version="1.1"
     viewBox="0 0 1080 1080"
     x="0px"
@@ -111,8 +111,8 @@ export const PatreonSVG = (props: LucideProps) => (
 
 export const PaypalSVG = (props: LucideProps) => (
   <svg
-    fill="currentColor"
     id="paypal"
+    fill="currentColor"
     viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
     {...props}

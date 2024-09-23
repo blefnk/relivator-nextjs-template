@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/prevent-abbreviations */
 import { StrictMode } from "react";
 
 import { createRoot } from "react-dom/client";

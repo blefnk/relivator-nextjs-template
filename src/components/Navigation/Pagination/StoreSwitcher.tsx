@@ -1,11 +1,20 @@
 "use client";
 
+import type { Store } from "~/db/schema";
+
 import type { ComponentPropsWithoutRef } from "react";
 import { useState } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
+import {
+  CaretSortIcon,
+  CheckIcon,
+  PlusCircledIcon,
+} from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
+
+import { Button } from "~/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -14,23 +23,15 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+} from "~/components/ui/command";
+import { Dialog, DialogTrigger } from "~/components/ui/dialog";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { getRandomPatternStyle } from "@/server/reliverse/pattern";
-import { cn } from "@/utils/reliverse/cn";
-import {
-  CaretSortIcon,
-  CheckIcon,
-  PlusCircledIcon,
-} from "@radix-ui/react-icons";
-import { useTranslations } from "next-intl";
-
-import type { Store } from "~/db/schema/provider";
+} from "~/components/ui/popover";
+import { getRandomPatternStyle } from "~/server/helpers/pattern";
+import { cn } from "~/utils/cn";
 
 type StoreSwitcherProperties = {
   currentStore: Pick<Store, "id" | "name">;
@@ -52,12 +53,10 @@ export function StoreSwitcher({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <Dialog onOpenChange={setIsDialogOpen} open={isDialogOpen}>
-      <Popover onOpenChange={setIsOpen} open={isOpen}>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      <Popover open={isOpen} onOpenChange={setIsOpen}>
         <PopoverTrigger asChild>
           <Button
-            aria-expanded={isOpen}
-            aria-label="Select a store"
             className={cn(
               `
                 w-[140px] justify-between px-3
@@ -66,6 +65,8 @@ export function StoreSwitcher({
               `,
               className,
             )}
+            aria-expanded={isOpen}
+            aria-label="Select a store"
             role="combobox"
             variant="outline"
             {...properties}
@@ -76,8 +77,8 @@ export function StoreSwitcher({
             />
             <span className="line-clamp-1">{currentStore.name}</span>
             <CaretSortIcon
-              aria-hidden="true"
               className="ml-auto size-4 shrink-0 opacity-50"
+              aria-hidden="true"
             />
           </Button>
         </PopoverTrigger>
@@ -95,8 +96,8 @@ export function StoreSwitcher({
               <CommandGroup>
                 {stores.map((store) => (
                   <CommandItem
-                    className="text-sm"
                     key={store.id}
+                    className="text-sm"
                     onSelect={() => {
                       router.push(`/dashboard/stores/${store.id}`);
                       setIsOpen(false);
@@ -108,13 +109,13 @@ export function StoreSwitcher({
                     />
                     <span className="line-clamp-1">{store.name}</span>
                     <CheckIcon
-                      aria-hidden="true"
                       className={cn(
                         "ml-auto size-4",
                         currentStore.id === store.id
                           ? "opacity-100"
                           : "opacity-0",
                       )}
+                      aria-hidden="true"
                     />
                   </CommandItem>
                 ))}
@@ -132,8 +133,8 @@ export function StoreSwitcher({
                     }}
                   >
                     <PlusCircledIcon
-                      aria-hidden="true"
                       className="mr-2 size-4"
+                      aria-hidden="true"
                     />
                     Create store
                   </CommandItem>

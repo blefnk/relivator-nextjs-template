@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 
-import { cn } from "@/utils/reliverse/cn";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
+
+import { cn } from "~/utils/cn";
 
 type NavigationMenuProps = {
   children: ReactNode;
@@ -81,12 +82,12 @@ const NavigationMenuTrigger = ({
   >
     {children}{" "}
     <ChevronDownIcon
-      aria-hidden="true"
       className={`
         relative top-px ml-1 size-3 transition duration-300
 
         group-data-[state=open]:rotate-180
       `}
+      aria-hidden="true"
     />
   </NavigationMenuPrimitive.Trigger>
 );

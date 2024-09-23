@@ -1,8 +1,10 @@
-import type { ReactNode } from "react";
-
 import type { Session } from "next-auth";
 
+import type { ReactNode } from "react";
+
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 
 export async function SignedIn(props: {
   children: (props_: {

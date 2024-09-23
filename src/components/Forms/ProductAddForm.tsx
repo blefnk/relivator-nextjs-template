@@ -1,16 +1,20 @@
 "use client";
 
+import type { FileWithPreview } from "~/types/store";
+import type { z } from "zod";
+
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import Image from "next/image";
 
-import type { FileWithPreview } from "@/types/reliverse/store";
-import type { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import consola from "consola";
+import { useTranslations } from "next-intl";
 
-import { checkProductAction } from "@/actions/reliverse/product-old";
-import { productSchema } from "@/actions/reliverse/validations/product-old";
-import { Button } from "@/components/ui/button";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Zoom } from "~/components/Common/zoom-image";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -19,8 +23,8 @@ import {
   FormLabel,
   FormMessage,
   UncontrolledFormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -28,18 +32,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/text-area";
-import { catchError } from "@/server/reliverse/auth-error";
-import { zodResolver } from "@hookform/resolvers/zod";
-import consola from "consola";
-import { useTranslations } from "next-intl";
-
-import { SpinnerSVG } from "~/components/Common/Icons/SVG";
-import { Zoom } from "~/components/Common/zoom-image";
+} from "~/components/ui/select";
+import { Textarea } from "~/components/ui/text-area";
 import { getSubcategories } from "~/constants/products";
-import { products } from "~/db/schema/provider";
+import { products } from "~/db/schema";
 import { env } from "~/env";
+import { checkProductAction } from "~/server/actions/deprecated/product-old";
+import { catchError } from "~/server/helpers/auth-error";
+import { productSchema } from "~/server/validations/deprecated/product-old";
 
 // import { FileDialog } from "~/components/Common/file-dialog";
 // import { UploadButton } from "~/utils/uthing";
@@ -70,6 +70,7 @@ export function ProductAddForm() {
   const form = useForm<Inputs>({
     defaultValues: {
       name: "",
+      // @ts-expect-error TODO: Fix ts
       category: "clothing",
       description: "",
       images: [],
@@ -80,6 +81,7 @@ export function ProductAddForm() {
     resolver: zodResolver(productSchema),
   });
 
+  // @ts-expect-error TODO: Fix ts
   const subcategories = getSubcategories(form.watch("category"));
 
   function onSubmit(data: Inputs) {
@@ -109,8 +111,8 @@ export function ProductAddForm() {
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
-          control={form.control}
           name="name"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("ProductAddForm.name")}</FormLabel>
@@ -122,8 +124,8 @@ export function ProductAddForm() {
           )}
         />
         <FormField
-          control={form.control}
           name="description"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("ProductAddForm.description")}</FormLabel>
@@ -145,29 +147,32 @@ export function ProductAddForm() {
           `}
         >
           <FormField
-            control={form.control}
+            // @ts-expect-error TODO: Fix ts
             name="category"
+            control={form.control}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>{t("ProductAddForm.category")}</FormLabel>
                 <Select
+                  // @ts-expect-error TODO: Fix ts
+                  value={field.value}
                   onValueChange={(value: typeof field.value) => {
                     field.onChange(value);
                   }}
-                  value={field.value}
                 >
                   <FormControl>
                     <SelectTrigger className="capitalize">
+                      {/* @ts-expect-error TODO: Fix ts */}
                       <SelectValue placeholder={field.value} />
                     </SelectTrigger>
                   </FormControl>
-                  <SelectContent>
+                  {/* <SelectContent>
                     <SelectGroup>
                       {Object.values(products.category.enumValues).map(
                         (option) => (
                           <SelectItem
-                            className="capitalize"
                             key={option}
+                            className="capitalize"
                             value={option}
                           >
                             {option}
@@ -175,21 +180,21 @@ export function ProductAddForm() {
                         ),
                       )}
                     </SelectGroup>
-                  </SelectContent>
+                  </SelectContent> */}
                 </Select>
                 <FormMessage />
               </FormItem>
             )}
           />
           <FormField
-            control={form.control}
             name="subcategory"
+            control={form.control}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>{t("ProductAddForm.subcategory")}</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
                   value={field.value?.toString()}
+                  onValueChange={field.onChange}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -219,16 +224,16 @@ export function ProductAddForm() {
           `}
         >
           <FormField
-            control={form.control}
             name="price"
+            control={form.control}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>{t("ProductAddForm.price")}</FormLabel>
                 <FormControl>
                   <Input
-                    onChange={field.onChange}
                     placeholder="Type product price here."
                     value={field.value}
+                    onChange={field.onChange}
                   />
                 </FormControl>
                 <FormMessage />
@@ -236,20 +241,20 @@ export function ProductAddForm() {
             )}
           />
           <FormField
-            control={form.control}
             name="inventory"
+            control={form.control}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>{t("ProductAddForm.inventory")}</FormLabel>
                 <FormControl>
                   <Input
                     inputMode="numeric"
-                    onChange={(event_) => {
-                      field.onChange(event_.target.valueAsNumber);
-                    }}
                     placeholder="Type product inventory here."
                     type="number"
                     value={Number.isNaN(field.value) ? "" : field.value}
+                    onChange={(event_) => {
+                      field.onChange(event_.target.valueAsNumber);
+                    }}
                   />
                 </FormControl>
                 <FormMessage />
@@ -271,10 +276,10 @@ export function ProductAddForm() {
               {files.map((file, index) => (
                 <Zoom key={index}>
                   <Image
-                    alt={file.name}
                     className={`
                       size-20 shrink-0 rounded-lg object-cover object-center
                     `}
+                    alt={file.name}
                     height={80}
                     src={file.preview}
                     width={80}
@@ -322,8 +327,8 @@ export function ProductAddForm() {
         >
           {isPending && (
             <SpinnerSVG
-              aria-hidden="true"
               className="mr-2 size-4 animate-spin"
+              aria-hidden="true"
             />
           )}
           Add Product

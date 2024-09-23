@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-// import { getStoresAction } from "@/actions/reliverse//store";
-// import { storesSearchParametersSchema } from "@/actions/reliverse/validations/parameters";
+// import { getStoresAction } from "~/actions/reliverse//store";
+// import { storesSearchParametersSchema } from "~/actions/reliverse/validations/parameters";
 // import consola from "consola";
 // import { Stores } from "~/components/Common/stores";
 import { getTranslations } from "next-intl/server";
@@ -14,7 +14,7 @@ import {
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export const metadata: Metadata = {
-  description: "Buy stores from our stores",
+  description: "Buy products from our stores",
 
   title: "Stores",
 };
@@ -57,8 +57,8 @@ export default async function StoresPage() {
   return (
     <Shell>
       <PageHeader
-        aria-labelledby="stores-page-header-heading"
         id="stores-page-header"
+        aria-labelledby="stores-page-header-heading"
       >
         <PageHeaderHeading size="sm">
           {t("store.products.products")}

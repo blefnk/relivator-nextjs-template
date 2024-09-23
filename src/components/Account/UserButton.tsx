@@ -1,21 +1,22 @@
 import Link from "next/link";
 
-import { Button, buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
-import { authProvider, debugEnabled } from "~/../reliverse.config";
+import { debugEnabled } from "~/../reliverse.config";
 import { getTranslations } from "next-intl/server";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { ButtonPlaceholder } from "~/components/Common/placeholders";
 import UserMenu from "~/components/Navigation/UserMenu";
+import { Button, buttonVariants } from "~/components/ui/button";
 import { env } from "~/env";
+import { cn } from "~/utils/cn";
 
 export async function UserButton() {
   const t = await getTranslations();
 
-  const user = authProvider === "clerk" ? await clerk() : await authjs();
+  const user = await authjs();
 
   if (debugEnabled) {
     console.log(user.id, user.email);

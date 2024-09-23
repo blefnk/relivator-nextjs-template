@@ -1,3 +1,5 @@
+import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
 import type {
   DetailedHTMLProps,
   HTMLAttributes,
@@ -5,16 +7,15 @@ import type {
 } from "react";
 import { useMemo } from "react";
 
-import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-
-import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
+
+import { Button } from "~/components/ui/button";
+import { cn } from "~/utils/cn";
 
 type PaginationButtonProps = {
   createQueryString: (
@@ -85,13 +86,15 @@ export function PaginationButton({
       {...props}
     >
       <Button
-        aria-label="Go to first page"
         className={`
           hidden size-8
 
           lg:flex
         `}
+        aria-label="Go to first page"
         disabled={Number(page) === 1 || isPending}
+        size="icon"
+        variant="outline"
         onClick={() => {
           startTransition(() => {
             router.push(
@@ -103,15 +106,15 @@ export function PaginationButton({
             );
           });
         }}
-        size="icon"
-        variant="outline"
       >
-        <DoubleArrowLeftIcon aria-hidden="true" className="size-4" />
+        <DoubleArrowLeftIcon className="size-4" aria-hidden="true" />
       </Button>
       <Button
-        aria-label="Go to previous page"
         className="size-8"
+        aria-label="Go to previous page"
         disabled={Number(page) === 1 || isPending}
+        size="icon"
+        variant="outline"
         onClick={() => {
           startTransition(() => {
             router.push(
@@ -123,29 +126,29 @@ export function PaginationButton({
             );
           });
         }}
-        size="icon"
-        variant="outline"
       >
-        <ChevronLeftIcon aria-hidden="true" className="size-4" />
+        <ChevronLeftIcon className="size-4" aria-hidden="true" />
       </Button>
       {paginationRange.map((pageNumber, index) =>
         pageNumber === "..." ? (
           <Button
-            aria-label="Page separator"
-            className="size-8"
-            disabled
             key={index}
+            className="size-8"
+            aria-label="Page separator"
             size="icon"
             variant="outline"
+            disabled
           >
             ...
           </Button>
         ) : (
           <Button
-            aria-label={`Page ${pageNumber}`}
-            className="size-8"
-            disabled={isPending}
             key={index}
+            className="size-8"
+            aria-label={`Page ${pageNumber}`}
+            disabled={isPending}
+            size="icon"
+            variant={Number(page) === pageNumber ? "default" : "outline"}
             onClick={() => {
               startTransition(() => {
                 router.push(
@@ -157,17 +160,17 @@ export function PaginationButton({
                 );
               });
             }}
-            size="icon"
-            variant={Number(page) === pageNumber ? "default" : "outline"}
           >
             {pageNumber}
           </Button>
         ),
       )}
       <Button
-        aria-label="Go to next page"
         className="size-8"
+        aria-label="Go to next page"
         disabled={Number(page) === (pageCount || 10) || isPending}
+        size="icon"
+        variant="outline"
         onClick={() => {
           startTransition(() => {
             router.push(
@@ -179,19 +182,19 @@ export function PaginationButton({
             );
           });
         }}
-        size="icon"
-        variant="outline"
       >
-        <ChevronRightIcon aria-hidden="true" className="size-4" />
+        <ChevronRightIcon className="size-4" aria-hidden="true" />
       </Button>
       <Button
-        aria-label="Go to last page"
         className={`
           hidden size-8
 
           lg:flex
         `}
+        aria-label="Go to last page"
         disabled={Number(page) === (pageCount || 10) || isPending}
+        size="icon"
+        variant="outline"
         onClick={() => {
           router.push(
             `${pathname}?${createQueryString({
@@ -201,10 +204,8 @@ export function PaginationButton({
             })}`,
           );
         }}
-        size="icon"
-        variant="outline"
       >
-        <DoubleArrowRightIcon aria-hidden="true" className="size-4" />
+        <DoubleArrowRightIcon className="size-4" aria-hidden="true" />
       </Button>
     </div>
   );

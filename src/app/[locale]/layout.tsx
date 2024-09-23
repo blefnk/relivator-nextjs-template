@@ -4,11 +4,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 
-import { Toaster } from "@/components/ui/toaster";
-import { ourFileRouter } from "@/server/reliverse/uploadthing-core";
-import { TRPCReactProvider } from "@/trpc/react";
-import { cn } from "@/utils/reliverse/cn";
-import { config as reliverse } from "@reliverse/core";
+// import { UnifiedBleverseFooter } from "#/layout/bleverse/unified-bleverse-footer";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -18,6 +14,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { extractRouterConfig } from "uploadthing/server";
 
+import { config as reliverse } from "@reliverse/core";
 import { siteConfig } from "~/app";
 import { LoglibAnalytics } from "~/components/Common/loglib-analytics";
 import { TailwindScreens } from "~/components/Common/tailwind-indicator";
@@ -25,7 +22,12 @@ import { SiteFooter } from "~/components/Navigation/SiteFooter";
 import { SiteHeader } from "~/components/Navigation/SiteHeader";
 import { AuthProvider } from "~/components/Providers/AuthProvider";
 import { ThemeProvider } from "~/components/Providers/ThemeProvider";
+// import { UnifiedBleverseHeader } from "#/layout/bleverse/unified-bleverse-header";
+import { Toaster } from "~/components/ui/toaster";
 import { env } from "~/env";
+import { ourFileRouter } from "~/server/helpers/uploadthing-core";
+// import { TRPCReactProvider } from "~/trpc/react";
+import { cn } from "~/utils/cn";
 
 const baseMetadataURL = env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
@@ -102,11 +104,22 @@ export const viewport: Viewport = {
 };
 
 const fontSans = localFont({
+  display: "swap",
   src: "../../styles/fonts/FiraSans-Regular.ttf",
   variable: "--font-sans",
-  display: "swap",
   weight: "400",
 });
+
+// import { Inter as FontSans } from "next/font/google";
+// const fontSansInter = FontSans({
+//   subsets: ["latin"],
+//   variable: "--font-sans"
+// });
+
+// const fontHeading = localFont({
+//   src: "../../fonts/CalSans-SemiBold.woff2",
+//   variable: "--font-heading"
+// });
 
 const fontMono = localFont({
   src: "../../styles/fonts/GeistMonoVF.woff",
@@ -143,22 +156,26 @@ export default async function RootLocaleLayout({
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
             fontSans.variable,
+
+            // fontHeading.variable,
             fontMono.variable,
             fontFlag.variable,
           )}
         >
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-          <TRPCReactProvider>
-            <ThemeProvider>
-              <NextIntlClientProvider messages={messages}>
-                <SiteHeader />
-                {children}
-                <SiteFooter />
-                {/* <Reliverse /> */}
-                {hideTailwindIndicator === false && <TailwindScreens />}
-              </NextIntlClientProvider>
-            </ThemeProvider>
-          </TRPCReactProvider>
+          {/* <TRPCReactProvider> */}
+          <ThemeProvider>
+            <NextIntlClientProvider messages={messages}>
+              <SiteHeader />
+              {/* <UnifiedBleverseHeader /> */}
+              {children}
+              {/* <UnifiedBleverseFooter /> */}
+              <SiteFooter />
+              {/* <Reliverse /> */}
+              {hideTailwindIndicator === false && <TailwindScreens />}
+            </NextIntlClientProvider>
+          </ThemeProvider>
+          {/* </TRPCReactProvider> */}
           <Toaster />
           <LoglibAnalytics />
           <VercelAnalytics />

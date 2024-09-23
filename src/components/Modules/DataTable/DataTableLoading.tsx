@@ -1,4 +1,4 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { Skeleton } from "~/components/ui/skeleton";
 import {
   Table,
   TableBody,
@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "~/components/ui/table";
 
 type DataTableLoadingProps = {
   columnCount: number;
@@ -59,7 +59,7 @@ export function DataTableLoading({
             {Array.from({
               length: 1,
             }).map((_, index) => (
-              <TableRow className="hover:bg-transparent" key={index}>
+              <TableRow key={index} className="hover:bg-transparent">
                 {Array.from({
                   length: columnCount,
                 }).map((_, index) => (
@@ -74,7 +74,7 @@ export function DataTableLoading({
             {Array.from({
               length: rowCount,
             }).map((_, index) => (
-              <TableRow className="hover:bg-transparent" key={index}>
+              <TableRow key={index} className="hover:bg-transparent">
                 {Array.from({
                   length: columnCount,
                 }).map((_, index) => (

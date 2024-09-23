@@ -1,17 +1,19 @@
 import { NextResponse } from "next/server";
 
-import { joinNewsletterSchema } from "@/actions/reliverse/validations/notification";
-import { config } from "@reliverse/core";
 import consola from "consola";
 import { eq } from "drizzle-orm";
 import { Resend } from "resend";
 import { z } from "zod";
 
+import { config } from "@reliverse/core";
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import NewsletterWelcomeEmail from "~/components/Emails/NewsletterWelcomeEmail";
 import { db } from "~/db";
-import { notifications } from "~/db/schema/provider";
+import { notifications } from "~/db/schema";
 import { env } from "~/env";
+import { joinNewsletterSchema } from "~/server/validations/deprecated/notification";
 
 const resendApiKey = env.NEXT_PUBLIC_RESEND_API_KEY;
 

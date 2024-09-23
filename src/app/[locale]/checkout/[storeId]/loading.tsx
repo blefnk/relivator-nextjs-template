@@ -1,7 +1,8 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
 import { ImageIcon } from "lucide-react";
+
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
+import { Skeleton } from "~/components/ui/skeleton";
 
 export default function CheckoutLoading() {
   return (
@@ -58,7 +59,7 @@ export default function CheckoutLoading() {
             {Array.from({
               length: 3,
             }).map((_, index) => (
-              <div className="space-y-3" key={index}>
+              <div key={index} className="space-y-3">
                 <div
                   className={`
                     flex flex-col items-start justify-between gap-4
@@ -74,8 +75,8 @@ export default function CheckoutLoading() {
                         `}
                       >
                         <ImageIcon
-                          aria-hidden="true"
                           className="size-4 text-muted-foreground"
+                          aria-hidden="true"
                         />
                       </div>
                     </div>
@@ -118,7 +119,7 @@ export default function CheckoutLoading() {
             {Array.from({
               length: 4,
             }).map((_, index) => (
-              <fieldset className="space-y-2" key={index}>
+              <fieldset key={index} className="space-y-2">
                 <Skeleton className="h-4 w-8 bg-muted/10" />
                 <div
                   className={`
@@ -140,7 +141,7 @@ export default function CheckoutLoading() {
               {Array.from({
                 length: 2,
               }).map((_, k) => (
-                <fieldset className="w-full space-y-2" key={k}>
+                <fieldset key={k} className="w-full space-y-2">
                   <Skeleton className="h-4 w-8 bg-muted/10" />
                   <div
                     className={`

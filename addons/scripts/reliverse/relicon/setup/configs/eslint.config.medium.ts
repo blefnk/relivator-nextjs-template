@@ -1104,6 +1104,10 @@ export default tseslint.config(
           type: "natural",
         },
       ],
+      "perfectionist/sort-jsx-props": [
+        // TODO: fix (`pnpm check:eslint`: 14226.536 ms)
+        "off",
+      ],
       "perfectionist/sort-object-types": [
         "warn",
         {
@@ -1175,10 +1179,6 @@ export default tseslint.config(
           styledComponents: true,
           type: "natural",
         },
-      ],
-      "perfectionist/sort-jsx-props": [
-        // TODO: fix (`pnpm check:eslint`: 14226.536 ms)
-        "off",
       ],
       "perfectionist/sort-union-types": [
         "warn",

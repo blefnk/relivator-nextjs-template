@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { handler } from "@/server/reliverse/handler";
+import { handler } from "~/server/helpers/handler";
 
 type ResponseData = {
   pong: string;
@@ -8,7 +8,7 @@ type ResponseData = {
 
 // This variable is automatically set by
 // Vercel during the deployment process.
-// eslint-disable-next-line no-restricted-properties
+
 const gitSha = process.env.VERCEL_GIT_COMMIT_SHA || "local";
 
 export const GET = handler<ResponseData, NextResponse>(() => {

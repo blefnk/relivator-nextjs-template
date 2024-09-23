@@ -1,7 +1,7 @@
 // TODO: This file is not finished yet. It needs to be reviewed and completed.
 import type { ReactElement } from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "~/components/ui/button";
 
 type ButtonSetSubscriptionProps = {
   isTemplateFree: boolean | undefined;
@@ -14,7 +14,6 @@ export default function ButtonSetSubscription({
   mapPlanId,
   userSubscription,
 }: ButtonSetSubscriptionProps): ReactElement {
-  // eslint-disable-next-line complexity
   function determineButtonText() {
     if (mapPlanId !== userSubscription && mapPlanId !== "starter") {
       return "Subscribe";

@@ -28,7 +28,7 @@ function kebabToPascal(name: string): string {
 }
 
 async function updateImportPaths(sourceDirectory: string, mappingFile: string) {
-  // eslint-disable-next-line unicorn/better-regex, regexp/strict
+  // eslint-disable-next-line unicorn/better-regex
   const importPathPattern = /import\s+{[^}]+}\s+from\s+['"]([^'"]+)['"];?/g;
 
   const paths: [string, string][] = [];

@@ -7,13 +7,14 @@ import type {
 } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils/reliverse/cn";
 import {
   CheckIcon,
   ChevronRightIcon,
   DotFilledIcon,
 } from "@radix-ui/react-icons";
 import * as MenubarPrimitive from "@radix-ui/react-menubar";
+
+import { cn } from "~/utils/cn";
 
 const MenubarMenu = MenubarPrimitive.Menu;
 const MenubarGroup = MenubarPrimitive.Group;
@@ -132,8 +133,6 @@ const MenubarContent = forwardRef<
   ) => (
     <MenubarPrimitive.Portal>
       <MenubarPrimitive.Content
-        align={align}
-        alignOffset={alignOffset}
         className={cn(
           `
             z-50 min-w-48 overflow-hidden rounded-lg border bg-popover p-1
@@ -154,6 +153,8 @@ const MenubarContent = forwardRef<
           `,
           className,
         )}
+        align={align}
+        alignOffset={alignOffset}
         ref={ref}
         sideOffset={sideOffset}
         {...props}
@@ -195,7 +196,6 @@ const MenubarCheckboxItem = forwardRef<
   ComponentPropsWithoutRef<typeof MenubarPrimitive.CheckboxItem>
 >(({ checked, children, className, ...props }, ref) => (
   <MenubarPrimitive.CheckboxItem
-    checked={checked}
     className={cn(
       `
         relative flex cursor-default select-none items-center rounded-sm py-1.5
@@ -207,6 +207,7 @@ const MenubarCheckboxItem = forwardRef<
       `,
       className,
     )}
+    checked={checked}
     ref={ref}
     {...props}
   >

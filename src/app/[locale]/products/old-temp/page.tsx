@@ -21,9 +21,9 @@
 // } from "~/components/Navigation/PageNavMenu";
 // import { Shell } from "~/components/Wrappers/ShellVariants";
 //
-// import { products } from "~/db/schema/provider";
-// import { getProductsAction } from "@/actions/reliverse//product";
-// import { getStoresAction } from "@/actions/reliverse//store";
+// import { products } from "~/db/schema";
+// import { getProductsAction } from "~/actions/reliverse//product";
+// import { getStoresAction } from "~/actions/reliverse//store";
 //
 // export default async function ProductsPage({
 //   searchParams,

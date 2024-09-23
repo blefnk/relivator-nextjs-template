@@ -1,10 +1,9 @@
-import type { FooterItem } from "@/types/reliverse/nav";
-import type { MainMenuItem } from "@/types/reliverse/with";
-
-import { slugify } from "@/utils/reliverse/string";
+import type { FooterItem } from "~/types/nav";
+import type { MainMenuItem } from "~/types/with";
 
 import metadata from "~/constants/metadata";
 import { productCategories } from "~/constants/products";
+import { slugify } from "~/utils/string";
 
 // Define available icon names as a union type
 type IconName =
@@ -148,7 +147,7 @@ export const siteConfig = {
       url: "/og.png",
     },
   ],
-  keywords: ["next js shadcn ecommerce template"] as string[],
+  keywords: ["Freelance Marketplace", "Hire Freelancer"] as string[],
   links: socialLinks,
   mainNav: [
     {

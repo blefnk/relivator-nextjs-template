@@ -34,7 +34,6 @@ export function HeroSection() {
   // ));
   return (
     <Balancer
-      as="h1"
       className={`
         mt-4 bg-gradient-to-br from-primary/60 from-10% via-primary/90 via-30%
         to-primary to-90% bg-clip-text text-2xl font-medium leading-[1.1]
@@ -48,6 +47,7 @@ export function HeroSection() {
 
         xl:text-4xl
       `}
+      as="h1"
     >
       <span className="block max-w-5xl">{t("metadata.description")}</span>
     </Balancer>

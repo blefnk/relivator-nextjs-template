@@ -4,8 +4,8 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import { usePathname, useRouter } from "next/navigation";
 
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/utils/reliverse/cn";
+import { Tabs, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { cn } from "~/utils/cn";
 
 type StoreTabsProps = {
   storeId: string;
@@ -45,16 +45,16 @@ export function StoreTabs({ className, storeId, ...props }: StoreTabsProps) {
       <TabsList className="rounded-lg">
         {tabs.map((tab) => (
           <TabsTrigger
+            key={tab.title}
             className={cn(
               "rounded-sm",
               pathname === tab.href &&
                 "bg-background text-foreground shadow-sm",
             )}
-            key={tab.title}
+            value={tab.href}
             onClick={() => {
               router.push(tab.href);
             }}
-            value={tab.href}
           >
             {tab.title}
           </TabsTrigger>

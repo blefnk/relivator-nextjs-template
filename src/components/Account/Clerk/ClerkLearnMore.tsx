@@ -7,7 +7,7 @@ type Card = {
 
 export function LearnMore({ cards }: { cards: Card[] }) {
   return (
-    <div className="relative bg-white" id="features">
+    <div id="features" className="relative bg-white">
       <div
         className={`
           mx-auto grid w-full max-w-[75rem] grid-cols-4 gap-8 pb-24 pt-16
@@ -32,11 +32,11 @@ export function LearnMore({ cards }: { cards: Card[] }) {
         </div>
         {cards.map((card) => (
           <a
+            key={card.title}
             className={`
               flex flex-col overflow-hidden rounded-lg border border-[#F2F2F4]
             `}
             href={card.href}
-            key={card.title}
             rel="noopener"
             target="_blank"
           >

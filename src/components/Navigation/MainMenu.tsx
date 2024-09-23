@@ -1,12 +1,11 @@
 "use client";
 
+import type { MainMenuItem } from "~/types/with";
+
 import type { ReactNode } from "react";
 
 import Link from "next/link";
 
-import type { MainMenuItem } from "@/types/reliverse/with";
-
-import { cn } from "@/utils/reliverse/cn";
 import { Store } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -20,6 +19,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "~/components/Navigation/NavMenu";
+import { cn } from "~/utils/cn";
 
 type MainMenuProps = {
   items?: MainMenuItem[];
@@ -37,12 +37,12 @@ export function MainMenu({ items }: MainMenuProps) {
       `}
     >
       <Link
-        aria-label="Home"
         className={`
           hidden items-center space-x-2
 
           lg:flex
         `}
+        aria-label="Home"
         href="/"
       >
         <Store className="size-6" />
@@ -77,7 +77,6 @@ export function MainMenu({ items }: MainMenuProps) {
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <Link
-                        aria-label="Home"
                         className={`
                           flex size-full select-none flex-col justify-end
                           rounded-lg bg-gradient-to-b from-muted/50 to-muted p-6
@@ -85,6 +84,7 @@ export function MainMenu({ items }: MainMenuProps) {
 
                           focus:shadow-md
                         `}
+                        aria-label="Home"
                         href="/about"
                       >
                         <div className="mb-2 mt-4 text-lg font-medium">
@@ -102,8 +102,8 @@ export function MainMenu({ items }: MainMenuProps) {
                   </li>
                   {items[0].items.map((item) => (
                     <ListItem
-                      href={item.href}
                       key={item.title}
+                      href={item.href}
                       title={item.title}
                     >
                       {item.description}
@@ -133,8 +133,8 @@ export function MainMenu({ items }: MainMenuProps) {
                     >
                       {item.items.map((subItem) => (
                         <ListItem
-                          href={subItem.href}
                           key={subItem.title}
+                          href={subItem.href}
                           title={subItem.title}
                         >
                           {subItem.description}

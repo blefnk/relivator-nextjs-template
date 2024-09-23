@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
-
 import type { Session } from "next-auth";
+
+import Link from "next/link";
 
 import { signOut } from "next-auth/react";
 import { useLocale, useTranslations } from "next-intl";
@@ -33,7 +33,7 @@ export default function AccountPageContent({ session }: Props) {
           <p>
             <Link href={`${locale}/dashboard/settings`}>{t("Settings")}</Link>
           </p>
-          <button onClick={onLogoutClick} type="button">
+          <button type="button" onClick={onLogoutClick}>
             {t("logout")}
           </button>
         </>

@@ -2,15 +2,14 @@ import { Balancer } from "react-wrap-balancer";
 
 import Link from "next/link";
 
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils/reliverse/cn";
-
 import {
   BMaCoffeSVG,
   GithubSVG,
   PatreonSVG,
   PaypalSVG,
 } from "~/components/Common/Icons/SVG";
+import { Separator } from "~/components/ui/separator";
+import { cn } from "~/utils/cn";
 
 export function FundingPlatforms() {
   return (
@@ -71,16 +70,16 @@ function FundingPlatform({
   const renderIcon = (platform: Platform) => {
     switch (platform) {
       case "buymeacoffee":
-        return <BMaCoffeSVG aria-hidden className="size-8" />;
+        return <BMaCoffeSVG className="size-8" aria-hidden />;
 
       case "github":
-        return <GithubSVG aria-hidden className="size-8" />;
+        return <GithubSVG className="size-8" aria-hidden />;
 
       case "patreon":
-        return <PatreonSVG aria-hidden className="size-8" />;
+        return <PatreonSVG className="size-8" aria-hidden />;
 
       case "paypal":
-        return <PaypalSVG aria-hidden className="size-8" />;
+        return <PaypalSVG className="size-8" aria-hidden />;
 
       default:
         return null;
@@ -104,18 +103,18 @@ function FundingPlatform({
         <div className="flex min-h-[64px] items-center space-x-4">
           {renderIcon(platform)}
           <Balancer
-            as="h2"
             className={cn(`
               text-lg font-medium tracking-tight text-muted-foreground
 
               sm:text-xl
             `)}
+            as="h2"
           >
             {title}
           </Balancer>
         </div>
         <Separator className="my-4" />
-        <Balancer as="p" className="flex text-muted-foreground">
+        <Balancer className="flex text-muted-foreground" as="p">
           {description}
         </Balancer>
       </div>

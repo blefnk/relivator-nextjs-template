@@ -42,11 +42,11 @@ export default async function DashboardPage() {
             <header className="flex h-16 w-full items-center justify-between gap-4">
               <div className="flex gap-4">
                 <ClerkLogo />
-                <div aria-hidden className="h-6 w-px bg-[#C7C7C8]" />
+                <div className="h-6 w-px bg-[#C7C7C8]" aria-hidden />
                 <NextLogo />
               </div>
               <div className="flex items-center gap-2">
-                {/* eslint-disable-next-line no-restricted-properties */}
+                {}
                 {process.env.NEXT_PUBLIC_ORGANIZATIONS_ENABLED === "true" && (
                   <OrganizationSwitcher
                     appearance={{

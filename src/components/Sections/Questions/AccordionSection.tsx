@@ -1,14 +1,14 @@
 import Balancer from "react-wrap-balancer";
 
+import { useTranslations } from "next-intl";
+
+import { FundingPlatforms } from "~/components/Common/funding";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { useTranslations } from "next-intl";
-
-import { FundingPlatforms } from "~/components/Common/funding";
+} from "~/components/ui/accordion";
 
 export function AccordionSection() {
   const t = useTranslations();
@@ -41,23 +41,23 @@ export function AccordionSection() {
             <AccordionContent>
               {itemId !== 3 ? (
                 <Balancer
-                  as="p"
                   className={`
                     text-gray-500
 
                     dark:text-gray-400
                   `}
+                  as="p"
                 >
                   {t(detailsKey)}
                 </Balancer>
               ) : (
                 <Balancer
-                  as="p"
                   className={`
                     text-gray-500
 
                     dark:text-gray-400
                   `}
+                  as="p"
                 >
                   {t(detailsKey)}
                   {/*

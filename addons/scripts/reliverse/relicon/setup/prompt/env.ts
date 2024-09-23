@@ -1,7 +1,8 @@
 import { confirm, input, password } from "@inquirer/prompts";
-import { getRootDirname } from "@reliverse/fs";
 import fs from "fs-extra";
 import { join } from "pathe";
+
+import { getRootDirname } from "@reliverse/fs";
 
 // TODO: 🐞 Still in development! Please use at own risk!
 
@@ -40,125 +41,125 @@ function createPrompt(
 async function askQuestions() {
   const questions: Question[] = [
     {
-      type: "input",
+      default: "http://localhost:3000",
       key: "NEXT_PUBLIC_APP_URL",
       message: "Specify the website domain in production",
-      default: "http://localhost:3000",
+      type: "input",
     },
-    { type: "input", key: "DATABASE_URL", message: "Database URL" },
+    { key: "DATABASE_URL", message: "Database URL", type: "input" },
     {
-      type: "password",
       key: "AUTH_SECRET",
       message:
         "Auth Secret (e.g.: EnsureUseSomethingRandomHere44CharactersLong)",
+      type: "password",
     },
     {
-      type: "password",
       key: "AUTH_DISCORD_SECRET",
       message: "Auth Discord Secret",
-    },
-    { type: "input", key: "AUTH_DISCORD_ID", message: "Auth Discord ID" },
-    {
       type: "password",
+    },
+    { key: "AUTH_DISCORD_ID", message: "Auth Discord ID", type: "input" },
+    {
       key: "AUTH_GITHUB_SECRET",
       message: "Auth GitHub Secret",
-    },
-    { type: "input", key: "AUTH_GITHUB_ID", message: "Auth GitHub ID" },
-    {
       type: "password",
+    },
+    { key: "AUTH_GITHUB_ID", message: "Auth GitHub ID", type: "input" },
+    {
       key: "AUTH_GOOGLE_SECRET",
       message: "Auth Google Secret",
+      type: "password",
     },
-    { type: "input", key: "AUTH_GOOGLE_ID", message: "Auth Google ID" },
+    { key: "AUTH_GOOGLE_ID", message: "Auth Google ID", type: "input" },
     {
-      type: "input",
       key: "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
       message: "Clerk Publishable Key",
+      type: "input",
     },
-    { type: "password", key: "CLERK_SECRET_KEY", message: "Clerk Secret Key" },
+    { key: "CLERK_SECRET_KEY", message: "Clerk Secret Key", type: "password" },
     {
-      type: "confirm",
+      default: false,
       key: "NEXT_PUBLIC_ORGANIZATIONS_ENABLED",
       message: "Organizations Enabled",
-      default: false,
+      type: "confirm",
     },
     {
-      type: "input",
       key: "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
       message: "Stripe Publishable Key",
+      type: "input",
     },
     {
-      type: "password",
       key: "STRIPE_SECRET_KEY",
       message: "Stripe Secret Key",
+      type: "password",
     },
     {
-      type: "password",
       key: "STRIPE_WEBHOOK_SIGNING_SECRET",
       message: "Stripe Webhook Signing Secret",
+      type: "password",
     },
     {
-      type: "input",
       key: "STRIPE_PROFESSIONAL_SUBSCRIPTION_PRICE_ID",
       message: "Stripe Professional Subscription Price ID",
+      type: "input",
     },
     {
-      type: "input",
       key: "STRIPE_ENTERPRISE_SUBSCRIPTION_PRICE_ID",
       message: "Stripe Enterprise Subscription Price ID",
+      type: "input",
     },
     {
-      type: "confirm",
+      default: false,
       key: "PYTHON_INSTALLED",
       message: "Python Installed",
-      default: false,
+      type: "confirm",
     },
     {
-      type: "confirm",
+      default: false,
       key: "ENABLE_VERCEL_TOOLBAR",
       message: "Enable Vercel Toolbar",
-      default: false,
+      type: "confirm",
     },
     {
-      type: "confirm",
+      default: false,
       key: "ENABLE_VT_ON_PRODUCTION",
       message: "Enable VT on Production",
-      default: false,
+      type: "confirm",
     },
     {
-      type: "confirm",
+      default: false,
       key: "ENABLE_FEATURE_FLAGS",
       message: "Enable Feature Flags",
-      default: false,
+      type: "confirm",
     },
-    { type: "password", key: "FLAGS_SECRET", message: "Flags Secret" },
+    { key: "FLAGS_SECRET", message: "Flags Secret", type: "password" },
     {
-      type: "password",
       key: "REMOTION_GITHUB_TOKEN",
       message: "Remotion GitHub Token",
+      type: "password",
     },
     {
-      type: "password",
       key: "UPLOADTHING_SECRET",
       message: "Uploadthing Secret",
+      type: "password",
     },
-    { type: "input", key: "UPLOADTHING_APP_ID", message: "Uploadthing App ID" },
+    { key: "UPLOADTHING_APP_ID", message: "Uploadthing App ID", type: "input" },
     {
-      type: "input",
       key: "NEXT_PUBLIC_RESEND_API_KEY",
       message: "Resend API Key",
+      type: "input",
     },
     {
-      type: "input",
+      default: "onboarding@resend.dev",
       key: "NEXT_PUBLIC_RESEND_EMAIL_FROM",
       message: "Resend Email From",
-      default: "onboarding@resend.dev",
-    },
-    { type: "input", key: "LOGLIB_ID", message: "Loglib ID" },
-    {
       type: "input",
+    },
+    { key: "LOGLIB_ID", message: "Loglib ID", type: "input" },
+    {
       key: "DISCORD_WEBHOOK_URL",
       message: "Discord Webhook URL",
+      type: "input",
     },
   ];
 
@@ -191,8 +192,8 @@ async function main() {
     console.log(generateEnvContent(answers));
 
     const confirmed = await confirm({
-      message: "Do you want to save these settings to .env file?",
       default: true,
+      message: "Do you want to save these settings to .env file?",
     });
 
     if (confirmed) {

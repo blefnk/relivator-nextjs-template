@@ -1,12 +1,13 @@
+import { authProvider, debugEnabled } from "~/../reliverse.config";
+import consola from "consola";
+import pc from "picocolors";
+
 import loadEnv from "@/scripts/reliverse/relimter/core/env/env-loader";
 import {
   checkAuthConditions,
   getMissingVariables,
 } from "@/scripts/reliverse/relimter/core/env/get-missing";
 import { logMessages } from "@/scripts/reliverse/relimter/core/env/log-messages";
-import { authProvider, debugEnabled } from "~/../reliverse.config";
-import consola from "consola";
-import pc from "picocolors";
 
 export const checkMissingEnvVariables = async () => {
   await loadEnv();
@@ -27,7 +28,6 @@ export const checkMissingEnvVariables = async () => {
   } = checkAuthConditions(missingClerkVariables, missingAuthjsVariables);
 
   if (debugEnabled) {
-    // eslint-disable-next-line no-restricted-properties
     consola.warn("Environment Variables:", process.env);
     consola.warn("Missing Important Variables:", missingImportantVariables);
   }

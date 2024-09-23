@@ -1,15 +1,16 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Laptop, Moon, SunMedium } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+
+import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { Laptop, Moon, SunMedium } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
+} from "~/components/ui/dropdown";
 
 export function ModeToggle() {
   const t = useTranslations();

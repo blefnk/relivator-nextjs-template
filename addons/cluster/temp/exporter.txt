@@ -113,6 +113,5 @@ export type User = typeof selectedSchema.users.$inferSelect;
  * @see https://github.com/mrevanzak/vivat-marketplace/blob/main/packages/db/schema/product.ts
  * @see https://github.com/rexfordessilfie/next-auth-account-linking/blob/main/src/lib/db/schema.ts
  * @see https://github.com/ryanmearns/taskify/blob/main/apps/app/src/db/schema.ts
- * @see https://github.com/sadmann7/skateshop/blob/main/src/db/schema.ts
  * @see https://github.com/saga-sanga/todo-trpc/blob/main/src/db/schema.ts
  */

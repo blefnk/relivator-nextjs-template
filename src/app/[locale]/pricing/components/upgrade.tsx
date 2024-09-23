@@ -3,12 +3,13 @@
 import type { FC, ReactElement } from "react";
 import { useState } from "react";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { CheckCircle2, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { freemem } from "os";
 
 import ButtonSetSubscription from "~/app/[locale]/pricing/components/subscribe";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 
 const PricingTableContent = ({
   onClose,
@@ -46,6 +47,16 @@ const PricingTableContent = ({
         USD: 999.99,
       },
     },
+    free: {
+      monthly: {
+        PLN: 0,
+        USD: 0,
+      },
+      yearly: {
+        PLN: 0,
+        USD: 0,
+      },
+    },
     premium: {
       monthly: {
         PLN: 99.95,
@@ -70,16 +81,16 @@ const PricingTableContent = ({
         >
           <Button
             className="mr-1 rounded px-4 py-2"
-            onClick={togglePricing}
             type="button"
             variant={isMonthly ? "outline" : "ghost"}
+            onClick={togglePricing}
           >
             Monthly
           </Button>
           <Button
-            onClick={togglePricing}
             type="button"
             variant={isMonthly ? "ghost" : "outline"}
+            onClick={togglePricing}
           >
             Yearly
           </Button>
@@ -93,23 +104,23 @@ const PricingTableContent = ({
         >
           <Button
             className="mr-1 rounded px-4 py-2"
-            onClick={toggleCurrency}
             type="button"
             variant={currency === "$" ? "outline" : "ghost"}
+            onClick={toggleCurrency}
           >
             $
           </Button>
           <Button
-            onClick={toggleCurrency}
             type="button"
             variant={currency === "R$" ? "outline" : "ghost"}
+            onClick={toggleCurrency}
           >
             R$
           </Button>
         </div>
         {}
         {onClose && (
-          <Button onClick={onClose} type="button" variant="outline">
+          <Button type="button" variant="outline" onClick={onClose}>
             <X />
           </Button>
         )}
@@ -124,42 +135,45 @@ const PricingTableContent = ({
         `}
       >
         <PricingPlan
+          name="Starter"
           buttonText="Subscribe"
           currency={currency}
           features={["30 days support"]}
-          isCurrentPlan
-          isSubscribed
           mapPlanId="starter"
-          name="Starter" // @ts-expect-error TODO: Fix ts
+          // @ts-expect-error TODO: Fix ts
           price={`${currency}${isMonthly ? prices.free.monthly[currency] : prices.free.yearly[currency]}`}
           stripeCustomerId="cus_123456789"
           stripePriceId="starter"
           stripeSubscriptionId="sub_123456789"
           userSubscription={userSubscription}
+          isCurrentPlan
+          isSubscribed
         />
         <PricingPlan
+          name="Premium"
           buttonText="Subscribe"
           currency={currency}
           features={["60 days support"]}
           isCurrentPlan={false}
           isSubscribed={false}
           mapPlanId="premium"
-          name="Premium"
-          popular // @ts-expect-error TODO: Fix ts
+          // @ts-expect-error TODO: Fix ts
           price={`${currency}${isMonthly ? prices.premium.monthly[currency] : prices.premium.yearly[currency]}`}
           stripeCustomerId="cus_123456789"
           stripePriceId={priceIdPremium}
           stripeSubscriptionId="sub_123456789"
           userSubscription={userSubscription}
+          popular
         />
         <PricingPlan
+          name="Enterprise"
           buttonText="Subscribe"
           currency={currency}
           features={["90 days support"]}
           isCurrentPlan={false}
           isSubscribed={false}
           mapPlanId="enterprise"
-          name="Enterprise" // @ts-expect-error TODO: Fix ts
+          // @ts-expect-error TODO: Fix ts
           price={`${currency}${isMonthly ? prices.enterprise.monthly[currency] : prices.enterprise.yearly[currency]}`}
           stripeCustomerId="cus_123456789"
           stripePriceId={priceIdEnterprise}
@@ -301,7 +315,7 @@ const PricingPlan: FC<PricingPlanProps> = ({
       </p>
       <ul className="mb-4 space-y-2 text-left text-sm">
         {features.map((feature) => (
-          <li className="flex items-center" key={feature}>
+          <li key={feature} className="flex items-center">
             <span className="mr-2 mt-1">
               <CheckCircle2 className="max-w-5" />
             </span>

@@ -2,18 +2,20 @@ import type { ReactNode } from "react";
 
 import { notFound, redirect } from "next/navigation";
 
-import { getDashboardRedirectPath } from "@/server/reliverse/plan";
 import { eq } from "drizzle-orm";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
 import { authProvider } from "~/auth/provider";
+import { UserNotFound } from "~/components/Account/Guest/UserNotFound";
 import { PageHeaderHeading } from "~/components/Navigation/PageNavMenu";
 import { StoreSwitcher } from "~/components/Navigation/Pagination/StoreSwitcher";
 import { StoreTabs } from "~/components/Navigation/Pagination/StoreTabs";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { db } from "~/db";
-import { stores } from "~/db/schema/provider";
+import { stores } from "~/db/schema";
+import { getDashboardRedirectPath } from "~/server/helpers/plan";
+import { auth } from "~/server/queries/user";
 
 type StoreLayoutProps = {
   params: {
@@ -28,10 +30,10 @@ export default async function StoreLayout({
 }: StoreLayoutProps) {
   const { storeId } = params;
 
-  const user = authProvider === "clerk" ? await clerk() : await authjs();
+  const user = await auth();
 
   if (!user) {
-    return redirect("/auth");
+    return <UserNotFound />;
   }
 
   const allStores = await db
@@ -59,11 +61,11 @@ export default async function StoreLayout({
         {allStores.length > 1 ? (
           <StoreSwitcher
             currentStore={store}
+            stores={allStores}
             dashboardRedirectPath={getDashboardRedirectPath({
               // subscriptionPlan,
               storeCount: allStores.length,
             })}
-            stores={allStores}
           />
         ) : null}
       </div>

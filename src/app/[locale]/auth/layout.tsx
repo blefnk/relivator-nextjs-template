@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 
 import { redirect } from "next/navigation";
 
-import { config } from "@reliverse/core";
 import consola from "consola";
 
+import { config } from "@reliverse/core";
 import { authProvider } from "~/auth/provider";
 import { GeneralShell } from "~/components/Wrappers/GeneralShell";
 import { env } from "~/env";

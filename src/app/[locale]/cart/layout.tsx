@@ -11,7 +11,7 @@ type CartLayoutProps = {
 };
 
 export default async function CartLayout({ children }: CartLayoutProps) {
-  const user = authProvider === "clerk" ? await clerk() : await authjs();
+  const user = await authjs();
 
   if (!user) {
     redirect("/auth");

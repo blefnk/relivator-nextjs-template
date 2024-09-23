@@ -15,6 +15,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return children;
 }
 
+// import type { ReactNode } from "react";
+// export default function RootLayout({
+// 	children,
+// }: {
+// 	children: ReactNode;
+// }) {
+// 	return (
+// 		<html lang="en">
+// 			<body>
+// 				<main>{children}</main>
+// 			</body>
+// 		</html>
+// 	);
+// }
+
 // Extended implementation (possibly will be deprecated):
 // import { defaultLocale } from "~/../reliverse.i18n";
 // This is the root layout component that wraps the entire application

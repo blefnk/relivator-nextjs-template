@@ -9,8 +9,8 @@ import createMiddleware from "next-intl/middleware";
 
 const intlMiddleware = createMiddleware({
   defaultLocale,
-  locales,
   localePrefix,
+  locales,
   pathnames,
 });
 
@@ -26,7 +26,7 @@ export const config = {
     // Set a cookie to remember the previous locale
     // for all requests that have a locale prefix
     // Should be in sync with reliverse.i18n.ts file
-    "/(de-DE|en-US|es-ES|fa-IR|fr-FR|hi-IN|it-IT|pl-PL|tr-TR|uk-UA|zh-CN)/:path*",
+    "/(de-DE|en-US|es-ES|ms-MY|fr-FR|hi-IN|it-IT|pl-PL|tr-TR|uk-UA|zh-CN)/:path*",
 
     // Enable redirects that add missing locales
     // (e.g. `/pathnames` -> `/en/pathnames`)

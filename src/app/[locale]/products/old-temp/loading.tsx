@@ -1,13 +1,13 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ImageIcon } from "lucide-react";
+
+import { AspectRatio } from "~/components/ui/aspect-ratio";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { ImageIcon } from "lucide-react";
-
+} from "~/components/ui/card";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function ProductsLoading() {
@@ -36,7 +36,7 @@ export default function ProductsLoading() {
           {Array.from({
             length: 8,
           }).map((_, index) => (
-            <Card className="rounded-sm" key={index}>
+            <Card key={index} className="rounded-sm">
               <CardHeader className="border-b p-0">
                 <AspectRatio ratio={4 / 3}>
                   <div
@@ -45,8 +45,8 @@ export default function ProductsLoading() {
                     `}
                   >
                     <ImageIcon
-                      aria-hidden="true"
                       className="size-9 text-muted-foreground"
+                      aria-hidden="true"
                     />
                   </div>
                 </AspectRatio>

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
+import { useTranslations } from "next-intl";
+
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { useTranslations } from "next-intl";
-
+} from "~/components/ui/card";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export const metadata: Metadata = {

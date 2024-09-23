@@ -4,19 +4,21 @@
 // specifically for handling subscription plans and customer status within the Stripe payment system.
 // It includes methods for mapping Stripe price IDs to corresponding plans and for determining
 // the customer's status based on their subscription history and payment methods.
-// Please scroll down to the bottom of this file to read a detailed description of this file.
-import { redirect } from "next/navigation";
-
 //
 import type Stripe from "stripe";
+
+// Please scroll down to the bottom of this file to read a detailed description of this file.
+import { redirect } from "next/navigation";
 
 // You will also find links to inspirations and other additional learning resources there.
 import { eq } from "drizzle-orm";
 
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { stripe } from "~/core/stripe/connect";
-import { db } from "~/db/postgres";
-import { users } from "~/db/schema/provider";
+import { db } from "~/db";
+import { users } from "~/db/schema";
 import { env } from "~/env";
 
 export const PROFESSIONAL = env.STRIPE_PROFESSIONAL_SUBSCRIPTION_PRICE_ID || "";
@@ -200,4 +202,4 @@ export async function getOrCreateCustomerId({
   if (updatedUser && updatedUser.stripeCustomerId) {
     return updatedUser.stripeCustomerId;
   }
-} /// / Stripe Utilities// =================// Description:// ------------// This file contains utility functions and configurations for Stripe integration,// specifically for handling subscription plans and customer status within the Stripe payment system.// It includes methods for mapping Stripe price IDs to corresponding plans and for determining// the customer's status based on their subscription history and payment methods.// Key Components:// ---------------// - PROFESSIONAL, ENTERPRISE: Constants for Stripe subscription price IDs.// - getPlanFromPriceId: Function to retrieve plan details based on a given Stripe price ID.// - PLANS: An array of plan objects detailing plan names, slugs, quotas, and prices.// Future Developments:// --------------------// There are placeholders for further enhancements, such as the introduction of usage-based subscriptions// for the 'enterprise' plan and adjustments to quota representations.// Usage:// ------// These utilities are intended to be used across the application wherever Stripe subscription// data is required. This centralization ensures consistency and ease of updates as Stripe's API evolves.// Learning Resources and Inspirations:// ------------------------------------// @see https://github.com/steven-tey/dub/blob/main/apps/web/lib/stripe// @see https://github.com/alissonsleal/brapi/blob/main/services/stripe// @see https://github.com/sadmann7/skateshop/blob/main/src/app/_actions/stripe.ts// @see https://github.com/sadmann7/skateshop/blob/main/src/app/api/webhooks/stripe/route.ts// @see https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts//
+} /// / Stripe Utilities// =================// Description:// ------------// This file contains utility functions and configurations for Stripe integration,// specifically for handling subscription plans and customer status within the Stripe payment system.// It includes methods for mapping Stripe price IDs to corresponding plans and for determining// the customer's status based on their subscription history and payment methods.// Key Components:// ---------------// - PROFESSIONAL, ENTERPRISE: Constants for Stripe subscription price IDs.// - getPlanFromPriceId: Function to retrieve plan details based on a given Stripe price ID.// - PLANS: An array of plan objects detailing plan names, slugs, quotas, and prices.// Future Developments:// --------------------// There are placeholders for further enhancements, such as the introduction of usage-based subscriptions// for the 'enterprise' plan and adjustments to quota representations.// Usage:// ------// These utilities are intended to be used across the application wherever Stripe subscription// data is required. This centralization ensures consistency and ease of updates as Stripe's API evolves.// Learning Resources and Inspirations:// ------------------------------------// @see https://github.com/steven-tey/dub/blob/main/apps/web/lib/stripe// @see https://github.com/alissonsleal/brapi/blob/main/services/stripe// @see https://github.com/sadmann7/relivator/blob/main/src/app/_actions/stripe.ts// @see https://github.com/sadmann7/relivator/blob/main/src/app/api/webhooks/stripe/route.ts// @see https://github.com/jackblatch/OneStopShop/blob/main/server-actions/stripe/payment.ts//

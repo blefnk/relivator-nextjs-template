@@ -1,4 +1,3 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
 
 import {
@@ -6,6 +5,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function AccountLoading() {

@@ -2,8 +2,9 @@ import type { LinkHTMLAttributes } from "react";
 
 import Link from "next/link";
 
-import { cn } from "@/utils/reliverse/cn";
 import { ExternalLink } from "lucide-react";
+
+import { cn } from "~/utils/cn";
 
 type CustomLinkProps = {
   href: string;

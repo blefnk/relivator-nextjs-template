@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "~/components/ui/separator";
 import { Head } from "@react-email/head";
 import { Html } from "@react-email/html";
 import { Img } from "@react-email/img";
@@ -103,7 +103,7 @@ export function Onboard({ firstName = "FirstName" }) {
       <Tailwind>
         <Img
           alt="Relivator Logo"
-          src="https://relivator.reliverse.org/logo.png"
+          src="https://bleverse.com/logo.png"
         />
         <p className="text-2xl">Welcome {firstName}, </p>
         <p className="text-lg">
@@ -192,7 +192,7 @@ export function OnboardSample({ firstName = "FirstName" }) {
       <Image
         alt="Relivator Logo"
         height={150}
-        src="https://relivator.reliverse.org/logo.png"
+        src="https://bleverse.com/logo.png"
         width={500}
       />
       <a href="/page">asa</a>

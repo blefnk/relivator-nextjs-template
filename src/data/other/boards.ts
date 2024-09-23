@@ -1,10 +1,12 @@
+import type { Item } from "~/db/schema";
+
 import { unstable_cache } from "next/cache";
 
 import { and, asc, eq } from "drizzle-orm";
 
-import type { Item } from "~/db/schema/provider";
-
 import { authjs } from "~/auth/authjs";
+import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { db } from "~/db";
 
 // These seems to be some issue when caching this function and optimistically
@@ -56,7 +58,6 @@ export const getBoardWithItems = async (boardId: string) => {
 
   // Normalize items by id. This is useful for the
   // quick lookups when we need to update an item
-  // @ts-expect-error TODO: fix ts
   for (const itm of board.items) {
     itemsById[itm.id] = itm;
   }

@@ -168,8 +168,6 @@ const basicDependencies: string[] = [
   "@neondatabase/serverless",
   "@next/bundle-analyzer",
   "@next/mdx",
-  "@normy/react-query",
-  "@planetscale/database",
   "@react-email/components",
   "@react-email/head",
   "@react-email/html",
@@ -185,9 +183,6 @@ const basicDependencies: string[] = [
   "@stripe/stripe-js",
   "@t3-oss/env-nextjs",
   "@tailwindcss/postcss",
-  "@tanstack/react-query-devtools",
-  "@tanstack/react-query-next-experimental",
-  "@tanstack/react-query",
   "@tanstack/react-table",
   "@trpc/client",
   "@trpc/react-query",
@@ -202,7 +197,6 @@ const basicDependencies: string[] = [
   "ajv-formats",
   "ajv",
   "axios",
-  "better-sqlite3",
   "c12",
   "citty",
   "class-variance-authority",
@@ -232,7 +226,6 @@ const basicDependencies: string[] = [
   "modern-errors-serialize",
   "modern-errors",
   "montag",
-  "mysql2",
   "nanoid",
   "nanotar",
   "next-auth@beta",
@@ -356,7 +349,6 @@ const dependenciesCspell: string[] = [
   "@cspell/dict-companies",
   "@cspell/dict-de-de",
   "@cspell/dict-es-es",
-  "@cspell/dict-fa-ir",
   "@cspell/dict-fr-fr",
   "@cspell/dict-fullstack",
   "@cspell/dict-it-it",
@@ -370,7 +362,6 @@ const dependenciesCspell: string[] = [
 ];
 
 const dependenciesTypes: string[] = [
-  "@types/better-sqlite3",
   "@types/eslint",
   "@types/fs-extra",
   "@types/glob",
@@ -505,7 +496,6 @@ function getInstalledDependencies(): {
   return { dependenciesArray, dependenciesObject, dependenciesString };
 }
 
-// eslint-disable-next-line complexity
 async function handleDependencies(
   flag: (typeof flags)[number],
   cwd: string,
@@ -953,7 +943,7 @@ async function writePackageJson(packageJson: PackageJson): Promise<void> {
 }
 
 // ▶️ pnpm deps:locations (included in: pnpm deps)
-// eslint-disable-next-line complexity
+
 async function checkIncorrectlyPlacedPackages() {
   const { dependencies = {}, devDependencies = {} } = readPackageSync();
 
@@ -963,7 +953,6 @@ async function checkIncorrectlyPlacedPackages() {
       "chai",
       "concurrently",
       "cross-env",
-      "cypress",
       "emotion",
       "enzyme",
       "jest",
@@ -1086,7 +1075,7 @@ async function checkIncorrectlyPlacedPackages() {
 }
 
 // [usage example] ▶️ pnpm deps:use-next-15-rc (or: deps:use-next-15)
-// eslint-disable-next-line max-lines-per-function, complexity
+// eslint-disable-next-line max-lines-per-function
 async function handleUseFlags(flag: UseFlag) {
   const reactStable = ["react", "react-dom"];
   const nextStable = [...reactStable, "next"];

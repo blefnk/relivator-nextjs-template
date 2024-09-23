@@ -2,13 +2,13 @@
 
 import { useTransition } from "react";
 
-import { generateProducts } from "@/actions/reliverse/generate";
-import { Button } from "@/components/ui/button";
-import { catchError } from "@/server/reliverse/auth-error";
 import consola from "consola";
 import tryToCatch from "try-to-catch";
 
 import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button } from "~/components/ui/button";
+import { generateProducts } from "~/server/actions/deprecated/generate";
+import { catchError } from "~/server/helpers/auth-error";
 
 type GenerateButtonProps = {
   storeId: string;
@@ -24,6 +24,7 @@ export function GenerateButton({ storeId }: GenerateButtonProps) {
 
         lg:px-3
       `}
+      variant="secondary"
       onClick={() => {
         startTransition(async () => {
           const [error] = await tryToCatch(generateProducts, {
@@ -46,10 +47,9 @@ export function GenerateButton({ storeId }: GenerateButtonProps) {
           }
         });
       }}
-      variant="secondary"
     >
       {isPending && (
-        <SpinnerSVG aria-hidden="true" className="mr-2 size-4 animate-spin" />
+        <SpinnerSVG className="mr-2 size-4 animate-spin" aria-hidden="true" />
       )}
       Generate products
     </Button>

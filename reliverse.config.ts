@@ -24,8 +24,8 @@ export const packageManager = "pnpm" as "bun" | "pnpm";
 // @see https://github.com/blefnk/relivator-nextjs-template/issues/32
 export type DatabaseDialect = "mysql" | "postgresql" | "sqlite";
 
-export const databasePrefix = // eslint-disable-next-line no-restricted-properties
-  process.env.NEXT_PUBLIC_DATABASE_PREFIX || "relivator";
+export const databasePrefix =
+  process.env.NEXT_PUBLIC_DATABASE_PREFIX || "bleverse";
 
 export const databaseDialect = "postgresql";
 
@@ -34,7 +34,6 @@ export const databaseDialect = "postgresql";
 // - planetscale    | mysql     | https://planetscale.com/pricing
 // - private-mysql  | postgres  | https://dev.mysql.com/downloads
 // - private-pg     | postgres  | https://postgresql.org
-// - private-sqlite | sqlite    | https://github.com/WiseLibs/better-sqlite3
 // - railway-mysql  | mysql     | https://railway.app
 // - railway-pg     | postgres  | https://railway.app
 // - turso          | sqlite    | https://turso.tech

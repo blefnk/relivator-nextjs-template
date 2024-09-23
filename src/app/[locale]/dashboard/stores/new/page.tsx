@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { getTranslations } from "next-intl/server";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
 import { authProvider } from "~/auth/provider";
+import { UserNotFound } from "~/components/Account/Guest/UserNotFound";
 import { StoreAddForm } from "~/components/Forms/StoreAddForm";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import { Shell } from "~/components/Wrappers/ShellVariants";
+import { auth } from "~/server/queries/user";
 
 export const metadata: Metadata = {
   description: "Add a new store",
@@ -30,18 +32,18 @@ export default async function NewStorePage() {
   const t = await getTranslations();
 
   // const user = await revalidateUser();
-  const user = authProvider === "clerk" ? await clerk() : await authjs();
+  const user = await auth();
 
   if (!user) {
-    redirect("/auth");
+    return <UserNotFound />;
   }
 
   // consola.info(user);
   return (
     <Shell variant="sidebar">
       <PageHeader
-        aria-labelledby="new-store-page-header-heading"
         id="new-store-page-header"
+        aria-labelledby="new-store-page-header-heading"
       >
         <PageHeaderHeading size="sm">{t("page.newStore")}</PageHeaderHeading>
         <PageHeaderDescription size="sm">
@@ -49,8 +51,8 @@ export default async function NewStorePage() {
         </PageHeaderDescription>
       </PageHeader>
       <Card
-        aria-labelledby="new-store-page-form-heading"
         id="new-store-page-form-container"
+        aria-labelledby="new-store-page-form-heading"
       >
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl">{t("page.addStore")}</CardTitle>

@@ -98,8 +98,8 @@ export function UserDetails() {
           <div className="relative flex w-full justify-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              alt="user"
               className="size-20 rounded-full"
+              alt="user"
               src={user.imageUrl}
             />
             <div

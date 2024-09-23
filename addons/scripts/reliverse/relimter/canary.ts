@@ -1,7 +1,8 @@
-import { defineAddon } from "@/scripts/utils";
 import { defineCommand, runMain } from "citty";
 import consola from "consola";
 import pc from "picocolors";
+
+import { defineAddon } from "@/scripts/utils";
 
 // Relivator v1.3.0-canary.x Edition
 // pnpm tsx addons/scripts/reliverse/relimter/canary.ts

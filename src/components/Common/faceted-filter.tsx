@@ -1,10 +1,13 @@
+import type { Option } from "~/types/store";
+
 import type { Dispatch, SetStateAction } from "react";
 import { useMemo } from "react";
 
-import type { Option } from "@/types/reliverse/store";
+import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
+import { useTranslations } from "next-intl";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from "~/components/ui/badge";
+import { Button } from "~/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -13,16 +16,14 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";
+} from "~/components/ui/command";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils/reliverse/cn";
-import { CheckIcon, PlusCircledIcon } from "@radix-ui/react-icons";
-import { useTranslations } from "next-intl";
+} from "~/components/ui/popover";
+import { Separator } from "~/components/ui/separator";
+import { cn } from "~/utils/cn";
 
 type FacetedFilterProps = {
   filterValues: string[];
@@ -45,12 +46,12 @@ export function FacetedFilter({
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          aria-label="Filter data"
           className="h-8 border-dashed"
+          aria-label="Filter data"
           size="sm"
           variant="outline"
         >
-          <PlusCircledIcon aria-hidden="true" className="mr-2 size-4" />
+          <PlusCircledIcon className="mr-2 size-4" aria-hidden="true" />
           {title}
           {selectedValues && selectedValues.size > 0 && (
             <>
@@ -84,8 +85,8 @@ export function FacetedFilter({
                     .filter((option) => selectedValues.has(option.value))
                     .map((option) => (
                       <Badge
-                        className="rounded-sm px-1 font-normal"
                         key={option.value}
+                        className="rounded-sm px-1 font-normal"
                         variant="secondary"
                       >
                         {option.label}
@@ -97,7 +98,7 @@ export function FacetedFilter({
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-[200px] p-0">
+      <PopoverContent className="w-[200px] p-0" align="start">
         <Command>
           <CommandInput placeholder={title} />
           <CommandList>
@@ -138,13 +139,13 @@ export function FacetedFilter({
                           `,
                       )}
                     >
-                      <CheckIcon aria-hidden="true" className={cn("size-4")} />
+                      <CheckIcon className={cn("size-4")} aria-hidden="true" />
                     </div>
                     {}
                     {option.icon && (
                       <option.icon
-                        aria-hidden="true"
                         className="mr-2 size-4 text-muted-foreground"
+                        aria-hidden="true"
                       />
                     )}
                     <span>{option.label}</span>

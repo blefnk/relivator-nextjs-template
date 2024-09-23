@@ -1,11 +1,9 @@
 import { redirect } from "next/navigation";
 
-import { authjs } from "~/auth/authjs";
-import { clerk } from "~/auth/clerk";
-import { authProvider } from "~/auth/provider";
+import { auth } from "~/server/queries/user";
 
 export default async function ProtectedRoute() {
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  const session = await auth();
 
   if (!session) {
     redirect("/auth/sign-in");

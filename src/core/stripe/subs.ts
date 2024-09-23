@@ -3,7 +3,7 @@
 // Always keep the subscription plans synchronized between this file and the Stripe dashboard
 // to prevent discrepancies and potential issues in transaction handling.
 // @see https://github.com/apestein/nextflix/blob/main/src/lib/configs.ts
-import type { SubscriptionPlanTypes } from "@/types/reliverse/plan";
+import type { SubscriptionPlanTypes } from "~/types/plan";
 
 import { env } from "~/env";
 

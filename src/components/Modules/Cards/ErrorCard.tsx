@@ -2,7 +2,10 @@ import type { ComponentPropsWithoutRef } from "react";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
+import { AlertTriangle, CheckCircle, Info, XCircle } from "lucide-react";
+
+import { ClientButton } from "~/components/Common/client-button";
+import { buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,11 +13,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { cn } from "@/utils/reliverse/cn";
-import { AlertTriangle, CheckCircle, Info, XCircle } from "lucide-react";
-
-import { ClientButton } from "~/components/Common/client-button";
+} from "~/components/ui/card";
+import { cn } from "~/utils/cn";
 
 type IconName = "error" | "info" | "success" | "warning";
 
@@ -38,25 +38,25 @@ export function ErrorCard({
   ...props
 }: ErrorCardProps) {
   const iconMap = {
-    warning: AlertTriangle,
+    error: XCircle,
     info: Info,
     success: CheckCircle,
-    error: XCircle,
+    warning: AlertTriangle,
   };
 
   const Icon = iconMap[icon];
 
   return (
     <Card
+      className={cn("grid w-full place-items-center", className)}
       aria-atomic="true"
       aria-live="assertive"
-      className={cn("grid w-full place-items-center", className)}
       role="alert"
       {...props}
     >
       <CardHeader>
         <div className="grid size-20 place-items-center rounded-full bg-muted">
-          <Icon aria-hidden="true" className="size-10" />
+          <Icon className="size-10" aria-hidden="true" />
         </div>
       </CardHeader>
       <CardContent
@@ -85,7 +85,7 @@ export function ErrorCard({
       ) : null}
       {reset ? (
         <CardFooter>
-          <ClientButton aria-label="Retry" onClick={reset} variant="ghost">
+          <ClientButton aria-label="Retry" variant="ghost" onClick={reset}>
             Retry
           </ClientButton>
         </CardFooter>

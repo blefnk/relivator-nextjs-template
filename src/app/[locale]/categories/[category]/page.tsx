@@ -1,9 +1,9 @@
 // src\app\[locale]\categories\[category]\page.tsx
+import type { Product } from "~/db/schema";
+
 import type { Metadata } from "next";
 
 import { titleCase } from "string-ts";
-
-import type { Product } from "~/db/schema/provider";
 
 import {
   PageHeader,
@@ -14,6 +14,7 @@ import { Shell } from "~/components/Wrappers/ShellVariants";
 
 type CategoryPageProps = {
   params: {
+    // @ts-expect-error TODO: Fix ts
     category: Product["category"];
   };
   searchParams: Record<string, string | string[] | undefined>;
@@ -30,8 +31,8 @@ export default async function CategoryPage({}: CategoryPageProps) {
   return (
     <Shell>
       <PageHeader
-        aria-labelledby="category-page-header-heading"
         id="category-page-header"
+        aria-labelledby="category-page-header-heading"
       >
         <PageHeaderHeading size="sm">
           Oops... Category page is temporarily disabled...

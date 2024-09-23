@@ -15,8 +15,8 @@ type AvatarProps = {
 
 function generateAvatar(seed: string): string {
   const avatar = createAvatar(funEmoji, {
-    seed: seed,
     mouth: ["smileTeeth", "smileLol", "wideSmile", "lilSmile"],
+    seed: seed,
   });
 
   return avatar.toString();
@@ -31,12 +31,12 @@ export function AvatarImage({ name, avatarUrl, sponsorLevel }: AvatarProps) {
     <>
       {!useAvatar && avatarUrl ? (
         <Image
-          src={avatarUrl}
-          alt={`${name}'s avatar`}
-          width={avatarSize}
-          height={avatarSize}
           // TODO: rounded doesn't work for some reason...
           className="aspect-square rounded-full object-cover"
+          alt={`${name}'s avatar`}
+          height={avatarSize}
+          src={avatarUrl}
+          width={avatarSize}
           onError={() => {
             setUseAvatar(true);
           }}
@@ -44,8 +44,8 @@ export function AvatarImage({ name, avatarUrl, sponsorLevel }: AvatarProps) {
       ) : (
         <div
           className="aspect-square rounded-full object-cover"
-          style={{ width: avatarSize, height: avatarSize }}
           dangerouslySetInnerHTML={{ __html: avatarSvg }}
+          style={{ height: avatarSize, width: avatarSize }}
         />
       )}
     </>

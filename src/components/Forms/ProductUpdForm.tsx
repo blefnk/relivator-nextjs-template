@@ -1,20 +1,24 @@
 "use client";
 
+/* eslint-disable max-lines-per-function */
+import type { Product } from "~/db/schema";
+import type { FileWithPreview } from "~/types/store";
+import type { z } from "zod";
+
 import { useEffect, useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import type { FileWithPreview } from "@/types/reliverse/store";
-import type { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import consola from "consola";
+import { useTranslations } from "next-intl";
 
-import {
-  checkProductAction,
-  deleteProductAction,
-} from "@/actions/reliverse/product-old";
-import { productSchema } from "@/actions/reliverse/validations/product-old";
-import { Button } from "@/components/ui/button";
+import { MultiUploader } from "~/components/Application/UploadThing/MultiUploader";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Zoom } from "~/components/Common/zoom-image";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -23,8 +27,8 @@ import {
   FormLabel,
   FormMessage,
   UncontrolledFormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -32,22 +36,17 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/text-area";
-import { catchError } from "@/server/reliverse/auth-error";
-import { zodResolver } from "@hookform/resolvers/zod";
-import consola from "consola";
-import { useTranslations } from "next-intl";
-
-/* eslint-disable max-lines-per-function */
-import type { Product } from "~/db/schema/provider";
-
-import { MultiUploader } from "~/components/Application/UploadThing/MultiUploader";
-import { SpinnerSVG } from "~/components/Common/Icons/SVG";
-import { Zoom } from "~/components/Common/zoom-image";
+} from "~/components/ui/select";
+import { Textarea } from "~/components/ui/text-area";
 import { getSubcategories } from "~/constants/products";
-import { products } from "~/db/schema/provider";
+import { products } from "~/db/schema";
 import { env } from "~/env";
+import {
+  checkProductAction,
+  deleteProductAction,
+} from "~/server/actions/deprecated/product-old";
+import { catchError } from "~/server/helpers/auth-error";
+import { productSchema } from "~/server/validations/deprecated/product-old";
 
 type ProductUpdFormProps = {
   product: Product;
@@ -93,12 +92,15 @@ export function ProductUpdForm({ product }: ProductUpdFormProps) {
   // });
   const form = useForm<Inputs>({
     defaultValues: {
+      // @ts-expect-error TODO: Fix ts
       category: product.category || "clothing",
+      // @ts-expect-error TODO: Fix ts
       subcategory: product.subcategory,
     },
     resolver: zodResolver(productSchema),
   });
 
+  // @ts-expect-error TODO: Fix ts
   const subcategories = getSubcategories(form.watch("category"));
 
   function onSubmit(data: Inputs) {
@@ -167,29 +169,33 @@ export function ProductUpdForm({ product }: ProductUpdFormProps) {
           `}
         >
           <FormField
-            control={form.control}
+            // @ts-expect-error TODO: Fix ts
             name="category"
+            control={form.control}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>{t("ProductUpdForm.category")}</FormLabel>
                 <FormControl>
                   <Select
+                    // @ts-expect-error TODO: Fix ts
                     defaultValue={product.category || "clothing"}
+                    // @ts-expect-error TODO: Fix ts
+                    value={field.value}
                     onValueChange={(value: typeof field.value) => {
                       field.onChange(value);
                     }}
-                    value={field.value}
                   >
                     <SelectTrigger className="capitalize">
+                      {/* @ts-expect-error TODO: Fix ts */}
                       <SelectValue placeholder={field.value} />
                     </SelectTrigger>
-                    <SelectContent>
+                    {/* <SelectContent>
                       <SelectGroup>
                         {Object.values(products.category.enumValues).map(
                           (option) => (
                             <SelectItem
-                              className="capitalize"
                               key={option}
+                              className="capitalize"
                               value={option}
                             >
                               {option}
@@ -197,7 +203,7 @@ export function ProductUpdForm({ product }: ProductUpdFormProps) {
                           ),
                         )}
                       </SelectGroup>
-                    </SelectContent>
+                    </SelectContent> */}
                   </Select>
                 </FormControl>
                 <FormMessage />
@@ -205,15 +211,15 @@ export function ProductUpdForm({ product }: ProductUpdFormProps) {
             )}
           />
           <FormField
-            control={form.control}
             name="subcategory"
+            control={form.control}
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormLabel>{t("ProductUpdForm.subcategory")}</FormLabel>
                 <FormControl>
                   <Select
-                    onValueChange={field.onChange}
                     value={field.value?.toString()}
+                    onValueChange={field.onChange}
                   >
                     <SelectTrigger className="capitalize">
                       <SelectValue placeholder={field.value} />
@@ -288,10 +294,10 @@ export function ProductUpdForm({ product }: ProductUpdFormProps) {
               {files.map((file, index) => (
                 <Zoom key={index}>
                   <Image
-                    alt={file.name}
                     className={`
                       size-20 shrink-0 rounded-lg object-cover object-center
                     `}
+                    alt={file.name}
                     height={80}
                     src={file.preview}
                     width={80}
@@ -321,8 +327,8 @@ export function ProductUpdForm({ product }: ProductUpdFormProps) {
           <Button disabled={isPending}>
             {isPending && (
               <SpinnerSVG
-                aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
+                aria-hidden="true"
               />
             )}
             Update Product
@@ -330,23 +336,24 @@ export function ProductUpdForm({ product }: ProductUpdFormProps) {
           </Button>
           <Button
             disabled={isPending}
+            variant="destructive"
             onClick={() => {
               startTransition(async () => {
                 void form.trigger(["name", "price", "inventory"]);
                 await deleteProductAction({
                   // @ts-expect-error TODO: fix id type
                   id: product.id,
+                  // @ts-expect-error TODO: Fix ts
                   storeId: product.storeId,
                 });
                 router.push(`/dashboard/stores/${product.storeId}/products`);
               });
             }}
-            variant="destructive"
           >
             {isPending && (
               <SpinnerSVG
-                aria-hidden="true"
                 className="mr-2 size-4 animate-spin"
+                aria-hidden="true"
               />
             )}
             Delete Product

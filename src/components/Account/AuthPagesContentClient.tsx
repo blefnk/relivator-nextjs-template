@@ -6,14 +6,6 @@ import { Balancer } from "react-wrap-balancer";
 
 import Link from "next/link";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { cn } from "@/utils/reliverse/cn";
 import { useQueryState } from "nuqs";
 import { cnBase } from "tailwind-variants";
 
@@ -21,7 +13,15 @@ import { siteConfig } from "~/app";
 import { authProvider } from "~/auth/provider";
 import { SignIn } from "~/components/Account/AuthjsButtons";
 import { OAuthSignInClerk } from "~/components/Content/ClerkPageOauth";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+} from "~/components/ui/card";
 import { Shell } from "~/components/Wrappers/ShellVariants";
+import { cn } from "~/utils/cn";
 
 const noop = () => {};
 
@@ -166,7 +166,6 @@ export function AuthPagesContentClient({
               <div>
                 <div className="space-y-8">
                   <Balancer
-                    as="p"
                     className={`
                       ${authProvider === "clerk" ? "text-sm" : "text-lg"}
 
@@ -177,6 +176,7 @@ export function AuthPagesContentClient({
 
                       sm:leading-7
                     `}
+                    as="p"
                   >
                     {isRegPage && (
                       <>

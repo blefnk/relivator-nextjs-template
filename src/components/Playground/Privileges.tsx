@@ -3,12 +3,12 @@
 import type { FormEvent } from "react";
 import { startTransition } from "react";
 
-import { Button } from "@/components/ui/button";
-import { catchError } from "@/server/reliverse/auth-error";
 import consola from "consola";
 import { useTranslations } from "next-intl";
 
+import { Button } from "~/components/ui/button";
 import { changeUserPrivileges } from "~/core/adm/actions";
+import { catchError } from "~/server/helpers/auth-error";
 
 export default function ButtonSetPrivileges(
   userId: string,

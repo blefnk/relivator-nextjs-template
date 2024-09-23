@@ -1,10 +1,11 @@
 import { confirm } from "@inquirer/prompts";
-import { getRootDirname } from "@reliverse/fs";
 import { consola } from "consola";
 import fs from "fs-extra";
 import { join, relative } from "pathe";
 import pc from "picocolors";
 import { createInterface } from "readline";
+
+import { getRootDirname } from "@reliverse/fs";
 
 // ⛔ UNSTABLE 👉 pnpm tsx addons/scripts/reliverse/relimter/core/tasks/scripts/comments-transformer.ts
 // ✅ (More stable version: `py addons/scripts/reliverse/relimter/python/tasks/block-to-line-comments.py`)
@@ -21,8 +22,8 @@ const excludedDirectories = [
 const supportedExtensions = [".js", ".ts", ".mjs"];
 
 const excludedRelativeFiles = new Set([
-  "addons/scripts/reliverse/relimter/core/tasks/scripts/comments-transformer.ts",
   "addons/scripts/reliverse/disabler/index.ts",
+  "addons/scripts/reliverse/relimter/core/tasks/scripts/comments-transformer.ts",
   "next-env.d.ts",
 ]);
 
@@ -59,7 +60,7 @@ async function* getFiles(directory: string): AsyncGenerator<string> {
       }
     }
   } catch (error) {
-    new Error(
+    throw new Error(
       `Error reading directory: ${directory}. Details: ${String(error)}`,
     );
   }

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-import { authProvider } from "~/../reliverse.config";
 import { getTranslations } from "next-intl/server";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
 import { LogOutButtons } from "~/components/Account/LogoutButtons";
 import {
   PageHeader,
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default async function signOutPage() {
   const t = await getTranslations();
 
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  const session = await authjs();
 
   if (!session || session.email === "guest@email.com") {
     return redirect("/");
@@ -31,9 +31,9 @@ export default async function signOutPage() {
   return (
     <Shell className="max-w-xs">
       <PageHeader
-        aria-labelledby="sign-out-page-header-heading"
-        className="text-center"
         id="sign-out-page-header"
+        className="text-center"
+        aria-labelledby="sign-out-page-header-heading"
       >
         <PageHeaderHeading size="sm">
           {t("signOutPage.heading.signout")}
@@ -43,9 +43,9 @@ export default async function signOutPage() {
         </PageHeaderDescription>
       </PageHeader>
       <LogOutButtons
-        tLogOut={t("signOutPage.logOut")}
-        tHome={t("signOutPage.home")}
         tDashboard={t("signOutPage.dashboard")}
+        tHome={t("signOutPage.home")}
+        tLogOut={t("signOutPage.logOut")}
       />
     </Shell>
   );

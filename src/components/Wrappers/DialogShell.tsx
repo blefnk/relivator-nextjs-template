@@ -5,10 +5,11 @@ import { useEffect } from "react";
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import { X } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { Button } from "~/components/ui/button";
+import { cn } from "~/utils/cn";
 
 type DialogShellProps = {
   children: ReactNode;
@@ -50,7 +51,7 @@ export function DialogShell({
           router.back();
         }}
       >
-        <X aria-hidden="true" className="size-4" />
+        <X className="size-4" aria-hidden="true" />
         <span className="sr-only">{t("DialogShell.close")}</span>
       </Button>
       {children}

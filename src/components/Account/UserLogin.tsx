@@ -23,9 +23,9 @@ export const UserLogin: FC<
 
   return (
     <ActionButton
-      onClick={handleClick}
       type="button"
       variant="small"
+      onClick={handleClick}
       {...props}
     >
       {session ? session.user?.name : "signInText"}

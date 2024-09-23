@@ -1,9 +1,10 @@
-import { patchGitignore } from "@/scripts/reliverse/relimter/core/tasks/patch-gitignore-file";
-import { sortArgs } from "@/scripts/utils";
 import { defineCommand, runMain } from "citty";
 import consola from "consola";
 import pc from "picocolors";
 import task from "tasuku";
+
+import { patchGitignore } from "@/scripts/reliverse/relimter/core/tasks/patch-gitignore-file";
+import { sortArgs } from "@/scripts/utils";
 
 ("tasuku");
 

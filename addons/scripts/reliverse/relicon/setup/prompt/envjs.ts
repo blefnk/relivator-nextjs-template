@@ -1,11 +1,12 @@
 import type { EnvJsConfig } from "@/scripts/reliverse/relicon/setup/types";
 
 import { select } from "@clack/prompts";
-import { fileExists, removeFile } from "@reliverse/fs";
 import consola from "consola";
 import { readFile, writeFile } from "fs/promises";
 import fs from "fs-extra";
 import pc from "picocolors";
+
+import { fileExists, removeFile } from "@reliverse/fs";
 
 export async function configureEnv({
   envConfig,

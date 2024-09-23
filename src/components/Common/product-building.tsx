@@ -1,17 +1,20 @@
 "use client";
 
+import type { Product } from "~/db/schema";
+import type { CartItem } from "~/types/store";
+
 import type { HTMLAttributes } from "react";
 import { useCallback, useEffect, useState, useTransition } from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import type { CartItem } from "@/types/reliverse/store";
+import consola from "consola";
+import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-import {
-  addToCartAction,
-  deleteCartItemAction,
-} from "@/actions/reliverse/cart";
-import { Button } from "@/components/ui/button";
+import { ProductCard } from "~/components/Modules/Cards/ProductCard";
+import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
+import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,9 +22,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
+} from "~/components/ui/dropdown";
+import { Input } from "~/components/ui/input";
+import { Separator } from "~/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -29,19 +32,15 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Slider } from "@/components/ui/slider";
-import { useDebounce } from "@/hooks-react/use-debounce";
-import { cn } from "@/utils/reliverse/cn";
-import consola from "consola";
-import { ChevronDown } from "lucide-react";
-import { useTranslations } from "next-intl";
-
-import type { Product } from "~/db/schema/provider";
-
-import { ProductCard } from "~/components/Modules/Cards/ProductCard";
-import { PaginationButton } from "~/components/Navigation/Pagination/PaginationButton";
+} from "~/components/ui/sheet";
+import { Slider } from "~/components/ui/slider";
 import { sortOptions } from "~/constants/products";
+import { useDebounce } from "~/hooks/use-debounce";
+import {
+  addToCartAction,
+  deleteCartItemAction,
+} from "~/server/actions/deprecated/cart";
+import { cn } from "~/utils/cn";
 
 /* eslint-disable max-lines-per-function */
 type ProductBuilderProps = {
@@ -122,6 +121,7 @@ export function ProductBuilder({
         if (!cartItems.map((item) => item.productId).includes(productId)) {
           // Only allow one product per subcategory in cart
           const productIdWithSameSubcategory = cartItems.find(
+            // @ts-expect-error TODO: Fix ts
             (item) => item.subcategory === product.subcategory,
           )?.productId;
 
@@ -135,6 +135,7 @@ export function ProductBuilder({
             productId: productId,
             quantity: 1,
             storeId: storeId,
+            // @ts-expect-error TODO: Fix ts
             subcategory: product.subcategory || subcategory,
           });
 
@@ -179,13 +180,13 @@ export function ProductBuilder({
                 <Slider
                   defaultValue={[0, 500]}
                   max={500}
-                  onValueChange={(value: typeof priceRange) => {
-                    setPriceRange(value);
-                  }}
                   step={1}
                   thickness="thin"
                   value={priceRange}
                   variant="range"
+                  onValueChange={(value: typeof priceRange) => {
+                    setPriceRange(value);
+                  }}
                 />
                 <div className="flex items-center space-x-4">
                   <Input
@@ -193,13 +194,13 @@ export function ProductBuilder({
                     inputMode="numeric"
                     max={priceRange[1]}
                     min={0}
+                    type="number"
+                    value={priceRange[0]}
                     onChange={(event_) => {
                       const value = Number(event_.target.value);
 
                       setPriceRange([value, priceRange[1]]);
                     }}
-                    type="number"
-                    value={priceRange[0]}
                   />
                   <span className="text-muted-foreground">-</span>
                   <Input
@@ -207,13 +208,13 @@ export function ProductBuilder({
                     inputMode="numeric"
                     max={500}
                     min={priceRange[0]}
+                    type="number"
+                    value={priceRange[1]}
                     onChange={(event_) => {
                       const value = Number(event_.target.value);
 
                       setPriceRange([priceRange[0], value]);
                     }}
-                    type="number"
-                    value={priceRange[1]}
                   />
                 </div>
               </div>
@@ -222,9 +223,10 @@ export function ProductBuilder({
               <Separator className="my-4" />
               <SheetFooter>
                 <Button
-                  aria-label="Clear filters"
                   className="w-full"
+                  aria-label="Clear filters"
                   disabled={isPending}
+                  size="sm"
                   onClick={() => {
                     startTransition(() => {
                       router.push(
@@ -235,7 +237,6 @@ export function ProductBuilder({
                       setPriceRange([0, 100]);
                     });
                   }}
-                  size="sm"
                 >
                   Clear Filters
                 </Button>
@@ -247,18 +248,18 @@ export function ProductBuilder({
           <DropdownMenuTrigger asChild>
             <Button aria-label="Sort products" disabled={isPending} size="sm">
               Sort
-              <ChevronDown aria-hidden="true" className="ml-2 size-4" />
+              <ChevronDown className="ml-2 size-4" aria-hidden="true" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-48">
+          <DropdownMenuContent className="w-48" align="start">
             <DropdownMenuLabel>
               {t("product-building.sortBy")}
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             {sortOptions.map((option) => (
               <DropdownMenuItem
-                className={cn(option.value === sort && "font-bold")}
                 key={option.label}
+                className={cn(option.value === sort && "font-bold")}
                 onClick={() => {
                   startTransition(() => {
                     router.push(
@@ -298,15 +299,16 @@ export function ProductBuilder({
       >
         {products.map((product) => (
           <ProductCard
-            isAddedToCart={cartItems
-              .map((item) => item.productId)
-              .includes(Number(product.id))}
             key={product.id}
-            onSwitch={() => addToCart(product)}
+            // @ts-expect-error TODO: Fix ts
             product={product}
             storeId={product.storeId.toString()}
             tAddToCart={tAddToCart}
             variant="switchable"
+            isAddedToCart={cartItems
+              .map((item) => item.productId)
+              .includes(Number(product.id))}
+            onSwitch={() => addToCart(product)}
           />
         ))}
       </div>

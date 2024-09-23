@@ -12,6 +12,7 @@ import {
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
 import { Shell } from "~/components/Wrappers/ShellVariants";
+import { auth } from "~/server/queries/user";
 
 export const metadata: Metadata = {
   description: "Manage the subscription",
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
 export default async function ManageSubscriptionPage() {
   const t = await getTranslations();
 
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  const session = await auth();
 
   if (!session) {
     redirect("/auth");
@@ -32,8 +33,8 @@ export default async function ManageSubscriptionPage() {
   return (
     <Shell variant="sidebar">
       <PageHeader
-        aria-labelledby="dashboard-manage-subscription-header-heading"
         id="dashboard-manage-subscription-header"
+        aria-labelledby="dashboard-manage-subscription-header-heading"
       >
         <PageHeaderHeading size="sm">
           {t("page.manageTheSubscription")}

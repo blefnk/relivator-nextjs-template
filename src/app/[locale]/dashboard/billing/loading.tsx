@@ -1,11 +1,3 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/utils/reliverse/cn";
 import { useTranslations } from "next-intl";
 
 import {
@@ -13,7 +5,15 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "~/components/ui/card";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Shell } from "~/components/Wrappers/ShellVariants";
+import { cn } from "~/utils/cn";
 
 export default function BillingLoading() {
   const t = useTranslations();
@@ -64,6 +64,7 @@ export default function BillingLoading() {
             length: 3,
           }).map((_, index) => (
             <Card
+              key={index}
               className={cn(
                 "flex flex-col",
                 index === 2 &&
@@ -73,7 +74,6 @@ export default function BillingLoading() {
                     xl:col-span-1
                   `,
               )}
-              key={index}
             >
               <CardHeader>
                 <Skeleton className="h-6 w-10" />
@@ -85,7 +85,7 @@ export default function BillingLoading() {
                   {Array.from({
                     length: 2,
                   }).map((_, index) => (
-                    <div className="flex items-center gap-2" key={index}>
+                    <div key={index} className="flex items-center gap-2">
                       <Skeleton className="size-4" />
                       <Skeleton className="h-4 w-4/5" />
                     </div>

@@ -252,7 +252,7 @@
       "button": "Visit Now",
       "details": "Visit the release blog post to see what's changed and what's coming next.",
       "dismiss": "Dismiss",
-      "title": "Relivator v1.2.6 and v1.3.0-canary.4 are HERE!"
+      "title": "Relivator v1.2.6 and v1.3.0-canary.5 are HERE!"
     }
   },
   "blog-comments-server": {
@@ -336,7 +336,7 @@
       "summary": "Why choose Relivator for Next.js 15 & React 19?"
     },
     "3": {
-      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to Relivator (https://relivator.reliverse.org/donate) page to learn more details. Thank you for your support!",
+      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to Relivator (https://relivator.com/donate) page to learn more details. Thank you for your support!",
       "summary": "Can the release of Relivator v1.3.0 be sped up?"
     }
   },

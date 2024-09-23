@@ -4,7 +4,6 @@ import consola from "consola";
 
 import { env } from "~/env";
 
-/* eslint-disable unicorn/no-process-exit */
 // @reliverse/addons all-in-one manager (v0.0.0-canary.0) 🐞 not fully finished currently
 // ▶️ pnpm tsx reliverse.addons.ts
 

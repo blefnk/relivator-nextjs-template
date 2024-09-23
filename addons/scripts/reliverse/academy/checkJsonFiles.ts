@@ -1,7 +1,6 @@
 import type { AcademyQuestion } from "@/scripts/reliverse/academy/types";
 import type { JSONSchemaType } from "ajv";
 
-import { getCurrentDirname } from "@reliverse/fs";
 import { debugEnabled } from "~/../reliverse.config";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
@@ -10,6 +9,8 @@ import consola from "consola";
 import { destr } from "destr";
 import fs from "fs-extra";
 import path from "pathe";
+
+import { getCurrentDirname } from "@reliverse/fs";
 
 const currentDirname = getCurrentDirname(import.meta.url);
 

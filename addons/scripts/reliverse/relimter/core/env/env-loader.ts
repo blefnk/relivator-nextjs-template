@@ -1,6 +1,7 @@
-import { getRootDirname } from "@reliverse/fs";
 import fs from "fs-extra";
 import { join } from "pathe";
+
+import { getRootDirname } from "@reliverse/fs";
 
 const loadEnv = async () => {
   const rootDirectory = getRootDirname(import.meta.url, 6);
@@ -15,7 +16,7 @@ const loadEnv = async () => {
 
       if (key) {
         // process.env[key.trim()] = value === "" ? undefined : value;
-        // eslint-disable-next-line no-restricted-properties
+
         process.env[key.trim()] = value === '""' ? "" : value;
       }
     }

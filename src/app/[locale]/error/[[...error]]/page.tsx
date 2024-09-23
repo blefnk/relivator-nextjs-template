@@ -3,12 +3,11 @@ import { Balancer } from "react-wrap-balancer";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import { config } from "@reliverse/core";
-
 import { CriticalErrorMessage } from "~/app/[locale]/error/[[...error]]/client";
+import { buttonVariants } from "~/components/ui/button";
 import PageLayout from "~/components/Wrappers/PageLayout";
+import { cn } from "~/utils/cn";
 
 export const metadata: Metadata = {
   robots: "noindex,nofollow",
@@ -19,23 +18,23 @@ export default function CriticalErrorPage() {
   return (
     <PageLayout title="😢 Something went wrong">
       <Balancer
-        as="p"
         className={`
           mx-auto mt-4 !block leading-normal text-muted-foreground
 
           sm:text-lg sm:leading-7
         `}
+        as="p"
       >
         We're so sorry, but critical error has occurred on our side. Please try
         again later or contact support if the problem persists.
       </Balancer>
       <Balancer
-        as="p"
         className={`
           mx-auto mt-4 !block leading-normal text-muted-foreground
 
           sm:text-lg sm:leading-7
         `}
+        as="p"
       >
         <CriticalErrorMessage />
       </Balancer>

@@ -1,6 +1,6 @@
-import consola from "consola";
-
 import type { QueryResult, Stargazer } from "./cache";
+
+import consola from "consola";
 
 import { fetchViaGraphQl } from "./via-graphql";
 import { fetchPageViaRest, REST_PER_PAGE } from "./via-rest";
@@ -20,7 +20,6 @@ export async function fetchStargazers({
 
   consola.info("Fetching stars...");
 
-  // eslint-disable-next-line no-restricted-properties
   if (!process.env.REMOTION_GITHUB_TOKEN) {
     consola.error(
       // eslint-disable-next-line @stylistic/max-len

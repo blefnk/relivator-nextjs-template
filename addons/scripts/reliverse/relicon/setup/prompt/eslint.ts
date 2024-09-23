@@ -1,11 +1,12 @@
 import type { EslintConfig } from "@/scripts/reliverse/relicon/setup/types";
 
 import { select } from "@clack/prompts";
-import { config } from "@reliverse/core";
-import { fileExists, removeFile } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import pc from "picocolors";
+
+import { config } from "@reliverse/core";
+import { fileExists, removeFile } from "@reliverse/fs";
 
 export async function configureEslint({
   eslintConfig,

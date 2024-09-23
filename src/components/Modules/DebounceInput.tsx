@@ -3,7 +3,7 @@
 import type { InputHTMLAttributes } from "react";
 import { useEffect, useState } from "react";
 
-import { Input } from "@/components/ui/input";
+import { Input } from "~/components/ui/input";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement>;
 
@@ -43,10 +43,10 @@ export function DebounceInput({
   return (
     <Input
       {...props}
+      value={value}
       onChange={(event_) => {
         setValue(event_.target.value);
       }}
-      value={value}
     />
   );
 }

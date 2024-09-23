@@ -60,12 +60,12 @@ export default function Home() {
             `}
           />
           <Image
-            alt="Device"
             // eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values
             className={`
               absolute -top-6 left-1/2 size-64 h-[51.375rem] w-[39.0625rem]
               -translate-x-[23.75rem] bg-transparent object-contain
             `}
+            alt="Device"
             src={logo}
             unoptimized
           />
@@ -73,7 +73,7 @@ export default function Home() {
           <div className="border-b border-[#F2F2F4] px-12 py-16">
             <div className="inline-flex gap-4 rounded-full bg-[#F4F4F5] px-4 py-3">
               <ClerkLogo />
-              <div aria-hidden className="h-6 w-px bg-[#C7C7C8]" />
+              <div className="h-6 w-px bg-[#C7C7C8]" aria-hidden />
               <NextLogo />
             </div>
           </div>
@@ -137,34 +137,34 @@ export default function Home() {
           <div className="flex h-[41.25rem] w-full scale-[1.03] gap-8">
             <div className="translate-y-12 space-y-8">
               <Image
-                alt="Device"
                 className={`
                   flex-none rounded-xl bg-white
                   shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)]
                   ring-1 ring-gray-950/5
                 `}
+                alt="Device"
                 src={signUp}
                 unoptimized
               />
             </div>
             <div className="-translate-y-4 space-y-8">
               <Image
-                alt="Device"
                 className={`
                   flex-none rounded-xl bg-white
                   shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)]
                   ring-1 ring-gray-950/5
                 `}
+                alt="Device"
                 src={verify}
                 unoptimized
               />
               <Image
-                alt="Device"
                 className={`
                   flex-none rounded-xl bg-white
                   shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)]
                   ring-1 ring-gray-950/5
                 `}
+                alt="Device"
                 src={userButton2}
                 unoptimized
               />
@@ -172,22 +172,22 @@ export default function Home() {
             {/* eslint-disable-next-line tailwindcss/enforces-negative-arbitrary-values */}
             <div className="-translate-y-[22.5rem] space-y-8">
               <Image
-                alt="Device"
                 className={`
                   flex-none rounded-xl bg-white
                   shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)]
                   ring-1 ring-gray-950/5
                 `}
+                alt="Device"
                 src={signIn}
                 unoptimized
               />
               <Image
-                alt="Device"
                 className={`
                   flex-none rounded-xl bg-white
                   shadow-[0_5px_15px_rgba(0,0,0,0.08),0_15px_35px_-5px_rgba(25,28,33,0.2)]
                   ring-1 ring-gray-950/5
                 `}
+                alt="Device"
                 src={screenshotDevices}
                 unoptimized
               />

@@ -3,7 +3,6 @@ import Balancer from "react-wrap-balancer";
 import { redirect } from "next/navigation";
 
 import { config } from "@reliverse/core";
-
 import { Shell } from "~/components/Wrappers/ShellVariants";
 import { env } from "~/env";
 

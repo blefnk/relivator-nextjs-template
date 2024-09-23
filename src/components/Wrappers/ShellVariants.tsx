@@ -1,9 +1,10 @@
-import type { ElementType, HTMLAttributes } from "react";
-
 import type { VariantProps } from "class-variance-authority";
 
-import { cn } from "@/utils/reliverse/cn";
+import type { ElementType, HTMLAttributes } from "react";
+
 import { cva } from "class-variance-authority";
+
+import { cn } from "~/utils/cn";
 
 const shellVariants = cva(
   `

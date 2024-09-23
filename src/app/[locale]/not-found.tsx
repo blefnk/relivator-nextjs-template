@@ -2,12 +2,12 @@ import Balancer from "react-wrap-balancer";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { buttonVariants } from "~/components/ui/button";
 import PageLayout from "~/components/Wrappers/PageLayout";
+import { cn } from "~/utils/cn";
 
 // @see src/app/[locale]/[...rest]/page.tsx
 export default function NotFoundPage() {
@@ -16,12 +16,12 @@ export default function NotFoundPage() {
   return (
     <PageLayout title={t("title")}>
       <Balancer
-        as="p"
         className={`
           mx-auto mt-4 !block leading-normal text-muted-foreground
 
           sm:text-lg sm:leading-7
         `}
+        as="p"
       >
         {t("description")}
       </Balancer>

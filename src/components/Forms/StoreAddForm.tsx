@@ -1,13 +1,16 @@
 "use client";
 
+import type { z } from "zod";
+
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-import type { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import consola from "consola";
+import { useTranslations } from "next-intl";
 
-import { addStoreAction } from "@/actions/reliverse/store";
-import { storeSchema } from "@/actions/reliverse/validations/store";
-import { Button } from "@/components/ui/button";
+import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -15,15 +18,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/text-area";
-import { catchError } from "@/server/reliverse/auth-error";
-import { zodResolver } from "@hookform/resolvers/zod";
-import consola from "consola";
-import { useTranslations } from "next-intl";
-
-import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
+import { Textarea } from "~/components/ui/text-area";
+import { addStoreAction } from "~/server/actions/deprecated/store";
+import { catchError } from "~/server/helpers/auth-error";
+import { storeSchema } from "~/server/validations/deprecated/store";
 
 type StoreAddFormProps = {
   userId: string;
@@ -79,8 +79,8 @@ export function StoreAddForm({ userId }: StoreAddFormProps) {
         }
       >
         <FormField
-          control={form.control}
           name="name"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("StoreAddForm.name")}</FormLabel>
@@ -92,8 +92,8 @@ export function StoreAddForm({ userId }: StoreAddFormProps) {
           )}
         />
         <FormField
-          control={form.control}
           name="description"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("StoreAddForm.description")}</FormLabel>
@@ -110,8 +110,8 @@ export function StoreAddForm({ userId }: StoreAddFormProps) {
         <Button className="w-fit" disabled={isPending}>
           {isPending && (
             <SpinnerSVG
-              aria-hidden="true"
               className="mr-2 size-4 animate-spin"
+              aria-hidden="true"
             />
           )}
           Add Store

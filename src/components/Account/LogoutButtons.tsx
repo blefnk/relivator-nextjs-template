@@ -2,10 +2,6 @@
 
 import { useTransition } from "react";
 
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Link } from "@/components/ui/link";
-import { Skeleton } from "@/components/ui/skeleton";
-import { cn } from "@/utils/reliverse/cn";
 import { SignOutButton } from "@clerk/nextjs";
 import { useIsClient } from "@uidotdev/usehooks";
 import { signOut } from "next-auth/react";
@@ -13,11 +9,15 @@ import { useLocale } from "next-intl";
 
 import { authProvider } from "~/auth/provider";
 import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button, buttonVariants } from "~/components/ui/button";
+import { Link } from "~/components/ui/link";
+import { Skeleton } from "~/components/ui/skeleton";
+import { cn } from "~/utils/cn";
 
 export function LogOutButtons({
-  tLogOut,
-  tHome,
   tDashboard,
+  tHome,
+  tLogOut,
 }: { tDashboard: string; tHome: string; tLogOut: string }) {
   const isMounted = useIsClient();
   const [isPending] = useTransition();
@@ -45,8 +45,8 @@ export function LogOutButtons({
       {authProvider === "clerk" ? (
         <SignOutButton redirectUrl="/">
           <Button
-            aria-label={tLogOut}
             className="w-full"
+            aria-label={tLogOut}
             disabled={isPending}
             size="sm"
           >
@@ -56,22 +56,22 @@ export function LogOutButtons({
         </SignOutButton>
       ) : (
         <Button
-          aria-label={tLogOut}
           className="w-full"
+          aria-label={tLogOut}
           disabled={isPending}
+          size="sm"
           onClick={() =>
             signOut({
               callbackUrl,
             })
           }
-          size="sm"
         >
           {tLogOut}
         </Button>
       )}
       <Link
-        aria-label="Go to the home page"
         className="w-full"
+        aria-label="Go to the home page"
         href="/"
         size="sm"
         variant="outline"
@@ -79,9 +79,9 @@ export function LogOutButtons({
         {tHome}
       </Link>
       <Link
+        className="w-full"
         aria-label="Go to the dashboard"
         href="/dashboard"
-        className="w-full"
         size="sm"
         variant="outline"
       >

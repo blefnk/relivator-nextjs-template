@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-import { Badge } from "@/components/ui/badge";
 import { useTranslations } from "next-intl";
 
+import { Badge } from "~/components/ui/badge";
 import { productCategories } from "~/constants/products";
 
 export default function HomeMainSection() {
@@ -10,16 +10,16 @@ export default function HomeMainSection() {
 
   return (
     <section
-      aria-labelledby="categories-heading"
-      className="py-1"
       id="categories"
+      className="py-1"
+      aria-labelledby="categories-heading"
     >
       <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
         {productCategories.map((category) => (
           <Link
+            key={category.title}
             aria-label={`${t("demo.aria-label-goto")} ${category.title}`}
             href={`/categories/${category.title}`}
-            key={category.title}
           >
             <h3>
               <Badge

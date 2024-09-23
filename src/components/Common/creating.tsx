@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
 
 // Reliverse CMS v0.4.0 - Page Creation API
 // ========================================
@@ -62,13 +62,13 @@ export default function Creating({ type }: CreatingProps) {
   return (
     <div>
       <Input
-        onChange={handleInputChange}
         placeholder={`Enter ${type} title`}
         type="text"
         value={title}
+        onChange={handleInputChange}
       />
       {isDevelopment && (
-        <Button className="mt-4" onClick={handleSubmit} variant="secondary">
+        <Button className="mt-4" variant="secondary" onClick={handleSubmit}>
           Create {type.charAt(0).toUpperCase() + type.slice(1)}
         </Button>
       )}

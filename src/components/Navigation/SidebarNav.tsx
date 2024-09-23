@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { Separator } from "@/components/ui/separator";
 import {
   Boxes,
   ChartColumn,
@@ -13,6 +12,8 @@ import {
   Store,
   Users,
 } from "lucide-react";
+
+import { Separator } from "~/components/ui/separator";
 
 type IconType =
   | "account"
@@ -45,90 +46,90 @@ export function SidebarNav({ className }: SidebarNavProps) {
 
   const items: SidebarNavItem[] = [
     {
-      title: "Dashboard",
-      icon: "dashboard",
       disabled: false,
       href: "/dashboard",
+      icon: "dashboard",
+      title: "Dashboard",
     },
     {
-      title: "Stores",
-      icon: "stores",
       disabled: true,
       href: "/dashboard/stores",
+      icon: "stores",
+      title: "Stores",
     },
     {
-      title: "Purchases",
-      icon: "purchases",
       disabled: true,
       href: "/dashboard/purchases",
+      icon: "purchases",
+      title: "Purchases",
     },
     {
-      title: "Products",
+      disabled: true,
+      href: "/dashboard",
       icon: "products",
-      disabled: true,
-      href: "/dashboard",
+      title: "Products",
     },
     {
-      title: "Analytics",
+      disabled: true,
+      href: "/dashboard",
       icon: "analytics",
-      disabled: true,
-      href: "/dashboard",
+      title: "Analytics",
     },
     {
-      title: "Customers",
+      disabled: true,
+      href: "/dashboard",
       icon: "customers",
-      disabled: true,
-      href: "/dashboard",
+      title: "Customers",
     },
     {
-      title: "Settings",
-      icon: "settings",
       disabled: false,
       href: "/dashboard/settings",
+      icon: "settings",
+      title: "Settings",
     },
     {
-      title: "Account",
-      icon: "account",
       disabled: true,
       href: "/dashboard/account",
+      icon: "account",
+      title: "Account",
     },
   ];
 
   const planItem: SidebarNavItem = UserHasPlan
     ? {
-        title: "My Plan",
-        icon: "myplan",
-        disabled: true,
+        disabled: false,
         href: "/dashboard/billing",
+        icon: "myplan",
+        title: "My Plan",
       }
     : {
-        title: "Upgrade",
-        icon: "upgrade",
-        disabled: true,
+        disabled: false,
         href: "/dashboard/billing",
+        icon: "upgrade",
+        title: "Upgrade",
       };
 
   const adminItem: null | SidebarNavItem = UserIsAdmin
     ? {
-        title: "Admin",
-        icon: "admin",
         disabled: false,
         href: "/dashboard/admin",
+        icon: "admin",
+        title: "Admin",
       }
     : null;
 
   const iconMap: Record<IconType, any> = {
+    account: CircleUserRound,
     admin: FileSliders,
+    analytics: ChartColumn,
+    customers: Users,
     dashboard: Home,
-    upgrade: IdCard,
     myplan: IdCard,
+    products: Boxes,
+    purchases: ShoppingCart,
     settings: Settings,
     stores: Store,
-    account: CircleUserRound,
-    analytics: ChartColumn,
-    products: Boxes,
-    customers: Users,
-    purchases: ShoppingCart,
+    upgrade: IdCard,
   };
 
   return (
@@ -139,9 +140,9 @@ export function SidebarNav({ className }: SidebarNavProps) {
 
           return item.href && !item.disabled ? (
             <Link
+              key={index}
               aria-label={item.title}
               href={item.href}
-              key={index}
               rel={item.external ? "noreferrer" : ""}
               target={item.external ? "_blank" : ""}
             >
@@ -152,20 +153,20 @@ export function SidebarNav({ className }: SidebarNavProps) {
                   hover:bg-muted hover:text-foreground
                 `}
               >
-                <Icon aria-hidden="true" className="mr-2 size-4" />
+                <Icon className="mr-2 size-4" aria-hidden="true" />
                 <span>{item.title}</span>
               </span>
             </Link>
           ) : (
             <span
+              key={index}
               className={`
                 flex w-full items-center rounded-lg p-2
                 text-muted-foreground
                 ${item.disabled ? "pointer-events-none opacity-60" : ""}
               `}
-              key={index}
             >
-              <Icon aria-hidden="true" className="mr-2 size-4" />
+              <Icon className="mr-2 size-4" aria-hidden="true" />
               <span>{item.title}</span>
             </span>
           );
@@ -175,16 +176,18 @@ export function SidebarNav({ className }: SidebarNavProps) {
       <Separator className="mb-6 mt-10" />
 
       <div className="flex flex-col gap-2">
-        <span
+        <Link
           className={`
             group flex w-full items-center rounded-lg p-2
-            text-muted-foreground
+            hover:bg-muted hover:text-foreground
             ${planItem.disabled ? "pointer-events-none opacity-60" : ""}
           `}
+          aria-label={planItem.title}
+          href={planItem.href}
         >
-          <IdCard aria-hidden="true" className="mr-2 size-4" />
+          <IdCard className="mr-2 size-4" aria-hidden="true" />
           <span>{planItem.title}</span>
-        </span>
+        </Link>
 
         {adminItem && (
           <Link
@@ -200,7 +203,7 @@ export function SidebarNav({ className }: SidebarNavProps) {
                 hover:bg-muted hover:text-foreground
               `}
             >
-              <FileSliders aria-hidden="true" className="mr-2 size-4" />
+              <FileSliders className="mr-2 size-4" aria-hidden="true" />
               <span>{adminItem.title}</span>
             </span>
           </Link>

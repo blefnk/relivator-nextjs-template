@@ -2,11 +2,12 @@
 // ▶️ pnpm tsx addons\scripts\reliverse\relimter\core\tasks\no-unresolved-links.ts
 
 import { log } from "@clack/prompts";
-import { getRootDirname } from "@reliverse/fs";
 import fs from "fs-extra";
 import * as readline from "node:readline";
 import { fetch } from "node-fetch-native";
 import * as path from "pathe";
+
+import { getRootDirname } from "@reliverse/fs";
 
 const rootDirectory = getRootDirname(import.meta.url, 6);
 

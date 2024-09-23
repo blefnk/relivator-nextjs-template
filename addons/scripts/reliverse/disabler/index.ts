@@ -1,6 +1,12 @@
 import type { TarFileItem } from "nanotar";
 
 import { checkbox, confirm, input, select, Separator } from "@inquirer/prompts";
+import { consola } from "consola";
+import fs from "fs-extra";
+import { createTarGzip, parseTarGzip } from "nanotar";
+import { dirname, join } from "pathe";
+import pc from "picocolors";
+
 import {
   directoryExists,
   getFoldersInDirectory,
@@ -8,11 +14,6 @@ import {
   removeFile,
   removeFolder,
 } from "@reliverse/fs";
-import { consola } from "consola";
-import fs from "fs-extra";
-import { createTarGzip, parseTarGzip } from "nanotar";
-import { dirname, join } from "pathe";
-import pc from "picocolors";
 
 // 👉 pnpm reli:disabler
 // ? Hi, and welcome! The @reliverse/disabler addon can zip project folders

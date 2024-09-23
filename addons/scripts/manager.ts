@@ -1,9 +1,10 @@
-import { getRandomQuote } from "@/scripts/reliverse/quotes";
-import { defineAddon } from "@/scripts/utils";
 import { debugEnabled } from "~/../reliverse.config";
 import { defineCommand, runMain } from "citty";
 import consola from "consola";
 import superjson from "superjson";
+
+import { getRandomQuote } from "@/scripts/reliverse/quotes";
+import { defineAddon } from "@/scripts/utils";
 
 // Reliverse Addons: Reliverse CMS Devtools.
 // Please find more details about this folder
@@ -19,19 +20,19 @@ export type Addon =
 
 export const addonPaths: Record<Addon, string> = {
   academy: "./reliverse/academy",
-  presets: "./reliverse/presets",
-  setup: "./reliverse/relicon/setup",
-  relimter: "./reliverse/relimter",
   disabler: "./reliverse/disabler",
+  presets: "./reliverse/presets",
+  relimter: "./reliverse/relimter",
+  setup: "./reliverse/relicon/setup",
   template: "./reliverse/template",
 };
 
 export const addonFlags: Record<Addon, string> = {
   academy: "--academy",
-  presets: "--presets",
-  setup: "--setup",
-  relimter: "--relimter",
   disabler: "--disabler",
+  presets: "--presets",
+  relimter: "--relimter",
+  setup: "--setup",
   template: "--template",
 };
 
@@ -82,8 +83,8 @@ const handleAddonSelection = async () => {
   await getRandomQuote();
 
   const selected = await consola.prompt(addon, {
-    type: "select",
     options: Object.keys(addonPaths) as Addon[],
+    type: "select",
   });
 
   if (typeof selected !== "string") {
@@ -106,36 +107,36 @@ const handleFlaggedArgument = async () => {
 };
 
 const main = defineCommand({
-  meta: {
-    description: "@reliverse/addons",
-    name: "addons",
-    version: "0.0.0-canary.0",
-  },
   args: {
     academy: {
-      type: "boolean",
       description: "@reliverse/academy",
-    },
-    presets: {
       type: "boolean",
-      description: "@reliverse/presets",
-    },
-    setup: {
-      type: "boolean",
-      description: "@reliverse/setup",
-    },
-    relimter: {
-      type: "boolean",
-      description: "@reliverse/relimter",
     },
     disabler: {
-      type: "boolean",
       description: "@reliverse/disabler",
+      type: "boolean",
+    },
+    presets: {
+      description: "@reliverse/presets",
+      type: "boolean",
+    },
+    relimter: {
+      description: "@reliverse/relimter",
+      type: "boolean",
+    },
+    setup: {
+      description: "@reliverse/setup",
+      type: "boolean",
     },
     template: {
-      type: "boolean",
       description: "@reliverse/template",
+      type: "boolean",
     },
+  },
+  meta: {
+    name: "addons",
+    description: "@reliverse/addons",
+    version: "0.0.0-canary.0",
   },
   async run() {
     if (process.argv.some((arg) => flags.includes(arg as AddonFlag))) {

@@ -3,9 +3,10 @@ import { Fragment } from "react";
 
 import Link from "next/link";
 
-import { cn } from "@/utils/reliverse/cn";
-import { truncate } from "@/utils/reliverse/string";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
+
+import { cn } from "~/utils/cn";
+import { truncate } from "~/utils/string";
 
 type BreadcrumbsProps = {
   segments: {
@@ -29,7 +30,6 @@ export function Breadcrumbs({
 
   return (
     <nav
-      aria-label="breadcrumbs"
       className={cn(
         `
           flex w-full items-center overflow-auto text-sm font-medium
@@ -37,6 +37,7 @@ export function Breadcrumbs({
         `,
         className,
       )}
+      aria-label="breadcrumbs"
       {...props}
     >
       {segments.map((segment, index) => {
@@ -45,7 +46,6 @@ export function Breadcrumbs({
         return (
           <Fragment key={segment.href}>
             <Link
-              aria-current={isLastSegment ? "page" : undefined}
               className={cn(
                 `
                   truncate transition-colors
@@ -54,6 +54,7 @@ export function Breadcrumbs({
                 `,
                 isLastSegment ? "text-foreground" : "text-muted-foreground",
               )}
+              aria-current={isLastSegment ? "page" : undefined}
               href={segment.href}
             >
               {truncationLength > 0 && segment.title
@@ -61,7 +62,7 @@ export function Breadcrumbs({
                 : segment.title}
             </Link>
             {!isLastSegment && (
-              <SeparatorIcon aria-hidden="true" className="mx-2 size-4" />
+              <SeparatorIcon className="mx-2 size-4" aria-hidden="true" />
             )}
           </Fragment>
         );

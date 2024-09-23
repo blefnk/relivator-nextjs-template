@@ -6,46 +6,46 @@ export function LocaleFlagIcon({ locale }: LocaleFlagIconProps) {
   const flagIcon = locale;
 
   if (flagIcon === "en") {
-    return <span aria-hidden="true" className="fi fi-gb" />;
+    return <span className="fi fi-gb" aria-hidden="true" />;
   }
 
   if (flagIcon === "uk") {
-    return <span aria-hidden="true" className="fi fi-ua" />;
+    return <span className="fi fi-ua" aria-hidden="true" />;
   }
 
   if (flagIcon === "pl") {
     return (
       <span
-        aria-hidden="true"
         className={`
           fi fi-pl border border-b-0 border-zinc-200
 
           dark:border-none
         `}
+        aria-hidden="true"
       />
     );
   }
 
   if (flagIcon === "hi") {
-    return <span aria-hidden="true" className="fi fi-in" />;
+    return <span className="fi fi-in" aria-hidden="true" />;
   }
 
   if (flagIcon === "fa") {
-    return <span aria-hidden="true" className="fi fi-ir" />;
+    return <span className="fi fi-ir" aria-hidden="true" />;
   }
 
   if (flagIcon === "zh") {
-    return <span aria-hidden="true" className="fi fi-cn" />;
+    return <span className="fi fi-cn" aria-hidden="true" />;
   }
 
   return (
     <span
-      aria-hidden="true"
       className={`
         fi
 
         fi-${flagIcon}
       `}
+      aria-hidden="true"
     />
   );
 }

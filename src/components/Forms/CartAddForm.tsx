@@ -1,23 +1,10 @@
 "use client";
 
+import type { z } from "zod";
+
 import { startTransition, useId, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-import type { z } from "zod";
-
-import { addToCartAction } from "@/actions/reliverse//cart";
-import { updateCartItemSchema } from "@/actions/reliverse/validations/cart";
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { catchError } from "@/server/reliverse/auth-error";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MinusIcon, PlusIcon } from "@radix-ui/react-icons";
 import consola from "consola";
@@ -25,6 +12,19 @@ import { useTranslations } from "next-intl";
 import tryToCatch from "try-to-catch";
 
 import { SpinnerSVG } from "~/components/Common/Icons/SVG";
+import { Button } from "~/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
+import { addToCartAction } from "~/server/actions/deprecated/cart";
+import { catchError } from "~/server/helpers/auth-error";
+import { updateCartItemSchema } from "~/server/validations/deprecated/cart";
 
 type CartAddFormProps = {
   email?: string;
@@ -82,24 +82,24 @@ export function CartAddForm({
       >
         <div className="flex items-center">
           <Button
+            id={`${id}-decrement`}
             className="size-8"
             disabled={isPending}
-            id={`${id}-decrement`}
+            type="button"
+            variant="outline"
             onClick={() => {
               form.setValue(
                 "quantity",
                 Math.max(0, form.getValues("quantity") - 1),
               );
             }}
-            type="button"
-            variant="outline"
           >
-            <MinusIcon aria-hidden="true" className="size-3" />
+            <MinusIcon className="size-3" aria-hidden="true" />
             <span className="sr-only">{t("CartAddForm.removeOneItem")}</span>
           </Button>
           <FormField
-            control={form.control}
             name="quantity"
+            control={form.control}
             render={({ field }) => (
               <FormItem className="space-y-0">
                 <FormLabel className="sr-only">
@@ -129,16 +129,16 @@ export function CartAddForm({
             )}
           />
           <Button
+            id={`${id}-increment`}
             className="size-8 rounded-l-none"
             disabled={isPending}
-            id={`${id}-increment`}
+            type="button"
+            variant="outline"
             onClick={() => {
               form.setValue("quantity", form.getValues("quantity") + 1);
             }}
-            type="button"
-            variant="outline"
           >
-            <PlusIcon aria-hidden="true" className="size-3" />
+            <PlusIcon className="size-3" aria-hidden="true" />
             <span className="sr-only">{t("CartAddForm.addOneItem")}</span>
           </Button>
         </div>
@@ -150,8 +150,8 @@ export function CartAddForm({
         >
           {isPending ? (
             <SpinnerSVG
-              aria-hidden="true"
               className="mr-2 size-4 animate-spin"
+              aria-hidden="true"
             />
           ) : (
             tAddToCart

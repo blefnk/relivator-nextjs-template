@@ -1,23 +1,23 @@
 "use client";
 
+import type { Table } from "@tanstack/react-table";
+import type {
+  DataTableFilterableColumn,
+  DataTableSearchableColumn,
+} from "~/types/store";
+
 import type { MouseEventHandler } from "react";
 import { useTransition } from "react";
 
 import Link from "next/link";
 
-import type {
-  DataTableFilterableColumn,
-  DataTableSearchableColumn,
-} from "@/types/reliverse/store";
-import type { Table } from "@tanstack/react-table";
-
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/utils/reliverse/cn";
 import { Cross2Icon, PlusCircledIcon, TrashIcon } from "@radix-ui/react-icons";
 
 import { DataTableFacetedFilter } from "~/components/Modules/DataTable/Faceted";
 import { DataTableViewOptions } from "~/components/Modules/DataTable/Options";
+import { Button, buttonVariants } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { cn } from "~/utils/cn";
 
 type DataTableToolbarProps<TData> = {
   deleteRowsAction?: MouseEventHandler<HTMLButtonElement>;
@@ -53,19 +53,12 @@ export function DataTableToolbar<TData>({
             (column) =>
               table.getColumn(column.id ? String(column.id) : "") && (
                 <Input
+                  key={String(column.id)}
                   className={`
                     h-8 w-[150px]
 
                     lg:w-[250px]
                   `}
-                  key={String(column.id)}
-                  onChange={(event) =>
-                    table.getColumn(String(column.id)) && // @ts-expect-error TODO: fix
-                    // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-                    table
-                      .getColumn(String(column.id))
-                      .setFilterValue(event.target.value)
-                  }
                   placeholder={`Filter ${column.title}...`}
                   value={
                     (table.getColumn(String(column.id)) && // @ts-expect-error TODO: fix
@@ -73,6 +66,12 @@ export function DataTableToolbar<TData>({
                         .getColumn(String(column.id))
                         .getFilterValue() as string)) ||
                     ""
+                  }
+                  onChange={(event) =>
+                    table.getColumn(String(column.id)) && // @ts-expect-error TODO: fix
+                    table
+                      .getColumn(String(column.id))
+                      .setFilterValue(event.target.value)
                   }
                 />
               ),
@@ -82,8 +81,8 @@ export function DataTableToolbar<TData>({
             (column) =>
               table.getColumn(column.id ? String(column.id) : "") && (
                 <DataTableFacetedFilter
-                  column={table.getColumn(column.id ? String(column.id) : "")}
                   key={String(column.id)}
+                  column={table.getColumn(column.id ? String(column.id) : "")}
                   options={column.options}
                   title={column.title}
                 />
@@ -91,43 +90,42 @@ export function DataTableToolbar<TData>({
           )}
         {isFiltered && (
           <Button
-            aria-label="Reset filters"
             className={`
               h-8 px-2
 
               lg:px-3
             `}
+            aria-label="Reset filters"
+            variant="ghost"
             onClick={() => {
               table.resetColumnFilters();
             }}
-            variant="ghost"
           >
             Reset
-            <Cross2Icon aria-hidden="true" className="ml-2 size-4" />
+            <Cross2Icon className="ml-2 size-4" aria-hidden="true" />
           </Button>
         )}
       </div>
       <div className="flex items-center space-x-2">
         {deleteRowsAction && table.getSelectedRowModel().rows.length > 0 ? (
           <Button
-            aria-label="Delete selected rows"
             className="h-8"
+            aria-label="Delete selected rows"
             disabled={isPending}
+            size="sm"
+            variant="outline"
             onClick={(event) => {
               startTransition(() => {
                 table.toggleAllPageRowsSelected(false);
                 deleteRowsAction(event);
               });
             }}
-            size="sm"
-            variant="outline"
           >
-            <TrashIcon aria-hidden="true" className="mr-2 size-4" />
+            <TrashIcon className="mr-2 size-4" aria-hidden="true" />
             Delete
           </Button>
         ) : newRowLink ? (
           <Link
-            aria-label="Create new row"
             className={cn(
               buttonVariants({
                 size: "sm",
@@ -135,9 +133,10 @@ export function DataTableToolbar<TData>({
               }),
               "h-8",
             )}
+            aria-label="Create new row"
             href={newRowLink}
           >
-            <PlusCircledIcon aria-hidden="true" className="mr-2 size-4" />
+            <PlusCircledIcon className="mr-2 size-4" aria-hidden="true" />
             Add new product
           </Link>
         ) : null}

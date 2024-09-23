@@ -1,4 +1,4 @@
-import type { SidebarNavItem } from "@/types/reliverse/with";
+import type { SidebarNavItem } from "~/types/with";
 
 type DashboardConfig = {
   sidebarNav: SidebarNavItem[];

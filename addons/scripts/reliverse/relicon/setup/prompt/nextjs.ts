@@ -1,12 +1,13 @@
 import type { NextJsConfig } from "@/scripts/reliverse/relicon/setup/types";
 
 import { select } from "@clack/prompts";
-import { fileExists, removeFile } from "@reliverse/fs";
 import { debugEnabled } from "~/../reliverse.config";
 import consola from "consola";
 import { readFile, writeFile } from "fs/promises";
 import fs from "fs-extra";
 import pc from "picocolors";
+
+import { fileExists, removeFile } from "@reliverse/fs";
 
 export async function configureNext({
   nextConfig,

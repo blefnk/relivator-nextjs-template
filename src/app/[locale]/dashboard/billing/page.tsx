@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 
+import { UserNotFound } from "~/components/Account/Guest/UserNotFound";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import { Separator } from "~/components/ui/separator";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-
-// import { authjs } from "~/auth/authjs";
-// import { clerk } from "~/auth/clerk";
-// import { authProvider } from "~/auth/provider";
-// import { redirect } from "~/navigation";
+import { getPlan } from "~/server/actions/deprecated/stripe/getPlan";
+import { auth } from "~/server/queries/user";
 
 export const metadata: Metadata = {
   description: "Manage your billings and subscription",
@@ -18,24 +17,37 @@ export const metadata: Metadata = {
 };
 
 export default async function BillingPage() {
-  // const user = authProvider === "clerk" ? await clerk() : await authjs();
+  const user = await auth();
 
-  // if (!user) {
-  //   redirect("/error");
-  // }
+  if (!user) {
+    return <UserNotFound />;
+  }
+
+  console.log("user", user);
+
+  const userPlanInfo = await getPlan({ userId: user.id });
 
   return (
-    <Shell>
-      <PageHeader>
-        <PageHeaderHeading size="sm">
-          Oops... Billing page is temporarily disabled...
-        </PageHeaderHeading>
+    <Shell variant="sidebar">
+      <PageHeader
+        id="billing-header"
+        aria-labelledby="billing-header-heading"
+        separated
+      >
+        <PageHeaderHeading size="sm">Billing</PageHeaderHeading>
         <PageHeaderDescription size="sm">
-          We are working on this page. It will be live again soon. Stay tuned
-          for updates.
+          Manage your billings and subscription
         </PageHeaderDescription>
       </PageHeader>
-      {/* <pre>{JSON.stringify(user, null, 2)}</pre> */}
+
+      <footer className="mt-40">
+        <Separator />
+        <pre className="text-sm opacity-30">
+          <h3 className="">userPlanInfo:</h3>
+          <code>{JSON.stringify(userPlanInfo, null, 2)}</code>
+          <code className="mt-2">{JSON.stringify(user, null, 2)}</code>
+        </pre>
+      </footer>
     </Shell>
   );
 }

@@ -10,9 +10,9 @@ export default function PageLayout({ children, title }: Props) {
     <>
       <div
         style={{
-          padding: 24,
           fontFamily: "system-ui, sans-serif",
           lineHeight: 1.5,
+          padding: 24,
         }}
       >
         <div style={{ maxWidth: 510 }}>

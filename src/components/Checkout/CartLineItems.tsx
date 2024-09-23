@@ -1,15 +1,16 @@
+import type { CartLineItem } from "~/types/store";
+
 import type { HTMLAttributes } from "react";
 
 import Image from "next/image";
 
-import type { CartLineItem } from "@/types/reliverse/store";
-
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/utils/reliverse/cn";
-import { formatPrice } from "@/utils/reliverse/number";
 import { Slot } from "@radix-ui/react-slot";
 import { Edit, ImageIcon } from "lucide-react";
+
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
+import { cn } from "~/utils/cn";
+import { formatPrice } from "~/utils/number";
 
 // TODO: fix and enable back in v1.3.0-canary.x
 // import { UpdateCart } from "~/components/Checkout/UpdateCart";
@@ -42,7 +43,7 @@ export function CartLineItems({
         {...props}
       >
         {items.map((item) => (
-          <div className="space-y-3" key={item.id}>
+          <div key={item.id} className="space-y-3">
             <div
               className={cn(
                 "flex items-start justify-between gap-4",
@@ -65,15 +66,15 @@ export function CartLineItems({
                   >
                     {item?.images && item.images.length > 0 ? (
                       <Image
-                        alt={item.images[0]?.name || item.name}
                         className="absolute object-cover"
-                        fill
+                        alt={item.images[0]?.name || item.name}
                         loading="lazy"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         src={
                           item.images[0]?.url ||
                           "/images/product-placeholder.webp"
                         }
+                        fill
                       />
                     ) : (
                       <div
@@ -82,8 +83,8 @@ export function CartLineItems({
                         `}
                       >
                         <ImageIcon
-                          aria-hidden="true"
                           className="size-4 text-muted-foreground"
+                          aria-hidden="true"
                         />
                       </div>
                     )}
@@ -102,7 +103,7 @@ export function CartLineItems({
                     </span>
                   ) : (
                     <span className="line-clamp-1 text-xs text-muted-foreground">
-                      Qty {item.quantity}
+                      {item.quantity}
                     </span>
                   )}
                   {variant === "default" ? (

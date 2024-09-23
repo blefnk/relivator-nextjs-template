@@ -1,7 +1,7 @@
+import type { User } from "~/db/schema";
+
 import { currentUser } from "@clerk/nextjs/server";
 import consola from "consola";
-
-import type { User } from "~/db/schema/provider";
 
 import { authProvider } from "~/auth/provider";
 import { env } from "~/env";
@@ -17,7 +17,7 @@ const GuestSession = async (): Promise<User> => ({
   email: "guest@email.com",
   emailVerified: new Date("2024-07-10T00:00:00.000Z"),
   hashedPassword: "guestHashedPassword",
-  image: "https://relivator.reliverse.org/logo.png",
+  image: "https://bleverse.com/logo.png",
   mode: "buyer",
   role: "user",
   status: "guest",

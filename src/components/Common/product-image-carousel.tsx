@@ -1,19 +1,20 @@
 "use client";
 
+import type { StoredFile } from "~/types/store";
+import type { UseEmblaCarouselType } from "embla-carousel-react";
+
 import type { HTMLAttributes, KeyboardEvent } from "react";
 import { useCallback, useEffect, useState } from "react";
 
 import Image from "next/image";
 
-import type { StoredFile } from "@/types/reliverse/store";
-import type { UseEmblaCarouselType } from "embla-carousel-react";
-
-import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import useEmblaCarousel from "embla-carousel-react";
 import { ImageIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { Button } from "~/components/ui/button";
+import { cn } from "~/utils/cn";
 
 type CarouselApi = UseEmblaCarouselType["1"];
 
@@ -83,17 +84,17 @@ export function ProductImageCarousel({
   if (images.length === 0) {
     return (
       <div
-        aria-label="Product Placeholder"
-        aria-roledescription="placeholder"
         className={`
           flex aspect-square size-full flex-1 items-center justify-center
           bg-secondary
         `}
+        aria-label="Product Placeholder"
+        aria-roledescription="placeholder"
         role="img"
       >
         <ImageIcon
-          aria-hidden="true"
           className="size-9 text-muted-foreground"
+          aria-hidden="true"
         />
       </div>
     );
@@ -101,8 +102,8 @@ export function ProductImageCarousel({
 
   return (
     <div
-      aria-label="Product image carousel"
       className={cn("flex flex-col gap-2", className)}
+      aria-label="Product image carousel"
       {...props}
     >
       <div className="overflow-hidden" ref={emblaRef}>
@@ -114,20 +115,20 @@ export function ProductImageCarousel({
         >
           {images.map((image, index) => (
             <div
-              className="relative aspect-square min-w-0 flex-[0_0_100%] pl-4"
               key={index}
+              className="relative aspect-square min-w-0 flex-[0_0_100%] pl-4"
             >
               <Image
+                key={index}
+                className="object-cover"
                 alt={image.name}
                 aria-label={`Slide ${index + 1} of ${images.length}`}
                 aria-roledescription="slide"
-                className="object-cover"
-                fill
-                key={index}
                 priority={index === 0}
                 role="group"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 src={image.url}
+                fill
               />
             </div>
           ))}
@@ -142,17 +143,17 @@ export function ProductImageCarousel({
               sm:mr-2 sm:size-8
             `}
             disabled={previousButtonDisabled}
-            onClick={scrollPrevious}
             size="icon"
             variant="outline"
+            onClick={scrollPrevious}
           >
             <ChevronLeftIcon
-              aria-hidden="true"
               className={`
                 size-3
 
                 sm:size-4
               `}
+              aria-hidden="true"
             />
             <span className="sr-only">
               {t("product-image-carousel.previousSlide")}
@@ -160,6 +161,7 @@ export function ProductImageCarousel({
           </Button>
           {images.map((image, index) => (
             <Button
+              key={index}
               className={cn(
                 `
                   group relative aspect-square size-full max-w-[100px]
@@ -171,11 +173,10 @@ export function ProductImageCarousel({
                 `,
                 index === selectedIndex && "ring-1 ring-foreground",
               )}
-              key={index}
-              onClick={() => scrollTo(index)}
-              onKeyDown={handleKeyDown}
               size="icon"
               variant="outline"
+              onClick={() => scrollTo(index)}
+              onKeyDown={handleKeyDown}
             >
               <div
                 className={`
@@ -186,9 +187,9 @@ export function ProductImageCarousel({
               />
               <Image
                 alt={image.name}
-                fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 src={image.url}
+                fill
               />
               <span className="sr-only">
                 Slide {index + 1} of {images.length}
@@ -202,17 +203,17 @@ export function ProductImageCarousel({
               sm:ml-2 sm:size-8
             `}
             disabled={nextButtonDisabled}
-            onClick={scrollNext}
             size="icon"
             variant="outline"
+            onClick={scrollNext}
           >
             <ChevronRightIcon
-              aria-hidden="true"
               className={`
                 size-3
 
                 sm:size-4
               `}
+              aria-hidden="true"
             />
             <span className="sr-only">
               {t("product-image-carousel.nextSlide")}

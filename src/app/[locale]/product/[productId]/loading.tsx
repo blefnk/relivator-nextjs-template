@@ -1,14 +1,14 @@
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { ImageIcon } from "lucide-react";
+
+import { AspectRatio } from "~/components/ui/aspect-ratio";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Skeleton } from "@/components/ui/skeleton";
-import { ImageIcon } from "lucide-react";
-
+} from "~/components/ui/card";
+import { Separator } from "~/components/ui/separator";
+import { Skeleton } from "~/components/ui/skeleton";
 import { Shell } from "~/components/Wrappers/ShellVariants";
 
 export default function ProductLoading() {
@@ -35,17 +35,17 @@ export default function ProductLoading() {
         >
           <div className="flex flex-col gap-2">
             <div
-              aria-label="Placeholder"
-              aria-roledescription="placeholder"
               className={`
                 flex aspect-square h-full flex-1 items-center justify-center
                 bg-secondary
               `}
+              aria-label="Placeholder"
+              aria-roledescription="placeholder"
               role="img"
             >
               <ImageIcon
-                aria-hidden="true"
                 className="size-9 text-muted-foreground"
+                aria-hidden="true"
               />
             </div>
             <div className="flex w-full items-center justify-center gap-2">
@@ -54,10 +54,10 @@ export default function ProductLoading() {
                 length: 3,
               }).map((_, index) => (
                 <Skeleton
+                  key={index}
                   className={`
                       aspect-square size-full max-w-[100px] rounded-none
                     `}
-                  key={index}
                 />
               ))}
               <Skeleton className="size-7 rounded-none" />
@@ -109,7 +109,7 @@ export default function ProductLoading() {
             {Array.from({
               length: 4,
             }).map((_, index) => (
-              <Card className="min-w-[260px] rounded-sm" key={index}>
+              <Card key={index} className="min-w-[260px] rounded-sm">
                 <CardHeader className="border-b p-0">
                   <AspectRatio ratio={4 / 3}>
                     <div
@@ -118,8 +118,8 @@ export default function ProductLoading() {
                       `}
                     >
                       <ImageIcon
-                        aria-hidden="true"
                         className="size-9 text-muted-foreground"
+                        aria-hidden="true"
                       />
                     </div>
                   </AspectRatio>

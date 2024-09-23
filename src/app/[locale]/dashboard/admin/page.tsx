@@ -2,15 +2,17 @@ import type { ReactElement } from "react";
 
 import { redirect } from "next/navigation";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/utils/reliverse/cn";
-import { authProvider } from "~/../reliverse.config";
 import { Edit, Mail, View } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
+import { authProvider } from "~/auth/provider";
+import { UserNotFound } from "~/components/Account/Guest/UserNotFound";
+import { buttonVariants } from "~/components/ui/button";
 import { GeneralShell } from "~/components/Wrappers/GeneralShell";
+import { auth } from "~/server/queries/user";
+import { cn } from "~/utils/cn";
 
 // import Link from "next/link";
 // import AdminProductsManagement from "~/core/trpc-old/tanstack/products-admin";
@@ -18,10 +20,10 @@ import { GeneralShell } from "~/components/Wrappers/GeneralShell";
 export default async function AdminMainPage(): Promise<ReactElement> {
   const t = await getTranslations();
 
-  const session = authProvider === "clerk" ? await clerk() : await authjs();
+  const session = await auth();
 
   if (!session) {
-    return redirect("/auth");
+    return <UserNotFound />;
   }
 
   // TODO: Implement email system
@@ -71,7 +73,7 @@ export default async function AdminMainPage(): Promise<ReactElement> {
 
             // href="/blog/new"
           >
-            <Edit aria-hidden="true" className="mr-2 size-4" />
+            <Edit className="mr-2 size-4" aria-hidden="true" />
             Create post
           </span>
           <br />
@@ -86,7 +88,7 @@ export default async function AdminMainPage(): Promise<ReactElement> {
 
             // href="/blog"
           >
-            <View aria-hidden="true" className="mr-2 size-4" />
+            <View className="mr-2 size-4" aria-hidden="true" />
             See all posts
           </span>
         </section>
@@ -108,6 +110,7 @@ export default async function AdminMainPage(): Promise<ReactElement> {
             )}
           >
             <Mail className="mr-2 size-4" aria-hidden="true" />
+            {/* @ts-expect-error TODO: Fix ts */}
             Send test email to {session.email}
           </span>
         </section>

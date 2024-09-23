@@ -1,8 +1,6 @@
 import type { ApptsConfig } from "@/scripts/reliverse/relicon/setup/types";
 
 import { confirm, text } from "@clack/prompts";
-import { config } from "@reliverse/core";
-import { fileExists } from "@reliverse/fs";
 import consola from "consola";
 import fs from "fs-extra";
 import {
@@ -13,6 +11,8 @@ import process from "node:process";
 import { join } from "pathe";
 import pc from "picocolors";
 
+import { config } from "@reliverse/core";
+import { fileExists } from "@reliverse/fs";
 import metadata from "~/constants/metadata";
 
 export async function configureAppts({ apptsConfig }: ApptsConfig) {

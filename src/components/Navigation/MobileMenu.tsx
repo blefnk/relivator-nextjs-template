@@ -1,27 +1,27 @@
 "use client";
 
+import type { MainMenuItem, SidebarNavItem } from "~/types/with";
+
 import type { Dispatch, ReactNode, SetStateAction } from "react";
 import { useState } from "react";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import type { MainMenuItem, SidebarNavItem } from "@/types/reliverse/with";
+import { Menu } from "lucide-react";
+import { useTranslations } from "next-intl";
 
+import { siteConfig } from "~/app";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { cn } from "@/utils/reliverse/cn";
-import { Menu } from "lucide-react";
-import { useTranslations } from "next-intl";
-
-import { siteConfig } from "~/app";
+} from "~/components/ui/accordion";
+import { Button } from "~/components/ui/button";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
+import { cn } from "~/utils/cn";
 
 type MobileMenuProps = {
   MainMenuItems?: MainMenuItem[];
@@ -38,7 +38,7 @@ export function MobileMenu({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Sheet onOpenChange={setIsOpen} open={isOpen}>
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <Button
           className={`
@@ -69,8 +69,8 @@ export function MobileMenu({
       <SheetContent className="pl-1 pr-0" side="left">
         <div className="px-7">
           <Link
-            aria-label="Home"
             className="flex items-center"
+            aria-label="Home"
             href="/"
             onClick={() => {
               setIsOpen(false);
@@ -81,7 +81,7 @@ export function MobileMenu({
         </div>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-6">
           <div className="pl-1 pr-7">
-            <Accordion className="w-full" collapsible type="single">
+            <Accordion className="w-full" type="single" collapsible>
               {MainMenuItems?.map((item, index) => (
                 <AccordionItem key={index} value={item.title}>
                   <AccordionTrigger className="text-sm capitalize">
@@ -92,9 +92,9 @@ export function MobileMenu({
                       {item.items?.map((subItem, index) =>
                         subItem.href ? (
                           <MobileLink
+                            key={index}
                             disabled={subItem.disabled}
                             href={String(subItem.href)}
-                            key={index}
                             pathname={pathname}
                             setIsOpen={setIsOpen}
                           >
@@ -102,8 +102,8 @@ export function MobileMenu({
                           </MobileLink>
                         ) : (
                           <div
-                            className="text-foreground/70 transition-colors"
                             key={index}
+                            className="text-foreground/70 transition-colors"
                           >
                             {item.title}
                           </div>
@@ -122,9 +122,9 @@ export function MobileMenu({
                     {sidebarNavItems?.map((item, index) =>
                       item.href ? (
                         <MobileLink
+                          key={index}
                           disabled={item.disabled}
                           href={String(item.href)}
-                          key={index}
                           pathname={pathname}
                           setIsOpen={setIsOpen}
                         >
@@ -132,8 +132,8 @@ export function MobileMenu({
                         </MobileLink>
                       ) : (
                         <div
-                          className="text-foreground/70 transition-colors"
                           key={index}
+                          className="text-foreground/70 transition-colors"
                         >
                           {item.title}
                         </div>

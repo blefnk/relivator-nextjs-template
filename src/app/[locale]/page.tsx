@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 
+// import FeatureSection01 from "#/layout/index/feature/feature-section-01";
+// import HeroSection01 from "#/layout/index/hero/hero-section-01";
+// import PricingSection01 from "#/layout/index/pricing/pricing-section-01";
 import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 import { siteConfig } from "~/app";
 import { HomeFeaturedItems } from "~/components/Commerce/FeaturedStoreItems";
 import { Features } from "~/components/Common/features";
+import { GithubStarsBadge } from "~/components/Common/stars";
 import HomeBottomSection from "~/components/Marketing/BottomSection";
 import { BannerWithButton } from "~/components/Marketing/Elements/Banners/with-button";
 import HomeHeroSection from "~/components/Marketing/HeroSection";
@@ -33,11 +37,13 @@ export default function HomePage() {
     <>
       <BannerWithButton
         linkHref="https://reliverse.org/relivator/v126"
-        tTitle={t("banners.announcements-1.title")}
-        tDetails={t("banners.announcements-1.details")}
         tButton={t("banners.announcements-1.button")}
+        tDetails={t("banners.announcements-1.details")}
         tDismiss={t("banners.announcements-1.dismiss")}
+        tTitle={t("banners.announcements-1.title")}
       />
+
+      <GithubStarsBadge />
       <HomeHeroSection />
       <Shell
         className={`

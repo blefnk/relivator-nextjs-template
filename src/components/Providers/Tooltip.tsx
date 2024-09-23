@@ -3,8 +3,9 @@
 import type { ComponentPropsWithoutRef, ComponentRef } from "react";
 import { forwardRef } from "react";
 
-import { cn } from "@/utils/reliverse/cn";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+
+import { cn } from "~/utils/cn";
 
 const TooltipProvider = TooltipPrimitive.Provider;
 const Tooltip = TooltipPrimitive.Root;

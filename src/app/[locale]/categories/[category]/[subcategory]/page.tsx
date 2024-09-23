@@ -1,9 +1,8 @@
+import type { Product } from "~/db/schema";
+
 import type { Metadata } from "next";
 
-import { unslugify } from "@/utils/reliverse/string";
 import { titleCase } from "string-ts";
-
-import type { Product } from "~/db/schema/provider";
 
 import {
   PageHeader,
@@ -11,9 +10,11 @@ import {
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
 import { Shell } from "~/components/Wrappers/ShellVariants";
+import { unslugify } from "~/utils/string";
 
 type SubcategoryPageProps = {
   params: {
+    // @ts-expect-error TODO: Fix ts
     category: Product["category"];
     subcategory: string;
   };

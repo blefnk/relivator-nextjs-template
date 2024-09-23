@@ -1,19 +1,20 @@
 "use client";
 
-import type { ButtonProps } from "@/components/ui/button";
+import type { ButtonProps } from "~/components/ui/button";
 
-import { Button } from "@/components/ui/button";
+import { useIsClient } from "@uidotdev/usehooks";
+import { Laptop, Moon, Sun } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useTheme } from "next-themes";
+
+import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown";
-import { useIsClient } from "@uidotdev/usehooks";
-import { Laptop, Moon, Sun } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { useTheme } from "next-themes";
+} from "~/components/ui/dropdown";
 
 type ThemesGeneralSwitcherProps = {
   iconClassName?: string;
@@ -30,11 +31,11 @@ export function ThemesGeneralSwitcher({
   if (!isMounted) {
     return (
       <Button
-        aria-label="Theme Switcher"
         className="size-9 rounded-lg border"
-        disabled
+        aria-label="Theme Switcher"
         size="icon"
         variant="ghost"
+        disabled
         {...props}
       >
         <Sun
@@ -59,8 +60,8 @@ export function ThemesGeneralSwitcher({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
-          aria-label="Theme Switcher"
           className="size-9 rounded-lg border"
+          aria-label="Theme Switcher"
           size="icon"
           variant="ghost"
           {...props}
@@ -91,7 +92,7 @@ export function ThemesGeneralSwitcher({
             setTheme("dark");
           }}
         >
-          <Moon aria-hidden="true" className={iconClassName} />
+          <Moon className={iconClassName} aria-hidden="true" />
           <span>{t("ThemesGeneralSwitcher.dark")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -99,7 +100,7 @@ export function ThemesGeneralSwitcher({
             setTheme("light");
           }}
         >
-          <Sun aria-hidden="true" className={iconClassName} />
+          <Sun className={iconClassName} aria-hidden="true" />
           <span>{t("ThemesGeneralSwitcher.light")}</span>
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -107,7 +108,7 @@ export function ThemesGeneralSwitcher({
             setTheme("system");
           }}
         >
-          <Laptop aria-hidden="true" className={iconClassName} />
+          <Laptop className={iconClassName} aria-hidden="true" />
           <span>{t("ThemesGeneralSwitcher.system")}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>

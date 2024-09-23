@@ -1,4 +1,4 @@
-import useRenderCount from "@/hooks-react/use-render-count";
+import useRenderCount from "~/hooks/use-render-count";
 
 const UrcTestComponent = () => {
   const { renderCount, resetRenderCount } = useRenderCount(true);
@@ -6,7 +6,7 @@ const UrcTestComponent = () => {
   return (
     <div>
       <div>This component has rendered {renderCount} times.</div>
-      <button onClick={resetRenderCount} type="button">
+      <button type="button" onClick={resetRenderCount}>
         Reset Render Count
       </button>
     </div>

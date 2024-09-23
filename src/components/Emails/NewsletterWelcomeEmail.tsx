@@ -13,9 +13,9 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components";
-import { config } from "@reliverse/core";
 import { useTranslations } from "next-intl";
 
+import { config } from "@reliverse/core";
 import { env } from "~/env";
 
 type NewsletterWelcomeEmailProps = {
@@ -91,10 +91,10 @@ export default function NewsletterWelcomeEmail({
             </Section>
             <Section className="mt-6">
               {newsletterImages.map((item) => (
-                <Row className="mt-10" key={item.alt}>
+                <Row key={item.alt} className="mt-10">
                   <Img
-                    alt={item.alt}
                     className="aspect-video w-full object-cover"
+                    alt={item.alt}
                     height={424}
                     src={item.src}
                   />

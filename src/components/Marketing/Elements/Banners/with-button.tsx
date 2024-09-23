@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { Link } from "@/components/ui/link";
 import { X } from "lucide-react";
+
+import { Button } from "~/components/ui/button";
+import { Link } from "~/components/ui/link";
 
 type BannerWithButtonProps = {
   linkHref: string;
@@ -15,11 +16,11 @@ type BannerWithButtonProps = {
 };
 
 export function BannerWithButton({
-  tTitle,
-  tDetails,
-  tButton,
   linkHref,
+  tButton,
+  tDetails,
   tDismiss,
+  tTitle,
 }: BannerWithButtonProps) {
   const [isVisible, setIsVisible] = useState(true);
 
@@ -64,7 +65,6 @@ export function BannerWithButton({
           {tDetails}
         </p>
         <Link
-          href={linkHref}
           className={`
             flex-none rounded-full bg-zinc-900 px-3.5 py-1 text-sm font-semibold
             text-white shadow-sm
@@ -77,24 +77,25 @@ export function BannerWithButton({
 
             hover:bg-zinc-700
           `}
+          href={linkHref}
         >
           {tButton}{" "}
-          <span aria-hidden="true" className="ml-1">
+          <span className="ml-1" aria-hidden="true">
             &rarr;
           </span>
         </Link>
       </div>
       <div className="flex flex-1 justify-end">
-        <Button variant="ghost" type="button" className="-m-3 p-3">
+        <Button className="-m-3 p-3" type="button" variant="ghost">
           <span className="sr-only">{tDismiss}</span>
           <X
-            onClick={handleHideButton}
-            aria-hidden="true"
             className={`
               size-5 text-zinc-900
 
               dark:text-zinc-100
             `}
+            aria-hidden="true"
+            onClick={handleHideButton}
           />
         </Button>
       </div>
@@ -105,11 +106,11 @@ export function BannerWithButton({
 const BackgroundDecor = () => (
   <>
     <div
-      aria-hidden="true"
       className={`
         absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10
         -translate-y-1/2 transform-gpu blur-2xl
       `}
+      aria-hidden="true"
     >
       <div
         className={`
@@ -121,11 +122,11 @@ const BackgroundDecor = () => (
       />
     </div>
     <div
-      aria-hidden="true"
       className={`
         absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2
         transform-gpu blur-2xl
       `}
+      aria-hidden="true"
     >
       <div
         className={`
@@ -141,14 +142,14 @@ const BackgroundDecor = () => (
 
 const Separator = () => (
   <svg
-    viewBox="0 0 2 2"
-    aria-hidden="true"
     className={`
       mx-2 inline-block size-0.5 fill-current text-zinc-700
 
       dark:text-zinc-300
     `}
+    aria-hidden="true"
+    viewBox="0 0 2 2"
   >
-    <circle r={1} cx={1} cy={1} />
+    <circle cx={1} cy={1} r={1} />
   </svg>
 );

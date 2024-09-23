@@ -4,20 +4,20 @@ import type { ReactElement } from "react";
 
 import Link from "next/link";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Settings, Star, User } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import { PricingTableNative } from "~/app/[locale]/pricing/components/upgrade";
+import { buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cn } from "@/utils/reliverse/cn";
-import { Settings, Star, User } from "lucide-react";
-import { useTranslations } from "next-intl";
-
-import { PricingTableNative } from "~/app/[locale]/pricing/components/upgrade";
+} from "~/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
+import { cn } from "~/utils/cn";
 
 // TODO: This file is not finished yet. It needs to be reviewed and completed.
 const PricingPageClient = ({

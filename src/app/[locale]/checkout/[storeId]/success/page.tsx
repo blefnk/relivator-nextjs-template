@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { deleteCartAction } from "@/actions/reliverse//cart";
-import { buttonVariants } from "@/components/ui/button";
-import { getCartId } from "@/server/reliverse/cart";
-import { cn } from "@/utils/reliverse/cn";
 import { eq } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
 
@@ -13,8 +9,12 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import { buttonVariants } from "~/components/ui/button";
 import { db } from "~/db";
-import { stores } from "~/db/schema/provider";
+import { stores } from "~/db/schema";
+import { deleteCartAction } from "~/server/actions/deprecated/cart";
+import { getCartId } from "~/server/helpers/cart";
+import { cn } from "~/utils/cn";
 
 export const metadata: Metadata = {
   description: "Order summary for the purchase",
@@ -81,9 +81,9 @@ export default async function OrderSuccessPage({
       {/* {isVerified ? ( */}
       <div className="grid gap-10 overflow-auto">
         <PageHeader
-          aria-labelledby="order-success-page-header-heading"
-          className="container flex max-w-7xl flex-col"
           id="order-success-page-header"
+          className="container flex max-w-7xl flex-col"
+          aria-labelledby="order-success-page-header-heading"
         >
           <PageHeaderHeading>{t("page.thankYouForTheOrder")}</PageHeaderHeading>
           <PageHeaderDescription>
@@ -150,14 +150,13 @@ export default async function OrderSuccessPage({
 function OrderSuccessActions() {
   return (
     <section
-      aria-labelledby="order-success-actions-heading"
+      id="order-success-actions"
       className={`
         container flex max-w-7xl items-center justify-start space-x-2.5
       `}
-      id="order-success-actions"
+      aria-labelledby="order-success-actions-heading"
     >
       <Link
-        aria-label="Continue shopping"
         className={cn(
           buttonVariants({
             className: "text-center",
@@ -165,6 +164,7 @@ function OrderSuccessActions() {
             variant: "secondary",
           }),
         )}
+        aria-label="Continue shopping"
         href="/products"
       >
         Continue shopping
@@ -183,7 +183,6 @@ function OrderSuccessActions() {
         Back to cart
       </Link> */}
       <Link
-        aria-label="Back to home"
         className={cn(
           buttonVariants({
             className: "text-center",
@@ -191,6 +190,7 @@ function OrderSuccessActions() {
             variant: "outline",
           }),
         )}
+        aria-label="Back to home"
         href="/"
       >
         Back to home

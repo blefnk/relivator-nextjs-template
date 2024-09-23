@@ -1,14 +1,14 @@
 "use client";
 
+import type { StripeElementsOptions } from "@stripe/stripe-js";
+
 import { use, useMemo } from "react";
 import type { HTMLAttributes, ReactNode } from "react";
 
-import type { StripeElementsOptions } from "@stripe/stripe-js";
-
-import { cn } from "@/utils/reliverse/cn";
 import { Elements } from "@stripe/react-stripe-js";
 
 import { getStripe } from "~/core/stripe/getting";
+import { cn } from "~/utils/cn";
 
 type CheckoutShellProps = {
   paymentIntent: Promise<{

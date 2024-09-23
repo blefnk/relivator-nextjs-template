@@ -1,8 +1,8 @@
-import { config as reliverse } from "@reliverse/core";
 import consola from "consola";
 import pc from "picocolors";
 import semver from "semver";
 
+import { config as reliverse } from "@reliverse/core";
 import { env } from "~/env";
 
 import {
@@ -104,6 +104,5 @@ if (turbo) {
   logSupportMessage();
   logUpdateInstructions();
 
-  // eslint-disable-next-line unicorn/no-process-exit
   process.exit(0);
 }

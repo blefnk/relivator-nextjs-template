@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import * as z from "zod";
+
+import { siteConfig } from "~/app";
+import { Button } from "~/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,14 +17,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/text-area";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import * as z from "zod";
-
-import { siteConfig } from "~/app";
+} from "~/components/ui/form";
+import { Input } from "~/components/ui/input";
+import { Textarea } from "~/components/ui/text-area";
 
 const formSchema = z.object({
   msg: z.string().min(1, {
@@ -71,8 +71,8 @@ export function ContactForm({ tSubmit }: ContactFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
-          control={form.control}
           name="subject"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("ContactForm.subject")}</FormLabel>
@@ -84,8 +84,8 @@ export function ContactForm({ tSubmit }: ContactFormProps) {
           )}
         />
         <FormField
-          control={form.control}
           name="msg"
+          control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("ContactForm.message")}</FormLabel>

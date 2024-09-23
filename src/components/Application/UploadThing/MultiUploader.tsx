@@ -1,10 +1,11 @@
 import { useCallback, useState } from "react";
 
-import { Button } from "@/components/ui/button";
-import { useUploadThing } from "@/server/reliverse/uploadthing-react";
 import { useDropzone } from "@uploadthing/react";
 import { useTranslations } from "next-intl";
 import { generateClientDropzoneAccept } from "uploadthing/client";
+
+import { Button } from "~/components/ui/button";
+import { useUploadThing } from "~/server/helpers/uploadthing-react";
 
 // Note: `useUploadThing` is IMPORTED FROM THE CODEBASE using the `generateReactHelpers` function
 export function MultiUploader() {
@@ -57,8 +58,8 @@ export function MultiUploader() {
 
               hover:bg-blue-700
             `}
-            onClick={() => startUpload(files)}
             type="button"
+            onClick={() => startUpload(files)}
           >
             Upload {files.length} files
           </Button>

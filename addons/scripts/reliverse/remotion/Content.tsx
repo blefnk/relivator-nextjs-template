@@ -1,6 +1,6 @@
-import { Img, useVideoConfig } from "remotion";
-
 import type { Stargazer } from "./cache";
+
+import { Img, useVideoConfig } from "remotion";
 
 import { constants } from "./constants";
 import { RepoHeader } from "./repo";
@@ -44,11 +44,11 @@ export function Content({
 
         return isHidden ? null : (
           <StarBox
+            key={stargazer.login}
+            name={stargazer.name}
             avatarUrl={stargazer.avatarUrl}
             date={stargazer.date}
             grow={grow}
-            key={stargazer.login}
-            name={stargazer.name}
             opacity={opacity}
             repoName={repoName}
             starNumber={index + 1}
@@ -109,10 +109,10 @@ function StarBox({
       <Img
         height={constants.avatarSize}
         src={avatarUrl}
+        width={constants.avatarSize}
         style={{
           borderRadius: "50%",
         }}
-        width={constants.avatarSize}
       />
       <div
         style={{

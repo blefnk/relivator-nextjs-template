@@ -1,22 +1,9 @@
+import type { SubscriptionPlanTypes, UserSubscriptionPlan } from "~/types/plan";
+
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import type {
-  SubscriptionPlanTypes,
-  UserSubscriptionPlan,
-} from "@/types/reliverse/plan";
-
-import { buttonVariants } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import {
-  getDashboardRedirectPath,
-  getPlanFeatures,
-} from "@/server/reliverse/plan";
-import { cn } from "@/utils/reliverse/cn";
-import { formatDate } from "@/utils/reliverse/date";
-import { formatPrice } from "@/utils/reliverse/number";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { desc, eq, sql } from "drizzle-orm";
 import { getTranslations } from "next-intl/server";
@@ -24,18 +11,30 @@ import { getTranslations } from "next-intl/server";
 import { authjs } from "~/auth/authjs";
 import { clerk } from "~/auth/clerk";
 import { authProvider } from "~/auth/provider";
+import { UserNotFound } from "~/components/Account/Guest/UserNotFound";
 import { PlanManageForm } from "~/components/Forms/PlanManageForm";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
 } from "~/components/Navigation/PageNavMenu";
+import { buttonVariants } from "~/components/ui/button";
+import { Card } from "~/components/ui/card";
+import { Separator } from "~/components/ui/separator";
 import { Shell } from "~/components/Wrappers/ShellVariants";
-import { getSubscriptionPlanAction } from "~/core/stripe/actions";
 import { storeSubscriptionPlans } from "~/core/stripe/subs";
 import { db } from "~/db";
-import { products, stores } from "~/db/schema/provider";
+import { products, stores } from "~/db/schema";
 import { env } from "~/env";
+import { getPlan } from "~/server/actions/deprecated/stripe/getPlan";
+import {
+  getDashboardRedirectPath,
+  getPlanFeatures,
+} from "~/server/helpers/plan";
+import { auth } from "~/server/queries/user";
+import { cn } from "~/utils/cn";
+import { formatDate } from "~/utils/date";
+import { formatPrice } from "~/utils/number";
 
 export const metadata: Metadata = {
   description: "Manage the billing and subscription",
@@ -45,13 +44,14 @@ export const metadata: Metadata = {
 export default async function BillingPage() {
   const t = await getTranslations();
 
-  const user = authProvider === "clerk" ? await clerk() : await authjs();
+  const user = await auth();
 
   if (!user) {
-    redirect("/auth");
+    return <UserNotFound />;
   }
 
-  const userPlanInfo = await getSubscriptionPlanAction(user.id || "");
+  // @ts-expect-error TODO: Fix ts
+  const userPlanInfo = await getPlan(user.id || "");
 
   const allStores = await db
     .select({
@@ -66,17 +66,19 @@ export default async function BillingPage() {
     .orderBy(desc(stores.stripeAccountId), desc(sql`count(*)`))
     .where(eq(stores.userId, user.id));
 
-  const subscriptionPlan = await getSubscriptionPlanAction(user.id || "");
+  // @ts-expect-error TODO: Fix ts
+  const subscriptionPlan = await getPlan(user.id || "");
 
   const { maxProductCount, maxStoreCount } = getPlanFeatures(
+    // @ts-expect-error TODO: Fix ts
     (subscriptionPlan && subscriptionPlan.id) || undefined,
   );
 
   return (
     <Shell as="div" variant="sidebar">
       <PageHeader
-        aria-labelledby="billing-header-heading"
         id="billing-header"
+        aria-labelledby="billing-header-heading"
         separated
       >
         <div className="flex space-x-4">
@@ -84,14 +86,15 @@ export default async function BillingPage() {
             {t("example.billing")}
           </PageHeaderHeading>
           <Link
-            aria-label="Create store"
             className={cn(
               buttonVariants({
                 size: "sm",
               }),
             )}
+            aria-label="Create store"
             href={getDashboardRedirectPath({
               storeCount: allStores.length,
+              // @ts-expect-error TODO: Fix ts
               subscriptionPlan: subscriptionPlan,
             })}
           >
@@ -103,9 +106,9 @@ export default async function BillingPage() {
         </PageHeaderDescription>
       </PageHeader>
       <section
-        aria-labelledby="billing-info-heading"
-        className="space-y-5"
         id="billing-info"
+        className="space-y-5"
+        aria-labelledby="billing-info-heading"
       >
         <h2
           className={`
@@ -120,6 +123,7 @@ export default async function BillingPage() {
           <p className="text-sm text-muted-foreground">
             the current plan is{" "}
             <span className="font-semibold">
+              {/* @ts-expect-error TODO: Fix ts */}
               {(subscriptionPlan && subscriptionPlan.name) || "Starter"}
             </span>
             .{/* @ts-expect-error TODO: fix */}
@@ -143,9 +147,9 @@ export default async function BillingPage() {
         </Card>
       </section>
       <section
-        aria-labelledby="subscription-plans-heading"
-        className="space-y-5 pb-2.5"
         id="subscription-plans"
+        className="space-y-5 pb-2.5"
+        aria-labelledby="subscription-plans-heading"
       >
         {env.DEMO_NOTES_ENABLED === "true" && (
           <p>
@@ -187,10 +191,11 @@ export default async function BillingPage() {
         >
           {storeSubscriptionPlans.map((planInfo, index) => (
             <SubscriptionPlanCard
+              key={planInfo.name}
               isHighlighted={index === 1}
               isLast={index === storeSubscriptionPlans.length - 1}
-              key={planInfo.name}
               planInfo={planInfo}
+              // @ts-expect-error TODO: Fix ts
               userPlanInfo={userPlanInfo}
             />
           ))}
@@ -269,14 +274,14 @@ function SubscriptionPlanCard({
       <ul className="mb-6 grow">
         {planInfo.features.map((feature) => (
           <li
+            key={feature}
             className={`
               flex items-center gap-2 text-zinc-600
 
               dark:text-zinc-400
             `}
-            key={feature}
           >
-            <CheckIcon aria-hidden="true" className="size-4" />
+            <CheckIcon className="size-4" aria-hidden="true" />
             {feature}
           </li>
         ))}

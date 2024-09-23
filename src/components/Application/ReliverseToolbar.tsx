@@ -1,6 +1,6 @@
-import { Suspense } from "react";
-
 import type { FlagValuesType } from "@vercel/flags";
+
+import { Suspense } from "react";
 
 import { encrypt } from "@vercel/flags";
 import { FlagValues } from "@vercel/flags/react";
