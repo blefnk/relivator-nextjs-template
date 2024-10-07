@@ -43,7 +43,7 @@ export function CheckoutForm({
       return;
     }
 
-    const clientSecret = new URLSearchParams(window.location.search).get(
+    const clientSecret = new URLSearchParams(globalThis.location.search).get(
       "payment_intent_client_secret",
     );
 

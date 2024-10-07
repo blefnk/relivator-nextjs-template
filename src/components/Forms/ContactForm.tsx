@@ -55,7 +55,7 @@ export function ContactForm({ tSubmit }: ContactFormProps) {
 
   useEffect(() => {
     if (mailtoLink) {
-      window.location.href = mailtoLink;
+      globalThis.location.href = mailtoLink;
       form.reset();
     }
   }, [mailtoLink]);

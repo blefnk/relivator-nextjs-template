@@ -50,7 +50,7 @@ export const savePlayer = async (player: AcademyPlayer): Promise<void> => {
     const players = await getPlayers();
     const playerIndex = players.findIndex((p) => p.id === player.id);
 
-    if (playerIndex > -1) {
+    if (playerIndex !== -1) {
       players[playerIndex] = player;
       await savePlayers(players);
     } else {

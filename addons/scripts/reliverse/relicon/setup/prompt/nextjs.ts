@@ -95,8 +95,8 @@ async function replaceEnvImport(filePath: string) {
   try {
     let fileContent = await readFile(filePath, "utf8");
 
-    const oldImportStatement = `await import("~/env.js");`;
-    const newImportStatement = `await import("./src/env.js");`;
+    const oldImportStatement = 'await import("~/env.js");';
+    const newImportStatement = 'await import("./src/env.js");';
 
     if (fileContent.includes(oldImportStatement)) {
       fileContent = fileContent.replace(oldImportStatement, newImportStatement);

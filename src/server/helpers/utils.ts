@@ -113,7 +113,7 @@ export function getUserEmail(user: null | User) {
 }
 
 export function isMacOs() {
-  if (typeof window === "undefined") return false;
+  if (typeof globalThis === "undefined") return false;
 
-  return window.navigator.userAgent.includes("Mac");
+  return globalThis.navigator.userAgent.includes("Mac");
 }

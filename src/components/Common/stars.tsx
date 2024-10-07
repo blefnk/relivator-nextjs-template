@@ -50,7 +50,7 @@ export async function GithubStarsBadge() {
             md:flex
           `}
         >
-          -canary.5
+          -canary.6
         </span>
         <span
           className={`

@@ -186,7 +186,7 @@ function useToast() {
     return () => {
       const index = listeners.indexOf(setState);
 
-      if (index > -1) {
+      if (index !== -1) {
         listeners.splice(index, 1);
       }
     };

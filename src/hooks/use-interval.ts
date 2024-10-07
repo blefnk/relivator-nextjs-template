@@ -9,7 +9,10 @@ export default function useInterval(function_: () => void, interval: number) {
   const start = useCallback(() => {
     setActive((old) => {
       if (!old && !intervalRef.current) {
-        intervalRef.current = window.setInterval(function_, interval);
+        intervalRef.current = globalThis.setInterval(
+          function_,
+          interval,
+        ) as unknown as number;
       }
 
       return true;
@@ -18,9 +21,8 @@ export default function useInterval(function_: () => void, interval: number) {
 
   const stop = useCallback(() => {
     setActive(false);
-    window.clearInterval(intervalRef.current);
-    // @ts-expect-error TODO: fix
-    intervalRef.current = undefined;
+    globalThis.clearInterval(intervalRef.current);
+    intervalRef.current = 0;
   }, []);
 
   const toggle = useCallback(() => {

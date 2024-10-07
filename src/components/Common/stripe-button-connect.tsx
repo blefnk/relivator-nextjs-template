@@ -19,7 +19,7 @@ export function ConnectStoreToStripeButton({
 
   useEffect(() => {
     if (connectionUrl) {
-      window.location.href = connectionUrl;
+      globalThis.location.href = connectionUrl;
     }
   }, [connectionUrl]);
 

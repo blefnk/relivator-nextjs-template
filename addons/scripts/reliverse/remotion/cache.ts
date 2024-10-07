@@ -49,7 +49,7 @@ export const saveRes = ({
       repoOrg,
     });
 
-    window.localStorage.setItem(key, superjson.stringify(res));
+    globalThis.localStorage.setItem(key, superjson.stringify(res));
   } catch (error) {
     if (error instanceof DOMException && error.name === "QuotaExceededError") {
       // If quota is exceeded, don't cache
@@ -78,7 +78,7 @@ export const getFromCache = ({
     repoOrg,
   });
 
-  const value = window.localStorage.getItem(key);
+  const value = globalThis.localStorage.getItem(key);
 
   if (!value) {
     return null;

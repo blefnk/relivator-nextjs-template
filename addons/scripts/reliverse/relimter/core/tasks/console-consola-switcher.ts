@@ -4,7 +4,7 @@ import * as path from "pathe";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
-const consolaImportStatement = `import consola from "consola";`;
+const consolaImportStatement = 'import consola from "consola";';
 const consolaRegex = /consola\.(log|warn|error|info|debug|trace)\(/g;
 const consoleRegex = /console\.(log|warn|error|info|debug|trace)\(/g;
 

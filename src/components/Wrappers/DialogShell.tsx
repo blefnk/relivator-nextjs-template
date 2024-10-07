@@ -31,10 +31,10 @@ export function DialogShell({
       }
     };
 
-    window.addEventListener("keydown", handleEsc);
+    globalThis.addEventListener("keydown", handleEsc);
 
     return () => {
-      window.removeEventListener("keydown", handleEsc);
+      globalThis.removeEventListener("keydown", handleEsc);
     };
   }, [router]);
 

@@ -45,7 +45,7 @@ export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {
 
   function onSubmit(data: Inputs) {
     startTransition(() => {
-      const [deliveryPostalCodeURL] = window.location.href.split(
+      const [deliveryPostalCodeURL] = globalThis.location.href.split(
         "&delivery_postal_code=",
       );
       const formattedPostalCode = data.deliveryPostalCode.split(" ").join("");
