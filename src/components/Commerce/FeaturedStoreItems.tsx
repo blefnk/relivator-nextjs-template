@@ -74,9 +74,9 @@ export function HomeFeaturedItems() {
                 md:block
               `}
             >
-              Music
+              Featured
             </span>{" "}
-            Sheets
+            Products
           </h3>
           <Link aria-label="Products" href="/products">
             <div
@@ -162,9 +162,9 @@ export function HomeFeaturedItems() {
                 md:block
               `}
             >
-              Music
+              Featured
             </span>{" "}
-            Sellers
+            Stores
           </h2>
           <Link aria-label="Stores" href="/stores">
             <div

@@ -93,7 +93,6 @@ const nextConfig = {
   },
 
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  typescript: { ignoreBuildErrors: true },
 
   // ?| Uncomment the following to enable Adobe React Spectrum.
   // Note: `next dev --turbo` is not supported yet by this library.
