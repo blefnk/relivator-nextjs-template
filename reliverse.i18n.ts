@@ -15,7 +15,7 @@ export const locales = [
   "zh-CN",
 ] as const;
 
-export const localePrefix: LocalePrefix<typeof locales> = "as-needed";
+export const localePrefix: LocalePrefix<typeof locales> = "always";
 
 export type Locale = (typeof locales)[number];
 
