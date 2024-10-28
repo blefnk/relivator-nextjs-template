@@ -1,30 +1,30 @@
-import type { OurFileRouter } from "~/server/helpers/uploadthing-core";
-import type { StoredFile } from "~/types/store";
+import * as React from "react";
+import type { StoredFile } from "~/types";
+import { toast } from "sonner";
 import type { UploadFilesOptions } from "uploadthing/types";
 
-import { useState } from "react";
+import { getErrorMessage } from "~/lib/handle-error";
+import { uploadFiles } from "~/lib/uploadthing";
+import { type OurFileRouter } from "~/app/api/uploadthing/core";
 
-import consola from "consola";
-
-import { getErrorMessage } from "~/server/helpers/error-message";
-import { uploadFiles } from "~/server/helpers/uploadthing-react";
-
-type UseUploadFileProps = {
+interface UseUploadFileProps
+  extends Pick<
+    UploadFilesOptions<OurFileRouter, keyof OurFileRouter>,
+    "headers" | "onUploadBegin" | "onUploadProgress" | "skipPolling"
+  > {
   defaultUploadedFiles?: StoredFile[];
-} & Pick<
-  UploadFilesOptions<OurFileRouter, keyof OurFileRouter>,
-  "headers" | "onUploadBegin" | "onUploadProgress" | "skipPolling"
->;
+}
 
 export function useUploadFile(
   endpoint: keyof OurFileRouter,
   { defaultUploadedFiles = [], ...props }: UseUploadFileProps = {},
 ) {
   const [uploadedFiles, setUploadedFiles] =
-    useState<StoredFile[]>(defaultUploadedFiles);
-
-  const [progresses, setProgresses] = useState<Record<string, number>>({});
-  const [isUploading, setIsUploading] = useState(false);
+    React.useState<StoredFile[]>(defaultUploadedFiles);
+  const [progresses, setProgresses] = React.useState<Record<string, number>>(
+    {},
+  );
+  const [isUploading, setIsUploading] = React.useState(false);
 
   async function uploadThings(files: File[]) {
     setIsUploading(true);
@@ -33,11 +33,10 @@ export function useUploadFile(
         ...props,
         files,
         onUploadProgress: ({ file, progress }) => {
-          setProgresses((previous) => {
+          setProgresses((prev) => {
             return {
-              ...previous,
-              // @ts-expect-error TODO: Fix ts
-              [file]: progress,
+              ...prev,
+              [file.name]: progress,
             };
           });
         },
@@ -51,11 +50,11 @@ export function useUploadFile(
         };
       });
 
-      setUploadedFiles((previous) =>
-        previous ? [...previous, ...formattedRes] : formattedRes,
+      setUploadedFiles((prev) =>
+        prev ? [...prev, ...formattedRes] : formattedRes,
       );
-    } catch (error) {
-      consola.error(getErrorMessage(error));
+    } catch (err) {
+      toast.error(getErrorMessage(err));
     } finally {
       setProgresses({});
       setIsUploading(false);
@@ -63,9 +62,9 @@ export function useUploadFile(
   }
 
   return {
-    isUploading,
-    progresses,
     uploadedFiles,
+    progresses,
     uploadFiles: uploadThings,
+    isUploading,
   };
 }

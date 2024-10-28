@@ -6,15 +6,15 @@ import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { buttonVariants } from "~/components/ui/button";
-import PageLayout from "~/components/Wrappers/PageLayout";
-import { cn } from "~/utils/cn";
+import { Shell } from "~/components/shell";
+import { cn } from "~/lib/utils";
 
 // @see src/app/[locale]/[...rest]/page.tsx
 export default function NotFoundPage() {
   const t = useTranslations("pages.not-found");
 
   return (
-    <PageLayout title={t("title")}>
+    <Shell>
       <Balancer
         className={`
           mx-auto mt-4 !block leading-normal text-muted-foreground
@@ -38,6 +38,6 @@ export default function NotFoundPage() {
         <ChevronLeft size={16} />
         <span>{t("go-home")}</span>
       </Link>
-    </PageLayout>
+    </Shell>
   );
 }

@@ -1,4 +1,4 @@
-# Relivator 1.2.6: Next.js 15, React 19, TailwindCSS Template
+# Relivator 1.3.0-canary.7: Next.js 15 eCommerce Template
 
 We are currently migrating the documentation from the existing Relivator README.md to the official, newly launched [Relivator & Reliverse Docs website (https://reliverse.org)](https://reliverse.org). The content will be organized into appropriate sections on the new site. During the migration, some elements might not function properly. The current README.md will contain only minimal information. Please let us know if you encounter any issues.
 
@@ -765,15 +765,15 @@ W.I.P. — Use `pnpm css` to watch for [CSS tokens](https://blog.devgenius.io/li
 
 **Package Manager Compatibility:**
 
-`Relivator` can already harness some fantastic **[`Bun`](https://bun.sh)** features. For this starter, we currently recommend using `pnpm`. Full pnpm support and compatibility will be shipped as soon as [Reliverse](https://github.com/blefnk/reliverse)'s [Versator](https://github.com/blefnk/versator) achieves full similarity with Relivator. *Section expansion coming soon.*
+`Relivator` can already harness some fantastic **[`Bun`](https://bun.sh)** features. For this starter, we currently recommend using `pnpm`. Full pnpm support and compatibility will be shipped as soon as [Reliverse](https://github.com/blefnk/reliverse)'s [Relivator](https://github.com/blefnk/relivator) achieves full similarity with Relivator. *Section expansion coming soon.*
 
 **Recommended Things to Learn:**
 
 1. [The Detailed Git Guide](https://github.com/blefnk/relivator-nextjs-template/blob/main/.github/GITGUIDE.md) by [Nazar Kornienko @Blefnk](https://github.com/blefnk)
-2. [Introduction to Next.js and React](https://youtube.com/watch?v=h2BcitZPMn4) by [Lee Robinson](https://twitter.com/leeerob)
+2. [Introduction to Next.js and React](https://youtube.com/watch?v=h2BcitZPMn4) by [Lee Robinson](https://x.com/leeerob)
 3. [Relivator: Next.js 15 Starter (Release Announce of Relivator on Medium)](https://cutt.ly/awf6fScS) by [Nazar Kornienko @Blefnk](https://github.com/blefnk)
 4. [Welcome to the Wild World of TypeScript, Mate! Is it scary?](https://cutt.ly/CwjVPUNu) by [Nazar Kornienko @Blefnk](https://github.com/blefnk)
-5. [React: Common Mistakes in 2023](https://docs.google.com/presentation/d/1kuBeSh-yTrL031IlmuwrZ8LvavOGzSbo) by [Cory House](https://twitter.com/housecor)
+5. [React: Common Mistakes in 2023](https://docs.google.com/presentation/d/1kuBeSh-yTrL031IlmuwrZ8LvavOGzSbo) by [Cory House](https://x.com/housecor)
 6. [Thoughts on Next.js 13, Server Actions, Drizzle, Neon, Clerk, and More](https://github.com/Apestein/nextflix/blob/main/README.md#overall-thoughts) by [@Apestein](https://github.com/Apestein)
 7. [Huge Next-Multilingual Readme About i18n](https://github.com/Avansai/next-multilingual#readme) by [@Avansai](https://github.com/Avansai)
 8. [Applying Design Principles in React](https://blog.openreplay.com/applying-design-principles-in-react) by [Jeremiah (Jerry) Ezekwu](https://blog.openreplay.com/authors/jeremiah-\(jerry\)-ezekwu/)
@@ -898,7 +898,7 @@ Alternatively, check the GitHub docs on [how to create a pull request](https://h
 - [ ] 90. Consider adding Facebook's [StyleX](https://stylexjs.com/blog/introducing-stylex). However, StyleX currently requires setting up Babel/Webpack in the project, which we avoid to maintain full Turbopack support. As a suitable alternative, consider jjenzz's [Tokenami](https://github.com/tokenami/tokenami#readme) or [Panda CSS](https://panda-css.com) by Chakra. Possibly, we can make a choice between them all while bootstrapping the project with Reliverse CLI. These libraries help with avoiding the deprecated [initial idea](https://stylexjs.com/blog/introducing-stylex/#the-origins-of-stylex) for [CSS-in-JS](https://medium.com/dailyjs/what-is-actually-css-in-js-f2f529a2757). Learn more [here](https://github.com/reactwg/react-18/discussions/110) and in [Next.js docs](https://nextjs.org/docs/app/building-the-application/styling/css-in-js).
 - [ ] 91. Confirm the project is free from duplicates, like files, components, etc.
 - [ ] 92. Conduct useful tests, including possible stress tests, to simulate and assess app performance under high-traffic conditions.
-- [ ] 93. Comprehensively configure RSCs and all other new Next.js 13-15 features. Seamlessly move data fetching between both client-side and server-side by using [useSWR](https://twitter.com/shuding_/status/1794461568505352693).
+- [ ] 93. Comprehensively configure RSCs and all other new Next.js 13-15 features. Seamlessly move data fetching between both client-side and server-side by using [useSWR](https://x.com/shuding_/status/1794461568505352693).
 - [ ] 94. Complete the BA11YC (Bleverse Accessibility Convention) checklist; which may relay on the following principle in the future: [DesignPrototype](https://uiprep.com/blog/ultimate-guide-to-prototyping-in-figma)-[CodePrototype](https://medium.com/@joomiguelcunha/the-power-of-prototyping-code-55f4ed485a30)-CodeTests-HqDesign-[TDD](https://en.wikipedia.org/wiki/Test-driven_development)-HqCode-[CI](https://en.wikipedia.org/wiki/CI/CD).
 - [ ] 95. Complete parts of the [BA11YC (Bleverse Accessibility Convention) checklist](https://github.com/bs-oss/BA11YC). This includes using software [Design Patterns](https://refactoring.guru/design-patterns/what-is-pattern) for code refactoring.
 - [ ] 96. Check all components with side-effects for re-rendering, it is recommended to re-render each component a maximum of 2 times ([good video about it (in Ukrainian)](https://youtu.be/uH9uMH2e5Ts)).

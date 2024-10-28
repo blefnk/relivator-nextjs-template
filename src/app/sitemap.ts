@@ -1,13 +1,9 @@
 import type { MetadataRoute } from "next";
-
-import { defaultLocale, locales, pathnames } from "~/../reliverse.i18n";
-
 import { env } from "~/env";
-import { getPathname } from "~/navigation";
 
 const host = (() => {
-  if (env.NEXT_PUBLIC_APP_URL) {
-    return env.NEXT_PUBLIC_APP_URL;
+  if (env.NEXT_PUBLIC_APP_URL || "http://localhost:3000") {
+    return env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
   }
 
   if (env.VERCEL_URL) {
@@ -20,23 +16,10 @@ const host = (() => {
 })();
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const keys = Object.keys(pathnames) as Array<keyof typeof pathnames>;
-
-  function getUrl(
-    key: keyof typeof pathnames,
-    locale: (typeof locales)[number],
-  ) {
-    const pathname = getPathname({ href: key, locale });
-
-    return `${host}/${locale}${pathname === "/" ? "" : pathname}`;
-  }
-
-  return keys.map((key) => ({
-    alternates: {
-      languages: Object.fromEntries(
-        locales.map((locale) => [locale, getUrl(key, locale)]),
-      ),
+  return [
+    {
+      url: host,
+      lastModified: new Date(),
     },
-    url: getUrl(key, defaultLocale),
-  }));
+  ];
 }

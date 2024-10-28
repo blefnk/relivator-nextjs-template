@@ -1,0 +1,604 @@
+{
+  "AuthjsV5Test": {
+    "clientExamplePageTsx": "Contoh Halaman Pelanggan (page.tsx)",
+    "clientSideRendering": "Rendering Pelanggan",
+    "exampleBackend": "Contoh Backend",
+    "here": "Di sini",
+    "loading": "Memuat...",
+    "sessionprovider": "Penyedia Sesi",
+    "thirdPartyBackendIntegration": "Integrasi Backend Pihak Ketiga",
+    "update": "Kemas Kini",
+    "updatingTheSession": "Mengemas Kini Sesi",
+    "useClient": "Guna Pelanggan",
+    "usesession": "Guna Sesi"
+  },
+  "CartAddForm": {
+    "addOneItem": "Tambah Satu Barang",
+    "quantity": "Kuantiti",
+    "removeOneItem": "Buang Satu Barang"
+  },
+  "CommerceDashboard": {
+    "dashboard": "Papan Pemuka"
+  },
+  "ContactForm": {
+    "message": "Mesej",
+    "subject": "Subjek"
+  },
+  "CountryList": {
+    "currencies": "Mata Wang:",
+    "languages": "Bahasa:",
+    "loading": "Memuat..."
+  },
+  "DataTablePagination": {
+    "rowsPerPage": "Baris Per Halaman"
+  },
+  "DialogShell": {
+    "close": "Tutup"
+  },
+  "Error": {
+    "description": "<p>Malangnya, kami menghadapi ralat.</p><p>Anda boleh cuba untuk <retry>muat semula halaman</retry> yang anda lawati. Kami, sebagai pembangun laman web ini, sangat berterima kasih jika anda boleh hubungi kami dan beritahu mengenai ralat ini. Terima kasih terlebih dahulu!</p>",
+    "title": "Sesuatu tidak kena..."
+  },
+  "Faceted": {
+    "noResultsFound": "Tiada hasil ditemui."
+  },
+  "GuestAddForm": {
+    "email": "Emel"
+  },
+  "JoinNewsletterForm": {
+    "joinReliverseWeeklyNewsletter": "Sertai Surat Berita Mingguan Reliverse",
+    "tryAgain": "Cuba Lagi"
+  },
+  "LocaleSwitcher": {
+    "changeLanguage": "Tukar Bahasa",
+    "english": "Bahasa Inggeris",
+    "germany": "Bahasa Jerman",
+    "languages": "Bahasa",
+    "spanish": "Bahasa Sepanyol",
+    "ukrainian": "Bahasa Ukraine"
+  },
+  "LoginForm": {
+    "no-account": "Tidak mempunyai akaun?",
+    "signup": "Daftar di sini.",
+    "title": "Log Masuk",
+    "welcome-back": "Selamat Kembali"
+  },
+  "MainMenu": {
+    "websiteLogoWithName": "Logo Laman Web dengan Nama"
+  },
+  "Manifest": {
+    "name": "Templat Relivator Next.js"
+  },
+  "MdxCard": {
+    "view": "Lihat"
+  },
+  "MobileMenu": {
+    "toggleMenu": "Tukar Menu"
+  },
+  "ModeToggle": {
+    "toggleTheme": "Tukar Tema"
+  },
+  "MultiUploader": {
+    "dropFilesHere": "Lepaskan fail di sini!"
+  },
+  "NavWithCompactPageHeader": {
+    "navwithcompactpageheader": "Navigasi dengan Tajuk Halaman Kompak"
+  },
+  "NewsletterWelcomeEmail": {
+    "reliverseWeeklyNewsletter": "Surat Berita Mingguan Reliverse"
+  },
+  "Options": {
+    "toggleColumns": "Tukar Lajur"
+  },
+  "PathnamesPage": {
+    "description": "<p>Taman Main Reliverse | next-intl | Nama laluan URL boleh diinternasionalkan.</p><p>Jika anda menggunakan bahasa lalai, Bahasa Inggeris, anda akan melihat <code>/en/pathnames</code> di bar alamat pelayar pada halaman ini.</p><p>Jika anda menukar bahasa kepada Bahasa Jerman, URL akan dilokalkan dengan sewajarnya (<code>/de/pfadnamen</code>).</p>",
+    "title": "Nama Laluan"
+  },
+  "PostAddForm": {
+    "createPost": "Cipta Siaran"
+  },
+  "PricingModules": {
+    "nextJs": "Next.js"
+  },
+  "Privileges": {
+    "switchUserRole": "Tukar Peranan Pengguna"
+  },
+  "ProductAddForm": {
+    "addProduct": "Tambah Produk",
+    "category": "Kategori",
+    "description": "Penerangan",
+    "images": "Imej",
+    "inventory": "Inventori",
+    "name": "Nama",
+    "price": "Harga",
+    "subcategory": "Subkategori"
+  },
+  "ProductCard": {
+    "promise": "Janji"
+  },
+  "ProductPager": {
+    "nextProduct": "Produk Seterusnya",
+    "previousProduct": "Produk Sebelumnya"
+  },
+  "ProductUpdForm": {
+    "category": "Kategori",
+    "deleteProduct": "Padam Produk",
+    "description": "Penerangan",
+    "images": "Imej",
+    "inventory": "Inventori",
+    "name": "Nama",
+    "price": "Harga",
+    "subcategory": "Subkategori",
+    "updateProduct": "Kemas Kini Produk"
+  },
+  "ProductsCombobox": {
+    "searchProducts": "Cari Produk"
+  },
+  "RegisterForm": {
+    "have-account": "Sudah mempunyai akaun?",
+    "signin": "Log masuk di sini.",
+    "title": "Daftar"
+  },
+  "RootLocaleLayout": {
+    "metadata": {
+      "description": "Tingkatkan pengalaman membeli-belah anda dengan kedai dalam talian kami: Menggabungkan kuasa teknologi canggih dan reka bentuk mesra pengguna.",
+      "title": {
+        "home": "Laman Utama"
+      }
+    },
+    "titleDetails": "Bina Kedai Dalam Talian Dengan Cepat"
+  },
+  "SVG": {
+    "buyMeACoffeLogo": "Logo Buy Me a Coffee",
+    "facebookLogo": "Logo Facebook",
+    "githubLogoInvertocat": "Logo GitHub: Invertocat",
+    "googleLogo": "Logo Google",
+    "nextJs": "Next.js",
+    "passkey": "Kunci Laluan",
+    "patreonLogo": "Logo Patreon",
+    "paypalLogo": "Logo PayPal",
+    "spinner": "Pemutar"
+  },
+  "SessionData": {
+    "currentSessionData": "Data Sesi Semasa",
+    "onlyPassTheNecessaryFields": "Hanya hantarkan medan yang diperlukan",
+    "signIn": "Log Masuk"
+  },
+  "SidebarWithHeader": {
+    "applicationAppShellsSidebarLayoutsSidebarWithHeader": "Aplikasi - Cengkerang Aplikasi - Tata Letak Sidebar - Sidebar dengan Tajuk",
+    "sidebarwithheader": "Sidebar dengan Tajuk"
+  },
+  "SiteFooter": {
+    "allRightsReserved": "Hak Cipta Terpelihara"
+  },
+  "StoreAddForm": {
+    "addStore": "Tambah Kedai",
+    "description": "Penerangan",
+    "name": "Nama"
+  },
+  "StorePager": {
+    "nextStore": "Kedai Seterusnya",
+    "previousStore": "Kedai Sebelumnya"
+  },
+  "StoreSwitcher": {
+    "noStoresFound": "Tiada Kedai Ditemui."
+  },
+  "ThemeToggle": {
+    "toggleTheme": "Tukar Tema"
+  },
+  "ThemesGeneralSwitcher": {
+    "dark": "Gelap",
+    "light": "Terang",
+    "system": "Sistem",
+    "theme": "Tema"
+  },
+  "UpdateCart": {
+    "addOneItem": "Tambah Satu Barang",
+    "deleteItem": "Padam Barang",
+    "removeOneItem": "Buang Satu Barang"
+  },
+  "UpdateNotificationForm": {
+    "marketingEmails": "Emel Pemasaran",
+    "newsletterEmails": "Emel Surat Berita",
+    "savePreferences": "Simpan Keutamaan"
+  },
+  "UserButton": {
+    "signIn": "Log Masuk"
+  },
+  "VerifyOrderForm": {
+    "deliveryPostalCode": "Poskod Penghantaran",
+    "verifyOrder": "Sahkan Pesanan"
+  },
+  "WithIcons": {
+    "applicationNavigationVerticalNavigationWithIcons": "Aplikasi - Navigasi - Navigasi Menegak - Dengan Ikon",
+    "withicons": "Dengan Ikon"
+  },
+  "WithLeftAlignedNav": {
+    "elementsHeadersWithLeftAlignedNav": "Elemen - Tajuk - Dengan Navigasi Berjajar Kiri",
+    "withleftalignednav": "Dengan Navigasi Berjajar Kiri"
+  },
+  "WithSecondaryNavigation": {
+    "withsecondarynavigation": "Dengan Navigasi Sekunder"
+  },
+  "account-page": {
+    "Settings": "Tetapan",
+    "loggedIn": "Telah Log Masuk",
+    "loggedOut": "Telah Log Keluar",
+    "login": "Log Masuk",
+    "logout": "Log Keluar",
+    "title": "Akaun"
+  },
+  "auth": {
+    "error": {
+      "default": "Cuba akaun lain.",
+      "email": "Emel tidak ditemui. Cuba penyedia lain.",
+      "oauthNotLinked": "Log masuk dengan akaun asal anda untuk mengesahkan identiti.",
+      "unknown": "Terdapat ralat. Cuba lagi.",
+      "unknown-error": "Sesuatu telah berlaku. Lawati /hubungi untuk memaklumkan sokongan."
+    },
+    "legal": "Dengan menggunakan butang ini, anda bersetuju dengan",
+    "legal-and": "dan",
+    "legal-privacy": "Dasar Privasi",
+    "legal-terms": "Terma Perkhidmatan"
+  },
+  "auth-provider": {
+    "please-wait": "Sila tunggu..."
+  },
+  "auth-user": {
+    "signInEmail": "Emel Log Masuk"
+  },
+  "banners": {
+    "announcements-1": {
+      "button": "Lawati Sekarang",
+      "details": "Lawati catatan blog keluaran untuk melihat apa yang telah berubah dan apa yang akan datang.",
+      "dismiss": "Tutup",
+      "title": "Relivator v1.2.6 dan v1.3.0-canary.7 KINI ADA!"
+    }
+  },
+  "blog-comments-server": {
+    "postthreadlist": "Senarai Thread Siaran"
+  },
+  "checkout": {
+    "CartDetails": "Butiran Troli",
+    "Demo": "Gunakan data ujian: 4242424242424242 | 12/34 | 567",
+    "Description": "Daftar keluar dengan barang troli",
+    "EmptyCartDescription": "Tambah barang ke troli untuk daftar keluar",
+    "EmptyCartHeading": "Troli Kosong",
+    "Pay": "Bayar",
+    "Title": "Daftar Keluar",
+    "backToCart": "Kembali ke Troli",
+    "backToCartSingle": "Kembali",
+    "calculated": "Dikira semasa Daftar Keluar",
+    "cart": "Troli",
+    "cartIsEmpty": "Troli anda kosong",
+    "continueShopping": "Teruskan Membeli-belah",
+    "free": "Percuma",
+    "notConnectedDescription": "Sambungkan kedai anda ke Stripe untuk menerima pembayaran",
+    "notConnectedHeading": "Kedai Tidak Disambungkan ke Stripe",
+    "shipping": "Penghantaran",
+    "taxes": "Cukai",
+    "total": "Jumlah",
+    "viewTheCart": "Lihat Troli"
+  },
+  "client": {
+    "currentPassword": "Kata Laluan Semasa",
+    "name": "Nama",
+    "newPassword": "Kata Laluan Baru",
+    "password": "Kata Laluan",
+    "plan": "Pelan",
+    "saveChanges": "Simpan Perubahan",
+    "savePassword": "Simpan Kata Laluan",
+    "settings": "Tetapan",
+    "subscriptionPlans": "Pelan Langganan",
+    "userNotFound": "Pengguna Tidak Ditemui",
+    "username": "Nama Pengguna"
+  },
+  "components": {
+    "command": {
+      "dark": "Gelap",
+      "light": "Terang",
+      "system": "Sistem",
+      "theme": "Tema"
+    },
+    "search": {
+      "placeholder": "Cari...",
+      "title": "Carian"
+    }
+  },
+  "contact": {
+    "submit": "Hantar"
+  },
+  "cursor": {
+    "cursor": "Kursor"
+  },
+  "demo": {
+    "aria-label-goto": "Pergi ke",
+    "launch": "Papan Pemuka"
+  },
+  "editor-placeholder": {
+    "record": "Rekod"
+  },
+  "example": {
+    "beforeUsing": "Sebelum Menggunakan",
+    "billing": "Bil",
+    "localhostDebug": "[localhost-debug]:"
+  },
+  "faceted-filter": {
+    "noResultsFound": "Tiada hasil ditemui."
+  },
+  "faq": {
+    "1": {
+      "details": "Periksa README.md dalam repositori GitHub Relivator untuk maklumat terkini dan arahan pemasangan.",
+      "summary": "Bagaimana saya boleh memasang dan memulakan dengan cepat?"
+    },
+    "2": {
+      "details": "Relivator menawarkan kemungkinan tanpa had, dengan semua alat yang diperlukan sedia untuk anda.",
+      "summary": "Mengapa memilih Relivator untuk Next.js 15 & React 19?"
+    },
+    "3": {
+      "details": "Pembangunan terutama oleh satu orang. Sumbangan boleh membantu mempercepatkan proses. Klik di bawah untuk menderma. Atau lawati halaman Donate to Relivator (https://relivator.com/donate) untuk mengetahui lebih lanjut. Terima kasih atas sokongan anda!",
+      "summary": "Bolehkah keluaran Relivator v1.3.0 dipercepatkan?"
+    }
+  },
+  "file-dialog": {
+    "cropImage": "Potong Imej",
+    "dropTheFileHere": "Lepaskan fail di sini",
+    "removeAll": "Buang Semua",
+    "removeFile": "Buang Fail",
+    "uploadImages": "Muat Naik Imej"
+  },
+  "landing": {
+    "about": "Berhenti melompat dari satu pemula ke yang lain. Dengan Relivator, kemungkinan anda tidak terhad! Anda boleh mencipta apa sahaja yang anda mahu; semua alat sedia dan menunggu anda. Matlamat kami adalah untuk mencipta pemula Next.js yang paling kaya dengan ciri dan boleh diakses secara global di dunia. Ia menawarkan lebih daripada sekadar kod—ia adalah pengalaman.",
+    "buy-now": "Katalog",
+    "features": {
+      "auth": {
+        "description": "Terap dengan sistem pengesahan yang serba boleh menggunakan NextAuth.js dan Clerk. Lihat .env.example untuk butiran.",
+        "title": "Pengesahan Pengguna: Selamat & Fleksibel"
+      },
+      "database": {
+        "description": "Kekalkan prestasi dengan Drizzle ORM, menukar MySQL dan Postgres dengan cepat. Terap dengan Planetscale, Vercel, Railway, Neon, dan banyak lagi.",
+        "title": "Integrasi Pangkalan Data: Mantap & Fleksibel"
+      },
+      "devtools": {
+        "ambitions-description": "Relivator menawarkan kemungkinan tanpa had dengan semua alat sedia untuk anda.",
+        "description": "Sistem langganan yang mantap dengan pelan percuma dan berbayar. Semak README.md untuk maklumat lanjut.",
+        "title": "Langganan Stripe: Berkuasa & Fleksibel"
+      },
+      "interface": {
+        "description": "Cipta UI yang menakjubkan dengan komponen Flowbite dan Shadcn UI, digayakan dengan Radix dan Tailwind CSS. VSCode disyorkan.",
+        "title": "Komponen: Elegan & Berfungsi"
+      },
+      "nextjs": {
+        "description": "Navigasi lancar dengan App Router, Layouts, dan UI Memuat. Terokai laluan API yang berkuasa dan banyak lagi.",
+        "title": "Next.js 15: Pengalaman Dipertingkatkan"
+      },
+      "text": {
+        "description": "Manipulasi aplikasi dengan Komponen Pelayan dan Pelanggan. Guna versi terkini React Hooks dan ciri tambahan untuk pengalaman pembangunan yang lancar.",
+        "title": "React 19: Pembangunan Moden"
+      }
+    },
+    "footer-cta": "Bersedia untuk Bermula?",
+    "get-started-button": "Papan Pemuka",
+    "main-cta": "GitHub",
+    "sell-now": "Papan Pemuka"
+  },
+  "layout": {
+    "back": "Kembali"
+  },
+  "loading": {
+    "account": "Akaun",
+    "billing": "Bil",
+    "checkout": "Daftar Keluar",
+    "loading": "Memuat...",
+    "purchases": "Pembelian",
+    "signOut": "Log Keluar",
+    "thankYouForTheOrder": "Terima kasih atas pesanan anda"
+  },
+  "metadata": {
+    "description": "Bina Kedai Dalam Talian yang Lebih Cekap, Menarik, dan Menguntungkan: Relivator Meningkatkan eCommerce anda dengan Kuasa shadcn/ui, Next.js 15, React 19, dan banyak lagi",
+    "title": {
+      "home": "Laman Utama"
+    }
+  },
+  "mode-toggle": {
+    "dark": "Gelap",
+    "light": "Terang",
+    "system": "Sistem",
+    "toggleTheme": "Tukar Tema"
+  },
+  "name": "Templat Relivator Next.js",
+  "onboard": {
+    "asa": "Asa",
+    "dateEventDateTbd": "Tarikh: [Tarikh Acara (TBD)]",
+    "donTMissOutReserveTheSpotNow": "Jangan lepaskan peluang, tempah tempat anda sekarang!",
+    "eventDetails": "Butiran Acara:",
+    "join15MinutesEarlyToNetwork": "Sertai 15 minit awal untuk rangkaian!",
+    "locationEventLinkTbd": "Lokasi: [Pautan Acara (TBD)]",
+    "relivatorNextJsRedefined": "Relivator - Next.js Didefinisi Semula:",
+    "tbdToBeDetermined": "*TBD - Akan Ditentukan",
+    "timeEventTimeTbd": "Masa: [Masa Acara (TBD)]"
+  },
+  "page": {
+    "about": "Mengenai",
+    "accessToAPrivateCommunity": "Akses kepada Komuniti Swasta",
+    "account": "Akaun",
+    "addANewStoreToTheAccount": "Tambah Kedai Baharu ke Akaun",
+    "addStore": "Tambah Kedai",
+    "admin": "Pentadbir",
+    "adminPage": "Halaman Pentadbir",
+    "availableWorldwide": "Tersedia di Seluruh Dunia",
+    "billing": "Bil",
+    "blog": "Blog",
+    "buildABoard": "Bina Papan",
+    "client": "Pelanggan",
+    "countriesData": "Data Negara",
+    "createNewComponent": "Cipta Komponen Baharu",
+    "createNewPage": "Cipta Halaman Baharu",
+    "createNewPost": "Cipta Siaran Baharu",
+    "dashboard": "Papan Pemuka",
+    "directSupport": "Sokongan Langsung",
+    "donateThroughGithubBilling": "Menderma Melalui Pengebilan GitHub",
+    "donationTiers": "Tahap Derma",
+    "earlyAccessToNewFeatures": "Akses Awal ke Ciri Baharu",
+    "easyAndQuickProcess": "Proses Mudah dan Pantas",
+    "editUserPrivileges": "Sunting Keistimewaan Pengguna",
+    "emailPreferences": "Keutamaan Emel",
+    "exclusiveUpdatesAndContent": "Kemas Kini dan Kandungan Eksklusif",
+    "frequentlyAskedQuestions": "Soalan Lazim",
+    "howTheMoneyIsUsed": "Bagaimana Wang Dibelanjakan",
+    "instantDonations": "Derma Segera",
+    "localhostOnlyDebugInfo": "[localhost-hanya-debug-info]",
+    "manageTheSubscription": "Urus Langganan",
+    "manageYourEmailPreferences": "Urus Keutamaan Emel Anda",
+    "name": "Nama: ---",
+    "newStore": "Kedai Baharu",
+    "notImplementedYet": "Belum dilaksanakan lagi",
+    "novuDeveloperPlaygroundPageComingSoon": "Halaman Taman Main Pembangun Novu Akan Datang...",
+    "oneTimeAndRecurringDonations": "Derma Sekali dan Berulang",
+    "oneTimeDonations": "Derma Sekali",
+    "preferences": "Keutamaan",
+    "pricing": "Harga",
+    "purchases": "Pembelian",
+    "purchasesTable": "Jadual Pembelian",
+    "readyToBuildYourEcommercePlatform": "Bersedia untuk Bina Platform eCommerce Anda?",
+    "recurringAndOneTimeDonations": "Derma Berulang dan Sekali",
+    "reliversePlayground": "Taman Main Reliverse",
+    "res": "Res",
+    "resJsonAsPromise": "Res.json() sebagai Janji",
+    "resetPassword": "Tetapkan Semula Kata Laluan",
+    "root": "Akar",
+    "secureTransactions": "Urus Niaga Selamat",
+    "seeAllPosts": "Lihat Semua Siaran",
+    "seeOurSponsors": "Lihat Penaja Kami",
+    "server": "Pelayan",
+    "settings": "Tetapan",
+    "showASponsorBadgeOnYourGithubProfile": "Pamerkan Lencana Penaja pada Profil GitHub Anda",
+    "signinWithDiscord": "Log masuk dengan Discord",
+    "signinWithGithub": "Log masuk dengan GitHub",
+    "signinWithGoogle": "Log masuk dengan Google",
+    "simpleAndFunWayToSupport": "Cara Mudah dan Seronok untuk Sokongan",
+    "smallOneTimeDonations": "Derma Sekali Kecil",
+    "specificCountryRe": "Negara Khusus (RE)",
+    "stores": "Kedai",
+    "supportWithNoFees": "Sokongan tanpa Yuran",
+    "testEmailDelivery": "Uji Penghantaran Emel",
+    "thankYouForTheOrder": "Terima kasih atas pesanan anda",
+    "thePageIsStillInProductionPleaseCheckBackHereLater": "Halaman ini masih dalam pengeluaran. Sila periksa semula di sini kemudian.",
+    "underConstruction": "Dalam Pembinaan...",
+    "verifyEmail": "Sahkan Emel",
+    "waysToDonate": "Cara-cara untuk Menderma"
+  },
+  "pages": {
+    "not-found": {
+      "description": "Sumber mungkin telah dipindahkan, dinamakan semula, atau mungkin tidak wujud. Sahkan URL atau gunakan menu untuk navigasi.",
+      "go-home": "Kembali ke Laman Utama",
+      "title": "🫠 Halaman Tidak Ditemui! 🫠"
+    }
+  },
+  "privacy-notice-right-aligned": {
+    "elementsBannersPrivacyNoticeRightAligned": "Elemen - Sepanduk - Notis Privasi Berjajar Kanan",
+    "privacynoticerightaligned": "Notis Privasi Berjajar Kanan"
+  },
+  "product-building": {
+    "filters": "Penapis",
+    "noProductsFound": "Tiada produk ditemui.",
+    "sortBy": "Susun Mengikut"
+  },
+  "product-context": {
+    "productsctx": "Konteks Produk"
+  },
+  "product-image-carousel": {
+    "nextSlide": "Slaid Seterusnya",
+    "previousSlide": "Slaid Sebelumnya"
+  },
+  "products": {
+    "filters": "Penapis",
+    "nextStorePage": "Halaman Kedai Seterusnya",
+    "noProductsFound": "Tiada produk ditemui.",
+    "previousStorePage": "Halaman Kedai Sebelumnya",
+    "sortBy": "Susun Mengikut"
+  },
+  "products-admin": {
+    "productDetails": "Butiran Produk",
+    "products": "Produk"
+  },
+  "signOutPage": {
+    "dashboard": "Papan Pemuka",
+    "description": {
+      "areyousueyouwanttosignout": "Adakah anda pasti mahu log keluar?"
+    },
+    "heading": {
+      "signout": "Log Keluar"
+    },
+    "home": "Laman Utama",
+    "logOut": "Log Keluar"
+  },
+  "stacked-with-footer-actions": {
+    "elementsFlyoutMenusStackedWithFooterActions": "Elemen - Menu Flyout - Disusun dengan Tindakan Kaki",
+    "stackedwithfooteractions": "Disusun dengan Tindakan Kaki"
+  },
+  "store": {
+    "categories": {
+      "buyFromCategories": "Beli {category} dari kedai teratas",
+      "buyTheBest": "Terbaik {category}"
+    },
+    "products": {
+      "addToCart": "Tambah ke Troli",
+      "buyProductsFromOurStores": "Beli dari Kedai Kami",
+      "catalogue": "Katalog",
+      "description": "Penerangan",
+      "moreProductsFrom": "Lebih banyak dari {storeName}",
+      "noDescription": "Tiada penerangan tersedia.",
+      "products": "Produk",
+      "productsCatalogue": "Katalog Produk"
+    },
+    "stores": {
+      "buy-products": "Beli dari Kedai Kami",
+      "stores": "Kedai"
+    }
+  },
+  "stores": {
+    "noStoresFound": "Tiada Kedai Ditemui.",
+    "sortBy": "Susun Mengikut"
+  },
+  "temp-compiler-fix": {
+    "app": "Aplikasi"
+  },
+  "titleDetails": "Bina Kedai Dalam Talian Dengan Cepat",
+  "upgrade": {
+    "localhostDebug": "Penyahpepijat Localhost",
+    "thisIncludes": "Ini termasuk:"
+  },
+  "usermenu": {
+    "account": {
+      "menu": "Akaun"
+    },
+    "adminpage": {
+      "menu": "Halaman Pentadbir"
+    },
+    "billing": {
+      "menu": "Bil"
+    },
+    "dashboard": {
+      "menu": "Papan Pemuka"
+    },
+    "logout": {
+      "menu": "Log Keluar"
+    },
+    "purchases": {
+      "menu": "Pembelian"
+    },
+    "settings": {
+      "menu": "Tetapan"
+    },
+    "stores": {
+      "menu": "Kedai"
+    }
+  },
+  "with-button": {
+    "dismiss": "Tutup"
+  },
+  "with-button-animated": {
+    "dismiss": "Tutup"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
   "css": {
     "formatter": {
       "enabled": false,
@@ -24,6 +24,7 @@
     "ignore": [
       ".git/",
       ".idea/",
+      ".docs/",
       ".million/",
       ".next/",
       ".turbo/",
@@ -81,6 +82,7 @@
     "ignore": [
       ".git/",
       ".idea/",
+      ".docs/",
       ".million/",
       ".next/",
       ".turbo/",
@@ -95,16 +97,22 @@
     ],
     "rules": {
       "a11y": {
+        "noSvgWithoutTitle": "off",
         "noAriaHiddenOnFocusable": "off",
         "noBlankTarget": "off",
+        "noLabelWithoutControl": "off",
         "noNoninteractiveElementToInteractiveRole": "off",
         "noRedundantRoles": "off",
+        "useButtonType": "off",
         "useFocusableInteractive": "off",
         "useKeyWithClickEvents": "off",
         "useSemanticElements": "off"
       },
       "complexity": {
+        "noStaticOnlyClass": "off",
+        "noThisInStatic": "off",
         "noBannedTypes": "off",
+        "noExtraBooleanCast": "off",
         "noForEach": "off",
         "noUselessFragments": "off",
         "noUselessLoneBlockStatements": "off",
@@ -119,6 +127,7 @@
         "noChildrenProp": "off",
         "noConstantCondition": "off",
         "noEmptyPattern": "off",
+        "noInnerDeclarations": "off",
         "noInvalidConstructorSuper": "off",
         "noInvalidNewBuiltin": "off",
         "noInvalidUseBeforeDeclaration": "off",
@@ -152,17 +161,25 @@
         "noDangerouslySetInnerHtml": "off"
       },
       "style": {
+        "noCommaOperator": "off",
         "noInferrableTypes": "off",
         "noNonNullAssertion": "off",
         "noParameterAssign": "off",
+        "noUnusedTemplateLiteral": "off",
         "noUselessElse": "off",
+        "noVar": "off",
+        "useConst": "off",
+        "useDefaultParameterLast": "off",
+        "useDefaultSwitchClause": "off",
         "useEnumInitializers": "off",
         "useExportType": "off",
         "useImportType": "off",
         "useNamingConvention": "off",
         "useNodejsImportProtocol": "off",
         "useNumberNamespace": "off",
+        "useSelfClosingElements": "off",
         "useShorthandFunctionType": "off",
+        "useTemplate": "off",
         "useWhile": "off"
       },
       "suspicious": {
@@ -172,6 +189,7 @@
         "noCommentText": "off",
         "noCompareNegZero": "off",
         "noConfusingLabels": "off",
+        "noConfusingVoidType": "off",
         "noConstEnum": "off",
         "noDoubleEquals": "off",
         "noDuplicateObjectKeys": "off",
@@ -183,6 +201,7 @@
         "noImplicitAnyLet": "off",
         "noMisleadingCharacterClass": "off",
         "noMisrefactoredShorthandAssign": "off",
+        "noRedeclare": "off",
         "noSelfCompare": "off",
         "noShadowRestrictedNames": "off",
         "noSparseArray": "off",

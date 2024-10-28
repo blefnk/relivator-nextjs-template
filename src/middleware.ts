@@ -1,49 +1,39 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
-import {
-  defaultLocale,
-  localePrefix,
-  locales,
-  pathnames,
-} from "~/../reliverse.i18n";
+import type {
+  MiddlewareConfig,
+  NextFetchEvent,
+  NextRequest,
+} from "next/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 import createMiddleware from "next-intl/middleware";
+import { routing } from "~/i18n/routing";
 
-const intlMiddleware = createMiddleware({
-  defaultLocale,
-  localePrefix,
-  locales,
-  pathnames,
-});
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 
-export default clerkMiddleware((_auth, req) => {
-  return intlMiddleware(req);
-});
+const shouldUseClerk = true; // TODO: consider `const shouldUseClerk = Boolean(env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);`
+const shouldUseIntl = true;
 
-export const config = {
+const createIntlMiddleware = createMiddleware(routing);
+
+function handleClerkMiddleware(request: NextRequest, event: NextFetchEvent) {
+  return clerkMiddleware(async (auth, request) => {
+    if (isProtectedRoute(request)) {
+      await auth.protect();
+    }
+    return shouldUseIntl ? createIntlMiddleware(request) : NextResponse.next();
+  })(request, event);
+}
+
+export function middleware(request: NextRequest, event: NextFetchEvent) {
+  return shouldUseClerk
+    ? handleClerkMiddleware(request, event)
+    : NextResponse.next();
+}
+
+export const config: MiddlewareConfig = {
   matcher: [
-    // Enable a redirect to a matching locale at the root
-    "/",
-
-    // Set a cookie to remember the previous locale
-    // for all requests that have a locale prefix
-    // Should be in sync with reliverse.i18n.ts file
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     "/(de-DE|en-US|es-ES|ms-MY|fr-FR|hi-IN|it-IT|pl-PL|tr-TR|uk-UA|zh-CN)/:path*",
-
-    // Enable redirects that add missing locales
-    // (e.g. `/pathnames` -> `/en/pathnames`)
-    "/((?!_next|_vercel|.*\\..*).*)",
+    "/(api|trpc)(.*)",
   ],
 };
-
-// export const config = {
-//   // Skip all paths that should not be internationalized
-//   matcher: [
-//     "/((?!api|_next|.*\\..*).*)",
-
-//     // Exclude files with an extension (.jpg, .js, .css), as these are usually static files.
-//     // Also exclude files in the _next directory, which are Next.js internal files.
-//     // "/((?!.+\\.[\\w]+$|_next).*)",
-
-//     // Re-include any files in the api or trpc folders, even if they have an extension.
-//     // "/(api|trpc)(.*)",
-//   ],
-// };

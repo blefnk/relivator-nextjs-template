@@ -1,31 +1,90 @@
+import "dotenv/config";
+import { drizzle } from "drizzle-orm/node-postgres";
+import { eq } from "drizzle-orm";
+import { usersTable } from "~/db/schema";
+import { env } from "~/env";
+import consola from "consola";
+
 import {
   revalidateItems,
   seedCategories,
   seedSubcategories,
-} from "~/server/actions/seed";
+} from "~/lib/actions/seed";
 
-async function runSeed() {
-  console.log("⏳ Running seed...");
+// Initialize the database connection
+const db = drizzle(env.DATABASE_URL);
 
+async function main() {
+  consola.info("⏳ Running seed...");
   const start = Date.now();
 
-  await seedCategories();
+  const user = {
+    name: "John",
+    age: 30,
+    email: "john@example.com",
+    currentStoreId: "",
+  };
+  const { email } = user;
 
-  await seedSubcategories();
+  try {
+    // Start transaction
+    await db.transaction(async (trx) => {
+      // Check if the user already exists
+      const existingUser = await trx
+        .select()
+        .from(usersTable)
+        .where(eq(usersTable.email, email))
+        .limit(1);
 
-  // Add more seed functions here
+      if (existingUser.length > 0) {
+        consola.info(`User with email ${email} already exists!`);
+        const confirm = await consola.prompt(
+          "Do you want to remove the user?",
+          { type: "confirm" },
+        );
 
-  await revalidateItems();
+        if (confirm) {
+          await trx.delete(usersTable).where(eq(usersTable.email, email));
+          consola.success(`User deleted: ${email}`);
 
-  const end = Date.now();
+          // Recreate the user after deletion
+          await trx.insert(usersTable).values(user);
+          consola.success("New user created after deletion!");
+        } else {
+          consola.info("Skipped user deletion.");
+        }
+      } else {
+        // Insert the new user if not existing
+        await trx.insert(usersTable).values(user);
+        consola.success("New user created!");
+      }
 
-  console.log(`✅ Seed completed in ${end - start}ms`);
+      // Update user's age
+      await trx
+        .update(usersTable)
+        .set({ age: 31 })
+        .where(eq(usersTable.email, email));
+      consola.success("User info updated!");
+
+      // Seed additional data
+      await seedCategories();
+      await seedSubcategories();
+      await revalidateItems();
+
+      const end = Date.now();
+      consola.success(`✅ Seed completed in ${end - start}ms`);
+    });
+  } catch (error) {
+    consola.error("❌ Seed failed:", error);
+    process.exit(1);
+  }
 
   process.exit(0);
 }
 
-runSeed().catch((error) => {
-  console.error("❌ Seed failed");
-  console.error(error);
+// Run main function and handle any uncaught errors
+main().catch((err) => {
+  consola.error("❌ Seed's main function failed");
+  consola.error(err);
   process.exit(1);
 });

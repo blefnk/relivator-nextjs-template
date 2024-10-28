@@ -4,12 +4,12 @@ import { useEffect } from "react";
 
 import { useTranslations } from "next-intl";
 
-import PageLayout from "~/components/Common/PageLayout";
+import { Shell } from "~/components/shell";
 
-type Props = {
+interface Props {
   error: Error;
   reset(): void;
-};
+}
 
 export default function Error({ error, reset }: Props) {
   const t = useTranslations("Error");
@@ -19,7 +19,7 @@ export default function Error({ error, reset }: Props) {
   }, [error]);
 
   return (
-    <PageLayout title={t("title")}>
+    <Shell>
       <div>
         {t.rich("description", {
           p: (chunks) => <p className="mt-4">{chunks}</p>,
@@ -34,6 +34,6 @@ export default function Error({ error, reset }: Props) {
           ),
         })}
       </div>
-    </PageLayout>
+    </Shell>
   );
 }

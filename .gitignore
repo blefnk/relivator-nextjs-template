@@ -84,6 +84,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 __pycache__/
 *.py[oc]
 *.egg-info/
+.now/
 .venv/
 .ruff_cache/
 .wheels/
@@ -100,3 +101,4 @@ coverage/
 .million/
 .vercel
 .env*.local
+.unlighthouse

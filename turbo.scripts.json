@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "turbo:appts": "turbo knip lint format typecheck turbo:reli turbo:build",
-    "turbo:build": "turbo build",
-    "turbo:dev": "turbo dev",
-    "turbo:reli": "tsx reliverse.info.ts --turbo"
-  }
-}

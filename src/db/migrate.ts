@@ -1,14 +1,16 @@
 import { migrate } from "drizzle-orm/postgres-js/migrator";
 
-import { db } from "~/db";
+import { db } from ".";
+import { PostgresJsDatabase } from "drizzle-orm/postgres-js/driver";
 
 export async function runMigrate() {
   console.log("⏳ Running migrations...");
 
   const start = Date.now();
 
-  // @ts-expect-error TODO: Fix ts
-  await migrate(db, { migrationsFolder: "drizzle" });
+  await migrate(db as unknown as PostgresJsDatabase, {
+    migrationsFolder: "drizzle",
+  });
 
   const end = Date.now();
 
@@ -17,8 +19,8 @@ export async function runMigrate() {
   process.exit(0);
 }
 
-runMigrate().catch((error) => {
+runMigrate().catch((err) => {
   console.error("❌ Migration failed");
-  console.error(error);
+  console.error(err);
   process.exit(1);
 });

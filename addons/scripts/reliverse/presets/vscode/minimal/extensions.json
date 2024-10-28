@@ -1,8 +1,0 @@
-{
-  "recommendations": [
-    "biomejs.biome",
-    "bradlc.vscode-tailwindcss",
-    "dbaeumer.vscode-eslint",
-    "lokalise.i18n-ally"
-  ]
-}

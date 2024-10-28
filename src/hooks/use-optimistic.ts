@@ -1,7 +1,7 @@
-import { useOptimistic as useOptimisticReact } from "react";
+import * as React from "react";
 
 export function useOptimistic<TData extends { id: string }>(data: TData[]) {
-  const [optimisticData, setOptimisticData] = useOptimisticReact(
+  const [optimisticData, setOptimisticData] = React.useOptimistic(
     data,
     (
       state,
@@ -15,9 +15,9 @@ export function useOptimistic<TData extends { id: string }>(data: TData[]) {
     ) => {
       switch (action) {
         case "delete":
-          return state.filter((index) => index.id !== item.id);
+          return state.filter((i) => i.id !== item.id);
         case "update":
-          return state.map((index) => (index.id === item.id ? item : index));
+          return state.map((i) => (i.id === item.id ? item : i));
         default:
           return [...state, item];
       }
