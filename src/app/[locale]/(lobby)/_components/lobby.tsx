@@ -20,6 +20,7 @@ import { Shell } from "~/components/shell";
 import { StoreCard } from "~/components/store-card";
 
 import { CategoryCard } from "./category-card";
+import { getTranslations } from "next-intl/server";
 
 interface LobbyProps {
   githubStarsPromise: ReturnType<typeof getGithubStars>;
@@ -34,6 +35,8 @@ export async function Lobby({
   categoriesPromise,
   storesPromise,
 }: LobbyProps) {
+  const t = await getTranslations();
+
   // @see the "Parallel data fetching" docs: https://nextjs.org/docs/app/building-your-application/data-fetching/patterns#parallel-data-fetching
   const [githubStars, products, categories, stores] = await Promise.all([
     githubStarsPromise,
@@ -69,8 +72,13 @@ export async function Lobby({
           className="animate-fade-up"
           style={{ animationDelay: "0.20s", animationFillMode: "both" }}
         >
-          Relivator template is the foundation of your eCommerce platform: Build
-          More Efficient, Engaging, and Profitable Online Stores
+          <span className="hidden md:block">
+            Relivator template is the foundation of your eCommerce platform:
+            Build More Efficient, Engaging, and Profitable Online Stores
+          </span>
+          <span className="block md:hidden">
+            Relivator template is the foundation of your eCommerce platform
+          </span>
         </PageHeaderHeading>
         <PageHeaderDescription
           className="max-w-[46.875rem] animate-fade-up"
@@ -103,10 +111,10 @@ export async function Lobby({
         ))}
       </section>
       <ContentSection
-        title="Featured products"
-        description="Explore products from around the world"
+        title={t("featuredProductsTitle")}
+        description={t("featuredProductsDescription")}
         href="/products"
-        linkText="View all products"
+        linkText={t("viewAllProducts")}
         className="pt-14 md:pt-20 lg:pt-24"
       >
         {products.map((product) => (
@@ -114,10 +122,10 @@ export async function Lobby({
         ))}
       </ContentSection>
       <ContentSection
-        title="Featured stores"
-        description="Explore stores from around the world"
+        title={t("featuredStoresTitle")}
+        description={t("featuredStoresDescription")}
         href="/stores"
-        linkText="View all stores"
+        linkText={t("viewAllStores")}
         className="py-14 md:py-20 lg:py-24"
       >
         {stores.map((store) => (

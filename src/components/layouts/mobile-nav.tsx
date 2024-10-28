@@ -16,7 +16,13 @@ import {
 } from "~/components/ui/accordion";
 import { Button } from "~/components/ui/button";
 import { ScrollArea } from "~/components/ui/scroll-area";
-import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "~/components/ui/sheet";
 import { Icons } from "~/components/icons";
 
 interface MobileNavProps {
@@ -43,6 +49,9 @@ export function MobileNav({ items }: MobileNavProps) {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pl-1 pr-0 pt-9">
+        <SheetHeader className="px-1 sr-only">
+          <SheetTitle>Menu</SheetTitle>
+        </SheetHeader>
         <div className="w-full px-7">
           <Link
             href="/"

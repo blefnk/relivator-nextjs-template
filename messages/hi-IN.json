@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "नकार देना"
-  }
+  },
+  "featuredProductsDescription": "दुनिया भर के उत्पादों का अन्वेषण करें",
+  "featuredProductsTitle": "विशेष रुप से प्रदर्शित प्रोडक्टस",
+  "featuredStoresDescription": "दुनिया भर के स्टोर खोजें",
+  "featuredStoresTitle": "विशेष स्टोर",
+  "viewAllProducts": "सभी उत्पाद देखें",
+  "viewAllStores": "सभी स्टोर देखें"
 }

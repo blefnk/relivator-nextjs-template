@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "Zurückweisen"
-  }
+  },
+  "featuredProductsDescription": "Entdecken Sie Produkte aus der ganzen Welt",
+  "featuredProductsTitle": "Ausgewählte Produkte",
+  "featuredStoresDescription": "Entdecken Sie Geschäfte aus der ganzen Welt",
+  "featuredStoresTitle": "Ausgewählte Geschäfte",
+  "viewAllProducts": "Alle Produkte ansehen",
+  "viewAllStores": "Alle Geschäfte anzeigen"
 }

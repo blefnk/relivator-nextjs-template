@@ -9,6 +9,8 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet";
 import { Icons } from "~/components/icons";
@@ -49,6 +51,9 @@ export function DashboardSidebarSheet({
         side="left"
         className="inset-y-0 flex h-auto w-[18.75rem] flex-col items-center gap-4 px-0 py-4"
       >
+        <SheetHeader className="px-1 sr-only">
+          <SheetTitle>Dashboard Sidebar</SheetTitle>
+        </SheetHeader>
         <SheetClose asChild>
           <Link
             href="/"

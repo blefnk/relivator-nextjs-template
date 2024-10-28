@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "Tutup"
-  }
+  },
+  "featuredProductsDescription": "Terokai produk dari seluruh dunia",
+  "featuredProductsTitle": "Produk yang diketengahkan",
+  "featuredStoresDescription": "Terokai kedai dari seluruh dunia",
+  "featuredStoresTitle": "Kedai pilihan",
+  "viewAllProducts": "Lihat semua produk",
+  "viewAllStores": "Lihat semua kedai"
 }

@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "رد کردن"
-  }
+  },
+  "featuredProductsDescription": "محصولات از سراسر جهان را کاوش کنید",
+  "featuredProductsTitle": "محصولات ویژه",
+  "featuredStoresDescription": "فروشگاه های سراسر جهان را کاوش کنید",
+  "featuredStoresTitle": "فروشگاه های ویژه",
+  "viewAllProducts": "مشاهده تمامی محصولات",
+  "viewAllStores": "مشاهده تمام فروشگاه ها"
 }

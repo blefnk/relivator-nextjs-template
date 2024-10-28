@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "Azletmek"
-  }
+  },
+  "featuredProductsDescription": "Dünyanın dört bir yanından ürünleri keşfedin",
+  "featuredProductsTitle": "Öne çıkan ürünler",
+  "featuredStoresDescription": "Dünyanın dört bir yanından mağazaları keşfedin",
+  "featuredStoresTitle": "Öne çıkan mağazalar",
+  "viewAllProducts": "Tüm ürünleri görüntüle",
+  "viewAllStores": "Tüm mağazaları görüntüle"
 }

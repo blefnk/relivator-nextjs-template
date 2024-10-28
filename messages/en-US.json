@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "Dismiss"
-  }
+  },
+  "featuredProductsDescription": "Explore products from around the world",
+  "featuredProductsTitle": "Featured products",
+  "featuredStoresDescription": "Explore stores from around the world",
+  "featuredStoresTitle": "Featured stores",
+  "viewAllProducts": "View all products",
+  "viewAllStores": "View all stores"
 }

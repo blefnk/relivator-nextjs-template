@@ -50,6 +50,7 @@ export default tseslint.config(
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-misused-promises": "off",
       "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/no-base-to-string": "off",
       "@typescript-eslint/no-empty-function": "off",
       "@typescript-eslint/only-throw-error": "off",
       "@typescript-eslint/no-unsafe-return": "off",

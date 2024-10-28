@@ -6,6 +6,8 @@ import { AuthDropdown } from "~/components/layouts/auth-dropdown";
 import { MainNav } from "~/components/layouts/main-nav";
 import { MobileNav } from "~/components/layouts/mobile-nav";
 import { ProductsCombobox } from "~/components/products-combobox";
+import { LocaleSwitcher } from "~/components/layouts/LocaleSwitcher";
+import { ModeToggle } from "~/components/layouts/mode-toggle";
 
 interface SiteHeaderProps {
   user: User | null;
@@ -19,8 +21,10 @@ export function SiteHeader({ user }: SiteHeaderProps) {
         <MobileNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           <nav className="flex items-center space-x-2">
+            <ModeToggle />
             <ProductsCombobox />
             <CartSheet />
+            <LocaleSwitcher />
             <AuthDropdown user={user} />
           </nav>
         </div>

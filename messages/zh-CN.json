@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "解雇"
-  }
+  },
+  "featuredProductsDescription": "探索来自世界各地的产品",
+  "featuredProductsTitle": "特色产品",
+  "featuredStoresDescription": "探索世界各地的商店",
+  "featuredStoresTitle": "特色店铺",
+  "viewAllProducts": "查看所有产品",
+  "viewAllStores": "查看所有商店"
 }

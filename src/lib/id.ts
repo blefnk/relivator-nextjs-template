@@ -31,9 +31,7 @@ type TablesKey = {
   [key in TTables]: key;
 };
 
-type PrefixesKey = {
-  [key in TTables]: string;
-};
+type PrefixesKey = Record<TTables, string>;
 
 export const tables: TablesKey = {
   address: "address",

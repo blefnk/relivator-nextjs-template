@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "Congedare"
-  }
+  },
+  "featuredProductsDescription": "Esplora prodotti da tutto il mondo",
+  "featuredProductsTitle": "Prodotti in evidenza",
+  "featuredStoresDescription": "Esplora negozi da tutto il mondo",
+  "featuredStoresTitle": "Negozi in evidenza",
+  "viewAllProducts": "Visualizza tutti i prodotti",
+  "viewAllStores": "Visualizza tutti i negozi"
 }

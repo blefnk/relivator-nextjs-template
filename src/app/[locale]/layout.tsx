@@ -9,9 +9,13 @@ import { siteConfig } from "~/config/site";
 import { fontHeading } from "~/lib/fonts";
 import { absoluteUrl, cn } from "~/lib/utils";
 import { Toaster } from "~/components/ui/toaster";
-import { Analytics } from "~/components/analytics";
+import { Analytics as VercelAnalytics } from "~/components/analytics";
 import { ThemeProvider } from "~/components/providers";
 import { TailwindIndicator } from "~/components/tailwind-indicator";
+import { routing } from "~/i18n/routing";
+import { notFound } from "next/navigation";
+import { getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
@@ -59,12 +63,27 @@ export const viewport: Viewport = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default async function RootLayout({
+  children,
+  params,
+}: RootLayoutProps) {
+  // Get the locale from the params
+  const { locale } = await params;
+
+  // Ensure that the incoming `locale` is valid
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  // Provide all messages to the client
+  const messages = await getMessages();
+
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={locale} suppressHydrationWarning>
         <head />
         <body
           className={cn(
@@ -80,9 +99,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <NextIntlClientProvider messages={messages}>
+              {children}
+            </NextIntlClientProvider>
             <TailwindIndicator />
-            <Analytics />
+            <VercelAnalytics />
           </ThemeProvider>
           <Toaster />
         </body>

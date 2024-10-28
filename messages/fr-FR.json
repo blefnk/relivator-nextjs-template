@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "Rejeter"
-  }
+  },
+  "featuredProductsDescription": "Découvrez des produits du monde entier",
+  "featuredProductsTitle": "Produits phares",
+  "featuredStoresDescription": "Explorez les magasins du monde entier",
+  "featuredStoresTitle": "Magasins en vedette",
+  "viewAllProducts": "Voir tous les produits",
+  "viewAllStores": "Voir tous les magasins"
 }

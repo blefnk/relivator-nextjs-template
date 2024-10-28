@@ -600,5 +600,11 @@
   },
   "with-button-animated": {
     "dismiss": "Відхилити"
-  }
+  },
+  "featuredProductsDescription": "Досліджуйте продукти з усього світу",
+  "featuredProductsTitle": "Рекомендовані продукти",
+  "featuredStoresDescription": "Досліджуйте магазини з усього світу",
+  "featuredStoresTitle": "Рекомендовані магазини",
+  "viewAllProducts": "Переглянути всі продукти",
+  "viewAllStores": "Переглянути всі магазини"
 }
