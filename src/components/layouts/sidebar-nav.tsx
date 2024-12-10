@@ -1,20 +1,23 @@
 "use client";
 
 import Link from "next/link";
+
 import type { SidebarNavItem } from "~/types";
 
-import { cn } from "~/lib/utils";
 import { Icons } from "~/components/icons";
 import { useSidebar } from "~/components/layouts/sidebar-provider";
+import { cn } from "~/server/utils";
 
-export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
+export type SidebarNavProps = {
   items: SidebarNavItem[];
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
   const { open, setOpen } = useSidebar();
 
-  if (!items.length) return null;
+  if (!items.length) {
+    return null;
+  }
 
   return (
     <div
@@ -44,7 +47,9 @@ export function SidebarNav({ items, className, ...props }: SidebarNavProps) {
             target={item.external ? "_blank" : ""}
             rel={item.external ? "noreferrer" : ""}
             onClick={() => {
-              if (open) setOpen(false);
+              if (open) {
+                setOpen(false);
+              }
             }}
           >
             <span

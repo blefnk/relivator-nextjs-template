@@ -1,56 +1,85 @@
-import type { Metadata, Viewport } from "next";
-import { env } from "~/env.js";
-import { ClerkProvider } from "@clerk/nextjs";
+import "~/styles/globals.css";
 
+import type { Metadata, Viewport } from "next";
+
+import { ClerkProvider } from "@clerk/nextjs";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
-
-import { siteConfig } from "~/config/site";
-import { fontHeading } from "~/lib/fonts";
-import { absoluteUrl, cn } from "~/lib/utils";
-import { Toaster } from "~/components/ui/toaster";
-import { Analytics as VercelAnalytics } from "~/components/analytics";
-import { ThemeProvider } from "~/components/providers";
-import { TailwindIndicator } from "~/components/tailwind-indicator";
-import { routing } from "~/i18n/routing";
-import { notFound } from "next/navigation";
-import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+
+import type { Locale } from "~/i18n/locales";
+
+import { app } from "~/app";
+import AppFooter from "~/components/app-footer";
+import AppHeader from "~/components/app-header";
+import { ThemeProvider } from "~/components/providers";
+import { TailwindIndicator } from "~/components/tailwind";
+import { Toaster as SonnerToaster } from "~/components/ui/sonner";
+import { Toaster as ShadcnToaster } from "~/components/ui/toaster";
+import { routing } from "~/i18n/routing";
+import { getCachedUser } from "~/server/queries/user";
+import { cn } from "~/utils";
+
+const fontSans = GeistSans;
+const fontMono = GeistMono;
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: app.name,
+    template: `%s - ${app.name}`,
   },
-  description: siteConfig.description,
-  keywords: ["nextjs", "react", "react server components", "relivator"],
+  metadataBase: new URL(app.url),
+  description: app.description,
+  keywords: [
+    "Reliverse",
+    "Bleverse",
+    "Relivator",
+    "Versator",
+    "Template",
+    "Starter",
+    "Next.js",
+    "React",
+    "Tailwind",
+    "Shadcn",
+  ],
   authors: [
     {
-      name: "reliverse",
+      name: "Bleverse",
+      url: "https://agency.bleverse.com",
+    },
+    {
+      name: "Reliverse",
       url: "https://reliverse.org",
     },
   ],
-  creator: "blefnk",
+  creator: "Bleverse",
   openGraph: {
     type: "website",
-    locale: "en_US",
-    url: siteConfig.url,
-    title: siteConfig.name,
-    description: siteConfig.description,
-    siteName: siteConfig.name,
+    locale: "en",
+    url: app.url,
+    title: app.name,
+    description: app.description,
+    siteName: app.name,
+    images: [
+      {
+        url: app.ogImage,
+        width: 1200,
+        height: 630,
+        alt: app.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [`${siteConfig.url}/og.png`],
-    creator: "@blefnk",
+    title: app.name,
+    description: app.description,
+    images: [app.ogImage],
+    creator: "@reliverse_org",
   },
-  icons: {
-    icon: "/icon.png",
-  },
-  manifest: absoluteUrl("/site.webmanifest"),
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 export const viewport: Viewport = {
@@ -61,36 +90,37 @@ export const viewport: Viewport = {
   ],
 };
 
-interface RootLayoutProps {
+type LocaleLayoutProps = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
-}
+};
 
-export default async function RootLayout({
+export default async function LocaleLayout({
   children,
   params,
-}: RootLayoutProps) {
-  // Get the locale from the params
-  const { locale } = await params;
+}: Readonly<LocaleLayoutProps>) {
+  const user = await getCachedUser();
+
+  // Await the params object
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
 
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale as Locale)) {
     notFound();
   }
 
-  // Provide all messages to the client
+  // Fetch and provide all messages to the client
   const messages = await getMessages();
 
   return (
     <ClerkProvider>
       <html lang={locale} suppressHydrationWarning>
-        <head />
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            GeistSans.variable,
-            GeistMono.variable,
-            fontHeading.variable,
+            "bg-background text-foreground font-sans antialiased",
+            fontSans.variable,
+            fontMono.variable,
           )}
         >
           <ThemeProvider
@@ -98,14 +128,23 @@ export default async function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange
+            enableColorScheme
           >
-            <NextIntlClientProvider messages={messages}>
-              {children}
-            </NextIntlClientProvider>
-            <TailwindIndicator />
-            <VercelAnalytics />
+            <NuqsAdapter>
+              <div className="flex flex-col min-h-screen">
+                <NextIntlClientProvider messages={messages}>
+                  <AppHeader user={user} />
+                  <main className="flex flex-1 flex-col gap-4 px-2 items-center mt-2">
+                    {children}
+                  </main>
+                  <AppFooter />
+                  <TailwindIndicator />
+                  <ShadcnToaster />
+                  <SonnerToaster />
+                </NextIntlClientProvider>
+              </div>
+            </NuqsAdapter>
           </ThemeProvider>
-          <Toaster />
         </body>
       </html>
     </ClerkProvider>

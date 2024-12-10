@@ -1,7 +1,7 @@
-import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/server/utils";
 
 const kbdVariants = cva(
   "select-none rounded border px-1.5 py-px font-mono text-[0.7rem] font-normal shadow-sm disabled:opacity-50",
@@ -18,9 +18,7 @@ const kbdVariants = cva(
   },
 );
 
-export interface KbdProps
-  extends React.ComponentPropsWithoutRef<"kbd">,
-    VariantProps<typeof kbdVariants> {
+export type KbdProps = {
   /**
    * The title of the `abbr` element inside the `kbd` element.
    * @default undefined
@@ -28,7 +26,8 @@ export interface KbdProps
    * @example title="Command"
    */
   abbrTitle?: string;
-}
+} & React.ComponentPropsWithoutRef<"kbd"> &
+  VariantProps<typeof kbdVariants>;
 
 const Kbd = React.forwardRef<HTMLUnknownElement, KbdProps>(
   ({ abbrTitle, children, className, variant, ...props }, ref) => {

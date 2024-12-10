@@ -1,11 +1,11 @@
-import * as React from "react";
 import Link from "next/link";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/server/utils";
 
-interface LinkBadgeProps extends React.ComponentPropsWithoutRef<typeof Link> {
+type LinkBadgeProps = {
   children: React.ReactNode;
-}
+} & React.ComponentPropsWithoutRef<typeof Link>;
 
 export function LinkBadge({ children, className, ...props }: LinkBadgeProps) {
   return (

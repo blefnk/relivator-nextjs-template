@@ -1,13 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
+import { ofetch } from "ofetch";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { unknownError } from "~/lib/constants";
-import { emailSchema, type EmailSchema } from "~/lib/validations/notification";
+import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import {
   Form,
@@ -18,7 +18,11 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { Icons } from "~/components/icons";
+import { unknownError } from "~/server/constants";
+import {
+  emailSchema,
+  type EmailSchema,
+} from "~/server/validations/notification";
 
 export function JoinNewsletterForm() {
   const [loading, setLoading] = React.useState(false);
@@ -34,7 +38,7 @@ export function JoinNewsletterForm() {
   async function onSubmit(data: EmailSchema) {
     setLoading(true);
     try {
-      const response = await fetch("/api/email/newsletter", {
+      const response = await ofetch("/api/email/newsletter", {
         method: "POST",
         body: JSON.stringify({
           email: data.email,

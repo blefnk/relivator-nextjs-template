@@ -6,11 +6,11 @@ import { useCallbackRef } from "~/hooks/use-callback-ref";
  * @see https://github.com/radix-ui/primitives/blob/main/packages/react/use-controllable-state/src/useControllableState.tsx
  */
 
-interface UseControllableStateParams<T> {
+type UseControllableStateParams<T> = {
   prop?: T | undefined;
   defaultProp?: T | undefined;
   onChange?: (state: T) => void;
-}
+};
 
 type SetStateFn<T> = (prevState?: T) => T;
 
@@ -33,8 +33,10 @@ function useControllableState<T>({
         if (isControlled) {
           const setter = nextValue as SetStateFn<T>;
           const value =
-            typeof nextValue === "function" ? setter(prop) : nextValue;
-          if (value !== prop) handleChange(value);
+            typeof nextValue === "function" ? setter(prop!) : nextValue;
+          if (value !== prop) {
+            handleChange(value as T);
+          }
         } else {
           setUncontrolledProp(nextValue);
         }
@@ -55,7 +57,7 @@ function useUncontrolledState<T>({
   const handleChange = useCallbackRef(onChange);
 
   React.useEffect(() => {
-    if (prevValueRef.current !== value) {
+    if (prevValueRef.current !== value && value !== undefined) {
       handleChange(value);
       prevValueRef.current = value;
     }

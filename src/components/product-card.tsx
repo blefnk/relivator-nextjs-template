@@ -1,14 +1,13 @@
 "use client";
 
-import * as React from "react";
+import { CheckIcon, EyeOpenIcon, PlusIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
 import Link from "next/link";
-import { type Product } from "~/db/schema";
-import { CheckIcon, EyeOpenIcon, PlusIcon } from "@radix-ui/react-icons";
+import * as React from "react";
 import { toast } from "sonner";
 
-import { addToCart } from "~/lib/actions/cart";
-import { cn, formatPrice } from "~/lib/utils";
+import { Icons } from "~/components/icons";
+import { PlaceholderImage } from "~/components/placeholder-image";
 import { AspectRatio } from "~/components/ui/aspect-ratio";
 import { Button, buttonVariants } from "~/components/ui/button";
 import {
@@ -19,17 +18,18 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card";
-import { Icons } from "~/components/icons";
-import { PlaceholderImage } from "~/components/placeholder-image";
+import { addToCart } from "~/server/actions/cart";
+import { type Product } from "~/server/db/schema";
+import { cn, formatPrice } from "~/server/utils";
 
-interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
+type ProductCardProps = {
   product: Pick<Product, "id" | "name" | "price" | "images" | "inventory"> & {
     category: string | null;
   };
   variant?: "default" | "switchable";
   isAddedToCart?: boolean;
   onSwitch?: () => Promise<void>;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function ProductCard({
   product,

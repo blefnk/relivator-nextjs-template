@@ -1,22 +1,22 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
 import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
+import { ClientButton } from "~/components/client-button";
 import { buttonVariants } from "~/components/ui/button";
 import { Card, CardDescription, CardTitle } from "~/components/ui/card";
-import { ClientButton } from "~/components/client-button";
+import { cn } from "~/server/utils";
 
-interface ErrorCardProps extends React.ComponentPropsWithoutRef<typeof Card> {
+type ErrorCardProps = {
   icon?: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
   retryLink?: string;
   retryLinkText?: string;
   reset?: () => void;
-}
+} & React.ComponentPropsWithoutRef<typeof Card>;
 
 export function ErrorCard({
   icon: Icon = ExclamationTriangleIcon,
@@ -30,7 +30,6 @@ export function ErrorCard({
 }: ErrorCardProps) {
   return (
     <Card
-      as="section"
       role="alert"
       aria-live="assertive"
       aria-atomic="true"

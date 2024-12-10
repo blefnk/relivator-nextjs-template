@@ -3,19 +3,19 @@
 import * as React from "react";
 import { useFormStatus } from "react-dom";
 
-import { cn } from "~/lib/utils";
-import { useMounted } from "~/hooks/use-mounted";
+import { Icons } from "~/components/icons";
 import {
   Button,
   buttonVariants,
   type ButtonProps,
 } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
-import { Icons } from "~/components/icons";
+import { useMounted } from "~/hooks/use-mounted";
+import { cn } from "~/server/utils";
 
-interface LoadingButtonProps extends ButtonProps {
+type LoadingButtonProps = {
   action: string;
-}
+} & ButtonProps;
 
 const LoadingButton = React.forwardRef<HTMLButtonElement, LoadingButtonProps>(
   ({ children, className, variant, size, action, ...props }, ref) => {
@@ -24,7 +24,7 @@ const LoadingButton = React.forwardRef<HTMLButtonElement, LoadingButtonProps>(
     const [update, setUpdate] = React.useState(false);
     const mounted = useMounted();
 
-    if (!mounted)
+    if (!mounted) {
       return (
         <Skeleton
           className={cn(
@@ -35,6 +35,7 @@ const LoadingButton = React.forwardRef<HTMLButtonElement, LoadingButtonProps>(
           {children}
         </Skeleton>
       );
+    }
 
     return (
       <Button

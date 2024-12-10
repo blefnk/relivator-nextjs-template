@@ -1,15 +1,14 @@
 import { Slot } from "@radix-ui/react-slot";
 
-import { cn } from "~/lib/utils";
+import { Icons } from "~/components/icons";
 import { AspectRatio } from "~/components/ui/aspect-ratio";
 import { Skeleton } from "~/components/ui/skeleton";
-import { Icons } from "~/components/icons";
+import { cn } from "~/server/utils";
 
-interface PlaceholderImageProps
-  extends React.ComponentPropsWithoutRef<typeof AspectRatio> {
+type PlaceholderImageProps = {
   isSkeleton?: boolean;
   asChild?: boolean;
-}
+} & React.ComponentPropsWithoutRef<typeof AspectRatio>;
 
 export function PlaceholderImage({
   isSkeleton = false,

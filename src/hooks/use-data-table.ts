@@ -1,8 +1,5 @@
 "use client";
 
-import * as React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import type { DataTableFilterField } from "~/types";
 import {
   getCoreRowModel,
   getFacetedRowModel,
@@ -17,11 +14,15 @@ import {
   type SortingState,
   type VisibilityState,
 } from "@tanstack/react-table";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import * as React from "react";
 import { z } from "zod";
+
+import type { DataTableFilterField } from "~/types";
 
 import { useDebounce } from "~/hooks/use-debounce";
 
-interface UseDataTableProps<TData, TValue> {
+type UseDataTableProps<TData, TValue> = {
   /**
    * The data for the table.
    * @default []
@@ -96,7 +97,7 @@ interface UseDataTableProps<TData, TValue> {
    * @type boolean
    */
   enableAdvancedFilter?: boolean;
-}
+};
 
 const schema = z.object({
   page: z.coerce.number().default(1),
@@ -252,7 +253,9 @@ export function useDataTable<TData, TValue>({
 
   React.useEffect(() => {
     // Opt out when advanced filter is enabled, because it contains additional params
-    if (enableAdvancedFilter) return;
+    if (enableAdvancedFilter) {
+      return;
+    }
 
     // Prevent resetting the page on initial render
     if (!mounted) {

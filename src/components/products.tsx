@@ -1,22 +1,18 @@
 "use client";
 
-import * as React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { type Product, type Store } from "~/db/schema";
-import type { Option } from "~/types";
 import {
   ChevronDownIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@radix-ui/react-icons";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import * as React from "react";
 
-import { queryConfig } from "~/config/query";
-import {
-  type getCategories,
-  type getSubcategoriesByCategory,
-} from "~/lib/queries/product";
-import { cn, toTitleCase, truncate } from "~/lib/utils";
-import { useDebounce } from "~/hooks/use-debounce";
+import type { Option } from "~/types";
+
+import { MultiSelect } from "~/components/multi-select";
+import { PaginationButton } from "~/components/pagination-button";
+import { ProductCard } from "~/components/product-card";
 import { Button } from "~/components/ui/button";
 import { Card, CardDescription } from "~/components/ui/card";
 import { Checkbox } from "~/components/ui/checkbox";
@@ -42,11 +38,16 @@ import {
 } from "~/components/ui/sheet";
 import { Slider } from "~/components/ui/slider";
 import { Switch } from "~/components/ui/switch";
-import { MultiSelect } from "~/components/multi-select";
-import { PaginationButton } from "~/components/pagination-button";
-import { ProductCard } from "~/components/product-card";
+import { queryConfig } from "~/config/query";
+import { useDebounce } from "~/hooks/use-debounce";
+import { type Product, type Store } from "~/server/db/schema";
+import {
+  type getCategories,
+  type getSubcategoriesByCategory,
+} from "~/server/queries/product";
+import { cn, toTitleCase, truncate } from "~/server/utils";
 
-interface ProductsProps {
+type ProductsProps = {
   products: Product[];
   pageCount: number;
   categories?: string[];
@@ -57,7 +58,7 @@ interface ProductsProps {
     "id" | "name" | "productCount"
   >[];
   storePageCount?: number;
-}
+};
 
 export function Products({
   products,

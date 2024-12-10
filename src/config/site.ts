@@ -1,7 +1,7 @@
 import type { FooterItem, MainNavItem } from "~/types";
 
 import { productConfig } from "~/config/product";
-import { slugify } from "~/lib/utils";
+import { slugify } from "~/server/utils";
 
 export type SiteConfig = typeof siteConfig;
 

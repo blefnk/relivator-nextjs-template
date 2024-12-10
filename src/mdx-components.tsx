@@ -1,13 +1,14 @@
 import type { MDXComponents } from "mdx/types";
-import { cn } from "~/lib/utils";
-import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
-import { AspectRatio } from "~/components/ui/aspect-ratio";
-import { ScrollArea } from "~/components/ui/scroll-area";
+
 import { Callout } from "~/components/mdx/callout";
 import { CodeBlock } from "~/components/mdx/code-block";
 import { LinkBadge } from "~/components/mdx/link-badge";
 import { MdxCard } from "~/components/mdx/mdx-card";
 import { MdxImage } from "~/components/mdx/mdx-image";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import { AspectRatio } from "~/components/ui/aspect-ratio";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { cn } from "~/server/utils";
 
 // export function useMDXComponents(components: MDXComponents): MDXComponents {
 //   return components;
@@ -154,14 +155,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   };
 }
 
-interface MdxProps {
+type MdxProps = {
   code: string;
-}
+};
 
 export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponents({}) as unknown as (props: {
     components: MDXComponents;
-  }) => JSX.Element;
+  }) => React.ReactElement;
 
   return (
     <div className="mdx overflow-hidden">
@@ -208,7 +209,7 @@ export const allPages = [
   },
 ];
 
-export interface Post {
+export type Post = {
   slug: string;
   slugAsParams: string;
   title: string;
@@ -219,7 +220,7 @@ export interface Post {
   body: { code: string };
   image: string;
   description: string;
-}
+};
 
 // TODO: [temporary] Simulate allPosts
 export const allPosts: Post[] = [

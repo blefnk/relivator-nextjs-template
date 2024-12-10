@@ -1,21 +1,21 @@
 "use client";
 
-import * as React from "react";
-import Image from "next/image";
 import { Cross2Icon, UploadIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
+import * as React from "react";
 import Dropzone, {
   type DropzoneProps,
   type FileRejection,
 } from "react-dropzone";
 import { toast } from "sonner";
 
-import { cn, formatBytes } from "~/lib/utils";
-import { useControllableState } from "~/hooks/use-controllable-state";
 import { Button } from "~/components/ui/button";
 import { Progress } from "~/components/ui/progress";
 import { ScrollArea } from "~/components/ui/scroll-area";
+import { useControllableState } from "~/hooks/use-controllable-state";
+import { cn, formatBytes } from "~/server/utils";
 
-interface FileUploaderProps extends React.HTMLAttributes<HTMLDivElement> {
+type FileUploaderProps = {
   /**
    * Value of the uploader.
    * @type File[]
@@ -90,7 +90,7 @@ interface FileUploaderProps extends React.HTMLAttributes<HTMLDivElement> {
    * @example disabled
    */
   disabled?: boolean;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function FileUploader(props: FileUploaderProps) {
   const {
@@ -163,7 +163,9 @@ export function FileUploader(props: FileUploaderProps) {
   );
 
   function onRemove(index: number) {
-    if (!files) return;
+    if (!files) {
+      return;
+    }
     const newFiles = files.filter((_, i) => i !== index);
     setFiles(newFiles);
     onValueChange?.(newFiles);
@@ -172,7 +174,9 @@ export function FileUploader(props: FileUploaderProps) {
   // Revoke preview url when component unmounts
   React.useEffect(() => {
     return () => {
-      if (!files) return;
+      if (!files) {
+        return;
+      }
       files.forEach((file) => {
         if (isFileWithPreview(file)) {
           URL.revokeObjectURL(file.preview);
@@ -263,11 +267,11 @@ export function FileUploader(props: FileUploaderProps) {
   );
 }
 
-interface FileCardProps {
+type FileCardProps = {
   file: File;
   onRemove: () => void;
   progress?: number;
-}
+};
 
 function FileCard({ file, progress, onRemove }: FileCardProps) {
   return (

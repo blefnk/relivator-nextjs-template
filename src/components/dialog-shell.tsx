@@ -1,14 +1,14 @@
 "use client";
 
-import * as React from "react";
-import { useRouter } from "next/navigation";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
-import { useClickOutside } from "~/hooks/use-click-outside";
 import { Button } from "~/components/ui/button";
+import { useClickOutside } from "~/hooks/use-click-outside";
+import { cn } from "~/server/utils";
 
-interface DialogShellProps extends React.HTMLAttributes<HTMLDivElement> {}
+type DialogShellProps = {} & React.HTMLAttributes<HTMLDivElement>;
 
 export function DialogShell({
   children,
@@ -33,7 +33,7 @@ export function DialogShell({
 
   // Close the dialog when the user clicks outside of it
   useClickOutside({
-    ref: shellRef,
+    ref: shellRef as React.RefObject<HTMLElement>,
     handler: () => {
       router.back();
     },

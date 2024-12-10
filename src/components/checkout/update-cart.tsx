@@ -1,17 +1,17 @@
 "use client";
 
-import * as React from "react";
 import { MinusIcon, PlusIcon, TrashIcon } from "@radix-ui/react-icons";
+import * as React from "react";
 
-import { deleteCartItem, updateCartItem } from "~/lib/actions/cart";
-import { showErrorToast } from "~/lib/handle-error";
-import { type CartLineItemSchema } from "~/lib/validations/cart";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
+import { deleteCartItem, updateCartItem } from "~/server/actions/cart";
+import { showErrorToast } from "~/server/handle-error";
+import { type CartLineItemSchema } from "~/server/validations/cart";
 
-interface UpdateCartProps {
+type UpdateCartProps = {
   cartLineItem: CartLineItemSchema;
-}
+};
 
 export function UpdateCart({ cartLineItem }: UpdateCartProps) {
   const id = React.useId();

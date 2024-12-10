@@ -2,12 +2,13 @@
 
 // Original source: https://github.com/vercel/platforms/blob/main/components/blur-image.tsx
 import type { ComponentProps } from "react";
-import * as React from "react";
+
 import Image from "next/image";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/server/utils";
 
-interface BlurImageProps extends ComponentProps<typeof Image> {}
+type BlurImageProps = {} & ComponentProps<typeof Image>;
 
 export function BlurImage({ className, alt, ...props }: BlurImageProps) {
   const [isLoading, setLoading] = React.useState(true);

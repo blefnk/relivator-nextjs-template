@@ -1,21 +1,22 @@
 "use client";
 
-import * as React from "react";
-import type { Option } from "~/types";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { Command as CommandPrimitive } from "cmdk";
+import * as React from "react";
+
+import type { Option } from "~/types";
 
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Command, CommandGroup, CommandItem } from "~/components/ui/command";
 
-interface MultiSelectProps {
+type MultiSelectProps = {
   selected: Option[] | null;
   setSelected: React.Dispatch<React.SetStateAction<Option[] | null>>;
   onChange?: (value: Option[] | null) => void;
   placeholder?: string;
   options: Option[];
-}
+};
 
 export function MultiSelect({
   selected,
@@ -30,7 +31,9 @@ export function MultiSelect({
 
   // Register as input field to be used in react-hook-form
   React.useEffect(() => {
-    if (onChange) onChange(selected?.length ? selected : null);
+    if (onChange) {
+      onChange(selected?.length ? selected : null);
+    }
   }, [onChange, selected]);
 
   const handleSelect = React.useCallback(
@@ -49,7 +52,9 @@ export function MultiSelect({
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (!inputRef.current) return;
+      if (!inputRef.current) {
+        return;
+      }
 
       if (event.key === "Backspace" || event.key === "Delete") {
         setSelected((prev) => prev?.slice(0, -1) ?? []);
@@ -66,9 +71,13 @@ export function MultiSelect({
   // Memoize filtered options to avoid unnecessary re-renders
   const filteredOptions = React.useMemo(() => {
     return options.filter((option) => {
-      if (selected?.find((item) => item.value === option.value)) return false;
+      if (selected?.find((item) => item.value === option.value)) {
+        return false;
+      }
 
-      if (query.length === 0) return true;
+      if (query.length === 0) {
+        return true;
+      }
 
       return option.label.toLowerCase().includes(query.toLowerCase());
     });

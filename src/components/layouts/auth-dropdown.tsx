@@ -1,10 +1,11 @@
-import * as React from "react";
-import Link from "next/link";
 import type { User } from "@clerk/nextjs/server";
-import { DashboardIcon, ExitIcon, GearIcon } from "@radix-ui/react-icons";
 
-import { getStoreByUserId } from "~/lib/queries/store";
-import { cn, getUserEmail } from "~/lib/utils";
+import { DashboardIcon, ExitIcon, GearIcon } from "@radix-ui/react-icons";
+import { eq } from "drizzle-orm";
+import Link from "next/link";
+import * as React from "react";
+
+import { Icons } from "~/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button, type ButtonProps } from "~/components/ui/button";
 import {
@@ -18,30 +19,39 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 import { Skeleton } from "~/components/ui/skeleton";
-import { Icons } from "~/components/icons";
-import { db } from "~/db";
-import { usersTable } from "~/db/schema";
-import { eq } from "drizzle-orm";
+import { db } from "~/server/db";
+import { usersTable } from "~/server/db/schema";
+import { getStoreByUserId } from "~/server/queries/store";
+import { cn, getUserEmail } from "~/server/utils";
 
-interface AuthDropdownProps
-  extends React.ComponentPropsWithRef<typeof DropdownMenuTrigger>,
-    ButtonProps {
+type AuthDropdownProps = {
   user: User | null;
-}
+} & React.ComponentPropsWithRef<typeof DropdownMenuTrigger> &
+  ButtonProps;
 
-export async function AuthDropdown({
-  user,
-  className,
-  ...props
-}: AuthDropdownProps) {
+export async function AuthDropdown({ user, ...props }: AuthDropdownProps) {
   if (!user) {
     return (
-      <Button size="sm" className={cn(className)} {...props} asChild>
-        <Link href="/signin">
-          Sign In
-          <span className="sr-only">Sign In</span>
-        </Link>
-      </Button>
+      <>
+        <div className="flex items-center gap-2 sm:hidden">
+          <Button size="sm" variant="default" {...props} asChild>
+            <Link href="/signin">
+              Sign In<span className="sr-only">Sign In</span>
+            </Link>
+          </Button>
+        </div>
+
+        <div className="hidden items-center gap-2 sm:flex">
+          <Button size="sm" variant="outline" {...props} asChild>
+            <Link href="/signin">
+              Sign In<span className="sr-only">Sign In</span>
+            </Link>
+          </Button>
+          <Button size="sm" variant="default" {...props} asChild>
+            <Link href="/signup">Sign Up</Link>
+          </Button>
+        </div>
+      </>
     );
   }
 
@@ -63,11 +73,7 @@ export async function AuthDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="secondary"
-          className={cn("size-8 rounded-full", className)}
-          {...props}
-        >
+        <Button variant="outline" className="size-8 rounded-full" {...props}>
           <Avatar className="size-8">
             <AvatarImage src={user.imageUrl} alt={user.username ?? ""} />
             <AvatarFallback>{initials}</AvatarFallback>
@@ -113,10 +119,10 @@ export async function AuthDropdown({
   );
 }
 
-interface AuthDropdownGroupProps {
+type AuthDropdownGroupProps = {
   storePromise: ReturnType<typeof getStoreByUserId>;
   currentStoreId?: string;
-}
+};
 
 async function AuthDropdownGroup({
   storePromise,

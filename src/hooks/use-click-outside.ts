@@ -1,9 +1,9 @@
 import * as React from "react";
 
-interface UseClickOutsideProps {
+type UseClickOutsideProps = {
   ref: React.RefObject<HTMLElement>;
   handler: (event: MouseEvent | TouchEvent) => void;
-}
+};
 
 export function useClickOutside({ ref, handler }: UseClickOutsideProps) {
   React.useEffect(() => {

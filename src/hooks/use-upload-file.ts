@@ -1,19 +1,20 @@
-import * as React from "react";
-import type { StoredFile } from "~/types";
-import { toast } from "sonner";
 import type { UploadFilesOptions } from "uploadthing/types";
 
-import { getErrorMessage } from "~/lib/handle-error";
-import { uploadFiles } from "~/lib/uploadthing";
-import { type OurFileRouter } from "~/app/api/uploadthing/core";
+import * as React from "react";
+import { toast } from "sonner";
 
-interface UseUploadFileProps
-  extends Pick<
-    UploadFilesOptions<OurFileRouter, keyof OurFileRouter>,
-    "headers" | "onUploadBegin" | "onUploadProgress" | "skipPolling"
-  > {
+import type { StoredFile } from "~/types";
+
+import { type OurFileRouter } from "~/app/api/uploadthing/core";
+import { getErrorMessage } from "~/server/handle-error";
+import { uploadFiles } from "~/server/uploadthing";
+
+type UseUploadFileProps = {
   defaultUploadedFiles?: StoredFile[];
-}
+} & Pick<
+  UploadFilesOptions<any>,
+  "headers" | "onUploadBegin" | "onUploadProgress" | "skipPolling"
+>;
 
 export function useUploadFile(
   endpoint: keyof OurFileRouter,

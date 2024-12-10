@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/server/utils";
 
-interface GridPatternProps extends React.SVGProps<SVGSVGElement> {
+type GridPatternProps = {
   squares?: [x: number, y: number][];
   width?: number;
   height?: number;
-}
+} & React.SVGProps<SVGSVGElement>;
 
 export function GridPattern({
   width = 40,

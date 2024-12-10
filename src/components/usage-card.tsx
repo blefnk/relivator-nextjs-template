@@ -1,6 +1,5 @@
 import { QuestionMarkCircledIcon } from "@radix-ui/react-icons";
 
-import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -15,13 +14,14 @@ import {
   HoverCardTrigger,
 } from "~/components/ui/hover-card";
 import { Progress } from "~/components/ui/progress";
+import { cn } from "~/server/utils";
 
-interface UsageCardProps extends React.ComponentPropsWithoutRef<typeof Card> {
+type UsageCardProps = {
   title: string;
   count: number;
   limit: number;
   moreInfo?: string;
-}
+} & React.ComponentPropsWithoutRef<typeof Card>;
 
 export function UsageCard({
   title,

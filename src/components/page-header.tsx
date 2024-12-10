@@ -1,11 +1,11 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/server/utils";
 
-interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
+type PageHeaderProps = {
   as?: React.ElementType;
   withPadding?: boolean;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 function PageHeader({
   className,
@@ -44,11 +44,10 @@ const headingVariants = cva(
   },
 );
 
-interface PageHeaderHeadingProps
-  extends React.HTMLAttributes<HTMLHeadingElement>,
-    VariantProps<typeof headingVariants> {
+type PageHeaderHeadingProps = {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-}
+} & React.HTMLAttributes<HTMLHeadingElement> &
+  VariantProps<typeof headingVariants>;
 
 function PageHeaderHeading({
   className,
@@ -77,9 +76,9 @@ const descriptionVariants = cva(
   },
 );
 
-interface PageHeaderDescriptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement>,
-    VariantProps<typeof descriptionVariants> {}
+type PageHeaderDescriptionProps =
+  {} & React.HTMLAttributes<HTMLParagraphElement> &
+    VariantProps<typeof descriptionVariants>;
 
 function PageHeaderDescription({
   className,

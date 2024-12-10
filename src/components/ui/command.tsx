@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
 import { type DialogProps, DialogTitle } from "@radix-ui/react-dialog";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Command as CommandPrimitive } from "cmdk";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
 import { Dialog, DialogContent } from "~/components/ui/dialog";
+import { cn } from "~/server/utils";
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -23,7 +23,7 @@ const Command = React.forwardRef<
 ));
 Command.displayName = CommandPrimitive.displayName;
 
-interface CommandDialogProps extends DialogProps {}
+type CommandDialogProps = {} & DialogProps;
 
 const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (

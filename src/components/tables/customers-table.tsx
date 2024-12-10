@@ -1,11 +1,12 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
+import * as React from "react";
 
-import { formatDate, formatPrice } from "~/lib/utils";
+import { DataTable } from "~/components/data-table/data-table";
+import { DataTableColumnHeader } from "~/components/data-table/data-table-column-header";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -13,24 +14,23 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { DataTable } from "~/components/data-table/data-table";
-import { DataTableColumnHeader } from "~/components/data-table/data-table-column-header";
+import { formatDate, formatPrice } from "~/server/utils";
 
-interface AwaitedCustomer {
+type AwaitedCustomer = {
   email: string | null;
   name: string | null;
   orderPlaced: number;
   totalSpent: number;
   createdAt: string;
-}
+};
 
-interface CustomersTableProps {
+type CustomersTableProps = {
   promise: Promise<{
     data: AwaitedCustomer[];
     pageCount: number;
   }>;
   storeId: string;
-}
+};
 
 export function CustomersTable({ promise, storeId }: CustomersTableProps) {
   const { data, pageCount } = React.use(promise);

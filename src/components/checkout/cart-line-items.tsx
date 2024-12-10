@@ -1,19 +1,19 @@
-import Image from "next/image";
 import { Slot } from "@radix-ui/react-slot";
+import Image from "next/image";
 
-import { cn, formatPrice } from "~/lib/utils";
-import { type CartLineItemSchema } from "~/lib/validations/cart";
-import { ScrollArea } from "~/components/ui/scroll-area";
-import { Separator } from "~/components/ui/separator";
 import { UpdateCart } from "~/components/checkout/update-cart";
 import { Icons } from "~/components/icons";
+import { ScrollArea } from "~/components/ui/scroll-area";
+import { Separator } from "~/components/ui/separator";
+import { cn, formatPrice } from "~/server/utils";
+import { type CartLineItemSchema } from "~/server/validations/cart";
 
-interface CartLineItemsProps extends React.HTMLAttributes<HTMLDivElement> {
+type CartLineItemsProps = {
   items: CartLineItemSchema[];
   isScrollable?: boolean;
   isEditable?: boolean;
   variant?: "default" | "minimal";
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function CartLineItems({
   items,

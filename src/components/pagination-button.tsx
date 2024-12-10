@@ -1,23 +1,23 @@
-import * as React from "react";
-import { usePathname, useRouter } from "next/navigation";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
+import { usePathname, useRouter } from "next/navigation";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
+import { cn } from "~/server/utils";
 
-interface PaginationButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+type PaginationButtonProps = {
   pageCount: number;
   page?: string;
   per_page?: string;
   sort?: string;
   createQueryString: (params: Record<string, string | number | null>) => string;
   siblingCount?: number;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function PaginationButton({
   pageCount,

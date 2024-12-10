@@ -1,21 +1,22 @@
 "use client";
 
-import * as React from "react";
-import type { DataTableFilterField } from "~/types";
-import { Cross2Icon } from "@radix-ui/react-icons";
 import type { Table } from "@tanstack/react-table";
 
-import { cn } from "~/lib/utils";
-import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
+import { Cross2Icon } from "@radix-ui/react-icons";
+import * as React from "react";
+
+import type { DataTableFilterField } from "~/types";
+
 import { DataTableFacetedFilter } from "~/components/data-table/data-table-faceted-filter";
 import { DataTableViewOptions } from "~/components/data-table/data-table-view-options";
+import { Button } from "~/components/ui/button";
+import { Input } from "~/components/ui/input";
+import { cn } from "~/server/utils";
 
-interface DataTableToolbarProps<TData>
-  extends React.HTMLAttributes<HTMLDivElement> {
+type DataTableToolbarProps<TData> = {
   table: Table<TData>;
   filterFields?: DataTableFilterField<TData>[];
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function DataTableToolbar<TData>({
   table,

@@ -3,14 +3,14 @@
 import * as React from "react";
 import { toast } from "sonner";
 
-import { createAccountLink } from "~/lib/actions/stripe";
-import { cn } from "~/lib/utils";
-import { Button, type ButtonProps } from "~/components/ui/button";
 import { Icons } from "~/components/icons";
+import { Button, type ButtonProps } from "~/components/ui/button";
+import { createAccountLink } from "~/server/actions/stripe";
+import { cn } from "~/server/utils";
 
-interface ConnectToStripeButtonProps extends ButtonProps {
+type ConnectToStripeButtonProps = {
   storeId: string;
-}
+} & ButtonProps;
 
 export function ConnectStoreToStripeButton({
   storeId,

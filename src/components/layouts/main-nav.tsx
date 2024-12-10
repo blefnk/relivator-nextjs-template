@@ -1,11 +1,11 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
+import * as React from "react";
+
 import type { MainNavItem } from "~/types";
 
-import { siteConfig } from "~/config/site";
-import { cn } from "~/lib/utils";
+import { Icons } from "~/components/icons";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,11 +15,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "~/components/ui/navigation-menu";
-import { Icons } from "~/components/icons";
+import { siteConfig } from "~/config/site";
+import { cn } from "~/server/utils";
 
-interface MainNavProps {
+type MainNavProps = {
   items?: MainNavItem[];
-}
+};
 
 export function MainNav({ items }: MainNavProps) {
   return (

@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { addDays, format } from "date-fns";
 import type { DateRange } from "react-day-picker";
 
-import { cn } from "~/lib/utils";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { addDays, format } from "date-fns";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import * as React from "react";
+
 import { Button, type ButtonProps } from "~/components/ui/button";
 import { Calendar } from "~/components/ui/calendar";
 import {
@@ -14,9 +14,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
+import { cn } from "~/server/utils";
 
-interface DateRangePickerProps
-  extends React.ComponentPropsWithoutRef<typeof PopoverContent> {
+type DateRangePickerProps = {
   /**
    * The selected date range.
    * @default undefined
@@ -60,7 +60,7 @@ interface DateRangePickerProps
    * @type string
    */
   triggerClassName?: string;
-}
+} & React.ComponentPropsWithoutRef<typeof PopoverContent>;
 
 export function DateRangePicker({
   dateRange,

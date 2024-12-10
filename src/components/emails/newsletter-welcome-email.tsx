@@ -13,13 +13,14 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components";
+
 import { env } from "~/env";
 
-interface NewsletterWelcomeEmailProps {
+type NewsletterWelcomeEmailProps = {
   firstName?: string;
   fromEmail: string;
   token: string;
-}
+};
 
 const baseUrl = (env.NEXT_PUBLIC_APP_URL || "http://localhost:3000") ?? "";
 

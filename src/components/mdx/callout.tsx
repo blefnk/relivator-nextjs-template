@@ -5,10 +5,10 @@ import * as React from "react";
 
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 
-interface CalloutProps extends React.PropsWithChildren {
+type CalloutProps = {
   icon?: string;
   title?: string;
-}
+} & React.PropsWithChildren;
 
 export function Callout({ title, children, icon, ...props }: CalloutProps) {
   return (

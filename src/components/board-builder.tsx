@@ -1,17 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { type Product } from "~/db/schema";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import * as React from "react";
 import { toast } from "sonner";
 
-import { queryConfig } from "~/config/query";
-import { addToCart, deleteCartItem } from "~/lib/actions/cart";
-import { showErrorToast } from "~/lib/handle-error";
-import { cn } from "~/lib/utils";
-import { type CartItemSchema } from "~/lib/validations/cart";
-import { useDebounce } from "~/hooks/use-debounce";
+import { PaginationButton } from "~/components/pagination-button";
+import { ProductCard } from "~/components/product-card";
 import { Button } from "~/components/ui/button";
 import { Card, CardDescription } from "~/components/ui/card";
 import {
@@ -35,15 +30,20 @@ import {
 } from "~/components/ui/sheet";
 import { Slider } from "~/components/ui/slider";
 import { Switch } from "~/components/ui/switch";
-import { PaginationButton } from "~/components/pagination-button";
-import { ProductCard } from "~/components/product-card";
+import { queryConfig } from "~/config/query";
+import { useDebounce } from "~/hooks/use-debounce";
+import { addToCart, deleteCartItem } from "~/server/actions/cart";
+import { type Product } from "~/server/db/schema";
+import { showErrorToast } from "~/server/handle-error";
+import { cn } from "~/server/utils";
+import { type CartItemSchema } from "~/server/validations/cart";
 
-interface BoardBuilderProps {
+type BoardBuilderProps = {
   products: Product[];
   pageCount: number;
   subcategory: string | null;
   cartItems: CartItemSchema[];
-}
+};
 
 export function BoardBuilder({
   products,

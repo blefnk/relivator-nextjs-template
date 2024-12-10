@@ -1,6 +1,7 @@
 import { revalidateTag } from "next/cache";
-import { env } from "~/env";
 import { z } from "zod";
+
+import { env } from "~/env";
 
 const schema = z.object({
   params: z.object({

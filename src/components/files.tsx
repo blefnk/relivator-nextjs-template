@@ -1,6 +1,8 @@
 import Image from "next/image";
+
 import type { StoredFile } from "~/types";
 
+import { EmptyCard } from "~/components/empty-card";
 import {
   Card,
   CardContent,
@@ -9,11 +11,10 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area";
-import { EmptyCard } from "~/components/empty-card";
 
-interface FilesProps {
+type FilesProps = {
   files: StoredFile[];
-}
+};
 
 export function Files({ files }: FilesProps) {
   return (

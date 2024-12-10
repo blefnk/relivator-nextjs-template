@@ -1,18 +1,18 @@
-import Link from "next/link";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
-import { cn, truncate } from "~/lib/utils";
 import { buttonVariants } from "~/components/ui/button";
+import { cn, truncate } from "~/server/utils";
 
-interface MdxPagerItem {
+type MdxPagerItem = {
   title: string;
   slug: string;
-}
+};
 
-interface MdxPagerProps extends React.HTMLAttributes<HTMLDivElement> {
+type MdxPagerProps = {
   currentItem: MdxPagerItem;
   allItems: MdxPagerItem[];
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function MdxPager({
   currentItem,

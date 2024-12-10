@@ -1,9 +1,9 @@
 "use client";
 
-import { cn } from "~/lib/utils";
 import { Button, type ButtonProps } from "~/components/ui/button";
+import { cn } from "~/server/utils";
 
-interface ClientButtonProps extends ButtonProps {}
+type ClientButtonProps = {} & ButtonProps;
 
 export function ClientButton({ className, ...props }: ClientButtonProps) {
   return <Button className={cn(className)} {...props}></Button>;

@@ -1,13 +1,12 @@
 "use client";
 
-import * as React from "react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import * as React from "react";
+
 import type { MainNavItem } from "~/types";
 
-import { siteConfig } from "~/config/site";
-import { cn } from "~/lib/utils";
-import { useMediaQuery } from "~/hooks/use-media-query";
+import { Icons } from "~/components/icons";
 import {
   Accordion,
   AccordionContent,
@@ -23,18 +22,22 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet";
-import { Icons } from "~/components/icons";
+import { siteConfig } from "~/config/site";
+import { useMediaQuery } from "~/hooks/use-media-query";
+import { cn } from "~/server/utils";
 
-interface MobileNavProps {
+type MobileNavProps = {
   items?: MainNavItem[];
-}
+};
 
 export function MobileNav({ items }: MobileNavProps) {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const segment = useSelectedLayoutSegment();
   const [open, setOpen] = React.useState(false);
 
-  if (isDesktop) return null;
+  if (isDesktop) {
+    return null;
+  }
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -108,13 +111,12 @@ export function MobileNav({ items }: MobileNavProps) {
   );
 }
 
-interface MobileLinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+type MobileLinkProps = {
   href: string;
   disabled?: boolean;
   segment: string;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+} & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 function MobileLink({
   children,

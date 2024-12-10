@@ -1,13 +1,13 @@
 "use client";
 
-import * as React from "react";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import { cn } from "~/lib/utils";
-import { verifyOrderSchema } from "~/lib/validations/order";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
+import * as React from "react";
+import { useForm } from "react-hook-form";
+
+import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import {
   Form,
@@ -18,9 +18,10 @@ import {
   FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
-import { Icons } from "~/components/icons";
+import { cn } from "~/server/utils";
+import { verifyOrderSchema } from "~/server/validations/order";
 
-interface VerifyOderFormProps extends React.ComponentPropsWithoutRef<"form"> {}
+type VerifyOderFormProps = {} & React.ComponentPropsWithoutRef<"form">;
 type Inputs = z.infer<typeof verifyOrderSchema>;
 
 export function VerifyOderForm({ className, ...props }: VerifyOderFormProps) {

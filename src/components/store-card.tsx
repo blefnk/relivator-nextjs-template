@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-import { type getStoresByUserId } from "~/lib/queries/store";
-import { cn } from "~/lib/utils";
+import { Icons } from "~/components/icons";
 import { Badge } from "~/components/ui/badge";
 import {
   Card,
@@ -15,15 +14,16 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "~/components/ui/tooltip";
-import { Icons } from "~/components/icons";
+import { type getStoresByUserId } from "~/server/queries/store";
+import { cn } from "~/server/utils";
 
 type Store = Awaited<ReturnType<typeof getStoresByUserId>>[number];
 
-interface StoreCardProps {
+type StoreCardProps = {
   store: Omit<Store, "orderCount" | "customerCount"> &
     Partial<Pick<Store, "orderCount" | "customerCount">>;
   href: string;
-}
+};
 
 export function StoreCard({ store, href }: StoreCardProps) {
   const isUserStore = href.includes("dashboard");

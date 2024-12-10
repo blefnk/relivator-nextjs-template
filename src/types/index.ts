@@ -1,11 +1,13 @@
-import { type Store } from "~/db/schema";
-import { type SQL } from "drizzle-orm";
 import type Stripe from "stripe";
+
+import { type SQL } from "drizzle-orm";
 import { type ClientUploadedFileData } from "uploadthing/types";
 
 import type { Icons } from "~/components/icons";
 
-export interface NavItem {
+import { type Store } from "~/server/db/schema";
+
+export type NavItem = {
   title: string;
   href?: string;
   active?: boolean;
@@ -14,20 +16,20 @@ export interface NavItem {
   icon?: keyof typeof Icons;
   label?: string;
   description?: string;
-}
+};
 
-export interface NavItemWithChildren extends NavItem {
+export type NavItemWithChildren = {
   items?: NavItemWithChildren[];
-}
+} & NavItem;
 
-export interface FooterItem {
+export type FooterItem = {
   title: string;
   items: {
     title: string;
     href: string;
     external?: boolean;
   }[];
-}
+};
 
 export type MainNavItem = NavItemWithChildren;
 
@@ -35,27 +37,27 @@ export type SidebarNavItem = NavItemWithChildren;
 
 export type SearchParams = Record<string, string | string[] | undefined>;
 
-export interface UploadedFile<T = unknown> extends ClientUploadedFileData<T> {}
+export type UploadedFile<T = unknown> = {} & ClientUploadedFileData<T>;
 
-export interface StoredFile {
+export type StoredFile = {
   id: string;
   name: string;
   url: string;
-}
+};
 
-export interface Option {
+export type Option = {
   label: string;
   value: string;
   icon?: React.ComponentType<{ className?: string }>;
   withCount?: boolean;
-}
+};
 
-export interface DataTableFilterField<TData> {
+export type DataTableFilterField<TData> = {
   label: string;
   value: keyof TData;
   placeholder?: string;
   options?: Option[];
-}
+};
 
 export type DrizzleWhere<T> =
   | SQL
@@ -64,7 +66,7 @@ export type DrizzleWhere<T> =
 
 export type StripePaymentStatus = Stripe.PaymentIntent.Status;
 
-export interface Plan {
+export type Plan = {
   id: Store["plan"];
   title: string;
   description: string;
@@ -76,17 +78,17 @@ export interface Plan {
     tags: number;
     variants: number;
   };
-}
+};
 
-export interface PlanWithPrice extends Plan {
+export type PlanWithPrice = {
   price: string;
-}
+} & Plan;
 
-export interface UserPlan extends Plan {
+export type UserPlan = {
   stripeSubscriptionId?: string | null;
   stripeCurrentPeriodEnd?: string | null;
   stripeCustomerId?: string | null;
   isSubscribed: boolean;
   isCanceled: boolean;
   isActive: boolean;
-}
+} & Plan;

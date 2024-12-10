@@ -1,17 +1,14 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-import { type Order } from "~/db/schema";
-import type { StripePaymentStatus } from "~/types";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
+import * as React from "react";
 
-import {
-  getStripePaymentStatusColor,
-  stripePaymentStatuses,
-} from "~/lib/checkout";
-import { cn, formatDate, formatId, formatPrice } from "~/lib/utils";
+import type { StripePaymentStatus } from "~/types";
+
+import { DataTable } from "~/components/data-table/data-table";
+import { DataTableColumnHeader } from "~/components/data-table/data-table-column-header";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import {
@@ -20,8 +17,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { DataTable } from "~/components/data-table/data-table";
-import { DataTableColumnHeader } from "~/components/data-table/data-table-column-header";
+import {
+  getStripePaymentStatusColor,
+  stripePaymentStatuses,
+} from "~/server/checkout";
+import { type Order } from "~/server/db/schema";
+import { cn, formatDate, formatId, formatPrice } from "~/server/utils";
 
 type AwaitedOrder = Pick<Order, "id" | "quantity" | "amount" | "createdAt"> & {
   customer: string | null;
@@ -29,14 +30,14 @@ type AwaitedOrder = Pick<Order, "id" | "quantity" | "amount" | "createdAt"> & {
   paymentIntentId: string;
 };
 
-interface OrdersTableProps {
+type OrdersTableProps = {
   promise: Promise<{
     data: AwaitedOrder[];
     pageCount: number;
   }>;
   storeId: string;
   isSearchable?: boolean;
-}
+};
 
 export function OrdersTable({
   promise,

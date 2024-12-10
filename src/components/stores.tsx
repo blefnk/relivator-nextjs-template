@@ -1,12 +1,12 @@
 "use client";
 
-import * as React from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChevronDownIcon, Cross2Icon } from "@radix-ui/react-icons";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import * as React from "react";
 
-import { queryConfig } from "~/config/query";
-import { type getStores } from "~/lib/queries/store";
-import { cn } from "~/lib/utils";
+import { FacetedFilter } from "~/components/faceted-filter";
+import { PaginationButton } from "~/components/pagination-button";
+import { StoreCard } from "~/components/store-card";
 import { Button } from "~/components/ui/button";
 import {
   DropdownMenu,
@@ -16,9 +16,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { FacetedFilter } from "~/components/faceted-filter";
-import { PaginationButton } from "~/components/pagination-button";
-import { StoreCard } from "~/components/store-card";
+import { queryConfig } from "~/config/query";
+import { type getStores } from "~/server/queries/store";
+import { cn } from "~/server/utils";
 
 type StoresProps = Awaited<ReturnType<typeof getStores>>;
 

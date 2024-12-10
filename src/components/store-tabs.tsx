@@ -1,16 +1,16 @@
 "use client";
 
+import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import Link from "next/link";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import { Tabs, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 
-import { cn } from "~/lib/utils";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { Separator } from "~/components/ui/separator";
+import { cn } from "~/server/utils";
 
-interface StoreTabsProps {
+type StoreTabsProps = {
   storeId: string;
-}
+};
 
 export function StoreTabs({ storeId }: StoreTabsProps) {
   const router = useRouter();
@@ -59,6 +59,7 @@ export function StoreTabs({ storeId }: StoreTabsProps) {
       >
         <TabsList className="inline-flex items-center justify-center space-x-1.5 text-muted-foreground">
           {tabs.map((tab) => (
+            // biome-ignore lint/a11y/useValidAriaRole: <explanation>
             <div
               role="none"
               key={tab.href}

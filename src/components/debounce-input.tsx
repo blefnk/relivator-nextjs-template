@@ -2,11 +2,13 @@
 
 import * as React from "react";
 
-import { Input, type InputProps } from "~/components/ui/input";
+import { Input } from "~/components/ui/input";
 
-interface DebounceInputProps extends InputProps {
+type InputProps = React.ComponentProps<typeof Input>;
+
+type DebounceInputProps = {
   debounce?: number;
-}
+} & InputProps;
 
 export function DebounceInput({
   onChange,

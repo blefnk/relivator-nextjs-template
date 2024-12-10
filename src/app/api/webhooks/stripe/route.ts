@@ -1,18 +1,25 @@
-import { revalidateTag } from "next/cache";
-import { headers } from "next/headers";
-import { db } from "~/db";
-import { addresses, carts, orders, payments, products } from "~/db/schema";
-import { env } from "~/env.js";
+import type Stripe from "stripe";
+
 import { clerkClient } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
-import type Stripe from "stripe";
+import { revalidateTag } from "next/cache";
+import { headers } from "next/headers";
 import { z } from "zod";
 
-import { stripe } from "~/lib/stripe";
+import { env } from "~/env.js";
+import { db } from "~/server/db";
+import {
+  addresses,
+  carts,
+  orders,
+  payments,
+  products,
+} from "~/server/db/schema";
+import { stripe } from "~/server/stripe";
 import {
   checkoutItemSchema,
   type CheckoutItemSchema,
-} from "~/lib/validations/cart";
+} from "~/server/validations/cart";
 
 export async function POST(req: Request) {
   const body = await req.text();
@@ -117,7 +124,9 @@ export async function POST(req: Request) {
       // If there are items in metadata, then create order
       if (checkoutItems) {
         try {
-          if (!event.account) throw new Error("No account found.");
+          if (!event.account) {
+            throw new Error("No account found.");
+          }
 
           // Parsing items from metadata
           // Didn't parse before because can pass the unparsed data directly to the order table items json column in the db
@@ -159,11 +168,11 @@ export async function POST(req: Request) {
               insertedId: addresses.id,
             });
 
-          if (!newAddress[0]?.insertedId)
+          if (!newAddress[0]?.insertedId) {
             throw new Error("No address created.");
+          }
 
           // Create new order in db
-          // @ts-expect-error TODO: fix ts
           await db.insert(orders).values({
             storeId: payment.storeId,
             items: checkoutItems ?? [],
@@ -202,7 +211,6 @@ export async function POST(req: Request) {
             await db
               .update(products)
               .set({
-                // @ts-expect-error TODO: fix ts
                 inventory: product.inventory - item.quantity,
               })
               .where(eq(products.id, item.productId));

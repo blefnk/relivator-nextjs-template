@@ -1,12 +1,11 @@
 "use client";
 
-import * as React from "react";
-import { useRouter } from "next/navigation";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { useRouter } from "next/navigation";
+import * as React from "react";
 
-import { filterProducts } from "~/lib/actions/product";
-import { cn, isMacOs } from "~/lib/utils";
-import { useDebounce } from "~/hooks/use-debounce";
+import { Icons } from "~/components/icons";
+import { Kbd } from "~/components/kbd";
 import { Button } from "~/components/ui/button";
 import {
   CommandDialog,
@@ -17,8 +16,9 @@ import {
   CommandList,
 } from "~/components/ui/command";
 import { Skeleton } from "~/components/ui/skeleton";
-import { Icons } from "~/components/icons";
-import { Kbd } from "~/components/kbd";
+import { useDebounce } from "~/hooks/use-debounce";
+import { filterProducts } from "~/server/actions/product";
+import { cn, isMacOs } from "~/server/utils";
 
 type ProductGroup = NonNullable<
   Awaited<ReturnType<typeof filterProducts>>["data"]

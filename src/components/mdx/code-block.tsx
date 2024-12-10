@@ -1,18 +1,18 @@
 "use client";
 
-import * as React from "react";
 import { CheckIcon, CopyIcon } from "@radix-ui/react-icons";
+import * as React from "react";
 
+import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { ScrollArea } from "~/components/ui/scroll-area";
-import { Icons } from "~/components/icons";
 
-interface CodeBlockProps extends React.HTMLProps<HTMLPreElement> {
+type CodeBlockProps = {
   // set by `rehype-pretty-code`
   "data-language"?: string;
   // set by `rehype-pretty-code`
   "data-theme"?: string;
-}
+} & React.HTMLProps<HTMLPreElement>;
 
 export function CodeBlock({ children, ...props }: CodeBlockProps) {
   const language = props["data-language"];
@@ -21,6 +21,7 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
     js: Icons.javascript,
     ts: Icons.typescript,
     bash: Icons.bash,
+    // @ts-expect-error TODO: fix ts
   }[language];
 
   const ref = React.useRef<HTMLSpanElement>(null);
@@ -50,7 +51,9 @@ export function CodeBlock({ children, ...props }: CodeBlockProps) {
         size="icon"
         className="size-6 hover:bg-zinc-200 hover:text-zinc-900 dark:hover:bg-zinc-700 dark:hover:text-zinc-50"
         onClick={() => {
-          if (typeof window === "undefined") return;
+          if (typeof window === "undefined") {
+            return;
+          }
           setIsCopied(true);
           void window.navigator.clipboard.writeText(
             ref.current?.innerText ?? "",

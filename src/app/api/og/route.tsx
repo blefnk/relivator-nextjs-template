@@ -1,17 +1,17 @@
 import { ImageResponse } from "next/og";
 
-import { cn } from "~/lib/utils";
-import { ogImageSchema } from "~/lib/validations/og";
+import { cn } from "~/server/utils";
+import { ogImageSchema } from "~/server/validations/og";
 
 // export const runtime = "edge"; // TODO: ensure api works without it
 
 export async function GET(req: Request) {
   try {
     const calSemiBoldData = await fetch(
-      new URL("../../../assets/fonts/CalSans-SemiBold.ttf", import.meta.url),
+      new URL("~/styles/fonts/CalSans-SemiBold.ttf", import.meta.url),
     ).then((res) => res.arrayBuffer());
     const interData = await fetch(
-      new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url),
+      new URL("~/styles/fonts/Inter-Regular.ttf", import.meta.url),
     ).then((res) => res.arrayBuffer());
 
     const url = new URL(req.url);

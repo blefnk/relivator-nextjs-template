@@ -1,19 +1,18 @@
 "use client";
 
-import * as React from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { type StripeElementsOptions } from "@stripe/stripe-js";
+import * as React from "react";
 
-import { getStripe } from "~/lib/get-stripe";
-import { cn } from "~/lib/utils";
+import { getStripe } from "~/server/get-stripe";
+import { cn } from "~/server/utils";
 
 /**
  * See the Stripe documentation for more information:
  * @see https://stripe.com/docs/payments/quickstart
  */
 
-interface CheckoutShellProps
-  extends React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>> {
+type CheckoutShellProps = {
   storeStripeAccountId: string;
   paymentIntentPromise: Promise<{
     data: {
@@ -21,7 +20,7 @@ interface CheckoutShellProps
     } | null;
     error: string | null;
   }>;
-}
+} & React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>;
 
 export function CheckoutShell({
   children,

@@ -1,10 +1,10 @@
 import { StarIcon } from "@radix-ui/react-icons";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/server/utils";
 
-interface RatingProps {
+type RatingProps = {
   rating: number;
-}
+};
 
 export function Rating({ rating }: RatingProps) {
   return (

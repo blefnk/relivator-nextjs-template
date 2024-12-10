@@ -1,13 +1,13 @@
-import { db } from "~/db";
-import { notifications } from "~/db/schema";
-import { env } from "~/env.js";
 import { currentUser } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 
-import { resend } from "~/lib/resend";
-import { joinNewsletterSchema } from "~/lib/validations/notification";
 import NewsletterWelcomeEmail from "~/components/emails/newsletter-welcome-email";
+import { env } from "~/env.js";
+import { db } from "~/server/db";
+import { notifications } from "~/server/db/schema";
+import { resend } from "~/server/resend";
+import { joinNewsletterSchema } from "~/server/validations/notification";
 
 export async function POST(req: Request) {
   const input = joinNewsletterSchema.parse(await req.json());
@@ -46,7 +46,6 @@ export async function POST(req: Request) {
       }),
       db
         .insert(notifications)
-        // @ts-expect-error TODO: fix ts
         .values({
           email: input.email,
           token: input.token,
@@ -55,7 +54,6 @@ export async function POST(req: Request) {
         .onConflictDoUpdate({
           target: [notifications.email],
           set: {
-            // @ts-expect-error TODO: fix ts
             newsletter: true,
           },
         }),

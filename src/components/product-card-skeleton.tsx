@@ -1,4 +1,4 @@
-import { cn } from "~/lib/utils";
+import { PlaceholderImage } from "~/components/placeholder-image";
 import { AspectRatio } from "~/components/ui/aspect-ratio";
 import {
   Card,
@@ -7,10 +7,11 @@ import {
   CardHeader,
 } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
-import { PlaceholderImage } from "~/components/placeholder-image";
+import { cn } from "~/server/utils";
 
-interface ProductCardSkeletonProps
-  extends React.ComponentPropsWithoutRef<typeof Card> {}
+type ProductCardSkeletonProps = {} & React.ComponentPropsWithoutRef<
+  typeof Card
+>;
 
 export function ProductCardSkeleton({
   className,

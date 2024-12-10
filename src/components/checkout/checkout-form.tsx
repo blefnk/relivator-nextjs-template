@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import {
   AddressElement,
   LinkAuthenticationElement,
@@ -8,17 +7,18 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import * as React from "react";
 import { toast } from "sonner";
 
-import { absoluteUrl, cn } from "~/lib/utils";
-import { Button } from "~/components/ui/button";
 import { Icons } from "~/components/icons";
+import { Button } from "~/components/ui/button";
+import { absoluteUrl, cn } from "~/server/utils";
 
 // See the stripe playemnts docs: https://stripe.com/docs/payments/quickstart
 
-interface CheckoutFormProps extends React.ComponentPropsWithoutRef<"form"> {
+type CheckoutFormProps = {
   storeId: string;
-}
+} & React.ComponentPropsWithoutRef<"form">;
 
 export function CheckoutForm({
   storeId,
@@ -33,13 +33,17 @@ export function CheckoutForm({
   const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
-    if (!stripe) return;
+    if (!stripe) {
+      return;
+    }
 
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret",
     );
 
-    if (!clientSecret) return;
+    if (!clientSecret) {
+      return;
+    }
 
     void stripe
       .retrievePaymentIntent(clientSecret)

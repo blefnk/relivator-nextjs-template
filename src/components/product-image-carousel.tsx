@@ -1,26 +1,25 @@
 "use client";
 
-import * as React from "react";
-import Image from "next/image";
-import { type StoredFile } from "~/types";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
+import Image from "next/image";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
-import { Button } from "~/components/ui/button";
 import { Icons } from "~/components/icons";
+import { Button } from "~/components/ui/button";
+import { cn } from "~/server/utils";
+import { type StoredFile } from "~/types";
 
 type CarouselApi = UseEmblaCarouselType["1"];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters["0"];
 
-interface ProductImageCarouselProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+type ProductImageCarouselProps = {
   images: StoredFile[];
   options?: CarouselOptions;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function ProductImageCarousel({
   images,
@@ -35,16 +34,16 @@ export function ProductImageCarousel({
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const scrollPrev = React.useCallback(
-    () => emblaApi && emblaApi.scrollPrev(),
+    () => emblaApi?.scrollPrev(),
     [emblaApi],
   );
   const scrollNext = React.useCallback(
-    () => emblaApi && emblaApi.scrollNext(),
+    () => emblaApi?.scrollNext(),
     [emblaApi],
   );
 
   const scrollTo = React.useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    (index: number) => emblaApi?.scrollTo(index),
     [emblaApi],
   );
 
@@ -60,7 +59,9 @@ export function ProductImageCarousel({
   );
 
   const onSelect = React.useCallback((emblaApi: CarouselApi) => {
-    if (!emblaApi) return;
+    if (!emblaApi) {
+      return;
+    }
 
     setSelectedIndex(emblaApi.selectedScrollSnap());
     setPrevBtnDisabled(!emblaApi.canScrollPrev());
@@ -68,7 +69,9 @@ export function ProductImageCarousel({
   }, []);
 
   React.useEffect(() => {
-    if (!emblaApi) return;
+    if (!emblaApi) {
+      return;
+    }
 
     onSelect(emblaApi);
     emblaApi.on("reInit", onSelect);

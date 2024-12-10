@@ -1,4 +1,3 @@
-import { cn } from "~/lib/utils";
 import { Skeleton } from "~/components/ui/skeleton";
 import {
   Table,
@@ -8,8 +7,9 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { cn } from "~/server/utils";
 
-interface DataTableSkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
+type DataTableSkeletonProps = {
   /**
    * The number of columns in the table.
    * @type number
@@ -66,7 +66,7 @@ interface DataTableSkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
    * @type boolean | undefined
    */
   shrinkZero?: boolean;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function DataTableSkeleton(props: DataTableSkeletonProps) {
   const {

@@ -1,5 +1,5 @@
-import * as React from "react";
 import { flexRender, type Table as TanstackTable } from "@tanstack/react-table";
+import * as React from "react";
 
 import {
   Table,
@@ -12,7 +12,7 @@ import {
 
 import { DataTablePagination } from "./data-table-pagination";
 
-interface DataTableProps<TData> {
+type DataTableProps<TData> = {
   /**
    * The table instance returned from useDataTable hook with pagination, sorting, filtering, etc.
    * @type TanstackTable<TData>
@@ -26,7 +26,7 @@ interface DataTableProps<TData> {
    * @example floatingBar={<TasksTableFloatingBar table={table} />}
    */
   floatingBar?: React.ReactNode | null;
-}
+};
 
 export function DataTable<TData>({
   table,

@@ -1,6 +1,6 @@
-import type { Category, Subcategory } from "~/db/schema";
+import type { Category, Subcategory } from "~/server/db/schema";
 
-import { generateId } from "~/lib/id";
+import { generateId } from "~/server/id";
 
 export type ProductConfig = typeof productConfig;
 

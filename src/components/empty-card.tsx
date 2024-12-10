@@ -1,12 +1,12 @@
-import { cn } from "~/lib/utils";
-import { Card, CardDescription, CardTitle } from "~/components/ui/card";
 import { Icons } from "~/components/icons";
+import { Card, CardDescription, CardTitle } from "~/components/ui/card";
+import { cn } from "~/server/utils";
 
-interface EmptyCardProps extends React.ComponentPropsWithoutRef<typeof Card> {
+type EmptyCardProps = {
   title: string;
   description?: string;
   icon?: keyof typeof Icons;
-}
+} & React.ComponentPropsWithoutRef<typeof Card>;
 
 export function EmptyCard({
   title,

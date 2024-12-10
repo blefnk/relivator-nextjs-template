@@ -1,4 +1,4 @@
-import { cn } from "~/lib/utils";
+import { cn } from "~/server/utils";
 
 type Type = "circle" | "ellipse";
 
@@ -13,7 +13,7 @@ type Origin =
   | "bottom left"
   | "bottom right";
 
-interface RadialGradientProps extends React.HTMLAttributes<HTMLDivElement> {
+type RadialGradientProps = {
   /**
    * The type of radial gradient
    * @default circle
@@ -47,7 +47,7 @@ interface RadialGradientProps extends React.HTMLAttributes<HTMLDivElement> {
    * @type string
    * */
   origin?: Origin;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function RadialGradient({
   type = "circle",

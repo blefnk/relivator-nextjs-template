@@ -1,19 +1,19 @@
-import * as React from "react";
-import Link from "next/link";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { Slot } from "@radix-ui/react-slot";
+import Link from "next/link";
+import * as React from "react";
 
-import { cn } from "~/lib/utils";
 import { Button } from "~/components/ui/button";
+import { cn } from "~/server/utils";
 
-interface ContentSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+type ContentSectionProps = {
   title: string;
   description?: string;
   href: string;
   linkText?: string;
   children: React.ReactNode;
   asChild?: boolean;
-}
+} & React.HTMLAttributes<HTMLDivElement>;
 
 export function ContentSection({
   title,

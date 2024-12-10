@@ -3,15 +3,15 @@
 import * as React from "react";
 import { toast } from "sonner";
 
-import { seedProducts } from "~/lib/actions/seed";
-import { cn } from "~/lib/utils";
-import { Button, type ButtonProps } from "~/components/ui/button";
 import { Icons } from "~/components/icons";
+import { Button, type ButtonProps } from "~/components/ui/button";
+import { seedProducts } from "~/server/actions/seed";
+import { cn } from "~/server/utils";
 
-interface SeedProductsProps extends ButtonProps {
+type SeedProductsProps = {
   storeId: string;
   count?: number;
-}
+} & ButtonProps;
 
 export function SeedProducts({
   storeId,

@@ -1,17 +1,17 @@
-import React from "react";
-import Link from "next/link";
 import { RocketIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
+import React from "react";
 
-import { siteConfig } from "~/config/site";
-import { cn } from "~/lib/utils";
-import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 import { Icons } from "~/components/icons";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import { siteConfig } from "~/config/site";
+import { cn } from "~/server/utils";
 
-interface AlertCardProps extends React.ComponentPropsWithoutRef<typeof Alert> {
+type AlertCardProps = {
   title?: string;
   description?: string;
   icon?: keyof typeof Icons;
-}
+} & React.ComponentPropsWithoutRef<typeof Alert>;
 
 export function AlertCard({
   title,
@@ -37,14 +37,15 @@ export function AlertCard({
       {children ?? (
         <div className="flex flex-col items-center space-y-2 text-center">
           <AlertTitle className="text-lg">
-            {title ?? "Rewriting with the latest Next.js 15 features"}
+            {title ??
+              "Rewriting with the latest Next.js 15 and React 19 features"}
           </AlertTitle>
           {description ? (
             <AlertDescription className="text-muted-foreground">
               {description}
             </AlertDescription>
           ) : (
-            <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+            <div className="flex items-center space-x-1 text-sm text-muted-foreground">
               <AlertDescription>Follow along on</AlertDescription>
               <Link
                 href={siteConfig.links.discord}

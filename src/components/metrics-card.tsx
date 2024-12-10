@@ -1,11 +1,12 @@
 // Original source: https://github.com/openstatusHQ/openstatus/blob/main/apps/web/src/app/app/%5BworkspaceSlug%5D/(dashboard)/monitors/%5Bid%5D/_components/metrics-card.tsx
 
-import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
 import type { VariantProps } from "class-variance-authority";
+
+import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
 import { cva } from "class-variance-authority";
 
-import { cn } from "~/lib/utils";
 import { Badge } from "~/components/ui/badge";
+import { cn } from "~/server/utils";
 
 const metricsCardVariants = cva("flex flex-col rounded-lg border px-3 py-2", {
   variants: {
@@ -29,7 +30,7 @@ const metricsCardVariants = cva("flex flex-col rounded-lg border px-3 py-2", {
   },
 });
 
-interface MetricsCardProps extends VariantProps<typeof metricsCardVariants> {
+type MetricsCardProps = {
   title: string;
   value?: number;
   suffix: string;
@@ -44,7 +45,7 @@ interface MetricsCardProps extends VariantProps<typeof metricsCardVariants> {
    */
   fading?: boolean;
   className?: string;
-}
+} & VariantProps<typeof metricsCardVariants>;
 
 export function MetricsCard({
   title,
@@ -92,12 +93,13 @@ const badgeVariants = cva("", {
   },
 });
 
-interface DeltaBadgeProps extends VariantProps<typeof badgeVariants> {
+type DeltaBadgeProps = {
   value: number;
   decimal?: number;
-}
+} & VariantProps<typeof badgeVariants>;
 
 function DeltaBadge({ value, decimal = 1 }: DeltaBadgeProps) {
+  // biome-ignore lint/style/useExponentiationOperator: <explanation>
   const round = Math.pow(10, decimal); // 10^1 = 10 (1 decimal), 10^2 = 100 (2 decimals), etc.
   const percentage = Math.round((value - 1) * round) / round;
 

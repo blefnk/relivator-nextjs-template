@@ -1,43 +1,26 @@
-import Balancer from "react-wrap-balancer";
-
-import Link from "next/link";
-
-import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { buttonVariants } from "~/components/ui/button";
-import { Shell } from "~/components/shell";
-import { cn } from "~/lib/utils";
+import { Link } from "~/i18n/routing";
+import { cn } from "~/utils";
 
-// @see src/app/[locale]/[...rest]/page.tsx
-export default function NotFoundPage() {
-  const t = useTranslations("pages.not-found");
-
+export default function NotFound() {
+  const t = useTranslations("not-found");
   return (
-    <Shell>
-      <Balancer
-        className={`
-          mx-auto mt-4 !block leading-normal text-muted-foreground
-
-          sm:text-lg sm:leading-7
-        `}
-        as="p"
-      >
-        {t("description")}
-      </Balancer>
+    <main className="flex flex-1 flex-col gap-4 px-2 items-center mt-24 max-w-xl mx-auto text-xl">
+      <h1 className="text-2xl font-bold">{t("title")}</h1>
+      <p>{t("description")}</p>
       <Link
+        href="/"
         className={cn(
           buttonVariants({
-            size: "default",
-            variant: "secondary",
+            variant: "default",
+            className: "mx-auto mt-4 w-fit",
           }),
-          "mx-auto mt-6 flex items-center gap-1",
         )}
-        href="/"
       >
-        <ChevronLeft size={16} />
-        <span>{t("go-home")}</span>
+        {t("go-home")}
       </Link>
-    </Shell>
+    </main>
   );
 }

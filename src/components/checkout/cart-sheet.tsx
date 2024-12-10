@@ -1,20 +1,21 @@
 import Link from "next/link";
 
-import { getCart } from "~/lib/actions/cart";
-import { cn, formatPrice } from "~/lib/utils";
+import { CartLineItems } from "~/components/checkout/cart-line-items";
+import { Icons } from "~/components/icons";
 import { Badge } from "~/components/ui/badge";
 import { Button, buttonVariants } from "~/components/ui/button";
 import { Separator } from "~/components/ui/separator";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet";
-import { CartLineItems } from "~/components/checkout/cart-line-items";
-import { Icons } from "~/components/icons";
+import { getCart } from "~/server/actions/cart";
+import { cn, formatPrice } from "~/server/utils";
 
 export async function CartSheet() {
   const cartLineItems = await getCart();
@@ -51,7 +52,15 @@ export async function CartSheet() {
       </SheetTrigger>
       <SheetContent className="flex w-full flex-col pr-0 sm:max-w-lg">
         <SheetHeader className="space-y-2.5 pr-6">
-          <SheetTitle>Cart {itemCount > 0 && `(${itemCount})`}</SheetTitle>
+          <div className="flex items-center justify-between">
+            <SheetTitle>Cart {itemCount > 0 && `(${itemCount})`}</SheetTitle>
+            <SheetClose className="absolute right-4 top-4 p-1 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 disabled:pointer-events-none">
+              <kbd className="inline-flex select-none items-center gap-1 rounded border bg-background px-2 py-1 font-mono font-medium opacity-100">
+                <span className="text-xs">ESC</span>
+                <span className="sr-only">Close</span>
+              </kbd>
+            </SheetClose>
+          </div>
           <Separator />
         </SheetHeader>
         {itemCount > 0 ? (

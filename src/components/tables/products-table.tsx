@@ -1,17 +1,13 @@
 "use client";
 
-import * as React from "react";
-import Link from "next/link";
-import { type Product } from "~/db/schema";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import { type ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
+import * as React from "react";
 import { toast } from "sonner";
 
-import { deleteProduct } from "~/lib/actions/product";
-import { getErrorMessage } from "~/lib/handle-error";
-import { type getCategories } from "~/lib/queries/product";
-import { formatDate, formatPrice } from "~/lib/utils";
-import { useDataTable } from "~/hooks/use-data-table";
+import { DataTable } from "~/components/data-table/data-table";
+import { DataTableColumnHeader } from "~/components/data-table/data-table-column-header";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
@@ -23,22 +19,26 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
-import { DataTable } from "~/components/data-table/data-table";
-import { DataTableColumnHeader } from "~/components/data-table/data-table-column-header";
+import { useDataTable } from "~/hooks/use-data-table";
+import { deleteProduct } from "~/server/actions/product";
+import { type Product } from "~/server/db/schema";
+import { getErrorMessage } from "~/server/handle-error";
+import { type getCategories } from "~/server/queries/product";
+import { formatDate, formatPrice } from "~/server/utils";
 
 type AwaitedProduct = Pick<
   Product,
   "id" | "name" | "categoryId" | "price" | "inventory" | "rating" | "createdAt"
 >;
 
-interface ProductsTableProps {
+type ProductsTableProps = {
   promise: Promise<{
     data: AwaitedProduct[];
     pageCount: number;
   }>;
   categoriesPromise: ReturnType<typeof getCategories>;
   storeId: string;
-}
+};
 
 export function ProductsTable({
   promise,
@@ -105,7 +105,9 @@ export function ProductsTable({
             (categoryData) => categoryData.name === category,
           );
 
-          if (!existingCategory) return null;
+          if (!existingCategory) {
+            return null;
+          }
 
           return (
             <Badge variant="outline" className="capitalize">

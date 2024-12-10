@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-import { getCart } from "~/lib/actions/cart";
-import { cn, formatPrice } from "~/lib/utils";
+import { CartLineItems } from "~/components/checkout/cart-line-items";
 import { buttonVariants } from "~/components/ui/button";
 import {
   Card,
@@ -11,11 +10,12 @@ import {
   CardTitle,
 } from "~/components/ui/card";
 import { Separator } from "~/components/ui/separator";
-import { CartLineItems } from "~/components/checkout/cart-line-items";
+import { getCart } from "~/server/actions/cart";
+import { cn, formatPrice } from "~/server/utils";
 
-interface CheckoutCardProps {
+type CheckoutCardProps = {
   storeId: string;
-}
+};
 
 export async function CheckoutCard({ storeId }: CheckoutCardProps) {
   const cartLineItems = await getCart({ storeId });
@@ -23,7 +23,6 @@ export async function CheckoutCard({ storeId }: CheckoutCardProps) {
   return (
     <Card
       key={storeId}
-      as="section"
       id={`checkout-store-${storeId}`}
       aria-labelledby={`checkout-store-${storeId}-heading`}
       className={cn(
