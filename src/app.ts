@@ -1,8 +1,8 @@
 export const app = {
   shortName: "Relivator",
   name: "Relivator – The Next.js Template for Your eCommerce – by Bleverse",
-  url: "https://relivator.com",
-  ogImage: "https://relivator.com/og.jpg",
+  url: "https://reliverse.vercel.app",
+  ogImage: "https://reliverse.vercel.app/og.jpg",
   description:
     "Relivator is the Next.js template making it easy to build the powerful eCommerce platforms.",
   links: {

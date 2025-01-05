@@ -1,6 +1,6 @@
 {
-  "workbench.activityBar.orientation": "vertical",
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": {
     "quickfix.biome": "explicit",
     "source.addMissingImports": "never",
@@ -8,20 +8,26 @@
     "source.organizeImports": "never",
     "source.removeUnused": "never"
   },
+  "eslint.ignoreUntitled": true,
   "eslint.rules.customizations": [
     {
       "rule": "perfectionist/sort-imports",
       "severity": "warn"
     }
   ],
-  "openMultipleFiles.limit": 700,
   "markdownlint.config": {
     "MD033": false
   },
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "workbench.activityBar.orientation": "vertical",
+  "openMultipleFiles.limit": 700,
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "eslint.ignoreUntitled": true,
-  "i18n-ally.localesPaths": ["messages"],
-  "i18n-ally.enabledFrameworks": ["react"],
+  "i18n-ally.localesPaths": [
+    "messages"
+  ],
+  "i18n-ally.enabledFrameworks": [
+    "react"
+  ],
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.autoDetection": true,
   "i18n-ally.keystyle": "nested"

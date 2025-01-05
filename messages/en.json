@@ -336,7 +336,7 @@
       "summary": "Why choose Relivator for Next.js 15 & React 19?"
     },
     "3": {
-      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to Relivator (https://relivator.com/donate) page to learn more details. Thank you for your support!",
+      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to Relivator (https://reliverse.vercel.app/donate) page to learn more details. Thank you for your support!",
       "summary": "Can the release of Relivator v1.3.0 be sped up?"
     }
   },
@@ -414,7 +414,7 @@
     "eventDetails": "Event Details:",
     "join15MinutesEarlyToNetwork": "Join 15 minutes early to network!",
     "locationEventLinkTbd": "Location: [Event Link (TBD)]",
-    "relivatorNextJsRedefined": "Relivator - Next.js Redefined:",
+    "reliverseNextJsRedefined": "Relivator - Next.js Redefined:",
     "tbdToBeDetermined": "*TBD - To Be Determined",
     "timeEventTimeTbd": "Time: [Event Time (TBD)]"
   },

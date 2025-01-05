@@ -37,7 +37,7 @@ Welcome, and thank you for considering contributing to this project! Your involv
 
 #### How to Submit a Bug Report
 
-- **GitHub Issues**: Utilize [GitHub Issues](https://github.com/blefnk/relivator-nextjs-template/issues/new) for reporting bugs.
+- **GitHub Issues**: Utilize [GitHub Issues](https://github.com/blefnk/reliverse-nextjs-template/issues/new) for reporting bugs.
 - **Clarity and Detail**: Clearly articulate both the expected and actual behaviors, and describe the steps to replicate the bug.
 - **Security Concerns**: For reporting security vulnerabilities, please contact us directly at <blefnk@gmail.com> instead of using public channels.
 
@@ -46,7 +46,7 @@ Welcome, and thank you for considering contributing to this project! Your involv
 #### Preliminary Considerations
 
 - **Version Check**: Ensure you're working with the latest version of the software.
-- **Existing Suggestions**: Search [GitHub Issues](https://github.com/blefnk/relivator-nextjs-template/issues?q=) and our [Discord Suggestions Channel](https://discord.com/channels/1075533942096150598/1196425440777224212) to see if the suggestion has already been made.
+- **Existing Suggestions**: Search [GitHub Issues](https://github.com/blefnk/reliverse-nextjs-template/issues?q=) and our [Discord Suggestions Channel](https://discord.com/channels/1075533942096150598/1196425440777224212) to see if the suggestion has already been made.
 - **Project Alignment**: Assess whether the suggestion is in line with the project's objectives.
 
 #### How to Suggest Enhancements
@@ -57,7 +57,7 @@ Welcome, and thank you for considering contributing to this project! Your involv
 
 ### Making the First Code Contribution
 
-1. **Issue Selection**: Choose an issue from [GitHub issues](https://github.com/blefnk/relivator-nextjs-template/issues?q=) and request its assignment.
+1. **Issue Selection**: Choose an issue from [GitHub issues](https://github.com/blefnk/reliverse-nextjs-template/issues?q=) and request its assignment.
 2. **Fork and Branch Creation**: Fork the repository and create a new branch, naming it after the issue number.
 3. **Committing Changes**: Adhere to a clear commit style, referencing the issue in the PR or commit message.
 4. **Submitting a Pull Request**: Propose the changes through a pull request from the forked repository.

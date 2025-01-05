@@ -10,11 +10,11 @@ For those who are viewing the current markdown file using:
 
 <!-- ### Relivator & Reliverse Roadmap -->
 
-<!-- Our [prioritized roadmap](https://github.com/blefnk/relivator-nextjs-template#roadmap) of features and utilities that the core team is focusing on. -->
+<!-- Our [prioritized roadmap](https://github.com/blefnk/reliverse-nextjs-template#roadmap) of features and utilities that the core team is focusing on. -->
 
 ### 1.2.6 - August 4, 2024 – The Resurrection Update
 
-Below you can see a copy of [the article from Reliverse Docs](https://reliverse.org/relivator/v126), which may be a bit outdated below. Please refer to [this blog post](https://reliverse.org/relivator/v126) to read the most recent version. Reliverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
+Below you can see a copy of [the article from Reliverse Docs](https://reliverse.org/reliverse/v126), which may be a bit outdated below. Please refer to [this blog post](https://reliverse.org/reliverse/v126) to read the most recent version. Reliverse Docs also has translations of the article into other languages; and will contain even more information about Relivator than this README.md, including notes from all past and future releases.
 
 **Relivator is Back with Version 1.2.6!** 🥳
 
@@ -66,7 +66,7 @@ Well, that's all for today, all the best to everyone, and may your `pnpm latest`
 
 P.S. And, please, don't pay attention that so many files have been "changed" in the latest commit, looks like it's because of Prettier I think, I only updated a few files, and if it's important to someone, please let me know in Discord's DM and I'll list you these files.
 
-[Read more about v1.2.5](https://github.com/blefnk/relivator-nextjs-template/releases/edit/1.2.5)
+[Read more about v1.2.5](https://github.com/blefnk/reliverse-nextjs-template/releases/edit/1.2.5)
 
 </details>
 
@@ -75,7 +75,7 @@ P.S. And, please, don't pay attention that so many files have been "changed" in 
 
 Just a small hotfix to improve the developer experience.
 
-[Read more about 1.2.4](https://github.com/blefnk/relivator-nextjs-template/releases/edit/1.2.4)
+[Read more about 1.2.4](https://github.com/blefnk/reliverse-nextjs-template/releases/edit/1.2.4)
 
 </details>
 
@@ -84,7 +84,7 @@ Just a small hotfix to improve the developer experience.
 
 Just a small hotfix to improve the developer experience.
 
-[Read more about 1.2.3](https://github.com/blefnk/relivator-nextjs-template/releases/edit/1.2.3)
+[Read more about 1.2.3](https://github.com/blefnk/reliverse-nextjs-template/releases/edit/1.2.3)
 
 </details>
 
@@ -97,7 +97,7 @@ Remember, Relivator is designed to be beginner-friendly, so quite a lot of ESLin
 
 These turn-offs will be gradually eliminated as we move towards the massive 2.0.0, which will significantly raise the project's standards, being professional, will be even more convenient for beginners.
 
-[Read more about v1.2.2](https://github.com/blefnk/relivator-nextjs-template/releases/edit/1.2.2)
+[Read more about v1.2.2](https://github.com/blefnk/reliverse-nextjs-template/releases/edit/1.2.2)
 
 </details>
 
@@ -110,7 +110,7 @@ Update v1.2.1 adds Chinese localization, and among other things, work has begun 
 
 p.s. 1.2.1 is the first commit to the Relivator repository that no longer contains an emoji at the beginning of its name. Thanks to this, contributors to Relivator/Reliverse will no longer have to spend time inventing a suitable emoji.
 
-[Read more about v1.2.1](https://github.com/blefnk/relivator-nextjs-template/releases/edit/1.2.1)
+[Read more about v1.2.1](https://github.com/blefnk/reliverse-nextjs-template/releases/edit/1.2.1)
 
 </details>
 
@@ -154,7 +154,7 @@ Among many other new and fixed things, Stripe is now fully functional and comes 
 
 Please check out the updated list of project features in the project's README. Enjoy and please share the feedback!
 
-[Read more about v1.1.0](https://github.com/blefnk/relivator-nextjs-template/releases/edit/1.1.0)
+[Read more about v1.1.0](https://github.com/blefnk/reliverse-nextjs-template/releases/edit/1.1.0)
 
 </details>
 
@@ -163,14 +163,14 @@ Please check out the updated list of project features in the project's README. E
 
 How to Install and Get Started? Please visit [the project's README](../README.md#readme), where you can always find up-to-date information about the project and how to install it easily.
 
-[Read more about v1.0.0](https://github.com/blefnk/relivator-nextjs-template/releases/edit/1.0.0)
+[Read more about v1.0.0](https://github.com/blefnk/reliverse-nextjs-template/releases/edit/1.0.0)
 
 </details>
 
-Please visit the CHANGELOG.md or [Reliverse Docs](https://reliverse.org/relivator) to read the older versions release notes.
+Please visit the CHANGELOG.md or [Reliverse Docs](https://reliverse.org/reliverse) to read the older versions release notes.
 
 ### Everyone! Thank You 🙏
 
-If anyone have any questions or issues, don't hesitate to contact me, means @blefnk, on Discord or GitHub. For more information about 1.2.6 and 1.3.0, please visit `#⭐-relivator` chat on the project's Discord server and the [GitHub Issues](https://github.com/blefnk/relivator-nextjs-template/issues) page.
+If anyone have any questions or issues, don't hesitate to contact me, means @blefnk, on Discord or GitHub. For more information about 1.2.6 and 1.3.0, please visit `#⭐-reliverse` chat on the project's Discord server and the [GitHub Issues](https://github.com/blefnk/reliverse-nextjs-template/issues) page.
 
 Thank you for your continued support and happy coding with Relivator 1.2.6!
