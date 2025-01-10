@@ -6,7 +6,7 @@ For those who are viewing the current markdown file using:
  – GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1".
 -->
 
-[📖 Docs](https://reliverse.org)
+[📖 Docs](https://relivator.org)
 
 Are you fluent in a language other than English? Your expertise is invaluable to us!
 

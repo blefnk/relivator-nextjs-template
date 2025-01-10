@@ -26,5 +26,8 @@
   "i18n-ally.enabledFrameworks": ["react"],
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.autoDetection": true,
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "files.associations": {
+    ".reliverse": "jsonc"
+  }
 }

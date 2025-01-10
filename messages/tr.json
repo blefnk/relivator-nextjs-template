@@ -46,7 +46,7 @@
     "email": "E-posta"
   },
   "JoinNewsletterForm": {
-    "joinReliverseWeeklyNewsletter": "Reliverse Haftalık Bültenine Katılın",
+    "joinRelivatorWeeklyNewsletter": "Relivator Haftalık Bültenine Katılın",
     "tryAgain": "Tekrar deneyin"
   },
   "LocaleSwitcher": {
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "NavWithCompactPageHeader"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "Haftalık Bülteni Yeniden Yaşayın"
+    "relivatorWeeklyNewsletter": "Haftalık Bülteni Yeniden Yaşayın"
   },
   "Options": {
     "toggleColumns": "Sütunları değiştir"
   },
   "PathnamesPage": {
-    "description": "<p>Reliverse Playground | next-intl | URL yol adları uluslararası hale getirilebilir.</p><p>Varsayılan dil olan İngilizce'yi kullanıyorsanız, bu sayfadaki tarayıcı adres çubuğunda <code>/en/pathnames</code> ifadesini göreceksiniz.< /p><p>Yerel ayarı Almanca olarak değiştirirseniz URL buna uygun şekilde yerelleştirilir (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Relivator Playground | next-intl | URL yol adları uluslararası hale getirilebilir.</p><p>Varsayılan dil olan İngilizce'yi kullanıyorsanız, bu sayfadaki tarayıcı adres çubuğunda <code>/en/pathnames</code> ifadesini göreceksiniz.< /p><p>Yerel ayarı Almanca olarak değiştirirseniz URL buna uygun şekilde yerelleştirilir (<code>/de/pfadnamen</code>).</p>",
     "title": "Yol adları"
   },
   "PostAddForm": {
@@ -414,7 +414,7 @@
     "eventDetails": "Etkinlik Detayları:",
     "join15MinutesEarlyToNetwork": "🌟 Ağa 15 dakika erken katılın! 🌟",
     "locationEventLinkTbd": "Konum: [Etkinlik Bağlantısı (TBD)]",
-    "reliverseNextJsRedefined": "🚀 Relivator - Next.js Yeniden Tanımlandı:",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js Yeniden Tanımlandı:",
     "tbdToBeDetermined": "*TBD - Belirlenecek",
     "timeEventTimeTbd": "Zaman: [Olay Zamanı (TBD)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Satın Alma Tablosu",
     "readyToBuildYourEcommercePlatform": "E-Ticaret platformunuzu oluşturmaya hazır mısınız?",
     "recurringAndOneTimeDonations": "Tekrarlanan ve bir kerelik bağışlar",
-    "reliversePlayground": "Oyun Alanını Yeniden Yaşayın",
+    "relivatorPlayground": "Oyun Alanını Yeniden Yaşayın",
     "res": "Çöz.",
     "resJsonAsPromise": "Res.json() Söz olarak",
     "resetPassword": "Şifreyi sıfırla",

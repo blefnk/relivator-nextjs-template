@@ -6,9 +6,9 @@ For those viewing this markdown file using:
  – GitHub: Does this .md file appear different from what you are used to seeing on GitHub? Ensure the URL does not end with "?plain=1".
 -->
 
-*It is recommended to install Relivator following the detailed instructions in the [README.md](https://github.com/blefnk/reliverse#readme) to feel more confident as you begin learning Git.*
+*It is recommended to install Relivator following the detailed instructions in the [README.md](https://github.com/blefnk/relivator#readme) to feel more confident as you begin learning Git.*
 
-It's true—[Git](https://git-scm.com) can be complex at first. Consider using resources like this guide, the [Git Book](https://git-scm.com/book), and [GitHub Skills](https://skills.github.com) to deepen your understanding. The command *git commit --help* will direct you to information about the `git commit` command and its options, so this help command can be beneficial as well. The best way to get comfortable with Git is to use it regularly. Create a small project or use a large web project template like [Relivator](https://github.com/blefnk/reliverse-nextjs-template) and experiment with different commands. If you're ever unsure about something related to Git, refer to this detailed guide to learn more.
+It's true—[Git](https://git-scm.com) can be complex at first. Consider using resources like this guide, the [Git Book](https://git-scm.com/book), and [GitHub Skills](https://skills.github.com) to deepen your understanding. The command *git commit --help* will direct you to information about the `git commit` command and its options, so this help command can be beneficial as well. The best way to get comfortable with Git is to use it regularly. Create a small project or use a large web project template like [Relivator](https://github.com/blefnk/relivator-nextjs-template) and experiment with different commands. If you're ever unsure about something related to Git, refer to this detailed guide to learn more.
 
 ## Git Initial Setup
 
@@ -920,7 +920,7 @@ To fix up a previous commit:
 
 ## Resources
 
-- [Relivator Next.js Template](https://github.com/blefnk/reliverse#readme)
+- [Relivator Next.js Template](https://github.com/blefnk/relivator#readme)
 - [Theo's Post](https://youtube.com/post/UgkxE4zRFagfPNviZN2OgYMhozOa7MJSbktM)
 - [Martin Heinz's Blog](https://martinheinz.dev/blog/109)
 - [Delight-IM's Git Knowledge](https://github.com/delight-im/Knowledge/blob/master/Git.md)
@@ -928,4 +928,4 @@ To fix up a previous commit:
 
 ## The Bottom Line
 
-*This guide covers various useful Git commands and techniques, inspired by various resources and composed by Reliverse, making it easier for both beginners and advanced users to manage and optimize their repositories.*
+*This guide covers various useful Git commands and techniques, inspired by various resources and composed by Relivator, making it easier for both beginners and advanced users to manage and optimize their repositories.*

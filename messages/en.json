@@ -46,7 +46,7 @@
     "email": "Email"
   },
   "JoinNewsletterForm": {
-    "joinReliverseWeeklyNewsletter": "Join the Reliverse Weekly Newsletter",
+    "joinRelivatorWeeklyNewsletter": "Join the Relivator Weekly Newsletter",
     "tryAgain": "Try Again"
   },
   "LocaleSwitcher": {
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "Navigation with Compact Page Header"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "Reliverse Weekly Newsletter"
+    "relivatorWeeklyNewsletter": "Relivator Weekly Newsletter"
   },
   "Options": {
     "toggleColumns": "Toggle Columns"
   },
   "PathnamesPage": {
-    "description": "<p>Reliverse Playground | next-intl | The URL pathnames can be internationalized.</p><p>If you're using the default language, English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Relivator Playground | next-intl | The URL pathnames can be internationalized.</p><p>If you're using the default language, English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
     "title": "Pathnames"
   },
   "PostAddForm": {
@@ -336,7 +336,7 @@
       "summary": "Why choose Relivator for Next.js 15 & React 19?"
     },
     "3": {
-      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to Relivator (https://reliverse.vercel.app/donate) page to learn more details. Thank you for your support!",
+      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to Relivator (https://relivator.com/donate) page to learn more details. Thank you for your support!",
       "summary": "Can the release of Relivator v1.3.0 be sped up?"
     }
   },
@@ -414,7 +414,7 @@
     "eventDetails": "Event Details:",
     "join15MinutesEarlyToNetwork": "Join 15 minutes early to network!",
     "locationEventLinkTbd": "Location: [Event Link (TBD)]",
-    "reliverseNextJsRedefined": "Relivator - Next.js Redefined:",
+    "relivatorNextJsRedefined": "Relivator - Next.js Redefined:",
     "tbdToBeDetermined": "*TBD - To Be Determined",
     "timeEventTimeTbd": "Time: [Event Time (TBD)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Purchases Table",
     "readyToBuildYourEcommercePlatform": "Ready to Build Your eCommerce Platform?",
     "recurringAndOneTimeDonations": "Recurring and One-Time Donations",
-    "reliversePlayground": "Reliverse Playground",
+    "relivatorPlayground": "Relivator Playground",
     "res": "Res",
     "resJsonAsPromise": "Res.json() as Promise",
     "resetPassword": "Reset Password",

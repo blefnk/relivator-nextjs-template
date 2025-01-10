@@ -7,7 +7,7 @@ export type SiteConfig = typeof siteConfig;
 
 const links = {
   x: "https://x.com/blefnk",
-  github: "https://github.com/blefnk/reliverse-nextjs-template",
+  github: "https://github.com/blefnk/relivator-nextjs-template",
   githubAccount: "https://github.com/blefnk",
   discord: "https://discord.gg/Pb8uKbwpsJ",
   calDotCom: "https://cal.com/blefnk",
@@ -17,8 +17,8 @@ export const siteConfig = {
   name: "Relivator",
   description:
     "An open source e-commerce shop built with everything new in Next.js",
-  url: "https://reliverse.vercel.app",
-  ogImage: "https://reliverse.vercel.app/og.png",
+  url: "https://relivator.com",
+  ogImage: "https://relivator.com/og.png",
   links,
   mainNav: [
     {

@@ -46,7 +46,7 @@
     "email": "电子邮件"
   },
   "JoinNewsletterForm": {
-    "joinReliverseWeeklyNewsletter": "加入 Reliverse 每周通讯",
+    "joinRelivatorWeeklyNewsletter": "加入 Relivator 每周通讯",
     "tryAgain": "再试一次"
   },
   "LocaleSwitcher": {
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "带有紧凑页标题的导航"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "Reliverse 每周通讯"
+    "relivatorWeeklyNewsletter": "Relivator 每周通讯"
   },
   "Options": {
     "toggleColumns": "切换列"
   },
   "PathnamesPage": {
-    "description": "<p>Reliverse Playground | next-intl | URL 路径名可以国际化。</p><p>如果您使用默认语言英语，您将在此页面的浏览器地址栏中看到 <code>/en/pathnames</code>。< /p><p>如果将区域设置更改为德语，则 URL 也会相应地本地化 (<code>/de/pfadnamen</code>)。</p>",
+    "description": "<p>Relivator Playground | next-intl | URL 路径名可以国际化。</p><p>如果您使用默认语言英语，您将在此页面的浏览器地址栏中看到 <code>/en/pathnames</code>。< /p><p>如果将区域设置更改为德语，则 URL 也会相应地本地化 (<code>/de/pfadnamen</code>)。</p>",
     "title": "路径名"
   },
   "PostAddForm": {
@@ -414,7 +414,7 @@
     "eventDetails": "活动详情：",
     "join15MinutesEarlyToNetwork": "🌟 提前15分钟加入网络！ 🌟",
     "locationEventLinkTbd": "地点：【活动链接（待定）】",
-    "reliverseNextJsRedefined": "🚀 Relivator - Next.js 重新定义：",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js 重新定义：",
     "tbdToBeDetermined": "*TBD - 待定",
     "timeEventTimeTbd": "时间：[活动时间（待定）]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "采购表",
     "readyToBuildYourEcommercePlatform": "准备好构建您的电子商务平台了吗？",
     "recurringAndOneTimeDonations": "经常性和一次性捐赠",
-    "reliversePlayground": "重温游乐场",
+    "relivatorPlayground": "重温游乐场",
     "res": "资源",
     "resJsonAsPromise": "res.json() 作为 Promise",
     "resetPassword": "重置密码",

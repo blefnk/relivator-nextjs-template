@@ -34,7 +34,7 @@ export async function updateNotification(input: UpdateNotificationSchema) {
       await resend.emails.send({
         from: env.EMAIL_FROM_ADDRESS || "",
         to: notification.email,
-        subject: "Welcome to reliverse",
+        subject: "Welcome to Relivator!",
         react: NewsletterWelcomeEmail({
           firstName: user?.firstName ?? undefined,
           fromEmail: env.EMAIL_FROM_ADDRESS || "",

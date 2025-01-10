@@ -1,12 +1,12 @@
 {
   // Unstable features
   "experimental": {
-    "projectName": "@reliverse/cli",
+    "projectName": "relivator",
     "projectAuthor": "blefnk",
-    "projectDescription": "This superapp CLI tool can help you easily create new web projects, manage existing projects, and automatically make advanced codebase modifications, with more features coming soon.",
+    "projectDescription": "The Relivator Next.js template serves as the foundation for your eCommerce platform, helping you create efficient, engaging, and profitable online stores. Relivator enhances any eCommerce with the power of modern Next.js, React, TypeScript, Tailwind, and more.",
     "projectVersion": "1.4.11",
     "projectLicense": "MIT",
-    "projectRepository": "https://github.com/blefnk/reliverse",
+    "projectRepository": "https://github.com/blefnk/relivator",
 
     // Project capabilities
     "features": {
@@ -21,12 +21,8 @@
       "ci": true,
       "commands": [],
       "webview": [],
-      "language": [
-        "typescript"
-      ],
-      "themes": [
-        "default"
-      ]
+      "language": ["typescript"],
+      "themes": ["default"]
     },
 
     // Tech stack of your project
@@ -68,7 +64,7 @@
     "configLastRevalidate": "2025-01-05T23:44:15.803Z",
     "configRevalidateFrequency": "2d",
 
-    // Custom rules for Reliverse AI
+    // Custom rules for Relivator AI
     "customRules": {},
 
     // Do you want autoYes/autoNo below?

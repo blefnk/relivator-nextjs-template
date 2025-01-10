@@ -46,7 +46,7 @@
     "email": "E-mail"
   },
   "JoinNewsletterForm": {
-    "joinReliverseWeeklyNewsletter": "Rejoignez la newsletter hebdomadaire Reliverse",
+    "joinRelivatorWeeklyNewsletter": "Rejoignez la newsletter hebdomadaire Relivator",
     "tryAgain": "Essayer à nouveau"
   },
   "LocaleSwitcher": {
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "NavWithCompactPageHeader"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "Newsletter hebdomadaire Reliverse"
+    "relivatorWeeklyNewsletter": "Newsletter hebdomadaire Relivator"
   },
   "Options": {
     "toggleColumns": "Basculer les colonnes"
   },
   "PathnamesPage": {
-    "description": "<p>Reliverse Playground | next-intl | Les chemins d'accès des URL peuvent être internationalisés.</p><p>Si vous utilisez la langue par défaut, l'anglais, vous verrez <code>/en/pathnames</code> dans la barre d'adresse du navigateur sur cette page.< /p><p>Si vous modifiez les paramètres régionaux en allemand, l'URL est localisée en conséquence (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Relivator Playground | next-intl | Les chemins d'accès des URL peuvent être internationalisés.</p><p>Si vous utilisez la langue par défaut, l'anglais, vous verrez <code>/en/pathnames</code> dans la barre d'adresse du navigateur sur cette page.< /p><p>Si vous modifiez les paramètres régionaux en allemand, l'URL est localisée en conséquence (<code>/de/pfadnamen</code>).</p>",
     "title": "Noms de chemin"
   },
   "PostAddForm": {
@@ -414,7 +414,7 @@
     "eventDetails": "Détails de l'événement :",
     "join15MinutesEarlyToNetwork": "🌟 Inscrivez-vous 15 minutes à l'avance pour réseauter ! 🌟",
     "locationEventLinkTbd": "Emplacement : [Lien de l'événement (à déterminer)]",
-    "reliverseNextJsRedefined": "🚀 Relivator - Next.js redéfini :",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js redéfini :",
     "tbdToBeDetermined": "*À déterminer - À déterminer",
     "timeEventTimeTbd": "Heure : [Heure de l'événement (à déterminer)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Tableau des achats",
     "readyToBuildYourEcommercePlatform": "Prêt à créer votre plateforme de commerce électronique ?",
     "recurringAndOneTimeDonations": "Dons récurrents et ponctuels",
-    "reliversePlayground": "Revivez le terrain de jeu",
+    "relivatorPlayground": "Revivez le terrain de jeu",
     "res": "Rés",
     "resJsonAsPromise": "Res.json() comme promesse",
     "resetPassword": "Réinitialiser le mot de passe",

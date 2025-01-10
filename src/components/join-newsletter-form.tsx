@@ -43,7 +43,7 @@ export function JoinNewsletterForm() {
         body: JSON.stringify({
           email: data.email,
           token: crypto.randomUUID(),
-          subject: "Welcome to Relivator13",
+          subject: "Welcome to Relivator",
         }),
       });
 

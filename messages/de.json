@@ -46,7 +46,7 @@
     "email": "E-Mail"
   },
   "JoinNewsletterForm": {
-    "joinReliverseWeeklyNewsletter": "Abonnieren Sie den wöchentlichen Reliverse-Newsletter",
+    "joinRelivatorWeeklyNewsletter": "Abonnieren Sie den wöchentlichen Relivator-Newsletter",
     "tryAgain": "Versuchen Sie es erneut"
   },
   "LocaleSwitcher": {
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "NavWithCompactPageHeader"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "Wöchentlicher Reliverse-Newsletter"
+    "relivatorWeeklyNewsletter": "Wöchentlicher Relivator-Newsletter"
   },
   "Options": {
     "toggleColumns": "Spalten umschalten"
   },
   "PathnamesPage": {
-    "description": "<p>Reliverse Playground | next-intl | Die URL-Pfadnamen können internationalisiert werden.</p><p>Wenn Sie die Standardsprache Englisch verwenden, wird in der Adressleiste des Browsers auf dieser Seite <code>/en/pathnames</code> angezeigt.< /p><p>Wenn Sie das Gebietsschema auf Deutsch ändern, wird die URL entsprechend lokalisiert (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Relivator Playground | next-intl | Die URL-Pfadnamen können internationalisiert werden.</p><p>Wenn Sie die Standardsprache Englisch verwenden, wird in der Adressleiste des Browsers auf dieser Seite <code>/en/pathnames</code> angezeigt.< /p><p>Wenn Sie das Gebietsschema auf Deutsch ändern, wird die URL entsprechend lokalisiert (<code>/de/pfadnamen</code>).</p>",
     "title": "Pfadnamen"
   },
   "PostAddForm": {
@@ -414,7 +414,7 @@
     "eventDetails": "Veranstaltungsdetails:",
     "join15MinutesEarlyToNetwork": "🌟 Melden Sie sich 15 Minuten früher an, um sich zu vernetzen! 🌟",
     "locationEventLinkTbd": "Ort: [Veranstaltungslink (TBD)]",
-    "reliverseNextJsRedefined": "🚀 Relivator – Next.js neu definiert:",
+    "relivatorNextJsRedefined": "🚀 Relivator – Next.js neu definiert:",
     "tbdToBeDetermined": "*TBD – noch festzulegen",
     "timeEventTimeTbd": "Zeit: [Ereigniszeit (TBD)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Einkaufstabelle",
     "readyToBuildYourEcommercePlatform": "Sind Sie bereit, Ihre E-Commerce-Plattform aufzubauen?",
     "recurringAndOneTimeDonations": "Wiederkehrende und einmalige Spenden",
-    "reliversePlayground": "Reliverse-Spielplatz",
+    "relivatorPlayground": "Relivator-Spielplatz",
     "res": "Res",
     "resJsonAsPromise": "Res.json() als Versprechen",
     "resetPassword": "Passwort zurücksetzen",

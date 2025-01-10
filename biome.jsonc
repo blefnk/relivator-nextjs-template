@@ -73,7 +73,7 @@
       "enabled": true
     },
     "parser": {
-      "allowComments": false,
+      "allowComments": true,
       "allowTrailingCommas": false
     }
   },

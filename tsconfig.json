@@ -15,7 +15,11 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "preserve",
-    "plugins": [{ "name": "next" }],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "incremental": true,
     "baseUrl": ".",
     "paths": {
@@ -23,16 +27,17 @@
     }
   },
   "include": [
-    ".next/types/**/*.ts",
-    "tailwind.config.ts",
+    "typecheck.ts",
     "drizzle.config.ts",
-    "postcss.config.js",
     "eslint.config.js",
-    "next.config.ts",
     "next-env.d.ts",
+    "next.config.ts",
+    "postcss.config.js",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/env.js"
+    "src/env.js",
+    "tailwind.config.ts",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
