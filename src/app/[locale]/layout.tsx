@@ -34,9 +34,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(app.url),
   description: app.description,
   keywords: [
-    "Relivator",
+    "reliverse",
     "Bleverse",
-    "Relivator",
+    "reliverse",
     "Versator",
     "Template",
     "Starter",
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
       url: "https://agency.bleverse.com",
     },
     {
-      name: "Relivator",
-      url: "https://relivator.org",
+      name: "reliverse",
+      url: "https://reliverse.org",
     },
   ],
   creator: "Bleverse",
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     title: app.name,
     description: app.description,
     images: [app.ogImage],
-    creator: "@relivator_org",
+    creator: "@reliverse_org",
   },
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };

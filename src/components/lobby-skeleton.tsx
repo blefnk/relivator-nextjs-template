@@ -29,14 +29,14 @@ export function LobbySkeleton() {
           className="animate-fade-up"
           style={{ animationDelay: "0.20s", animationFillMode: "both" }}
         >
-          Relivator template is the foundation of your eCommerce platform: Build
+          reliverse template is the foundation of your eCommerce platform: Build
           More Efficient, Engaging, and Profitable Online Stores
         </PageHeaderHeading>
         <PageHeaderDescription
           className="max-w-[46.875rem] animate-fade-up"
           style={{ animationDelay: "0.30s", animationFillMode: "both" }}
         >
-          Relivator Enhances your eCommerce with the Power of Next.js 15, React
+          reliverse Enhances your eCommerce with the Power of Next.js 15, React
           19, Tailwind, and more
         </PageHeaderDescription>
         <PageActions

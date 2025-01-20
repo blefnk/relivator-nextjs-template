@@ -1,10 +1,10 @@
-# Relivator Next.js Template
+# reliverse Next.js Template
 
 Please consider following this project's author, [Nazar Kornienko](https://github.com/), and consider starring the project to show your ❤️ and support.
 
-- **🚀 Live Demo**: [relivator.com](https://relivator.com/en)
+- **🚀 Live Demo**: [reliverse.vercel.app](https://reliverse.vercel.app/en)
 - **💙 Discord**: [discord.gg/Pb8uKbwpsJ](https://discord.gg/Pb8uKbwpsJ)
-- **📚 Docs**: [docs.relivator.org](https://docs.relivator.org/relivator)
+- **📚 Docs**: [docs.reliverse.org](https://docs.reliverse.org/reliverse)
 
 ![cover image](./public/screenshot-dark.png)
 
@@ -12,16 +12,16 @@ Please consider following this project's author, [Nazar Kornienko](https://githu
 
 Make sure you have [Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/en), and [Bun](https://bun.sh) installed. Then:
 
-1. `git clone https://github.com/blefnk/relivator.git`
-2. `cd relivator`
+1. `git clone https://github.com/blefnk/reliverse.git`
+2. `cd reliverse`
 3. `bun i`
 4. `cp .env.example .env` → Fill in the .env file
 5. `bun db:push`
 6. `bun dev` / `bun run build`
 
-## What is Relivator?
+## What is reliverse?
 
-The Relivator Next.js template serves as the foundation for your eCommerce platform, helping you create efficient, engaging, and profitable online stores. Relivator enhances any eCommerce with the power of modern Next.js, React, TypeScript, Tailwind, and more. For detailed information about the Relivator template and its bootstrapper, [Relivator](https://github.com/relivator/cli), you can visit the [documentation website](https://docs.relivator.org/relivator).
+The reliverse Next.js template serves as the foundation for your eCommerce platform, helping you create efficient, engaging, and profitable online stores. reliverse enhances any eCommerce with the power of modern Next.js, React, TypeScript, Tailwind, and more. For detailed information about the reliverse template and its bootstrapper, [reliverse](https://github.com/reliverse/cli), you can visit the [documentation website](https://docs.reliverse.org/reliverse).
 
 ## Stack of technologies
 

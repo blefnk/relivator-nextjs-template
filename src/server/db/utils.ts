@@ -14,4 +14,4 @@ export function takeFirstOrThrow<T>(items: T[]) {
   return first;
 }
 
-export const databasePrefix = "relivator";
+export const databasePrefix = "reliverse";

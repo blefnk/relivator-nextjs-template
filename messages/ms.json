@@ -46,7 +46,7 @@
     "email": "Emel"
   },
   "JoinNewsletterForm": {
-    "joinRelivatorWeeklyNewsletter": "Sertai Surat Berita Mingguan Relivator",
+    "joinreliverseWeeklyNewsletter": "Sertai Surat Berita Mingguan reliverse",
     "tryAgain": "Cuba Lagi"
   },
   "LocaleSwitcher": {
@@ -67,7 +67,7 @@
     "websiteLogoWithName": "Logo Laman Web dengan Nama"
   },
   "Manifest": {
-    "name": "Templat Relivator Next.js"
+    "name": "Templat reliverse Next.js"
   },
   "MdxCard": {
     "view": "Lihat"
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "Navigasi dengan Tajuk Halaman Kompak"
   },
   "NewsletterWelcomeEmail": {
-    "relivatorWeeklyNewsletter": "Surat Berita Mingguan Relivator"
+    "reliverseWeeklyNewsletter": "Surat Berita Mingguan reliverse"
   },
   "Options": {
     "toggleColumns": "Tukar Lajur"
   },
   "PathnamesPage": {
-    "description": "<p>Taman Main Relivator | next-intl | Nama laluan URL boleh diinternasionalkan.</p><p>Jika anda menggunakan bahasa lalai, Bahasa Inggeris, anda akan melihat <code>/en/pathnames</code> di bar alamat pelayar pada halaman ini.</p><p>Jika anda menukar bahasa kepada Bahasa Jerman, URL akan dilokalkan dengan sewajarnya (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Taman Main reliverse | next-intl | Nama laluan URL boleh diinternasionalkan.</p><p>Jika anda menggunakan bahasa lalai, Bahasa Inggeris, anda akan melihat <code>/en/pathnames</code> di bar alamat pelayar pada halaman ini.</p><p>Jika anda menukar bahasa kepada Bahasa Jerman, URL akan dilokalkan dengan sewajarnya (<code>/de/pfadnamen</code>).</p>",
     "title": "Nama Laluan"
   },
   "PostAddForm": {
@@ -252,7 +252,7 @@
       "button": "Lawati Sekarang",
       "details": "Lawati catatan blog keluaran untuk melihat apa yang telah berubah dan apa yang akan datang.",
       "dismiss": "Tutup",
-      "title": "Relivator v1.2.6 dan v1.3.0-canary.7 KINI ADA!"
+      "title": "reliverse v1.2.6 dan v1.3.0-canary.7 KINI ADA!"
     }
   },
   "blog-comments-server": {
@@ -328,16 +328,16 @@
   },
   "faq": {
     "1": {
-      "details": "Periksa README.md dalam repositori GitHub Relivator untuk maklumat terkini dan arahan pemasangan.",
+      "details": "Periksa README.md dalam repositori GitHub reliverse untuk maklumat terkini dan arahan pemasangan.",
       "summary": "Bagaimana saya boleh memasang dan memulakan dengan cepat?"
     },
     "2": {
-      "details": "Relivator menawarkan kemungkinan tanpa had, dengan semua alat yang diperlukan sedia untuk anda.",
-      "summary": "Mengapa memilih Relivator untuk Next.js 15 & React 19?"
+      "details": "reliverse menawarkan kemungkinan tanpa had, dengan semua alat yang diperlukan sedia untuk anda.",
+      "summary": "Mengapa memilih reliverse untuk Next.js 15 & React 19?"
     },
     "3": {
-      "details": "Pembangunan terutama oleh satu orang. Sumbangan boleh membantu mempercepatkan proses. Klik di bawah untuk menderma. Atau lawati halaman Donate to Relivator (https://relivator.com/donate) untuk mengetahui lebih lanjut. Terima kasih atas sokongan anda!",
-      "summary": "Bolehkah keluaran Relivator v1.3.0 dipercepatkan?"
+      "details": "Pembangunan terutama oleh satu orang. Sumbangan boleh membantu mempercepatkan proses. Klik di bawah untuk menderma. Atau lawati halaman Donate to reliverse (https://reliverse.vercel.app/donate) untuk mengetahui lebih lanjut. Terima kasih atas sokongan anda!",
+      "summary": "Bolehkah keluaran reliverse v1.3.0 dipercepatkan?"
     }
   },
   "file-dialog": {
@@ -348,7 +348,7 @@
     "uploadImages": "Muat Naik Imej"
   },
   "landing": {
-    "about": "Berhenti melompat dari satu pemula ke yang lain. Dengan Relivator, kemungkinan anda tidak terhad! Anda boleh mencipta apa sahaja yang anda mahu; semua alat sedia dan menunggu anda. Matlamat kami adalah untuk mencipta pemula Next.js yang paling kaya dengan ciri dan boleh diakses secara global di dunia. Ia menawarkan lebih daripada sekadar kod—ia adalah pengalaman.",
+    "about": "Berhenti melompat dari satu pemula ke yang lain. Dengan reliverse, kemungkinan anda tidak terhad! Anda boleh mencipta apa sahaja yang anda mahu; semua alat sedia dan menunggu anda. Matlamat kami adalah untuk mencipta pemula Next.js yang paling kaya dengan ciri dan boleh diakses secara global di dunia. Ia menawarkan lebih daripada sekadar kod—ia adalah pengalaman.",
     "buy-now": "Katalog",
     "features": {
       "auth": {
@@ -360,7 +360,7 @@
         "title": "Integrasi Pangkalan Data: Mantap & Fleksibel"
       },
       "devtools": {
-        "ambitions-description": "Relivator menawarkan kemungkinan tanpa had dengan semua alat sedia untuk anda.",
+        "ambitions-description": "reliverse menawarkan kemungkinan tanpa had dengan semua alat sedia untuk anda.",
         "description": "Sistem langganan yang mantap dengan pelan percuma dan berbayar. Semak README.md untuk maklumat lanjut.",
         "title": "Langganan Stripe: Berkuasa & Fleksibel"
       },
@@ -395,7 +395,7 @@
     "thankYouForTheOrder": "Terima kasih atas pesanan anda"
   },
   "metadata": {
-    "description": "Bina Kedai Dalam Talian yang Lebih Cekap, Menarik, dan Menguntungkan: Relivator Meningkatkan eCommerce anda dengan Kuasa shadcn/ui, Next.js 15, React 19, dan banyak lagi",
+    "description": "Bina Kedai Dalam Talian yang Lebih Cekap, Menarik, dan Menguntungkan: reliverse Meningkatkan eCommerce anda dengan Kuasa shadcn/ui, Next.js 15, React 19, dan banyak lagi",
     "title": {
       "home": "Laman Utama"
     }
@@ -406,7 +406,7 @@
     "system": "Sistem",
     "toggleTheme": "Tukar Tema"
   },
-  "name": "Templat Relivator Next.js",
+  "name": "Templat reliverse Next.js",
   "onboard": {
     "asa": "Asa",
     "dateEventDateTbd": "Tarikh: [Tarikh Acara (TBD)]",
@@ -414,7 +414,7 @@
     "eventDetails": "Butiran Acara:",
     "join15MinutesEarlyToNetwork": "Sertai 15 minit awal untuk rangkaian!",
     "locationEventLinkTbd": "Lokasi: [Pautan Acara (TBD)]",
-    "relivatorNextJsRedefined": "Relivator - Next.js Didefinisi Semula:",
+    "reliverseNextJsRedefined": "reliverse - Next.js Didefinisi Semula:",
     "tbdToBeDetermined": "*TBD - Akan Ditentukan",
     "timeEventTimeTbd": "Masa: [Masa Acara (TBD)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Jadual Pembelian",
     "readyToBuildYourEcommercePlatform": "Bersedia untuk Bina Platform eCommerce Anda?",
     "recurringAndOneTimeDonations": "Derma Berulang dan Sekali",
-    "relivatorPlayground": "Taman Main Relivator",
+    "reliversePlayground": "Taman Main reliverse",
     "res": "Res",
     "resJsonAsPromise": "Res.json() sebagai Janji",
     "resetPassword": "Tetapkan Semula Kata Laluan",

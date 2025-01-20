@@ -50,12 +50,12 @@ export default function NewsletterWelcomeEmail({
   fromEmail,
   token,
 }: NewsletterWelcomeEmailProps) {
-  const previewText = `Hi ${firstName}, welcome to Relivator!`;
+  const previewText = `Hi ${firstName}, welcome to reliverse!`;
 
   return (
     <Html>
       <Head>
-        <title>Relivator Newsletter</title>
+        <title>reliverse Newsletter</title>
       </Head>
       <Preview>{previewText}</Preview>
       <Tailwind>
@@ -63,11 +63,11 @@ export default function NewsletterWelcomeEmail({
           <Container className="mx-auto my-[40px] max-w-2xl rounded p-4">
             <Section className="mt-4">
               <Heading className="text-center text-2xl font-semibold text-zinc-950">
-                Relivator
+                reliverse
               </Heading>
               <Hr className="my-4" />
               <Heading className="text-center text-3xl font-semibold text-zinc-800">
-                Welcome to Relivator!
+                Welcome to reliverse!
               </Heading>
               <Text className="mb-0 mt-6 text-center text-base">
                 {`We're`} so glad {`you're`} here. {`We're`} excited to share
@@ -113,7 +113,7 @@ export default function NewsletterWelcomeEmail({
                 </Link>
               </Text>
               <Text className="mb-0 mt-4">
-                @ Relivator {new Date().getFullYear()}
+                @ reliverse {new Date().getFullYear()}
               </Text>
               <Text className="m-0">
                 If you no longer want to receive these emails, you can{" "}

@@ -50,11 +50,11 @@ export function ByBleverseSheet() {
 
             <div>
               <h3 className="mb-4 text-sm font-semibold">
-                ✨ Relivator Spaces
+                ✨ reliverse Spaces
               </h3>
               <div className="space-y-4">
                 <Link
-                  href="https://docs.relivator.org"
+                  href="https://docs.reliverse.org"
                   className="sheet-link"
                   target="_blank"
                 >
@@ -84,7 +84,7 @@ export function ByBleverseSheet() {
               <h3 className="mb-4 text-sm font-semibold">🧿 Nazar Kornienko</h3>
               <div className="space-y-4">
                 <Link
-                  href="https://blefnk.relivator.org"
+                  href="https://blefnk.reliverse.org"
                   className="sheet-link"
                   target="_blank"
                 >

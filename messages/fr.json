@@ -46,7 +46,7 @@
     "email": "E-mail"
   },
   "JoinNewsletterForm": {
-    "joinRelivatorWeeklyNewsletter": "Rejoignez la newsletter hebdomadaire Relivator",
+    "joinreliverseWeeklyNewsletter": "Rejoignez la newsletter hebdomadaire reliverse",
     "tryAgain": "Essayer à nouveau"
   },
   "LocaleSwitcher": {
@@ -67,7 +67,7 @@
     "websiteLogoWithName": "Logo du site Web avec nom"
   },
   "Manifest": {
-    "name": "Relivator : Modèle Next.js"
+    "name": "reliverse : Modèle Next.js"
   },
   "MdxCard": {
     "view": "Voir"
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "NavWithCompactPageHeader"
   },
   "NewsletterWelcomeEmail": {
-    "relivatorWeeklyNewsletter": "Newsletter hebdomadaire Relivator"
+    "reliverseWeeklyNewsletter": "Newsletter hebdomadaire reliverse"
   },
   "Options": {
     "toggleColumns": "Basculer les colonnes"
   },
   "PathnamesPage": {
-    "description": "<p>Relivator Playground | next-intl | Les chemins d'accès des URL peuvent être internationalisés.</p><p>Si vous utilisez la langue par défaut, l'anglais, vous verrez <code>/en/pathnames</code> dans la barre d'adresse du navigateur sur cette page.< /p><p>Si vous modifiez les paramètres régionaux en allemand, l'URL est localisée en conséquence (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>reliverse Playground | next-intl | Les chemins d'accès des URL peuvent être internationalisés.</p><p>Si vous utilisez la langue par défaut, l'anglais, vous verrez <code>/en/pathnames</code> dans la barre d'adresse du navigateur sur cette page.< /p><p>Si vous modifiez les paramètres régionaux en allemand, l'URL est localisée en conséquence (<code>/de/pfadnamen</code>).</p>",
     "title": "Noms de chemin"
   },
   "PostAddForm": {
@@ -141,7 +141,7 @@
   },
   "RootLocaleLayout": {
     "metadata": {
-      "description": "Améliorez votre eCommerce avec Relivator: Puissance de shadcn/ui, Next.js 15 et React 19",
+      "description": "Améliorez votre eCommerce avec reliverse: Puissance de shadcn/ui, Next.js 15 et React 19",
       "title": {
         "home": "Accueil"
       }
@@ -252,7 +252,7 @@
       "button": "Visitez maintenant",
       "details": "Consultez le billet de blog de la version pour voir ce qui a changé et ce qui va suivre.",
       "dismiss": "Rejeter",
-      "title": "Relivator v1.2.6 et v1.3.0-canary.7 sont ICI !"
+      "title": "reliverse v1.2.6 et v1.3.0-canary.7 sont ICI !"
     }
   },
   "blog-comments-server": {
@@ -328,16 +328,16 @@
   },
   "faq": {
     "1": {
-      "details": "Consultez README.md dans le référentiel GitHub de Relivator pour les dernières informations et instructions d'installation.",
+      "details": "Consultez README.md dans le référentiel GitHub de reliverse pour les dernières informations et instructions d'installation.",
       "summary": "Comment installer et commencer rapidement?"
     },
     "2": {
-      "details": "Relivator offre des possibilités illimitées avec tous les outils nécessaires prêts à l'emploi.",
-      "summary": "Pourquoi choisir Relivator pour Next.js 15 et React 19?"
+      "details": "reliverse offre des possibilités illimitées avec tous les outils nécessaires prêts à l'emploi.",
+      "summary": "Pourquoi choisir reliverse pour Next.js 15 et React 19?"
     },
     "3": {
       "details": "Le développement est principalement mené par une seule personne. Les dons peuvent accélérer le processus. Cliquez ci-dessous pour soutenir. Merci pour votre soutien! 🩷",
-      "summary": "Peut-on accélérer la sortie de Relivator v1.3.0?"
+      "summary": "Peut-on accélérer la sortie de reliverse v1.3.0?"
     }
   },
   "file-dialog": {
@@ -360,7 +360,7 @@
         "title": "Intégration Base de Données: Robuste et Polyvalente"
       },
       "devtools": {
-        "ambitions-description": "Relivator offre des possibilités illimitées avec tous les outils prêts.",
+        "ambitions-description": "reliverse offre des possibilités illimitées avec tous les outils prêts.",
         "description": "Système d'abonnement robuste avec plans gratuits et payants. Voir README.md pour plus de détails.",
         "title": "Abonnements Stripe: Puissants et Flexibles"
       },
@@ -395,7 +395,7 @@
     "thankYouForTheOrder": "Merci pour la commande"
   },
   "metadata": {
-    "description": "Améliorez votre eCommerce avec Relivator: Puissance de shadcn/ui, Next.js 15 et React 19",
+    "description": "Améliorez votre eCommerce avec reliverse: Puissance de shadcn/ui, Next.js 15 et React 19",
     "title": {
       "home": "Accueil"
     }
@@ -406,7 +406,7 @@
     "system": "Système",
     "toggleTheme": "Changer de thème"
   },
-  "name": "Modèle Relivator Next.js",
+  "name": "Modèle reliverse Next.js",
   "onboard": {
     "asa": "Comme",
     "dateEventDateTbd": "Date : [Date de l'événement (à déterminer)]",
@@ -414,7 +414,7 @@
     "eventDetails": "Détails de l'événement :",
     "join15MinutesEarlyToNetwork": "🌟 Inscrivez-vous 15 minutes à l'avance pour réseauter ! 🌟",
     "locationEventLinkTbd": "Emplacement : [Lien de l'événement (à déterminer)]",
-    "relivatorNextJsRedefined": "🚀 Relivator - Next.js redéfini :",
+    "reliverseNextJsRedefined": "🚀 reliverse - Next.js redéfini :",
     "tbdToBeDetermined": "*À déterminer - À déterminer",
     "timeEventTimeTbd": "Heure : [Heure de l'événement (à déterminer)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Tableau des achats",
     "readyToBuildYourEcommercePlatform": "Prêt à créer votre plateforme de commerce électronique ?",
     "recurringAndOneTimeDonations": "Dons récurrents et ponctuels",
-    "relivatorPlayground": "Revivez le terrain de jeu",
+    "reliversePlayground": "Revivez le terrain de jeu",
     "res": "Rés",
     "resJsonAsPromise": "Res.json() comme promesse",
     "resetPassword": "Réinitialiser le mot de passe",

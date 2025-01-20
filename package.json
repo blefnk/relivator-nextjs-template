@@ -1,9 +1,9 @@
 {
-  "name": "relivator",
+  "name": "reliverse",
   "version": "1.3.0",
   "private": true,
   "type": "module",
-  "description": "The Relivator Next.js template serves as the foundation for your eCommerce platform, helping you create efficient, engaging, and profitable online stores. Relivator enhances any eCommerce with the power of modern Next.js, React, TypeScript, Tailwind, and more.",
+  "description": "The reliverse Next.js template serves as the foundation for your eCommerce platform, helping you create efficient, engaging, and profitable online stores. reliverse enhances any eCommerce with the power of modern Next.js, React, TypeScript, Tailwind, and more.",
   "scripts": {
     "check": "bun typecheck && bun lint && bun format",
     "dev": "next dev --turbopack",
@@ -28,7 +28,7 @@
     "db:studio": "drizzle-kit studio",
     "email:dev": "email dev --dir src/components/emails -p 3001",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe --latest",
-    "unlighthouse": "bunx unlighthouse --site https://relivator.com",
+    "unlighthouse": "bunx unlighthouse --site https://reliverse.vercel.app",
     "latest": "bun update --latest"
   },
   "dependencies": {
