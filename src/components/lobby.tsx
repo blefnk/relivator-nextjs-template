@@ -77,18 +77,18 @@ export async function Lobby({
           style={{ animationDelay: "0.20s", animationFillMode: "both" }}
         >
           <span className="hidden md:block">
-            reliverse template is the foundation of your eCommerce platform:
+            Relivator template is the foundation of your eCommerce platform:
             Build More Efficient, Engaging, and Profitable Online Stores
           </span>
           <span className="block md:hidden">
-            reliverse template is the foundation of your eCommerce platform
+            Relivator template is the foundation of your eCommerce platform
           </span>
         </PageHeaderHeading>
         <PageHeaderDescription
           className="max-w-[46.875rem] animate-fade-up"
           style={{ animationDelay: "0.30s", animationFillMode: "both" }}
         >
-          reliverse Enhances your eCommerce with the Power of Next.js 15, React
+          Relivator Enhances your eCommerce with the Power of Next.js 15, React
           19, Tailwind, and more
         </PageHeaderDescription>
         <PageActions

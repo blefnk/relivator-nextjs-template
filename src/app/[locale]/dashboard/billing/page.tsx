@@ -48,7 +48,7 @@ export default async function BillingPage() {
         <RocketIcon className="size-4" />
         <AlertTitle>Heads up!</AlertTitle>
         <AlertDescription>
-          reliverse is a demo app using a Stripe test environment. You can find
+          Relivator is a demo app using a Stripe test environment. You can find
           a list of test card numbers on the{" "}
           <a
             href="https://stripe.com/docs/testing"

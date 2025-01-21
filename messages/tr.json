@@ -46,7 +46,7 @@
     "email": "E-posta"
   },
   "JoinNewsletterForm": {
-    "joinreliverseWeeklyNewsletter": "reliverse Haftalık Bültenine Katılın",
+    "joinRelivatorWeeklyNewsletter": "Relivator Haftalık Bültenine Katılın",
     "tryAgain": "Tekrar deneyin"
   },
   "LocaleSwitcher": {
@@ -67,7 +67,7 @@
     "websiteLogoWithName": "Adı olan web sitesi logosu"
   },
   "Manifest": {
-    "name": "reliverse: Next.js Şablonu"
+    "name": "Relivator: Next.js Şablonu"
   },
   "MdxCard": {
     "view": "Görüş"
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "NavWithCompactPageHeader"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "Haftalık Bülteni Yeniden Yaşayın"
+    "relivatorWeeklyNewsletter": "Haftalık Bülteni Yeniden Yaşayın"
   },
   "Options": {
     "toggleColumns": "Sütunları değiştir"
   },
   "PathnamesPage": {
-    "description": "<p>reliverse Playground | next-intl | URL yol adları uluslararası hale getirilebilir.</p><p>Varsayılan dil olan İngilizce'yi kullanıyorsanız, bu sayfadaki tarayıcı adres çubuğunda <code>/en/pathnames</code> ifadesini göreceksiniz.< /p><p>Yerel ayarı Almanca olarak değiştirirseniz URL buna uygun şekilde yerelleştirilir (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Relivator Playground | next-intl | URL yol adları uluslararası hale getirilebilir.</p><p>Varsayılan dil olan İngilizce'yi kullanıyorsanız, bu sayfadaki tarayıcı adres çubuğunda <code>/en/pathnames</code> ifadesini göreceksiniz.< /p><p>Yerel ayarı Almanca olarak değiştirirseniz URL buna uygun şekilde yerelleştirilir (<code>/de/pfadnamen</code>).</p>",
     "title": "Yol adları"
   },
   "PostAddForm": {
@@ -141,7 +141,7 @@
   },
   "RootLocaleLayout": {
     "metadata": {
-      "description": "reliverse ile e-Ticaretinizi geliştirin: shadcn/ui, Next.js 15 ve React 19 gücü",
+      "description": "Relivator ile e-Ticaretinizi geliştirin: shadcn/ui, Next.js 15 ve React 19 gücü",
       "title": {
         "home": "Anasayfa"
       }
@@ -252,7 +252,7 @@
       "button": "Şimdi ziyaret edin",
       "details": "Nelerin değiştiğini ve bundan sonra nelerin geleceğini görmek için sürüm blog gönderisini ziyaret edin.",
       "dismiss": "Azletmek",
-      "title": "reliverse v1.2.6 ve v1.3.0-canary.7 BURADA!"
+      "title": "Relivator v1.2.6 ve v1.3.0-canary.7 BURADA!"
     }
   },
   "blog-comments-server": {
@@ -328,16 +328,16 @@
   },
   "faq": {
     "1": {
-      "details": "Proje hakkında en güncel bilgiler ve kurulum talimatları için reliverse GitHub deposundaki README.md dosyasını ziyaret edin.",
+      "details": "Proje hakkında en güncel bilgiler ve kurulum talimatları için Relivator GitHub deposundaki README.md dosyasını ziyaret edin.",
       "summary": "Nasıl hızlı kurabilir ve başlayabilirim?"
     },
     "2": {
-      "details": "reliverse sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
-      "summary": "Next.js 15 ve React 19 için neden reliverse'u seçmeliyim?"
+      "details": "Relivator sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
+      "summary": "Next.js 15 ve React 19 için neden Relivator'u seçmeliyim?"
     },
     "3": {
       "details": "Geliştirme genellikle bir kişi tarafından yapılır. Bağışlar süreci hızlandırabilir. Bağış yapmak için aşağıya tıklayın. Destek için teşekkürler! 🩷",
-      "summary": "reliverse v1.3.0'ı hızlandırmak mümkün mü?"
+      "summary": "Relivator v1.3.0'ı hızlandırmak mümkün mü?"
     }
   },
   "file-dialog": {
@@ -360,7 +360,7 @@
         "title": "Veritabanı Entegrasyonu: Sağlam ve Esnek"
       },
       "devtools": {
-        "ambitions-description": "reliverse sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
+        "ambitions-description": "Relivator sınırsız olasılıklar sunar ve gerekli tüm araçlar hazır.",
         "description": "Güçlü abonelik sistemi, ücretsiz ve ücretli planlarla. Detaylar için README.md'yi inceleyin.",
         "title": "Stripe Abonelikleri: Güçlü ve Esnek"
       },
@@ -395,7 +395,7 @@
     "thankYouForTheOrder": "Sipariş için teşekkür ederim"
   },
   "metadata": {
-    "description": "reliverse ile e-Ticaretinizi geliştirin: shadcn/ui, Next.js 15 ve React 19 gücü",
+    "description": "Relivator ile e-Ticaretinizi geliştirin: shadcn/ui, Next.js 15 ve React 19 gücü",
     "title": {
       "home": "Anasayfa"
     }
@@ -406,7 +406,7 @@
     "system": "Sistem",
     "toggleTheme": "Temayı değiştir"
   },
-  "name": "reliverse Next.js Şablonu",
+  "name": "Relivator Next.js Şablonu",
   "onboard": {
     "asa": "Asa",
     "dateEventDateTbd": "Tarih: [Etkinlik Tarihi (TBD)]",
@@ -414,7 +414,7 @@
     "eventDetails": "Etkinlik Detayları:",
     "join15MinutesEarlyToNetwork": "🌟 Ağa 15 dakika erken katılın! 🌟",
     "locationEventLinkTbd": "Konum: [Etkinlik Bağlantısı (TBD)]",
-    "reliverseNextJsRedefined": "🚀 reliverse - Next.js Yeniden Tanımlandı:",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js Yeniden Tanımlandı:",
     "tbdToBeDetermined": "*TBD - Belirlenecek",
     "timeEventTimeTbd": "Zaman: [Olay Zamanı (TBD)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Satın Alma Tablosu",
     "readyToBuildYourEcommercePlatform": "E-Ticaret platformunuzu oluşturmaya hazır mısınız?",
     "recurringAndOneTimeDonations": "Tekrarlanan ve bir kerelik bağışlar",
-    "reliversePlayground": "Oyun Alanını Yeniden Yaşayın",
+    "relivatorPlayground": "Oyun Alanını Yeniden Yaşayın",
     "res": "Çöz.",
     "resJsonAsPromise": "Res.json() Söz olarak",
     "resetPassword": "Şifreyi sıfırla",

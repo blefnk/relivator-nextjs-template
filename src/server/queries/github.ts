@@ -5,7 +5,7 @@ export async function getGithubStars() {
   return await cache(
     async () => {
       const response = await fetch(
-        "https://api.github.com/repos/blefnk/reliverse",
+        "https://api.github.com/repos/blefnk/relivator",
         {
           headers: {
             Accept: "application/vnd.github+json",

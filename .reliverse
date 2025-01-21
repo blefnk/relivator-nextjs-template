@@ -5,14 +5,14 @@
   "$schema": "https://reliverse.org/schema.json",
 
   // General project information
-  "projectName": "reliverse",
+  "projectName": "relivator",
   "projectAuthor": "blefnk",
   "projectDescription": "unknown",
   "projectVersion": "0.1.0",
   "projectLicense": "MIT",
-  "projectRepository": "https://github.com/blefnk/reliverse",
+  "projectRepository": "https://github.com/blefnk/relivator",
   "projectState": "creating",
-  "projectDomain": "reliverse.vercel.app",
+  "projectDomain": "relivator.com",
   "projectDeployService": "vercel",
   "projectCategory": "unknown",
   "projectSubcategory": "unknown",

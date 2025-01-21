@@ -40,7 +40,7 @@ export function Intro() {
               },
             }}
           >
-            Welcome to reliverse
+            Welcome to Relivator
           </motion.h1>
           <motion.p
             className="max-w-md text-muted-foreground transition-colors sm:text-lg"

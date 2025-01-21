@@ -4,7 +4,7 @@ export function Analytics() {
   return (
     <Loglib
       config={{
-        id: "reliverse",
+        id: "relivator",
       }}
     />
   );

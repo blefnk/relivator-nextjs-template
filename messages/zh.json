@@ -46,7 +46,7 @@
     "email": "电子邮件"
   },
   "JoinNewsletterForm": {
-    "joinreliverseWeeklyNewsletter": "加入 reliverse 每周通讯",
+    "joinRelivatorWeeklyNewsletter": "加入 Relivator 每周通讯",
     "tryAgain": "再试一次"
   },
   "LocaleSwitcher": {
@@ -67,7 +67,7 @@
     "websiteLogoWithName": "带有名称的网站徽标"
   },
   "Manifest": {
-    "name": "reliverse：Next.js 模板"
+    "name": "Relivator：Next.js 模板"
   },
   "MdxCard": {
     "view": "看法"
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "带有紧凑页标题的导航"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "reliverse 每周通讯"
+    "relivatorWeeklyNewsletter": "Relivator 每周通讯"
   },
   "Options": {
     "toggleColumns": "切换列"
   },
   "PathnamesPage": {
-    "description": "<p>reliverse Playground | next-intl | URL 路径名可以国际化。</p><p>如果您使用默认语言英语，您将在此页面的浏览器地址栏中看到 <code>/en/pathnames</code>。< /p><p>如果将区域设置更改为德语，则 URL 也会相应地本地化 (<code>/de/pfadnamen</code>)。</p>",
+    "description": "<p>Relivator Playground | next-intl | URL 路径名可以国际化。</p><p>如果您使用默认语言英语，您将在此页面的浏览器地址栏中看到 <code>/en/pathnames</code>。< /p><p>如果将区域设置更改为德语，则 URL 也会相应地本地化 (<code>/de/pfadnamen</code>)。</p>",
     "title": "路径名"
   },
   "PostAddForm": {
@@ -141,7 +141,7 @@
   },
   "RootLocaleLayout": {
     "metadata": {
-      "description": "使用 reliverse 提升您的电商：shadcn/ui、Next.js 15 和 React 19 的强大功能",
+      "description": "使用 Relivator 提升您的电商：shadcn/ui、Next.js 15 和 React 19 的强大功能",
       "title": {
         "home": "首页"
       }
@@ -252,7 +252,7 @@
       "button": "立即访问",
       "details": "请访问发布博客文章，了解发生了什么变化以及接下来会发生什么。",
       "dismiss": "解雇",
-      "title": "reliverse v1.2.6 和 v1.3.0-canary.7 现已推出！"
+      "title": "Relivator v1.2.6 和 v1.3.0-canary.7 现已推出！"
     }
   },
   "blog-comments-server": {
@@ -328,16 +328,16 @@
   },
   "faq": {
     "1": {
-      "details": "访问 reliverse GitHub 仓库中的 README.md 文件，获取最新信息和安装说明。",
+      "details": "访问 Relivator GitHub 仓库中的 README.md 文件，获取最新信息和安装说明。",
       "summary": "如何快速安装和开始？"
     },
     "2": {
-      "details": "reliverse 提供无限可能，并且所有工具都已准备就绪。",
-      "summary": "为什么选择 reliverse 作为 Next.js 15 和 React 19 的起步？"
+      "details": "Relivator 提供无限可能，并且所有工具都已准备就绪。",
+      "summary": "为什么选择 Relivator 作为 Next.js 15 和 React 19 的起步？"
     },
     "3": {
       "details": "开发主要由一人完成。捐赠可以加速进度。点击下方支持。感谢支持！ 🩷",
-      "summary": "是否可以加快 reliverse v1.3.0 的发布？"
+      "summary": "是否可以加快 Relivator v1.3.0 的发布？"
     }
   },
   "file-dialog": {
@@ -360,7 +360,7 @@
         "title": "数据库集成：强大灵活"
       },
       "devtools": {
-        "ambitions-description": "reliverse 提供无限可能，并且所有工具都已准备就绪。",
+        "ambitions-description": "Relivator 提供无限可能，并且所有工具都已准备就绪。",
         "description": "强大的订阅系统，支持免费和付费计划。详见 README.md。",
         "title": "Stripe 订阅：强大灵活"
       },
@@ -395,7 +395,7 @@
     "thankYouForTheOrder": "感谢您的订单"
   },
   "metadata": {
-    "description": "使用 reliverse 提升您的电商：shadcn/ui、Next.js 15 和 React 19 的强大功能",
+    "description": "使用 Relivator 提升您的电商：shadcn/ui、Next.js 15 和 React 19 的强大功能",
     "title": {
       "home": "首页"
     }
@@ -406,7 +406,7 @@
     "system": "系统",
     "toggleTheme": "切换主题"
   },
-  "name": "reliverse Next.js 模板",
+  "name": "Relivator Next.js 模板",
   "onboard": {
     "asa": "阿萨",
     "dateEventDateTbd": "日期：[活动日期（待定）]",
@@ -414,7 +414,7 @@
     "eventDetails": "活动详情：",
     "join15MinutesEarlyToNetwork": "🌟 提前15分钟加入网络！ 🌟",
     "locationEventLinkTbd": "地点：【活动链接（待定）】",
-    "reliverseNextJsRedefined": "🚀 reliverse - Next.js 重新定义：",
+    "relivatorNextJsRedefined": "🚀 Relivator - Next.js 重新定义：",
     "tbdToBeDetermined": "*TBD - 待定",
     "timeEventTimeTbd": "时间：[活动时间（待定）]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "采购表",
     "readyToBuildYourEcommercePlatform": "准备好构建您的电子商务平台了吗？",
     "recurringAndOneTimeDonations": "经常性和一次性捐赠",
-    "reliversePlayground": "重温游乐场",
+    "relivatorPlayground": "重温游乐场",
     "res": "资源",
     "resJsonAsPromise": "res.json() 作为 Promise",
     "resetPassword": "重置密码",

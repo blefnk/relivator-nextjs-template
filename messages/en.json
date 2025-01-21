@@ -46,7 +46,7 @@
     "email": "Email"
   },
   "JoinNewsletterForm": {
-    "joinreliverseWeeklyNewsletter": "Join the reliverse Weekly Newsletter",
+    "joinRelivatorWeeklyNewsletter": "Join the Relivator Weekly Newsletter",
     "tryAgain": "Try Again"
   },
   "LocaleSwitcher": {
@@ -67,7 +67,7 @@
     "websiteLogoWithName": "Website Logo with Name"
   },
   "Manifest": {
-    "name": "reliverse Next.js Template"
+    "name": "Relivator Next.js Template"
   },
   "MdxCard": {
     "view": "View"
@@ -85,13 +85,13 @@
     "navwithcompactpageheader": "Navigation with Compact Page Header"
   },
   "NewsletterWelcomeEmail": {
-    "reliverseWeeklyNewsletter": "reliverse Weekly Newsletter"
+    "relivatorWeeklyNewsletter": "Relivator Weekly Newsletter"
   },
   "Options": {
     "toggleColumns": "Toggle Columns"
   },
   "PathnamesPage": {
-    "description": "<p>reliverse Playground | next-intl | The URL pathnames can be internationalized.</p><p>If you're using the default language, English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Relivator Playground | next-intl | The URL pathnames can be internationalized.</p><p>If you're using the default language, English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
     "title": "Pathnames"
   },
   "PostAddForm": {
@@ -252,7 +252,7 @@
       "button": "Visit Now",
       "details": "Visit the release blog post to see what's changed and what's coming next.",
       "dismiss": "Dismiss",
-      "title": "reliverse v1.2.6 and v1.3.0-canary.7 are HERE!"
+      "title": "Relivator v1.2.6 and v1.3.0-canary.7 are HERE!"
     }
   },
   "blog-comments-server": {
@@ -328,16 +328,16 @@
   },
   "faq": {
     "1": {
-      "details": "Check the README.md in the reliverse GitHub repository for the latest information and installation instructions.",
+      "details": "Check the README.md in the Relivator GitHub repository for the latest information and installation instructions.",
       "summary": "How can I install and get started quickly?"
     },
     "2": {
-      "details": "reliverse offers unlimited possibilities, with all the necessary tools ready for you.",
-      "summary": "Why choose reliverse for Next.js 15 & React 19?"
+      "details": "Relivator offers unlimited possibilities, with all the necessary tools ready for you.",
+      "summary": "Why choose Relivator for Next.js 15 & React 19?"
     },
     "3": {
-      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to reliverse (https://reliverse.vercel.app/donate) page to learn more details. Thank you for your support!",
-      "summary": "Can the release of reliverse v1.3.0 be sped up?"
+      "details": "Development is mainly by one person. Donations can help speed up the process. Click below to donate. Or visit the Donate to Relivator (https://relivator.com/donate) page to learn more details. Thank you for your support!",
+      "summary": "Can the release of Relivator v1.3.0 be sped up?"
     }
   },
   "file-dialog": {
@@ -348,7 +348,7 @@
     "uploadImages": "Upload Images"
   },
   "landing": {
-    "about": "Stop jumping from one starter to the next. With reliverse, your possibilities are endless! You can create anything you want; all the tools are ready and waiting for you. Our goal is to create the world's most feature-rich and globally accessible Next.js starter. It offers more than just code—it's an experience.",
+    "about": "Stop jumping from one starter to the next. With Relivator, your possibilities are endless! You can create anything you want; all the tools are ready and waiting for you. Our goal is to create the world's most feature-rich and globally accessible Next.js starter. It offers more than just code—it's an experience.",
     "buy-now": "Catalogue",
     "features": {
       "auth": {
@@ -360,7 +360,7 @@
         "title": "Database Integration: Robust & Versatile"
       },
       "devtools": {
-        "ambitions-description": "reliverse offers unlimited possibilities with all tools ready for you.",
+        "ambitions-description": "Relivator offers unlimited possibilities with all tools ready for you.",
         "description": "Robust subscription system with free and paid plans. Check README.md for more.",
         "title": "Stripe Subscriptions: Powerful & Flexible"
       },
@@ -395,7 +395,7 @@
     "thankYouForTheOrder": "Thank you for the order"
   },
   "metadata": {
-    "description": "Build More Efficient, Engaging, and Profitable Online Stores: reliverse Enhances your eCommerce with the Power of shadcn/ui, Next.js 15, React 19, and more",
+    "description": "Build More Efficient, Engaging, and Profitable Online Stores: Relivator Enhances your eCommerce with the Power of shadcn/ui, Next.js 15, React 19, and more",
     "title": {
       "home": "Home"
     }
@@ -406,7 +406,7 @@
     "system": "System",
     "toggleTheme": "Toggle Theme"
   },
-  "name": "reliverse Next.js Template",
+  "name": "Relivator Next.js Template",
   "onboard": {
     "asa": "Asa",
     "dateEventDateTbd": "Date: [Event Date (TBD)]",
@@ -414,7 +414,7 @@
     "eventDetails": "Event Details:",
     "join15MinutesEarlyToNetwork": "Join 15 minutes early to network!",
     "locationEventLinkTbd": "Location: [Event Link (TBD)]",
-    "reliverseNextJsRedefined": "reliverse - Next.js Redefined:",
+    "relivatorNextJsRedefined": "Relivator - Next.js Redefined:",
     "tbdToBeDetermined": "*TBD - To Be Determined",
     "timeEventTimeTbd": "Time: [Event Time (TBD)]"
   },
@@ -462,7 +462,7 @@
     "purchasesTable": "Purchases Table",
     "readyToBuildYourEcommercePlatform": "Ready to Build Your eCommerce Platform?",
     "recurringAndOneTimeDonations": "Recurring and One-Time Donations",
-    "reliversePlayground": "reliverse Playground",
+    "relivatorPlayground": "Relivator Playground",
     "res": "Res",
     "resJsonAsPromise": "Res.json() as Promise",
     "resetPassword": "Reset Password",

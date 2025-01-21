@@ -22,12 +22,8 @@
   "workbench.activityBar.orientation": "vertical",
   "openMultipleFiles.limit": 700,
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "i18n-ally.localesPaths": [
-    "messages"
-  ],
-  "i18n-ally.enabledFrameworks": [
-    "react"
-  ],
+  "i18n-ally.localesPaths": ["messages"],
+  "i18n-ally.enabledFrameworks": ["react"],
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.autoDetection": true,
   "i18n-ally.keystyle": "nested",

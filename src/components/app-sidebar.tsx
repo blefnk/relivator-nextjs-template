@@ -18,7 +18,7 @@ import {
 const data = {
   navMain: [
     {
-      title: "reliverse",
+      title: "Relivator",
       url: "#",
       items: [
         {
