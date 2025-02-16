@@ -125,7 +125,7 @@ export function MultiSelect({
           <CommandPrimitive.Input
             ref={inputRef}
             placeholder={placeholder}
-            className="flex-1 bg-transparent px-1 py-0.5 outline-none placeholder:text-muted-foreground"
+            className="flex-1 bg-transparent px-1 py-0.5 outline-hidden placeholder:text-muted-foreground"
             value={query}
             onValueChange={setQuery}
             onBlur={() => {
@@ -139,7 +139,7 @@ export function MultiSelect({
       </div>
       <div className="relative z-50 mt-2">
         {open && filteredOptions.length > 0 ? (
-          <div className="absolute top-0 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
+          <div className="absolute top-0 w-full rounded-md border bg-popover text-popover-foreground shadow-md outline-hidden animate-in">
             <CommandGroup className="h-full overflow-auto">
               {filteredOptions.map((option) => {
                 return (

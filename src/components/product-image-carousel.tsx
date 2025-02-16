@@ -146,7 +146,7 @@ export function ProductImageCarousel({
               variant="outline"
               size="icon"
               className={cn(
-                "group relative aspect-square size-full max-w-[100px] rounded-none shadow-sm hover:bg-transparent focus-visible:ring-foreground",
+                "group relative aspect-square size-full max-w-[100px] rounded-none shadow-xs hover:bg-transparent focus-visible:ring-foreground",
                 i === selectedIndex && "ring-1 ring-foreground",
               )}
               onClick={() => scrollTo(i)}

@@ -1,7 +1,3 @@
-/** Originally from `shadcn/ui-docs`
- * @link https://github.com/shadcn/ui/blob/main/apps/www/styles/mdx.css
- */
-
 [data-theme="light"] {
   display: block;
 }

@@ -21,7 +21,7 @@ export default async function OnboardingPage() {
   }
 
   return (
-    <Shell className="h-[calc(100vh-4rem)] max-w-screen-sm">
+    <Shell className="h-[calc(100vh-4rem)] max-w-(--breakpoint-sm)">
       <GridPattern
         width={30}
         height={30}

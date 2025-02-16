@@ -54,7 +54,7 @@ export async function CartSheet() {
         <SheetHeader className="space-y-2.5 pr-6">
           <div className="flex items-center justify-between">
             <SheetTitle>Cart {itemCount > 0 && `(${itemCount})`}</SheetTitle>
-            <SheetClose className="absolute right-4 top-4 p-1 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 disabled:pointer-events-none">
+            <SheetClose className="absolute right-4 top-4 p-1 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-1 disabled:pointer-events-none">
               <kbd className="inline-flex select-none items-center gap-1 rounded border bg-background px-2 py-1 font-mono font-medium opacity-100">
                 <span className="text-xs">ESC</span>
                 <span className="sr-only">Close</span>

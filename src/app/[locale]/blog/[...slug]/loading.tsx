@@ -1,4 +1,5 @@
-import "~/styles/mdx.css";
+// import "~/styles/mdx.css";
+
 import { Shell } from "~/components/shell";
 import { AspectRatio } from "~/components/ui/aspect-ratio";
 import { Separator } from "~/components/ui/separator";

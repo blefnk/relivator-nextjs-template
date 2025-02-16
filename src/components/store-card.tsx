@@ -47,7 +47,7 @@ export function StoreCard({ store, href }: StoreCardProps) {
             </TooltipTrigger>
             <TooltipContent
               align="start"
-              className="w-52 border border-input bg-background text-foreground shadow-sm"
+              className="w-52 border border-input bg-background text-foreground shadow-xs"
             >
               Connect your Stripe account to activate your store
             </TooltipContent>

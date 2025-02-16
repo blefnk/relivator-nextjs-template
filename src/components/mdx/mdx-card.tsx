@@ -28,7 +28,7 @@ export function MdxCard({
       {...props}
     >
       <div className="flex flex-col justify-between space-y-4">
-        <div className="space-y-2 [&>h3]:!mt-0 [&>h4]:!mt-0 [&>p]:text-muted-foreground">
+        <div className="space-y-2 [&>h3]:mt-0! [&>h4]:mt-0! [&>p]:text-muted-foreground">
           {children}
         </div>
       </div>

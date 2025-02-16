@@ -1,8 +1,7 @@
+// import "~/styles/mdx.css";
+
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { type Metadata } from "next";
-
-import "~/styles/mdx.css";
-
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";

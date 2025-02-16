@@ -14,7 +14,7 @@ const TextareaAutosize = React.forwardRef<
   return (
     <ReactTextareaAutosize
       className={cn(
-        "min-h-[60px] w-full bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm",
+        "min-h-[60px] w-full bg-transparent px-4 py-[1.3rem] focus-within:outline-hidden sm:text-sm",
         className,
       )}
       ref={ref}

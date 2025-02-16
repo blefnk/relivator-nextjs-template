@@ -37,7 +37,8 @@
     "src/**/*.tsx",
     "src/env.js",
     "tailwind.config.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "reliverse.ts"
   ],
   "exclude": ["node_modules"]
 }

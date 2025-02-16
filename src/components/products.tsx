@@ -209,7 +209,7 @@ export function Products({
             </SheetHeader>
             <Separator />
             <div className="flex flex-1 flex-col gap-5 overflow-hidden p-1">
-              <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+              <div className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-xs">
                 <div className="space-y-0.5">
                   <Label htmlFor={`active-${id}`}>Active stores</Label>
                   <CardDescription>
