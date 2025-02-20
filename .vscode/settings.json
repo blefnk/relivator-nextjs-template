@@ -29,5 +29,8 @@
   "i18n-ally.keystyle": "nested",
   "files.associations": {
     ".reliverse": "jsonc"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }
