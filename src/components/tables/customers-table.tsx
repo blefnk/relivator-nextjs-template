@@ -16,21 +16,21 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { formatDate, formatPrice } from "~/server/utils";
 
-type AwaitedCustomer = {
+interface AwaitedCustomer {
   email: string | null;
   name: string | null;
   orderPlaced: number;
   totalSpent: number;
   createdAt: string;
-};
+}
 
-type CustomersTableProps = {
+interface CustomersTableProps {
   promise: Promise<{
     data: AwaitedCustomer[];
     pageCount: number;
   }>;
   storeId: string;
-};
+}
 
 export function CustomersTable({ promise, storeId }: CustomersTableProps) {
   const { data, pageCount } = React.use(promise);

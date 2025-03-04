@@ -34,12 +34,12 @@ export type AwaitedOrder = Pick<
   store: string | null;
 };
 
-type PurchasesTableProps = {
+interface PurchasesTableProps {
   promise: Promise<{
     data: AwaitedOrder[];
     pageCount: number;
   }>;
-};
+}
 
 export function PurchasesTable({ promise }: PurchasesTableProps) {
   const { data, pageCount } = React.use(promise);

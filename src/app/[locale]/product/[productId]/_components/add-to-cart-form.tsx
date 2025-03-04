@@ -25,10 +25,10 @@ import { showErrorToast } from "~/server/handle-error";
 import { cn } from "~/server/utils";
 import { updateCartItemSchema } from "~/server/validations/cart";
 
-type AddToCartFormProps = {
+interface AddToCartFormProps {
   productId: string;
   showBuyNow?: boolean;
-};
+}
 
 type Inputs = z.infer<typeof updateCartItemSchema>;
 

@@ -4,10 +4,10 @@ import Link from "next/link";
 import { buttonVariants } from "~/components/ui/button";
 import { cn, truncate } from "~/server/utils";
 
-type MdxPagerItem = {
+interface MdxPagerItem {
   title: string;
   slug: string;
-};
+}
 
 type MdxPagerProps = {
   currentItem: MdxPagerItem;

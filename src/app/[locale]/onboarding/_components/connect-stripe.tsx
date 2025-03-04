@@ -9,9 +9,9 @@ import { Button } from "~/components/ui/button";
 
 import { StepHeader } from "./step-header";
 
-type ConnectStripeProps = {
+interface ConnectStripeProps {
   storeId: string | null;
-};
+}
 
 export function ConnectStripe({ storeId }: ConnectStripeProps) {
   const router = useRouter();

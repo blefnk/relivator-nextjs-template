@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   description: "Order summary for your purchase",
 };
 
-type OrderSuccessPageProps = {
+interface OrderSuccessPageProps {
   params: {
     storeId: string;
   };
   searchParams: Record<string, string | string[] | undefined>;
-};
+}
 
 export default async function OrderSuccessPage({
   params,

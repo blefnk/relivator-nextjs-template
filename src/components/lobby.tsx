@@ -26,12 +26,12 @@ import { cn } from "~/server/utils";
 
 import { CategoryCard } from "./category-card";
 
-type LobbyProps = {
+interface LobbyProps {
   githubStarsPromise: ReturnType<typeof getGithubStars>;
   productsPromise: ReturnType<typeof getFeaturedProducts>;
   categoriesPromise: ReturnType<typeof getCategories>;
   storesPromise: ReturnType<typeof getFeaturedStores>;
-};
+}
 
 export async function Lobby({
   githubStarsPromise,

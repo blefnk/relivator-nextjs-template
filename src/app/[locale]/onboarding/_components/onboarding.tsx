@@ -9,9 +9,9 @@ import { ConnectStripe } from "./connect-stripe";
 import { CreateStore } from "./create-store";
 import { Intro } from "./intro";
 
-type OnboardingProps = {
+interface OnboardingProps {
   userId: string;
-};
+}
 
 export function Onboarding({ userId }: OnboardingProps) {
   const search = useSearchParams();

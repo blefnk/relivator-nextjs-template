@@ -31,14 +31,14 @@ type AwaitedProduct = Pick<
   "id" | "name" | "categoryId" | "price" | "inventory" | "rating" | "createdAt"
 >;
 
-type ProductsTableProps = {
+interface ProductsTableProps {
   promise: Promise<{
     data: AwaitedProduct[];
     pageCount: number;
   }>;
   categoriesPromise: ReturnType<typeof getCategories>;
   storeId: string;
-};
+}
 
 export function ProductsTable({
   promise,

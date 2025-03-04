@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-type StepHeaderProps = {
+interface StepHeaderProps {
   title: string;
   description?: string;
-};
+}
 
 export function StepHeader({ title, description }: StepHeaderProps) {
   return (

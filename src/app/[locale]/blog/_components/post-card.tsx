@@ -7,10 +7,10 @@ import { CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { type Post } from "~/mdx-components";
 import { formatDate } from "~/server/utils";
 
-type PostCardProps = {
+interface PostCardProps {
   post: Post;
   i: number;
-};
+}
 
 export function PostCard({ post, i }: PostCardProps) {
   return (

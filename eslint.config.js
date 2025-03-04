@@ -65,15 +65,6 @@ export default tseslint.config(
       "@typescript-eslint/no-unsafe-call": "off",
       "@typescript-eslint/no-deprecated": "off",
       "@typescript-eslint/restrict-plus-operands": "off",
-      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
-      "@typescript-eslint/consistent-type-imports": [
-        "warn",
-        {
-          disallowTypeAnnotations: true,
-          fixStyle: "separate-type-imports",
-          prefer: "type-imports",
-        },
-      ],
       "@typescript-eslint/naming-convention": [
         "off",
         {

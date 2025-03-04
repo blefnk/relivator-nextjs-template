@@ -26,9 +26,9 @@ import { siteConfig } from "~/config/site";
 import { useMediaQuery } from "~/hooks/use-media-query";
 import { cn } from "~/server/utils";
 
-type MobileNavProps = {
+interface MobileNavProps {
   items?: MainNavItem[];
-};
+}
 
 export function MobileNav({ items }: MobileNavProps) {
   const isDesktop = useMediaQuery("(min-width: 1024px)");

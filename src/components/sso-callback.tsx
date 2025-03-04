@@ -6,9 +6,9 @@ import * as React from "react";
 
 import { Icons } from "~/components/icons";
 
-type SSOCallbackProps = {
+interface SSOCallbackProps {
   searchParams: HandleOAuthCallbackParams;
-};
+}
 
 export function SSOCallback({ searchParams }: SSOCallbackProps) {
   const { handleRedirectCallback } = useClerk();

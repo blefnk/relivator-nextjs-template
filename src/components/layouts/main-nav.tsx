@@ -18,9 +18,9 @@ import {
 import { siteConfig } from "~/config/site";
 import { cn } from "~/server/utils";
 
-type MainNavProps = {
+interface MainNavProps {
   items?: MainNavItem[];
-};
+}
 
 export function MainNav({ items }: MainNavProps) {
   return (

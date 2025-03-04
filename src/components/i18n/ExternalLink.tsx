@@ -1,8 +1,8 @@
-type Props = {
+interface Props {
   title: string;
   description: string;
   href: string;
-};
+}
 
 export default function ExternalLink({ description, href, title }: Props) {
   return (

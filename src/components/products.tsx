@@ -47,7 +47,7 @@ import {
 } from "~/server/queries/product";
 import { cn, toTitleCase, truncate } from "~/server/utils";
 
-type ProductsProps = {
+interface ProductsProps {
   products: Product[];
   pageCount: number;
   categories?: string[];
@@ -58,7 +58,7 @@ type ProductsProps = {
     "id" | "name" | "productCount"
   >[];
   storePageCount?: number;
-};
+}
 
 export function Products({
   products,

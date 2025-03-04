@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   title: "Purchases",
   description: "Manage your purchases",
 };
-type PurchasesPageProps = {
+interface PurchasesPageProps {
   searchParams: SearchParams;
-};
+}
 
 export default async function PurchasesPage({
   searchParams,

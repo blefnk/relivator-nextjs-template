@@ -23,11 +23,11 @@ import {
 import { Separator } from "~/components/ui/separator";
 import { cn } from "~/server/utils";
 
-type DataTableFacetedFilterProps<TData, TValue> = {
+interface DataTableFacetedFilterProps<TData, TValue> {
   column?: Column<TData, TValue>;
   title?: string;
   options: Option[];
-};
+}
 
 export function DataTableFacetedFilter<TData, TValue>({
   column,

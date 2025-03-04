@@ -21,11 +21,11 @@ export const metadata: Metadata = {
   description: "Add a new product",
 };
 
-type NewProductPageProps = {
+interface NewProductPageProps {
   params: {
     storeId: string;
   };
-};
+}
 
 export default async function NewProductPage({ params }: NewProductPageProps) {
   const storeId = decodeURIComponent(params.storeId);

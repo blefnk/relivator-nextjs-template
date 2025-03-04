@@ -19,13 +19,13 @@ export const metadata: Metadata = {
   description: "View the customer's order details",
 };
 
-type CustomerPageProps = {
+interface CustomerPageProps {
   params: {
     storeId: string;
     customerId: string;
   };
   searchParams: SearchParams;
-};
+}
 
 export default async function CustomerPage({
   params,

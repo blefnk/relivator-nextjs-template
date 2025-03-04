@@ -26,11 +26,11 @@ export const metadata: Metadata = {
   description: "Checkout with store items",
 };
 
-type CheckoutPageProps = {
+interface CheckoutPageProps {
   params: {
     storeId: string;
   };
-};
+}
 
 export default async function CheckoutPage({ params }: CheckoutPageProps) {
   const storeId = decodeURIComponent(params.storeId);

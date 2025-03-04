@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   description: "Manage your settings",
 };
 
-type SettingsPageProps = {
+interface SettingsPageProps {
   searchParams: Promise<SearchParams>;
-};
+}
 
 const schema = z.object({
   token: z.string().optional(),

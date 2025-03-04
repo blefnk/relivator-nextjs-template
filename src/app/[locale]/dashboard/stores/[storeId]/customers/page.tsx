@@ -21,12 +21,12 @@ export const metadata: Metadata = {
   description: "Customers for your store",
 };
 
-type CustomersPageProps = {
+interface CustomersPageProps {
   params: Promise<{
     storeId: string;
   }>;
   searchParams: Promise<SearchParams>;
-};
+}
 
 export default async function CustomersPage({
   params,

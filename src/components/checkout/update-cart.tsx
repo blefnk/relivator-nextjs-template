@@ -9,9 +9,9 @@ import { deleteCartItem, updateCartItem } from "~/server/actions/cart";
 import { showErrorToast } from "~/server/handle-error";
 import { type CartLineItemSchema } from "~/server/validations/cart";
 
-type UpdateCartProps = {
+interface UpdateCartProps {
   cartLineItem: CartLineItemSchema;
-};
+}
 
 export function UpdateCart({ cartLineItem }: UpdateCartProps) {
   const id = React.useId();

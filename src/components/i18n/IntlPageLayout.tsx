@@ -4,10 +4,10 @@ import { useTranslations } from "next-intl";
 
 import ExternalLink from "~/components/i18n/ExternalLink";
 
-type IntlPageLayoutProps = {
+interface IntlPageLayoutProps {
   children?: ReactNode;
   title: ReactNode;
-};
+}
 
 export default function IntlPageLayout({
   children,

@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description: "Buy products from our stores",
 };
 
-type ProductsPageProps = {
+interface ProductsPageProps {
   searchParams: SearchParams;
-};
+}
 
 export default async function ProductsPage({
   searchParams,

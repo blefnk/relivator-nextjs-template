@@ -10,13 +10,13 @@ import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Command, CommandGroup, CommandItem } from "~/components/ui/command";
 
-type MultiSelectProps = {
+interface MultiSelectProps {
   selected: Option[] | null;
   setSelected: React.Dispatch<React.SetStateAction<Option[] | null>>;
   onChange?: (value: Option[] | null) => void;
   placeholder?: string;
   options: Option[];
-};
+}
 
 export function MultiSelect({
   selected,

@@ -24,9 +24,9 @@ import {
   type UpdateNotificationSchema,
 } from "~/server/validations/notification";
 
-type UpdateNotificationFormProps = {
+interface UpdateNotificationFormProps {
   notificationPromise: ReturnType<typeof getNotification>;
-};
+}
 
 export function UpdateNotificationForm({
   notificationPromise,

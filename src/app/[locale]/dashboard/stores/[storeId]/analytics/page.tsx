@@ -45,12 +45,12 @@ export const metadata: Metadata = {
   description: "Analytics for your store",
 };
 
-type AnalyticsPageProps = {
+interface AnalyticsPageProps {
   params: Promise<{
     storeId: string;
   }>;
   searchParams: Promise<SearchParams>;
-};
+}
 
 export default async function AnalyticsPage({
   params,

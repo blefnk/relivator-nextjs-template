@@ -30,14 +30,14 @@ type AwaitedOrder = Pick<Order, "id" | "quantity" | "amount" | "createdAt"> & {
   paymentIntentId: string;
 };
 
-type OrdersTableProps = {
+interface OrdersTableProps {
   promise: Promise<{
     data: AwaitedOrder[];
     pageCount: number;
   }>;
   storeId: string;
   isSearchable?: boolean;
-};
+}
 
 export function OrdersTable({
   promise,

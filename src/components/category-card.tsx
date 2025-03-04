@@ -15,9 +15,9 @@ import {
   type getCategories,
 } from "~/server/queries/product";
 
-type CategoryCardProps = {
+interface CategoryCardProps {
   category: Awaited<ReturnType<typeof getCategories>>[number];
-};
+}
 
 export function CategoryCard({ category }: CategoryCardProps) {
   const productCountPromise = getProductCountByCategory({
@@ -43,9 +43,9 @@ export function CategoryCard({ category }: CategoryCardProps) {
   );
 }
 
-type ProductCountProps = {
+interface ProductCountProps {
   productCountPromise: ReturnType<typeof getProductCountByCategory>;
-};
+}
 
 async function ProductCount({ productCountPromise }: ProductCountProps) {
   const count = await productCountPromise;

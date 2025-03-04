@@ -1,11 +1,11 @@
 import { ErrorCard } from "~/components/error-card";
 import { Shell } from "~/components/shell";
 
-type ProductNotFoundProps = {
+interface ProductNotFoundProps {
   params: {
     storeId: string;
   };
-};
+}
 
 export default function ProductNotFound({ params }: ProductNotFoundProps) {
   const storeId = Number(params.storeId);

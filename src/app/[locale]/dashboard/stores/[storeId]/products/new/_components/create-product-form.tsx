@@ -49,13 +49,13 @@ import {
   type CreateProductSchema,
 } from "~/server/validations/product";
 
-type CreateProductFormProps = {
+interface CreateProductFormProps {
   storeId: string;
   promises: Promise<{
     categories: Awaited<ReturnType<typeof getCategories>>;
     subcategories: Awaited<ReturnType<typeof getSubcategories>>;
   }>;
-};
+}
 
 export function CreateProductForm({
   storeId,

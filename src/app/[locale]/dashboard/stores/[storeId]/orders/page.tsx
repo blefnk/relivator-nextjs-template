@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   description: "Manage your orders",
 };
 
-type OrdersPageProps = {
+interface OrdersPageProps {
   params: Promise<{
     storeId: string;
   }>;
   searchParams: Promise<SearchParams>;
-};
+}
 
 export default async function OrdersPage({
   params,

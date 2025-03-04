@@ -8,9 +8,9 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 import { Separator } from "~/components/ui/separator";
 import { cn } from "~/server/utils";
 
-type StoreTabsProps = {
+interface StoreTabsProps {
   storeId: string;
-};
+}
 
 export function StoreTabs({ storeId }: StoreTabsProps) {
   const router = useRouter();

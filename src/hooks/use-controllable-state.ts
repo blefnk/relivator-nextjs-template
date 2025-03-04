@@ -6,11 +6,11 @@ import { useCallbackRef } from "~/hooks/use-callback-ref";
  * @see https://github.com/radix-ui/primitives/blob/main/packages/react/use-controllable-state/src/useControllableState.tsx
  */
 
-type UseControllableStateParams<T> = {
+interface UseControllableStateParams<T> {
   prop?: T | undefined;
   defaultProp?: T | undefined;
   onChange?: (state: T) => void;
-};
+}
 
 type SetStateFn<T> = (prevState?: T) => T;
 

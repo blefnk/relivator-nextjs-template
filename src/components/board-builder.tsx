@@ -38,12 +38,12 @@ import { showErrorToast } from "~/server/handle-error";
 import { cn } from "~/server/utils";
 import { type CartItemSchema } from "~/server/validations/cart";
 
-type BoardBuilderProps = {
+interface BoardBuilderProps {
   products: Product[];
   pageCount: number;
   subcategory: string | null;
   cartItems: CartItemSchema[];
-};
+}
 
 export function BoardBuilder({
   products,

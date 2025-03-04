@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   description: "Manage your product",
 };
 
-type UpdateProductPageProps = {
+interface UpdateProductPageProps {
   params: {
     storeId: string;
     productId: string;
   };
-};
+}
 
 export default async function UpdateProductPage({
   params,

@@ -16,11 +16,11 @@ import {
 
 import { env } from "~/env";
 
-type NewsletterWelcomeEmailProps = {
+interface NewsletterWelcomeEmailProps {
   firstName?: string;
   fromEmail: string;
   token: string;
-};
+}
 
 const baseUrl = (env.NEXT_PUBLIC_APP_URL || "http://localhost:3000") ?? "";
 

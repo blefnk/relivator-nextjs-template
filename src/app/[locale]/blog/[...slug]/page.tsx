@@ -15,11 +15,11 @@ import { env } from "~/env.js";
 import { allAuthors, allPosts, Mdx } from "~/mdx-components";
 import { absoluteUrl, cn, formatDate } from "~/server/utils";
 
-type PostPageProps = {
+interface PostPageProps {
   params: {
     slug: string[];
   };
-};
+}
 
 async function getPostFromParams(params: PostPageProps["params"]) {
   const slug = params.slug.join("/");

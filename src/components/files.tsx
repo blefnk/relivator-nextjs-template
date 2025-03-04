@@ -12,9 +12,9 @@ import {
 } from "~/components/ui/card";
 import { ScrollArea, ScrollBar } from "~/components/ui/scroll-area";
 
-type FilesProps = {
+interface FilesProps {
   files: StoredFile[];
-};
+}
 
 export function Files({ files }: FilesProps) {
   return (

@@ -267,11 +267,11 @@ export function FileUploader(props: FileUploaderProps) {
   );
 }
 
-type FileCardProps = {
+interface FileCardProps {
   file: File;
   onRemove: () => void;
   progress?: number;
-};
+}
 
 function FileCard({ file, progress, onRemove }: FileCardProps) {
   return (

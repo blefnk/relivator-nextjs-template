@@ -15,12 +15,12 @@ import { DashboardSidebarSheet } from "./stores/[storeId]/_components/dashboard-
 import { StoreSwitcher } from "./stores/[storeId]/_components/store-switcher";
 import { getCurrentStoreId } from "./stores/[storeId]/_components/storeSwitcherActions";
 
-type DashboardLayoutProps = {
+interface DashboardLayoutProps {
   params?: {
     storeId?: string;
   };
   children: React.ReactNode;
-};
+}
 
 export default async function DashboardLayout({
   params = {},

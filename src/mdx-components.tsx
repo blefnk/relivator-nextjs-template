@@ -155,9 +155,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
   };
 }
 
-type MdxProps = {
+interface MdxProps {
   code: string;
-};
+}
 
 export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponents({}) as unknown as (props: {
@@ -209,7 +209,7 @@ export const allPages = [
   },
 ];
 
-export type Post = {
+export interface Post {
   slug: string;
   slugAsParams: string;
   title: string;
@@ -220,7 +220,7 @@ export type Post = {
   body: { code: string };
   image: string;
   description: string;
-};
+}
 
 // TODO: [temporary] Simulate allPosts
 export const allPosts: Post[] = [

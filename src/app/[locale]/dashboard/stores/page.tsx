@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description: "Discover products from our stores",
 };
 
-type StoresPageProps = {
+interface StoresPageProps {
   searchParams: SearchParams;
-};
+}
 
 export default async function StoresPage({ searchParams }: StoresPageProps) {
   const productsTransaction = await getProducts(searchParams);

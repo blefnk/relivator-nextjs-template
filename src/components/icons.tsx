@@ -1,6 +1,6 @@
-export type Icons = {
+export interface Icons {
   logo: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-};
+}
 import {
   AvatarIcon,
   ChevronLeftIcon,

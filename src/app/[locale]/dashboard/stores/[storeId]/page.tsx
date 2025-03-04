@@ -25,11 +25,11 @@ import { db } from "~/server/db";
 import { stores } from "~/server/db/schema";
 import { cn, formatDate } from "~/server/utils";
 
-type DashboardStorePageProps = {
+interface DashboardStorePageProps {
   params: Promise<{
     storeId: string;
   }>;
-};
+}
 
 async function getStoreFromParams(
   params: Awaited<DashboardStorePageProps["params"]>,

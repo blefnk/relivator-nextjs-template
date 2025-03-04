@@ -100,9 +100,9 @@ function MobileLink({
 }
 
 // Main Navigation Component
-type NavigationProps = {
+interface NavigationProps {
   items?: MainNavItem[];
-};
+}
 
 export function Navigation({ items }: NavigationProps) {
   const isDesktop = useMediaQuery("(min-width: 1024px)");

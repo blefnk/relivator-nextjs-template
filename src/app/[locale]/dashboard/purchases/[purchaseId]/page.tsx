@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   description: "View your purchase details",
 };
 
-type PurchasePageProps = {
+interface PurchasePageProps {
   params: {
     purchaseId: string;
   };
-};
+}
 
 export default async function PurchasePage({ params }: PurchasePageProps) {
   // Using the purchaseId as the orderId in the sql query

@@ -119,10 +119,10 @@ export async function AuthDropdown({ user, ...props }: AuthDropdownProps) {
   );
 }
 
-type AuthDropdownGroupProps = {
+interface AuthDropdownGroupProps {
   storePromise: ReturnType<typeof getStoreByUserId>;
   currentStoreId?: string;
-};
+}
 
 async function AuthDropdownGroup({
   storePromise,

@@ -50,13 +50,13 @@ import {
   type UpdateProductSchema,
 } from "~/server/validations/product";
 
-type UpdateProductFormProps = {
+interface UpdateProductFormProps {
   product: Product;
   promises: Promise<{
     categories: Awaited<ReturnType<typeof getCategories>>;
     subcategories: Awaited<ReturnType<typeof getSubcategories>>;
   }>;
-};
+}
 
 export function UpdateProductForm({
   product,

@@ -19,11 +19,11 @@ import { type getUserUsageMetrics } from "~/server/queries/user";
 import { getPlanLimits } from "~/server/subscription";
 import { cn, formatDate } from "~/server/utils";
 
-type BillingProps = {
+interface BillingProps {
   planPromise: Promise<UserPlan | null>;
   plansPromise: Promise<PlanWithPrice[]>;
   usageMetricsPromise: ReturnType<typeof getUserUsageMetrics>;
-};
+}
 
 export async function Billing({
   planPromise,

@@ -2,12 +2,12 @@ import { Icons } from "~/components/icons";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 
-type OverviewCardProps = {
+interface OverviewCardProps {
   title: string;
   value: string;
   description: string;
   icon: keyof typeof Icons;
-};
+}
 
 export function OverviewCard({
   title,

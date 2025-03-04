@@ -1,8 +1,8 @@
 import { type SidebarNavItem } from "~/types";
 
-export type DashboardConfig = {
+export interface DashboardConfig {
   sidebarNav: SidebarNavItem[];
-};
+}
 
 export const dashboardConfig: DashboardConfig = {
   sidebarNav: [

@@ -12,7 +12,7 @@ import {
 
 import { DataTablePagination } from "./data-table-pagination";
 
-type DataTableProps<TData> = {
+interface DataTableProps<TData> {
   /**
    * The table instance returned from useDataTable hook with pagination, sorting, filtering, etc.
    * @type TanstackTable<TData>
@@ -26,7 +26,7 @@ type DataTableProps<TData> = {
    * @example floatingBar={<TasksTableFloatingBar table={table} />}
    */
   floatingBar?: React.ReactNode | null;
-};
+}
 
 export function DataTable<TData>({
   table,

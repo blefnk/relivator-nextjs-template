@@ -7,7 +7,7 @@ import type { Icons } from "~/components/icons";
 
 import { type Store } from "~/server/db/schema";
 
-export type NavItem = {
+export interface NavItem {
   title: string;
   href?: string;
   active?: boolean;
@@ -16,20 +16,20 @@ export type NavItem = {
   icon?: keyof typeof Icons;
   label?: string;
   description?: string;
-};
+}
 
 export type NavItemWithChildren = {
   items?: NavItemWithChildren[];
 } & NavItem;
 
-export type FooterItem = {
+export interface FooterItem {
   title: string;
   items: {
     title: string;
     href: string;
     external?: boolean;
   }[];
-};
+}
 
 export type MainNavItem = NavItemWithChildren;
 
@@ -39,25 +39,25 @@ export type SearchParams = Record<string, string | string[] | undefined>;
 
 export type UploadedFile<T = unknown> = {} & ClientUploadedFileData<T>;
 
-export type StoredFile = {
+export interface StoredFile {
   id: string;
   name: string;
   url: string;
-};
+}
 
-export type Option = {
+export interface Option {
   label: string;
   value: string;
   icon?: React.ComponentType<{ className?: string }>;
   withCount?: boolean;
-};
+}
 
-export type DataTableFilterField<TData> = {
+export interface DataTableFilterField<TData> {
   label: string;
   value: keyof TData;
   placeholder?: string;
   options?: Option[];
-};
+}
 
 export type DrizzleWhere<T> =
   | SQL
@@ -66,7 +66,7 @@ export type DrizzleWhere<T> =
 
 export type StripePaymentStatus = Stripe.PaymentIntent.Status;
 
-export type Plan = {
+export interface Plan {
   id: Store["plan"];
   title: string;
   description: string;
@@ -78,7 +78,7 @@ export type Plan = {
     tags: number;
     variants: number;
   };
-};
+}
 
 export type PlanWithPrice = {
   price: string;

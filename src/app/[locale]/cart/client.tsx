@@ -19,9 +19,9 @@ import {
 } from "~/components/ui/sheet";
 import { cn } from "~/server/utils";
 
-type CartSheetProps = {
+interface CartSheetProps {
   uniqueStoreIds: string[];
-};
+}
 
 export function CartSheet({ uniqueStoreIds }: CartSheetProps) {
   return (

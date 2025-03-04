@@ -22,12 +22,12 @@ export const metadata: Metadata = {
   description: "View your order details",
 };
 
-type OrderPageProps = {
+interface OrderPageProps {
   params: {
     storeId: string;
     orderId: string;
   };
-};
+}
 
 export default async function OrderPage({ params }: OrderPageProps) {
   const storeId = decodeURIComponent(params.storeId);

@@ -22,7 +22,7 @@ import type { DataTableFilterField } from "~/types";
 
 import { useDebounce } from "~/hooks/use-debounce";
 
-type UseDataTableProps<TData, TValue> = {
+interface UseDataTableProps<TData, TValue> {
   /**
    * The data for the table.
    * @default []
@@ -97,7 +97,7 @@ type UseDataTableProps<TData, TValue> = {
    * @type boolean
    */
   enableAdvancedFilter?: boolean;
-};
+}
 
 const schema = z.object({
   page: z.coerce.number().default(1),

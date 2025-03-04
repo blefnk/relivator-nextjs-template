@@ -3,12 +3,12 @@ import * as React from "react";
 
 import { getCachedUser } from "~/server/queries/user";
 
-type DashboardStoreLayoutProps = {
+interface DashboardStoreLayoutProps {
   params: Promise<{
     storeId: string;
   }>;
   children: React.ReactNode;
-};
+}
 
 export default async function DashboardStoreLayout({
   children,

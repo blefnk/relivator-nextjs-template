@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
 
-type ProductPreviewPageProps = {
+interface ProductPreviewPageProps {
   params: {
     productId: string;
   };
-};
+}
 
 export default function ProductPreviewPage({
   params,

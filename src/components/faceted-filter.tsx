@@ -21,12 +21,12 @@ import { Separator } from "~/components/ui/separator";
 import { cn } from "~/server/utils";
 import { type Option } from "~/types";
 
-type FacetedFilterProps = {
+interface FacetedFilterProps {
   title?: string;
   filterValues: string[];
   setFilterValues: React.Dispatch<React.SetStateAction<string[]>>;
   options: Option[];
-};
+}
 
 export function FacetedFilter({
   title,

@@ -2,10 +2,10 @@
 
 import * as React from "react";
 
-type SidebarContextProps = {
+interface SidebarContextProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
 const SidebarContext = React.createContext<SidebarContextProps>({
   open: false,

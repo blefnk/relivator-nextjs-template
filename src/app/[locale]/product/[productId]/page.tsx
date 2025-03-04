@@ -24,11 +24,11 @@ import { formatPrice, toTitleCase } from "~/server/utils";
 import { AddToCartForm } from "./_components/add-to-cart-form";
 import { UpdateProductRatingButton } from "./_components/update-product-rating-button";
 
-type ProductPageProps = {
+interface ProductPageProps {
   params: {
     productId: string;
   };
-};
+}
 
 export async function generateMetadata({
   params,

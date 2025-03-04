@@ -13,9 +13,9 @@ import { Separator } from "~/components/ui/separator";
 import { getCart } from "~/server/actions/cart";
 import { cn, formatPrice } from "~/server/utils";
 
-type CheckoutCardProps = {
+interface CheckoutCardProps {
   storeId: string;
-};
+}
 
 export async function CheckoutCard({ storeId }: CheckoutCardProps) {
   const cartLineItems = await getCart({ storeId });

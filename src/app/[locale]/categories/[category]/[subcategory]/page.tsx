@@ -14,13 +14,13 @@ import { getStores } from "~/server/queries/store";
 import { toTitleCase, unslugify } from "~/server/utils";
 import { productsSearchParamsSchema } from "~/server/validations/params";
 
-type SubcategoryPageProps = {
+interface SubcategoryPageProps {
   params: Promise<{
     category: string;
     subcategory: string;
   }>;
   searchParams: Record<string, string | string[] | undefined>;
-};
+}
 
 /* export async function generateMetadata({
   params,

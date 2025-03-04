@@ -14,9 +14,9 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu";
 
-type DataTableViewOptionsProps<TData> = {
+interface DataTableViewOptionsProps<TData> {
   table: Table<TData>;
-};
+}
 
 export function DataTableViewOptions<TData>({
   table,

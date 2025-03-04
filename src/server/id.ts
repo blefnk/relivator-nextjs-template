@@ -89,7 +89,7 @@ export const prefixes: PrefixesKey = {
   webhook: "wbh",
 };
 
-type GenerateIdOptions = {
+interface GenerateIdOptions {
   /**
    * The length of the generated ID.
    * @default 16
@@ -102,7 +102,7 @@ type GenerateIdOptions = {
    * @example "_" => "str_abc123"
    * */
   separator?: string;
-};
+}
 
 /**
  * Generates a unique ID with a given prefix.

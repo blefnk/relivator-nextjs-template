@@ -13,10 +13,10 @@ import { env } from "~/env.js";
 import { getProducts } from "~/server/queries/product";
 import { toTitleCase } from "~/server/utils";
 
-type CategoryPageProps = {
+interface CategoryPageProps {
   params: Promise<{ category: string }>;
   searchParams: SearchParams;
-};
+}
 
 export async function generateMetadata({
   params,

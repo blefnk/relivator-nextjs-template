@@ -198,9 +198,9 @@ export function CreateStoreDialog({
   );
 }
 
-type RateLimitHoverCardProps = {
+interface RateLimitHoverCardProps {
   planMetrics: Awaited<ReturnType<typeof getUserPlanMetrics>>;
-};
+}
 
 export function RateLimitHoverCard({ planMetrics }: RateLimitHoverCardProps) {
   return (

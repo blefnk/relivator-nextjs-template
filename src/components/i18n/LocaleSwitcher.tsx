@@ -119,11 +119,11 @@ const determinateLocaleLabels = (translateLanguages: boolean) => {
   return labels;
 };
 
-type LocaleNamesProps = {
+interface LocaleNamesProps {
   currentLocale: Locale;
   translateLanguages: boolean;
   displayOnlyFlag: boolean;
-};
+}
 
 const LocaleNames: FC<LocaleNamesProps> = ({
   currentLocale,

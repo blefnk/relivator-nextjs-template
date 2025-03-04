@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   description: "Select the components for your board",
 };
 
-type BuildABoadPageProps = {
+interface BuildABoadPageProps {
   searchParams: Record<string, string | string[] | undefined>;
-};
+}
 
 export default async function BuildABoardPage({
   searchParams,

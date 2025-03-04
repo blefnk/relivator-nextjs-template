@@ -18,9 +18,9 @@ import {
 import { CreateStoreForm } from "../../dashboard/stores/[storeId]/_components/create-store-form";
 import { StepHeader } from "./step-header";
 
-type CreateStoreProps = {
+interface CreateStoreProps {
   userId: string;
-};
+}
 
 export function CreateStore({ userId }: CreateStoreProps) {
   const router = useRouter();
