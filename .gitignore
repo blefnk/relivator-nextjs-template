@@ -1,13 +1,7 @@
-# https://help.github.com/articles/ignoring-files
-
+tsconfig.tsbuildinfo
+/auth-schema.ts
 /node_modules
-/.next/
-/.venv/
-.DS_Store
-*.log*
-.env*
-.vercel
-*.tsbuildinfo
 next-env.d.ts
-.eslintcache
-.idea
+.vercel
+.next
+.env
