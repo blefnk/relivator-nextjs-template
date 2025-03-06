@@ -56,7 +56,6 @@ if (hasGithubCredentials) {
   socialProviders.github = {
     clientId: process.env.AUTH_GITHUB_ID ?? "",
     clientSecret: process.env.AUTH_GITHUB_SECRET ?? "",
-    // redirectURI: `${process.env.NEXT_SERVER_APP_URL ?? ""}/api/auth/callback/github`,
     scope: ["user:email", "read:user"],
     mapProfileToUser: (profile: GitHubProfile) => {
       let firstName = "";
@@ -79,7 +78,6 @@ if (hasGoogleCredentials) {
   socialProviders.google = {
     clientId: process.env.AUTH_GOOGLE_ID ?? "",
     clientSecret: process.env.AUTH_GOOGLE_SECRET ?? "",
-    // redirectURI: `${process.env.NEXT_SERVER_APP_URL ?? ""}/api/auth/callback/google`,
     scope: ["openid", "email", "profile"],
     mapProfileToUser: (profile: GoogleProfile) => {
       return {

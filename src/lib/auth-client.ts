@@ -14,7 +14,7 @@ export const authClient = createAuthClient({
   ],
 });
 
-// Export commonly used methods for convenience
+// Auth methods
 export const {
   signIn,
   signUp,
@@ -25,5 +25,5 @@ export const {
   unlinkAccount,
 } = authClient;
 
-// Export two-factor methods for convenience
+// Two-factor methods
 export const twoFactor = authClient.twoFactor;

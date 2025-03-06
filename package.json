@@ -1,6 +1,6 @@
 {
-  "name": "reliverse",
-  "version": "1.0.0",
+  "name": "relivator",
+  "version": "1.4.1",
   "type": "module",
   "private": true,
   "scripts": {
@@ -11,16 +11,14 @@
     "db:studio": "drizzle-kit studio",
     "ui": "bun x --bun shadcn@canary add",
     "latest": "bun update --latest",
-    "typecheck": "tsc --noEmit",
-    "lint": "eslint .",
-    "format": "bunx biome check --write .",
-    "check": "bun typecheck && bun lint && bun format"
+    "check": "tsc --noEmit && eslint . && bunx biome check --write ."
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",
     "@radix-ui/react-label": "^2.1.2",
     "@radix-ui/react-separator": "^1.1.2",
     "@radix-ui/react-slot": "^1.1.2",
+    "@vercel/speed-insights": "^1.2.0",
     "better-auth": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
