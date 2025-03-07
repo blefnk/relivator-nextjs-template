@@ -149,7 +149,7 @@ export function Header({ showAuth = true }: HeaderProps) {
                   </DropdownMenu>
                 ) : (
                   <div className="flex items-center gap-2">
-                    <Link href="/auth/sing-in">
+                    <Link href="/auth/sign-in">
                       <Button variant="ghost" size="sm">
                         Log in
                       </Button>
@@ -211,7 +211,7 @@ export function Header({ showAuth = true }: HeaderProps) {
           {showAuth && !session && (
             <div className="space-y-1 px-4 py-3 border-b">
               <Link
-                href="/auth/sing-in"
+                href="/auth/sign-in"
                 className="block py-2 px-3 text-base font-medium rounded-md hover:bg-muted/50"
                 onClick={() => setMobileMenuOpen(false)}
               >
