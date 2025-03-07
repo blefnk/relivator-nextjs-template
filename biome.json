@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", ".vercel", ".next", ".git"]
+    "ignore": ["node_modules", ".vercel", ".next"]
   },
   "formatter": {
     "enabled": true,

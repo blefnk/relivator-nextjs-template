@@ -1,119 +1,164 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import Link from "next/link";
+import React from "react";
+import type { User } from "~/db/types";
 import { signOut, useSession } from "~/lib/auth-client";
+import { Button } from "~/ui/primitives/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "~/ui/primitives/card";
+import { Skeleton } from "~/ui/primitives/skeleton";
 
-// Define a type for the custom user metadata
-type UserMetadata = {
+type DashboardPageClientProps = {
+  user?: User | null;
+};
+
+// Extend the User type with optional properties
+type ExtendedUser = {
   firstName?: string;
   lastName?: string;
   age?: number;
-};
+} & User;
 
-export function DashboardPageClient() {
+export function DashboardPageClient({ user }: DashboardPageClientProps) {
   const { data, isPending } = useSession();
-  const router = useRouter();
 
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!isPending && !data) {
-      router.push("/auth/sign-in");
-    }
-  }, [data, isPending, router]);
+  // Use the passed user or the session user
+  const currentUser = user ?? data?.user;
+
+  const currentUserState = currentUser as ExtendedUser;
 
   const handleSignOut = () => {
-    void signOut().then(() => {
-      router.push("/auth/sign-in");
-    });
+    void signOut();
   };
 
+  // If we're still loading, show a skeleton
   if (isPending) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold">Loading...</h1>
+      <div className="container grid flex-1 items-start gap-4 p-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+        <div className="grid gap-4 md:col-span-2 lg:col-span-1">
+          <Card>
+            <CardHeader className="space-y-2">
+              <Skeleton className="h-6 w-1/3" />
+              <Skeleton className="h-4 w-1/2" />
+            </CardHeader>
+            <CardContent>
+              <Skeleton className="h-20 w-full" />
+            </CardContent>
+            <CardFooter>
+              <Skeleton className="h-10 w-28" />
+            </CardFooter>
+          </Card>
         </div>
       </div>
     );
   }
 
-  if (!data) {
-    return null; // Will redirect in the useEffect
-  }
-
-  const { user } = data;
-  // Access metadata if it exists (for custom fields)
-  // Cast to unknown first, then to our specific type for type safety
-  const metadata =
-    (user as unknown as { metadata?: UserMetadata }).metadata ?? {};
-
   return (
-    <div className="flex min-h-screen flex-col p-8">
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <div className="flex space-x-4">
-          <button
-            type="button"
-            onClick={() => {
-              router.push("/profile");
-            }}
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-          >
-            Profile Settings
-          </button>
-          <button
-            type="button"
-            onClick={handleSignOut}
-            className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-          >
-            Sign Out
-          </button>
-        </div>
-      </div>
-
-      <div className="rounded-lg border p-6 shadow-md">
-        <h2 className="mb-4 text-xl font-semibold">Your Profile</h2>
-        <div className="space-y-4">
-          <div className="flex items-center">
-            {user.image ? (
-              <img
-                src={user.image}
-                alt="Profile"
-                className="mr-4 h-16 w-16 rounded-full"
-              />
-            ) : (
-              <div className="mr-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-xl font-semibold text-blue-600">
-                {user.name.charAt(0) || "U"}
+    <div className="container grid flex-1 items-start gap-4 p-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
+      <div className="grid gap-4 md:col-span-2 lg:col-span-1">
+        <Card>
+          <CardHeader>
+            <CardTitle>Welcome to your Dashboard</CardTitle>
+            <CardDescription>
+              Manage your account and view your information
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {currentUserState && (
+              <div className="space-y-2">
+                <div className="space-y-1">
+                  <p className="text-sm font-medium leading-none">Name</p>
+                  <p className="text-sm text-muted-foreground">
+                    {currentUserState.name ?? "Not set"}
+                  </p>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-medium leading-none">Email</p>
+                  <p className="text-sm text-muted-foreground">
+                    {currentUserState.email ?? "Not set"}
+                  </p>
+                </div>
+                {currentUserState?.firstName && (
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      First Name
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {currentUserState.firstName}
+                    </p>
+                  </div>
+                )}
+                {currentUserState?.lastName && (
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      Last Name
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {currentUserState.lastName}
+                    </p>
+                  </div>
+                )}
+                {currentUserState?.age ? (
+                  <div className="space-y-1">
+                    <p className="text-sm font-medium leading-none">Age</p>
+                    <p className="text-sm text-muted-foreground">
+                      {currentUserState.age}
+                    </p>
+                  </div>
+                ) : null}
+                <div className="space-y-1">
+                  <p className="text-sm font-medium leading-none">
+                    Two-Factor Authentication
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {currentUserState.twoFactorEnabled ? "Enabled" : "Disabled"}
+                  </p>
+                </div>
               </div>
             )}
-            <div>
-              <h3 className="text-lg font-medium">{user.name}</h3>
-              <p className="text-gray-600">{user.email}</p>
+          </CardContent>
+          <CardFooter className="flex justify-between">
+            <Link
+              href="/profile"
+              className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+            >
+              Edit Profile
+            </Link>
+            <Button variant="destructive" onClick={handleSignOut}>
+              Sign Out
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+      <div className="grid gap-4 md:col-span-2 lg:col-span-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>Quick Actions</CardTitle>
+            <CardDescription>
+              Common actions you might want to perform
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-6">
+            <div className="grid grid-cols-2 gap-4">
+              <Link
+                href="/profile"
+                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              >
+                Edit Profile
+              </Link>
+              <Button variant="outline" onClick={handleSignOut}>
+                Sign Out
+              </Button>
             </div>
-          </div>
-
-          <div className="mt-6 grid grid-cols-2 gap-4">
-            <div className="rounded-md bg-gray-50 p-4">
-              <h4 className="text-sm font-medium text-gray-500">First Name</h4>
-              <p className="mt-1">{metadata.firstName ?? "Not provided"}</p>
-            </div>
-            <div className="rounded-md bg-gray-50 p-4">
-              <h4 className="text-sm font-medium text-gray-500">Last Name</h4>
-              <p className="mt-1">{metadata.lastName ?? "Not provided"}</p>
-            </div>
-            <div className="rounded-md bg-gray-50 p-4">
-              <h4 className="text-sm font-medium text-gray-500">Age</h4>
-              <p className="mt-1">{metadata.age ?? "Not provided"}</p>
-            </div>
-            <div className="rounded-md bg-gray-50 p-4">
-              <h4 className="text-sm font-medium text-gray-500">
-                Email Verified
-              </h4>
-              <p className="mt-1">{user.emailVerified ? "Yes" : "No"}</p>
-            </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

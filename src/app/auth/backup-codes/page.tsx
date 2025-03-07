@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { twoFactor, useSession } from "~/lib/auth-client";
@@ -60,7 +61,7 @@ export default function BackupCodesPage() {
     try {
       // Generate new codes by enabling 2FA again (which regenerates backup codes)
       const result = await twoFactor.enable({
-        password: "", // TODO: ask for the password in the future
+        password: "", // TODO: implement passwork providing
       });
 
       if (
@@ -100,15 +101,12 @@ export default function BackupCodesPage() {
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-3xl font-bold">Backup Codes</h1>
         <div className="flex space-x-4">
-          <button
-            type="button"
-            onClick={() => {
-              router.push("/profile");
-            }}
+          <Link
+            href="/profile"
             className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
             Back to Profile
-          </button>
+          </Link>
         </div>
       </div>
 

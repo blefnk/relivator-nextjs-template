@@ -67,7 +67,7 @@ async function main() {
   await fs.writeFile(filePath, s.toString(), "utf8");
 
   // Step 7: Make it prettier
-  await execaCommand("bunx biome check --write ./src/db/schema/users.ts", {
+  await execaCommand("bun biome check --write .", {
     stdio: "inherit",
   });
 }

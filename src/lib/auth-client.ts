@@ -20,7 +20,6 @@ export const {
   signUp,
   signOut,
   useSession,
-  getSession,
   linkSocial,
   unlinkAccount,
 } = authClient;
