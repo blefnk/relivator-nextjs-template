@@ -126,7 +126,7 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
           </CardContent>
           <CardFooter className="flex justify-between">
             <Link
-              href="/profile"
+              href="/dashboard/profile"
               className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
             >
               Edit Profile
@@ -148,7 +148,7 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
           <CardContent className="grid gap-6">
             <div className="grid grid-cols-2 gap-4">
               <Link
-                href="/profile"
+                href="/dashboard/profile"
                 className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
               >
                 Edit Profile

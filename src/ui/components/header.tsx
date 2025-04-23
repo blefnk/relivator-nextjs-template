@@ -41,7 +41,7 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
 
   const dashboardNavigation = [
     { name: "Dashboard", href: "/dashboard" },
-    { name: "Profile", href: "/profile" },
+    { name: "Profile", href: "/dashboard/profile" },
     { name: "Settings", href: "/dashboard/settings" },
   ];
 
@@ -142,18 +142,17 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                       </div>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
-                        <Link href="/profile" className="cursor-pointer">
+                        <Link
+                          href="/dashboard/profile"
+                          className="cursor-pointer"
+                        >
                           <User className="mr-2 h-4 w-4" />
                           Profile
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link
-                          href={
-                            isDashboard
-                              ? "/dashboard/settings"
-                              : "/profile/settings"
-                          }
+                          href="/dashboard/settings"
                           className="cursor-pointer"
                         >
                           <Settings className="mr-2 h-4 w-4" />
