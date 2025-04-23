@@ -50,7 +50,7 @@ async function main() {
     }
   }
 
-  console.log("√ Corrected table names:", tableNames);
+  console.log("√ Ensured tables:", tableNames);
 
   // Step 5: Replace all references to these tables
   for (const tableName of tableNames) {

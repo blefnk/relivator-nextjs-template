@@ -15,9 +15,9 @@ import {
 } from "~/ui/primitives/card";
 import { Skeleton } from "~/ui/primitives/skeleton";
 
-type DashboardPageClientProps = {
+interface DashboardPageClientProps {
   user?: User | null;
-};
+}
 
 // Extend the User type with optional properties
 type ExtendedUser = {

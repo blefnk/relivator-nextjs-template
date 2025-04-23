@@ -1,4 +1,4 @@
-import { ProfilePageClient } from "./client";
+import { ProfilePageClient } from "./page.client";
 
 export default function ProfilePage() {
   return <ProfilePageClient />;

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "~/lib/auth-client";
 
-import { ThemeToggle } from "~/ui/components/theme-toggle";
 import { Button } from "~/ui/primitives/button";
 import {
   DropdownMenu,
@@ -15,17 +14,19 @@ import {
   DropdownMenuTrigger,
 } from "~/ui/primitives/dropdown-menu";
 
-type DashboardLayoutProps = {
+interface DashboardLayoutClientProps {
   children: React.ReactNode;
-};
+}
 
-export function DashboardLayout({ children }: DashboardLayoutProps) {
+export function DashboardLayoutClient({
+  children,
+}: DashboardLayoutClientProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
 
   const navigation = [
     { name: "Dashboard", href: "/dashboard" },
-    { name: "Profile", href: "/profile" },
+    { name: "Profile", href: "/dashboard/profile" },
     { name: "Settings", href: "/dashboard/settings" },
   ];
 
@@ -38,9 +39,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <header className="border-b bg-background">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold">Relivator</span>
-            </Link>
+            {/* TODO: Display seller's brand name here */}
+            {/* <Link href="/" className="flex items-center gap-2">
+              <span className="text-xl font-bold">Acme Store</span>
+            </Link> */}
             <nav className="hidden md:flex">
               <ul className="flex items-center gap-4">
                 {navigation.map((item) => (
@@ -61,7 +63,6 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </nav>
           </div>
           <div className="flex items-center gap-4">
-            <ThemeToggle />
             {session?.user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -89,7 +90,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href="/profile">
+                    <Link href="/dashboard/profile">
                       <User className="mr-2 h-4 w-4" />
                       Profile
                     </Link>

@@ -15,14 +15,7 @@ export const authClient = createAuthClient({
 });
 
 // Auth methods
-export const {
-  signIn,
-  signUp,
-  signOut,
-  useSession,
-  linkSocial,
-  unlinkAccount,
-} = authClient;
+export const { signIn, signUp, signOut, useSession } = authClient;
 
 // Two-factor methods
 export const twoFactor = authClient.twoFactor;

@@ -1,11 +1,10 @@
 import { ArrowRight, Clock, ShoppingBag, Star, Truck } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
-import Image from "next/image";
-import { Footer } from "~/ui/components/footer";
-import { Header } from "~/ui/components/header";
+import United24Banner from "~/ui/components/banners/u24";
 import { ProductCard } from "~/ui/components/product-card";
-import { TestimonialCarousel } from "~/ui/components/testimonial-carousel";
+import { TestimonialsSection } from "~/ui/components/testimonials/testimonials-with-marquee";
 import { Button } from "~/ui/primitives/button";
 import {
   Card,
@@ -14,84 +13,9 @@ import {
   CardHeader,
   CardTitle,
 } from "~/ui/primitives/card";
+import { categories, featuredProducts, testimonials } from "./mocks";
 
-// Featured products for the homepage
-const featuredProducts = [
-  {
-    id: "1",
-    name: "Premium Wireless Headphones",
-    price: 199.99,
-    originalPrice: 249.99,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Audio",
-    rating: 4.5,
-    inStock: true,
-  },
-  {
-    id: "2",
-    name: "Smart Watch Series 5",
-    price: 299.99,
-    originalPrice: 349.99,
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Wearables",
-    rating: 4.2,
-    inStock: true,
-  },
-  {
-    id: "5",
-    name: "Smartphone Pro Max",
-    price: 999.99,
-    originalPrice: 1099.99,
-    image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Smartphones",
-    rating: 4.8,
-    inStock: true,
-  },
-  {
-    id: "6",
-    name: "Bluetooth Earbuds Pro",
-    price: 149.99,
-    originalPrice: 179.99,
-    image:
-      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Audio",
-    rating: 4.4,
-    inStock: true,
-  },
-];
-
-// Categories for the shop by category section
-const categories = [
-  {
-    name: "Audio",
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    productCount: 12,
-  },
-  {
-    name: "Wearables",
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    productCount: 8,
-  },
-  {
-    name: "Smartphones",
-    image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    productCount: 15,
-  },
-  {
-    name: "Laptops",
-    image:
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    productCount: 10,
-  },
-];
-
-// Features for the why choose us section
+// Mock data for the Why Choose Us section
 const features = [
   {
     title: "Free Shipping",
@@ -119,50 +43,10 @@ const features = [
   },
 ];
 
-// Testimonials for the testimonial carousel
-const testimonials = [
-  {
-    id: "1",
-    content:
-      "I've been shopping here for years and have never been disappointed. The products are high quality and the customer service is exceptional!",
-    author: {
-      name: "Sarah Johnson",
-      role: "Tech Enthusiast",
-      avatar:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    },
-    rating: 5,
-  },
-  {
-    id: "2",
-    content:
-      "The tech products on this site are cutting edge and always exceed my expectations. Shipping is fast and reliable too!",
-    author: {
-      name: "Michael Chen",
-      role: "Software Developer",
-      avatar:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    },
-    rating: 4,
-  },
-  {
-    id: "3",
-    content:
-      "I needed a new laptop for work and the recommendations from the customer service team were spot on. Extremely satisfied!",
-    author: {
-      name: "Emily Rodriguez",
-      role: "Digital Marketer",
-      avatar:
-        "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    },
-    rating: 5,
-  },
-];
-
 export default function HomePage() {
   return (
     <>
-      <Header />
+      <United24Banner animateGradient={false} />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-muted/50 via-muted/25 to-background py-24 md:py-32">
@@ -211,9 +95,10 @@ export default function HomePage() {
               <div className="relative mx-auto hidden aspect-square w-full max-w-md overflow-hidden rounded-xl border lg:block">
                 <div className="absolute inset-0 z-10 bg-gradient-to-tr from-primary/20 via-transparent to-transparent" />
                 <Image
-                  src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                  src="https://images.unsplash.com/photo-1624767735494-1929dc24ad43?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
                   alt="Shopping experience"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                   priority
                 />
@@ -242,6 +127,7 @@ export default function HomePage() {
                   key={category.name}
                   href={`/products?category=${category.name.toLowerCase()}`}
                   className="group relative flex flex-col overflow-hidden rounded-lg border bg-card transition-all duration-200 hover:shadow-md"
+                  aria-label={`Browse ${category.name} products`}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <div className="absolute inset-0 z-10 bg-gradient-to-t from-background/80 to-transparent" />
@@ -249,6 +135,7 @@ export default function HomePage() {
                       src={category.image}
                       alt={category.name}
                       fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
                       className="object-cover transition duration-300 group-hover:scale-105"
                     />
                   </div>
@@ -310,7 +197,7 @@ export default function HomePage() {
               {features.map((feature) => (
                 <Card
                   key={feature.title}
-                  className="border-none bg-background shadow-sm"
+                  className="border-none bg-background shadow-sm transition-all duration-200 hover:shadow-md"
                 >
                   <CardHeader className="pb-2">
                     <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
@@ -332,17 +219,12 @@ export default function HomePage() {
         {/* Testimonials */}
         <section className="bg-muted/50 py-12 md:py-16">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-8 flex flex-col items-center text-center">
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-                What Our Customers Say
-              </h2>
-              <div className="mt-2 h-1 w-12 rounded-full bg-primary" />
-              <p className="mt-4 max-w-2xl text-center text-muted-foreground md:text-lg">
-                Don't just take our word for it - hear from our satisfied
-                customers
-              </p>
-            </div>
-            <TestimonialCarousel testimonials={testimonials} />
+            <TestimonialsSection
+              title="What Our Customers Say"
+              description="Don't just take our word for it - hear from our satisfied customers"
+              testimonials={testimonials}
+              className="py-0"
+            />
           </div>
         </section>
 
@@ -377,7 +259,6 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

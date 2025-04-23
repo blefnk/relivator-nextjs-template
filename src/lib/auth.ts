@@ -13,20 +13,20 @@ import {
   verificationTable,
 } from "~/db/schema";
 
-type GitHubProfile = {
+interface GitHubProfile {
   name?: string;
   email?: string;
   [key: string]: unknown;
-};
+}
 
-type GoogleProfile = {
+interface GoogleProfile {
   given_name?: string;
   family_name?: string;
   email?: string;
   [key: string]: unknown;
-};
+}
 
-type SocialProviderConfig = {
+interface SocialProviderConfig {
   clientId: string;
   clientSecret: string;
   redirectURI?: string;
@@ -35,7 +35,7 @@ type SocialProviderConfig = {
     profile: GitHubProfile | GoogleProfile,
   ) => Record<string, unknown>;
   [key: string]: unknown;
-};
+}
 
 const hasGithubCredentials =
   process.env.AUTH_GITHUB_ID &&

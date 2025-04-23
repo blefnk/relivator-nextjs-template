@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import type { User } from "~/db/types";
 import { auth } from "~/lib/auth";
-import { DashboardPageClient } from "./client";
+import { DashboardPageClient } from "./page.client";
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({

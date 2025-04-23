@@ -4,21 +4,16 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   eslintJs.configs.recommended,
-  tseslint.configs.recommendedTypeChecked,
-  tseslint.configs.stylisticTypeChecked,
-  { ignores: [".vercel", ".next", "dist", "build"] },
+  tseslint.configs.recommended,
+  tseslint.configs.stylistic,
+  { ignores: [".next", ".vercel"] },
   {
     files: ["**/*.{ts,tsx}"],
-    ...eslintReact.configs["recommended-type-checked"],
-    languageOptions: { parserOptions: { projectService: true } },
+    ...eslintReact.configs["recommended-typescript"],
   },
   {
     rules: {
-      "@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+      "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
     },
-  },
-  {
-    files: ["**/*.js"],
-    ...tseslint.configs.disableTypeChecked,
   },
 );
