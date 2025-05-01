@@ -1,0 +1,36 @@
+---
+description: Read this rule when working with Uploadthing
+globs: 
+alwaysApply: false
+---
+
+
+# How to Work with Uploadthing (LLM Guide)
+
+## Key Files
+
+- **Config:** `core.ts` (upload routes, middleware, db)
+- **API Handler:** `route.ts` (webhook/callback)
+- **DB Schema:** `tables.ts` (`uploads` table, `media_type` enum)
+- **DB Types:** `types.ts` (`MediaUpload`)
+- **Frontend UI:** `page.client.tsx` (`UploadButton`)
+- **Media API:** `/api/media/route.ts` (fetch media)
+- **Display:** `InteractiveBentoGallery.tsx` (renders images/videos)
+- **Auth:** `~/lib/auth`
+
+## Core Concepts
+
+- **Routes:** Defined in `core.ts` with `createUploadthing()`. Each route (e.g., `imageUploader`, `videoUploader`) sets allowed types, size, count.
+- **Auth:** Middleware in `core.ts` uses `auth.api.getSession` to check user; throws if unauthorized.
+- **DB Insert:** `onUploadComplete` inserts into `uploads` table, sets `type` based on route, uses `createId()` for `id`.
+- **Frontend:** `UploadButton` for each endpoint; `onClientUploadComplete` refetches media via `/api/media`.
+- **Media Fetch:** `/api/media/route.ts` authenticates, fetches uploads for user, returns JSON.
+- **Display:** `InteractiveBentoGallery.tsx` renders `<img>` or `<video>` based on `type`.
+
+## Tips
+
+- **Check `core.ts`** for routes, middleware, and upload logic.
+- **Set `type`** in `onUploadComplete` based on route.
+- **Adding new media types:** update `core.ts`, `tables.ts` enum, run migrations, add `UploadButton`, update display and API as needed.
+- **Media fetch requires auth.**
+- **Error handling:** `onUploadComplete` logs/throws; production may need more.

@@ -2,7 +2,7 @@
 
 import { animate } from "animejs";
 import React, { useEffect, useRef } from "react";
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/cn";
 import {
   type TestimonialAuthor,
   TestimonialCard,
@@ -122,7 +122,6 @@ export function TestimonialsSection({
                   <TestimonialCard
                     // Using UUID or other unique identifier would be better here,
                     // but for static content this is acceptable
-                    // eslint-disable-next-line @eslint-react/no-array-index-key
                     key={`testimonial-${testimonial.author.name}-${setIndex}-${i}`}
                     {...testimonial}
                   />

@@ -4,7 +4,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import * as React from "react";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/cn";
 import { Button } from "~/ui/primitives/button";
 import {
   DropdownMenu,

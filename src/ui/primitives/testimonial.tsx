@@ -1,4 +1,4 @@
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/cn";
 import { Avatar, AvatarImage } from "~/ui/primitives/avatar";
 
 export interface TestimonialAuthor {

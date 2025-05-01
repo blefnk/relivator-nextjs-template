@@ -1,0 +1,50 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+
+# how and when to write comments (llm rules)
+
+## guiding principles
+1.  **minimize comments:** code should be self-explanatory; comment only when necessary.
+2.  **clarity through naming:** use clear, descriptive names for variables, functions, classes, and components.
+3.  **comment the "why," not the "what":** explain *why* an approach was taken, especially for non-obvious logic or trade-offs. don't restate what the code does.
+4.  **avoid obvious comments:** don't comment on simple or standard code; assume the reader knows language basics.
+5.  **consistency:** use a consistent style for comments and documentation across the codebase.
+
+## when to add comments
+*   **complex logic:** for algorithms or flows not immediately clear from code.
+*   **non-obvious decisions (the "why"):** explain reasoning behind design choices, workarounds, or optimizations, especially if nonstandard or counterintuitive.
+*   **business rules/context:** briefly note domain-specific rules or context driving code.
+*   **security/performance notes:** note important security or performance implications if not obvious.
+*   **todos/fixmes:** use `// todo:` or `// fixme:` for future work, with brief context. use `// @ts-expect-error todo: ...` only if you tried and failed to fix a typescript error, and disabling it is safe.
+*   **jsdoc (public apis):**
+    *   use doc comments for public functions or modules to describe purpose and usage.
+    *   explain conceptual behavior, non-obvious details, or the "why" if needed.
+    *   **skip redundant tags** like `@param`/`@return` if typescript types are clear.
+    *   use tags only when types aren't enough (e.g., constraints, units, expected format).
+    *   add `@example` for complex apis.
+
+## when not to add comments
+*   **restating code:** e.g., `// increment i` above `i++`.
+*   **explaining syntax:** e.g., `// loop through array` above `for (const item of items) { ... }`.
+*   **obvious names:** e.g., `// user's name` above `const username = ...`.
+*   **commented-out code:** delete dead code; git tracks history.
+*   **end-of-line noise:** avoid trivial comments on code lines.
+*   **outdated comments:** remove or update comments that no longer match the code.
+
+## humor, tone, and informality
+*   **full informal freedom:** feel free to use informal, conversational, or humorous language in comments and documentation—just like a real, quirky senior developer. puns, memes, pop culture references, and playful banter are all fair game, as long as it's not offensive or unprofessional. if a joke helps make a point or keeps things lively, go for it!
+*   **be yourself:** comments can have personality. if you want to drop a "don't touch this unless you like pain", that's totally fine.
+*   **clarity first:** even with informality, make sure the comment's intent is clear, helpful to both code beginners and seniors.
+
+## lowercase comment style
+*   **all comments must be written in lowercase, even at the beginning of sentences.** the only exception is for code identifiers (like function or variable names), which should retain their original casing.
+
+## important
+*   when asked to "clean up" comments, don't add new comments explaining what was removed or which functions/variables were renamed. the user uses cursor ide, which shows diffs. explain important changes in your message, not in code comments.
+
+by following these rules, the codebase stays clean, readable, and maintainable—while also being a little more fun and human.
+

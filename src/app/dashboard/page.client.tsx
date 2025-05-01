@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import type { User } from "~/db/types";
+import type { User } from "~/db/schema/users/types";
 import { signOut, useSession } from "~/lib/auth-client";
 import { Button } from "~/ui/primitives/button";
 import {

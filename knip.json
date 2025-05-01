@@ -1,9 +1,15 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "ignoreExportsUsedInFile": true,
+  "ignore": [
+    "src/ui/icons/reseui-icons/discord-icon.tsx",
+    "src/ui/icons/reseui-icons/utils-factory.tsx",
+    "src/app/admin/columns.tsx"
+  ],
   "ignoreDependencies": [
-    "tailwindcss",
     "tailwindcss-animate",
-    "@tanstack/react-form"
+    "@tanstack/react-form",
+    "nuqs",
+    "zod"
   ]
 }

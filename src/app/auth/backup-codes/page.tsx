@@ -27,7 +27,6 @@ export default function BackupCodesPage() {
 
   const fetchBackupCodes = async () => {
     try {
-      // Request new backup codes if needed
       const result = await twoFactor.enable({
         password: "", // Note: This will fail if 2FA is not already enabled
       });

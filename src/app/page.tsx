@@ -13,10 +13,9 @@ import {
   CardHeader,
   CardTitle,
 } from "~/ui/primitives/card";
-import { categories, featuredProducts, testimonials } from "./mocks";
+import { categories, featuredProductsHomepage, testimonials } from "./mocks";
 
-// Mock data for the Why Choose Us section
-const features = [
+const featuresWhyChooseUs = [
   {
     title: "Free Shipping",
     description:
@@ -46,7 +45,6 @@ const features = [
 export default function HomePage() {
   return (
     <>
-      <United24Banner animateGradient={false} />
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-b from-muted/50 via-muted/25 to-background py-24 md:py-32">
@@ -166,7 +164,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {featuredProducts.map((product) => (
+              {featuredProductsHomepage.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
@@ -194,7 +192,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {features.map((feature) => (
+              {featuresWhyChooseUs.map((feature) => (
                 <Card
                   key={feature.title}
                   className="border-none bg-background shadow-sm transition-all duration-200 hover:shadow-md"
@@ -258,6 +256,9 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* Sample banner */}
+        <United24Banner animateGradient={false} />
       </main>
     </>
   );

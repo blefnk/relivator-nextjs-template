@@ -14,6 +14,9 @@ export default tseslint.config(
   {
     rules: {
       "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
+      "@eslint-react/no-array-index-key": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "no-useless-escape": "off",
     },
   },
 );

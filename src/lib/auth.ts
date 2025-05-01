@@ -149,7 +149,5 @@ export const auth = betterAuth({
     linkAccountsByEmail: true,
   },
 
-  // advanced: { generateId: false },
-
   plugins: [twoFactor()],
 });

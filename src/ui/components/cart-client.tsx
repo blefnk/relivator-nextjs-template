@@ -7,7 +7,7 @@ import Link from "next/link";
 import * as React from "react";
 import { useMediaQuery } from "~/lib/hooks/use-media-query";
 
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/cn";
 import { Badge } from "~/ui/primitives/badge";
 import { Button } from "~/ui/primitives/button";
 import {

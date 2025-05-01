@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, Settings, User } from "lucide-react";
+import { LogOut, Settings, Upload, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "~/lib/auth-client";
@@ -28,6 +28,7 @@ export function DashboardLayoutClient({
     { name: "Dashboard", href: "/dashboard" },
     { name: "Profile", href: "/dashboard/profile" },
     { name: "Settings", href: "/dashboard/settings" },
+    { name: "Uploads", href: "/dashboard/uploads" },
   ];
 
   const handleSignOut = () => {
@@ -99,6 +100,12 @@ export function DashboardLayoutClient({
                     <Link href="/dashboard/settings">
                       <Settings className="mr-2 h-4 w-4" />
                       Settings
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/dashboard/uploads">
+                      <Upload className="mr-2 h-4 w-4" />
+                      Uploads
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />

@@ -1,12 +1,12 @@
 "use client";
 
-import { LogOut, Menu, Settings, User, X } from "lucide-react";
+import { LogOut, Menu, Settings, Shield, Upload, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "~/lib/auth-client";
 
 import { useState } from "react";
-import { cn } from "~/lib/utils";
+import { cn } from "~/lib/cn";
 import { Cart } from "~/ui/components/cart";
 import { Button } from "~/ui/primitives/button";
 import {
@@ -43,6 +43,8 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
     { name: "Dashboard", href: "/dashboard" },
     { name: "Profile", href: "/dashboard/profile" },
     { name: "Settings", href: "/dashboard/settings" },
+    { name: "Uploads", href: "/dashboard/uploads" },
+    { name: "Admin", href: "/admin" },
   ];
 
   const navigation = isDashboard ? dashboardNavigation : mainNavigation;
@@ -157,6 +159,21 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                         >
                           <Settings className="mr-2 h-4 w-4" />
                           Settings
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link
+                          href="/dashboard/uploads"
+                          className="cursor-pointer"
+                        >
+                          <Upload className="mr-2 h-4 w-4" />
+                          Uploads
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem asChild>
+                        <Link href="/admin" className="cursor-pointer">
+                          <Shield className="mr-2 h-4 w-4" />
+                          Admin
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />

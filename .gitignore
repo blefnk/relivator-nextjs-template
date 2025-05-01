@@ -5,3 +5,5 @@ next-env.d.ts
 .vercel
 .next
 .env
+.exe
+.dll

@@ -212,7 +212,7 @@ export default function ProductsPage() {
             </div>
           )}
 
-          {/* Pagination (placeholder) */}
+          {/* Pagination */}
           <nav
             className="mt-12 flex items-center justify-center gap-2"
             aria-label="Pagination"

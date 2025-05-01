@@ -1,21 +1,76 @@
-# Relivator Next.js eCommerce Starter
+# 🏬 relivator next.js ecommerce starter
 
-[🌐 Live Demo](https://relivator.com) • [💬 Join the Discord](https://discord.gg/Pb8uKbwpsJ) • [💖 Sponsor Development](https://github.com/sponsors/blefnk)
+> - **Relivator is a robust, production-ready eCommerce template built with Next.js and other modern technologies.**
+> - **It's designed for developers who want a fast, modern, and scalable foundation without reinventing the backend.**
+> - _🤖 Want to discuss this repo with AI? Reliverse will be happy to chat with you! [💬 Talk here](https://reliverse.org/projects/blefnk/relivator-nextjs-template?chat=true)._
+<!-- > - 🎧 _Prefer listening than reading?_ Reliverse Deep Dive on Relivator is live! [▶️ Listen here](./docs/podcast-relivator.mp3). -->
 
-**Relivator** is a robust, production-ready eCommerce template built with Next.js. It's designed for developers who want a fast, modern, and scalable foundation without reinventing the backend.
+---
+
+<div align="left">
+  <a alt="GitHub license" href="https://github.com/blefnk/relivator/blob/main/LICENSE">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
+      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
+    </picture>
+  </a>
+  <a alt="npm version" href="https://www.npmjs.com/package/eslint-plugin-readable-tailwind?activeTab=versions">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/v/eslint-plugin-readable-tailwind?style=flat-square&labelColor=32363B&color=ffffff">
+      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/v/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/npm/v/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
+    </picture>
+  </a>
+  <a alt="GitHub issues" href="https://github.com/blefnk/relivator/issues">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
+      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
+    </picture>
+  </a>
+  <a alt="npm total downloads" href="https://www.npmjs.com/package/eslint-plugin-readable-tailwind?activeTab=readme">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dt/eslint-plugin-readable-tailwind?style=flat-square&labelColor=32363B&color=ffffff">
+      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dt/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/npm/dt/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
+    </picture>
+  </a>
+  <a alt="GitHub repo stars" href="https://github.com/blefnk/relivator/stargazers">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
+      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
+    </picture>
+  </a>
+  <a alt="GitHub workflow status" href="https://github.com/blefnk/relivator/actions?query=workflow%3ACI">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/blefnk/relivator/ci.yml?event=push&style=flat-square&labelColor=32363B&color=ffffff">
+      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/actions/workflow/status/blefnk/relivator/ci.yml?event=push&style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/actions/workflow/status/blefnk/relivator/ci.yml?event=push&style=flat-square&labelColor=EBEEF2&color=000000">
+    </picture>
+  </a>
+</div>
+
+---
+
+[Demo](https://relivator.com) — [Sponsor](https://github.com/sponsors/blefnk) — [Discord](https://discord.gg/Pb8uKbwpsJ) — [GitHub](https://github.com/blefnk/relivator) — [Docs](https://deepwiki.com/blefnk/relivator-nextjs-template) — [Introduction](https://blefnk.reliverse.org/my-projects/relivator)
 
 ## Features
 
-- ⚡ **Framework:** Next.js 15.3 + React 19.1 + TypeScript 5.8  
-- 🔐 **Auth:** First-class authentication with [Better Auth](https://better-auth.com)  
+The following features are the main Reliverse's stack. You can check the Versator to see Reliverse's another stack variant with Clerk, Stripe, Motion, and more.
+
+- ⚡ **Framework:** Next.js 15.3 • React 19.1 • TypeScript 5.8
+- 🔐 **Auth:** First-class authentication with [Better Auth](https://better-auth.com)
 - 🗄️ **Database:** Typed PostgreSQL via [Drizzle ORM](https://orm.drizzle.team) & [Neon](https://neon.tech)
-- 📄 **Forms:** Powered by schema-ready [TanStack Form](https://tanstack.com/form) *(🏗️ W.I.P)*  
-- 💳 **Payments:** Integration with [Polar](https://polar.sh) *(🏗️ W.I.P)*  
-- 📦 **Storage:** Smooth file uploads via [Uploadthing](https://uploadthing.com) *(🏗️ W.I.P)*  
-- 🎨 **Styling:** [shadcn/ui](https://ui.shadcn.com) with Tailwind CSS 4.1  
-- 🦄 **Motion:** Built-in [Anime.js](https://animejs.com) with a sample banner
+- 📄 **Forms:** Powered by schema-ready [TanStack Form](https://tanstack.com/form) _(🏗️ W.I.P)_
+- 📄 **Typesafe APIs:** Typed by [oRPC](https://orpc.unnoq.com) _(🏗️ W.I.P)_
+- 💳 **Payments:** Integration with [Polar](https://polar.sh) _(🏗️ W.I.P)_
+- 📦 **Storage:** Smooth file uploads via [Uploadthing](https://uploadthing.com)
+- 🎨 **Styling:** [shadcn/ui](https://ui.shadcn.com) with Tailwind CSS 4.1
+- 🦄 **Animations:** Built-in [Anime.js](https://animejs.com) with a sample banner
 - 📊 **Analytics:** Built-in optional [Vercel Analytics](https://vercel.com/docs/analytics)
-- 🛠️ **DX Tools:** Preconfigured ESLint 9, [Biome](https://biomejs.dev), [Knip](https://knip.dev)  
+- 🛠️ **DX Tools:** Preconfigured ESLint 9, [Biome](https://biomejs.dev), [Knip](https://knip.dev)
 
 ## Quick Start
 
@@ -85,18 +140,9 @@ To get started:
 ## Stand with Reliverse
 
 - ⭐ [Star the repo](https://github.com/blefnk/relivator) to help Reliverse community grow.
-- 💖 [Become a sponsor](https://github.com/sponsors/blefnk) and power the next wave of tools that *just feel right*.
+- 🦄 Follow this project's author, [Nazar Kornienko](https://github.com/blefnk) & [Reliverse](https://github.com/reliverse), to get updates about new projects.
+- 💖 [Become a sponsor](https://github.com/sponsors/blefnk) and power the next wave of tools that _just feel right_.
 - 🧑‍🚀 Every bit of support helps keep the dream alive: dev tools that don't suck.
-
-> Built with love. Fueled by purpose. Running on caffeine.
-
-### Current Sponsors
-
-[<img src="https://avatars.githubusercontent.com/u/59529099?v=4" width="35" alt="Sponsor #1: mfpiano (Petro Melnyk)">](https://youtube.com/@mfpiano)
-[<img src="https://avatars.githubusercontent.com/u/169331999?v=4" width="35" alt="Sponsor #2: devmarauda (Daniel Humphreys)">](https://github.com/devmarauda)
-[<img src="https://avatars.githubusercontent.com/u/1137112?v=4" width="35" alt="Sponsor #3: svict4 (Simon Victory)">](https://github.com/svict4)
-[<img src="https://avatars.githubusercontent.com/u/160747678?v=4" width="35" alt="Sponsor #4: Saif-V (Saif Al-Hashar)">](https://github.com/Saif-V)
-[<img src="https://avatars.githubusercontent.com/u/69108920?v=4" width="35" alt="Sponsor #5: demiroo (Özkan Demir)">](https://github.com/demiroo)
 
 ## License
 
