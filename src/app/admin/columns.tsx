@@ -103,7 +103,7 @@ export const getColumns = ({
                 <img
                   src={upload.url} // Show a small thumbnail
                   alt={upload.key}
-                  className="w-8 h-8 object-cover rounded-sm"
+                  className="h-8 w-8 rounded-sm object-cover"
                   loading="lazy"
                 />
               </Button>

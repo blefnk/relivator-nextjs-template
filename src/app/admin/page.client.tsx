@@ -120,16 +120,21 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
                       <img
                         src={upload.url}
                         alt={upload.key}
-                        className="w-8 h-8 object-cover rounded-sm"
+                        className="h-8 w-8 rounded-sm object-cover"
                         loading="lazy"
                       />
                     ) : (
-                      <div className="w-8 h-8 flex items-center justify-center bg-muted rounded-sm">
+                      <div
+                        className={`
+                          flex h-8 w-8 items-center justify-center rounded-sm
+                          bg-muted
+                        `}
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="currentColor"
-                          className="w-4 h-4 text-muted-foreground"
+                          className="h-4 w-4 text-muted-foreground"
                           aria-labelledby={`video-icon-title-${upload.id}`}
                         >
                           <title id={`video-icon-title-${upload.id}`}>

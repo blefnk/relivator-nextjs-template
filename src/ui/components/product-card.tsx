@@ -77,10 +77,10 @@ export function ProductCard({
             className={cn(
               "h-4 w-4",
               i < fullStars
-                ? "text-yellow-400 fill-yellow-400"
+                ? "fill-yellow-400 text-yellow-400"
                 : i === fullStars && hasHalfStar
-                  ? "text-yellow-400 fill-yellow-400/50"
-                  : "text-muted stroke-muted/40",
+                  ? "fill-yellow-400/50 text-yellow-400"
+                  : "stroke-muted/40 text-muted",
             )}
           />
         ))}
@@ -98,7 +98,11 @@ export function ProductCard({
       <Link href={`/products/${product.id}`}>
         <Card
           className={cn(
-            "relative h-full overflow-hidden rounded-lg transition-all duration-200 ease-in-out hover:shadow-md",
+            `
+              relative h-full overflow-hidden rounded-lg transition-all
+              duration-200 ease-in-out
+              hover:shadow-md
+            `,
             isHovered && "ring-1 ring-primary/20",
           )}
           onMouseEnter={() => setIsHovered(true)}
@@ -121,14 +125,21 @@ export function ProductCard({
             {/* Category badge */}
             <Badge
               variant="outline"
-              className="absolute left-2 top-2 bg-background/80 backdrop-blur-sm"
+              className={`
+                absolute top-2 left-2 bg-background/80 backdrop-blur-sm
+              `}
             >
               {product.category}
             </Badge>
 
             {/* Discount badge */}
             {discount > 0 && (
-              <Badge className="absolute right-2 top-2 bg-destructive text-destructive-foreground">
+              <Badge
+                className={`
+                  absolute top-2 right-2 bg-destructive
+                  text-destructive-foreground
+                `}
+              >
                 {discount}% OFF
               </Badge>
             )}
@@ -139,7 +150,10 @@ export function ProductCard({
               variant="outline"
               size="icon"
               className={cn(
-                "absolute right-2 bottom-2 z-10 rounded-full bg-background/80 backdrop-blur-sm transition-opacity duration-300",
+                `
+                  absolute right-2 bottom-2 z-10 rounded-full bg-background/80
+                  backdrop-blur-sm transition-opacity duration-300
+                `,
                 !isHovered && !isInWishlist && "opacity-0",
               )}
               onClick={handleAddToWishlist}
@@ -158,7 +172,12 @@ export function ProductCard({
 
           <CardContent className="p-4 pt-4">
             {/* Product name with line clamp */}
-            <h3 className="line-clamp-2 text-base font-medium transition-colors group-hover:text-primary">
+            <h3
+              className={`
+                line-clamp-2 text-base font-medium transition-colors
+                group-hover:text-primary
+              `}
+            >
               {product.name}
             </h3>
 
@@ -190,7 +209,12 @@ export function ProductCard({
                 onClick={handleAddToCart}
               >
                 {isAddingToCart ? (
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-background border-t-transparent" />
+                  <div
+                    className={`
+                      h-4 w-4 animate-spin rounded-full border-2
+                      border-background border-t-transparent
+                    `}
+                  />
                 ) : (
                   <ShoppingCart className="h-4 w-4" />
                 )}
@@ -201,7 +225,7 @@ export function ProductCard({
 
           {variant === "compact" && (
             <CardFooter className="p-4 pt-0">
-              <div className="flex items-center justify-between w-full">
+              <div className="flex w-full items-center justify-between">
                 <div className="flex items-center gap-1.5">
                   <span className="font-medium text-foreground">
                     ${product.price.toFixed(2)}
@@ -220,7 +244,12 @@ export function ProductCard({
                   onClick={handleAddToCart}
                 >
                   {isAddingToCart ? (
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                    <div
+                      className={`
+                        h-4 w-4 animate-spin rounded-full border-2
+                        border-primary border-t-transparent
+                      `}
+                    />
                   ) : (
                     <ShoppingCart className="h-4 w-4" />
                   )}
@@ -231,8 +260,13 @@ export function ProductCard({
           )}
 
           {!product.inStock && (
-            <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-              <Badge variant="destructive" className="text-sm px-3 py-1">
+            <div
+              className={`
+                absolute inset-0 flex items-center justify-center
+                bg-background/80 backdrop-blur-sm
+              `}
+            >
+              <Badge variant="destructive" className="px-3 py-1 text-sm">
                 Out of Stock
               </Badge>
             </div>

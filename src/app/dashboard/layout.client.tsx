@@ -38,23 +38,37 @@ export function DashboardLayoutClient({
   return (
     <div className="flex min-h-screen flex-col">
       <header className="border-b bg-background">
-        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <div
+          className={`
+            container flex h-16 items-center justify-between px-4
+            md:px-6
+          `}
+        >
           <div className="flex items-center gap-6">
             {/* TODO: Display seller's brand name here */}
             {/* <Link href="/" className="flex items-center gap-2">
               <span className="text-xl font-bold">Acme Store</span>
             </Link> */}
-            <nav className="hidden md:flex">
+            <nav
+              className={`
+                hidden
+                md:flex
+              `}
+            >
               <ul className="flex items-center gap-4">
                 {navigation.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className={`text-sm font-medium transition-colors hover:text-primary ${
-                        pathname === item.href
-                          ? "text-primary"
-                          : "text-muted-foreground"
-                      }`}
+                      className={`
+                        text-sm font-medium transition-colors
+                        hover:text-primary
+                        ${
+                          pathname === item.href
+                            ? "text-primary"
+                            : "text-muted-foreground"
+                        }
+                      `}
                     >
                       {item.name}
                     </Link>
@@ -68,8 +82,18 @@ export function DashboardLayoutClient({
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="icon" className="rounded-full">
-                    <span className="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-full">
-                      <span className="flex h-full w-full items-center justify-center rounded-full bg-muted">
+                    <span
+                      className={`
+                        relative flex h-8 w-8 shrink-0 overflow-hidden
+                        rounded-full
+                      `}
+                    >
+                      <span
+                        className={`
+                          flex h-full w-full items-center justify-center
+                          rounded-full bg-muted
+                        `}
+                      >
                         <User className="h-4 w-4" />
                       </span>
                     </span>

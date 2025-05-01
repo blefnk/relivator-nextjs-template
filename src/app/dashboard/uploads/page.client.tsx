@@ -138,9 +138,14 @@ export default function UploadsPageClient() {
             }}
           />
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <div className="relative flex-1">
-            <LinkIcon className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <LinkIcon
+              className={`
+                absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 transform
+                text-muted-foreground
+              `}
+            />
             <Input
               type="url"
               placeholder="Enter media URL (image or video)..."
@@ -166,7 +171,14 @@ export default function UploadsPageClient() {
           </Alert>
         )}
         {isMediaLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div
+            className={`
+              grid grid-cols-1 gap-4
+              sm:grid-cols-2
+              md:grid-cols-3
+              lg:grid-cols-4
+            `}
+          >
             {[...Array(4)].map((_, i) => (
               <Skeleton
                 key={`skeleton-${i}`}

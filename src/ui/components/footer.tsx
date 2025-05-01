@@ -7,11 +7,27 @@ import { Button } from "~/ui/primitives/button";
 export function Footer({ className }: { className?: string }) {
   return (
     <footer className={cn("border-t bg-background", className)}>
-      <div className="container mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+      <div
+        className={`
+          container mx-auto max-w-7xl px-4 py-12
+          sm:px-6
+          lg:px-8
+        `}
+      >
+        <div
+          className={`
+            grid grid-cols-1 gap-8
+            md:grid-cols-4
+          `}
+        >
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              <span
+                className={`
+                  bg-gradient-to-r from-primary to-primary/70 bg-clip-text
+                  text-xl font-bold tracking-tight text-transparent
+                `}
+              >
                 Relivator
               </span>
             </Link>
@@ -68,7 +84,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/products"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   All Products
                 </Link>
@@ -76,7 +95,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/products?category=audio"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Audio
                 </Link>
@@ -84,7 +106,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/products?category=wearables"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Wearables
                 </Link>
@@ -92,7 +117,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/products?category=smartphones"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Smartphones
                 </Link>
@@ -100,7 +128,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/products?category=laptops"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Laptops
                 </Link>
@@ -113,7 +144,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/about"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   About Us
                 </Link>
@@ -121,7 +155,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/careers"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Careers
                 </Link>
@@ -129,7 +166,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/blog"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Blog
                 </Link>
@@ -137,7 +177,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/press"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Press
                 </Link>
@@ -145,7 +188,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/contact"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Contact
                 </Link>
@@ -158,7 +204,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/help"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Help Center
                 </Link>
@@ -166,7 +215,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/shipping"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Shipping & Returns
                 </Link>
@@ -174,7 +226,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/warranty"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Warranty
                 </Link>
@@ -182,7 +237,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/privacy"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Privacy Policy
                 </Link>
@@ -190,7 +248,10 @@ export function Footer({ className }: { className?: string }) {
               <li>
                 <Link
                   href="/terms"
-                  className="text-muted-foreground hover:text-foreground"
+                  className={`
+                    text-muted-foreground
+                    hover:text-foreground
+                  `}
                 >
                   Terms of Service
                 </Link>
@@ -199,11 +260,20 @@ export function Footer({ className }: { className?: string }) {
           </div>
         </div>
         <div className="mt-12 border-t pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+          <div
+            className={`
+              flex flex-col items-center justify-between gap-4
+              md:flex-row
+            `}
+          >
             <p className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} Relivator. All rights reserved.
             </p>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <div
+              className={
+                "flex items-center gap-4 text-sm text-muted-foreground"
+              }
+            >
               <Link href="/privacy" className="hover:text-foreground">
                 Privacy
               </Link>

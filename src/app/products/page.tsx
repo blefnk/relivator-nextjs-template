@@ -161,9 +161,19 @@ export default function ProductsPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1 py-10">
-        <div className="container px-4 md:px-6">
+        <div
+          className={`
+            container px-4
+            md:px-6
+          `}
+        >
           {/* Heading & filters */}
-          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div
+            className={`
+              mb-8 flex flex-col gap-4
+              md:flex-row md:items-center md:justify-between
+            `}
+          >
             <div>
               <h1 className="text-3xl font-bold tracking-tight">Products</h1>
               <p className="mt-1 text-lg text-muted-foreground">
@@ -192,7 +202,14 @@ export default function ProductsPage() {
           </div>
 
           {/* Product grid */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div
+            className={`
+              grid grid-cols-1 gap-6
+              sm:grid-cols-2
+              md:grid-cols-3
+              lg:grid-cols-4
+            `}
+          >
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}

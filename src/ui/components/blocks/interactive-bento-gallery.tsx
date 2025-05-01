@@ -97,13 +97,20 @@ const GalleryMedia = ({
   if (item.type === "video") {
     return (
       <div
-        className={`${className} relative overflow-hidden bg-black/10 flex items-center justify-center group`}
+        className={`
+          ${className}
+          group relative flex items-center justify-center overflow-hidden
+          bg-black/10
+        `}
       >
         {!isThumbnail && onDelete && (
           <Button
             variant="destructive"
             size="icon"
-            className="absolute top-2 right-2 z-30 bg-red-500/80 hover:bg-red-500 transition-colors"
+            className={`
+              absolute top-2 right-2 z-30 bg-red-500/80 transition-colors
+              hover:bg-red-500
+            `}
             onClick={(e) => {
               e.stopPropagation();
               onDelete(item.id);
@@ -115,7 +122,7 @@ const GalleryMedia = ({
         {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
         <video
           ref={videoRef}
-          className="w-full h-full object-contain max-w-full max-h-full"
+          className="h-full max-h-full w-full max-w-full object-contain"
           onClick={handleMediaClick}
           playsInline
           muted={isThumbnail}
@@ -134,8 +141,17 @@ const GalleryMedia = ({
           Your browser does not support the video tag.
         </video>
         {videoIsBuffering && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-            <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          <div
+            className={`
+              absolute inset-0 flex items-center justify-center bg-black/10
+            `}
+          >
+            <div
+              className={`
+                h-6 w-6 animate-spin rounded-full border-2 border-white/30
+                border-t-white
+              `}
+            />
           </div>
         )}
       </div>
@@ -143,13 +159,20 @@ const GalleryMedia = ({
   }
   return (
     <div
-      className={`${className} relative overflow-hidden bg-black/10 flex items-center justify-center group`}
+      className={`
+        ${className}
+        group relative flex items-center justify-center overflow-hidden
+        bg-black/10
+      `}
     >
       {!isThumbnail && onDelete && (
         <Button
           variant="destructive"
           size="icon"
-          className="absolute top-2 right-2 z-30 bg-red-500/80 hover:bg-red-500 transition-colors"
+          className={`
+            absolute top-2 right-2 z-30 bg-red-500/80 transition-colors
+            hover:bg-red-500
+          `}
           onClick={(e) => {
             e.stopPropagation();
             onDelete(item.id);
@@ -162,7 +185,7 @@ const GalleryMedia = ({
       <img
         src={item.url}
         alt={item.title}
-        className="object-contain cursor-pointer max-w-full max-h-full"
+        className="max-h-full max-w-full cursor-pointer object-contain"
         onClick={handleMediaClick}
         loading="lazy"
         decoding="async"
@@ -254,12 +277,27 @@ const GalleryMediaModal = ({
           stiffness: 400,
           damping: 30,
         }}
-        className="fixed inset-0 w-full min-h-screen sm:h-[90vh] md:h-[600px] backdrop-blur-lg rounded-none sm:rounded-lg md:rounded-xl overflow-hidden z-10"
+        className={`
+          fixed inset-0 z-10 min-h-screen w-full overflow-hidden rounded-none
+          backdrop-blur-lg
+          sm:h-[90vh] sm:rounded-lg
+          md:h-[600px] md:rounded-xl
+        `}
       >
-        <div className="h-full flex flex-col">
-          <div className="flex-1 p-2 sm:p-3 md:p-4 flex items-center justify-center bg-gray-900/50">
+        <div className="flex h-full flex-col">
+          <div
+            className={`
+              flex flex-1 items-center justify-center bg-gray-900/50 p-2
+              sm:p-3
+              md:p-4
+            `}
+          >
             <motion.button
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white/90 text-gray-800 backdrop-blur-sm z-20 shadow-sm"
+              className={`
+                absolute top-1/2 left-2 z-20 -translate-y-1/2 rounded-full
+                bg-white/80 p-2 text-gray-800 shadow-sm backdrop-blur-sm
+                hover:bg-white/90
+              `}
               onClick={() => navigateToMediaItem("prev")}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -268,7 +306,11 @@ const GalleryMediaModal = ({
               <ChevronLeft size={24} strokeWidth={2} />
             </motion.button>
             <motion.button
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/80 hover:bg-white/90 text-gray-800 backdrop-blur-sm z-20 shadow-sm"
+              className={`
+                absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded-full
+                bg-white/80 p-2 text-gray-800 shadow-sm backdrop-blur-sm
+                hover:bg-white/90
+              `}
               onClick={() => navigateToMediaItem("next")}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -279,7 +321,12 @@ const GalleryMediaModal = ({
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedItem.id}
-                className="relative w-full aspect-[16/9] max-w-[95%] sm:max-w-[85%] md:max-w-3xl h-auto max-h-[70vh] rounded-lg overflow-hidden shadow-md"
+                className={`
+                  relative aspect-[16/9] h-auto max-h-[70vh] w-full max-w-[95%]
+                  overflow-hidden rounded-lg shadow-md
+                  sm:max-w-[85%]
+                  md:max-w-3xl
+                `}
                 initial={{ y: 20, scale: 0.97 }}
                 animate={{
                   y: 0,
@@ -300,18 +347,36 @@ const GalleryMediaModal = ({
               >
                 <GalleryMedia
                   item={selectedItem}
-                  className="w-full h-full object-contain"
+                  className="h-full w-full object-contain"
                   onClick={(e) => {
                     e.stopPropagation();
                   }}
                   onDelete={onDelete}
                   isThumbnail={false}
                 />
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4 bg-gradient-to-t from-black/50 to-transparent">
-                  <h3 className="text-white text-base sm:text-lg md:text-xl font-semibold">
+                <div
+                  className={`
+                    absolute right-0 bottom-0 left-0 bg-gradient-to-t
+                    from-black/50 to-transparent p-2
+                    sm:p-3
+                    md:p-4
+                  `}
+                >
+                  <h3
+                    className={`
+                      text-base font-semibold text-white
+                      sm:text-lg
+                      md:text-xl
+                    `}
+                  >
                     {selectedItem.title}
                   </h3>
-                  <p className="text-white/80 text-xs sm:text-sm mt-1">
+                  <p
+                    className={`
+                      mt-1 text-xs text-white/80
+                      sm:text-sm
+                    `}
+                  >
                     {selectedItem.desc}
                   </p>
                 </div>
@@ -320,7 +385,13 @@ const GalleryMediaModal = ({
           </div>
         </div>
         <motion.button
-          className="absolute top-2 sm:top-2.5 md:top-3 right-2 sm:right-2.5 md:right-3 p-2 rounded-full bg-white/80 hover:bg-white/90 text-gray-800 backdrop-blur-sm z-20 shadow-sm"
+          className={`
+            absolute top-2 right-2 z-20 rounded-full bg-white/80 p-2
+            text-gray-800 shadow-sm backdrop-blur-sm
+            hover:bg-white/90
+            sm:top-2.5 sm:right-2.5
+            md:top-3 md:right-3
+          `}
           onClick={onClose}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -329,8 +400,13 @@ const GalleryMediaModal = ({
           <X size={20} strokeWidth={2} />
         </motion.button>
       </motion.div>
-      <div className="fixed z-50 left-1/2 bottom-4 -translate-x-1/2">
-        <div className="relative rounded-xl bg-sky-400/20 backdrop-blur-xl border border-blue-400/30 shadow-lg px-3 py-2">
+      <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
+        <div
+          className={`
+            relative rounded-xl border border-blue-400/30 bg-sky-400/20 px-3
+            py-2 shadow-lg backdrop-blur-xl
+          `}
+        >
           <div className="flex items-center -space-x-2">
             {mediaItems.map((item, index) => (
               <motion.div
@@ -343,13 +419,14 @@ const GalleryMediaModal = ({
                       : mediaItems.length - index,
                 }}
                 className={`
-                  relative group
-                  w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 flex-shrink-0 
-                  rounded-lg overflow-hidden 
-                  cursor-pointer hover:z-20
+                  group relative h-8 w-8 flex-shrink-0 cursor-pointer
+                  overflow-hidden rounded-lg
+                  hover:z-20
+                  sm:h-9 sm:w-9
+                  md:h-10 md:w-10
                   ${
                     selectedItem.id === item.id
-                      ? "ring-2 ring-white/70 shadow-lg"
+                      ? "shadow-lg ring-2 ring-white/70"
                       : "hover:ring-2 hover:ring-white/30"
                   }
                 `}
@@ -366,12 +443,17 @@ const GalleryMediaModal = ({
               >
                 <GalleryMedia
                   item={item}
-                  className="w-full h-full"
+                  className="h-full w-full"
                   onClick={() => setSelectedItem(item)}
                   onDelete={onDelete}
                   isThumbnail={true}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-white/20" />
+                <div
+                  className={`
+                    absolute inset-0 bg-gradient-to-b from-transparent
+                    via-white/5 to-white/20
+                  `}
+                />
                 {selectedItem.id === item.id && (
                   <motion.div
                     layoutId="activeGlow"
@@ -405,10 +487,16 @@ const BentoMediaGallery: React.FC<BentoMediaGalleryProps> = ({
     null,
   );
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className="container mx-auto max-w-4xl px-4 py-8">
       <div className="mb-8 text-center">
         <motion.h1
-          className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white"
+          className={`
+            bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text
+            text-2xl font-bold text-transparent
+            sm:text-3xl
+            md:text-4xl
+            dark:from-white dark:via-gray-200 dark:to-white
+          `}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -416,7 +504,11 @@ const BentoMediaGallery: React.FC<BentoMediaGalleryProps> = ({
           {title}
         </motion.h1>
         <motion.p
-          className="mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-400"
+          className={`
+            mt-2 text-sm text-gray-600
+            sm:text-base
+            dark:text-gray-400
+          `}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
@@ -436,7 +528,11 @@ const BentoMediaGallery: React.FC<BentoMediaGalleryProps> = ({
           />
         ) : (
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-3 auto-rows-[60px]"
+            className={`
+              grid auto-rows-[60px] grid-cols-1 gap-3
+              sm:grid-cols-3
+              md:grid-cols-4
+            `}
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -452,7 +548,10 @@ const BentoMediaGallery: React.FC<BentoMediaGalleryProps> = ({
               <motion.div
                 key={item.id}
                 layoutId={`media-${item.id}`}
-                className={`relative overflow-hidden rounded-xl cursor-pointer ${item.span}`}
+                className={`
+                  relative cursor-pointer overflow-hidden rounded-xl
+                  ${item.span}
+                `}
                 onClick={() => setSelectedItem(item)}
                 variants={{
                   hidden: { y: 50, scale: 0.9, opacity: 0 },
@@ -472,23 +571,50 @@ const BentoMediaGallery: React.FC<BentoMediaGalleryProps> = ({
               >
                 <GalleryMedia
                   item={item}
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute inset-0 h-full w-full"
                   onClick={() => setSelectedItem(item)}
                   onDelete={onDelete}
                   isThumbnail={true}
                 />
                 <motion.div
-                  className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4"
+                  className={`
+                    absolute inset-0 flex flex-col justify-end p-2
+                    sm:p-3
+                    md:p-4
+                  `}
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="absolute inset-0 flex flex-col justify-end p-2 sm:p-3 md:p-4">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                    <h3 className="relative text-white text-xs sm:text-sm md:text-base font-medium line-clamp-1">
+                  <div
+                    className={`
+                      absolute inset-0 flex flex-col justify-end p-2
+                      sm:p-3
+                      md:p-4
+                    `}
+                  >
+                    <div
+                      className={`
+                        absolute inset-0 bg-gradient-to-t from-black/80
+                        via-black/40 to-transparent
+                      `}
+                    />
+                    <h3
+                      className={`
+                        relative line-clamp-1 text-xs font-medium text-white
+                        sm:text-sm
+                        md:text-base
+                      `}
+                    >
                       {item.title}
                     </h3>
-                    <p className="relative text-white/70 text-[10px] sm:text-xs md:text-sm mt-0.5 line-clamp-2">
+                    <p
+                      className={`
+                        relative mt-0.5 line-clamp-2 text-[10px] text-white/70
+                        sm:text-xs
+                        md:text-sm
+                      `}
+                    >
                       {item.desc}
                     </p>
                   </div>

@@ -88,7 +88,11 @@ export function TwoFactorPageClient() {
                 onChange={(e) => {
                   setCode(e.target.value);
                 }}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+                className={`
+                  mt-1 block w-full rounded-md border border-gray-300 px-3 py-2
+                  shadow-sm
+                  focus:border-blue-500 focus:ring-blue-500 focus:outline-none
+                `}
                 placeholder={
                   isUsingBackupCode ? "Enter backup code" : "6-digit code"
                 }
@@ -113,7 +117,10 @@ export function TwoFactorPageClient() {
                     onChange={(e) => {
                       setTrustDevice(e.target.checked);
                     }}
-                    className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className={`
+                      h-4 w-4 rounded border-gray-300 text-blue-600
+                      focus:ring-blue-500
+                    `}
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -136,7 +143,14 @@ export function TwoFactorPageClient() {
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+              className={`
+                flex w-full justify-center rounded-md bg-blue-600 px-4 py-2
+                text-sm font-medium text-white
+                hover:bg-blue-700
+                focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                focus:outline-none
+                disabled:opacity-50
+              `}
             >
               {loading ? "Verifying..." : "Verify"}
             </button>
@@ -144,7 +158,13 @@ export function TwoFactorPageClient() {
             <button
               type="button"
               onClick={toggleVerificationMethod}
-              className="flex w-full justify-center rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+              className={`
+                flex w-full justify-center rounded-md bg-gray-200 px-4 py-2
+                text-sm font-medium text-gray-700
+                hover:bg-gray-300
+                focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+                focus:outline-none
+              `}
             >
               {isUsingBackupCode
                 ? "Use authenticator app instead"

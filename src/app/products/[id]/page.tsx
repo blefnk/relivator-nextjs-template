@@ -294,7 +294,12 @@ export default function ProductDetailPage() {
     return (
       <div className="flex min-h-screen flex-col">
         <main className="flex-1 py-10">
-          <div className="container px-4 md:px-6">
+          <div
+            className={`
+              container px-4
+              md:px-6
+            `}
+          >
             <h1 className="text-3xl font-bold">Product Not Found</h1>
             <p className="mt-4">
               The product you&apos;re looking for doesn&apos;t exist.
@@ -312,7 +317,12 @@ export default function ProductDetailPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1 py-10">
-        <div className="container px-4 md:px-6">
+        <div
+          className={`
+            container px-4
+            md:px-6
+          `}
+        >
           {/* Back link */}
           <Button
             variant="ghost"
@@ -324,9 +334,18 @@ export default function ProductDetailPage() {
           </Button>
 
           {/* Main grid */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div
+            className={`
+              grid grid-cols-1 gap-8
+              md:grid-cols-2
+            `}
+          >
             {/* ------------------------ Product image ------------------------ */}
-            <div className="relative aspect-square overflow-hidden rounded-lg bg-muted">
+            <div
+              className={`
+                relative aspect-square overflow-hidden rounded-lg bg-muted
+              `}
+            >
               <Image
                 src={product.image}
                 alt={product.name}
@@ -335,7 +354,12 @@ export default function ProductDetailPage() {
                 priority
               />
               {discountPercentage > 0 && (
-                <div className="absolute left-2 top-2 rounded-full bg-red-500 px-2 py-1 text-xs font-bold text-white">
+                <div
+                  className={`
+                    absolute top-2 left-2 rounded-full bg-red-500 px-2 py-1
+                    text-xs font-bold text-white
+                  `}
+                >
                   -{discountPercentage}%
                 </div>
               )}
@@ -356,13 +380,16 @@ export default function ProductDetailPage() {
                     {range(5).map((i) => (
                       <Star
                         key={`star-${i}`}
-                        className={`h-5 w-5 ${
-                          i < Math.floor(product.rating)
-                            ? "fill-primary text-primary"
-                            : i < product.rating
-                              ? "fill-primary/50 text-primary"
-                              : "text-muted-foreground"
-                        }`}
+                        className={`
+                          h-5 w-5
+                          ${
+                            i < Math.floor(product.rating)
+                              ? "fill-primary text-primary"
+                              : i < product.rating
+                                ? "fill-primary/50 text-primary"
+                                : "text-muted-foreground"
+                          }
+                        `}
                       />
                     ))}
                   </div>
@@ -406,7 +433,12 @@ export default function ProductDetailPage() {
               </div>
 
               {/* Quantity selector & Add to cart */}
-              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div
+                className={`
+                  mb-6 flex flex-col gap-4
+                  sm:flex-row sm:items-center
+                `}
+              >
                 {/* Quantity */}
                 <div className="flex items-center">
                   <Button
@@ -449,7 +481,12 @@ export default function ProductDetailPage() {
           <Separator className="my-8" />
 
           {/* ---------------------- Features & Specs ------------------------ */}
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div
+            className={`
+              grid grid-cols-1 gap-8
+              md:grid-cols-2
+            `}
+          >
             {/* Features */}
             <section>
               <h2 className="mb-4 text-2xl font-bold">Features</h2>
@@ -459,7 +496,7 @@ export default function ProductDetailPage() {
                     key={`feature-${product.id}-${slugify(feature)}`}
                     className="flex items-start"
                   >
-                    <span className="mr-2 mt-1 h-2 w-2 rounded-full bg-primary" />
+                    <span className="mt-1 mr-2 h-2 w-2 rounded-full bg-primary" />
                     <span>{feature}</span>
                   </li>
                 ))}

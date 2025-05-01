@@ -79,7 +79,12 @@ export function DataTableFilter<TData, TValue>({
 
   return (
     <div className="flex w-full items-start justify-between gap-2">
-      <div className="flex md:flex-wrap gap-2 w-full flex-1">
+      <div
+        className={`
+          flex w-full flex-1 gap-2
+          md:flex-wrap
+        `}
+      >
         <FilterSelector table={table} />
         <ActiveFilters table={table} />
       </div>
@@ -127,13 +132,18 @@ export function ActiveFiltersMobileContainer({
     <div className="relative w-full overflow-x-hidden">
       {/* Left blur effect */}
       {showLeftBlur && (
-        <div className="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none bg-gradient-to-r from-background to-transparent animate-in fade-in-0" />
+        <div
+          className={`
+            pointer-events-none absolute top-0 bottom-0 left-0 z-10 w-16
+            bg-gradient-to-r from-background to-transparent animate-in fade-in-0
+          `}
+        />
       )}
 
       {/* Scrollable container */}
       <div
         ref={scrollContainerRef}
-        className="flex gap-2 overflow-x-scroll no-scrollbar"
+        className="no-scrollbar flex gap-2 overflow-x-scroll"
         onScroll={checkScroll}
       >
         {children}
@@ -141,7 +151,12 @@ export function ActiveFiltersMobileContainer({
 
       {/* Right blur effect */}
       {showRightBlur && (
-        <div className="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none bg-gradient-to-l from-background to-transparent animate-in fade-in-0 " />
+        <div
+          className={`
+            pointer-events-none absolute top-0 right-0 bottom-0 z-10 w-16
+            bg-gradient-to-l from-background to-transparent animate-in fade-in-0
+          `}
+        />
       )}
     </div>
   );
@@ -162,7 +177,14 @@ export function FilterActions<TData>({ table }: { table: Table<TData> }) {
       onClick={clearFilters}
     >
       <FilterXIcon />
-      <span className="hidden md:block">Clear</span>
+      <span
+        className={`
+          hidden
+          md:block
+        `}
+      >
+        Clear
+      </span>
     </Button>
   );
 }
@@ -249,7 +271,7 @@ export function FilterSelector<TData>({ table }: { table: Table<TData> }) {
       <PopoverContent
         align="start"
         side="bottom"
-        className="w-fit p-0 origin-(--radix-popover-content-transform-origin)"
+        className="w-fit origin-(--radix-popover-content-transform-origin) p-0"
       >
         {content}
       </PopoverContent>
@@ -276,7 +298,12 @@ export function FilterableColumn<TData>({
           {Icon && <Icon strokeWidth={2.25} className="size-4" />}
           <span>{column.columnDef.meta?.displayName}</span>
         </div>
-        <ArrowRight className="size-4 opacity-0 group-aria-selected:opacity-100" />
+        <ArrowRight
+          className={`
+            size-4 opacity-0
+            group-aria-selected:opacity-100
+          `}
+        />
       </div>
     </CommandItem>
   );
@@ -391,7 +418,10 @@ function renderActiveFilter<TData, T extends ColumnDataType>(
   return (
     <div
       key={`filter-${filter.id}`}
-      className="flex h-7 items-center rounded-2xl border border-border bg-background shadow-xs text-xs"
+      className={`
+        flex h-7 items-center rounded-2xl border border-border bg-background
+        text-xs shadow-xs
+      `}
     >
       <FilterSubject meta={meta} />
       <Separator orientation="vertical" />
@@ -410,7 +440,7 @@ function renderActiveFilter<TData, T extends ColumnDataType>(
       <Separator orientation="vertical" />
       <Button
         variant="ghost"
-        className="rounded-none rounded-r-2xl text-xs w-7 h-full"
+        className="h-full w-7 rounded-none rounded-r-2xl text-xs"
         onClick={() => table.getColumn(filter.id)?.setFilterValue(undefined)}
       >
         <X className="size-4 -translate-x-0.5" />
@@ -428,7 +458,11 @@ export function FilterSubject<TData>({
 }) {
   const hasIcon = !!meta?.icon;
   return (
-    <span className="flex select-none items-center gap-1 whitespace-nowrap px-2 font-medium">
+    <span
+      className={`
+        flex items-center gap-1 px-2 font-medium whitespace-nowrap select-none
+      `}
+    >
       {hasIcon && <meta.icon className="size-4 stroke-[2.25px]" />}
       <span>{meta.displayName}</span>
     </span>
@@ -458,14 +492,16 @@ export function FilterOperator<TData, T extends ColumnDataType>({
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="m-0 h-full w-fit whitespace-nowrap rounded-none p-0 px-2 text-xs"
+          className={`
+            m-0 h-full w-fit rounded-none p-0 px-2 text-xs whitespace-nowrap
+          `}
         >
           <FilterOperatorDisplay filter={filter} filterType={columnMeta.type} />
         </Button>
       </PopoverTrigger>
       <PopoverContent
         align="start"
-        className="w-fit p-0 origin-(--radix-popover-content-transform-origin)"
+        className="w-fit origin-(--radix-popover-content-transform-origin) p-0"
       >
         <Command loop>
           <CommandInput placeholder="Search..." />
@@ -752,7 +788,9 @@ export function FilterValue<TData, TValue>({
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          className="m-0 h-full w-fit whitespace-nowrap rounded-none p-0 px-2 text-xs"
+          className={`
+            m-0 h-full w-fit rounded-none p-0 px-2 text-xs whitespace-nowrap
+          `}
         >
           <FilterValueDisplay
             id={id}
@@ -765,7 +803,7 @@ export function FilterValue<TData, TValue>({
       <PopoverContent
         align="start"
         side="bottom"
-        className="w-fit p-0 origin-(--radix-popover-content-transform-origin)"
+        className="w-fit origin-(--radix-popover-content-transform-origin) p-0"
       >
         <FilterValueController
           id={id}
@@ -1071,7 +1109,7 @@ export function FilterValueNumberDisplay<TData, TValue>({
         : filter.values[1];
 
     return (
-      <span className="tabular-nums tracking-tight">
+      <span className="tracking-tight tabular-nums">
         {minValue} and {maxValue}
       </span>
     );
@@ -1082,7 +1120,7 @@ export function FilterValueNumberDisplay<TData, TValue>({
   }
 
   const value = filter.values[0];
-  return <span className="tabular-nums tracking-tight">{value}</span>;
+  return <span className="tracking-tight tabular-nums">{value}</span>;
 }
 
 export function FilterValueController<TData, TValue>({
@@ -1273,7 +1311,11 @@ export function FilterValueOptionController<TData, TValue>({
                 <div className="flex items-center gap-1.5">
                   <Checkbox
                     checked={checked}
-                    className="opacity-0 group-hover:opacity-100 data-[state=checked]:opacity-100"
+                    className={`
+                      opacity-0
+                      group-hover:opacity-100
+                      data-[state=checked]:opacity-100
+                    `}
                   />
                   {v.icon &&
                     (isValidElement(v.icon) ? (
@@ -1285,7 +1327,10 @@ export function FilterValueOptionController<TData, TValue>({
                     {v.label}
                     <sup
                       className={cn(
-                        "ml-0.5 tabular-nums tracking-tight text-muted-foreground",
+                        `
+                          ml-0.5 tracking-tight text-muted-foreground
+                          tabular-nums
+                        `,
                         count === 0 && "slashed-zero",
                       )}
                     >
@@ -1445,7 +1490,11 @@ export function FilterValueMultiOptionController<
                 <div className="flex items-center gap-1.5">
                   <Checkbox
                     checked={checked}
-                    className="opacity-0 group-hover:opacity-100 data-[state=checked]:opacity-100"
+                    className={`
+                      opacity-0
+                      group-hover:opacity-100
+                      data-[state=checked]:opacity-100
+                    `}
                   />
                   {v.icon &&
                     (isValidElement(v.icon) ? (
@@ -1457,7 +1506,10 @@ export function FilterValueMultiOptionController<
                     {v.label}
                     <sup
                       className={cn(
-                        "ml-0.5 tabular-nums tracking-tight text-muted-foreground",
+                        `
+                          ml-0.5 tracking-tight text-muted-foreground
+                          tabular-nums
+                        `,
                         count === 0 && "slashed-zero",
                       )}
                     >
@@ -1699,18 +1751,23 @@ export function FilterValueNumberController<TData, TValue>({
     <Command>
       <CommandList className="w-[300px] px-2 py-2">
         <CommandGroup>
-          <div className="flex flex-col w-full">
+          <div className="flex w-full flex-col">
             <Tabs
               value={isNumberRange ? "range" : "single"}
               onValueChange={(v) =>
                 changeType(v === "range" ? "range" : "single")
               }
             >
-              <TabsList className="w-full *:text-xs">
+              <TabsList
+                className={`
+                  w-full
+                  *:text-xs
+                `}
+              >
                 <TabsTrigger value="single">Single</TabsTrigger>
                 <TabsTrigger value="range">Range</TabsTrigger>
               </TabsList>
-              <TabsContent value="single" className="flex flex-col gap-4 mt-4">
+              <TabsContent value="single" className="mt-4 flex flex-col gap-4">
                 <Slider
                   value={[Number(inputValues[0])]}
                   onValueChange={(value) => {
@@ -1732,7 +1789,7 @@ export function FilterValueNumberController<TData, TValue>({
                   />
                 </div>
               </TabsContent>
-              <TabsContent value="range" className="flex flex-col gap-4 mt-4">
+              <TabsContent value="range" className="mt-4 flex flex-col gap-4">
                 <Slider
                   value={slider.value}
                   onValueChange={slider.onValueChange}

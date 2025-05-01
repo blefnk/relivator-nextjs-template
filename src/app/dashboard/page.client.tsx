@@ -41,8 +41,20 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
   // If we're still loading, show a skeleton
   if (isPending) {
     return (
-      <div className="container grid flex-1 items-start gap-4 p-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-        <div className="grid gap-4 md:col-span-2 lg:col-span-1">
+      <div
+        className={`
+          container grid flex-1 items-start gap-4 p-4
+          md:grid-cols-2 md:gap-8
+          lg:grid-cols-3
+        `}
+      >
+        <div
+          className={`
+            grid gap-4
+            md:col-span-2
+            lg:col-span-1
+          `}
+        >
           <Card>
             <CardHeader className="space-y-2">
               <Skeleton className="h-6 w-1/3" />
@@ -61,8 +73,20 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
   }
 
   return (
-    <div className="container grid flex-1 items-start gap-4 p-4 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
-      <div className="grid gap-4 md:col-span-2 lg:col-span-1">
+    <div
+      className={`
+        container grid flex-1 items-start gap-4 p-4
+        md:grid-cols-2 md:gap-8
+        lg:grid-cols-3
+      `}
+    >
+      <div
+        className={`
+          grid gap-4
+          md:col-span-2
+          lg:col-span-1
+        `}
+      >
         <Card>
           <CardHeader>
             <CardTitle>Welcome to your Dashboard</CardTitle>
@@ -74,20 +98,20 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
             {currentUserState && (
               <div className="space-y-2">
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">Name</p>
+                  <p className="text-sm leading-none font-medium">Name</p>
                   <p className="text-sm text-muted-foreground">
                     {currentUserState.name ?? "Not set"}
                   </p>
                 </div>
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">Email</p>
+                  <p className="text-sm leading-none font-medium">Email</p>
                   <p className="text-sm text-muted-foreground">
                     {currentUserState.email ?? "Not set"}
                   </p>
                 </div>
                 {currentUserState?.firstName && (
                   <div className="space-y-1">
-                    <p className="text-sm font-medium leading-none">
+                    <p className="text-sm leading-none font-medium">
                       First Name
                     </p>
                     <p className="text-sm text-muted-foreground">
@@ -97,7 +121,7 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
                 )}
                 {currentUserState?.lastName && (
                   <div className="space-y-1">
-                    <p className="text-sm font-medium leading-none">
+                    <p className="text-sm leading-none font-medium">
                       Last Name
                     </p>
                     <p className="text-sm text-muted-foreground">
@@ -107,14 +131,14 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
                 )}
                 {currentUserState?.age ? (
                   <div className="space-y-1">
-                    <p className="text-sm font-medium leading-none">Age</p>
+                    <p className="text-sm leading-none font-medium">Age</p>
                     <p className="text-sm text-muted-foreground">
                       {currentUserState.age}
                     </p>
                   </div>
                 ) : null}
                 <div className="space-y-1">
-                  <p className="text-sm font-medium leading-none">
+                  <p className="text-sm leading-none font-medium">
                     Two-Factor Authentication
                   </p>
                   <p className="text-sm text-muted-foreground">
@@ -127,7 +151,15 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
           <CardFooter className="flex justify-between">
             <Link
               href="/dashboard/profile"
-              className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+              className={`
+                inline-flex items-center justify-center rounded-md bg-primary
+                px-4 py-2 text-sm font-medium text-primary-foreground
+                ring-offset-background transition-colors
+                hover:bg-primary/90
+                focus-visible:ring-2 focus-visible:ring-ring
+                focus-visible:ring-offset-2 focus-visible:outline-none
+                disabled:pointer-events-none disabled:opacity-50
+              `}
             >
               Edit Profile
             </Link>
@@ -137,7 +169,13 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
           </CardFooter>
         </Card>
       </div>
-      <div className="grid gap-4 md:col-span-2 lg:col-span-2">
+      <div
+        className={`
+          grid gap-4
+          md:col-span-2
+          lg:col-span-2
+        `}
+      >
         <Card>
           <CardHeader>
             <CardTitle>Quick Actions</CardTitle>
@@ -149,7 +187,15 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
             <div className="grid grid-cols-2 gap-4">
               <Link
                 href="/dashboard/profile"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+                className={`
+                  inline-flex items-center justify-center rounded-md bg-primary
+                  px-4 py-2 text-sm font-medium text-primary-foreground
+                  ring-offset-background transition-colors
+                  hover:bg-primary/90
+                  focus-visible:ring-2 focus-visible:ring-ring
+                  focus-visible:ring-offset-2 focus-visible:outline-none
+                  disabled:pointer-events-none disabled:opacity-50
+                `}
               >
                 Edit Profile
               </Link>

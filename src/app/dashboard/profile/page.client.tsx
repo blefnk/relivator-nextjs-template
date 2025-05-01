@@ -139,7 +139,12 @@ export function ProfilePageClient() {
   };
 
   return (
-    <div className="container space-y-6 p-4 md:p-8">
+    <div
+      className={`
+        container space-y-6 p-4
+        md:p-8
+      `}
+    >
       <div className="space-y-0.5">
         <h2 className="text-2xl font-bold tracking-tight">Profile</h2>
         <p className="text-muted-foreground">
@@ -189,7 +194,11 @@ export function ProfilePageClient() {
 
         <TabsContent value="security" className="space-y-4">
           {error && (
-            <div className="rounded-md bg-destructive/10 p-4 text-sm text-destructive">
+            <div
+              className={`
+                rounded-md bg-destructive/10 p-4 text-sm text-destructive
+              `}
+            >
               {error}
             </div>
           )}
@@ -219,7 +228,12 @@ export function ProfilePageClient() {
                   {secret && (
                     <div className="mt-6 w-full">
                       <p className="text-sm font-medium">Manual entry code:</p>
-                      <p className="mt-2 break-all rounded-md bg-muted p-4 font-mono text-sm">
+                      <p
+                        className={`
+                          mt-2 rounded-md bg-muted p-4 font-mono text-sm
+                          break-all
+                        `}
+                      >
                         {secret}
                       </p>
                     </div>

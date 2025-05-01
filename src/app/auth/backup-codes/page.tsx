@@ -102,7 +102,12 @@ export default function BackupCodesPage() {
         <div className="flex space-x-4">
           <Link
             href="/dashboard/profile"
-            className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+            className={`
+              rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700
+              hover:bg-gray-300
+              focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+              focus:outline-none
+            `}
           >
             Back to Profile
           </Link>
@@ -121,7 +126,9 @@ export default function BackupCodesPage() {
         )}
 
         {message && (
-          <div className="mb-4 rounded-md bg-green-50 p-4 text-sm text-green-700">
+          <div
+            className={"mb-4 rounded-md bg-green-50 p-4 text-sm text-green-700"}
+          >
             {message}
           </div>
         )}
@@ -140,11 +147,16 @@ export default function BackupCodesPage() {
         {backupCodes.length > 0 ? (
           <div className="mb-6">
             <h3 className="mb-2 text-lg font-medium">Your Backup Codes</h3>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+            <div
+              className={`
+                grid grid-cols-2 gap-2
+                sm:grid-cols-3
+              `}
+            >
               {backupCodes.map((code) => (
                 <div
                   key={code}
-                  className="rounded-md bg-gray-100 p-2 font-mono text-center"
+                  className="rounded-md bg-gray-100 p-2 text-center font-mono"
                 >
                   {code}
                 </div>
@@ -152,7 +164,11 @@ export default function BackupCodesPage() {
             </div>
           </div>
         ) : (
-          <div className="mb-6 rounded-md bg-yellow-50 p-4 text-sm text-yellow-700">
+          <div
+            className={`
+              mb-6 rounded-md bg-yellow-50 p-4 text-sm text-yellow-700
+            `}
+          >
             No backup codes available. Generate new codes below.
           </div>
         )}
@@ -164,7 +180,14 @@ export default function BackupCodesPage() {
               void generateNewCodes();
             }}
             disabled={loading}
-            className="flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+            className={`
+              flex items-center justify-center rounded-md bg-blue-600 px-4 py-2
+              text-sm font-medium text-white
+              hover:bg-blue-700
+              focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+              focus:outline-none
+              disabled:opacity-50
+            `}
           >
             Generate New Backup Codes
           </button>

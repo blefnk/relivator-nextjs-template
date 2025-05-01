@@ -43,12 +43,27 @@ export function ThemeToggle({ className }: { className?: string }) {
           variant="ghost"
           size="icon"
           className={cn(
-            "h-9 w-9 rounded-full bg-background transition-colors hover:bg-muted",
+            `
+              h-9 w-9 rounded-full bg-background transition-colors
+              hover:bg-muted
+            `,
             className,
           )}
         >
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-300 dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100" />
+          <Sun
+            className={`
+              h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all
+              duration-300
+              dark:scale-0 dark:-rotate-90
+            `}
+          />
+          <Moon
+            className={`
+              absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all
+              duration-300
+              dark:scale-100 dark:rotate-0
+            `}
+          />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
@@ -56,7 +71,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         <DropdownMenuItem
           onClick={() => setTheme("light")}
           className={cn(
-            "flex items-center gap-2 cursor-pointer",
+            "flex cursor-pointer items-center gap-2",
             theme === "light" && "font-medium text-primary",
           )}
         >
@@ -66,7 +81,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         <DropdownMenuItem
           onClick={() => setTheme("dark")}
           className={cn(
-            "flex items-center gap-2 cursor-pointer",
+            "flex cursor-pointer items-center gap-2",
             theme === "dark" && "font-medium text-primary",
           )}
         >
@@ -76,7 +91,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         <DropdownMenuItem
           onClick={() => setTheme("system")}
           className={cn(
-            "flex items-center gap-2 cursor-pointer",
+            "flex cursor-pointer items-center gap-2",
             (theme === "system" || !theme) && "font-medium text-primary",
           )}
         >

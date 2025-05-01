@@ -50,8 +50,19 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
   const navigation = isDashboard ? dashboardNavigation : mainNavigation;
 
   const renderContent = () => (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header
+      className={`
+        sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur
+        supports-[backdrop-filter]:bg-background/60
+      `}
+    >
+      <div
+        className={`
+          container mx-auto max-w-7xl px-4
+          sm:px-6
+          lg:px-8
+        `}
+      >
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/" className="flex items-center gap-2">
@@ -59,13 +70,21 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                 className={cn(
                   "text-xl font-bold",
                   !isDashboard &&
-                    "tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent",
+                    `
+                      bg-gradient-to-r from-primary to-primary/70 bg-clip-text
+                      tracking-tight text-transparent
+                    `,
                 )}
               >
                 Relivator
               </span>
             </Link>
-            <nav className="hidden md:flex">
+            <nav
+              className={`
+                hidden
+                md:flex
+              `}
+            >
               <ul className="flex items-center gap-6">
                 {navigation.map((item) => {
                   const isActive =
@@ -77,9 +96,12 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                       <Link
                         href={item.href}
                         className={cn(
-                          "text-sm font-medium transition-colors hover:text-primary",
+                          `
+                            text-sm font-medium transition-colors
+                            hover:text-primary
+                          `,
                           isActive
-                            ? "text-primary font-semibold"
+                            ? "font-semibold text-primary"
                             : "text-muted-foreground",
                         )}
                       >
@@ -98,7 +120,12 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
             <NotificationsWidget />
 
             {showAuth && (
-              <div className="hidden md:block">
+              <div
+                className={`
+                  hidden
+                  md:block
+                `}
+              >
                 {session ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -114,7 +141,12 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                             className="h-9 w-9 rounded-full object-cover"
                           />
                         ) : (
-                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-muted">
+                          <span
+                            className={`
+                              flex h-8 w-8 items-center justify-center
+                              rounded-full bg-muted
+                            `}
+                          >
                             <User className="h-4 w-4" />
                           </span>
                         )}
@@ -122,7 +154,12 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-56">
                       <div className="flex items-center justify-start gap-2 p-2">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                        <div
+                          className={`
+                            flex h-8 w-8 items-center justify-center
+                            rounded-full bg-primary/10
+                          `}
+                        >
                           {session.user?.image ? (
                             <img
                               src={session.user.image}
@@ -137,7 +174,12 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                           <p className="text-sm font-medium">
                             {session.user?.name || "User"}
                           </p>
-                          <p className="text-xs text-muted-foreground truncate max-w-[160px]">
+                          <p
+                            className={`
+                              max-w-[160px] truncate text-xs
+                              text-muted-foreground
+                            `}
+                          >
                             {session.user?.email}
                           </p>
                         </div>
@@ -183,7 +225,10 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                           "cursor-pointer",
                           isDashboard
                             ? "text-red-600"
-                            : "text-destructive focus:text-destructive",
+                            : `
+                              text-destructive
+                              focus:text-destructive
+                            `,
                         )}
                       >
                         <LogOut className="mr-2 h-4 w-4" />
@@ -228,7 +273,7 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="md:hidden">
-          <div className="space-y-1 px-4 py-3 border-b">
+          <div className="space-y-1 border-b px-4 py-3">
             {navigation.map((item) => {
               const isActive =
                 pathname === item.href ||
@@ -239,10 +284,13 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "block py-2 px-3 text-base font-medium rounded-md",
+                    "block rounded-md px-3 py-2 text-base font-medium",
                     isActive
                       ? "bg-primary/10 text-primary"
-                      : "text-foreground hover:bg-muted/50 hover:text-primary",
+                      : `
+                        text-foreground
+                        hover:bg-muted/50 hover:text-primary
+                      `,
                   )}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -253,17 +301,24 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
           </div>
 
           {showAuth && !session && (
-            <div className="space-y-1 px-4 py-3 border-b">
+            <div className="space-y-1 border-b px-4 py-3">
               <Link
                 href="/auth/sign-in"
-                className="block py-2 px-3 text-base font-medium rounded-md hover:bg-muted/50"
+                className={`
+                  block rounded-md px-3 py-2 text-base font-medium
+                  hover:bg-muted/50
+                `}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Log in
               </Link>
               <Link
                 href="/auth/sign-up"
-                className="block py-2 px-3 text-base font-medium rounded-md bg-primary text-primary-foreground hover:bg-primary/90"
+                className={`
+                  block rounded-md bg-primary px-3 py-2 text-base font-medium
+                  text-primary-foreground
+                  hover:bg-primary/90
+                `}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Sign up

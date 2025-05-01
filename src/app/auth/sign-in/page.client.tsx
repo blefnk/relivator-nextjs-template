@@ -62,9 +62,19 @@ export function SignInPageClient() {
   };
 
   return (
-    <div className="grid h-screen w-screen md:grid-cols-2">
+    <div
+      className={`
+        grid h-screen w-screen
+        md:grid-cols-2
+      `}
+    >
       {/* Left side - Image */}
-      <div className="relative hidden md:block">
+      <div
+        className={`
+          relative hidden
+          md:block
+        `}
+      >
         <Image
           src="https://images.unsplash.com/photo-1719811059181-09032aef07b8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3"
           alt="Sign-in background image"
@@ -73,7 +83,11 @@ export function SignInPageClient() {
           sizes="(max-width: 768px) 0vw, 50vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+        <div
+          className={`
+            absolute inset-0 bg-gradient-to-t from-background/80 to-transparent
+          `}
+        />
         <div className="absolute bottom-8 left-8 z-10 text-white">
           <h1 className="text-3xl font-bold">Relivator</h1>
           <p className="mt-2 max-w-md text-sm text-white/80">
@@ -83,9 +97,19 @@ export function SignInPageClient() {
       </div>
 
       {/* Right side - Login form */}
-      <div className="flex items-center justify-center p-4 md:p-8">
+      <div
+        className={`
+          flex items-center justify-center p-4
+          md:p-8
+        `}
+      >
         <div className="w-full max-w-md space-y-4">
-          <div className="text-center md:text-left space-y-4">
+          <div
+            className={`
+              space-y-4 text-center
+              md:text-left
+            `}
+          >
             <h2 className="text-3xl font-bold">Sign In</h2>
             <p className="text-sm text-muted-foreground">
               Enter your credentials to access your account
@@ -119,7 +143,10 @@ export function SignInPageClient() {
                     <Label htmlFor="password">Password</Label>
                     <Link
                       href="#"
-                      className="text-sm text-muted-foreground hover:underline"
+                      className={`
+                        text-sm text-muted-foreground
+                        hover:underline
+                      `}
                     >
                       Forgot password?
                     </Link>
@@ -177,7 +204,10 @@ export function SignInPageClient() {
                 Don't have an account?{" "}
                 <Link
                   href="/auth/sign-up"
-                  className="text-primary underline-offset-4 hover:underline"
+                  className={`
+                    text-primary underline-offset-4
+                    hover:underline
+                  `}
                 >
                   Sign up
                 </Link>

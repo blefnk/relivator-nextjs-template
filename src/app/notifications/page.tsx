@@ -25,7 +25,12 @@ export default function NotificationsPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
-        <div className="container px-4 py-8 md:px-6">
+        <div
+          className={`
+            container px-4 py-8
+            md:px-6
+          `}
+        >
           <div className="mb-8 flex items-center justify-between">
             <h1 className="text-3xl font-bold">Notifications Center</h1>
           </div>

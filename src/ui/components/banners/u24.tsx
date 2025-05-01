@@ -151,9 +151,24 @@ const United24Banner: React.FC<United24BannerProps> = ({
       role="banner"
       aria-label="Support Ukraine banner"
     >
-      <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
-        <div className="flex flex-col md:flex-row items-center mb-4 md:mb-0 banner-content">
-          <div className="mb-3 md:mb-0 md:mr-5 flex-shrink-0 relative banner-logo">
+      <div
+        className={`
+          container mx-auto flex flex-col items-center justify-between px-4 py-4
+          md:flex-row
+        `}
+      >
+        <div
+          className={`
+            banner-content mb-4 flex flex-col items-center
+            md:mb-0 md:flex-row
+          `}
+        >
+          <div
+            className={`
+              banner-logo relative mb-3 flex-shrink-0
+              md:mr-5 md:mb-0
+            `}
+          >
             {/* Use Image component with different sources based on theme */}
             <Image
               src="/u24.svg"
@@ -161,7 +176,10 @@ const United24Banner: React.FC<United24BannerProps> = ({
               width={96}
               height={48}
               priority
-              className="w-24 h-auto rounded block dark:hidden"
+              className={`
+                block h-auto w-24 rounded
+                dark:hidden
+              `}
             />
             <Image
               src="/u24_white.svg"
@@ -169,11 +187,18 @@ const United24Banner: React.FC<United24BannerProps> = ({
               width={96}
               height={48}
               priority
-              className="w-24 h-auto rounded hidden dark:block"
+              className={`
+                hidden h-auto w-24 rounded
+                dark:block
+              `}
             />
           </div>
           <p
-            className={`font-semibold text-center md:text-left banner-content ${textColorClasses}`}
+            className={`
+              banner-content text-center font-semibold
+              md:text-left
+              ${textColorClasses}
+            `}
           >
             Stand with Ukraine. Help fund drones, medkits, and victory. Every
             dollar helps stop{" "}
@@ -189,7 +214,7 @@ const United24Banner: React.FC<United24BannerProps> = ({
           </p>
         </div>
 
-        <div className="flex items-center banner-content">
+        <div className="banner-content flex items-center">
           <Link
             href="https://u24.gov.ua"
             target="_blank"
@@ -205,7 +230,13 @@ const United24Banner: React.FC<United24BannerProps> = ({
               onClick={handleClose}
               aria-label="Close Ukraine support banner"
               type="button"
-              className={`ml-4 opacity-80 hover:opacity-100 transition-opacity banner-content focus:outline-none focus:ring-2 focus:ring-current focus:ring-opacity-50 ${textColorClasses}`}
+              className={`
+                banner-content ml-4 opacity-80 transition-opacity
+                focus:ring-opacity-50 focus:ring-2 focus:ring-current
+                focus:outline-none
+                hover:opacity-100
+                ${textColorClasses}
+              `}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

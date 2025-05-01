@@ -52,7 +52,9 @@ export const Notifications: React.FC<NotificationsProps> = ({
 }) => {
   if (notifications.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-6 text-center">
+      <div
+        className={"flex flex-col items-center justify-center py-6 text-center"}
+      >
         <Bell className="mb-2 h-10 w-10 text-muted-foreground/50" />
         <p className="text-sm font-medium">No notifications yet</p>
         <p className="text-xs text-muted-foreground">
@@ -79,7 +81,7 @@ export const Notifications: React.FC<NotificationsProps> = ({
             </div>
             <div className="flex-1 space-y-1">
               <div className="flex items-center justify-between">
-                <p className="text-sm font-medium leading-none">
+                <p className="text-sm leading-none font-medium">
                   {notification.title}
                 </p>
                 <span className="text-xs text-muted-foreground">

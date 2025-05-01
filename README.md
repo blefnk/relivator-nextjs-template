@@ -12,42 +12,21 @@
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
       <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-    </picture>
-  </a>
-  <a alt="npm version" href="https://www.npmjs.com/package/eslint-plugin-readable-tailwind?activeTab=versions">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/v/eslint-plugin-readable-tailwind?style=flat-square&labelColor=32363B&color=ffffff">
-      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/v/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/npm/v/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="relivator license" src="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
     </picture>
   </a>
   <a alt="GitHub issues" href="https://github.com/blefnk/relivator/issues">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
       <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-    </picture>
-  </a>
-  <a alt="npm total downloads" href="https://www.npmjs.com/package/eslint-plugin-readable-tailwind?activeTab=readme">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/npm/dt/eslint-plugin-readable-tailwind?style=flat-square&labelColor=32363B&color=ffffff">
-      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/npm/dt/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/npm/dt/eslint-plugin-readable-tailwind?style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="relivator issues" src="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
     </picture>
   </a>
   <a alt="GitHub repo stars" href="https://github.com/blefnk/relivator/stargazers">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
       <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-    </picture>
-  </a>
-  <a alt="GitHub workflow status" href="https://github.com/blefnk/relivator/actions?query=workflow%3ACI">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/actions/workflow/status/blefnk/relivator/ci.yml?event=push&style=flat-square&labelColor=32363B&color=ffffff">
-      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/actions/workflow/status/blefnk/relivator/ci.yml?event=push&style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="eslint-plugin-readable-tailwind logo" src="https://img.shields.io/github/actions/workflow/status/blefnk/relivator/ci.yml?event=push&style=flat-square&labelColor=EBEEF2&color=000000">
+      <img alt="relivator stars" src="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
     </picture>
   </a>
 </div>

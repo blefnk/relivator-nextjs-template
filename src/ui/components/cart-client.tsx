@@ -84,7 +84,9 @@ export function CartClient({ className, mockCart }: CartProps) {
       {totalItems > 0 && (
         <Badge
           variant="default"
-          className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 text-[10px]"
+          className={`
+            absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-[10px]
+          `}
         >
           {totalItems}
         </Badge>
@@ -122,7 +124,12 @@ export function CartClient({ className, mockCart }: CartProps) {
                 exit={{ opacity: 0 }}
                 className="flex flex-col items-center justify-center py-12"
               >
-                <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-muted">
+                <div
+                  className={`
+                    mb-4 flex h-20 w-20 items-center justify-center rounded-full
+                    bg-muted
+                  `}
+                >
                   <ShoppingCart className="h-10 w-10 text-muted-foreground" />
                 </div>
                 <h3 className="mb-2 text-lg font-medium">Your cart is empty</h3>
@@ -153,7 +160,11 @@ export function CartClient({ className, mockCart }: CartProps) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.15 }}
-                    className="group relative flex rounded-lg border bg-card p-2 shadow-sm transition-colors hover:bg-accent/50"
+                    className={`
+                      group relative flex rounded-lg border bg-card p-2
+                      shadow-sm transition-colors
+                      hover:bg-accent/50
+                    `}
                   >
                     <div className="relative h-20 w-20 overflow-hidden rounded">
                       <Image
@@ -168,7 +179,10 @@ export function CartClient({ className, mockCart }: CartProps) {
                         <div className="flex items-start justify-between">
                           <Link
                             href={`/products/${item.id}`}
-                            className="line-clamp-2 text-sm font-medium group-hover:text-primary"
+                            className={`
+                              line-clamp-2 text-sm font-medium
+                              group-hover:text-primary
+                            `}
                             onClick={() => setIsOpen(false)}
                           >
                             {item.name}
@@ -176,7 +190,11 @@ export function CartClient({ className, mockCart }: CartProps) {
                           <button
                             type="button"
                             onClick={() => handleRemoveItem(item.id)}
-                            className="ml-2 -mt-1 -mr-1 rounded-full p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-destructive"
+                            className={`
+                              -mt-1 -mr-1 ml-2 rounded-full p-1
+                              text-muted-foreground transition-colors
+                              hover:bg-muted hover:text-destructive
+                            `}
                           >
                             <X className="h-4 w-4" />
                             <span className="sr-only">Remove item</span>
@@ -193,13 +211,23 @@ export function CartClient({ className, mockCart }: CartProps) {
                             onClick={() =>
                               handleUpdateQuantity(item.id, item.quantity - 1)
                             }
-                            className="flex h-7 w-7 items-center justify-center rounded-l-md border-r text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                            className={`
+                              flex h-7 w-7 items-center justify-center
+                              rounded-l-md border-r text-muted-foreground
+                              transition-colors
+                              hover:bg-muted hover:text-foreground
+                            `}
                             disabled={item.quantity <= 1}
                           >
                             <Minus className="h-3 w-3" />
                             <span className="sr-only">Decrease quantity</span>
                           </button>
-                          <span className="flex h-7 w-7 items-center justify-center text-xs font-medium">
+                          <span
+                            className={`
+                              flex h-7 w-7 items-center justify-center text-xs
+                              font-medium
+                            `}
+                          >
                             {item.quantity}
                           </span>
                           <button
@@ -207,7 +235,12 @@ export function CartClient({ className, mockCart }: CartProps) {
                             onClick={() =>
                               handleUpdateQuantity(item.id, item.quantity + 1)
                             }
-                            className="flex h-7 w-7 items-center justify-center rounded-r-md border-l text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                            className={`
+                              flex h-7 w-7 items-center justify-center
+                              rounded-r-md border-l text-muted-foreground
+                              transition-colors
+                              hover:bg-muted hover:text-foreground
+                            `}
                           >
                             <Plus className="h-3 w-3" />
                             <span className="sr-only">Increase quantity</span>
@@ -284,7 +317,9 @@ export function CartClient({ className, mockCart }: CartProps) {
           {totalItems > 0 && (
             <Badge
               variant="default"
-              className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 text-[10px]"
+              className={`
+                absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-[10px]
+              `}
             >
               {totalItems}
             </Badge>

@@ -3,7 +3,7 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
-    "source.organizeImports.biome": "explicit"
+    "source.organizeImports": "explicit"
   },
   "editor.defaultFormatter": "biomejs.biome",
   "[markdown]": { "editor.defaultFormatter": "DavidAnson.vscode-markdownlint" },

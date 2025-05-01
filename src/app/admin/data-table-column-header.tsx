@@ -33,7 +33,10 @@ export function DataTableColumnHeader<TData, TValue>({
           <Button
             variant="ghost"
             size="sm"
-            className="-ml-3 h-8 data-[state=open]:bg-accent"
+            className={`
+              -ml-3 h-8
+              data-[state=open]:bg-accent
+            `}
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc" ? (
@@ -48,16 +51,16 @@ export function DataTableColumnHeader<TData, TValue>({
         <DropdownMenuContent align="start">
           <DropdownMenuLabel>Sort</DropdownMenuLabel>
           <DropdownMenuItem onClick={() => column.toggleSorting(false)}>
-            <ArrowUp className="h-3.5 w-3.5 text-muted-foreground/70 mr-2" />{" "}
+            <ArrowUp className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />{" "}
             Asc
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => column.toggleSorting(true)}>
-            <ArrowDown className="h-3.5 w-3.5 text-muted-foreground/70 mr-2" />{" "}
+            <ArrowDown className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />{" "}
             Desc
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => column.toggleVisibility(false)}>
-            <EyeOff className="h-3.5 w-3.5 text-muted-foreground/70 mr-2" />{" "}
+            <EyeOff className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />{" "}
             Hide
           </DropdownMenuItem>
         </DropdownMenuContent>
