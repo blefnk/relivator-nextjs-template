@@ -1,21 +1,22 @@
 "use client";
 
+import type React from "react";
+
 import { animate } from "animejs";
 import Image from "next/image";
 import Link from "next/link";
-import type React from "react";
 import { useEffect, useRef, useState } from "react";
 
 interface United24BannerProps {
+  animateGradient?: boolean;
   onClose?: () => void;
   showCloseButton?: boolean;
-  animateGradient?: boolean;
 }
 
 const United24Banner: React.FC<United24BannerProps> = ({
+  animateGradient = true,
   onClose,
   showCloseButton = true,
-  animateGradient = true,
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const bannerRef = useRef<HTMLDivElement>(null);
@@ -30,18 +31,18 @@ const United24Banner: React.FC<United24BannerProps> = ({
 
       // Create close animation
       const animation = animate(bannerRef.current, {
-        opacity: 0,
-        height: 0,
-        paddingTop: 0,
-        paddingBottom: 0,
         duration: 500,
         ease: "outQuad",
+        height: 0,
         onComplete: () => {
           setIsVisible(false);
           if (onClose) {
             onClose();
           }
         },
+        opacity: 0,
+        paddingBottom: 0,
+        paddingTop: 0,
       });
 
       // Store the animation reference
@@ -68,30 +69,30 @@ const United24Banner: React.FC<United24BannerProps> = ({
 
     // Entrance animation for content
     const contentAnimation = animate(contentElements, {
-      opacity: [0, 1],
-      translateY: [20, 0],
+      delay: (_, i) => i * 100, // Stagger effect
       duration: 800,
       ease: "outExpo",
-      delay: (_, i) => i * 100, // Stagger effect
+      opacity: [0, 1],
+      translateY: [20, 0],
     });
     animations.push(contentAnimation);
 
     // Logo animation
     const logoAnimation = animate(logoElements, {
-      scale: [0.8, 1],
-      opacity: [0, 1],
-      rotate: ["-15deg", "0deg"],
       duration: 1000,
       ease: "outElastic(1, 0.5)",
+      opacity: [0, 1],
+      rotate: ["-15deg", "0deg"],
+      scale: [0.8, 1],
     });
     animations.push(logoAnimation);
 
     // Button animation
     const buttonAnimation = animate(buttonElements, {
-      opacity: [0, 0.9],
-      duration: 200,
       delay: 100,
+      duration: 200,
       ease: "outExpo",
+      opacity: [0, 0.9],
     });
     animations.push(buttonAnimation);
 
@@ -145,11 +146,11 @@ const United24Banner: React.FC<United24BannerProps> = ({
 
   return (
     <div
-      ref={bannerRef}
-      className={bannerClasses}
-      style={backgroundStyle}
-      role="banner"
       aria-label="Support Ukraine banner"
+      className={bannerClasses}
+      ref={bannerRef}
+      role="banner"
+      style={backgroundStyle}
     >
       <div
         className={`
@@ -171,26 +172,26 @@ const United24Banner: React.FC<United24BannerProps> = ({
           >
             {/* Use Image component with different sources based on theme */}
             <Image
-              src="/u24.svg"
               alt="United24 Logo"
-              width={96}
-              height={48}
-              priority
               className={`
                 block h-auto w-24 rounded
                 dark:hidden
               `}
-            />
-            <Image
-              src="/u24_white.svg"
-              alt="United24 Logo"
-              width={96}
               height={48}
               priority
+              src="/u24.svg"
+              width={96}
+            />
+            <Image
+              alt="United24 Logo"
               className={`
                 hidden h-auto w-24 rounded
                 dark:block
               `}
+              height={48}
+              priority
+              src="/u24_white.svg"
+              width={96}
             />
           </div>
           <p
@@ -203,10 +204,10 @@ const United24Banner: React.FC<United24BannerProps> = ({
             Stand with Ukraine. Help fund drones, medkits, and victory. Every
             dollar helps stop{" "}
             <Link
-              href="https://war.ukraine.ua/russia-war-crimes"
-              target="_blank"
-              rel="noopener noreferrer"
               className="underline"
+              href="https://war.ukraine.ua/russia-war-crimes"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               russia's war crimes
             </Link>{" "}
@@ -216,20 +217,18 @@ const United24Banner: React.FC<United24BannerProps> = ({
 
         <div className="banner-content flex items-center">
           <Link
-            href="https://u24.gov.ua"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={buttonClasses}
             aria-label="Donate to support Ukraine"
+            className={buttonClasses}
+            href="https://u24.gov.ua"
+            rel="noopener noreferrer"
+            target="_blank"
           >
             Donate
           </Link>
 
           {showCloseButton && (
             <button
-              onClick={handleClose}
               aria-label="Close Ukraine support banner"
-              type="button"
               className={`
                 banner-content ml-4 opacity-80 transition-opacity
                 focus:ring-opacity-50 focus:ring-2 focus:ring-current
@@ -237,19 +236,21 @@ const United24Banner: React.FC<United24BannerProps> = ({
                 hover:opacity-100
                 ${textColorClasses}
               `}
+              onClick={handleClose}
+              type="button"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
                 aria-hidden="true"
+                className="h-5 w-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <title>Close</title>
                 <path
-                  fillRule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                   clipRule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  fillRule="evenodd"
                 />
               </svg>
             </button>

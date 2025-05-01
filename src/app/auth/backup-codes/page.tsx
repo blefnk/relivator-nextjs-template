@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
 import { twoFactor, useSession } from "~/lib/auth-client";
 
 export default function BackupCodesPage() {
@@ -101,13 +102,13 @@ export default function BackupCodesPage() {
         <h1 className="text-3xl font-bold">Backup Codes</h1>
         <div className="flex space-x-4">
           <Link
-            href="/dashboard/profile"
             className={`
               rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700
               hover:bg-gray-300
               focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
               focus:outline-none
             `}
+            href="/dashboard/profile"
           >
             Back to Profile
           </Link>
@@ -155,8 +156,8 @@ export default function BackupCodesPage() {
             >
               {backupCodes.map((code) => (
                 <div
-                  key={code}
                   className="rounded-md bg-gray-100 p-2 text-center font-mono"
+                  key={code}
                 >
                   {code}
                 </div>
@@ -175,11 +176,6 @@ export default function BackupCodesPage() {
 
         <div className="flex justify-center">
           <button
-            type="button"
-            onClick={() => {
-              void generateNewCodes();
-            }}
-            disabled={loading}
             className={`
               flex items-center justify-center rounded-md bg-blue-600 px-4 py-2
               text-sm font-medium text-white
@@ -188,6 +184,11 @@ export default function BackupCodesPage() {
               focus:outline-none
               disabled:opacity-50
             `}
+            disabled={loading}
+            onClick={() => {
+              void generateNewCodes();
+            }}
+            type="button"
           >
             Generate New Backup Codes
           </button>

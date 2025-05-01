@@ -1,4 +1,4 @@
-import { type IconReseui, createIcon } from "./utils-factory";
+import { createIcon, type IconReseui } from "./utils-factory";
 
 const CreateDiscordIcon = createIcon(
   "DiscordIcon",

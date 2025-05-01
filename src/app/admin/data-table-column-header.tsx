@@ -1,5 +1,7 @@
 import type { Column } from "@tanstack/react-table";
+
 import { ArrowDown, ArrowUp, ChevronsUpDown, EyeOff } from "lucide-react";
+
 import { cn } from "~/lib/cn";
 import { Button } from "~/ui/primitives/button";
 import {
@@ -18,9 +20,9 @@ interface DataTableColumnHeaderProps<TData, TValue>
 }
 
 export function DataTableColumnHeader<TData, TValue>({
+  className,
   column,
   title,
-  className,
 }: DataTableColumnHeaderProps<TData, TValue>) {
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>;
@@ -31,12 +33,12 @@ export function DataTableColumnHeader<TData, TValue>({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="ghost"
-            size="sm"
             className={`
               -ml-3 h-8
               data-[state=open]:bg-accent
             `}
+            size="sm"
+            variant="ghost"
           >
             <span>{title}</span>
             {column.getIsSorted() === "desc" ? (

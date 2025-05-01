@@ -1,11 +1,11 @@
-// schema
-export * from "./users/tables";
+export * from "./uploads/relations";
 export * from "./uploads/tables";
 
+export * from "./uploads/types";
 // relations
 export * from "./users/relations";
-export * from "./uploads/relations";
 
+// schema
+export * from "./users/tables";
 // types
 export * from "./users/types";
-export * from "./uploads/types";

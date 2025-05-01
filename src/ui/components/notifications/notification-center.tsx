@@ -1,7 +1,8 @@
 "use client";
 
-import { Bell } from "lucide-react";
 import type React from "react";
+
+import { Bell } from "lucide-react";
 import { useCallback, useState } from "react";
 
 import { cn } from "~/lib/cn";
@@ -14,32 +15,33 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/ui/primitives/dropdown-menu";
+
 import { Notifications } from "./notifications";
 
 export interface Notification {
-  id: string;
-  title: string;
   description: string;
-  timestamp: Date;
+  id: string;
   read: boolean;
-  type: "info" | "success" | "warning" | "error";
+  timestamp: Date;
+  title: string;
+  type: "error" | "info" | "success" | "warning";
 }
 
 type NotificationCenterProps = React.HTMLAttributes<HTMLDivElement> & {
   notifications: Notification[];
-  onMarkAsRead?: (id: string) => void;
-  onMarkAllAsRead?: () => void;
-  onDismiss?: (id: string) => void;
   onClearAll?: () => void;
+  onDismiss?: (id: string) => void;
+  onMarkAllAsRead?: () => void;
+  onMarkAsRead?: (id: string) => void;
 };
 
 export function NotificationCenter({
-  notifications,
-  onMarkAsRead,
-  onMarkAllAsRead,
-  onDismiss,
-  onClearAll,
   className,
+  notifications,
+  onClearAll,
+  onDismiss,
+  onMarkAllAsRead,
+  onMarkAsRead,
   ...props
 }: NotificationCenterProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,9 +66,9 @@ export function NotificationCenter({
 
   return (
     <div className={cn("relative", className)} {...props}>
-      <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+      <DropdownMenu onOpenChange={setIsOpen} open={isOpen}>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="relative">
+          <Button className="relative" size="icon" variant="ghost">
             <Bell className="h-5 w-5" />
             {unreadCount > 0 && (
               <span
@@ -87,10 +89,10 @@ export function NotificationCenter({
             <span>Notifications</span>
             {unreadCount > 0 && (
               <Button
-                variant="ghost"
-                size="sm"
                 className="h-auto p-0 text-xs font-normal text-primary"
                 onClick={handleMarkAllAsRead}
+                size="sm"
+                variant="ghost"
               >
                 Mark all as read
               </Button>
@@ -101,8 +103,8 @@ export function NotificationCenter({
 
           <Notifications
             notifications={notifications}
-            onMarkAsRead={handleMarkAsRead}
             onDismiss={handleDismiss}
+            onMarkAsRead={handleMarkAsRead}
           />
 
           {notifications.length > 0 && (
@@ -110,10 +112,10 @@ export function NotificationCenter({
               <DropdownMenuSeparator />
               <CardFooter className="p-2">
                 <Button
-                  variant="outline"
-                  size="sm"
                   className="w-full"
                   onClick={handleClearAll}
+                  size="sm"
+                  variant="outline"
                 >
                   Clear all notifications
                 </Button>

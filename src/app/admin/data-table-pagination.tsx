@@ -1,10 +1,12 @@
 import type { Table } from "@tanstack/react-table";
+
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
+
 import { Button } from "~/ui/primitives/button";
 
 export function DataTablePagination<TData>({ table }: { table: Table<TData> }) {
@@ -24,8 +26,8 @@ export function DataTablePagination<TData>({ table }: { table: Table<TData> }) {
           <p className="text-sm font-medium">Rows per page</p>
           <select
             className="h-8 w-[70px] rounded border px-2"
-            value={table.getState().pagination.pageSize}
             onChange={(e) => table.setPageSize(Number(e.target.value))}
+            value={table.getState().pagination.pageSize}
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
@@ -44,43 +46,43 @@ export function DataTablePagination<TData>({ table }: { table: Table<TData> }) {
         </div>
         <div className="flex items-center space-x-2">
           <Button
-            variant="outline"
             className={`
               hidden h-8 w-8 p-0
               lg:flex
             `}
-            onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}
+            onClick={() => table.setPageIndex(0)}
+            variant="outline"
           >
             <span className="sr-only">Go to first page</span>
             <ChevronsLeft className="h-4 w-4" />
           </Button>
           <Button
-            variant="outline"
             className="h-8 w-8 p-0"
-            onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            onClick={() => table.previousPage()}
+            variant="outline"
           >
             <span className="sr-only">Go to previous page</span>
             <ChevronLeft className="h-4 w-4" />
           </Button>
           <Button
-            variant="outline"
             className="h-8 w-8 p-0"
-            onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            onClick={() => table.nextPage()}
+            variant="outline"
           >
             <span className="sr-only">Go to next page</span>
             <ChevronRight className="h-4 w-4" />
           </Button>
           <Button
-            variant="outline"
             className={`
               hidden h-8 w-8 p-0
               lg:flex
             `}
-            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
             disabled={!table.getCanNextPage()}
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            variant="outline"
           >
             <span className="sr-only">Go to last page</span>
             <ChevronsRight className="h-4 w-4" />

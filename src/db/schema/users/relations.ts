@@ -1,11 +1,12 @@
 import { relations } from "drizzle-orm";
+
 import { uploadsTable } from "../uploads/tables";
 import { accountTable, sessionTable, userTable } from "./tables";
 
 export const userRelations = relations(userTable, ({ many }) => ({
-  uploads: many(uploadsTable),
-  sessions: many(sessionTable),
   accounts: many(accountTable),
+  sessions: many(sessionTable),
+  uploads: many(uploadsTable),
 }));
 
 export const sessionRelations = relations(sessionTable, ({ one }) => ({

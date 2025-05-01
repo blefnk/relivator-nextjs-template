@@ -1,128 +1,88 @@
 # 🏬 relivator next.js ecommerce starter
 
-> - **Relivator is a robust, production-ready eCommerce template built with Next.js and other modern technologies.**
-> - **It's designed for developers who want a fast, modern, and scalable foundation without reinventing the backend.**
-> - _🤖 Want to discuss this repo with AI? Reliverse will be happy to chat with you! [💬 Talk here](https://reliverse.org/projects/blefnk/relivator-nextjs-template?chat=true)._
-<!-- > - 🎧 _Prefer listening than reading?_ Reliverse Deep Dive on Relivator is live! [▶️ Listen here](./docs/podcast-relivator.mp3). -->
+[demo](https://relivator.com) — [sponsor](https://github.com/sponsors/blefnk) — [discord](https://discord.gg/Pb8uKbwpsJ) — [github](https://github.com/blefnk/relivator) — [docs](https://deepwiki.com/blefnk/relivator-nextjs-template)
 
----
+> relivator is a robust ecommerce template built with next.js and other modern technologies. it's designed for developers who want a fast, modern, and scalable foundation without reinventing the backend.
 
-<div align="left">
-  <a alt="GitHub license" href="https://github.com/blefnk/relivator/blob/main/LICENSE">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
-      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="relivator license" src="https://img.shields.io/github/license/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-    </picture>
-  </a>
-  <a alt="GitHub issues" href="https://github.com/blefnk/relivator/issues">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
-      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="relivator issues" src="https://img.shields.io/github/issues/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-    </picture>
-  </a>
-  <a alt="GitHub repo stars" href="https://github.com/blefnk/relivator/stargazers">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=32363B&color=ffffff">
-      <source media="(prefers-color-scheme: light)" srcset="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-      <img alt="relivator stars" src="https://img.shields.io/github/stars/blefnk/relivator?style=flat-square&labelColor=EBEEF2&color=000000">
-    </picture>
-  </a>
-</div>
+## features
 
----
+- ⚡ **framework:** next.js 15.3 + react 19.1 + ts 5.8
+- 🔐 **auth:** [better-auth](https://better-auth.com)
+- 🗄️ **db:** pg + [drizzle-orm](https://orm.drizzle.team)
+- 📦 **storage:** [uploadthing](https://uploadthing.com)
+- 🎨 **styling:** tailwind 4.1 + [shadcn](https://ui.shadcn.com)
+- 🦄 **animations:** [anime.js](https://animejs.com)
+- 📊 **analytics:** [vercel](https://vercel.com/docs/analytics)
+- 🛠️ **dx tools:** eslint + [biome](https://biomejs.dev) + [knip](https://knip.dev)
+- 💳 **payments:** [polar](https://polar.sh) _(🏗️ w.i.p)_
+- 🧬 **api:** next + [orpc](https://orpc.unnoq.com) _(🏗️ w.i.p)_
+- 📄 **forms:** [tanstack](https://tanstack.com/form) _(🏗️ w.i.p)_
 
-[Demo](https://relivator.com) — [Sponsor](https://github.com/sponsors/blefnk) — [Discord](https://discord.gg/Pb8uKbwpsJ) — [GitHub](https://github.com/blefnk/relivator) — [Docs](https://deepwiki.com/blefnk/relivator-nextjs-template) — [Introduction](https://blefnk.reliverse.org/my-projects/relivator)
+> these features define the standard reliverse stack. for an alternative setup—featuring clerk, stripe, trpc, and more—check out [versator](https://github.com/blefnk/versator).
 
-## Features
+## quick start
 
-The following features are the main Reliverse's stack. You can check the Versator to see Reliverse's another stack variant with Clerk, Stripe, Motion, and more.
-
-- ⚡ **Framework:** Next.js 15.3 • React 19.1 • TypeScript 5.8
-- 🔐 **Auth:** First-class authentication with [Better Auth](https://better-auth.com)
-- 🗄️ **Database:** Typed PostgreSQL via [Drizzle ORM](https://orm.drizzle.team) & [Neon](https://neon.tech)
-- 📄 **Forms:** Powered by schema-ready [TanStack Form](https://tanstack.com/form) _(🏗️ W.I.P)_
-- 📄 **Typesafe APIs:** Typed by [oRPC](https://orpc.unnoq.com) _(🏗️ W.I.P)_
-- 💳 **Payments:** Integration with [Polar](https://polar.sh) _(🏗️ W.I.P)_
-- 📦 **Storage:** Smooth file uploads via [Uploadthing](https://uploadthing.com)
-- 🎨 **Styling:** [shadcn/ui](https://ui.shadcn.com) with Tailwind CSS 4.1
-- 🦄 **Animations:** Built-in [Anime.js](https://animejs.com) with a sample banner
-- 📊 **Analytics:** Built-in optional [Vercel Analytics](https://vercel.com/docs/analytics)
-- 🛠️ **DX Tools:** Preconfigured ESLint 9, [Biome](https://biomejs.dev), [Knip](https://knip.dev)
-
-## Quick Start
-
-To get started:
-
-1. Install [Git](https://git-scm.com), [Node.js](https://nodejs.org), and [Bun](https://bun.sh).
-2. Run:
+1. install [git](https://git-scm.com), [node.js](https://nodejs.org), [bun](https://bun.sh).
+2. run:
 
    ```bash
    git clone https://github.com/blefnk/relivator.git
    cd relivator
-   bun install
+   bun i
    copy .env.example .env
    ```
 
-3. Fill in the required environment variables in the `.env` file.
-4. Run:
+3. fill in the required environment variables in the `.env` file.
+4. run:
 
    ```bash
-   bun dev # Start development server
-   bun run build # Build production version
+   bun dev # start development server
+   bun run build # build production version
    ```
 
-5. Edit something in the code manually or ask AI to help you.
-6. Done. Seriously. You're building now.
+5. edit something in the code manually or ask ai to help you.
+6. done. seriously. you're building now.
 
 <!-- 
-2. Run:
+2. run:
    ```bash
    bun i -g @reliverse/cli
    reliverse cli
    ```
-3. Select **"Create a new project"**.
-4. Follow prompts to configure your store.
+3. select **"create a new project"**.
+4. follow prompts to configure your store.
 -->
 
-### Commands
+### commands
 
-| Command         | Description                    |
+| command         | description                    |
 |-----------------|--------------------------------|
-| `bun dev`       | Start local development        |
-| `bun build`     | Create a production build      |
-| `bun latest`    | Sync all dependencies          |
-| `bun ui`        | Add UI components              |
-| `bun db:push`   | Apply DB schema changes        |
-| `bun db:auth`   | Update auth-related tables     |
-| `bun db:studio` | Open visual DB editor          |
+| `bun dev`       | start local development        |
+| `bun build`     | create a production build      |
+| `bun latest`    | install latest deps            |
+| `bun ui`        | add shadcn components          |
+| `bun db:push`   | apply db schema changes        |
+| `bun db:auth`   | update auth-related tables     |
+| `bun db:studio` | open visual db editor          |
 
-## Notes
+## notes
 
-- Relivator **1.4.0+** is AI-ready — optimized for AI-powered IDEs like Cursor, making onboarding effortless even for beginners.
-- Version **1.3.0** evolved into **Versator**, featuring [Clerk](https://clerk.com) authentication and [Stripe](https://stripe.com) payments. Explore [Versator Demo](https://versator.relivator.com/en), [Repo](https://github.com/blefnk/versator), or [Docs](https://docs.reliverse.org/versator).
+- relivator **1.4.0+** is ai-ready — optimized for ai-powered ides like cursor, making onboarding effortless even for beginners.
+- version **1.3.0** evolved into **versator**, featuring [clerk](https://clerk.com) authentication and [stripe](https://stripe.com) payments. explore [versator demo](https://versator.relivator.com/en), [repo](https://github.com/blefnk/versator), or [docs](https://docs.reliverse.org/versator).
 
-<!--
-- ⚙️ **Instant setup**: Just run the CLI
-- 🤖 **AI-Ready**: Optimized for tools like [Cursor](https://cursor.sh)
-- 🧪 **Battle-tested stack**: Built for actual shipping, not just tutorial clout
-- 💡 **Evolving fast**: Frequent updates, including Relivator's variants like [Versator](https://versator.relivator.com)
-- -->
+## stand with ukraine
 
-## Stand with Ukraine
+- help fund drones, medkits, and victory.
+- every dollar helps stop [russia's war crimes](https://war.ukraine.ua/russia-war-crimes) and saves lives.
+- [donate now](https://u24.gov.ua), it matters.
 
-- 💙 Help fund drones, medkits, and victory.
-- 💛 Every dollar helps stop [russia's war crimes](https://war.ukraine.ua/russia-war-crimes) and saves lives.
-- 👉 [Donate now](https://u24.gov.ua), it matters.
+## stand with reliverse
 
-## Stand with Reliverse
+- [star the repo](https://github.com/blefnk/relivator) to help the reliverse community grow.
+- follow this project's author, [nazar kornienko](https://github.com/blefnk) and his [reliverse](https://github.com/reliverse) ecosystem, to get updates about new projects faster.
+- [become a sponsor](https://github.com/sponsors/blefnk) and power the next wave of tools that _just feel right_.
+- every bit of support helps keep the dream alive: dev tools that don't suck.
 
-- ⭐ [Star the repo](https://github.com/blefnk/relivator) to help Reliverse community grow.
-- 🦄 Follow this project's author, [Nazar Kornienko](https://github.com/blefnk) & [Reliverse](https://github.com/reliverse), to get updates about new projects.
-- 💖 [Become a sponsor](https://github.com/sponsors/blefnk) and power the next wave of tools that _just feel right_.
-- 🧑‍🚀 Every bit of support helps keep the dream alive: dev tools that don't suck.
+## license
 
-## License
-
-2025 MIT © [blefnk Nazar Kornienko](https://github.com/blefnk) & [Reliverse](https://github.com/reliverse)
+mit © 2025 [nazar kornienko (blefnk)](https://github.com/blefnk), [reliverse](https://github.com/reliverse)

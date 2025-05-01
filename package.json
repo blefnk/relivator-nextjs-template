@@ -1,7 +1,7 @@
 {
   "name": "relivator",
-  "description": "Relivator is a robust, production-ready eCommerce template built with Next.js. It's designed for developers who want a fast, modern, and scalable foundation without reinventing the backend.",
-  "version": "1.4.3",
+  "description": "Relivator is a robust eCommerce template built with Next.js. It's designed for developers who want a fast, modern, and scalable foundation without reinventing the backend.",
+  "version": "1.4.4",
   "type": "module",
   "private": true,
   "scripts": {
@@ -52,6 +52,7 @@
     "react": "^19.1.0",
     "react-day-picker": "9.6.7",
     "react-dom": "^19.1.0",
+    "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^7.6.0",
@@ -72,6 +73,7 @@
     "@typescript-eslint/parser": "^8.31.1",
     "drizzle-kit": "^0.31.0",
     "eslint": "^9.25.1",
+    "eslint-plugin-perfectionist": "^4.12.3",
     "eslint-plugin-readable-tailwind": "^2.1.1",
     "execa": "^9.5.2",
     "knip": "^5.52.0",

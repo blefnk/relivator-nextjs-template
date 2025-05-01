@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 import { signIn } from "~/lib/auth-client";
 import { GitHubIcon } from "~/ui/icons/github";
 import { GoogleIcon } from "~/ui/icons/google";
@@ -76,12 +77,12 @@ export function SignInPageClient() {
         `}
       >
         <Image
-          src="https://images.unsplash.com/photo-1719811059181-09032aef07b8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3"
           alt="Sign-in background image"
+          className="object-cover"
           fill
           priority
           sizes="(max-width: 768px) 0vw, 50vw"
-          className="object-cover"
+          src="https://images.unsplash.com/photo-1719811059181-09032aef07b8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3"
         />
         <div
           className={`
@@ -119,46 +120,46 @@ export function SignInPageClient() {
           <Card className="border-none shadow-sm">
             <CardContent className="pt-2">
               <form
+                className="space-y-4"
                 onSubmit={(e) => {
                   e.preventDefault();
                   void handleEmailLogin(e);
                 }}
-                className="space-y-4"
               >
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
-                    type="email"
-                    placeholder="name@example.com"
-                    value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
                     }}
+                    placeholder="name@example.com"
                     required
+                    type="email"
+                    value={email}
                   />
                 </div>
                 <div className="grid gap-2">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="password">Password</Label>
                     <Link
-                      href="#"
                       className={`
                         text-sm text-muted-foreground
                         hover:underline
                       `}
+                      href="#"
                     >
                       Forgot password?
                     </Link>
                   </div>
                   <Input
                     id="password"
-                    type="password"
-                    value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
                     }}
                     required
+                    type="password"
+                    value={password}
                   />
                 </div>
                 {error && (
@@ -166,7 +167,7 @@ export function SignInPageClient() {
                     {error}
                   </div>
                 )}
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button className="w-full" disabled={loading} type="submit">
                   {loading ? "Signing in..." : "Sign in"}
                 </Button>
               </form>
@@ -182,19 +183,19 @@ export function SignInPageClient() {
               </div>
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <Button
-                  variant="outline"
-                  onClick={handleGitHubLogin}
-                  disabled={loading}
                   className="flex items-center gap-2"
+                  disabled={loading}
+                  onClick={handleGitHubLogin}
+                  variant="outline"
                 >
                   <GitHubIcon className="h-5 w-5" />
                   GitHub
                 </Button>
                 <Button
-                  variant="outline"
-                  onClick={handleGoogleLogin}
-                  disabled={loading}
                   className="flex items-center gap-2"
+                  disabled={loading}
+                  onClick={handleGoogleLogin}
+                  variant="outline"
                 >
                   <GoogleIcon className="h-5 w-5" />
                   Google
@@ -203,11 +204,11 @@ export function SignInPageClient() {
               <div className="mt-6 text-center text-sm text-muted-foreground">
                 Don't have an account?{" "}
                 <Link
-                  href="/auth/sign-up"
                   className={`
                     text-primary underline-offset-4
                     hover:underline
                   `}
+                  href="/auth/sign-up"
                 >
                   Sign up
                 </Link>

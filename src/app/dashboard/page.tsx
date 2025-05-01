@@ -1,6 +1,9 @@
 import { headers } from "next/headers";
+
 import type { User } from "~/db/schema/users/types";
+
 import { auth } from "~/lib/auth";
+
 import { DashboardPageClient } from "./page.client";
 
 export default async function DashboardPage() {
@@ -8,5 +11,5 @@ export default async function DashboardPage() {
     headers: await headers(),
   });
 
-  return <DashboardPageClient user={session?.user as User | null} />;
+  return <DashboardPageClient user={session?.user as null | User} />;
 }

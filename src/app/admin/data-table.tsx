@@ -3,14 +3,14 @@
 import {
   type ColumnDef,
   type ColumnFiltersState,
-  type SortingState,
-  type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  type SortingState,
   useReactTable,
+  type VisibilityState,
 } from "@tanstack/react-table";
 import React from "react";
 
@@ -23,6 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from "~/ui/primitives/table";
+
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableViewOptions } from "./data-table-view-options";
 
@@ -44,21 +45,21 @@ export function DataTable<TData, TValue>({
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
-    data,
     columns,
+    data,
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(), // Enable pagination
-    onSortingChange: setSorting, // Enable sorting
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters, // Enable filtering
-    getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility, // Enable visibility toggle
     onRowSelectionChange: setRowSelection, // Enable row selection
+    onSortingChange: setSorting, // Enable sorting
     state: {
-      sorting,
       columnFilters,
       columnVisibility,
       rowSelection,
+      sorting,
     },
   });
 
@@ -95,8 +96,8 @@ export function DataTable<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  key={row.id}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
@@ -111,8 +112,8 @@ export function DataTable<TData, TValue>({
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
                   className="h-24 text-center"
+                  colSpan={columns.length}
                 >
                   No results.
                 </TableCell>

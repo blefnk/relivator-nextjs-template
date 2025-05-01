@@ -1,37 +1,40 @@
 "use client";
 
 import { Heart, ShoppingCart, Star } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
-import Image from "next/image";
 import { cn } from "~/lib/cn";
 import { Badge } from "~/ui/primitives/badge";
 import { Button } from "~/ui/primitives/button";
 import { Card, CardContent, CardFooter } from "~/ui/primitives/card";
 
-type ProductCardProps = {
-  product: {
-    id: string;
-    name: string;
-    price: number;
-    originalPrice?: number;
-    image: string;
-    category: string;
-    rating?: number;
-    inStock?: boolean;
-  };
-  variant?: "default" | "compact";
+type ProductCardProps = Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  "onError"
+> & {
   onAddToCart?: (productId: string) => void;
   onAddToWishlist?: (productId: string) => void;
-} & Omit<React.HTMLAttributes<HTMLDivElement>, "onError">;
+  product: {
+    category: string;
+    id: string;
+    image: string;
+    inStock?: boolean;
+    name: string;
+    originalPrice?: number;
+    price: number;
+    rating?: number;
+  };
+  variant?: "compact" | "default";
+};
 
 export function ProductCard({
-  product,
-  variant = "default",
+  className,
   onAddToCart,
   onAddToWishlist,
-  className,
+  product,
+  variant = "default",
   ...props
 }: ProductCardProps) {
   const [isHovered, setIsHovered] = React.useState(false);
@@ -73,7 +76,6 @@ export function ProductCard({
       <div className="flex items-center">
         {Array.from({ length: 5 }).map((_, i) => (
           <Star
-            key={`star-${product.id}-position-${i + 1}`}
             className={cn(
               "h-4 w-4",
               i < fullStars
@@ -82,6 +84,7 @@ export function ProductCard({
                   ? "fill-yellow-400/50 text-yellow-400"
                   : "stroke-muted/40 text-muted",
             )}
+            key={`star-${product.id}-position-${i + 1}`}
           />
         ))}
         {rating > 0 && (
@@ -111,23 +114,23 @@ export function ProductCard({
           <div className="relative aspect-square overflow-hidden rounded-t-lg">
             {product.image && (
               <Image
-                src={product.image}
                 alt={product.name}
-                fill
                 className={cn(
                   "object-cover transition-transform duration-300 ease-in-out",
                   isHovered && "scale-105",
                 )}
+                fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                src={product.image}
               />
             )}
 
             {/* Category badge */}
             <Badge
-              variant="outline"
               className={`
                 absolute top-2 left-2 bg-background/80 backdrop-blur-sm
               `}
+              variant="outline"
             >
               {product.category}
             </Badge>
@@ -146,9 +149,6 @@ export function ProductCard({
 
             {/* Wishlist button */}
             <Button
-              type="button"
-              variant="outline"
-              size="icon"
               className={cn(
                 `
                   absolute right-2 bottom-2 z-10 rounded-full bg-background/80
@@ -157,6 +157,9 @@ export function ProductCard({
                 !isHovered && !isInWishlist && "opacity-0",
               )}
               onClick={handleAddToWishlist}
+              size="icon"
+              type="button"
+              variant="outline"
             >
               <Heart
                 className={cn(
@@ -237,11 +240,11 @@ export function ProductCard({
                   ) : null}
                 </div>
                 <Button
-                  variant="ghost"
-                  size="icon"
                   className="h-8 w-8 rounded-full"
                   disabled={isAddingToCart}
                   onClick={handleAddToCart}
+                  size="icon"
+                  variant="ghost"
                 >
                   {isAddingToCart ? (
                     <div
@@ -266,7 +269,7 @@ export function ProductCard({
                 bg-background/80 backdrop-blur-sm
               `}
             >
-              <Badge variant="destructive" className="px-3 py-1 text-sm">
+              <Badge className="px-3 py-1 text-sm" variant="destructive">
                 Out of Stock
               </Badge>
             </div>

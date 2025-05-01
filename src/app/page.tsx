@@ -13,32 +13,33 @@ import {
   CardHeader,
   CardTitle,
 } from "~/ui/primitives/card";
+
 import { categories, featuredProductsHomepage, testimonials } from "./mocks";
 
 const featuresWhyChooseUs = [
   {
-    title: "Free Shipping",
     description:
       "Free shipping on all orders over $50. Fast and reliable delivery to your doorstep.",
     icon: <Truck className="h-6 w-6 text-primary" />,
+    title: "Free Shipping",
   },
   {
-    title: "Secure Checkout",
     description:
       "Your payment information is always safe and secure with us. We use industry-leading encryption.",
     icon: <ShoppingBag className="h-6 w-6 text-primary" />,
+    title: "Secure Checkout",
   },
   {
-    title: "24/7 Support",
     description:
       "Our customer support team is always available to help with any questions or concerns.",
     icon: <Clock className="h-6 w-6 text-primary" />,
+    title: "24/7 Support",
   },
   {
-    title: "Quality Guarantee",
     description:
       "We stand behind the quality of every product we sell. 30-day money-back guarantee.",
     icon: <Star className="h-6 w-6 text-primary" />,
+    title: "Quality Guarantee",
   },
 ];
 
@@ -118,12 +119,12 @@ export default function HomePage() {
                   `}
                 >
                   <Link href="/products">
-                    <Button size="lg" className="h-12 gap-1.5 px-8">
+                    <Button className="h-12 gap-1.5 px-8" size="lg">
                       Shop Now <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
                   <Link href="/showcase">
-                    <Button variant="outline" size="lg" className="h-12 px-8">
+                    <Button className="h-12 px-8" size="lg" variant="outline">
                       View Showcase
                     </Button>
                   </Link>
@@ -157,12 +158,12 @@ export default function HomePage() {
                   `}
                 />
                 <Image
-                  src="https://images.unsplash.com/photo-1624767735494-1929dc24ad43?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
                   alt="Shopping experience"
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
+                  fill
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  src="https://images.unsplash.com/photo-1624767735494-1929dc24ad43?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
                 />
               </div>
             </div>
@@ -212,14 +213,14 @@ export default function HomePage() {
             >
               {categories.map((category) => (
                 <Link
-                  key={category.name}
-                  href={`/products?category=${category.name.toLowerCase()}`}
+                  aria-label={`Browse ${category.name} products`}
                   className={`
                     group relative flex flex-col overflow-hidden rounded-lg
                     border bg-card transition-all duration-200
                     hover:shadow-md
                   `}
-                  aria-label={`Browse ${category.name} products`}
+                  href={`/products?category=${category.name.toLowerCase()}`}
+                  key={category.name}
                 >
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <div
@@ -229,14 +230,14 @@ export default function HomePage() {
                       `}
                     />
                     <Image
-                      src={category.image}
                       alt={category.name}
-                      fill
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
                       className={`
                         object-cover transition duration-300
                         group-hover:scale-105
                       `}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
+                      src={category.image}
                     />
                   </div>
                   <div className="relative z-20 -mt-6 p-4">
@@ -295,7 +296,7 @@ export default function HomePage() {
             </div>
             <div className="mt-10 flex justify-center">
               <Link href="/products">
-                <Button variant="outline" size="lg" className="group h-12 px-8">
+                <Button className="group h-12 px-8" size="lg" variant="outline">
                   View All Products
                   <ArrowRight
                     className={`
@@ -311,11 +312,11 @@ export default function HomePage() {
 
         {/* Features Section */}
         <section
-          id="features"
           className={`
             py-12
             md:py-16
           `}
+          id="features"
         >
           <div
             className={`
@@ -352,12 +353,12 @@ export default function HomePage() {
             >
               {featuresWhyChooseUs.map((feature) => (
                 <Card
-                  key={feature.title}
                   className={`
                     border-none bg-background shadow-sm transition-all
                     duration-200
                     hover:shadow-md
                   `}
+                  key={feature.title}
                 >
                   <CardHeader className="pb-2">
                     <div
@@ -396,10 +397,10 @@ export default function HomePage() {
             `}
           >
             <TestimonialsSection
-              title="What Our Customers Say"
+              className="py-0"
               description="Don't just take our word for it - hear from our satisfied customers"
               testimonials={testimonials}
-              className="py-0"
+              title="What Our Customers Say"
             />
           </div>
         </section>
@@ -456,12 +457,12 @@ export default function HomePage() {
                   `}
                 >
                   <Link href="/auth/sign-up">
-                    <Button size="lg" className="h-12 px-8">
+                    <Button className="h-12 px-8" size="lg">
                       Sign Up Now
                     </Button>
                   </Link>
                   <Link href="/products">
-                    <Button variant="outline" size="lg" className="h-12 px-8">
+                    <Button className="h-12 px-8" size="lg" variant="outline">
                       Browse Products
                     </Button>
                   </Link>

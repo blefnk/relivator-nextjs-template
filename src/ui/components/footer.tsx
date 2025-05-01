@@ -21,7 +21,7 @@ export function Footer({ className }: { className?: string }) {
           `}
         >
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-2">
+            <Link className="flex items-center gap-2" href="/">
               <span
                 className={`
                   bg-gradient-to-r from-primary to-primary/70 bg-clip-text
@@ -37,41 +37,41 @@ export function Footer({ className }: { className?: string }) {
             </p>
             <div className="flex space-x-4">
               <Button
-                variant="ghost"
-                size="icon"
                 className="h-8 w-8 rounded-full"
+                size="icon"
+                variant="ghost"
               >
                 <Facebook className="h-4 w-4" />
                 <span className="sr-only">Facebook</span>
               </Button>
               <Button
-                variant="ghost"
-                size="icon"
                 className="h-8 w-8 rounded-full"
+                size="icon"
+                variant="ghost"
               >
                 <Twitter className="h-4 w-4" />
                 <span className="sr-only">Twitter</span>
               </Button>
               <Button
-                variant="ghost"
-                size="icon"
                 className="h-8 w-8 rounded-full"
+                size="icon"
+                variant="ghost"
               >
                 <Instagram className="h-4 w-4" />
                 <span className="sr-only">Instagram</span>
               </Button>
               <Button
-                variant="ghost"
-                size="icon"
                 className="h-8 w-8 rounded-full"
+                size="icon"
+                variant="ghost"
               >
                 <Github className="h-4 w-4" />
                 <span className="sr-only">GitHub</span>
               </Button>
               <Button
-                variant="ghost"
-                size="icon"
                 className="h-8 w-8 rounded-full"
+                size="icon"
+                variant="ghost"
               >
                 <Linkedin className="h-4 w-4" />
                 <span className="sr-only">LinkedIn</span>
@@ -83,55 +83,55 @@ export function Footer({ className }: { className?: string }) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/products"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/products"
                 >
                   All Products
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=audio"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/products?category=audio"
                 >
                   Audio
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=wearables"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/products?category=wearables"
                 >
                   Wearables
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=smartphones"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/products?category=smartphones"
                 >
                   Smartphones
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=laptops"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/products?category=laptops"
                 >
                   Laptops
                 </Link>
@@ -143,55 +143,55 @@ export function Footer({ className }: { className?: string }) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/about"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/about"
                 >
                   About Us
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/careers"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/careers"
                 >
                   Careers
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/blog"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/blog"
                 >
                   Blog
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/press"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/press"
                 >
                   Press
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/contact"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/contact"
                 >
                   Contact
                 </Link>
@@ -203,55 +203,55 @@ export function Footer({ className }: { className?: string }) {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/help"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/help"
                 >
                   Help Center
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/shipping"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/shipping"
                 >
                   Shipping & Returns
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/warranty"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/warranty"
                 >
                   Warranty
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/privacy"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/privacy"
                 >
                   Privacy Policy
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/terms"
                   className={`
                     text-muted-foreground
                     hover:text-foreground
                   `}
+                  href="/terms"
                 >
                   Terms of Service
                 </Link>
@@ -274,16 +274,16 @@ export function Footer({ className }: { className?: string }) {
                 "flex items-center gap-4 text-sm text-muted-foreground"
               }
             >
-              <Link href="/privacy" className="hover:text-foreground">
+              <Link className="hover:text-foreground" href="/privacy">
                 Privacy
               </Link>
-              <Link href="/terms" className="hover:text-foreground">
+              <Link className="hover:text-foreground" href="/terms">
                 Terms
               </Link>
-              <Link href="/cookies" className="hover:text-foreground">
+              <Link className="hover:text-foreground" href="/cookies">
                 Cookies
               </Link>
-              <Link href="/sitemap" className="hover:text-foreground">
+              <Link className="hover:text-foreground" href="/sitemap">
                 Sitemap
               </Link>
             </div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 import { signIn, signUp } from "~/lib/auth-client";
 import { GitHubIcon } from "~/ui/icons/github";
 import { GoogleIcon } from "~/ui/icons/google";
@@ -16,8 +17,8 @@ import { Separator } from "~/ui/primitives/separator";
 export function SignUpPageClient() {
   const router = useRouter();
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
+    name: "",
     password: "",
   });
   const [error, setError] = useState("");
@@ -39,8 +40,8 @@ export function SignUpPageClient() {
     void signUp
       .email({
         email: formData.email,
-        password: formData.password,
         name: formData.name,
+        password: formData.password,
       })
       .then(() => {
         router.push("/auth/sign-in?registered=true");
@@ -91,12 +92,12 @@ export function SignUpPageClient() {
         `}
       >
         <Image
-          src="https://images.unsplash.com/photo-1719811059181-09032aef07b8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3"
           alt="Sign-up background image"
+          className="object-cover"
           fill
           priority
           sizes="(max-width: 768px) 0vw, 50vw"
-          className="object-cover"
+          src="https://images.unsplash.com/photo-1719811059181-09032aef07b8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3"
         />
         <div
           className={`
@@ -133,17 +134,17 @@ export function SignUpPageClient() {
 
           <Card className="border-none shadow-sm">
             <CardContent className="pt-2">
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid gap-2">
                   <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
                     name="name"
-                    type="text"
-                    placeholder="John Doe"
-                    value={formData.name}
                     onChange={handleChange}
+                    placeholder="John Doe"
                     required
+                    type="text"
+                    value={formData.name}
                   />
                 </div>
                 <div className="grid gap-2">
@@ -151,11 +152,11 @@ export function SignUpPageClient() {
                   <Input
                     id="email"
                     name="email"
-                    type="email"
-                    placeholder="name@example.com"
-                    value={formData.email}
                     onChange={handleChange}
+                    placeholder="name@example.com"
                     required
+                    type="email"
+                    value={formData.email}
                   />
                 </div>
                 <div className="grid gap-2">
@@ -163,10 +164,10 @@ export function SignUpPageClient() {
                   <Input
                     id="password"
                     name="password"
-                    type="password"
-                    value={formData.password}
                     onChange={handleChange}
                     required
+                    type="password"
+                    value={formData.password}
                   />
                 </div>
                 {error && (
@@ -174,7 +175,7 @@ export function SignUpPageClient() {
                     {error}
                   </div>
                 )}
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button className="w-full" disabled={loading} type="submit">
                   {loading ? "Creating account..." : "Create account"}
                 </Button>
               </form>
@@ -190,19 +191,19 @@ export function SignUpPageClient() {
               </div>
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <Button
-                  variant="outline"
-                  onClick={handleGitHubSignUp}
-                  disabled={loading}
                   className="flex items-center gap-2"
+                  disabled={loading}
+                  onClick={handleGitHubSignUp}
+                  variant="outline"
                 >
                   <GitHubIcon className="h-5 w-5" />
                   GitHub
                 </Button>
                 <Button
-                  variant="outline"
-                  onClick={handleGoogleSignUp}
-                  disabled={loading}
                   className="flex items-center gap-2"
+                  disabled={loading}
+                  onClick={handleGoogleSignUp}
+                  variant="outline"
                 >
                   <GoogleIcon className="h-5 w-5" />
                   Google
@@ -211,11 +212,11 @@ export function SignUpPageClient() {
               <div className="mt-6 text-center text-sm text-muted-foreground">
                 Already have an account?{" "}
                 <Link
-                  href="/auth/sign-in"
                   className={`
                     text-primary underline-offset-4
                     hover:underline
                   `}
+                  href="/auth/sign-in"
                 >
                   Sign in
                 </Link>

@@ -10,18 +10,18 @@ import { Button } from "~/ui/primitives/button";
 /*                                   Types                                    */
 /* -------------------------------------------------------------------------- */
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
-  category: string;
-  rating: number;
-  inStock: boolean;
-}
-
 type Category = string;
+
+interface Product {
+  category: string;
+  id: string;
+  image: string;
+  inStock: boolean;
+  name: string;
+  originalPrice?: number;
+  price: number;
+  rating: number;
+}
 
 /* -------------------------------------------------------------------------- */
 /*                            Helpers / utilities                             */
@@ -39,70 +39,70 @@ const slugify = (str: string) =>
 
 const products: Product[] = [
   {
+    category: "Audio",
     id: "1",
-    name: "Premium Wireless Headphones",
-    price: 199.99,
-    originalPrice: 249.99,
     image:
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Audio",
-    rating: 4.5,
     inStock: true,
+    name: "Premium Wireless Headphones",
+    originalPrice: 249.99,
+    price: 199.99,
+    rating: 4.5,
   },
   {
+    category: "Wearables",
     id: "2",
-    name: "Smart Watch Series 5",
-    price: 299.99,
-    originalPrice: 349.99,
     image:
       "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Wearables",
-    rating: 4.2,
     inStock: true,
+    name: "Smart Watch Series 5",
+    originalPrice: 349.99,
+    price: 299.99,
+    rating: 4.2,
   },
   {
+    category: "Photography",
     id: "3",
-    name: "Professional Camera Kit",
-    price: 1299.99,
-    originalPrice: 1499.99,
     image:
       "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Photography",
-    rating: 4.8,
     inStock: false,
+    name: "Professional Camera Kit",
+    originalPrice: 1499.99,
+    price: 1299.99,
+    rating: 4.8,
   },
   {
+    category: "Furniture",
     id: "4",
-    name: "Ergonomic Office Chair",
-    price: 249.99,
-    originalPrice: 299.99,
     image:
       "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Furniture",
-    rating: 4.6,
     inStock: true,
+    name: "Ergonomic Office Chair",
+    originalPrice: 299.99,
+    price: 249.99,
+    rating: 4.6,
   },
   {
+    category: "Electronics",
     id: "5",
-    name: "Smartphone Pro Max",
-    price: 999.99,
-    originalPrice: 1099.99,
     image:
       "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Electronics",
-    rating: 4.9,
     inStock: true,
+    name: "Smartphone Pro Max",
+    originalPrice: 1099.99,
+    price: 999.99,
+    rating: 4.9,
   },
   {
+    category: "Electronics",
     id: "6",
-    name: 'Ultra HD Smart TV 55"',
-    price: 799.99,
-    originalPrice: 899.99,
     image:
       "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-    category: "Electronics",
-    rating: 4.7,
     inStock: true,
+    name: 'Ultra HD Smart TV 55"',
+    originalPrice: 899.99,
+    price: 799.99,
+    rating: 4.7,
   },
 ];
 
@@ -139,11 +139,11 @@ export default function ProductsPage() {
       if (product) {
         addItem(
           {
+            category: product.category,
             id: product.id,
+            image: product.image,
             name: product.name,
             price: product.price,
-            image: product.image,
-            category: product.category,
           },
           1, // (quantity) always adds 1 item to the cart
         );
@@ -185,15 +185,15 @@ export default function ProductsPage() {
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <Button
+                  aria-pressed={category === selectedCategory}
+                  className="rounded-full"
                   key={slugify(category)}
+                  onClick={() => setSelectedCategory(category)}
+                  size="sm"
+                  title={`Filter by ${category}`}
                   variant={
                     category === selectedCategory ? "default" : "outline"
                   }
-                  size="sm"
-                  className="rounded-full"
-                  title={`Filter by ${category}`}
-                  aria-pressed={category === selectedCategory}
-                  onClick={() => setSelectedCategory(category)}
                 >
                   {category}
                 </Button>
@@ -213,9 +213,9 @@ export default function ProductsPage() {
             {filteredProducts.map((product) => (
               <ProductCard
                 key={product.id}
-                product={product}
                 onAddToCart={handleAddToCart}
                 onAddToWishlist={handleAddToWishlist}
+                product={product}
               />
             ))}
           </div>
@@ -231,16 +231,16 @@ export default function ProductsPage() {
 
           {/* Pagination */}
           <nav
-            className="mt-12 flex items-center justify-center gap-2"
             aria-label="Pagination"
+            className="mt-12 flex items-center justify-center gap-2"
           >
-            <Button variant="outline" disabled>
+            <Button disabled variant="outline">
               Previous
             </Button>
-            <Button variant="default" aria-current="page">
+            <Button aria-current="page" variant="default">
               1
             </Button>
-            <Button variant="outline" disabled>
+            <Button disabled variant="outline">
               Next
             </Button>
           </nav>

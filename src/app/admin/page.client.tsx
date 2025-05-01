@@ -1,16 +1,19 @@
 "use client";
 
 import type { ColumnDef, ColumnMeta } from "@tanstack/react-table";
-import { Hash, Mail, User as UserIcon } from "lucide-react";
 import type React from "react";
+
+import { Hash, Mail, User as UserIcon } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
+
 import type { MediaUpload } from "~/db/schema/uploads/types";
 import type { User } from "~/db/schema/users/types";
+import type { GalleryMediaItem } from "~/ui/components/blocks/bento-media-gallery";
+
 import { defineMeta, filterFn } from "~/lib/filters";
-import BentoMediaGallery, {
-  type GalleryMediaItem,
-} from "~/ui/components/blocks/interactive-bento-gallery";
+import { BentoMediaGallery } from "~/ui/components/blocks/bento-media-gallery";
 import { Button } from "~/ui/primitives/button";
+
 import { DataTable } from "./data-table";
 import { DataTableColumnHeader } from "./data-table-column-header";
 
@@ -34,12 +37,12 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
     (item: GalleryMediaItem) => {
       const allUploads = initialData.flatMap((user) =>
         user.uploads.map((upload: MediaUpload) => ({
-          id: upload.id,
-          type: upload.type as "image" | "video",
-          title: `${upload.type === "image" ? "Image" : "Video"} ${upload.key.substring(0, 8)}...`,
           desc: `Uploaded by ${user.name || "Unknown"} on ${new Date(upload.createdAt).toLocaleDateString()}`,
-          url: upload.url,
+          id: upload.id,
           span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2", // Default span value
+          title: `${upload.type === "image" ? "Image" : "Video"} ${upload.key.substring(0, 8)}...`,
+          type: upload.type as "image" | "video",
+          url: upload.url,
         })),
       );
       setAllGalleryItems(allUploads);
@@ -52,43 +55,41 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
     (): ColumnDef<UserWithUploads>[] => [
       {
         accessorKey: "id",
+        filterFn: filterFn("text"),
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="User ID" />
         ),
-        filterFn: filterFn("text"),
         meta: defineMeta((row: UserWithUploads) => row.id, {
           displayName: "User ID",
-          type: "text",
           icon: Hash,
+          type: "text",
         }) as ColumnMeta<UserWithUploads, unknown>,
       },
       {
         accessorKey: "name",
+        filterFn: filterFn("text"),
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Name" />
         ),
-        filterFn: filterFn("text"),
         meta: defineMeta((row: UserWithUploads) => row.name, {
           displayName: "Name",
-          type: "text",
           icon: UserIcon,
+          type: "text",
         }) as ColumnMeta<UserWithUploads, unknown>,
       },
       {
         accessorKey: "email",
+        filterFn: filterFn("text"),
         header: ({ column }) => (
           <DataTableColumnHeader column={column} title="Email" />
         ),
-        filterFn: filterFn("text"),
         meta: defineMeta((row: UserWithUploads) => row.email, {
           displayName: "Email",
-          type: "text",
           icon: Mail,
+          type: "text",
         }) as ColumnMeta<UserWithUploads, unknown>,
       },
       {
-        id: "uploads",
-        header: "Uploads",
         cell: ({ row }) => {
           const user = row.original;
           const uploads = user.uploads;
@@ -101,27 +102,27 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
             <div className="flex flex-wrap gap-2">
               {uploads.map((upload: MediaUpload) => {
                 const galleryItem: GalleryMediaItem = {
-                  id: upload.id,
-                  type: upload.type as "image" | "video",
-                  title: `${upload.type === "image" ? "Image" : "Video"} ${upload.key.substring(0, 8)}...`,
                   desc: `Uploaded by ${user.name || "Unknown"} on ${new Date(upload.createdAt).toLocaleDateString()}`,
-                  url: upload.url,
+                  id: upload.id,
                   span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2", // Default span value
+                  title: `${upload.type === "image" ? "Image" : "Video"} ${upload.key.substring(0, 8)}...`,
+                  type: upload.type as "image" | "video",
+                  url: upload.url,
                 };
                 return (
                   <Button
-                    key={upload.id}
-                    variant="outline"
-                    size="sm"
                     className="h-auto p-1"
+                    key={upload.id}
                     onClick={() => handleMediaClick(galleryItem)}
+                    size="sm"
+                    variant="outline"
                   >
                     {upload.type === "image" ? (
                       <img
-                        src={upload.url}
                         alt={upload.key}
                         className="h-8 w-8 rounded-sm object-cover"
                         loading="lazy"
+                        src={upload.url}
                       />
                     ) : (
                       <div
@@ -131,11 +132,11 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
                         `}
                       >
                         <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                          className="h-4 w-4 text-muted-foreground"
                           aria-labelledby={`video-icon-title-${upload.id}`}
+                          className="h-4 w-4 text-muted-foreground"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
                           <title id={`video-icon-title-${upload.id}`}>
                             Video Upload
@@ -150,6 +151,8 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
             </div>
           );
         },
+        header: "Uploads",
+        id: "uploads",
       },
     ],
     [handleMediaClick],
@@ -170,9 +173,9 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
 
       {selectedGalleryItem && (
         <BentoMediaGallery
+          description={galleryDescription}
           mediaItems={allGalleryItems}
           title={galleryTitle}
-          description={galleryDescription}
         />
       )}
     </div>

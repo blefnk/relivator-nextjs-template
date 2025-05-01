@@ -1,4 +1,5 @@
 import { relations } from "drizzle-orm";
+
 import { userTable } from "../users/tables";
 import { uploadsTable } from "./tables";
 

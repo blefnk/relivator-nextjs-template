@@ -1,5 +1,7 @@
 import React from "react";
+
 import type { Notification } from "./notification-center";
+
 import { NotificationCenter } from "./notification-center";
 import { mockNotifications } from "./notifications.mock";
 
@@ -29,10 +31,10 @@ export function NotificationsWidget() {
   return (
     <NotificationCenter
       notifications={notifications}
-      onMarkAsRead={handleMarkAsRead}
-      onMarkAllAsRead={handleMarkAllAsRead}
-      onDismiss={handleDismiss}
       onClearAll={handleClearAll}
+      onDismiss={handleDismiss}
+      onMarkAllAsRead={handleMarkAllAsRead}
+      onMarkAsRead={handleMarkAsRead}
     />
   );
 }

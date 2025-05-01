@@ -1,6 +1,7 @@
 import eslintReact from "@eslint-react/eslint-plugin";
 import eslintJs from "@eslint/js";
 import eslintParserTypeScript from "@typescript-eslint/parser";
+import perfectionist from "eslint-plugin-perfectionist";
 import eslintPluginReadableTailwind from "eslint-plugin-readable-tailwind";
 import tseslint from "typescript-eslint";
 
@@ -8,19 +9,21 @@ export default tseslint.config(
   eslintJs.configs.recommended,
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
-  { ignores: [".next"] },
+  { ignores: ["node_modules", ".next"] },
   {
     files: ["**/*.{ts,tsx}"],
     ...eslintReact.configs["recommended-typescript"],
     languageOptions: {
       parser: eslintParserTypeScript,
       parserOptions: {
+        ecmaFeatures: { jsx: true },
         project: true,
-        ecmaFeatures: {
-          jsx: true,
-        },
       },
     },
+  },
+  perfectionist.configs["recommended-natural"],
+  {
+    files: ["**/*.{ts,tsx}"],
     plugins: {
       "readable-tailwind": eslintPluginReadableTailwind,
     },
@@ -29,6 +32,7 @@ export default tseslint.config(
       "@eslint-react/hooks-extra/no-direct-set-state-in-use-effect": "off",
       "@eslint-react/no-array-index-key": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "no-unused-vars": "off",
       "no-useless-escape": "off",
     },
     settings: {

@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import type { Notification } from "~/ui/components/notifications/notification-center";
+
 import { mockNotifications } from "~/ui/components/notifications/notifications.mock";
 import { Button } from "~/ui/primitives/button";
 import { Separator } from "~/ui/primitives/separator";
@@ -49,12 +50,12 @@ export default function NotificationsPage() {
                   onClick={() => {
                     const newId = (notifications.length + 1).toString();
                     const newNotification: Notification = {
-                      id: newId,
-                      title: "New Notification",
                       description:
                         "This is a new notification that was just created.",
-                      timestamp: new Date(),
+                      id: newId,
                       read: false,
+                      timestamp: new Date(),
+                      title: "New Notification",
                       type: Math.random() > 0.5 ? "info" : "success",
                     };
                     setNotifications([newNotification, ...notifications]);
@@ -62,10 +63,10 @@ export default function NotificationsPage() {
                 >
                   Add New Notification
                 </Button>
-                <Button variant="outline" onClick={handleMarkAllAsRead}>
+                <Button onClick={handleMarkAllAsRead} variant="outline">
                   Mark All as Read
                 </Button>
-                <Button variant="outline" onClick={handleClearAll}>
+                <Button onClick={handleClearAll} variant="outline">
                   Clear All Notifications
                 </Button>
               </div>

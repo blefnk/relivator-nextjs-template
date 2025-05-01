@@ -1,6 +1,7 @@
 "use client";
 
 import { Bell, Lock, User } from "lucide-react";
+
 import { useSession } from "~/lib/auth-client";
 import { Button } from "~/ui/primitives/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/ui/primitives/card";
@@ -26,26 +27,26 @@ export function SettingsPageClient() {
         </p>
       </div>
 
-      <Tabs defaultValue="profile" className="space-y-4">
+      <Tabs className="space-y-4" defaultValue="profile">
         <TabsList>
-          <TabsTrigger value="profile" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="profile">
             <User className="h-4 w-4" />
             Profile
           </TabsTrigger>
           <TabsTrigger
-            value="notifications"
             className="flex items-center gap-2"
+            value="notifications"
           >
             <Bell className="h-4 w-4" />
             Notifications
           </TabsTrigger>
-          <TabsTrigger value="security" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="security">
             <Lock className="h-4 w-4" />
             Security
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="profile" className="space-y-4">
+        <TabsContent className="space-y-4" value="profile">
           <Card>
             <CardHeader>
               <CardTitle>Profile Information</CardTitle>
@@ -54,18 +55,18 @@ export function SettingsPageClient() {
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
                 <Input
-                  id="name"
                   defaultValue={session?.user?.name || ""}
+                  id="name"
                   placeholder="Enter your name"
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
-                  id="email"
-                  type="email"
                   defaultValue={session?.user?.email || ""}
+                  id="email"
                   placeholder="Enter your email"
+                  type="email"
                 />
               </div>
               <Button>Save Changes</Button>
@@ -73,7 +74,7 @@ export function SettingsPageClient() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="notifications" className="space-y-4">
+        <TabsContent className="space-y-4" value="notifications">
           <Card>
             <CardHeader>
               <CardTitle>Notification Preferences</CardTitle>
@@ -89,14 +90,14 @@ export function SettingsPageClient() {
               </div>
               <div className="flex items-center justify-between space-x-2">
                 <Label htmlFor="order-updates">Order Updates</Label>
-                <Switch id="order-updates" defaultChecked />
+                <Switch defaultChecked id="order-updates" />
               </div>
               <Button>Save Preferences</Button>
             </CardContent>
           </Card>
         </TabsContent>
 
-        <TabsContent value="security" className="space-y-4">
+        <TabsContent className="space-y-4" value="security">
           <Card>
             <CardHeader>
               <CardTitle>Security Settings</CardTitle>
@@ -106,24 +107,24 @@ export function SettingsPageClient() {
                 <Label htmlFor="current-password">Current Password</Label>
                 <Input
                   id="current-password"
-                  type="password"
                   placeholder="Enter current password"
+                  type="password"
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="new-password">New Password</Label>
                 <Input
                   id="new-password"
-                  type="password"
                   placeholder="Enter new password"
+                  type="password"
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="confirm-password">Confirm New Password</Label>
                 <Input
                   id="confirm-password"
-                  type="password"
                   placeholder="Confirm new password"
+                  type="password"
                 />
               </div>
               <Button>Update Password</Button>

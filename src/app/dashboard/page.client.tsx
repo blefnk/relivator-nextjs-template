@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import React from "react";
+
 import type { User } from "~/db/schema/users/types";
+
 import { signOut, useSession } from "~/lib/auth-client";
 import { Button } from "~/ui/primitives/button";
 import {
@@ -16,15 +18,15 @@ import {
 import { Skeleton } from "~/ui/primitives/skeleton";
 
 interface DashboardPageClientProps {
-  user?: User | null;
+  user?: null | User;
 }
 
 // Extend the User type with optional properties
-type ExtendedUser = {
+type ExtendedUser = User & {
+  age?: number;
   firstName?: string;
   lastName?: string;
-  age?: number;
-} & User;
+};
 
 export function DashboardPageClient({ user }: DashboardPageClientProps) {
   const { data, isPending } = useSession();
@@ -150,7 +152,6 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
           </CardContent>
           <CardFooter className="flex justify-between">
             <Link
-              href="/dashboard/profile"
               className={`
                 inline-flex items-center justify-center rounded-md bg-primary
                 px-4 py-2 text-sm font-medium text-primary-foreground
@@ -160,10 +161,11 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
                 focus-visible:ring-offset-2 focus-visible:outline-none
                 disabled:pointer-events-none disabled:opacity-50
               `}
+              href="/dashboard/profile"
             >
               Edit Profile
             </Link>
-            <Button variant="destructive" onClick={handleSignOut}>
+            <Button onClick={handleSignOut} variant="destructive">
               Sign Out
             </Button>
           </CardFooter>
@@ -186,7 +188,6 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
           <CardContent className="grid gap-6">
             <div className="grid grid-cols-2 gap-4">
               <Link
-                href="/dashboard/profile"
                 className={`
                   inline-flex items-center justify-center rounded-md bg-primary
                   px-4 py-2 text-sm font-medium text-primary-foreground
@@ -196,10 +197,11 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
                   focus-visible:ring-offset-2 focus-visible:outline-none
                   disabled:pointer-events-none disabled:opacity-50
                 `}
+                href="/dashboard/profile"
               >
                 Edit Profile
               </Link>
-              <Button variant="outline" onClick={handleSignOut}>
+              <Button onClick={handleSignOut} variant="outline">
                 Sign Out
               </Button>
             </div>

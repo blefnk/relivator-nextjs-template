@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 import { twoFactor } from "~/lib/auth-client";
 
 export function TwoFactorPageClient() {
@@ -73,31 +74,31 @@ export function TwoFactorPageClient() {
           </div>
         )}
 
-        <form onSubmit={handleVerify} className="mt-8 space-y-6">
+        <form className="mt-8 space-y-6" onSubmit={handleVerify}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="code" className="block text-sm font-medium">
+              <label className="block text-sm font-medium" htmlFor="code">
                 {isUsingBackupCode ? "Backup Code" : "Verification Code"}
               </label>
               <input
-                id="code"
-                name="code"
-                type="text"
-                required
-                value={code}
-                onChange={(e) => {
-                  setCode(e.target.value);
-                }}
                 className={`
                   mt-1 block w-full rounded-md border border-gray-300 px-3 py-2
                   shadow-sm
                   focus:border-blue-500 focus:ring-blue-500 focus:outline-none
                 `}
+                id="code"
+                maxLength={isUsingBackupCode ? undefined : 6}
+                name="code"
+                onChange={(e) => {
+                  setCode(e.target.value);
+                }}
+                pattern={isUsingBackupCode ? undefined : "[0-9]{6}"}
                 placeholder={
                   isUsingBackupCode ? "Enter backup code" : "6-digit code"
                 }
-                maxLength={isUsingBackupCode ? undefined : 6}
-                pattern={isUsingBackupCode ? undefined : "[0-9]{6}"}
+                required
+                type="text"
+                value={code}
               />
               <p className="mt-1 text-sm text-gray-500">
                 {isUsingBackupCode
@@ -110,23 +111,23 @@ export function TwoFactorPageClient() {
               <div className="flex items-start">
                 <div className="flex h-5 items-center">
                   <input
-                    id="trustDevice"
-                    name="trustDevice"
-                    type="checkbox"
                     checked={trustDevice}
-                    onChange={(e) => {
-                      setTrustDevice(e.target.checked);
-                    }}
                     className={`
                       h-4 w-4 rounded border-gray-300 text-blue-600
                       focus:ring-blue-500
                     `}
+                    id="trustDevice"
+                    name="trustDevice"
+                    onChange={(e) => {
+                      setTrustDevice(e.target.checked);
+                    }}
+                    type="checkbox"
                   />
                 </div>
                 <div className="ml-3 text-sm">
                   <label
-                    htmlFor="trustDevice"
                     className="font-medium text-gray-700"
+                    htmlFor="trustDevice"
                   >
                     Trust this device
                   </label>
@@ -141,8 +142,6 @@ export function TwoFactorPageClient() {
 
           <div className="flex flex-col space-y-4">
             <button
-              type="submit"
-              disabled={loading}
               className={`
                 flex w-full justify-center rounded-md bg-blue-600 px-4 py-2
                 text-sm font-medium text-white
@@ -151,13 +150,13 @@ export function TwoFactorPageClient() {
                 focus:outline-none
                 disabled:opacity-50
               `}
+              disabled={loading}
+              type="submit"
             >
               {loading ? "Verifying..." : "Verify"}
             </button>
 
             <button
-              type="button"
-              onClick={toggleVerificationMethod}
               className={`
                 flex w-full justify-center rounded-md bg-gray-200 px-4 py-2
                 text-sm font-medium text-gray-700
@@ -165,6 +164,8 @@ export function TwoFactorPageClient() {
                 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
                 focus:outline-none
               `}
+              onClick={toggleVerificationMethod}
+              type="button"
             >
               {isUsingBackupCode
                 ? "Use authenticator app instead"

@@ -1,6 +1,7 @@
 import { createId } from "@paralleldrive/cuid2";
-import { type FileRouter, createUploadthing } from "uploadthing/next";
+import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
+
 import { db } from "~/db";
 import { uploadsTable } from "~/db/schema";
 import { auth } from "~/lib/auth";
@@ -11,13 +12,13 @@ export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   imageUploader: f({
     image: {
+      // Allow multiple images for a gallery
+      maxFileCount: 10,
       /**
        * For full list of options and defaults, see the File Route API reference
        * @see https://docs.uploadthing.com/file-routes#route-config
        */
       maxFileSize: "4MB",
-      // Allow multiple images for a gallery
-      maxFileCount: 10,
     },
   })
     // Set permissions and file types for this FileRoute
@@ -33,7 +34,7 @@ export const ourFileRouter = {
       // Ensure userId is correctly passed
       return { userId: session.user.id };
     })
-    .onUploadComplete(async ({ metadata, file }) => {
+    .onUploadComplete(async ({ file, metadata }) => {
       // This code RUNS ON THE SERVER after upload
       console.log("Upload complete for userId (image):", metadata.userId);
       console.log("file url", file.ufsUrl); // Public CDN URL is useful info
@@ -44,9 +45,9 @@ export const ourFileRouter = {
         await db.insert(uploadsTable).values({
           id: createId(),
           key: file.key,
+          type: "image",
           url: file.ufsUrl, // Store the public CDN URL
           userId: metadata.userId,
-          type: "image",
         });
         console.log(
           "Saved image upload details to database for userId:",
@@ -65,15 +66,15 @@ export const ourFileRouter = {
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       // Return necessary info, like the file URL or key, if needed on the client
       return {
-        uploadedBy: metadata.userId,
-        fileUrl: file.ufsUrl,
         fileKey: file.key,
+        fileUrl: file.ufsUrl,
+        uploadedBy: metadata.userId,
       };
     }),
 
   // New route for video uploads
   videoUploader: f({
-    video: { maxFileSize: "64MB", maxFileCount: 5 },
+    video: { maxFileCount: 5, maxFileSize: "64MB" },
   })
     .middleware(async ({ req }) => {
       // Same middleware logic as imageUploader
@@ -81,7 +82,7 @@ export const ourFileRouter = {
       if (!session?.user?.id) throw new UploadThingError("Unauthorized");
       return { userId: session.user.id };
     })
-    .onUploadComplete(async ({ metadata, file }) => {
+    .onUploadComplete(async ({ file, metadata }) => {
       console.log("Upload complete for userId (video):", metadata.userId);
       console.log("file url", file.ufsUrl); // Public CDN URL is useful info
       console.log("file key", file.key);
@@ -91,9 +92,9 @@ export const ourFileRouter = {
         await db.insert(uploadsTable).values({
           id: createId(),
           key: file.key,
+          type: "video", // Explicitly set type to video
           url: file.ufsUrl,
           userId: metadata.userId,
-          type: "video", // Explicitly set type to video
         });
         console.log(
           "Saved video upload details to database for userId:",
@@ -108,9 +109,9 @@ export const ourFileRouter = {
       }
 
       return {
-        uploadedBy: metadata.userId,
-        fileUrl: file.ufsUrl,
         fileKey: file.key,
+        fileUrl: file.ufsUrl,
+        uploadedBy: metadata.userId,
       };
     }),
 } satisfies FileRouter;

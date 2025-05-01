@@ -1,3 +1,10 @@
 {
-  "recommendations": ["stivo.tailwind-fold"]
+  "recommendations": [
+    "usernamehw.errorlens",
+    "aaron-bond.better-comments",
+    "biomejs.biome",
+    "dbaeumer.vscode-eslint",
+    "chunsen.bracket-select",
+    "davidanson.vscode-markdownlint"
+  ]
 }

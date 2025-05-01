@@ -3,9 +3,9 @@
 import { LogOut, Menu, Settings, Shield, Upload, User, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "~/lib/auth-client";
-
 import { useState } from "react";
+
+import { signOut, useSession } from "~/lib/auth-client";
 import { cn } from "~/lib/cn";
 import { Cart } from "~/ui/components/cart";
 import { Button } from "~/ui/primitives/button";
@@ -16,16 +16,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/ui/primitives/dropdown-menu";
+
 import { NotificationsWidget } from "./notifications/notifications-widget";
 import { ThemeToggle } from "./theme-toggle";
 
 interface HeaderProps {
-  showAuth?: boolean;
-  isDashboard?: boolean;
   children?: React.ReactNode;
+  isDashboard?: boolean;
+  showAuth?: boolean;
 }
 
-export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
+export function Header({ isDashboard = false, showAuth = true }: HeaderProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,16 +36,16 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
   };
 
   const mainNavigation = [
-    { name: "Home", href: "/" },
-    { name: "Products", href: "/products" },
+    { href: "/", name: "Home" },
+    { href: "/products", name: "Products" },
   ];
 
   const dashboardNavigation = [
-    { name: "Dashboard", href: "/dashboard" },
-    { name: "Profile", href: "/dashboard/profile" },
-    { name: "Settings", href: "/dashboard/settings" },
-    { name: "Uploads", href: "/dashboard/uploads" },
-    { name: "Admin", href: "/admin" },
+    { href: "/dashboard", name: "Dashboard" },
+    { href: "/dashboard/profile", name: "Profile" },
+    { href: "/dashboard/settings", name: "Settings" },
+    { href: "/dashboard/uploads", name: "Uploads" },
+    { href: "/admin", name: "Admin" },
   ];
 
   const navigation = isDashboard ? dashboardNavigation : mainNavigation;
@@ -65,7 +66,7 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
       >
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-6">
-            <Link href="/" className="flex items-center gap-2">
+            <Link className="flex items-center gap-2" href="/">
               <span
                 className={cn(
                   "text-xl font-bold",
@@ -94,7 +95,6 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                   return (
                     <li key={item.name}>
                       <Link
-                        href={item.href}
                         className={cn(
                           `
                             text-sm font-medium transition-colors
@@ -104,6 +104,7 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                             ? "font-semibold text-primary"
                             : "text-muted-foreground",
                         )}
+                        href={item.href}
                       >
                         {item.name}
                       </Link>
@@ -130,15 +131,15 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
-                        variant="ghost"
-                        size="icon"
                         className="relative overflow-hidden rounded-full"
+                        size="icon"
+                        variant="ghost"
                       >
                         {session.user?.image ? (
                           <img
-                            src={session.user.image}
                             alt={session.user.name || "User"}
                             className="h-9 w-9 rounded-full object-cover"
+                            src={session.user.image}
                           />
                         ) : (
                           <span
@@ -162,9 +163,9 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                         >
                           {session.user?.image ? (
                             <img
-                              src={session.user.image}
                               alt={session.user.name || "User"}
                               className="h-7 w-7 rounded-full object-cover"
+                              src={session.user.image}
                             />
                           ) : (
                             <User className="h-4 w-4 text-primary" />
@@ -187,8 +188,8 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild>
                         <Link
-                          href="/dashboard/profile"
                           className="cursor-pointer"
+                          href="/dashboard/profile"
                         >
                           <User className="mr-2 h-4 w-4" />
                           Profile
@@ -196,8 +197,8 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link
-                          href="/dashboard/settings"
                           className="cursor-pointer"
+                          href="/dashboard/settings"
                         >
                           <Settings className="mr-2 h-4 w-4" />
                           Settings
@@ -205,22 +206,21 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
                         <Link
-                          href="/dashboard/uploads"
                           className="cursor-pointer"
+                          href="/dashboard/uploads"
                         >
                           <Upload className="mr-2 h-4 w-4" />
                           Uploads
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem asChild>
-                        <Link href="/admin" className="cursor-pointer">
+                        <Link className="cursor-pointer" href="/admin">
                           <Shield className="mr-2 h-4 w-4" />
                           Admin
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem
-                        onClick={handleSignOut}
                         className={cn(
                           "cursor-pointer",
                           isDashboard
@@ -230,6 +230,7 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                               focus:text-destructive
                             `,
                         )}
+                        onClick={handleSignOut}
                       >
                         <LogOut className="mr-2 h-4 w-4" />
                         Log out
@@ -239,7 +240,7 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                 ) : (
                   <div className="flex items-center gap-2">
                     <Link href="/auth/sign-in">
-                      <Button variant="ghost" size="sm">
+                      <Button size="sm" variant="ghost">
                         Log in
                       </Button>
                     </Link>
@@ -255,10 +256,10 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
 
             {/* Mobile menu button */}
             <Button
-              variant="ghost"
-              size="icon"
               className="md:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              size="icon"
+              variant="ghost"
             >
               {mobileMenuOpen ? (
                 <X className="h-5 w-5" />
@@ -281,8 +282,6 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
 
               return (
                 <Link
-                  key={item.name}
-                  href={item.href}
                   className={cn(
                     "block rounded-md px-3 py-2 text-base font-medium",
                     isActive
@@ -292,6 +291,8 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
                         hover:bg-muted/50 hover:text-primary
                       `,
                   )}
+                  href={item.href}
+                  key={item.name}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -303,22 +304,22 @@ export function Header({ showAuth = true, isDashboard = false }: HeaderProps) {
           {showAuth && !session && (
             <div className="space-y-1 border-b px-4 py-3">
               <Link
-                href="/auth/sign-in"
                 className={`
                   block rounded-md px-3 py-2 text-base font-medium
                   hover:bg-muted/50
                 `}
+                href="/auth/sign-in"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Log in
               </Link>
               <Link
-                href="/auth/sign-up"
                 className={`
                   block rounded-md bg-primary px-3 py-2 text-base font-medium
                   text-primary-foreground
                   hover:bg-primary/90
                 `}
+                href="/auth/sign-up"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Sign up

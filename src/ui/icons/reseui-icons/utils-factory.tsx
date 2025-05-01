@@ -25,14 +25,14 @@ export function createIcon(
   viewBox = "0 0 24 24",
 ) {
   const Icon = ({
-    ref,
     borderRadius,
     color = "#5865F2",
     glyphColor = "#fff",
+    ref,
     size = "1em",
     title,
     ...props
-  }: IconBaseProps & { ref?: React.RefObject<SVGSVGElement | null> }) => {
+  }: IconBaseProps & { ref?: React.RefObject<null | SVGSVGElement> }) => {
     const titleId = useId();
     const resolvedSize = typeof size === "number" ? `${size}px` : size;
 

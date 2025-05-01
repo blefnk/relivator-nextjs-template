@@ -4,6 +4,7 @@ import { Shield, User } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+
 import { twoFactor, useSession } from "~/lib/auth-client";
 import { Button } from "~/ui/primitives/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/ui/primitives/card";
@@ -11,26 +12,26 @@ import { Input } from "~/ui/primitives/input";
 import { Label } from "~/ui/primitives/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/ui/primitives/tabs";
 
-interface UserAccount {
-  id: string;
-  providerId: string;
-  accountId: string;
+interface ExtendedSession {
+  user: ExtendedUser;
 }
 
 interface ExtendedUser {
-  id: string;
+  accounts?: UserAccount[];
+  createdAt: Date;
   email: string;
   emailVerified: boolean;
+  id: string;
+  image?: null | string;
   name: string;
-  createdAt: Date;
-  updatedAt: Date;
-  image?: string | null;
   twoFactorEnabled?: boolean | null;
-  accounts?: UserAccount[];
+  updatedAt: Date;
 }
 
-interface ExtendedSession {
-  user: ExtendedUser;
+interface UserAccount {
+  accountId: string;
+  id: string;
+  providerId: string;
 }
 
 export function ProfilePageClient() {
@@ -152,19 +153,19 @@ export function ProfilePageClient() {
         </p>
       </div>
 
-      <Tabs defaultValue="general" className="space-y-4">
+      <Tabs className="space-y-4" defaultValue="general">
         <TabsList>
-          <TabsTrigger value="general" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="general">
             <User className="h-4 w-4" />
             General
           </TabsTrigger>
-          <TabsTrigger value="security" className="flex items-center gap-2">
+          <TabsTrigger className="flex items-center gap-2" value="security">
             <Shield className="h-4 w-4" />
             Security
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="general" className="space-y-4">
+        <TabsContent className="space-y-4" value="general">
           <Card>
             <CardHeader>
               <CardTitle>Profile Information</CardTitle>
@@ -173,18 +174,18 @@ export function ProfilePageClient() {
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
                 <Input
-                  id="name"
                   defaultValue={data?.user?.name || ""}
+                  id="name"
                   placeholder="Enter your name"
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
-                  id="email"
-                  type="email"
                   defaultValue={data?.user?.email || ""}
+                  id="email"
                   placeholder="Enter your email"
+                  type="email"
                 />
               </div>
               <Button>Save Changes</Button>
@@ -192,7 +193,7 @@ export function ProfilePageClient() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="security" className="space-y-4">
+        <TabsContent className="space-y-4" value="security">
           {error && (
             <div
               className={`
@@ -217,9 +218,9 @@ export function ProfilePageClient() {
               <CardContent className="space-y-4">
                 <div className="flex flex-col items-center">
                   <img
-                    src={qrCodeData}
                     alt="QR Code for Two-Factor Authentication"
                     className="h-48 w-48"
+                    src={qrCodeData}
                   />
                   <p className="mt-4 text-center text-sm text-muted-foreground">
                     Scan this QR code with your authenticator app (Google
@@ -252,10 +253,10 @@ export function ProfilePageClient() {
                 <Label htmlFor="password">Your Password</Label>
                 <Input
                   id="password"
-                  type="password"
-                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
+                  type="password"
+                  value={password}
                 />
                 <p className="text-sm text-muted-foreground">
                   Required to change your two-factor authentication settings
@@ -263,14 +264,14 @@ export function ProfilePageClient() {
               </div>
 
               <div className="flex space-x-4">
-                <Button onClick={handleEnableTwoFactor} disabled={loading}>
+                <Button disabled={loading} onClick={handleEnableTwoFactor}>
                   {loading ? "Processing..." : "Enable Two-Factor"}
                 </Button>
 
                 <Button
-                  variant="destructive"
-                  onClick={handleDisableTwoFactor}
                   disabled={loading}
+                  onClick={handleDisableTwoFactor}
+                  variant="destructive"
                 >
                   {loading ? "Processing..." : "Disable Two-Factor"}
                 </Button>

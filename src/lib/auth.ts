@@ -4,6 +4,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { twoFactor } from "better-auth/plugins";
+
 import { db } from "~/db";
 import {
   accountTable,
@@ -14,27 +15,27 @@ import {
 } from "~/db/schema";
 
 interface GitHubProfile {
-  name?: string;
-  email?: string;
   [key: string]: unknown;
+  email?: string;
+  name?: string;
 }
 
 interface GoogleProfile {
-  given_name?: string;
-  family_name?: string;
-  email?: string;
   [key: string]: unknown;
+  email?: string;
+  family_name?: string;
+  given_name?: string;
 }
 
 interface SocialProviderConfig {
+  [key: string]: unknown;
   clientId: string;
   clientSecret: string;
-  redirectURI?: string;
-  scope: string[];
   mapProfileToUser: (
     profile: GitHubProfile | GoogleProfile,
   ) => Record<string, unknown>;
-  [key: string]: unknown;
+  redirectURI?: string;
+  scope: string[];
 }
 
 const hasGithubCredentials =
@@ -56,7 +57,6 @@ if (hasGithubCredentials) {
   socialProviders.github = {
     clientId: process.env.AUTH_GITHUB_ID ?? "",
     clientSecret: process.env.AUTH_GITHUB_SECRET ?? "",
-    scope: ["user:email", "read:user"],
     mapProfileToUser: (profile: GitHubProfile) => {
       let firstName = "";
       let lastName = "";
@@ -71,6 +71,7 @@ if (hasGithubCredentials) {
         lastName,
       };
     },
+    scope: ["user:email", "read:user"],
   };
 }
 
@@ -78,7 +79,6 @@ if (hasGoogleCredentials) {
   socialProviders.google = {
     clientId: process.env.AUTH_GOOGLE_ID ?? "",
     clientSecret: process.env.AUTH_GOOGLE_SECRET ?? "",
-    scope: ["openid", "email", "profile"],
     mapProfileToUser: (profile: GoogleProfile) => {
       return {
         age: 0,
@@ -86,58 +86,34 @@ if (hasGoogleCredentials) {
         lastName: profile.family_name ?? "",
       };
     },
+    scope: ["openid", "email", "profile"],
   };
 }
 
 export const auth = betterAuth({
+  account: {
+    accountLinking: {
+      allowDifferentEmails: false,
+      enabled: true,
+      trustedProviders: Object.keys(socialProviders),
+    },
+  },
   baseURL: process.env.NEXT_SERVER_APP_URL,
-  secret: process.env.AUTH_SECRET,
 
   database: drizzleAdapter(db, {
     provider: "pg",
     schema: {
-      user: userTable,
-      session: sessionTable,
       account: accountTable,
-      verification: verificationTable,
+      session: sessionTable,
       twoFactor: twoFactorTable,
+      user: userTable,
+      verification: verificationTable,
     },
   }),
-
-  user: {
-    additionalFields: {
-      age: {
-        type: "number",
-        required: false,
-        input: true,
-      },
-      firstName: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-      lastName: {
-        type: "string",
-        required: false,
-        input: true,
-      },
-    },
-  },
 
   emailAndPassword: {
     enabled: true,
   },
-
-  account: {
-    accountLinking: {
-      enabled: true,
-      allowDifferentEmails: false,
-      trustedProviders: Object.keys(socialProviders),
-    },
-  },
-
-  // Only include social providers if credentials are available
-  socialProviders,
 
   // Configure OAuth behavior
   oauth: {
@@ -150,4 +126,29 @@ export const auth = betterAuth({
   },
 
   plugins: [twoFactor()],
+
+  secret: process.env.AUTH_SECRET,
+
+  // Only include social providers if credentials are available
+  socialProviders,
+
+  user: {
+    additionalFields: {
+      age: {
+        input: true,
+        required: false,
+        type: "number",
+      },
+      firstName: {
+        input: true,
+        required: false,
+        type: "string",
+      },
+      lastName: {
+        input: true,
+        required: false,
+        type: "string",
+      },
+    },
+  },
 });

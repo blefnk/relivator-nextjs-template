@@ -9,13 +9,13 @@ import type { CartItem } from "~/ui/components/cart";
 /* -------------------------------------------------------------------------- */
 
 export interface CartContextType {
-  items: CartItem[];
   addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
-  removeItem: (id: string) => void;
-  updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   itemCount: number;
+  items: CartItem[];
+  removeItem: (id: string) => void;
   subtotal: number;
+  updateQuantity: (id: string, quantity: number) => void;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -54,7 +54,7 @@ export function CartProvider({ children }: React.PropsWithChildren) {
   const [items, setItems] = React.useState<CartItem[]>(loadCartFromStorage);
 
   /* -------------------- Persist to localStorage (debounced) ------------- */
-  const saveTimeout = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const saveTimeout = React.useRef<null | ReturnType<typeof setTimeout>>(null);
 
   React.useEffect(() => {
     if (saveTimeout.current) clearTimeout(saveTimeout.current);
@@ -119,13 +119,13 @@ export function CartProvider({ children }: React.PropsWithChildren) {
   /* ----------------------------- Context value -------------------------- */
   const value = React.useMemo<CartContextType>(
     () => ({
-      items,
       addItem,
-      removeItem,
-      updateQuantity,
       clearCart,
       itemCount,
+      items,
+      removeItem,
       subtotal,
+      updateQuantity,
     }),
     [
       items,

@@ -2,23 +2,23 @@ import { cn } from "~/lib/cn";
 import { Avatar, AvatarImage } from "~/ui/primitives/avatar";
 
 export interface TestimonialAuthor {
-  name: string;
-  handle: string;
   avatar: string;
+  handle: string;
+  name: string;
 }
 
 export interface TestimonialCardProps {
   author: TestimonialAuthor;
-  text: string;
-  href?: string;
   className?: string;
+  href?: string;
+  text: string;
 }
 
 export function TestimonialCard({
   author,
-  text,
-  href,
   className,
+  href,
+  text,
 }: TestimonialCardProps) {
   const Card = href ? "a" : "div";
 
@@ -43,7 +43,7 @@ export function TestimonialCard({
     >
       <div className="flex items-center gap-3">
         <Avatar className="h-12 w-12">
-          <AvatarImage src={author.avatar} alt={author.name} />
+          <AvatarImage alt={author.name} src={author.avatar} />
         </Avatar>
         <div className="flex flex-col items-start">
           <h3 className="text-md leading-none font-semibold">{author.name}</h3>

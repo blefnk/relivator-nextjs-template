@@ -2,6 +2,7 @@ tsconfig.tsbuildinfo
 /auth-schema.ts
 /node_modules
 next-env.d.ts
+.eslintcache
 .vercel
 .next
 .env

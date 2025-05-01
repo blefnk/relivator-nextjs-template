@@ -2,6 +2,7 @@
 
 import { animate } from "animejs";
 import React, { useEffect, useRef } from "react";
+
 import { cn } from "~/lib/cn";
 import {
   type TestimonialAuthor,
@@ -9,24 +10,24 @@ import {
 } from "~/ui/primitives/testimonial";
 
 interface TestimonialsSectionProps {
-  title: string;
+  className?: string;
   description: string;
   testimonials: {
     author: TestimonialAuthor;
-    text: string;
     href?: string;
+    text: string;
   }[];
-  className?: string;
+  title: string;
 }
 
 export function TestimonialsSection({
-  title,
+  className,
   description,
   testimonials,
-  className,
+  title,
 }: TestimonialsSectionProps) {
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<ReturnType<typeof animate> | null>(null);
+  const animationRef = useRef<null | ReturnType<typeof animate>>(null);
   const isHoveredRef = useRef(false);
 
   useEffect(() => {
@@ -43,10 +44,10 @@ export function TestimonialsSection({
       }
 
       animationRef.current = animate(marqueeElement, {
-        translateX: ["0px", `-${itemWidth}px`],
         duration: 40000, // 40s same as CSS
         easing: "linear",
         loop: true,
+        translateX: ["0px", `-${itemWidth}px`],
       });
 
       // Pause animation if already hovered
@@ -146,11 +147,11 @@ export function TestimonialsSection({
             onMouseLeave={handleMouseLeave}
           >
             <div
-              ref={marqueeRef}
               className={`
                 flex shrink-0 flex-row justify-around
                 [gap:var(--gap)]
               `}
+              ref={marqueeRef}
               style={{ translate: "none" }}
             >
               {[...Array(4)].map((_, setIndex) =>

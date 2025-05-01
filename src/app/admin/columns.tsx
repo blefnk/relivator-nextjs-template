@@ -1,11 +1,13 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
+
 import { MoreHorizontal } from "lucide-react";
-import type * as React from "react";
+
 import type { MediaUpload } from "~/db/schema/uploads/types";
 import type { User } from "~/db/schema/users/types";
-import type { GalleryMediaItem } from "~/ui/components/blocks/interactive-bento-gallery";
+import type { GalleryMediaItem } from "~/ui/components/blocks/bento-media-gallery";
+
 import { Button } from "~/ui/primitives/button";
 import { Checkbox } from "~/ui/primitives/checkbox";
 import {
@@ -16,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/ui/primitives/dropdown-menu";
+
 import { DataTableColumnHeader } from "./data-table-column-header";
 
 // The shape of the data expected by the table
@@ -33,23 +36,23 @@ export const getColumns = ({
   onImageClickAction,
 }: GetColumnsProps): ColumnDef<UserWithUploads>[] => [
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={() => table.toggleAllPageRowsSelected()}
-        aria-label="Select all"
-      />
-    ),
     cell: ({ row }) => (
       <Checkbox
+        aria-label="Select row"
         checked={row.getIsSelected()}
         onCheckedChange={() => row.toggleSelected()}
-        aria-label="Select row"
       />
     ),
-    enableSorting: false,
     enableHiding: false,
+    enableSorting: false,
+    header: ({ table }) => (
+      <Checkbox
+        aria-label="Select all"
+        checked={table.getIsAllPageRowsSelected()}
+        onCheckedChange={() => table.toggleAllPageRowsSelected()}
+      />
+    ),
+    id: "select",
   },
   {
     accessorKey: "id",
@@ -70,8 +73,6 @@ export const getColumns = ({
     ),
   },
   {
-    id: "uploads",
-    header: "Uploads",
     cell: ({ row }) => {
       const user = row.original;
       const uploads = user.uploads;
@@ -85,26 +86,26 @@ export const getColumns = ({
           {uploads.map((upload) => {
             // Prepare the item for the gallery viewer
             const galleryItem: GalleryMediaItem = {
-              id: upload.id,
-              type: "image",
-              title: `Upload ${upload.key.substring(0, 8)}...`,
               desc: `Uploaded by ${user.name} on ${upload.createdAt.toLocaleDateString()}`,
-              url: upload.url,
+              id: upload.id,
               span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2", // Default span value
+              title: `Upload ${upload.key.substring(0, 8)}...`,
+              type: "image",
+              url: upload.url,
             };
             return (
               <Button
-                key={upload.id}
-                variant="outline"
-                size="sm"
                 className="h-auto p-1"
+                key={upload.id}
                 onClick={() => onImageClickAction(galleryItem)}
+                size="sm"
+                variant="outline"
               >
                 <img
-                  src={upload.url} // Show a small thumbnail
                   alt={upload.key}
                   className="h-8 w-8 rounded-sm object-cover"
                   loading="lazy"
+                  src={upload.url} // Show a small thumbnail
                 />
               </Button>
             );
@@ -112,15 +113,16 @@ export const getColumns = ({
         </div>
       );
     },
+    header: "Uploads",
+    id: "uploads",
   },
   {
-    id: "actions",
     cell: ({ row }) => {
       const user = row.original;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
+            <Button className="h-8 w-8 p-0" variant="ghost">
               <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
@@ -140,5 +142,6 @@ export const getColumns = ({
       );
     },
     enableHiding: false,
+    id: "actions",
   },
 ];

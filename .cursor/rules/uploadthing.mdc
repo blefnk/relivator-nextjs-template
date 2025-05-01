@@ -15,7 +15,7 @@ alwaysApply: false
 - **DB Types:** `types.ts` (`MediaUpload`)
 - **Frontend UI:** `page.client.tsx` (`UploadButton`)
 - **Media API:** `/api/media/route.ts` (fetch media)
-- **Display:** `InteractiveBentoGallery.tsx` (renders images/videos)
+- **Display:** `bento-media-gallery.tsx` (renders images/videos)
 - **Auth:** `~/lib/auth`
 
 ## Core Concepts
@@ -25,7 +25,7 @@ alwaysApply: false
 - **DB Insert:** `onUploadComplete` inserts into `uploads` table, sets `type` based on route, uses `createId()` for `id`.
 - **Frontend:** `UploadButton` for each endpoint; `onClientUploadComplete` refetches media via `/api/media`.
 - **Media Fetch:** `/api/media/route.ts` authenticates, fetches uploads for user, returns JSON.
-- **Display:** `InteractiveBentoGallery.tsx` renders `<img>` or `<video>` based on `type`.
+- **Display:** `bento-media-gallery.tsx` renders `<img>` or `<video>` based on `type`.
 
 ## Tips
 

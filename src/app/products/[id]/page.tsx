@@ -4,6 +4,7 @@ import { Minus, Plus, ShoppingCart, Star } from "lucide-react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import * as React from "react";
+import { toast } from "sonner";
 
 import { useCart } from "~/lib/hooks/use-cart";
 import { Button } from "~/ui/primitives/button";
@@ -14,16 +15,16 @@ import { Separator } from "~/ui/primitives/separator";
 /* -------------------------------------------------------------------------- */
 
 interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  image: string;
   category: string;
-  rating: number;
-  inStock: boolean;
   description: string;
   features: string[];
+  id: string;
+  image: string;
+  inStock: boolean;
+  name: string;
+  originalPrice?: number;
+  price: number;
+  rating: number;
   specs: Record<string, string>;
 }
 
@@ -32,8 +33,8 @@ interface Product {
 /* -------------------------------------------------------------------------- */
 
 const CURRENCY_FORMATTER = new Intl.NumberFormat("en-US", {
-  style: "currency",
   currency: "USD",
+  style: "currency",
 });
 
 /** `feature -> feature` ➜ `feature-feature` (for React keys) */
@@ -52,15 +53,7 @@ const range = (length: number) => Array.from({ length }, (_, i) => i);
 
 const products: Product[] = [
   {
-    id: "1",
-    name: "Premium Wireless Headphones",
-    price: 199.99,
-    originalPrice: 249.99,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     category: "Audio",
-    rating: 4.5,
-    inStock: true,
     description:
       "Experience crystal-clear sound with our premium wireless headphones. Featuring active noise cancellation, 30-hour battery life, and comfortable over-ear design for all-day listening comfort.",
     features: [
@@ -71,25 +64,25 @@ const products: Product[] = [
       "Quick charge - 5 minutes for 4 hours of playback",
       "Built-in microphone for calls",
     ],
+    id: "1",
+    image:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    inStock: true,
+    name: "Premium Wireless Headphones",
+    originalPrice: 249.99,
+    price: 199.99,
+    rating: 4.5,
     specs: {
-      brand: "AudioMax",
-      model: "WH-1000XM5",
-      connectivity: "Bluetooth 5.2, 3.5mm jack",
       batteryLife: "30 hours",
-      weight: "250g",
+      brand: "AudioMax",
+      connectivity: "Bluetooth 5.2, 3.5mm jack",
+      model: "WH-1000XM5",
       warranty: "2 years",
+      weight: "250g",
     },
   },
   {
-    id: "2",
-    name: "Smart Watch Series 5",
-    price: 299.99,
-    originalPrice: 349.99,
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     category: "Wearables",
-    rating: 4.2,
-    inStock: true,
     description:
       "Stay connected and track your fitness goals with our advanced smartwatch. Features health monitoring, GPS tracking, and a beautiful always-on display.",
     features: [
@@ -100,26 +93,26 @@ const products: Product[] = [
       "Always-on retina display",
       "Customizable watch faces",
     ],
+    id: "2",
+    image:
+      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    inStock: true,
+    name: "Smart Watch Series 5",
+    originalPrice: 349.99,
+    price: 299.99,
+    rating: 4.2,
     specs: {
-      brand: "TechFit",
-      model: "Watch Pro 5",
-      display: '1.5" AMOLED',
-      waterResistance: "5 ATM",
       batteryLife: "7 days",
+      brand: "TechFit",
       compatibility: "iOS, Android",
+      display: '1.5" AMOLED',
+      model: "Watch Pro 5",
       warranty: "1 year",
+      waterResistance: "5 ATM",
     },
   },
   {
-    id: "3",
-    name: "Professional Camera Kit",
-    price: 1299.99,
-    originalPrice: 1499.99,
-    image:
-      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     category: "Photography",
-    rating: 4.8,
-    inStock: false,
     description:
       "Capture stunning photos and videos with our professional camera kit. Includes a high-resolution sensor, 4K video recording, and a versatile lens kit for any shooting situation.",
     features: [
@@ -130,26 +123,26 @@ const products: Product[] = [
       "Dual SD card slots",
       "Includes 24-70mm f/2.8 lens",
     ],
+    id: "3",
+    image:
+      "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    inStock: false,
+    name: "Professional Camera Kit",
+    originalPrice: 1499.99,
+    price: 1299.99,
+    rating: 4.8,
     specs: {
       brand: "OptiPro",
-      model: "X-1000",
-      sensorType: "Full-frame CMOS",
-      resolution: "24.2MP",
       iso: "100-51,200 (expandable to 204,800)",
+      model: "X-1000",
+      resolution: "24.2MP",
+      sensorType: "Full-frame CMOS",
       shutter: "1/8000 to 30 sec",
       warranty: "2 years",
     },
   },
   {
-    id: "4",
-    name: "Ergonomic Office Chair",
-    price: 249.99,
-    originalPrice: 299.99,
-    image:
-      "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     category: "Furniture",
-    rating: 4.6,
-    inStock: true,
     description:
       "Work in comfort with our ergonomic office chair designed for all-day support. Features adjustable height, lumbar support, and breathable mesh back.",
     features: [
@@ -160,26 +153,26 @@ const products: Product[] = [
       "Heavy-duty base with smooth-rolling casters",
       "Weight capacity: 300 lbs",
     ],
+    id: "4",
+    image:
+      "https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    inStock: true,
+    name: "Ergonomic Office Chair",
+    originalPrice: 299.99,
+    price: 249.99,
+    rating: 4.6,
     specs: {
-      brand: "ErgoComfort",
-      model: "Executive Pro",
-      material: "Mesh back, fabric seat",
       adjustableHeight: "16-20 inches",
-      maxWeight: "300 lbs",
+      brand: "ErgoComfort",
       dimensions: '26"W x 26"D x 38-42"H',
+      material: "Mesh back, fabric seat",
+      maxWeight: "300 lbs",
+      model: "Executive Pro",
       warranty: "5 years",
     },
   },
   {
-    id: "5",
-    name: "Smartphone Pro Max",
-    price: 999.99,
-    originalPrice: 1099.99,
-    image:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     category: "Electronics",
-    rating: 4.9,
-    inStock: true,
     description:
       "The ultimate smartphone experience with a stunning display, powerful camera system, and all-day battery life.",
     features: [
@@ -190,28 +183,28 @@ const products: Product[] = [
       "Up to 1TB storage",
       "All-day battery life",
     ],
+    id: "5",
+    image:
+      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    inStock: true,
+    name: "Smartphone Pro Max",
+    originalPrice: 1099.99,
+    price: 999.99,
+    rating: 4.9,
     specs: {
+      battery: "4,352mAh",
       brand: "TechPro",
-      model: "Galaxy Pro Max",
+      camera: "12MP triple camera system",
       display: '6.7" Super Retina XDR',
+      model: "Galaxy Pro Max",
+      os: "iOS 16",
       processor: "A16 Bionic chip",
       storage: "128GB/256GB/512GB/1TB",
-      camera: "12MP triple camera system",
-      battery: "4,352mAh",
-      os: "iOS 16",
       warranty: "1 year",
     },
   },
   {
-    id: "6",
-    name: 'Ultra HD Smart TV 55"',
-    price: 799.99,
-    originalPrice: 899.99,
-    image:
-      "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
     category: "Electronics",
-    rating: 4.7,
-    inStock: true,
     description:
       "Transform your home entertainment with our Ultra HD Smart TV featuring vibrant colors, immersive sound, and smart connectivity.",
     features: [
@@ -222,15 +215,23 @@ const products: Product[] = [
       "Smart home integration",
       "Multiple HDMI and USB ports",
     ],
+    id: "6",
+    image:
+      "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+    inStock: true,
+    name: 'Ultra HD Smart TV 55"',
+    originalPrice: 899.99,
+    price: 799.99,
+    rating: 4.7,
     specs: {
-      brand: "VisionPro",
-      model: "X55-4K",
-      display: '55" 4K Ultra HD LED',
-      resolution: "3840 x 2160",
-      refreshRate: "120Hz",
-      hdr: "Dolby Vision, HDR10+",
-      connectivity: "HDMI x4, USB x3, Wi-Fi, Bluetooth",
       audio: "40W Dolby Atmos",
+      brand: "VisionPro",
+      connectivity: "HDMI x4, USB x3, Wi-Fi, Bluetooth",
+      display: '55" 4K Ultra HD LED',
+      hdr: "Dolby Vision, HDR10+",
+      model: "X55-4K",
+      refreshRate: "120Hz",
+      resolution: "3840 x 2160",
       smartFeatures: "Voice control, App store",
       warranty: "2 years",
     },
@@ -275,16 +276,16 @@ export default function ProductDetailPage() {
     setIsAdding(true);
     addItem(
       {
+        category: product.category,
         id: product.id,
+        image: product.image,
         name: product.name,
         price: product.price,
-        image: product.image,
-        category: product.category,
       },
       quantity,
     );
     setQuantity(1);
-    // toast.success(`${product.name} added to cart`);
+    toast.success(`${product.name} added to cart`);
     await new Promise((r) => setTimeout(r, 400)); // fake latency
     setIsAdding(false);
   }, [addItem, product, quantity]);
@@ -325,10 +326,10 @@ export default function ProductDetailPage() {
         >
           {/* Back link */}
           <Button
-            variant="ghost"
+            aria-label="Back to products"
             className="mb-6"
             onClick={() => router.push("/products")}
-            aria-label="Back to products"
+            variant="ghost"
           >
             ← Back to Products
           </Button>
@@ -347,11 +348,11 @@ export default function ProductDetailPage() {
               `}
             >
               <Image
-                src={product.image}
                 alt={product.name}
-                fill
                 className="object-cover"
+                fill
                 priority
+                src={product.image}
               />
               {discountPercentage > 0 && (
                 <div
@@ -374,12 +375,11 @@ export default function ProductDetailPage() {
                 <div className="mt-2 flex items-center gap-2">
                   {/* Stars */}
                   <div
-                    className="flex items-center"
                     aria-label={`Rating ${product.rating} out of 5`}
+                    className="flex items-center"
                   >
                     {range(5).map((i) => (
                       <Star
-                        key={`star-${i}`}
                         className={`
                           h-5 w-5
                           ${
@@ -390,6 +390,7 @@ export default function ProductDetailPage() {
                                 : "text-muted-foreground"
                           }
                         `}
+                        key={`star-${i}`}
                       />
                     ))}
                   </div>
@@ -422,7 +423,7 @@ export default function ProductDetailPage() {
               </p>
 
               {/* Stock */}
-              <div className="mb-6" aria-live="polite" aria-atomic="true">
+              <div aria-atomic="true" aria-live="polite" className="mb-6">
                 {product.inStock ? (
                   <p className="text-sm font-medium text-green-600">In Stock</p>
                 ) : (
@@ -442,11 +443,11 @@ export default function ProductDetailPage() {
                 {/* Quantity */}
                 <div className="flex items-center">
                   <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => handleQuantityChange(quantity - 1)}
-                    disabled={quantity <= 1}
                     aria-label="Decrease quantity"
+                    disabled={quantity <= 1}
+                    onClick={() => handleQuantityChange(quantity - 1)}
+                    size="icon"
+                    variant="outline"
                   >
                     <Minus className="h-4 w-4" />
                   </Button>
@@ -456,10 +457,10 @@ export default function ProductDetailPage() {
                   </span>
 
                   <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={() => handleQuantityChange(quantity + 1)}
                     aria-label="Increase quantity"
+                    onClick={() => handleQuantityChange(quantity + 1)}
+                    size="icon"
+                    variant="outline"
                   >
                     <Plus className="h-4 w-4" />
                   </Button>
@@ -468,8 +469,8 @@ export default function ProductDetailPage() {
                 {/* Add to cart */}
                 <Button
                   className="flex-1"
-                  onClick={handleAddToCart}
                   disabled={!product.inStock || isAdding}
+                  onClick={handleAddToCart}
                 >
                   <ShoppingCart className="mr-2 h-4 w-4" />
                   {isAdding ? "Adding…" : "Add to Cart"}
@@ -493,8 +494,8 @@ export default function ProductDetailPage() {
               <ul className="space-y-2">
                 {product.features.map((feature) => (
                   <li
-                    key={`feature-${product.id}-${slugify(feature)}`}
                     className="flex items-start"
+                    key={`feature-${product.id}-${slugify(feature)}`}
                   >
                     <span className="mt-1 mr-2 h-2 w-2 rounded-full bg-primary" />
                     <span>{feature}</span>
@@ -509,8 +510,8 @@ export default function ProductDetailPage() {
               <div className="space-y-2">
                 {Object.entries(product.specs).map(([key, value]) => (
                   <div
-                    key={key}
                     className="flex justify-between border-b pb-2 text-sm"
+                    key={key}
                   >
                     <span className="font-medium capitalize">
                       {key.replace(/([A-Z])/g, " $1").trim()}

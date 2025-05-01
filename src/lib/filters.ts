@@ -1,6 +1,9 @@
 import "@tanstack/table-core";
+
 import type { AccessorFn, Column, Row, RowData } from "@tanstack/react-table";
 import type { ColumnMeta, Table } from "@tanstack/react-table";
+import type { LucideIcon } from "lucide-react";
+
 import {
   endOfDay,
   isAfter,
@@ -9,7 +12,7 @@ import {
   isWithinInterval,
   startOfDay,
 } from "date-fns";
-import type { LucideIcon } from "lucide-react";
+
 import { getUniqueValues, intersection } from "./array";
 
 export type ElementType<T> = T extends (infer U)[] ? U : T;
@@ -23,8 +26,9 @@ declare module "@tanstack/react-table" {
     /* The column icon. */
     icon: LucideIcon;
 
-    /* The data type of the column. */
-    type: ColumnDataType;
+    /* An optional "soft" max for the number range slider. */
+    /* This is used for columns with type 'number'. */
+    max?: number;
 
     /* An optional list of options for the column. */
     /* This is used for columns with type 'option' or 'multiOption'. */
@@ -38,10 +42,152 @@ declare module "@tanstack/react-table" {
       value: ElementType<NonNullable<TValue>>,
     ) => ColumnOption;
 
-    /* An optional "soft" max for the number range slider. */
-    /* This is used for columns with type 'number'. */
-    max?: number;
+    /* The data type of the column. */
+    type: ColumnDataType;
   }
+}
+
+/*
+ * Represents the data type of a column.
+ */
+export type ColumnDataType =
+  /* The column value is a string that should be searchable. */
+  | "date"
+  | "multiOption"
+  | "number"
+  /* The column value can be a single value from a list of options. */
+  | "option"
+  /* The column value can be zero or more values from a list of options. */
+  | "text";
+
+/*
+ * Represents a possible value for a column property of type 'option' or 'multiOption'.
+ */
+export interface ColumnOption {
+  /* An optional icon to display next to the label. */
+  icon?: React.ElementType | React.ReactElement;
+  /* The label to display for the option. */
+  label: string;
+  /* The internal value of the option. */
+  value: string;
+}
+
+/* Operators for date data */
+export type DateFilterOperator =
+  | "is"
+  | "is after"
+  | "is before"
+  | "is between"
+  | "is not"
+  | "is not between"
+  | "is on or after"
+  | "is on or before";
+
+/*
+ * FilterDetails is a type that represents the details of all the filter operators for a specific column data type.
+ */
+export type FilterDetails<T extends ColumnDataType> = {
+  [key in FilterOperators[T]]: FilterOperatorDetails<key, T>;
+};
+
+/*
+ *
+ * FilterValue is a type that represents a filter value for a specific column.
+ *
+ * It consists of:
+ * - Operator: The operator to be used for the filter.
+ * - Values: An array of values to be used for the filter.
+ *
+ */
+export interface FilterModel<T extends ColumnDataType, TData> {
+  columnMeta: Column<TData>["columnDef"]["meta"];
+  operator: FilterOperators[T];
+  values: FilterTypes[T][];
+}
+
+/*
+ *
+ * FilterOperatorDetails is a type that provides details about a filter operator for a specific column data type.
+ * It extends FilterOperatorDetailsBase with additional logic and contraints on the defined properties.
+ *
+ */
+export type FilterOperatorDetails<
+  OperatorValue,
+  T extends ColumnDataType,
+> = FilterOperatorDetailsBase<OperatorValue, T> &
+  (
+    | { isNegated: false; negation: FilterOperators[T]; negationOf?: never }
+    | { isNegated: true; negation?: never; negationOf: FilterOperators[T] }
+  ) &
+  (
+    | { pluralOf: FilterOperators[T]; singularOf?: never; target: "multiple" }
+    | { pluralOf?: never; singularOf: FilterOperators[T]; target: "single" }
+    | { pluralOf?: never; singularOf?: never }
+  );
+
+/* Maps filter values to their respective data types */
+export interface FilterTypes {
+  date: Date;
+  multiOption: string[];
+  number: number;
+  option: string;
+  text: string;
+}
+
+/* Operators for multi-option data */
+export type MultiOptionFilterOperator =
+  | "exclude"
+  | "exclude if all"
+  | "exclude if any of"
+  | "include"
+  | "include all of"
+  | "include any of";
+
+/* Operators for number data */
+export type NumberFilterOperator =
+  | "is"
+  | "is between"
+  | "is greater than"
+  | "is greater than or equal to"
+  | "is less than"
+  | "is less than or equal to"
+  | "is not"
+  | "is not between";
+
+/* Operators for option data */
+export type OptionFilterOperator = "is" | "is any of" | "is none of" | "is not";
+
+/* Operators for text data */
+export type TextFilterOperator = "contains" | "does not contain";
+
+interface FilterOperatorDetailsBase<OperatorValue, T extends ColumnDataType> {
+  /* Whether the operator is negated. */
+  isNegated: boolean;
+  /* The label for the operator, to show in the UI. */
+  label: string;
+  /* If the operator is not negated, this provides the negated equivalent. */
+  negation?: FilterOperators[T];
+  /* If the operator is negated, this provides the positive equivalent. */
+  negationOf?: FilterOperators[T];
+  /* The singular form of the operator, if applicable. */
+  pluralOf?: FilterOperators[T];
+  /* All related operators. Normally, all the operators which share the same target. */
+  relativeOf: FilterOperators[T] | FilterOperators[T][];
+  /* The plural form of the operator, if applicable. */
+  singularOf?: FilterOperators[T];
+  /* How much data the operator applies to. */
+  target: "multiple" | "single";
+  /* The operator value. Usually the string representation of the operator. */
+  value: OperatorValue;
+}
+
+/* Maps filter operators to their respective data types */
+interface FilterOperators {
+  date: DateFilterOperator;
+  multiOption: MultiOptionFilterOperator;
+  number: NumberFilterOperator;
+  option: OptionFilterOperator;
+  text: TextFilterOperator;
 }
 
 /* TODO: Allow both accessorFn and accessorKey */
@@ -72,302 +218,119 @@ export function defineMeta<
   return meta;
 }
 
-/*
- * Represents a possible value for a column property of type 'option' or 'multiOption'.
- */
-export interface ColumnOption {
-  /* The label to display for the option. */
-  label: string;
-  /* The internal value of the option. */
-  value: string;
-  /* An optional icon to display next to the label. */
-  icon?: React.ReactElement | React.ElementType;
-}
-
-/*
- * Represents the data type of a column.
- */
-export type ColumnDataType =
-  /* The column value is a string that should be searchable. */
-  | "text"
-  | "number"
-  | "date"
-  /* The column value can be a single value from a list of options. */
-  | "option"
-  /* The column value can be zero or more values from a list of options. */
-  | "multiOption";
-
-/* Operators for text data */
-export type TextFilterOperator = "contains" | "does not contain";
-
-/* Operators for number data */
-export type NumberFilterOperator =
-  | "is"
-  | "is not"
-  | "is less than"
-  | "is greater than or equal to"
-  | "is greater than"
-  | "is less than or equal to"
-  | "is between"
-  | "is not between";
-
-/* Operators for date data */
-export type DateFilterOperator =
-  | "is"
-  | "is not"
-  | "is before"
-  | "is on or after"
-  | "is after"
-  | "is on or before"
-  | "is between"
-  | "is not between";
-
-/* Operators for option data */
-export type OptionFilterOperator = "is" | "is not" | "is any of" | "is none of";
-
-/* Operators for multi-option data */
-export type MultiOptionFilterOperator =
-  | "include"
-  | "exclude"
-  | "include any of"
-  | "include all of"
-  | "exclude if any of"
-  | "exclude if all";
-
-/* Maps filter operators to their respective data types */
-interface FilterOperators {
-  text: TextFilterOperator;
-  number: NumberFilterOperator;
-  date: DateFilterOperator;
-  option: OptionFilterOperator;
-  multiOption: MultiOptionFilterOperator;
-}
-
-/* Maps filter values to their respective data types */
-export interface FilterTypes {
-  text: string;
-  number: number;
-  date: Date;
-  option: string;
-  multiOption: string[];
-}
-
-/*
- *
- * FilterValue is a type that represents a filter value for a specific column.
- *
- * It consists of:
- * - Operator: The operator to be used for the filter.
- * - Values: An array of values to be used for the filter.
- *
- */
-export interface FilterModel<T extends ColumnDataType, TData> {
-  operator: FilterOperators[T];
-  values: FilterTypes[T][];
-  columnMeta: Column<TData>["columnDef"]["meta"];
-}
-
-/*
- * FilterDetails is a type that represents the details of all the filter operators for a specific column data type.
- */
-export type FilterDetails<T extends ColumnDataType> = {
-  [key in FilterOperators[T]]: FilterOperatorDetails<key, T>;
-};
-
-interface FilterOperatorDetailsBase<OperatorValue, T extends ColumnDataType> {
-  /* The operator value. Usually the string representation of the operator. */
-  value: OperatorValue;
-  /* The label for the operator, to show in the UI. */
-  label: string;
-  /* How much data the operator applies to. */
-  target: "single" | "multiple";
-  /* The plural form of the operator, if applicable. */
-  singularOf?: FilterOperators[T];
-  /* The singular form of the operator, if applicable. */
-  pluralOf?: FilterOperators[T];
-  /* All related operators. Normally, all the operators which share the same target. */
-  relativeOf: FilterOperators[T] | FilterOperators[T][];
-  /* Whether the operator is negated. */
-  isNegated: boolean;
-  /* If the operator is not negated, this provides the negated equivalent. */
-  negation?: FilterOperators[T];
-  /* If the operator is negated, this provides the positive equivalent. */
-  negationOf?: FilterOperators[T];
-}
-
-/*
- *
- * FilterOperatorDetails is a type that provides details about a filter operator for a specific column data type.
- * It extends FilterOperatorDetailsBase with additional logic and contraints on the defined properties.
- *
- */
-export type FilterOperatorDetails<
-  OperatorValue,
-  T extends ColumnDataType,
-> = FilterOperatorDetailsBase<OperatorValue, T> &
-  (
-    | { singularOf?: never; pluralOf?: never }
-    | { target: "single"; singularOf: FilterOperators[T]; pluralOf?: never }
-    | { target: "multiple"; singularOf?: never; pluralOf: FilterOperators[T] }
-  ) &
-  (
-    | { isNegated: false; negation: FilterOperators[T]; negationOf?: never }
-    | { isNegated: true; negation?: never; negationOf: FilterOperators[T] }
-  );
-
 /* Details for all the filter operators for option data type */
 export const optionFilterDetails = {
   is: {
-    label: "is",
-    value: "is",
-    target: "single",
-    singularOf: "is not",
-    relativeOf: "is any of",
     isNegated: false,
+    label: "is",
     negation: "is not",
-  },
-  "is not": {
-    label: "is not",
-    value: "is not",
+    relativeOf: "is any of",
+    singularOf: "is not",
     target: "single",
-    singularOf: "is",
-    relativeOf: "is none of",
-    isNegated: true,
-    negationOf: "is",
+    value: "is",
   },
   "is any of": {
+    isNegated: false,
     label: "is any of",
-    value: "is any of",
-    target: "multiple",
+    negation: "is none of",
     pluralOf: "is",
     relativeOf: "is",
-    isNegated: false,
-    negation: "is none of",
+    target: "multiple",
+    value: "is any of",
   },
   "is none of": {
+    isNegated: true,
     label: "is none of",
-    value: "is none of",
-    target: "multiple",
+    negationOf: "is any of",
     pluralOf: "is not",
     relativeOf: "is not",
+    target: "multiple",
+    value: "is none of",
+  },
+  "is not": {
     isNegated: true,
-    negationOf: "is any of",
+    label: "is not",
+    negationOf: "is",
+    relativeOf: "is none of",
+    singularOf: "is",
+    target: "single",
+    value: "is not",
   },
 } as const satisfies FilterDetails<"option">;
 
 /* Details for all the filter operators for multi-option data type */
 export const multiOptionFilterDetails = {
-  include: {
-    label: "include",
-    value: "include",
-    target: "single",
-    singularOf: "include any of",
-    relativeOf: "exclude",
-    isNegated: false,
-    negation: "exclude",
-  },
   exclude: {
-    label: "exclude",
-    value: "exclude",
-    target: "single",
-    singularOf: "exclude if any of",
-    relativeOf: "include",
     isNegated: true,
+    label: "exclude",
     negationOf: "include",
-  },
-  "include any of": {
-    label: "include any of",
-    value: "include any of",
-    target: "multiple",
-    pluralOf: "include",
-    relativeOf: ["exclude if all", "include all of", "exclude if any of"],
-    isNegated: false,
-    negation: "exclude if all",
+    relativeOf: "include",
+    singularOf: "exclude if any of",
+    target: "single",
+    value: "exclude",
   },
   "exclude if all": {
+    isNegated: true,
     label: "exclude if all",
-    value: "exclude if all",
-    target: "multiple",
+    negationOf: "include any of",
     pluralOf: "exclude",
     relativeOf: ["include any of", "include all of", "exclude if any of"],
-    isNegated: true,
-    negationOf: "include any of",
-  },
-  "include all of": {
-    label: "include all of",
-    value: "include all of",
     target: "multiple",
-    pluralOf: "include",
-    relativeOf: ["include any of", "exclude if all", "exclude if any of"],
-    isNegated: false,
-    negation: "exclude if any of",
+    value: "exclude if all",
   },
   "exclude if any of": {
+    isNegated: true,
     label: "exclude if any of",
-    value: "exclude if any of",
-    target: "multiple",
+    negationOf: "include all of",
     pluralOf: "exclude",
     relativeOf: ["include any of", "exclude if all", "include all of"],
-    isNegated: true,
-    negationOf: "include all of",
+    target: "multiple",
+    value: "exclude if any of",
+  },
+  include: {
+    isNegated: false,
+    label: "include",
+    negation: "exclude",
+    relativeOf: "exclude",
+    singularOf: "include any of",
+    target: "single",
+    value: "include",
+  },
+  "include all of": {
+    isNegated: false,
+    label: "include all of",
+    negation: "exclude if any of",
+    pluralOf: "include",
+    relativeOf: ["include any of", "exclude if all", "exclude if any of"],
+    target: "multiple",
+    value: "include all of",
+  },
+  "include any of": {
+    isNegated: false,
+    label: "include any of",
+    negation: "exclude if all",
+    pluralOf: "include",
+    relativeOf: ["exclude if all", "include all of", "exclude if any of"],
+    target: "multiple",
+    value: "include any of",
   },
 } as const satisfies FilterDetails<"multiOption">;
 
 /* Details for all the filter operators for date data type */
 export const dateFilterDetails = {
   is: {
+    isNegated: false,
     label: "is",
-    value: "is",
-    target: "single",
-    singularOf: "is between",
+    negation: "is before",
     relativeOf: "is after",
-    isNegated: false,
-    negation: "is before",
-  },
-  "is not": {
-    label: "is not",
-    value: "is not",
-    target: "single",
-    singularOf: "is not between",
-    relativeOf: [
-      "is",
-      "is before",
-      "is on or after",
-      "is after",
-      "is on or before",
-    ],
-    isNegated: true,
-    negationOf: "is",
-  },
-  "is before": {
-    label: "is before",
-    value: "is before",
-    target: "single",
     singularOf: "is between",
-    relativeOf: [
-      "is",
-      "is not",
-      "is on or after",
-      "is after",
-      "is on or before",
-    ],
-    isNegated: false,
-    negation: "is on or after",
-  },
-  "is on or after": {
-    label: "is on or after",
-    value: "is on or after",
     target: "single",
-    singularOf: "is between",
-    relativeOf: ["is", "is not", "is before", "is after", "is on or before"],
-    isNegated: false,
-    negation: "is before",
+    value: "is",
   },
   "is after": {
+    isNegated: false,
     label: "is after",
-    value: "is after",
-    target: "single",
-    singularOf: "is between",
+    negation: "is on or before",
     relativeOf: [
       "is",
       "is not",
@@ -375,159 +338,199 @@ export const dateFilterDetails = {
       "is on or after",
       "is on or before",
     ],
-    isNegated: false,
-    negation: "is on or before",
-  },
-  "is on or before": {
-    label: "is on or before",
-    value: "is on or before",
-    target: "single",
     singularOf: "is between",
-    relativeOf: ["is", "is not", "is after", "is on or after", "is before"],
+    target: "single",
+    value: "is after",
+  },
+  "is before": {
     isNegated: false,
-    negation: "is after",
+    label: "is before",
+    negation: "is on or after",
+    relativeOf: [
+      "is",
+      "is not",
+      "is on or after",
+      "is after",
+      "is on or before",
+    ],
+    singularOf: "is between",
+    target: "single",
+    value: "is before",
   },
   "is between": {
+    isNegated: false,
     label: "is between",
-    value: "is between",
-    target: "multiple",
+    negation: "is not between",
     pluralOf: "is",
     relativeOf: "is not between",
-    isNegated: false,
-    negation: "is not between",
+    target: "multiple",
+    value: "is between",
+  },
+  "is not": {
+    isNegated: true,
+    label: "is not",
+    negationOf: "is",
+    relativeOf: [
+      "is",
+      "is before",
+      "is on or after",
+      "is after",
+      "is on or before",
+    ],
+    singularOf: "is not between",
+    target: "single",
+    value: "is not",
   },
   "is not between": {
+    isNegated: true,
     label: "is not between",
-    value: "is not between",
-    target: "multiple",
+    negationOf: "is between",
     pluralOf: "is not",
     relativeOf: "is between",
-    isNegated: true,
-    negationOf: "is between",
+    target: "multiple",
+    value: "is not between",
+  },
+  "is on or after": {
+    isNegated: false,
+    label: "is on or after",
+    negation: "is before",
+    relativeOf: ["is", "is not", "is before", "is after", "is on or before"],
+    singularOf: "is between",
+    target: "single",
+    value: "is on or after",
+  },
+  "is on or before": {
+    isNegated: false,
+    label: "is on or before",
+    negation: "is after",
+    relativeOf: ["is", "is not", "is after", "is on or after", "is before"],
+    singularOf: "is between",
+    target: "single",
+    value: "is on or before",
   },
 } as const satisfies FilterDetails<"date">;
 
 /* Details for all the filter operators for text data type */
 export const textFilterDetails = {
   contains: {
-    label: "contains",
-    value: "contains",
-    target: "single",
-    relativeOf: "does not contain",
     isNegated: false,
+    label: "contains",
     negation: "does not contain",
+    relativeOf: "does not contain",
+    target: "single",
+    value: "contains",
   },
   "does not contain": {
-    label: "does not contain",
-    value: "does not contain",
-    target: "single",
-    relativeOf: "contains",
     isNegated: true,
+    label: "does not contain",
     negationOf: "contains",
+    relativeOf: "contains",
+    target: "single",
+    value: "does not contain",
   },
 } as const satisfies FilterDetails<"text">;
 
 /* Details for all the filter operators for number data type */
 export const numberFilterDetails = {
   is: {
+    isNegated: false,
     label: "is",
-    value: "is",
-    target: "single",
-    relativeOf: [
-      "is not",
-      "is greater than",
-      "is less than or equal to",
-      "is less than",
-      "is greater than or equal to",
-    ],
-    isNegated: false,
     negation: "is not",
-  },
-  "is not": {
-    label: "is not",
-    value: "is not",
-    target: "single",
     relativeOf: [
-      "is",
+      "is not",
       "is greater than",
       "is less than or equal to",
       "is less than",
       "is greater than or equal to",
     ],
-    isNegated: true,
-    negationOf: "is",
-  },
-  "is greater than": {
-    label: ">",
-    value: "is greater than",
     target: "single",
-    relativeOf: [
-      "is",
-      "is not",
-      "is less than or equal to",
-      "is less than",
-      "is greater than or equal to",
-    ],
-    isNegated: false,
-    negation: "is less than or equal to",
-  },
-  "is greater than or equal to": {
-    label: ">=",
-    value: "is greater than or equal to",
-    target: "single",
-    relativeOf: [
-      "is",
-      "is not",
-      "is greater than",
-      "is less than or equal to",
-      "is less than",
-    ],
-    isNegated: false,
-    negation: "is less than or equal to",
-  },
-  "is less than": {
-    label: "<",
-    value: "is less than",
-    target: "single",
-    relativeOf: [
-      "is",
-      "is not",
-      "is greater than",
-      "is less than or equal to",
-      "is greater than or equal to",
-    ],
-    isNegated: false,
-    negation: "is greater than",
-  },
-  "is less than or equal to": {
-    label: "<=",
-    value: "is less than or equal to",
-    target: "single",
-    relativeOf: [
-      "is",
-      "is not",
-      "is greater than",
-      "is less than",
-      "is greater than or equal to",
-    ],
-    isNegated: false,
-    negation: "is greater than or equal to",
+    value: "is",
   },
   "is between": {
-    label: "is between",
-    value: "is between",
-    target: "multiple",
-    relativeOf: "is not between",
     isNegated: false,
+    label: "is between",
     negation: "is not between",
+    relativeOf: "is not between",
+    target: "multiple",
+    value: "is between",
+  },
+  "is greater than": {
+    isNegated: false,
+    label: ">",
+    negation: "is less than or equal to",
+    relativeOf: [
+      "is",
+      "is not",
+      "is less than or equal to",
+      "is less than",
+      "is greater than or equal to",
+    ],
+    target: "single",
+    value: "is greater than",
+  },
+  "is greater than or equal to": {
+    isNegated: false,
+    label: ">=",
+    negation: "is less than or equal to",
+    relativeOf: [
+      "is",
+      "is not",
+      "is greater than",
+      "is less than or equal to",
+      "is less than",
+    ],
+    target: "single",
+    value: "is greater than or equal to",
+  },
+  "is less than": {
+    isNegated: false,
+    label: "<",
+    negation: "is greater than",
+    relativeOf: [
+      "is",
+      "is not",
+      "is greater than",
+      "is less than or equal to",
+      "is greater than or equal to",
+    ],
+    target: "single",
+    value: "is less than",
+  },
+  "is less than or equal to": {
+    isNegated: false,
+    label: "<=",
+    negation: "is greater than or equal to",
+    relativeOf: [
+      "is",
+      "is not",
+      "is greater than",
+      "is less than",
+      "is greater than or equal to",
+    ],
+    target: "single",
+    value: "is less than or equal to",
+  },
+  "is not": {
+    isNegated: true,
+    label: "is not",
+    negationOf: "is",
+    relativeOf: [
+      "is",
+      "is greater than",
+      "is less than or equal to",
+      "is less than",
+      "is greater than or equal to",
+    ],
+    target: "single",
+    value: "is not",
   },
   "is not between": {
-    label: "is not between",
-    value: "is not between",
-    target: "multiple",
-    relativeOf: "is between",
     isNegated: true,
+    label: "is not between",
     negationOf: "is between",
+    relativeOf: "is between",
+    target: "multiple",
+    value: "is not between",
   },
 } as const satisfies FilterDetails<"number">;
 
@@ -537,12 +540,248 @@ type FilterTypeOperatorDetails = {
 };
 
 export const filterTypeOperatorDetails: FilterTypeOperatorDetails = {
-  text: textFilterDetails,
-  number: numberFilterDetails,
   date: dateFilterDetails,
-  option: optionFilterDetails,
   multiOption: multiOptionFilterDetails,
+  number: numberFilterDetails,
+  option: optionFilterDetails,
+  text: textFilterDetails,
 };
+
+/*
+ * Applies the date filter logic to the input data.
+ * Used internally by `dateFilterFn`.
+ */
+export function applyDateFilter<TData>(
+  inputData: Date,
+  filterValue: FilterModel<"date", TData>,
+) {
+  if (!filterValue || filterValue.values.length === 0) return true;
+
+  if (
+    dateFilterDetails[filterValue.operator].target === "single" &&
+    filterValue.values.length > 1
+  )
+    throw new Error("Singular operators require at most one filter value");
+
+  if (
+    filterValue.operator in ["is between", "is not between"] &&
+    filterValue.values.length !== 2
+  )
+    throw new Error("Plural operators require two filter values");
+
+  const filterVals = filterValue.values;
+  const d1 = filterVals[0];
+  const d2 = filterVals[1];
+
+  const value = inputData;
+
+  switch (filterValue.operator) {
+    case "is":
+      return isSameDay(value, d1);
+    case "is after":
+      return isAfter(value, startOfDay(d1));
+    case "is before":
+      return isBefore(value, startOfDay(d1));
+    case "is between":
+      return isWithinInterval(value, {
+        end: endOfDay(d2),
+        start: startOfDay(d1),
+      });
+    case "is not":
+      return !isSameDay(value, d1);
+    case "is not between":
+      return !isWithinInterval(value, {
+        end: endOfDay(filterValue.values[1]),
+        start: startOfDay(filterValue.values[0]),
+      });
+    case "is on or after":
+      return isSameDay(value, d1) || isAfter(value, startOfDay(d1));
+    case "is on or before":
+      return isSameDay(value, d1) || isBefore(value, startOfDay(d1));
+  }
+}
+
+/**********************************************************************************************************
+ ***** Filter Functions ******
+ **********************************************************************************************************
+ * These are functions that filter data based on the current filter values, column data type, and operator.
+ * There exists a separate filter function for each column data type.
+ *
+ * Two variants of the filter functions are provided - as an example, we will take the optionFilterFn:
+ * 1. optionFilterFn: takes in a row, columnId, and filterValue.
+ * 2. applyOptionFilter: takes in an inputData and filterValue.
+ *
+ * applyOptionFilter is a private function that is used by filterFn to perform the actual filtering.
+ * *********************************************************************************************************/
+
+/*
+ * Applies the multi-option filter logic to the input data.
+ * Used internally by `multiOptionFilterFn`.
+ */
+export function applyMultiOptionFilter<TData>(
+  inputData: string[],
+  filterValue: FilterModel<"multiOption", TData>,
+) {
+  if (!inputData) return false;
+
+  if (
+    filterValue.values.length === 0 ||
+    !filterValue.values[0] ||
+    filterValue.values[0].length === 0
+  )
+    return true;
+
+  const values = getUniqueValues(inputData);
+  const filterValues = getUniqueValues(filterValue.values[0]);
+
+  switch (filterValue.operator) {
+    case "exclude":
+      return intersection(values, filterValues).length === 0;
+    case "exclude if all":
+      return !(
+        intersection(values, filterValues).length === filterValues.length
+      );
+    case "exclude if any of":
+      return !(intersection(values, filterValues).length > 0);
+    case "include":
+    case "include any of":
+      return intersection(values, filterValues).length > 0;
+    case "include all of":
+      return intersection(values, filterValues).length === filterValues.length;
+  }
+}
+
+/*
+ * Applies the number filter logic to the input data.
+ * Used internally by `numberFilterFn`.
+ */
+export function applyNumberFilter<TData>(
+  inputData: number,
+  filterValue: FilterModel<"number", TData>,
+) {
+  if (!filterValue || !filterValue.values || filterValue.values.length === 0) {
+    return true;
+  }
+
+  const value = inputData;
+  const filterVal = filterValue.values[0];
+
+  switch (filterValue.operator) {
+    case "is":
+      return value === filterVal;
+    case "is between": {
+      const lowerBound = filterValue.values[0];
+      const upperBound = filterValue.values[1];
+      return value >= lowerBound && value <= upperBound;
+    }
+    case "is greater than":
+      return value > filterVal;
+    case "is greater than or equal to":
+      return value >= filterVal;
+    case "is less than":
+      return value < filterVal;
+    case "is less than or equal to":
+      return value <= filterVal;
+    case "is not":
+      return value !== filterVal;
+    case "is not between": {
+      const lowerBound = filterValue.values[0];
+      const upperBound = filterValue.values[1];
+      return value < lowerBound || value > upperBound;
+    }
+    default:
+      return true;
+  }
+}
+
+/*
+ * Applies the option filter logic to the input data.
+ * Used internally by `optionFilterFn`.
+ */
+export function applyOptionFilter<TData>(
+  inputData: string,
+  filterValue: FilterModel<"option", TData>,
+) {
+  if (!inputData) return false;
+  if (filterValue.values.length === 0) return true;
+
+  const value = inputData.toString().toLowerCase();
+
+  const found = !!filterValue.values.find((v) => v.toLowerCase() === value);
+
+  switch (filterValue.operator) {
+    case "is":
+    case "is any of":
+      return found;
+    case "is none of":
+    case "is not":
+      return !found;
+  }
+}
+
+/*
+ * Applies the text filter logic to the input data.
+ * Used internally by `textFilterFn`.
+ */
+export function applyTextFilter<TData>(
+  inputData: string,
+  filterValue: FilterModel<"text", TData>,
+) {
+  if (!filterValue || filterValue.values.length === 0) return true;
+
+  const value = inputData.toLowerCase().trim();
+  const filterStr = filterValue.values[0].toLowerCase().trim();
+
+  if (filterStr === "") return true;
+
+  const found = value.includes(filterStr);
+
+  switch (filterValue.operator) {
+    case "contains":
+      return found;
+    case "does not contain":
+      return !found;
+  }
+}
+
+export function dateFilterFn<TData>(
+  row: Row<TData>,
+  columnId: string,
+  filterValue: FilterModel<"date", TData>,
+) {
+  const valueStr = row.getValue<Date>(columnId);
+
+  return applyDateFilter(valueStr, filterValue);
+}
+
+/*
+ * Returns a filter function for a given column data type.
+ * This function is used to determine the appropriate filter function to use based on the column data type.
+ */
+export function filterFn(dataType: ColumnDataType) {
+  switch (dataType) {
+    case "date":
+      return dateFilterFn;
+    case "multiOption":
+      return multiOptionFilterFn;
+    case "number":
+      return numberFilterFn;
+    case "option":
+      return optionFilterFn;
+    case "text":
+      return textFilterFn;
+    default:
+      throw new Error("Invalid column data type");
+  }
+}
+
+export function findTableColumnById<TData>(table: Table<TData>, id: string) {
+  const column = table.getColumn(id);
+  if (!column) {
+    throw new Error(`Column with id ${id} not found`);
+  }
+  return column;
+}
 
 /*
  *
@@ -584,86 +823,39 @@ export function getNextFilterOperator<T extends ColumnDataType>(
   return currentOperator;
 }
 
-/**********************************************************************************************************
- ***** Filter Functions ******
- **********************************************************************************************************
- * These are functions that filter data based on the current filter values, column data type, and operator.
- * There exists a separate filter function for each column data type.
- *
- * Two variants of the filter functions are provided - as an example, we will take the optionFilterFn:
- * 1. optionFilterFn: takes in a row, columnId, and filterValue.
- * 2. applyOptionFilter: takes in an inputData and filterValue.
- *
- * applyOptionFilter is a private function that is used by filterFn to perform the actual filtering.
- * *********************************************************************************************************/
-
-/*
- * Returns a filter function for a given column data type.
- * This function is used to determine the appropriate filter function to use based on the column data type.
- */
-export function filterFn(dataType: ColumnDataType) {
-  switch (dataType) {
-    case "option":
-      return optionFilterFn;
-    case "multiOption":
-      return multiOptionFilterFn;
-    case "date":
-      return dateFilterFn;
-    case "text":
-      return textFilterFn;
-    case "number":
-      return numberFilterFn;
-    default:
-      throw new Error("Invalid column data type");
+export function getTableColumnMeta<TData>(table: Table<TData>, id: string) {
+  const column = findTableColumnById(table, id);
+  if (!column.columnDef.meta) {
+    throw new Error(`Column meta not found for column ${id}`);
   }
+  return column.columnDef.meta;
 }
 
-export function optionFilterFn<TData>(
-  row: Row<TData>,
-  columnId: string,
-  filterValue: FilterModel<"option", TData>,
-) {
-  const value = row.getValue(columnId);
-
-  if (!value) return false;
-
-  const columnMeta = filterValue.columnMeta!;
-
-  if (typeof value === "string") {
-    return applyOptionFilter(value, filterValue);
+export function isColumnFilterable<TData>(column: Column<TData>) {
+  const hasFilterFn =
+    column.columnDef.filterFn && column.columnDef.filterFn !== "auto";
+  if (
+    column.getCanFilter() &&
+    column.accessorFn &&
+    hasFilterFn &&
+    column.columnDef.meta
+  )
+    return true;
+  if (!column.accessorFn || !column.columnDef.meta) {
+    return false;
   }
-
-  if (isColumnOption(value)) {
-    return applyOptionFilter(value.value, filterValue);
+  if (!column.accessorFn) {
+    warn(`Column "${column.id}" ignored - no accessor function`);
   }
-
-  const sanitizedValue = columnMeta.transformOptionFn!(value as never);
-  return applyOptionFilter(sanitizedValue.value, filterValue);
-}
-
-/*
- * Applies the option filter logic to the input data.
- * Used internally by `optionFilterFn`.
- */
-export function applyOptionFilter<TData>(
-  inputData: string,
-  filterValue: FilterModel<"option", TData>,
-) {
-  if (!inputData) return false;
-  if (filterValue.values.length === 0) return true;
-
-  const value = inputData.toString().toLowerCase();
-
-  const found = !!filterValue.values.find((v) => v.toLowerCase() === value);
-
-  switch (filterValue.operator) {
-    case "is":
-    case "is any of":
-      return found;
-    case "is not":
-    case "is none of":
-      return !found;
+  if (!column.getCanFilter()) {
+    warn(`Column "${column.id}" ignored - not filterable`);
   }
+  if (!hasFilterFn) {
+    warn(
+      `Column "${column.id}" ignored - no filter function. use the provided filterFn() helper function`,
+    );
+  }
+  return false;
 }
 
 export function isColumnOption(value: unknown): value is ColumnOption {
@@ -677,10 +869,6 @@ export function isColumnOption(value: unknown): value is ColumnOption {
 
 export function isColumnOptionArray(value: unknown): value is ColumnOption[] {
   return Array.isArray(value) && value.every(isColumnOption);
-}
-
-function isStringArray(value: unknown): value is string[] {
-  return Array.isArray(value) && value.every((v) => typeof v === "string");
 }
 
 export function multiOptionFilterFn<TData>(
@@ -715,195 +903,6 @@ export function multiOptionFilterFn<TData>(
   );
 }
 
-/*
- * Applies the multi-option filter logic to the input data.
- * Used internally by `multiOptionFilterFn`.
- */
-export function applyMultiOptionFilter<TData>(
-  inputData: string[],
-  filterValue: FilterModel<"multiOption", TData>,
-) {
-  if (!inputData) return false;
-
-  if (
-    filterValue.values.length === 0 ||
-    !filterValue.values[0] ||
-    filterValue.values[0].length === 0
-  )
-    return true;
-
-  const values = getUniqueValues(inputData);
-  const filterValues = getUniqueValues(filterValue.values[0]);
-
-  switch (filterValue.operator) {
-    case "include":
-    case "include any of":
-      return intersection(values, filterValues).length > 0;
-    case "exclude":
-      return intersection(values, filterValues).length === 0;
-    case "exclude if any of":
-      return !(intersection(values, filterValues).length > 0);
-    case "include all of":
-      return intersection(values, filterValues).length === filterValues.length;
-    case "exclude if all":
-      return !(
-        intersection(values, filterValues).length === filterValues.length
-      );
-  }
-}
-
-export function dateFilterFn<TData>(
-  row: Row<TData>,
-  columnId: string,
-  filterValue: FilterModel<"date", TData>,
-) {
-  const valueStr = row.getValue<Date>(columnId);
-
-  return applyDateFilter(valueStr, filterValue);
-}
-
-/*
- * Applies the date filter logic to the input data.
- * Used internally by `dateFilterFn`.
- */
-export function applyDateFilter<TData>(
-  inputData: Date,
-  filterValue: FilterModel<"date", TData>,
-) {
-  if (!filterValue || filterValue.values.length === 0) return true;
-
-  if (
-    dateFilterDetails[filterValue.operator].target === "single" &&
-    filterValue.values.length > 1
-  )
-    throw new Error("Singular operators require at most one filter value");
-
-  if (
-    filterValue.operator in ["is between", "is not between"] &&
-    filterValue.values.length !== 2
-  )
-    throw new Error("Plural operators require two filter values");
-
-  const filterVals = filterValue.values;
-  const d1 = filterVals[0];
-  const d2 = filterVals[1];
-
-  const value = inputData;
-
-  switch (filterValue.operator) {
-    case "is":
-      return isSameDay(value, d1);
-    case "is not":
-      return !isSameDay(value, d1);
-    case "is before":
-      return isBefore(value, startOfDay(d1));
-    case "is on or after":
-      return isSameDay(value, d1) || isAfter(value, startOfDay(d1));
-    case "is after":
-      return isAfter(value, startOfDay(d1));
-    case "is on or before":
-      return isSameDay(value, d1) || isBefore(value, startOfDay(d1));
-    case "is between":
-      return isWithinInterval(value, {
-        start: startOfDay(d1),
-        end: endOfDay(d2),
-      });
-    case "is not between":
-      return !isWithinInterval(value, {
-        start: startOfDay(filterValue.values[0]),
-        end: endOfDay(filterValue.values[1]),
-      });
-  }
-}
-
-export function textFilterFn<TData>(
-  row: Row<TData>,
-  columnId: string,
-  filterValue: FilterModel<"text", TData>,
-) {
-  const value = row.getValue<string>(columnId) ?? "";
-
-  return applyTextFilter(value, filterValue);
-}
-
-/*
- * Applies the text filter logic to the input data.
- * Used internally by `textFilterFn`.
- */
-export function applyTextFilter<TData>(
-  inputData: string,
-  filterValue: FilterModel<"text", TData>,
-) {
-  if (!filterValue || filterValue.values.length === 0) return true;
-
-  const value = inputData.toLowerCase().trim();
-  const filterStr = filterValue.values[0].toLowerCase().trim();
-
-  if (filterStr === "") return true;
-
-  const found = value.includes(filterStr);
-
-  switch (filterValue.operator) {
-    case "contains":
-      return found;
-    case "does not contain":
-      return !found;
-  }
-}
-
-export function numberFilterFn<TData>(
-  row: Row<TData>,
-  columnId: string,
-  filterValue: FilterModel<"number", TData>,
-) {
-  const value = row.getValue<number>(columnId);
-
-  return applyNumberFilter(value, filterValue);
-}
-
-/*
- * Applies the number filter logic to the input data.
- * Used internally by `numberFilterFn`.
- */
-export function applyNumberFilter<TData>(
-  inputData: number,
-  filterValue: FilterModel<"number", TData>,
-) {
-  if (!filterValue || !filterValue.values || filterValue.values.length === 0) {
-    return true;
-  }
-
-  const value = inputData;
-  const filterVal = filterValue.values[0];
-
-  switch (filterValue.operator) {
-    case "is":
-      return value === filterVal;
-    case "is not":
-      return value !== filterVal;
-    case "is greater than":
-      return value > filterVal;
-    case "is greater than or equal to":
-      return value >= filterVal;
-    case "is less than":
-      return value < filterVal;
-    case "is less than or equal to":
-      return value <= filterVal;
-    case "is between": {
-      const lowerBound = filterValue.values[0];
-      const upperBound = filterValue.values[1];
-      return value >= lowerBound && value <= upperBound;
-    }
-    case "is not between": {
-      const lowerBound = filterValue.values[0];
-      const upperBound = filterValue.values[1];
-      return value < lowerBound || value > upperBound;
-    }
-    default:
-      return true;
-  }
-}
-
 export function normalizeNumberRange(values: number[] | undefined) {
   let a = 0;
   let b = 0;
@@ -921,51 +920,55 @@ export function normalizeNumberRange(values: number[] | undefined) {
   return [min, max];
 }
 
-/*** Table helpers ***/
+export function numberFilterFn<TData>(
+  row: Row<TData>,
+  columnId: string,
+  filterValue: FilterModel<"number", TData>,
+) {
+  const value = row.getValue<number>(columnId);
 
-export function findTableColumnById<TData>(table: Table<TData>, id: string) {
-  const column = table.getColumn(id);
-  if (!column) {
-    throw new Error(`Column with id ${id} not found`);
-  }
-  return column;
+  return applyNumberFilter(value, filterValue);
 }
 
-export function getTableColumnMeta<TData>(table: Table<TData>, id: string) {
-  const column = findTableColumnById(table, id);
-  if (!column.columnDef.meta) {
-    throw new Error(`Column meta not found for column ${id}`);
+/*** Table helpers ***/
+
+export function optionFilterFn<TData>(
+  row: Row<TData>,
+  columnId: string,
+  filterValue: FilterModel<"option", TData>,
+) {
+  const value = row.getValue(columnId);
+
+  if (!value) return false;
+
+  const columnMeta = filterValue.columnMeta!;
+
+  if (typeof value === "string") {
+    return applyOptionFilter(value, filterValue);
   }
-  return column.columnDef.meta;
+
+  if (isColumnOption(value)) {
+    return applyOptionFilter(value.value, filterValue);
+  }
+
+  const sanitizedValue = columnMeta.transformOptionFn!(value as never);
+  return applyOptionFilter(sanitizedValue.value, filterValue);
+}
+
+export function textFilterFn<TData>(
+  row: Row<TData>,
+  columnId: string,
+  filterValue: FilterModel<"text", TData>,
+) {
+  const value = row.getValue<string>(columnId) ?? "";
+
+  return applyTextFilter(value, filterValue);
 }
 
 /*** Table Filter Helpers ***/
 
-export function isColumnFilterable<TData>(column: Column<TData>) {
-  const hasFilterFn =
-    column.columnDef.filterFn && column.columnDef.filterFn !== "auto";
-  if (
-    column.getCanFilter() &&
-    column.accessorFn &&
-    hasFilterFn &&
-    column.columnDef.meta
-  )
-    return true;
-  if (!column.accessorFn || !column.columnDef.meta) {
-    return false;
-  }
-  if (!column.accessorFn) {
-    warn(`Column "${column.id}" ignored - no accessor function`);
-  }
-  if (!column.getCanFilter()) {
-    warn(`Column "${column.id}" ignored - not filterable`);
-  }
-  if (!hasFilterFn) {
-    warn(
-      `Column "${column.id}" ignored - no filter function. use the provided filterFn() helper function`,
-    );
-  }
-  return false;
+function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((v) => typeof v === "string");
 }
 
 function warn(...messages: string[]) {

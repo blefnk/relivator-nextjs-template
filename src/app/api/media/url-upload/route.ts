@@ -1,5 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 import { NextResponse } from "next/server";
+
 import { db } from "~/db";
 import { uploadsTable } from "~/db/schema/uploads/tables";
 import { auth } from "~/lib/auth";
@@ -48,12 +49,12 @@ export async function POST(req: Request) {
 
     // Insert into database
     await db.insert(uploadsTable).values({
-      id: createId(),
-      userId: session.user.id,
-      key,
-      url,
-      type,
       createdAt: new Date(),
+      id: createId(),
+      key,
+      type,
+      url,
+      userId: session.user.id,
     });
 
     return NextResponse.json({ success: true });

@@ -2,11 +2,13 @@
 
 import { AlertCircle, Link as LinkIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
+
 import type { MediaUpload } from "~/db/schema/uploads/types";
+import type { GalleryMediaItem } from "~/ui/components/blocks/bento-media-gallery";
+
 import { UploadButton } from "~/lib/uploadthing";
-import BentoMediaGallery, {
-  type GalleryMediaItem,
-} from "~/ui/components/blocks/interactive-bento-gallery";
+import { BentoMediaGallery } from "~/ui/components/blocks/bento-media-gallery";
 import { Alert, AlertDescription, AlertTitle } from "~/ui/primitives/alert";
 import { Button } from "~/ui/primitives/button";
 import { Input } from "~/ui/primitives/input";
@@ -17,7 +19,7 @@ export default function UploadsPageClient() {
     GalleryMediaItem[]
   >([]);
   const [isMediaLoading, setIsMediaLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<null | string>(null);
   const [mediaUrlInput, setMediaUrlInput] = useState("");
   const [isUploadingFromUrl, setIsUploadingFromUrl] = useState(false);
 
@@ -33,16 +35,17 @@ export default function UploadsPageClient() {
         type: "image" | "video";
       })[];
       const formattedItems = data.map((upload) => ({
-        id: upload.id,
-        type: upload.type,
-        title: `${upload.type === "image" ? "Image" : "Video"} ${upload.key.substring(0, 8)}...`,
         desc: `Uploaded on ${new Date(upload.createdAt).toLocaleDateString()}`,
-        url: upload.url,
+        id: upload.id,
         span: "md:col-span-1 md:row-span-2 sm:col-span-1 sm:row-span-2",
+        title: `${upload.type === "image" ? "Image" : "Video"} ${upload.key.substring(0, 8)}...`,
+        type: upload.type,
+        url: upload.url,
       }));
       setMediaGalleryItems(formattedItems);
     } catch (err) {
       console.error(err);
+      toast.error("Failed to load media");
       setError(
         err instanceof Error ? err.message : "An unknown error occurred",
       );
@@ -63,11 +66,11 @@ export default function UploadsPageClient() {
 
     try {
       const response = await fetch("/api/media/url-upload", {
-        method: "POST",
+        body: JSON.stringify({ url: mediaUrlInput }),
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url: mediaUrlInput }),
+        method: "POST",
       });
 
       if (!response.ok) {
@@ -79,6 +82,7 @@ export default function UploadsPageClient() {
       void loadMediaGallery();
     } catch (err) {
       console.error(err);
+      toast.error("Failed to upload from URL");
       setError(
         err instanceof Error ? err.message : "Failed to upload from URL",
       );
@@ -87,18 +91,18 @@ export default function UploadsPageClient() {
     }
   };
 
-  const deleteMediaItem = async (id: string | number) => {
+  const deleteMediaItem = async (id: number | string) => {
     if (!confirm("Are you sure you want to delete this media?")) {
       return;
     }
 
     try {
       const response = await fetch("/api/media", {
-        method: "DELETE",
+        body: JSON.stringify({ id }),
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id }),
+        method: "DELETE",
       });
 
       if (!response.ok) {
@@ -109,6 +113,7 @@ export default function UploadsPageClient() {
       setMediaGalleryItems((prev) => prev.filter((item) => item.id !== id));
     } catch (err) {
       console.error(err);
+      toast.error("Failed to delete media");
       setError(err instanceof Error ? err.message : "Failed to delete media");
     }
   };
@@ -124,7 +129,7 @@ export default function UploadsPageClient() {
               void loadMediaGallery();
             }}
             onUploadError={(uploadError: Error) => {
-              alert(`Image Upload ERROR! ${uploadError.message}`);
+              toast.error(`Image Upload ERROR! ${uploadError.message}`);
             }}
           />
           <UploadButton
@@ -134,7 +139,7 @@ export default function UploadsPageClient() {
               void loadMediaGallery();
             }}
             onUploadError={(uploadError: Error) => {
-              alert(`Video Upload ERROR! ${uploadError.message}`);
+              toast.error(`Video Upload ERROR! ${uploadError.message}`);
             }}
           />
         </div>
@@ -147,16 +152,16 @@ export default function UploadsPageClient() {
               `}
             />
             <Input
-              type="url"
-              placeholder="Enter media URL (image or video)..."
-              value={mediaUrlInput}
-              onChange={(e) => setMediaUrlInput(e.target.value)}
               className="pl-8"
+              onChange={(e) => setMediaUrlInput(e.target.value)}
+              placeholder="Enter media URL (image or video)..."
+              type="url"
+              value={mediaUrlInput}
             />
           </div>
           <Button
-            onClick={uploadMediaFromUrl}
             disabled={!mediaUrlInput || isUploadingFromUrl}
+            onClick={uploadMediaFromUrl}
           >
             {isUploadingFromUrl ? "Uploading..." : "Upload URL"}
           </Button>
@@ -181,17 +186,17 @@ export default function UploadsPageClient() {
           >
             {[...Array(4)].map((_, i) => (
               <Skeleton
-                key={`skeleton-${i}`}
                 className="aspect-square w-full rounded-md"
+                key={`skeleton-${i}`}
               />
             ))}
           </div>
         ) : mediaGalleryItems.length > 0 ? (
           <BentoMediaGallery
-            mediaItems={mediaGalleryItems}
-            title="Your Uploaded Media"
             description="Explore your uploaded images and videos below."
+            mediaItems={mediaGalleryItems}
             onDelete={deleteMediaItem}
+            title="Your Uploaded Media"
           />
         ) : (
           !error && (

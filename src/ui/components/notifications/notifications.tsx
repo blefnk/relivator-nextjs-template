@@ -1,17 +1,20 @@
-import { Bell, Check, X } from "lucide-react";
 import type * as React from "react";
+
+import { Bell, Check, X } from "lucide-react";
+
 import { cn } from "~/lib/cn";
 import { Button } from "~/ui/primitives/button";
 import {
   DropdownMenuGroup,
   DropdownMenuItem,
 } from "~/ui/primitives/dropdown-menu";
+
 import type { Notification } from "./notification-center";
 
 interface NotificationsProps {
   notifications: Notification[];
-  onMarkAsRead?: (id: string) => void;
   onDismiss?: (id: string) => void;
+  onMarkAsRead?: (id: string) => void;
 }
 
 function formatTimestamp(date: Date) {
@@ -32,14 +35,14 @@ function formatTimestamp(date: Date) {
 
 function getNotificationIcon(type: Notification["type"]) {
   switch (type) {
+    case "error":
+      return <div className="h-2 w-2 rounded-full bg-red-500" />;
     case "info":
       return <div className="h-2 w-2 rounded-full bg-blue-500" />;
     case "success":
       return <div className="h-2 w-2 rounded-full bg-green-500" />;
     case "warning":
       return <div className="h-2 w-2 rounded-full bg-yellow-500" />;
-    case "error":
-      return <div className="h-2 w-2 rounded-full bg-red-500" />;
     default:
       return null;
   }
@@ -47,8 +50,8 @@ function getNotificationIcon(type: Notification["type"]) {
 
 export const Notifications: React.FC<NotificationsProps> = ({
   notifications,
-  onMarkAsRead,
   onDismiss,
+  onMarkAsRead,
 }) => {
   if (notifications.length === 0) {
     return (
@@ -68,12 +71,12 @@ export const Notifications: React.FC<NotificationsProps> = ({
     <DropdownMenuGroup className="max-h-[300px] overflow-y-auto">
       {notifications.map((notification) => (
         <DropdownMenuItem
-          key={notification.id}
-          onSelect={(e) => e.preventDefault()}
           className={cn(
             "flex cursor-default flex-col items-start p-0",
             !notification.read && "bg-muted/50",
           )}
+          key={notification.id}
+          onSelect={(e) => e.preventDefault()}
         >
           <div className="flex w-full items-start gap-2 p-2">
             <div className="mt-1 flex-shrink-0">
@@ -95,20 +98,20 @@ export const Notifications: React.FC<NotificationsProps> = ({
             <div className="flex flex-shrink-0 gap-1">
               {!notification.read && (
                 <Button
-                  variant="ghost"
-                  size="icon"
                   className="h-6 w-6"
                   onClick={() => onMarkAsRead?.(notification.id)}
+                  size="icon"
+                  variant="ghost"
                 >
                   <Check className="h-3 w-3" />
                   <span className="sr-only">Mark as read</span>
                 </Button>
               )}
               <Button
-                variant="ghost"
-                size="icon"
                 className="h-6 w-6"
                 onClick={() => onDismiss?.(notification.id)}
+                size="icon"
+                variant="ghost"
               >
                 <X className="h-3 w-3" />
                 <span className="sr-only">Dismiss</span>
