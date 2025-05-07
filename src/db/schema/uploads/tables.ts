@@ -2,7 +2,7 @@ import { pgEnum, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 import { userTable } from "../users/tables";
 
-export const mediaTypeEnum = pgEnum("media_type", ["image", "video"]);
+export const mediaTypeEnum = pgEnum("type", ["image", "video"]);
 
 export const uploadsTable = pgTable("uploads", {
   createdAt: timestamp("created_at").defaultNow().notNull(),

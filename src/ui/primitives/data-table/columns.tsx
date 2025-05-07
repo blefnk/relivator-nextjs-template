@@ -4,8 +4,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 
 import { MoreHorizontal } from "lucide-react";
 
-import type { MediaUpload } from "~/db/schema/uploads/types";
-import type { User } from "~/db/schema/users/types";
+import type { UserWithUploads } from "~/app/admin/summary/page.types";
 import type { GalleryMediaItem } from "~/ui/components/blocks/bento-media-gallery";
 
 import { Button } from "~/ui/primitives/button";
@@ -20,12 +19,6 @@ import {
 } from "~/ui/primitives/dropdown-menu";
 
 import { DataTableColumnHeader } from "./data-table-column-header";
-
-// The shape of the data expected by the table
-// Includes user details and their uploads
-export type UserWithUploads = User & {
-  uploads: MediaUpload[];
-};
 
 // Props for the columns, including the click handler for the gallery
 interface GetColumnsProps {

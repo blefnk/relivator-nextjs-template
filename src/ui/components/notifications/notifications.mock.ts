@@ -1,3 +1,5 @@
+import { SEO_CONFIG } from "~/app";
+
 import type { Notification } from "./notification-center";
 
 export const mockNotifications: Notification[] = [
@@ -6,7 +8,7 @@ export const mockNotifications: Notification[] = [
     id: "1",
     read: false,
     timestamp: new Date(Date.now() - 60 * 1000), // 1 minute ago
-    title: "Welcome to Relivator!",
+    title: `Welcome to ${SEO_CONFIG.name}!`,
     type: "success",
   },
   {

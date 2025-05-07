@@ -1,21 +1,15 @@
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-
-import { DashboardLayoutClient } from "~/app/dashboard/layout.client";
-import { auth } from "~/lib/auth";
+import { getCurrentUserOrRedirect } from "~/lib/auth";
 
 export default async function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  await getCurrentUserOrRedirect();
 
-  if (!session) {
-    redirect("/auth/sign-in");
-  }
-
-  return <DashboardLayoutClient>{children}</DashboardLayoutClient>;
+  return (
+    <div className="flex min-h-screen flex-col">
+      <main className="flex-1">{children}</main>
+    </div>
+  );
 }

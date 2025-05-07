@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import United24Banner from "~/ui/components/banners/u24";
+import { HeroBadge } from "~/ui/components/hero-badge";
 import { ProductCard } from "~/ui/components/product-card";
 import { TestimonialsSection } from "~/ui/components/testimonials/testimonials-with-marquee";
 import { Button } from "~/ui/primitives/button";
@@ -46,12 +47,16 @@ const featuresWhyChooseUs = [
 export default function HomePage() {
   return (
     <>
-      <main className="flex-1">
+      <main
+        className={`
+          flex min-h-screen flex-col gap-y-16 bg-gradient-to-b from-muted/50
+          via-muted/25 to-background
+        `}
+      >
         {/* Hero Section */}
         <section
           className={`
-            relative overflow-hidden bg-gradient-to-b from-muted/50 via-muted/25
-            to-background py-24
+            relative overflow-hidden py-24
             md:py-32
           `}
         >
@@ -63,7 +68,7 @@ export default function HomePage() {
           />
           <div
             className={`
-              relative container mx-auto max-w-7xl px-4
+              relative z-10 container mx-auto max-w-7xl px-4
               sm:px-6
               lg:px-8
             `}
@@ -76,17 +81,12 @@ export default function HomePage() {
             >
               <div className="flex flex-col justify-center space-y-6">
                 <div className="space-y-4">
-                  <div
-                    className={`
-                      inline-flex items-center rounded-lg bg-primary/10 px-3
-                      py-1 text-sm font-semibold text-primary
-                    `}
-                  >
-                    New Collection Available
-                  </div>
+                  <HeroBadge />
+
                   <h1
                     className={`
-                      text-4xl font-bold tracking-tighter text-foreground
+                      font-display text-4xl leading-tight font-bold
+                      tracking-tight text-foreground
                       sm:text-5xl
                       md:text-6xl
                       lg:leading-[1.1]
@@ -119,12 +119,21 @@ export default function HomePage() {
                   `}
                 >
                   <Link href="/products">
-                    <Button className="h-12 gap-1.5 px-8" size="lg">
+                    <Button
+                      className={`
+                        h-12 gap-1.5 px-8 transition-colors duration-200
+                      `}
+                      size="lg"
+                    >
                       Shop Now <ArrowRight className="h-4 w-4" />
                     </Button>
                   </Link>
                   <Link href="/showcase">
-                    <Button className="h-12 px-8" size="lg" variant="outline">
+                    <Button
+                      className="h-12 px-8 transition-colors duration-200"
+                      size="lg"
+                      variant="outline"
+                    >
                       View Showcase
                     </Button>
                   </Link>
@@ -147,7 +156,7 @@ export default function HomePage() {
               <div
                 className={`
                   relative mx-auto hidden aspect-square w-full max-w-md
-                  overflow-hidden rounded-xl border
+                  overflow-hidden rounded-xl border shadow-lg
                   lg:block
                 `}
               >
@@ -193,7 +202,7 @@ export default function HomePage() {
             <div className="mb-8 flex flex-col items-center text-center">
               <h2
                 className={`
-                  text-3xl font-bold tracking-tight
+                  font-display text-3xl leading-tight font-bold tracking-tight
                   md:text-4xl
                 `}
               >
@@ -215,9 +224,9 @@ export default function HomePage() {
                 <Link
                   aria-label={`Browse ${category.name} products`}
                   className={`
-                    group relative flex flex-col overflow-hidden rounded-lg
-                    border bg-card transition-all duration-200
-                    hover:shadow-md
+                    group relative flex flex-col overflow-hidden rounded-2xl
+                    border bg-card shadow transition-all duration-300
+                    hover:shadow-lg
                   `}
                   href={`/products?category=${category.name.toLowerCase()}`}
                   key={category.name}
@@ -271,7 +280,7 @@ export default function HomePage() {
             <div className="mb-8 flex flex-col items-center text-center">
               <h2
                 className={`
-                  text-3xl font-bold tracking-tight
+                  font-display text-3xl leading-tight font-bold tracking-tight
                   md:text-4xl
                 `}
               >
@@ -328,7 +337,7 @@ export default function HomePage() {
             <div className="mb-8 flex flex-col items-center text-center">
               <h2
                 className={`
-                  text-3xl font-bold tracking-tight
+                  font-display text-3xl leading-tight font-bold tracking-tight
                   md:text-4xl
                 `}
               >
@@ -354,9 +363,9 @@ export default function HomePage() {
               {featuresWhyChooseUs.map((feature) => (
                 <Card
                   className={`
-                    border-none bg-background shadow-sm transition-all
-                    duration-200
-                    hover:shadow-md
+                    rounded-2xl border-none bg-background shadow transition-all
+                    duration-300
+                    hover:shadow-lg
                   `}
                   key={feature.title}
                 >
@@ -421,7 +430,7 @@ export default function HomePage() {
           >
             <div
               className={`
-                relative overflow-hidden rounded-xl bg-primary/10 p-8
+                relative overflow-hidden rounded-xl bg-primary/10 p-8 shadow-lg
                 md:p-12
               `}
             >
@@ -434,7 +443,7 @@ export default function HomePage() {
               <div className="relative z-10 mx-auto max-w-2xl text-center">
                 <h2
                   className={`
-                    text-3xl font-bold tracking-tight
+                    font-display text-3xl leading-tight font-bold tracking-tight
                     md:text-4xl
                   `}
                 >
@@ -457,12 +466,19 @@ export default function HomePage() {
                   `}
                 >
                   <Link href="/auth/sign-up">
-                    <Button className="h-12 px-8" size="lg">
+                    <Button
+                      className="h-12 px-8 transition-colors duration-200"
+                      size="lg"
+                    >
                       Sign Up Now
                     </Button>
                   </Link>
                   <Link href="/products">
-                    <Button className="h-12 px-8" size="lg" variant="outline">
+                    <Button
+                      className="h-12 px-8 transition-colors duration-200"
+                      size="lg"
+                      variant="outline"
+                    >
                       Browse Products
                     </Button>
                   </Link>

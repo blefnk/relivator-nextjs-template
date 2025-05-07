@@ -5,6 +5,7 @@
     "biomejs.biome",
     "dbaeumer.vscode-eslint",
     "chunsen.bracket-select",
-    "davidanson.vscode-markdownlint"
+    "davidanson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one"
   ]
 }

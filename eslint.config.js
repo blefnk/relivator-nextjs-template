@@ -9,6 +9,7 @@ export default tseslint.config(
   eslintJs.configs.recommended,
   tseslint.configs.recommended,
   tseslint.configs.stylistic,
+  // fatima.eslint.plugin, // import { linter as fatima } from "fatima";
   { ignores: ["node_modules", ".next"] },
   {
     files: ["**/*.{ts,tsx}"],
@@ -41,4 +42,5 @@ export default tseslint.config(
       },
     },
   },
+  // fatima.eslint.noEnvRule("**/*.tsx"),
 );

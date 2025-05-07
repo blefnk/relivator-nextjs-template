@@ -1,6 +1,7 @@
 import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react";
 import Link from "next/link";
 
+import { SEO_CONFIG } from "~/app";
 import { cn } from "~/lib/cn";
 import { Button } from "~/ui/primitives/button";
 
@@ -28,7 +29,7 @@ export function Footer({ className }: { className?: string }) {
                   text-xl font-bold tracking-tight text-transparent
                 `}
               >
-                Relivator
+                {SEO_CONFIG.name}
               </span>
             </Link>
             <p className="text-sm text-muted-foreground">
@@ -267,7 +268,8 @@ export function Footer({ className }: { className?: string }) {
             `}
           >
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Relivator. All rights reserved.
+              &copy; {new Date().getFullYear()} {SEO_CONFIG.name}. All rights
+              reserved.
             </p>
             <div
               className={

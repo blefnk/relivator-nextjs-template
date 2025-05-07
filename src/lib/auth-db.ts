@@ -8,7 +8,7 @@ const schemaPath = "./src/db/schema/users/tables.ts";
 
 async function main() {
   await execaCommand(
-    `bun x --bun @better-auth/cli generate --config ${configPath} --output ${schemaPath}`,
+    `npx @better-auth/cli@latest generate --config ${configPath} --output ${schemaPath}`,
     { stdio: "inherit" },
   );
 

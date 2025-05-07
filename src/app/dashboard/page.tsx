@@ -1,15 +1,7 @@
-import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-import type { User } from "~/db/schema/users/types";
+import { SYSTEM_CONFIG } from "~/app";
 
-import { auth } from "~/lib/auth";
-
-import { DashboardPageClient } from "./page.client";
-
-export default async function DashboardPage() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  return <DashboardPageClient user={session?.user as null | User} />;
+export default function DashboardPage() {
+  return redirect(SYSTEM_CONFIG.redirectAfterSignIn);
 }

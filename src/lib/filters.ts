@@ -15,64 +15,101 @@ import {
 
 import { getUniqueValues, intersection } from "./array";
 
+export type DeepKeys<T> = Paths<T>;
+
+export type DeepValue<
+  T,
+  P extends DeepKeys<T>,
+> = P extends `${infer K}.${infer Rest}`
+  ? K extends keyof T
+    ? Rest extends DeepKeys<T[K]>
+      ? DeepValue<T[K], Rest>
+      : never
+    : never
+  : P extends keyof T
+    ? T[P]
+    : never;
+
 export type ElementType<T> = T extends (infer U)[] ? U : T;
+
+type Join<K, P> = K extends number | string
+  ? P extends number | string
+    ? `${K}${"" extends P ? "" : "."}${P}`
+    : never
+  : never;
+
+type Paths<T, D extends number = 10> = [D] extends [never]
+  ? never
+  : T extends object
+    ? {
+        [K in keyof T]-?: K extends number | string
+          ? `${K}` | Join<K, Paths<T[K], Prev[D]>>
+          : never;
+      }[keyof T]
+    : "";
+
+type Prev = [
+  never,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  ...0[],
+];
 
 declare module "@tanstack/react-table" {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface ColumnMeta<TData extends RowData, TValue> {
-    /* The display name of the column. */
     displayName: string;
-
-    /* The column icon. */
     icon: LucideIcon;
 
-    /* An optional "soft" max for the number range slider. */
-    /* This is used for columns with type 'number'. */
+    // an optional "soft" max for the number range slider ('number' type columns).
     max?: number;
 
-    /* An optional list of options for the column. */
-    /* This is used for columns with type 'option' or 'multiOption'. */
-    /* If the options are known ahead of time, they can be defined here. */
-    /* Otherwise, they will be dynamically generated based on the data. */
+    // optional predefined options ('option'/'multiOption' types).
+    // if not provided, options are dynamically generated from data.
     options?: ColumnOption[];
 
-    /* An optional function to transform columns with type 'option' or 'multiOption'. */
-    /* This is used to convert each raw option into a ColumnOption. */
     transformOptionFn?: (
       value: ElementType<NonNullable<TValue>>,
     ) => ColumnOption;
 
-    /* The data type of the column. */
     type: ColumnDataType;
   }
 }
 
-/*
- * Represents the data type of a column.
- */
+// column data types
 export type ColumnDataType =
-  /* The column value is a string that should be searchable. */
   | "date"
   | "multiOption"
   | "number"
-  /* The column value can be a single value from a list of options. */
   | "option"
-  /* The column value can be zero or more values from a list of options. */
   | "text";
 
-/*
- * Represents a possible value for a column property of type 'option' or 'multiOption'.
- */
+// possible value for 'option' or 'multiOption' columns
 export interface ColumnOption {
-  /* An optional icon to display next to the label. */
   icon?: React.ElementType | React.ReactElement;
-  /* The label to display for the option. */
   label: string;
-  /* The internal value of the option. */
   value: string;
 }
 
-/* Operators for date data */
+// operators for date data
 export type DateFilterOperator =
   | "is"
   | "is after"
@@ -83,34 +120,18 @@ export type DateFilterOperator =
   | "is on or after"
   | "is on or before";
 
-/*
- * FilterDetails is a type that represents the details of all the filter operators for a specific column data type.
- */
 export type FilterDetails<T extends ColumnDataType> = {
   [key in FilterOperators[T]]: FilterOperatorDetails<key, T>;
 };
 
-/*
- *
- * FilterValue is a type that represents a filter value for a specific column.
- *
- * It consists of:
- * - Operator: The operator to be used for the filter.
- * - Values: An array of values to be used for the filter.
- *
- */
+// represents a filter value for a specific column.
 export interface FilterModel<T extends ColumnDataType, TData> {
   columnMeta: Column<TData>["columnDef"]["meta"];
   operator: FilterOperators[T];
   values: FilterTypes[T][];
 }
 
-/*
- *
- * FilterOperatorDetails is a type that provides details about a filter operator for a specific column data type.
- * It extends FilterOperatorDetailsBase with additional logic and contraints on the defined properties.
- *
- */
+// provides details about a filter operator for a specific column data type.
 export type FilterOperatorDetails<
   OperatorValue,
   T extends ColumnDataType,
@@ -125,7 +146,7 @@ export type FilterOperatorDetails<
     | { pluralOf?: never; singularOf?: never }
   );
 
-/* Maps filter values to their respective data types */
+// maps filter values to their respective data types
 export interface FilterTypes {
   date: Date;
   multiOption: string[];
@@ -134,7 +155,7 @@ export interface FilterTypes {
   text: string;
 }
 
-/* Operators for multi-option data */
+// operators for multi-option data
 export type MultiOptionFilterOperator =
   | "exclude"
   | "exclude if all"
@@ -143,7 +164,7 @@ export type MultiOptionFilterOperator =
   | "include all of"
   | "include any of";
 
-/* Operators for number data */
+// operators for number data
 export type NumberFilterOperator =
   | "is"
   | "is between"
@@ -154,34 +175,25 @@ export type NumberFilterOperator =
   | "is not"
   | "is not between";
 
-/* Operators for option data */
+// operators for option data
 export type OptionFilterOperator = "is" | "is any of" | "is none of" | "is not";
 
-/* Operators for text data */
+// operators for text data
 export type TextFilterOperator = "contains" | "does not contain";
 
 interface FilterOperatorDetailsBase<OperatorValue, T extends ColumnDataType> {
-  /* Whether the operator is negated. */
   isNegated: boolean;
-  /* The label for the operator, to show in the UI. */
   label: string;
-  /* If the operator is not negated, this provides the negated equivalent. */
   negation?: FilterOperators[T];
-  /* If the operator is negated, this provides the positive equivalent. */
   negationOf?: FilterOperators[T];
-  /* The singular form of the operator, if applicable. */
   pluralOf?: FilterOperators[T];
-  /* All related operators. Normally, all the operators which share the same target. */
   relativeOf: FilterOperators[T] | FilterOperators[T][];
-  /* The plural form of the operator, if applicable. */
   singularOf?: FilterOperators[T];
-  /* How much data the operator applies to. */
   target: "multiple" | "single";
-  /* The operator value. Usually the string representation of the operator. */
   value: OperatorValue;
 }
 
-/* Maps filter operators to their respective data types */
+// maps filter operators to their respective data types
 interface FilterOperators {
   date: DateFilterOperator;
   multiOption: MultiOptionFilterOperator;
@@ -190,35 +202,44 @@ interface FilterOperators {
   text: TextFilterOperator;
 }
 
-/* TODO: Allow both accessorFn and accessorKey */
+// overload 1: accessorFn
 export function defineMeta<
-  TData,
-  /* Only accessorFn - WORKS */
+  TData extends RowData,
   TAccessor extends AccessorFn<TData>,
   TVal extends ReturnType<TAccessor>,
-  /* Only accessorKey - WORKS */
-  // TAccessor extends DeepKeys<TData>,
-  // TVal extends DeepValue<TData, TAccessor>,
-
-  /* Both accessorKey and accessorFn - BROKEN */
-  /* ISSUE: Won't infer transformOptionFn input type correctly. */
-  // TAccessor extends AccessorFn<TData> | DeepKeys<TData>,
-  // TVal extends TAccessor extends AccessorFn<TData>
-  // ? ReturnType<TAccessor>
-  // : TAccessor extends DeepKeys<TData>
-  // ? DeepValue<TData, TAccessor>
-  // : never,
   TType extends ColumnDataType,
 >(
   accessor: TAccessor,
   meta: Omit<ColumnMeta<TData, TVal>, "type"> & {
     type: TType;
   },
-): ColumnMeta<TData, TVal> {
+): ColumnMeta<TData, TVal>;
+
+// overload 2: accessorKey (string path)
+export function defineMeta<
+  TData extends RowData,
+  TAccessor extends DeepKeys<TData>,
+  TVal extends DeepValue<TData, TAccessor>,
+  TType extends ColumnDataType,
+>(
+  accessor: TAccessor,
+  meta: Omit<ColumnMeta<TData, TVal>, "type"> & {
+    type: TType;
+  },
+): ColumnMeta<TData, TVal>;
+
+// implementation
+export function defineMeta<TData extends RowData, TType extends ColumnDataType>(
+  accessor: AccessorFn<TData, unknown> | DeepKeys<TData>,
+  meta: Omit<ColumnMeta<TData, any>, "type"> & { type: TType },
+): ColumnMeta<TData, any> {
+  // the implementation signature needs to be compatible with the overloads.
+  // the actual logic/type checking happens at the call site thanks to the overloads.
+  // we just return the meta object here.
   return meta;
 }
 
-/* Details for all the filter operators for option data type */
+// details for all the filter operators for option data type
 export const optionFilterDetails = {
   is: {
     isNegated: false,
@@ -258,7 +279,7 @@ export const optionFilterDetails = {
   },
 } as const satisfies FilterDetails<"option">;
 
-/* Details for all the filter operators for multi-option data type */
+// details for all the filter operators for multi-option data type
 export const multiOptionFilterDetails = {
   exclude: {
     isNegated: true,
@@ -316,7 +337,7 @@ export const multiOptionFilterDetails = {
   },
 } as const satisfies FilterDetails<"multiOption">;
 
-/* Details for all the filter operators for date data type */
+// details for all the filter operators for date data type
 export const dateFilterDetails = {
   is: {
     isNegated: false,
@@ -410,7 +431,7 @@ export const dateFilterDetails = {
   },
 } as const satisfies FilterDetails<"date">;
 
-/* Details for all the filter operators for text data type */
+// details for all the filter operators for text data type
 export const textFilterDetails = {
   contains: {
     isNegated: false,
@@ -430,7 +451,7 @@ export const textFilterDetails = {
   },
 } as const satisfies FilterDetails<"text">;
 
-/* Details for all the filter operators for number data type */
+// details for all the filter operators for number data type
 export const numberFilterDetails = {
   is: {
     isNegated: false,
@@ -534,7 +555,7 @@ export const numberFilterDetails = {
   },
 } as const satisfies FilterDetails<"number">;
 
-/* Maps column data types to their respective filter operator details */
+// maps column data types to their respective filter operator details
 type FilterTypeOperatorDetails = {
   [key in ColumnDataType]: FilterDetails<key>;
 };
@@ -547,10 +568,7 @@ export const filterTypeOperatorDetails: FilterTypeOperatorDetails = {
   text: textFilterDetails,
 };
 
-/*
- * Applies the date filter logic to the input data.
- * Used internally by `dateFilterFn`.
- */
+// applies the date filter logic.
 export function applyDateFilter<TData>(
   inputData: Date,
   filterValue: FilterModel<"date", TData>,
@@ -602,22 +620,17 @@ export function applyDateFilter<TData>(
 }
 
 /**********************************************************************************************************
- ***** Filter Functions ******
+ * filter functions
  **********************************************************************************************************
- * These are functions that filter data based on the current filter values, column data type, and operator.
- * There exists a separate filter function for each column data type.
+ * these functions filter data based on the current filter values, column data type, and operator.
+ * there exists a separate filter function for each column data type (e.g., dateFilterFn).
  *
- * Two variants of the filter functions are provided - as an example, we will take the optionFilterFn:
- * 1. optionFilterFn: takes in a row, columnId, and filterValue.
- * 2. applyOptionFilter: takes in an inputData and filterValue.
- *
- * applyOptionFilter is a private function that is used by filterFn to perform the actual filtering.
- * *********************************************************************************************************/
+ * each type has two variants:
+ * 1. `[type]FilterFn`: takes row, columnid, filtervalue (used directly by the table).
+ * 2. `apply[type]Filter`: takes inputdata, filtervalue (internal logic used by the `filterFn`).
+ *********************************************************************************************************/
 
-/*
- * Applies the multi-option filter logic to the input data.
- * Used internally by `multiOptionFilterFn`.
- */
+// applies the multi-option filter logic.
 export function applyMultiOptionFilter<TData>(
   inputData: string[],
   filterValue: FilterModel<"multiOption", TData>,
@@ -651,10 +664,7 @@ export function applyMultiOptionFilter<TData>(
   }
 }
 
-/*
- * Applies the number filter logic to the input data.
- * Used internally by `numberFilterFn`.
- */
+// applies the number filter logic.
 export function applyNumberFilter<TData>(
   inputData: number,
   filterValue: FilterModel<"number", TData>,
@@ -694,10 +704,7 @@ export function applyNumberFilter<TData>(
   }
 }
 
-/*
- * Applies the option filter logic to the input data.
- * Used internally by `optionFilterFn`.
- */
+// applies the option filter logic.
 export function applyOptionFilter<TData>(
   inputData: string,
   filterValue: FilterModel<"option", TData>,
@@ -719,10 +726,7 @@ export function applyOptionFilter<TData>(
   }
 }
 
-/*
- * Applies the text filter logic to the input data.
- * Used internally by `textFilterFn`.
- */
+// applies the text filter logic.
 export function applyTextFilter<TData>(
   inputData: string,
   filterValue: FilterModel<"text", TData>,
@@ -744,7 +748,7 @@ export function applyTextFilter<TData>(
   }
 }
 
-export function dateFilterFn<TData>(
+export function F<TData>(
   row: Row<TData>,
   columnId: string,
   filterValue: FilterModel<"date", TData>,
@@ -754,14 +758,11 @@ export function dateFilterFn<TData>(
   return applyDateFilter(valueStr, filterValue);
 }
 
-/*
- * Returns a filter function for a given column data type.
- * This function is used to determine the appropriate filter function to use based on the column data type.
- */
+// returns the appropriate filter function for a given column data type.
 export function filterFn(dataType: ColumnDataType) {
   switch (dataType) {
     case "date":
-      return dateFilterFn;
+      return F;
     case "multiOption":
       return multiOptionFilterFn;
     case "number":
@@ -783,17 +784,11 @@ export function findTableColumnById<TData>(table: Table<TData>, id: string) {
   return column;
 }
 
-/*
- *
- * Determines the new operator for a filter based on the current operator, old and new filter values.
- *
- * This handles cases where the filter values have transitioned from a single value to multiple values (or vice versa),
- * and the current operator needs to be transitioned to its plural form (or singular form).
- *
- * For example, if the current operator is 'is', and the new filter values have a length of 2, the
- * new operator would be 'is any of'.
- *
- */
+// determines the new operator when filter values change between single/multiple items.
+//
+// this transitions the operator to its plural/singular form if needed.
+// e.g., if the operator is 'is' and filter values go from 1 to 2 items,
+// the new operator becomes 'is any of'.
 export function getNextFilterOperator<T extends ColumnDataType>(
   type: T,
   oldVals: FilterTypes[T][],
@@ -816,9 +811,9 @@ export function getNextFilterOperator<T extends ColumnDataType>(
 
   const opDetails = filterTypeOperatorDetails[type][currentOperator];
 
-  // Handle transition from single to multiple filter values.
+  // Handle transition from SINGLE to MULTIPLE filter values.
   if (a < b && b >= 2) return opDetails.singularOf ?? currentOperator;
-  // Handle transition from multiple to single filter values.
+  // Handle transition from MULTIPLE to SINGLE filter values.
   if (a > b && b <= 1) return opDetails.pluralOf ?? currentOperator;
   return currentOperator;
 }
@@ -903,6 +898,7 @@ export function multiOptionFilterFn<TData>(
   );
 }
 
+// ensures a number range always has [min, max] order.
 export function normalizeNumberRange(values: number[] | undefined) {
   let a = 0;
   let b = 0;

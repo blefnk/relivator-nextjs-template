@@ -1,10 +1,14 @@
-tsconfig.tsbuildinfo
 /auth-schema.ts
 /node_modules
 next-env.d.ts
+*.tsbuildinfo
 .eslintcache
+.DS_Store
 .vercel
+*.log*
+.venv
+.idea
 .next
-.env
 .exe
 .dll
+.env

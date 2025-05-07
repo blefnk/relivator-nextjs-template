@@ -1,25 +1,22 @@
 "use client";
 
-import type { ColumnDef, ColumnMeta } from "@tanstack/react-table";
+import type { Column, ColumnDef, ColumnMeta } from "@tanstack/react-table";
 import type React from "react";
 
 import { Hash, Mail, User as UserIcon } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
 
 import type { MediaUpload } from "~/db/schema/uploads/types";
-import type { User } from "~/db/schema/users/types";
 import type { GalleryMediaItem } from "~/ui/components/blocks/bento-media-gallery";
 
+import { ADMIN_CONFIG } from "~/app";
 import { defineMeta, filterFn } from "~/lib/filters";
 import { BentoMediaGallery } from "~/ui/components/blocks/bento-media-gallery";
 import { Button } from "~/ui/primitives/button";
+import { DataTable } from "~/ui/primitives/data-table/data-table";
+import { DataTableColumnHeader } from "~/ui/primitives/data-table/data-table-column-header";
 
-import { DataTable } from "./data-table";
-import { DataTableColumnHeader } from "./data-table-column-header";
-
-export type UserWithUploads = User & {
-  uploads: MediaUpload[];
-};
+import type { UserWithUploads } from "./page.types";
 
 interface AdminPageClientProps {
   initialData: UserWithUploads[];
@@ -32,7 +29,7 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
     [],
   );
 
-  // Handler to open the gallery - wrapped in useCallback
+  // Handler to open the gallery
   const handleMediaClick = useCallback(
     (item: GalleryMediaItem) => {
       const allUploads = initialData.flatMap((user) =>
@@ -77,18 +74,22 @@ const AdminPageClient: React.FC<AdminPageClientProps> = ({ initialData }) => {
           type: "text",
         }) as ColumnMeta<UserWithUploads, unknown>,
       },
-      {
-        accessorKey: "email",
-        filterFn: filterFn("text"),
-        header: ({ column }) => (
-          <DataTableColumnHeader column={column} title="Email" />
-        ),
-        meta: defineMeta((row: UserWithUploads) => row.email, {
-          displayName: "Email",
-          icon: Mail,
-          type: "text",
-        }) as ColumnMeta<UserWithUploads, unknown>,
-      },
+      ...(ADMIN_CONFIG.displayEmails
+        ? [
+            {
+              accessorKey: "email",
+              filterFn: filterFn("text"),
+              header: ({ column }: { column: Column<UserWithUploads> }) => (
+                <DataTableColumnHeader column={column} title="Email" />
+              ),
+              meta: defineMeta((row: UserWithUploads) => row.email, {
+                displayName: "Email",
+                icon: Mail,
+                type: "text",
+              }) as ColumnMeta<UserWithUploads, unknown>,
+            },
+          ]
+        : []),
       {
         cell: ({ row }) => {
           const user = row.original;

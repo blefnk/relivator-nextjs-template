@@ -5,11 +5,12 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { extractRouterConfig } from "uploadthing/server";
 
+import { SEO_CONFIG } from "~/app";
 import { ourFileRouter } from "~/app/api/uploadthing/core";
 import { CartProvider } from "~/lib/hooks/use-cart";
-import { Footer } from "~/ui/components/footer";
 import "~/css/globals.css";
-import { Header } from "~/ui/components/header";
+import { Footer } from "~/ui/components/footer";
+import { Header } from "~/ui/components/header/header";
 import { ThemeProvider } from "~/ui/components/theme-provider";
 import { Toaster } from "~/ui/primitives/sonner";
 
@@ -24,8 +25,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  description: "Relivator",
-  title: "Relivator",
+  description: `${SEO_CONFIG.description}`,
+  title: `${SEO_CONFIG.fullName}`,
 };
 
 export default function RootLayout({
@@ -39,7 +40,10 @@ export default function RootLayout({
         className={`
           ${geistSans.variable}
           ${geistMono.variable}
-          antialiased
+          min-h-screen bg-gradient-to-br from-white to-slate-100
+          text-neutral-900 antialiased
+          selection:bg-primary/80
+          dark:from-neutral-950 dark:to-neutral-900 dark:text-neutral-100
         `}
       >
         <ThemeProvider
@@ -51,7 +55,7 @@ export default function RootLayout({
           <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
           <CartProvider>
             <Header showAuth={true} />
-            <main className="flex min-h-screen flex-col">{children}</main>
+            <main className={`flex min-h-screen flex-col`}>{children}</main>
             <Footer />
             <Toaster />
           </CartProvider>

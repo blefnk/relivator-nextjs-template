@@ -5,9 +5,10 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { SEO_CONFIG } from "~/app";
 import { signIn, signUp } from "~/lib/auth-client";
-import { GitHubIcon } from "~/ui/icons/github";
-import { GoogleIcon } from "~/ui/icons/google";
+import { GitHubIcon } from "~/ui/components/icons/github";
+import { GoogleIcon } from "~/ui/components/icons/google";
 import { Button } from "~/ui/primitives/button";
 import { Card, CardContent } from "~/ui/primitives/card";
 import { Input } from "~/ui/primitives/input";
@@ -105,9 +106,9 @@ export function SignUpPageClient() {
           `}
         />
         <div className="absolute bottom-8 left-8 z-10 text-white">
-          <h1 className="text-3xl font-bold">Relivator</h1>
+          <h1 className="text-3xl font-bold">{SEO_CONFIG.name}</h1>
           <p className="mt-2 max-w-md text-sm text-white/80">
-            Store which makes you happy.
+            {SEO_CONFIG.slogan}
           </p>
         </div>
       </div>

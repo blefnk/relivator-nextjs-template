@@ -5,7 +5,7 @@ import React from "react";
 
 import type { User } from "~/db/schema/users/types";
 
-import { signOut, useSession } from "~/lib/auth-client";
+import { signOut, useCurrentUser } from "~/lib/auth-client";
 import { Button } from "~/ui/primitives/button";
 import {
   Card,
@@ -21,20 +21,8 @@ interface DashboardPageClientProps {
   user?: null | User;
 }
 
-// Extend the User type with optional properties
-type ExtendedUser = User & {
-  age?: number;
-  firstName?: string;
-  lastName?: string;
-};
-
 export function DashboardPageClient({ user }: DashboardPageClientProps) {
-  const { data, isPending } = useSession();
-
-  // Use the passed user or the session user
-  const currentUser = user ?? data?.user;
-
-  const currentUserState = currentUser as ExtendedUser;
+  const { isPending } = useCurrentUser();
 
   const handleSignOut = () => {
     void signOut();
@@ -97,46 +85,44 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            {currentUserState && (
+            {user && (
               <div className="space-y-2">
                 <div className="space-y-1">
                   <p className="text-sm leading-none font-medium">Name</p>
                   <p className="text-sm text-muted-foreground">
-                    {currentUserState.name ?? "Not set"}
+                    {user.name ?? "Not set"}
                   </p>
                 </div>
                 <div className="space-y-1">
                   <p className="text-sm leading-none font-medium">Email</p>
                   <p className="text-sm text-muted-foreground">
-                    {currentUserState.email ?? "Not set"}
+                    {user.email ?? "Not set"}
                   </p>
                 </div>
-                {currentUserState?.firstName && (
+                {user?.firstName && (
                   <div className="space-y-1">
                     <p className="text-sm leading-none font-medium">
                       First Name
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      {currentUserState.firstName}
+                      {user.firstName}
                     </p>
                   </div>
                 )}
-                {currentUserState?.lastName && (
+                {user?.lastName && (
                   <div className="space-y-1">
                     <p className="text-sm leading-none font-medium">
                       Last Name
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      {currentUserState.lastName}
+                      {user.lastName}
                     </p>
                   </div>
                 )}
-                {currentUserState?.age ? (
+                {user?.age ? (
                   <div className="space-y-1">
                     <p className="text-sm leading-none font-medium">Age</p>
-                    <p className="text-sm text-muted-foreground">
-                      {currentUserState.age}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{user.age}</p>
                   </div>
                 ) : null}
                 <div className="space-y-1">
@@ -144,7 +130,7 @@ export function DashboardPageClient({ user }: DashboardPageClientProps) {
                     Two-Factor Authentication
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    {currentUserState.twoFactorEnabled ? "Enabled" : "Disabled"}
+                    {user.twoFactorEnabled ? "Enabled" : "Disabled"}
                   </p>
                 </div>
               </div>

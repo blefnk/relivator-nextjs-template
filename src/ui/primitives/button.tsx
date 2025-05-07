@@ -8,9 +8,12 @@ import { cn } from "~/lib/cn";
 const buttonVariants = cva(
   `
     inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm
-    font-medium whitespace-nowrap transition-all outline-none
-    focus-visible:border-ring focus-visible:ring-[3px]
-    focus-visible:ring-ring/50
+    font-medium whitespace-nowrap shadow-sm transition-all duration-200
+    ease-in-out outline-none
+    hover:shadow-md
+    focus:shadow-lg
+    focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/60
+    active:shadow
     disabled:pointer-events-none disabled:opacity-50
     aria-invalid:border-destructive aria-invalid:ring-destructive/20
     dark:aria-invalid:ring-destructive/40
@@ -41,30 +44,35 @@ const buttonVariants = cva(
       variant: {
         default: `
           bg-primary text-primary-foreground shadow-xs
-          hover:bg-primary/90
+          hover:bg-primary/90 hover:shadow-md
+          focus-visible:ring-2 focus-visible:ring-primary/60
         `,
         destructive: `
           bg-destructive text-white shadow-xs
-          hover:bg-destructive/90
-          focus-visible:ring-destructive/20
+          hover:bg-destructive/90 hover:shadow-md
+          focus-visible:ring-2 focus-visible:ring-destructive/40
           dark:bg-destructive/60 dark:focus-visible:ring-destructive/40
         `,
         ghost: `
           hover:bg-accent hover:text-accent-foreground
+          focus-visible:ring-2 focus-visible:ring-accent/40
           dark:hover:bg-accent/50
         `,
         link: `
           text-primary underline-offset-4
           hover:underline
+          focus-visible:ring-2 focus-visible:ring-primary/40
         `,
         outline: `
           border bg-background shadow-xs
-          hover:bg-accent hover:text-accent-foreground
+          hover:bg-accent hover:text-accent-foreground hover:shadow-md
+          focus-visible:ring-2 focus-visible:ring-accent/40
           dark:border-input dark:bg-input/30 dark:hover:bg-input/50
         `,
         secondary: `
           bg-secondary text-secondary-foreground shadow-xs
-          hover:bg-secondary/80
+          hover:bg-secondary/80 hover:shadow-md
+          focus-visible:ring-2 focus-visible:ring-secondary/40
         `,
       },
     },

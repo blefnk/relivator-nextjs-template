@@ -2,44 +2,17 @@
 
 import { Shield, User } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import { twoFactor, useSession } from "~/lib/auth-client";
+import { twoFactor, useCurrentUserOrRedirect } from "~/lib/auth-client";
 import { Button } from "~/ui/primitives/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/ui/primitives/card";
 import { Input } from "~/ui/primitives/input";
 import { Label } from "~/ui/primitives/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/ui/primitives/tabs";
 
-interface ExtendedSession {
-  user: ExtendedUser;
-}
-
-interface ExtendedUser {
-  accounts?: UserAccount[];
-  createdAt: Date;
-  email: string;
-  emailVerified: boolean;
-  id: string;
-  image?: null | string;
-  name: string;
-  twoFactorEnabled?: boolean | null;
-  updatedAt: Date;
-}
-
-interface UserAccount {
-  accountId: string;
-  id: string;
-  providerId: string;
-}
-
 export function ProfilePageClient() {
-  const router = useRouter();
-  const { data, isPending } = useSession() as {
-    data: ExtendedSession | null | undefined;
-    isPending: boolean;
-  };
+  const { isPending, user } = useCurrentUserOrRedirect();
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -47,12 +20,6 @@ export function ProfilePageClient() {
   const [showQrCode, setShowQrCode] = useState(false);
   const [qrCodeData, setQrCodeData] = useState("");
   const [secret, setSecret] = useState("");
-
-  // Redirect to login if not authenticated
-  if (!isPending && !data) {
-    router.push("/auth/sign-in");
-    return null;
-  }
 
   if (isPending) {
     return (
@@ -174,7 +141,7 @@ export function ProfilePageClient() {
               <div className="grid gap-2">
                 <Label htmlFor="name">Name</Label>
                 <Input
-                  defaultValue={data?.user?.name || ""}
+                  defaultValue={user?.name || ""}
                   id="name"
                   placeholder="Enter your name"
                 />
@@ -182,7 +149,7 @@ export function ProfilePageClient() {
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
-                  defaultValue={data?.user?.email || ""}
+                  defaultValue={user?.email || ""}
                   id="email"
                   placeholder="Enter your email"
                   type="email"
@@ -285,7 +252,7 @@ export function ProfilePageClient() {
             </CardHeader>
             <CardContent>
               <Button asChild>
-                <Link href="/auth/backup-codes">View Backup Codes</Link>
+                <Link href="/auth/mfa">manage backup codes</Link>
               </Button>
             </CardContent>
           </Card>

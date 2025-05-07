@@ -121,7 +121,7 @@ const United24Banner: React.FC<United24BannerProps> = ({
   if (!isVisible) return null;
 
   // Generate background classes or styles based on gradient animation and theme
-  const bannerClasses = `w-full shadow-md relative z-50 overflow-hidden banner-gradient-bg ${
+  const bannerClasses = `w-full border-b border-black/10 dark:border-white/10 relative z-50 overflow-hidden banner-gradient-bg rounded-none md:rounded-xl ${
     !animateGradient ? "bg-[#ffd700] dark:bg-[#0057b7]" : ""
   }`;
 
@@ -136,13 +136,13 @@ const United24Banner: React.FC<United24BannerProps> = ({
 
   // Dynamic button class based on gradient animation state
   const buttonClasses = animateGradient
-    ? "banner-button bg-[#0057b7] text-[#ffd700] font-bold py-2 px-6 rounded hover:bg-white hover:text-[#0057b7] uppercase shadow-md opacity-90 hover:opacity-100 transition-opacity duration-300"
-    : "banner-button bg-[#0057b7] dark:bg-[#ffd700] hover:bg-white dark:hover:bg-white text-[#ffd700] dark:text-blue-800 hover:text-[#0057b7] font-bold py-2 px-6 rounded uppercase shadow-md opacity-90 hover:opacity-100 transition-opacity duration-300";
+    ? "banner-button bg-[#0057b7] text-[#ffd700] font-bold py-2 px-7 rounded-lg hover:bg-white hover:text-[#0057b7] uppercase opacity-95 hover:opacity-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#ffd700]/70 focus:ring-offset-2"
+    : "banner-button bg-[#0057b7] dark:bg-[#ffd700] hover:bg-white dark:hover:bg-white text-[#ffd700] dark:text-blue-800 hover:text-[#0057b7] font-bold py-2 px-7 rounded-lg uppercase opacity-95 hover:opacity-100 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#ffd700]/70 focus:ring-offset-2";
 
   // Text color classes based on theme and gradient state
   const textColorClasses = animateGradient
-    ? "text-white"
-    : "text-blue-800 dark:text-white";
+    ? "text-white drop-shadow-sm"
+    : "text-blue-800 dark:text-white drop-shadow-sm";
 
   return (
     <div
@@ -154,14 +154,15 @@ const United24Banner: React.FC<United24BannerProps> = ({
     >
       <div
         className={`
-          container mx-auto flex flex-col items-center justify-between px-4 py-4
-          md:flex-row
+          container mx-auto flex flex-col items-center justify-between gap-4
+          px-4 py-4
+          md:flex-row md:gap-0
         `}
       >
         <div
           className={`
-            banner-content mb-4 flex flex-col items-center
-            md:mb-0 md:flex-row
+            banner-content mb-4 flex flex-col items-center gap-3
+            md:mb-0 md:flex-row md:gap-5
           `}
         >
           <div
@@ -174,7 +175,7 @@ const United24Banner: React.FC<United24BannerProps> = ({
             <Image
               alt="United24 Logo"
               className={`
-                block h-auto w-24 rounded
+                block h-auto w-24 rounded-lg shadow
                 dark:hidden
               `}
               height={48}
@@ -185,7 +186,7 @@ const United24Banner: React.FC<United24BannerProps> = ({
             <Image
               alt="United24 Logo"
               className={`
-                hidden h-auto w-24 rounded
+                hidden h-auto w-24 rounded-lg shadow
                 dark:block
               `}
               height={48}
@@ -196,7 +197,7 @@ const United24Banner: React.FC<United24BannerProps> = ({
           </div>
           <p
             className={`
-              banner-content text-center font-semibold
+              banner-content text-center text-base font-semibold
               md:text-left
               ${textColorClasses}
             `}
@@ -204,7 +205,11 @@ const United24Banner: React.FC<United24BannerProps> = ({
             Stand with Ukraine. Help fund drones, medkits, and victory. Every
             dollar helps stop{" "}
             <Link
-              className="underline"
+              className={`
+                underline underline-offset-4 transition-colors duration-200
+                hover:text-[#0057b7]
+                dark:hover:text-[#ffd700]
+              `}
               href="https://war.ukraine.ua/russia-war-crimes"
               rel="noopener noreferrer"
               target="_blank"
@@ -215,7 +220,12 @@ const United24Banner: React.FC<United24BannerProps> = ({
           </p>
         </div>
 
-        <div className="banner-content flex items-center">
+        <div
+          className={`
+            banner-content flex items-center gap-2
+            md:gap-4
+          `}
+        >
           <Link
             aria-label="Donate to support Ukraine"
             className={buttonClasses}
@@ -230,10 +240,12 @@ const United24Banner: React.FC<United24BannerProps> = ({
             <button
               aria-label="Close Ukraine support banner"
               className={`
-                banner-content ml-4 opacity-80 transition-opacity
+                banner-content ml-2 rounded-full p-2 opacity-80
+                transition-opacity duration-200
                 focus:ring-opacity-50 focus:ring-2 focus:ring-current
                 focus:outline-none
                 hover:opacity-100
+                md:ml-4
                 ${textColorClasses}
               `}
               onClick={handleClose}

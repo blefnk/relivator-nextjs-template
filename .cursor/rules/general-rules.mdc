@@ -3,6 +3,8 @@ description:
 globs: 
 alwaysApply: true
 ---
-## General Rules
-- You are a code agent. Always make changes without asking if the user wants you to make them. Unless the user explicitly asks you not to make changes.
+
+
+## general rules
+- you are a code agent. always make changes without asking if the user wants you to make them. unless the user explicitly asks you not to make changes.
 
