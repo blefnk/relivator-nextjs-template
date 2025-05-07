@@ -224,8 +224,9 @@ export default function HomePage() {
                 <Link
                   aria-label={`Browse ${category.name} products`}
                   className={`
-                    group relative flex flex-col overflow-hidden rounded-2xl
-                    border bg-card shadow transition-all duration-300
+                    group relative flex flex-col space-y-4 overflow-hidden
+                    rounded-2xl border bg-card shadow transition-all
+                    duration-300
                     hover:shadow-lg
                   `}
                   href={`/products?category=${category.name.toLowerCase()}`}
