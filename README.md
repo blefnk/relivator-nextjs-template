@@ -18,7 +18,7 @@
 10. 📅 **tables**: [react-table](https://tanstack.com/table)
 11. 🌐 **i18n**: [next-intl](https://next-intl.dev) _(🔜 w.i.p)_
 12. 💌 **email**: [resend](https://resend.com) _(🔜 w.i.p)_
-13. 💳 **payments**: [polar](https://polar.sh) _(🔜 w.i.p)_
+13. 💳 **payments**: [polar](https://polar.sh)
 14. 🔑 **api**: [orpc](https://orpc.unnoq.com) _(🔜 w.i.p)_
 
 > these features define the main reliverse stack. for an alternative setup—featuring clerk, stripe, trpc, and more—check out [versator](https://github.com/blefnk/versator).
@@ -69,6 +69,61 @@
 | `bun db:push`   | apply db schema changes        |
 | `bun db:auth`   | update auth-related tables     |
 | `bun db:studio` | open visual db editor          |
+
+## polar integration
+
+relivator now integrates with [polar](https://polar.sh) for payment processing and subscription management.
+
+### features
+
+- checkout flow for subscription purchases
+- customer portal for managing subscriptions
+- webhook handling for subscription events
+- automatic customer creation on signup
+- integration with better-auth for seamless authentication
+
+### setup instructions
+
+1. create an account on [polar](https://polar.sh)
+2. create an organization and get an organization access token
+3. configure your environment variables in `.env`:
+   ```
+   POLAR_ACCESS_TOKEN="your_access_token"
+   POLAR_WEBHOOK_SECRET="your_webhook_secret"
+   POLAR_ENVIRONMENT="production" # or "sandbox" for testing
+   ```
+4. create products in the polar dashboard
+5. update the product IDs in `src/lib/auth.ts` to match your polar products:
+   ```typescript
+   checkout: {
+     enabled: true,
+     products: [
+       {
+         productId: "your-product-id", // Replace with actual product ID from Polar Dashboard
+         slug: "pro" // Custom slug for easy reference in Checkout URL
+       }
+     ]
+   }
+   ```
+6. run `bun db:push` to create the necessary database tables
+7. start the application with `bun dev`
+
+### verification
+
+to verify that the integration is working:
+
+1. sign up for an account
+2. navigate to the dashboard billing page (`/dashboard/billing`)
+3. try subscribing to a plan
+4. check that your subscription appears in the billing dashboard
+5. test the customer portal by clicking "manage subscription"
+
+### api routes
+
+the following api routes are available for payment processing:
+
+- `/api/payments/customer-state` - get the current customer state
+- `/api/payments/subscriptions` - get user subscriptions
 
 ## notes
 

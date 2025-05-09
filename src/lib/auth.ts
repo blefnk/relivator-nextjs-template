@@ -4,6 +4,8 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { twoFactor } from "better-auth/plugins";
+import { polar } from "@polar-sh/better-auth";
+import { Polar } from "@polar-sh/sdk";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -95,6 +97,11 @@ if (hasGoogleCredentials) {
   };
 }
 
+const polarClient = new Polar({
+  accessToken: process.env.POLAR_ACCESS_TOKEN,
+  server: (process.env.POLAR_ENVIRONMENT as "production" | "sandbox") || "production",
+});
+
 export const auth = betterAuth({
   account: {
     accountLinking: {
@@ -130,7 +137,36 @@ export const auth = betterAuth({
     linkAccountsByEmail: true,
   },
 
-  plugins: [twoFactor()],
+  plugins: [
+    twoFactor(),
+    polar({
+      client: polarClient,
+      createCustomerOnSignUp: true,
+      enableCustomerPortal: true,
+      // Configure checkout
+      checkout: {
+        enabled: true,
+        products: [
+          {
+            productId: "pro-plan", // Replace with actual product ID from Polar Dashboard
+            slug: "pro" // Custom slug for easy reference in Checkout URL
+          },
+          {
+            productId: "premium-plan", // Replace with actual product ID from Polar Dashboard
+            slug: "premium" // Custom slug for easy reference in Checkout URL
+          }
+        ],
+        successUrl: "/dashboard/billing?checkout_success=true&checkout_id={CHECKOUT_ID}",
+      },
+      // Configure webhooks
+      webhooks: {
+        secret: process.env.POLAR_WEBHOOK_SECRET || "",
+        onPayload: async (payload) => {
+          console.log("Received webhook payload:", payload.type);
+        },
+      },
+    }),
+  ],
 
   secret: process.env.AUTH_SECRET,
 
