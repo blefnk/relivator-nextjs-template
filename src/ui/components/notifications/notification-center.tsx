@@ -6,6 +6,7 @@ import { Bell } from "lucide-react";
 import { useCallback, useState } from "react";
 
 import { cn } from "~/lib/cn";
+import { Badge } from "~/ui/primitives/badge";
 import { Button } from "~/ui/primitives/button";
 import { CardFooter } from "~/ui/primitives/card";
 import {
@@ -49,17 +50,17 @@ export function NotificationCenter({
 
   const handleMarkAsRead = useCallback(
     (id: string) => onMarkAsRead?.(id),
-    [onMarkAsRead],
+    [onMarkAsRead]
   );
 
   const handleMarkAllAsRead = useCallback(
     () => onMarkAllAsRead?.(),
-    [onMarkAllAsRead],
+    [onMarkAllAsRead]
   );
 
   const handleDismiss = useCallback(
     (id: string) => onDismiss?.(id),
-    [onDismiss],
+    [onDismiss]
   );
 
   const handleClearAll = useCallback(() => onClearAll?.(), [onClearAll]);
@@ -68,18 +69,22 @@ export function NotificationCenter({
     <div className={cn("relative", className)} {...props}>
       <DropdownMenu onOpenChange={setIsOpen} open={isOpen}>
         <DropdownMenuTrigger asChild>
-          <Button className="relative" size="icon" variant="ghost">
-            <Bell className="h-5 w-5" />
+          <Button
+            aria-label="Notification"
+            className="relative h-9 w-9 rounded-full"
+            size="icon"
+            variant="outline"
+          >
+            <Bell className="h-4 w-4" />
             {unreadCount > 0 && (
-              <span
+              <Badge
                 className={`
-                  absolute top-1 right-1 flex h-4 min-w-4 items-center
-                  justify-center rounded-full bg-red-500 px-1 text-[10px]
-                  font-medium text-white
+                  absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 text-[10px]
                 `}
+                variant="destructive"
               >
                 {unreadCount > 99 ? "99+" : String(unreadCount)}
-              </span>
+              </Badge>
             )}
           </Button>
         </DropdownMenuTrigger>
