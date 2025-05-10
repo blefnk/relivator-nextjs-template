@@ -73,7 +73,7 @@ export const Notifications: React.FC<NotificationsProps> = ({
         <DropdownMenuItem
           className={cn(
             "flex cursor-default flex-col items-start p-0",
-            !notification.read && "bg-muted/50",
+            !notification.read && "bg-muted/50"
           )}
           key={notification.id}
           onSelect={(e) => e.preventDefault()}

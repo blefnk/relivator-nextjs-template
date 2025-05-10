@@ -2,7 +2,7 @@ import { ArrowRight, Clock, ShoppingBag, Star, Truck } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import United24Banner from "~/ui/components/banners/u24";
+import UkraineBanner from "~/ui/components/banners/ukraine-banner";
 import { HeroBadge } from "~/ui/components/hero-badge";
 import { ProductCard } from "~/ui/components/product-card";
 import { TestimonialsSection } from "~/ui/components/testimonials/testimonials-with-marquee";
@@ -53,6 +53,9 @@ export default function HomePage() {
           via-muted/25 to-background
         `}
       >
+        {/* Sample banner */}
+        <UkraineBanner />
+
         {/* Hero Section */}
         <section
           className={`
@@ -488,9 +491,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Sample banner */}
-        <United24Banner animateGradient={false} />
       </main>
     </>
   );

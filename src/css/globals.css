@@ -139,6 +139,11 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
 }
 
 /* Product card hover effects */
@@ -148,6 +153,25 @@
 
 .product-card:hover {
   @apply shadow-lg transform -translate-y-1;
+}
+
+/* Banner animations */
+.banner-closing {
+  transition: height 500ms ease-out, opacity 500ms ease-out,
+    padding 500ms ease-out;
+  overflow: hidden;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
