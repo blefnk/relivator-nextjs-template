@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter, useSearchParams } from "next/navigation";
 import * as React from "react";
 
 import { useCart } from "~/lib/hooks/use-cart";
@@ -111,7 +112,21 @@ const products: Product[] = [
 /* -------------------------------------------------------------------------- */
 
 export default function ProductsPage() {
+  return (
+    <React.Suspense fallback={<div className={`
+      flex min-h-screen items-center justify-center
+    `}>Loading...</div>}>
+      <ProductsPageContent />
+    </React.Suspense>
+  );
+}
+
+function ProductsPageContent() {
   const { addItem } = useCart();
+  const router = useRouter();
+  const searchParams = useSearchParams()
+
+  const search = searchParams.get('category')
 
   /* ----------------------- Categories (derived) ------------------------- */
   const categories: Category[] = React.useMemo(() => {
@@ -123,6 +138,18 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] =
     React.useState<Category>("All");
 
+  // Sync state with URL query on initial load
+  React.useEffect(() => {
+    if (typeof search === "string") {
+      // Find category case-insensitively
+      const matchedCategory = categories.find(
+        (cat) => cat.toLowerCase() === search.toLowerCase()
+      );
+      if (matchedCategory) {
+        setSelectedCategory(matchedCategory);
+      }
+    }
+  }, [search, categories]);
   /* --------------------- Filtered products (memo) ----------------------- */
   const filteredProducts = React.useMemo(
     () =>
@@ -157,6 +184,20 @@ export default function ProductsPage() {
     console.log(`Added ${productId} to wishlist`);
   }, []);
 
+  const handleCategoryClick = React.useCallback(
+    (category: string) => {
+      setSelectedCategory(category);
+
+      // Update URL search params
+      if (category === "All") {
+        router.push("/products");
+      } else {
+        router.push(`/products?category=${category.toLowerCase()}`);
+      }
+    },
+    [router],
+  );
+
   /* ----------------------------- Render --------------------------------- */
   return (
     <div className="flex min-h-screen flex-col">
@@ -188,7 +229,7 @@ export default function ProductsPage() {
                   aria-pressed={category === selectedCategory}
                   className="rounded-full"
                   key={slugify(category)}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => handleCategoryClick(category)}
                   size="sm"
                   title={`Filter by ${category}`}
                   variant={
