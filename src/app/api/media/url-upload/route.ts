@@ -1,8 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 import { NextResponse } from "next/server";
 
-import { db } from "~/db";
-import { uploadsTable } from "~/db/schema/uploads/tables";
 import { auth } from "~/lib/auth";
 
 export async function POST(req: Request) {
@@ -47,8 +45,9 @@ export async function POST(req: Request) {
     // Create a unique key for the media
     const key = `url-${createId()}`;
 
-    // Insert into database
-    await db.insert(uploadsTable).values({
+    // Insert into memory store
+    const { MOCK_UPLOADS_STORE } = await import("~/app/api/uploadthing/core");
+    MOCK_UPLOADS_STORE.push({
       createdAt: new Date(),
       id: createId(),
       key,

@@ -2,9 +2,10 @@ import { createId } from "@paralleldrive/cuid2";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 
-import { db } from "~/db";
-import { uploadsTable } from "~/db/schema";
 import { auth } from "~/lib/auth";
+
+// Shared memory store for uploads
+export const MOCK_UPLOADS_STORE: any[] = [];
 
 const f = createUploadthing();
 // FileRouter for the app, can contain multiple FileRoutes
@@ -40,17 +41,19 @@ export const ourFileRouter = {
       console.log("file url", file.ufsUrl); // Public CDN URL is useful info
       console.log("file key", file.key);
 
-      // Save the upload details to the database
+      // Save the upload details to the memory array
       try {
-        await db.insert(uploadsTable).values({
+        MOCK_UPLOADS_STORE.push({
+          createdAt: new Date(),
           id: createId(),
           key: file.key,
           type: "image",
+          updatedAt: new Date(),
           url: file.ufsUrl, // Store the public CDN URL
           userId: metadata.userId,
         });
         console.log(
-          "Saved image upload details to database for userId:",
+          "Saved image upload details to database (Mocked) for userId:",
           metadata.userId,
         );
       } catch (error) {
@@ -58,8 +61,6 @@ export const ourFileRouter = {
           "Failed to save image upload details to database:",
           error,
         );
-        // Optionally, you might want to delete the file from UploadThing if DB insert fails
-        // await utapi.deleteFiles(file.key);
         throw new UploadThingError("Failed to process upload metadata.");
       }
 
@@ -87,17 +88,19 @@ export const ourFileRouter = {
       console.log("file url", file.ufsUrl); // Public CDN URL is useful info
       console.log("file key", file.key);
 
-      // Save the upload details to the database
+      // Save the upload details to the database (Mocked)
       try {
-        await db.insert(uploadsTable).values({
+        MOCK_UPLOADS_STORE.push({
+          createdAt: new Date(),
           id: createId(),
           key: file.key,
           type: "video", // Explicitly set type to video
+          updatedAt: new Date(),
           url: file.ufsUrl,
           userId: metadata.userId,
         });
         console.log(
-          "Saved video upload details to database for userId:",
+          "Saved video upload details to database (Mocked) for userId:",
           metadata.userId,
         );
       } catch (error) {

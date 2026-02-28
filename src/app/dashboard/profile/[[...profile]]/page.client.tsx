@@ -44,9 +44,10 @@ export function ProfilePageClient() {
       .enable({
         password,
       })
-      .then((result) => {
-        if ("data" in result && result.data) {
-          const uri = result.data.totpURI;
+      .then((result: any) => {
+        if (result && "data" in result && result.data) {
+          const data = result.data;
+          const uri = data.totpURI;
           setQrCodeData(uri);
 
           if (typeof uri === "string" && uri.includes("secret=")) {

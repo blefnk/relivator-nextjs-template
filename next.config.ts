@@ -14,4 +14,6 @@ export default {
       { hostname: "utfs.io", protocol: "https" },
     ],
   },
+  output: "standalone",
+  serverExternalPackages: ["@noble/hashes"],
 } satisfies NextConfig;

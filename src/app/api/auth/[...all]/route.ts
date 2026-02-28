@@ -1,5 +1,9 @@
-import { toNextJsHandler } from "better-auth/next-js";
+import { NextResponse } from "next/server";
 
-import { auth } from "~/lib/auth";
+export async function GET() {
+  return NextResponse.json({ message: "Mock auth route" });
+}
 
-export const { GET, POST } = toNextJsHandler(auth);
+export async function POST() {
+  return NextResponse.json({ message: "Mock auth route" });
+}

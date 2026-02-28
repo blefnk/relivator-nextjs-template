@@ -7,6 +7,7 @@ import Link from "next/link";
 import * as React from "react";
 
 import { cn } from "~/lib/cn";
+import { useCart } from "~/lib/hooks/use-cart";
 import { useMediaQuery } from "~/lib/hooks/use-media-query";
 import { Badge } from "~/ui/primitives/badge";
 import { Button } from "~/ui/primitives/button";
@@ -37,41 +38,18 @@ export interface CartItem {
 
 interface CartProps {
   className?: string;
-  mockCart: CartItem[];
 }
 
-export function CartClient({ className, mockCart }: CartProps) {
+export function CartClient({ className }: CartProps) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [cartItems, setCartItems] = React.useState<CartItem[]>(mockCart);
   const [isMounted, setIsMounted] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  
+  const { clearCart: handleClearCart, itemCount: totalItems, items: cartItems, removeItem: handleRemoveItem, subtotal, updateQuantity: handleUpdateQuantity } = useCart();
 
   React.useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  const subtotal = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0,
-  );
-
-  const handleUpdateQuantity = (id: string, newQuantity: number) => {
-    if (newQuantity < 1) return;
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item,
-      ),
-    );
-  };
-
-  const handleRemoveItem = (id: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const handleClearCart = () => {
-    setCartItems([]);
-  };
 
   const CartTrigger = (
     <Button

@@ -139,9 +139,9 @@ export function ProductCard({
             {discount > 0 && (
               <Badge
                 className={`
-                absolute top-2 right-2 bg-destructive
-                text-destructive-foreground
-              `}
+                  absolute top-2 right-2 bg-destructive
+                  text-destructive-foreground
+                `}
               >
                 {discount}% OFF
               </Badge>

@@ -1,32 +1,34 @@
 import "dotenv/config";
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
 
-import { DB_DEV_LOGGER } from "~/app";
+// Mock Database connection instance to prevent import errors in other files
+// that we haven't updated yet.
+export const conn = {};
 
-import * as schema from "./schema";
-
-// Ensure the database URL is set
-if (!process.env.DATABASE_URL) {
-  throw new Error("🔴 DATABASE_URL environment variable is not set");
-}
-
-/**
- * Caches the database connection in development to
- * prevent creating a new connection on every HMR update.
- */
-type DbConnection = ReturnType<typeof postgres>;
-const globalForDb = globalThis as unknown as {
-  conn?: DbConnection;
+// We expose a dummy db object with methods that might be called.
+// We will replace actual calls to `db` in queries with arrays.
+export const db = {
+  delete: () => ({ where: async () => ({}) }),
+  insert: () => ({ values: async () => ({}) }),
+  query: {
+    polarCustomerTable: {
+      findFirst: async () => null,
+      findMany: async () => [],
+    },
+    polarSubscriptionTable: {
+      findFirst: async () => null,
+      findMany: async () => [],
+    },
+    uploadsTable: {
+      findFirst: async () => null,
+      findMany: async () => [],
+    },
+    userTable: {
+      findFirst: async () => null,
+      findMany: async () => [],
+    }
+  },
+  select: () => ({ from: () => ({ where: () => ({ orderBy: async () => [] }) }) }),
+  update: () => ({ set: () => ({ where: async () => ({}) }) }),
 };
-export const conn: DbConnection =
-  globalForDb.conn ?? postgres(process.env.DATABASE_URL);
-if (process.env.NODE_ENV !== "production") {
-  globalForDb.conn = conn;
-}
 
-// Database connection instance
-export const db = drizzle(conn, {
-  logger: DB_DEV_LOGGER && process.env.NODE_ENV !== "production",
-  schema,
-});
+export default db;
