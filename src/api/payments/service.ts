@@ -1,32 +1,75 @@
 import { Polar } from "@polar-sh/sdk";
-import { eq } from "drizzle-orm";
 import { v4 as uuidv4 } from "uuid";
-
-import { db } from "~/db";
-import { polarCustomerTable, polarSubscriptionTable } from "~/db/schema";
 
 const polarClient = new Polar({
   accessToken: process.env.POLAR_ACCESS_TOKEN,
   server: (process.env.POLAR_ENVIRONMENT as "production" | "sandbox") || "production",
 });
 
+// Mock arrays to store customers and subscriptions
+const mockCustomers: any[] = [];
+const mockSubscriptions: any[] = [];
+
 /**
- * Get a Polar customer by user ID from the database
+ * Create a new customer and save reference (Mocked)
  */
-export async function getCustomerByUserId(userId: string) {
-  const customer = await db.query.polarCustomerTable.findFirst({
-    where: eq(polarCustomerTable.userId, userId),
-  });
+export async function createCustomer(userId: string, email: string, name?: string) {
+  try {
+    // Attempt Polar API if available
+    let customerId = uuidv4();
+    if (process.env.POLAR_ACCESS_TOKEN) {
+      const customer = await polarClient.customers.create({
+        email,
+        externalId: userId,
+        name: name || email,
+      });
+      customerId = customer.id;
+    }
 
-  if (!customer) {
-    return null;
+    const newCustomer = {
+      createdAt: new Date(),
+      customerId,
+      id: uuidv4(),
+      updatedAt: new Date(),
+      userId,
+    };
+    
+    mockCustomers.push(newCustomer);
+    return { email, id: customerId, name: name || email };
+  } catch (error) {
+    console.error("Error creating customer (Mocked):", error);
+    throw error;
   }
-
-  return customer;
 }
 
 /**
- * Get customer state from Polar API
+ * Get checkout URL for a specific product
+ */
+export async function getCheckoutUrl(customerId: string, productSlug: string): Promise<null | string> {
+  try {
+    if (!process.env.POLAR_ACCESS_TOKEN) return "https://mock-checkout-url.com";
+    
+    const checkout = await polarClient.checkouts.create({
+      customerId,
+      products: [productSlug],
+    });
+    return checkout.url;
+  } catch (error) {
+    console.error("Error generating checkout URL (Mocked):", error);
+    return "https://mock-checkout-url.com";
+  }
+}
+
+/**
+ * Get a Polar customer by user ID (Mocked)
+ */
+export async function getCustomerByUserId(userId: string) {
+  const customer = mockCustomers.find(c => c.userId === userId);
+  return customer || null;
+}
+
+/**
+ * Get customer state from Polar API (Mocked by returning static state or using polarClient directly)
  */
 export async function getCustomerState(userId: string) {
   const customer = await getCustomerByUserId(userId);
@@ -39,50 +82,29 @@ export async function getCustomerState(userId: string) {
     const customerState = await polarClient.customers.get({ id: customer.customerId });
     return customerState;
   } catch (error) {
-    console.error("Error fetching customer state:", error);
-    return null;
+    console.error("Error fetching customer state (Mocked):", error);
+    // Return a mock state if polarClient fails due to missing keys
+    return { email: "mockuser@example.com", id: customer.customerId };
   }
 }
 
 /**
- * Get all subscriptions for a user
+ * Get all subscriptions for a user (Mocked)
  */
 export async function getUserSubscriptions(userId: string) {
-  const subscriptions = await db.query.polarSubscriptionTable.findMany({
-    where: eq(polarSubscriptionTable.userId, userId),
-  });
-
-  return subscriptions;
+  return mockSubscriptions.filter(s => s.userId === userId);
 }
 
 /**
- * Create a new customer in Polar and save reference in database
+ * Check if a user has an active subscription (Mocked)
  */
-export async function createCustomer(userId: string, email: string, name?: string) {
-  try {
-    const customer = await polarClient.customers.create({
-      email,
-      name: name || email,
-      externalId: userId,
-    });
-
-    await db.insert(polarCustomerTable).values({
-      id: uuidv4(),
-      userId,
-      customerId: customer.id,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-
-    return customer;
-  } catch (error) {
-    console.error("Error creating customer:", error);
-    throw error;
-  }
+export async function hasActiveSubscription(userId: string): Promise<boolean> {
+  const subscriptions = await getUserSubscriptions(userId);
+  return subscriptions.some(sub => sub.status === "active");
 }
 
 /**
- * Sync subscription data between Polar and our database
+ * Sync subscription data (Mocked)
  */
 export async function syncSubscription(
   userId: string,
@@ -92,59 +114,32 @@ export async function syncSubscription(
   status: string,
 ) {
   try {
-    const existingSubscription = await db.query.polarSubscriptionTable.findFirst({
-      where: eq(polarSubscriptionTable.subscriptionId, subscriptionId),
-    });
+    const existingIndex = mockSubscriptions.findIndex(s => s.subscriptionId === subscriptionId);
 
-    if (existingSubscription) {
-      await db
-        .update(polarSubscriptionTable)
-        .set({
-          status,
-          updatedAt: new Date(),
-        })
-        .where(eq(polarSubscriptionTable.subscriptionId, subscriptionId));
-      return existingSubscription;
+    if (existingIndex !== -1) {
+      mockSubscriptions[existingIndex] = {
+        ...mockSubscriptions[existingIndex],
+        status,
+        updatedAt: new Date(),
+      };
+      return mockSubscriptions[existingIndex];
     }
 
-    const subscription = await db.insert(polarSubscriptionTable).values({
-      id: uuidv4(),
-      userId,
+    const newSubscription = {
+      createdAt: new Date(),
       customerId,
-      subscriptionId,
+      id: uuidv4(),
       productId,
       status,
-      createdAt: new Date(),
+      subscriptionId,
       updatedAt: new Date(),
-    });
+      userId,
+    };
 
-    return subscription;
+    mockSubscriptions.push(newSubscription);
+    return newSubscription;
   } catch (error) {
-    console.error("Error syncing subscription:", error);
+    console.error("Error syncing subscription (Mocked):", error);
     throw error;
-  }
-}
-
-/**
- * Check if a user has an active subscription
- */
-export async function hasActiveSubscription(userId: string): Promise<boolean> {
-  const subscriptions = await getUserSubscriptions(userId);
-  return subscriptions.some(sub => sub.status === "active");
-}
-
-/**
- * Get checkout URL for a specific product
- */
-export async function getCheckoutUrl(customerId: string, productSlug: string): Promise<string | null> {
-  try {
-    const checkout = await polarClient.checkouts.create({
-      customerId,
-      products: [productSlug],
-    });
-    return checkout.url;
-  } catch (error) {
-    console.error("Error generating checkout URL:", error);
-    return null;
   }
 }

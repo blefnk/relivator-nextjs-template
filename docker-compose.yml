@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: relivator-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: relivator
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      args:
+        # Pass required build-time variables here
+        - DATABASE_URL=postgresql://user:password@db:5432/relivator
+    container_name: relivator-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/relivator
+      # Add other environment variables from .env here
+      - AUTH_SECRET=mysecret
+      - AUTH_GOOGLE_ID=googleid
+      - AUTH_GOOGLE_SECRET=googlesecret
+      - AUTH_GITHUB_ID=githubid
+      - AUTH_GITHUB_SECRET=githubsecret
+      - UPLOADTHING_TOKEN=uploadthing
+      - UPLOADTHING_SECRET_KEY=sk_live_uploadthing
+      - POLAR_ACCESS_TOKEN=polar
+      - POLAR_WEBHOOK_SECRET=polarwebhook
+      - POLAR_ENVIRONMENT=sandbox
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+    depends_on:
+      - db
+
+volumes:
+  db_data:

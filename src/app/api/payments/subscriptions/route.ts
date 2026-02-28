@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getUserSubscriptions } from "~/api/payments/service";
 import { getCurrentUser } from "~/lib/auth";
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   const user = await getCurrentUser();
 
   if (!user) {
