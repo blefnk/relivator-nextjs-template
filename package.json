@@ -60,6 +60,7 @@
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "tailwindcss-animate": "^1.0.7",
+    "pushduck": "^0.4.0",
     "uploadthing": "^7.6.0",
     "uuid": "^11.1.0",
     "vaul": "^1.1.2",
